@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.31424.327
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LocadoraVeiculo.Dominio", "LocadoraVeiculo\LocadoraVeiculo.Dominio.csproj", "{FD32AF45-EF78-416A-B054-B4189D0168B7}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LocadoraVeiculo.Dominio", "LocadoraVeiculo.Dominio\LocadoraVeiculo.Dominio.csproj", "{FD32AF45-EF78-416A-B054-B4189D0168B7}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LocadoraVeiculo.Controladores", "LocadoraVeiculo.Controladores\LocadoraVeiculo.Controladores.csproj", "{3BE78018-27C1-4F5D-8891-B57B6B1A3E4D}"
 EndProject
