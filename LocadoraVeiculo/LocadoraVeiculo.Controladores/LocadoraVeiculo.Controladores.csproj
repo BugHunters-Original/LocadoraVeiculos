@@ -53,7 +53,7 @@
     <Compile Include="VeiculoModule\ControladorVeiculo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\LocadoraVeiculo\LocadoraVeiculo.Dominio.csproj">
+    <ProjectReference Include="..\LocadoraVeiculo.Dominio\LocadoraVeiculo.Dominio.csproj">
       <Project>{fd32af45-ef78-416a-b054-b4189d0168b7}</Project>
       <Name>LocadoraVeiculo.Dominio</Name>
     </ProjectReference>
