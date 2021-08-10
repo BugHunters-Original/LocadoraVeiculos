@@ -62,7 +62,7 @@ namespace LocadoraVeiculo.Tests.ClienteModule
             clienteEncontrado.Should().BeNull();
         }
         [TestMethod]
-        public void DeveSelecionar_Contato_PorId()
+        public void DeveSelecionar_Cliente_PorId()
         {
             //arrange
             var cliente = new Cliente("Gabriel Marques", "Guarujá", "(49)99803-5074", "01190011956", "PF");

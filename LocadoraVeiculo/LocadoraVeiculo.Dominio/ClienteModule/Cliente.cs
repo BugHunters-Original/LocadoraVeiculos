@@ -29,19 +29,19 @@ namespace LocadoraVeiculo.ClienteModule
             string valido = "";
 
             if (string.IsNullOrEmpty(Nome))
-                valido += "Nome em branco";
+                valido += "O campo Nome está inválido";
 
             if (string.IsNullOrEmpty(Endereco))
-                valido += QuebraDeLinha(valido) + "Endereço em branco";
+                valido += QuebraDeLinha(valido) + "O campo Endereço está inválido";
 
             if (string.IsNullOrEmpty(Telefone) || Telefone.Length != 14)
-                valido += QuebraDeLinha(valido) + "Telefone em branco";
+                valido += QuebraDeLinha(valido) + "O campo Telefone está inválido";
 
             if (string.IsNullOrEmpty(Cpf_cnpj))
-                valido += QuebraDeLinha(valido) + "CPF ou CNPJ em branco";
+                valido += QuebraDeLinha(valido) + "O campo CPF/CNPJ está inválido";
 
             if (string.IsNullOrEmpty(Tipo))
-                valido += QuebraDeLinha(valido) + "Tipo em branco";
+                valido += QuebraDeLinha(valido) + "O campo Tipo está inválido";
 
             if (valido == "")
                 valido = "ESTA_VALIDO";
