@@ -20,6 +20,10 @@ namespace LocadoraVeiculo.WindowsApp.Features.Locacao
             //tabelaTarefas = new TabelaTarefaControl();
         }
 
+        public void DevolverVeiculo()
+        {
+            throw new NotImplementedException();
+        }
 
         public void EditarRegistro()
         {
