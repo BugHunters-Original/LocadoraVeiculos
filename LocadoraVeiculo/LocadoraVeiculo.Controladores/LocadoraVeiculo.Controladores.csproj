@@ -43,6 +43,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ClienteModule\ControladorCliente.cs" />
+    <Compile Include="CondutorModule\ControladorCondutor.cs" />
     <Compile Include="FuncionarioModule\ControladorFuncionario.cs" />
     <Compile Include="GrupoVeiculoModule\ControladorGrupoVeiculo.cs" />
     <Compile Include="LocacaoModule\ControladorLocacao.cs" />
