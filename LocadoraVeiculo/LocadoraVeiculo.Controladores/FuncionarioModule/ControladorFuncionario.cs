@@ -2,6 +2,7 @@
 using LocadoraVeiculo.FuncionarioModule;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -126,12 +127,29 @@ namespace LocadoraVeiculo.Controladores.FuncionarioModule
 
         public override Funcionario SelecionarPorId(int id)
         {
-            throw new NotImplementedException();
+            return Db.Get(sqlSelecionarFuncionarioPorId, ConverterEmFuncionario, AdicionarParametro("ID", id));
         }
 
         public override List<Funcionario> SelecionarTodos()
         {
-            throw new NotImplementedException();
+            return Db.GetAll(sqlSelecionarTodosFuncionarios, ConverterEmFuncionario);
+        }
+
+        private Funcionario ConverterEmFuncionario(IDataReader reader)
+        {
+            int id = Convert.ToInt32(reader["ID"]);
+            string nome = Convert.ToString(reader["NOME"]);
+            string cpf = Convert.ToString(reader["CPF"]);
+            DateTime data_entrada = Convert.ToDateTime(reader["DATA_ENTRADA"]);
+            double salario = Convert.ToDouble(reader["SALARIO"]);
+            string usuario = Convert.ToString(reader["USUARIO"]);
+            string senha = Convert.ToString(reader["SENHA"]);
+
+            Funcionario funcionario = new Funcionario(nome, salario, data_entrada, cpf, usuario, senha);
+
+            funcionario.Id = id;
+
+            return funcionario;
         }
 
         private Dictionary<string, object> ObtemParametrosFuncionario(Funcionario funcionario)
