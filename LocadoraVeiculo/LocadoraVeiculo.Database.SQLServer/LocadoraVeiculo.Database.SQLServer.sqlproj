@@ -73,6 +73,6 @@
     <Build Include="dbo\Tables\TBFuncionario.sql" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Script.sql" />
+    <None Include="Script1.sql" />
   </ItemGroup>
 </Project>

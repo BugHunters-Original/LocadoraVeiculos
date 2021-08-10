@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace LocadoraVeiculo.ClienteModule
 {
-    public class Cliente : EntidadeBase
+    public class Cliente : EntidadeBase, IEquatable<Cliente>
     {
         public Cliente(string nome, string endereco, string telefone, string cpf_cnpj, string tipo)
         {
@@ -51,6 +51,31 @@ namespace LocadoraVeiculo.ClienteModule
         public override string ToString()
         {
             return Nome;
+        }
+        public override bool Equals(object obj)
+        {
+            return Equals(obj as Cliente);
+        }
+        public bool Equals(Cliente other)
+        {
+            return other != null
+                && Id == other.Id
+                && Nome == other.Nome
+                && Endereco == other.Endereco
+                && Telefone == other.Telefone
+                && Tipo == other.Tipo
+                && Cpf_cnpj == other.Cpf_cnpj;
+        }
+        public override int GetHashCode()
+        {
+            int hashCode = -974552850;
+            hashCode = hashCode * -1521134295 + Id.GetHashCode();
+            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(Nome);
+            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(Endereco);
+            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(Telefone);
+            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(Cpf_cnpj);
+            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(Tipo);
+            return hashCode;
         }
     }
 }
