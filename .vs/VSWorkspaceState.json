@@ -1,7 +1,8 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\LocadoraVeiculo"
   ],
-  "SelectedNode": "\\LocadoraVeiculo.sln",
+  "SelectedNode": "\\LocadoraVeiculo\\LocadoraVeiculo.sln",
   "PreviewInSolutionExplorer": false
 }
