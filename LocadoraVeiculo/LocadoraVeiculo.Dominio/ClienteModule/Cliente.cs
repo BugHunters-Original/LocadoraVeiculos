@@ -10,11 +10,6 @@ namespace LocadoraVeiculo.ClienteModule
 {
     public class Cliente : EntidadeBase
     {
-        public string Nome { get; set; }
-        public string Endereco { get; set; }
-        public string Telefone { get; set; }
-        public string Cpf_cnpj { get; set; }
-        public string Tipo { get; set; }
         public Cliente(string nome, string endereco, string telefone, string cpf_cnpj, string tipo)
         {
             Nome = nome;
@@ -23,6 +18,11 @@ namespace LocadoraVeiculo.ClienteModule
             Cpf_cnpj = cpf_cnpj;
             Tipo = tipo;
         }
+        public string Nome { get; set; }
+        public string Endereco { get; set; }
+        public string Telefone { get; set; }
+        public string Cpf_cnpj { get; set; }
+        public string Tipo { get; set; }
 
         public override string Validar()
         {

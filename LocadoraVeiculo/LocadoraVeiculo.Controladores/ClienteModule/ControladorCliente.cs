@@ -12,7 +12,7 @@ namespace LocadoraVeiculo.Controladores.ClienteModule
     public class ControladorCliente : Controlador<Cliente>
     {
         private const string sqlInserirCliente =
-       @"INSERT INTO TBCONTATO 
+       @"INSERT INTO TBCLIENTE 
 	                (
 		                [NOME], 
 		                [ENDERECO], 
