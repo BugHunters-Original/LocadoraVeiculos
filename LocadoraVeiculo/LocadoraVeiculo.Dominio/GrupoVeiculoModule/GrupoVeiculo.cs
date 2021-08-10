@@ -4,13 +4,13 @@ namespace LocadoraVeiculo.GrupoVeiculoModule
     public class GrupoVeiculo : EntidadeBase
     {
         public string categoriaVeiculo { get; set; }
-        public float valor_Diario_PDiario  { get; set; }
-        public float preco_KMDiario { get; set; }
-        public float valor_Diario_PControlado { get; set; }
-        public float kmDia__KMControlado { get; set; }
-        public float preco_KMLivre { get; set; }
+        public decimal? valor_Diario_PDiario  { get; set; }
+        public decimal? preco_KMDiario { get; set; }
+        public decimal? valor_Diario_PControlado { get; set; }
+        public decimal? kmDia__KMControlado { get; set; }
+        public decimal? preco_KMLivre { get; set; }
 
-        public GrupoVeiculo(string categoriaVeiculo, float valor_Diario_PDiario, float preco_KMDiario, float valor_Diario_PControlado, float kmDia__KMControlado, float preco_KMLivre)
+        public GrupoVeiculo(string categoriaVeiculo, decimal? valor_Diario_PDiario, decimal? preco_KMDiario, decimal? valor_Diario_PControlado, decimal? kmDia__KMControlado, decimal? preco_KMLivre)
         {
             this.categoriaVeiculo = categoriaVeiculo;
             this.valor_Diario_PDiario = valor_Diario_PDiario;
@@ -27,23 +27,20 @@ namespace LocadoraVeiculo.GrupoVeiculoModule
             if (string.IsNullOrEmpty(categoriaVeiculo))
                 resultadoValidacao = "O campo categoria é obrigatório";
 
-            if (float.IsNaN(valor_Diario_PDiario))
-                resultadoValidacao += QuebraDeLinha(resultadoValidacao) + "O campo valor diário aceita apenas números";
+            if (valor_Diario_PDiario == null || valor_Diario_PDiario > 0)
+                resultadoValidacao += QuebraDeLinha(resultadoValidacao) + "O campo valor diário não pode ser nulo ou menor que zero";
 
-            if (float.IsNaN(preco_KMDiario))
-                resultadoValidacao += QuebraDeLinha(resultadoValidacao) + "O campo preço aceita apenas números";
+            if (preco_KMDiario == null || preco_KMDiario > 0)
+                resultadoValidacao += QuebraDeLinha(resultadoValidacao) + "O campo preço não pode ser nulo ou menor que zero";
 
-            if (float.IsNaN(valor_Diario_PControlado))
-                resultadoValidacao += QuebraDeLinha(resultadoValidacao) + "O campo valor aceita apenas números";
+            if (valor_Diario_PControlado == null || valor_Diario_PControlado > 0)
+                resultadoValidacao += QuebraDeLinha(resultadoValidacao) + "O campo valor não pode ser nulo ou menor que zero";
 
-            if (float.IsNaN(kmDia__KMControlado))
-                resultadoValidacao += QuebraDeLinha(resultadoValidacao) + "O campo km/dia aceita apenas números";
+            if (kmDia__KMControlado == null || kmDia__KMControlado > 0)
+                resultadoValidacao += QuebraDeLinha(resultadoValidacao) + "O campo km/dia não pode ser nulo ou menor que zero";
 
-            if (float.IsNaN(preco_KMLivre))
-                resultadoValidacao += QuebraDeLinha(resultadoValidacao) + "O campo preço aceita apenas números";
-
-            if (float.IsNaN(preco_KMLivre))
-                resultadoValidacao += QuebraDeLinha(resultadoValidacao) + "O campo preço aceita apenas números";
+            if (preco_KMLivre == null || preco_KMLivre > 0)
+                resultadoValidacao += QuebraDeLinha(resultadoValidacao) + "O campo preço não pode ser nulo ou menor que zero";
 
             if (resultadoValidacao == "")
                 resultadoValidacao = "ESTA_VALIDO";
@@ -70,7 +67,7 @@ namespace LocadoraVeiculo.GrupoVeiculoModule
                 && preco_KMDiario == other.preco_KMDiario
                 && valor_Diario_PControlado == other.valor_Diario_PControlado
                 && kmDia__KMControlado == other.kmDia__KMControlado
-                && preco_KMLivre == other.preco_KMLivre);
+                && preco_KMLivre == other.preco_KMLivre;
         }
     }
 }

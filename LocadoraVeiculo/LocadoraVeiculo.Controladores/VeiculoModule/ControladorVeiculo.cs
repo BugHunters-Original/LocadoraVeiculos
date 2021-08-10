@@ -123,6 +123,13 @@ namespace LocadoraVeiculo.Controladores.VeiculoModule
             WHERE 
                 V.[ID] = @ID";
 
+        private const string sqlExisteVeiculo =
+            @"SELECT 
+                COUNT(*) 
+            FROM 
+                [TBVEICULOS]
+            WHERE 
+                [ID] = @ID";
         #endregion
 
         public override string InserirNovo(Veiculo registro)
@@ -217,7 +224,7 @@ namespace LocadoraVeiculo.Controladores.VeiculoModule
             return veiculo;
         }
 
-        private Dictionary<string, object> ObtemParametrosVe(Veiculo veiculo)
+        private Dictionary<string, object> ObtemParametrosVeiculo(Veiculo veiculo)
         {
             var parametros = new Dictionary<string, object>();
 
