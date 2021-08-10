@@ -18,5 +18,7 @@ namespace LocadoraVeiculo.WindowsApp.Shared
         UserControl ObterTabela();
 
         void FiltrarRegistros();
+
+        void DevolverVeiculo();
     }
 }

@@ -46,19 +46,25 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Form1.cs">
+    <Compile Include="Features\Cliente\ConfiguracaoClienteToolBox.cs" />
+    <Compile Include="Features\Cliente\OperacoesCliente.cs" />
+    <Compile Include="Features\Locacao\ConfiguracaoLocacaoToolBox.cs" />
+    <Compile Include="Features\Locacao\OperacoesLocacao.cs" />
+    <Compile Include="Features\Veiculo\ConfiguracaoVeiculoToolBox.cs" />
+    <Compile Include="Features\Veiculo\OperacoesVeiculo.cs" />
+    <Compile Include="TelaPrincipalForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="TelaPrincipalForm.Designer.cs">
+      <DependentUpon>TelaPrincipalForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Shared\DataGridViewExtensions.cs" />
     <Compile Include="Shared\ICadastravel.cs" />
     <Compile Include="Shared\IConfiguracaoToolBox.cs" />
-    <EmbeddedResource Include="Form1.resx">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <EmbeddedResource Include="TelaPrincipalForm.resx">
+      <DependentUpon>TelaPrincipalForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -84,13 +90,10 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Features\Cliente\" />
     <Folder Include="Features\Combustivel\" />
     <Folder Include="Features\Funcionario\" />
     <Folder Include="Features\GrupoVeiculo\" />
-    <Folder Include="Features\Locacao\" />
     <Folder Include="Features\Servico\" />
-    <Folder Include="Features\Veiculo\" />
     <Folder Include="Libraries\" />
   </ItemGroup>
   <ItemGroup>
@@ -107,6 +110,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\devolver.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\LocadoraVeiculo.Controladores\LocadoraVeiculo.Controladores.csproj">
+      <Project>{3be78018-27c1-4f5d-8891-b57b6b1a3e4d}</Project>
+      <Name>LocadoraVeiculo.Controladores</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

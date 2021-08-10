@@ -12,5 +12,10 @@ namespace LocadoraVeiculo.WindowsApp.Shared
         string TipoCadastro { get; }
         string ToolTipEditar { get; }
         string ToolTipExcluir { get; }
+        string ToolTipFiltrar { get; }
+        string ToolTipDevolver { get; }
+
+        bool EnabledFiltrar { get; }
+        bool EnabledDevolver { get; }
     }
 }
