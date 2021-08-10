@@ -134,7 +134,7 @@ namespace LocadoraVeiculo.Controladores.GrupoVeiculoModule
 
         public override List<GrupoVeiculo> SelecionarTodos()
         {
-            return Db.GetAll(sqlSelecionarTodosTipoGrupoVeiculo, ConverterEmGrupoVeiculo);
+            return Db.GetAll(sqlSelecionarTodosTipoGrupoVeiculo, ConverterEmGrupoVeiculo); 
         }
 
         private GrupoVeiculo ConverterEmGrupoVeiculo(IDataReader reader)
