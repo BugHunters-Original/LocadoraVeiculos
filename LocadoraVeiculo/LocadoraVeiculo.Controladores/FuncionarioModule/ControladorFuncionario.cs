@@ -94,7 +94,16 @@ namespace LocadoraVeiculo.Controladores.FuncionarioModule
 
         public override bool Excluir(int id)
         {
-            throw new NotImplementedException();
+            try
+            {
+                Db.Delete(sqlExcluirFuncionario, AdicionarParametro("ID", id));
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+
+            return true;
         }
 
         public override bool Existe(int id)
