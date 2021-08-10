@@ -42,7 +42,7 @@ namespace LocadoraVeiculo.GrupoVeiculoModule
             if (float.IsNaN(preco_KMLivre))
                 resultadoValidacao += QuebraDeLinha(resultadoValidacao) + "O campo preço aceita apenas números";
 
-            if (float.(preco_KMLivre))
+            if (float.IsNaN(preco_KMLivre))
                 resultadoValidacao += QuebraDeLinha(resultadoValidacao) + "O campo preço aceita apenas números";
 
             if (resultadoValidacao == "")
@@ -54,6 +54,23 @@ namespace LocadoraVeiculo.GrupoVeiculoModule
         public override string ToString()
         {
             return categoriaVeiculo;
+        }
+
+        public override bool Equals(object obj)
+        {
+            return Equals(obj as GrupoVeiculo);
+        }
+
+        public bool Equals(GrupoVeiculo other)
+        {
+            return other != null
+                && Id == other.Id
+                && categoriaVeiculo == other.categoriaVeiculo
+                && valor_Diario_PDiario == other.valor_Diario_PDiario
+                && preco_KMDiario == other.preco_KMDiario
+                && valor_Diario_PControlado == other.valor_Diario_PControlado
+                && kmDia__KMControlado == other.kmDia__KMControlado
+                && preco_KMLivre == other.preco_KMLivre);
         }
     }
 }
