@@ -108,7 +108,7 @@ namespace LocadoraVeiculo.Controladores.FuncionarioModule
 
         public override bool Existe(int id)
         {
-            throw new NotImplementedException();
+            return Db.Exists(sqlExisteFuncionario, AdicionarParametro("ID", id));
         }
 
         public override string InserirNovo(Funcionario registro)
