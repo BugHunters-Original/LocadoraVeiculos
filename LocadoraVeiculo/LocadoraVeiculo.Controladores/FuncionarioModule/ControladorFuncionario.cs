@@ -82,7 +82,14 @@ namespace LocadoraVeiculo.Controladores.FuncionarioModule
         #endregion
         public override string Editar(int id, Funcionario registro)
         {
-            throw new NotImplementedException();
+            string resultadoValidacao = registro.Validar();
+
+            if (resultadoValidacao == "ESTA_VALIDO")
+            {
+                registro.Id = Db.Insert(sqlInserirFuncionario, ObtemParametrosFuncionario(registro));
+            }
+
+            return resultadoValidacao;
         }
 
         public override bool Excluir(int id)
@@ -108,6 +115,21 @@ namespace LocadoraVeiculo.Controladores.FuncionarioModule
         public override List<Funcionario> SelecionarTodos()
         {
             throw new NotImplementedException();
+        }
+
+        private Dictionary<string, object> ObtemParametrosFuncionario(Funcionario funcionario)
+        {
+            var parametros = new Dictionary<string, object>();
+
+            parametros.Add("ID", funcionario.Id);
+            parametros.Add("NOME", funcionario.Nome);
+            parametros.Add("CPF", funcionario.Cpf_funcionario);
+            parametros.Add("SALARIO", funcionario.Salario);
+            parametros.Add("DATA_ENTRADA", funcionario.DataEntrada);
+            parametros.Add("USUARIO", funcionario.Usuario);
+            parametros.Add("SENHA", funcionario.Senha);
+
+            return parametros;
         }
     }
 }
