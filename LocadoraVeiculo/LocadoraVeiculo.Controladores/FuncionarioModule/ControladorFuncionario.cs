@@ -86,7 +86,8 @@ namespace LocadoraVeiculo.Controladores.FuncionarioModule
 
             if (resultadoValidacao == "ESTA_VALIDO")
             {
-                registro.Id = Db.Insert(sqlInserirFuncionario, ObtemParametrosFuncionario(registro));
+                registro.Id = id;
+                Db.Update(sqlEditarFuncionario, ObtemParametrosFuncionario(registro));
             }
 
             return resultadoValidacao;
@@ -113,7 +114,14 @@ namespace LocadoraVeiculo.Controladores.FuncionarioModule
 
         public override string InserirNovo(Funcionario registro)
         {
-            throw new NotImplementedException();
+            string resultadoValidacao = registro.Validar();
+
+            if (resultadoValidacao == "ESTA_VALIDO")
+            {
+                registro.Id = Db.Insert(sqlInserirFuncionario, ObtemParametrosFuncionario(registro));
+            }
+
+            return resultadoValidacao;
         }
 
         public override Funcionario SelecionarPorId(int id)
