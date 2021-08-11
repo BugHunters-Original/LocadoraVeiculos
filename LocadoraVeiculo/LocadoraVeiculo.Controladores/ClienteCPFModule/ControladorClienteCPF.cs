@@ -10,10 +10,10 @@ using System.Threading.Tasks;
 
 namespace LocadoraVeiculo.Controladores.CondutorModule
 {
-    public class ControladorCondutor : Controlador<Condutor>
+    public class ControladorClienteCPF : Controlador<ClienteCPF>
     {
         private const string sqlInserirCondutor =
-            @"INSERT INTO TBCONDUTOR 
+            @"INSERT INTO TBCLIENTECPF
 	                (
 		                [NOMEC], 
 		                [ENDERECOC], 
@@ -37,7 +37,7 @@ namespace LocadoraVeiculo.Controladores.CondutorModule
 	                )";
 
         private const string sqlEditarCondutor =
-            @"UPDATE TBCONDUTOR
+            @"UPDATE TBCLIENTECPF
                     SET
 		                [NOMEC] = @NOMEC, 
 		                [ENDERECOC] = @ENDERECOC, 
@@ -53,7 +53,7 @@ namespace LocadoraVeiculo.Controladores.CondutorModule
         private const string sqlExcluirCondutor =
             @"DELETE 
 	                FROM
-                        TBCONDUTOR
+                        TBCLIENTECPF
                     WHERE 
                         ID = @ID";
 
@@ -71,11 +71,10 @@ namespace LocadoraVeiculo.Controladores.CondutorModule
                         CT.[NOME],
                         CT.[ENDERECO],
                         CT.[TELEFONE],
-                        CT.[CPF_CNPJ],
-                        CT.[TIPO]
+                        CT.[CNPJ]
 	                FROM
-                        TBCONDUTOR AS CD LEFT JOIN
-                        TBCLIENTE AS CT
+                        TBCLIENTECPF AS CD LEFT JOIN
+                        TBCLIENTECNPJ AS CT
                     ON
                         CT.ID = CD.ID_CLIENTE
                     WHERE 
@@ -95,11 +94,10 @@ namespace LocadoraVeiculo.Controladores.CondutorModule
                         CT.[NOME],
                         CT.[ENDERECO],
                         CT.[TELEFONE],
-                        CT.[CPF_CNPJ],
-                        CT.[TIPO]
+                        CT.[CNPJ]
 	                FROM
-                        TBCONDUTOR AS CD LEFT JOIN
-                        TBCLIENTE AS CT
+                        TBCLIENTECPF AS CD LEFT JOIN
+                        TBCLIENTECNPJ AS CT
                     ON
                         CT.ID = CD.ID_CLIENTE";
 
@@ -107,10 +105,10 @@ namespace LocadoraVeiculo.Controladores.CondutorModule
             @"SELECT 
                 COUNT(*) 
             FROM 
-                [TBCONDUTOR]
+                [TBCLIENTECPF]
             WHERE 
                 [ID] = @ID";
-        public override string Editar(int id, Condutor registro)
+        public override string Editar(int id, ClienteCPF registro)
         {
             string resultadoValidacao = registro.Validar();
 
@@ -142,7 +140,7 @@ namespace LocadoraVeiculo.Controladores.CondutorModule
             return Db.Exists(sqlExisteCondutor, AdicionarParametro("ID", id));
         }
 
-        public override string InserirNovo(Condutor registro)
+        public override string InserirNovo(ClienteCPF registro)
         {
             string resultadoValidacao = registro.Validar();
 
@@ -154,16 +152,16 @@ namespace LocadoraVeiculo.Controladores.CondutorModule
             return resultadoValidacao;
         }
 
-        public override Condutor SelecionarPorId(int id)
+        public override ClienteCPF SelecionarPorId(int id)
         {
             return Db.Get(sqlSelecionarCondutorPorId, ConverterEmCondutor, AdicionarParametro("ID", id));
         }
 
-        public override List<Condutor> SelecionarTodos()
+        public override List<ClienteCPF> SelecionarTodos()
         {
             return Db.GetAll(sqlSelecionarTodosCondutores, ConverterEmCondutor);
         }
-        private Dictionary<string, object> ObtemParametrosCondutor(Condutor condutor)
+        private Dictionary<string, object> ObtemParametrosCondutor(ClienteCPF condutor)
         {
             var parametros = new Dictionary<string, object>();
 
@@ -175,11 +173,11 @@ namespace LocadoraVeiculo.Controladores.CondutorModule
             parametros.Add("RG", condutor.Rg);
             parametros.Add("CNH", condutor.Cnh);
             parametros.Add("DATA_VALIDADE", condutor.DataValidade);
-            parametros.Add("ID_CLIENTE", condutor.Cliente.Id);
+            parametros.Add("ID_CLIENTE", condutor.Cliente?.Id);
 
             return parametros;
         }
-        private Condutor ConverterEmCondutor(IDataReader reader)
+        private ClienteCPF ConverterEmCondutor(IDataReader reader)
         {
             int id = Convert.ToInt32(reader["ID"]);
             string nome = Convert.ToString(reader["NOMEC"]);
@@ -193,13 +191,16 @@ namespace LocadoraVeiculo.Controladores.CondutorModule
             var nomeC = Convert.ToString(reader["NOME"]);
             var enderecoC = Convert.ToString(reader["ENDERECO"]);
             var telefoneC = Convert.ToString(reader["TELEFONE"]);
-            var cpf_cnpj = Convert.ToString(reader["CPF_CNPJ"]);
-            var tipo = Convert.ToString(reader["TIPO"]);
+            var cpf_cnpj = Convert.ToString(reader["CNPJ"]);
 
-            Cliente cliente = new Cliente(nomeC, enderecoC, telefoneC, cpf_cnpj, tipo);
-            cliente.Id = Convert.ToInt32(reader["ID_CLIENTE"]);
+            ClienteCNPJ cliente = null;
+            if (reader["ID_CLIENTE"] != DBNull.Value)
+            {
+                cliente = new ClienteCNPJ(nomeC, enderecoC, telefoneC, cpf_cnpj);
+                cliente.Id = Convert.ToInt32(reader["ID_CLIENTE"]);
+            }
 
-            Condutor condutor = new Condutor(nome, telefone, endereco, cpf, rg, cnh, dataValidade, cliente);
+            ClienteCPF condutor = new ClienteCPF(nome, telefone, endereco, cpf, rg, cnh, dataValidade, cliente);
 
             condutor.Id = id;
 

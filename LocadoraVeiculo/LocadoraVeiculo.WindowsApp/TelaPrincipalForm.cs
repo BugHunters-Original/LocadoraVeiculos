@@ -58,7 +58,7 @@ namespace LocadoraVeiculo.WindowsApp
 
             AtualizarRodape(configuracao.TipoCadastro);
 
-            operacoes = new OperacoesCliente(new ControladorCliente());
+            operacoes = new OperacoesCliente(new ControladorClienteCNPJ());
 
             ConfigurarPainelRegistros();
         }
