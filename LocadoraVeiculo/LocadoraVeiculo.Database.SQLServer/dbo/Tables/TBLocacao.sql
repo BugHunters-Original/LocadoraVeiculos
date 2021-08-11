@@ -9,8 +9,10 @@
     [Valor_Caucao]         FLOAT (53)   NULL,
     [Plano]                VARCHAR (50) NULL,
     CONSTRAINT [PK_TBLocacao] PRIMARY KEY CLUSTERED ([Id] ASC),
-    CONSTRAINT [FK_TBLocacao_Id_Condutor] FOREIGN KEY ([Id_Condutor]) REFERENCES [dbo].[Id_Condutor] ([Id]),
-    CONSTRAINT [FK_TBLocacao_TBCliente] FOREIGN KEY ([Id_Cliente]) REFERENCES [dbo].[TBCliente] ([Id]),
+    CONSTRAINT [FK_TBLocacao_Id_Condutor] FOREIGN KEY ([Id_Condutor]) REFERENCES [dbo].[TBClienteCPF] ([Id]),
+    CONSTRAINT [FK_TBLocacao_TBCliente] FOREIGN KEY ([Id_Cliente]) REFERENCES [dbo].[TBClienteCNPJ] ([Id]),
     CONSTRAINT [FK_TBLocacao_TBVeiculos] FOREIGN KEY ([Id_Veiculo]) REFERENCES [dbo].[TBVeiculos] ([Id])
 );
+
+
 
