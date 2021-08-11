@@ -34,8 +34,8 @@ namespace LocadoraVeiculo.Tests.CondutorModule
 
             //action
 
-            var novoCondutor = new Condutor("Pedro", "(49)99803-1234", "coral", "12345678911",
-                                            "64654654654", "CNHHHHHH", new DateTime(2022, 06, 22), novoCliente);
+            var novoCondutor = new Condutor("Pedro", "(49)12345-6789", "Coral", "011.900.119-57",
+                                        "6.187.754", "12345678910", new DateTime(2022, 06, 22), novoCliente);
 
             ctrlCondutor.InserirNovo(novoCondutor);
 
@@ -52,14 +52,14 @@ namespace LocadoraVeiculo.Tests.CondutorModule
 
             ctrlCliente.InserirNovo(cliente);
 
-            var condutor = new Condutor("Pedro", "(49)99803-1234", "coral", "12345678911",
-                                            "64654654654", "CNHHHHHH", new DateTime(2022, 06, 22), cliente);
+            var condutor = new Condutor("Pedro", "(49)12345-6789", "Coral", "011.900.119-57",
+                                        "6.187.754", "12345678910", new DateTime(2022, 06, 22), cliente);
 
             ctrlCondutor.InserirNovo(condutor);
 
             //action
-            var novoCondutor = new Condutor("Juca", "(49)99803-1234", "coral", "12345678911",
-                                "64654654654", "CNHHHHHH", new DateTime(2022, 06, 22), cliente);
+            var novoCondutor = new Condutor("Juca", "(49)12345-6789", "Coral", "011.900.119-57",
+                                        "6.187.754", "12345678910", new DateTime(2022, 06, 22), cliente);
 
             ctrlCondutor.Editar(condutor.Id, novoCondutor);
 
@@ -76,8 +76,8 @@ namespace LocadoraVeiculo.Tests.CondutorModule
 
             ctrlCliente.InserirNovo(cliente);
 
-            var condutor = new Condutor("Pedro", "(49)99803-1234", "coral", "12345678911",
-                                            "64654654654", "CNHHHHHH", new DateTime(2022, 06, 22), cliente);
+            var condutor = new Condutor("Pedro", "(49)12345-6789", "Coral", "011.900.119-57",
+                                        "6.187.754", "12345678910", new DateTime(2022, 06, 22), cliente);
 
             ctrlCondutor.InserirNovo(condutor);
 
@@ -97,8 +97,8 @@ namespace LocadoraVeiculo.Tests.CondutorModule
 
             ctrlCliente.InserirNovo(cliente);
 
-            var condutor = new Condutor("Pedro", "(49)99803-1234", "coral", "12345678911",
-                                            "64654654654", "CNHHHHHH", new DateTime(2022, 06, 22), cliente);
+            var condutor = new Condutor("Pedro", "(49)12345-6789", "Coral", "011.900.119-57",
+                                        "6.187.754", "12345678910", new DateTime(2022, 06, 22), cliente);
 
             ctrlCondutor.InserirNovo(condutor);
 
@@ -115,24 +115,24 @@ namespace LocadoraVeiculo.Tests.CondutorModule
             var ct1 = new Cliente("Gabriel Marques", "Guarujá", "(49)99803-5074", "01190011956", "PF");
             ctrlCliente.InserirNovo(ct1);
 
-            var cd1 = new Condutor("Andrey Silva", "(49)99803-1234", "coral", "12345678911",
-                                            "64654654654", "CNHHHHHH", new DateTime(2022, 06, 22), ct1);
+            var cd1 = new Condutor("Andrey Silva", "(49)12345-6789", "Coral", "011.900.119-57",
+                                        "6.187.754", "12345678910", new DateTime(2022, 06, 22), ct1);
 
             ctrlCondutor.InserirNovo(cd1);
 
             var ct2 = new Cliente("Gabriel Marques", "Guarujá", "(49)99803-5074", "01190011956", "PF");
             ctrlCliente.InserirNovo(ct2);
 
-            var cd2 = new Condutor("Gabriel Marques", "(49)99803-1234", "coral", "12345678911",
-                                            "64654654654", "CNHHHHHH", new DateTime(2022, 06, 22), ct2);
+            var cd2 = new Condutor("Gabriel Marques", "(49)12345-6789", "Coral", "011.900.119-57",
+                                        "6.187.754", "12345678910", new DateTime(2022, 06, 22), ct2);
 
             ctrlCondutor.InserirNovo(cd2);
 
             var ct3 = new Cliente("Gabriel Marques", "Guarujá", "(49)99803-5074", "01190011956", "PF");
             ctrlCliente.InserirNovo(ct3);
 
-            var cd3 = new Condutor("Pedro", "(49)99803-1234", "coral", "12345678911",
-                                            "64654654654", "CNHHHHHH", new DateTime(2022, 06, 22), ct3);
+            var cd3 = new Condutor("Pedro", "(49)12345-6789", "Coral", "011.900.119-57",
+                                        "6.187.754", "12345678910", new DateTime(2022, 06, 22), ct3);
 
             ctrlCondutor.InserirNovo(cd3);
             //action
