@@ -61,6 +61,8 @@
     <Compile Include="CondutorCNPJModule\ClienteCPFTest.cs" />
     <Compile Include="FuncionarioModule\ControladorFuncionarioTests.cs" />
     <Compile Include="FuncionarioModule\FuncionarioTests.cs" />
+    <Compile Include="GrupoVeiculoModule\GrupoVeiculoTests.cs" />
+    <Compile Include="GrupoVeiculoModule\ControladorGrupoVeiculoTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
