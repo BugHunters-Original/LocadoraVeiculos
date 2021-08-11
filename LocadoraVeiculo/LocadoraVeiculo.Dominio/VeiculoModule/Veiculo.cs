@@ -17,7 +17,7 @@ namespace LocadoraVeiculo.VeiculoModule
         //public byte[] foto { get; set; }
         public string cor { get; set; }
         public string marca { get; set; }
-        public string ano { get; set; }
+        public int? ano { get; set; }
         public int numero_Portas { get; set; }
         public int capacidade_Tanque { get; set; }
         public char tamanhoPortaMalas { get; set; }
@@ -27,7 +27,7 @@ namespace LocadoraVeiculo.VeiculoModule
         public GrupoVeiculo grupoVeiculo { get; set; }
 
         public Veiculo(string nome, string numero_Placa, string numero_Chassi, string cor,
-            string marca, string ano, int numero_Portas, int capacidade_Tanque, char tamanhoPortaMalas, int km_Inicial, 
+            string marca, int? ano, int numero_Portas, int capacidade_Tanque, char tamanhoPortaMalas, int km_Inicial, 
             string tipo_Combustivel, bool disponibilidade_Veiculo, GrupoVeiculo grupoVeiculo)
         {
             this.nome = nome;
@@ -67,7 +67,7 @@ namespace LocadoraVeiculo.VeiculoModule
             if (string.IsNullOrEmpty(tipo_Combustivel))
                 resultadoValidacao += QuebraDeLinha(resultadoValidacao) + "O campo combústivel é obrigatório";
 
-            if (string.IsNullOrEmpty(ano))
+            if (ano == null || ano < 0)
                 resultadoValidacao += QuebraDeLinha(resultadoValidacao) + "O campo ano é obrigatório";
 
             if (Convert.ToInt32(ano) > DateTime.Now.Year || Convert.ToInt32(ano) < 1900)

@@ -5,44 +5,44 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace LocadoraVeiculo.WindowsApp.Features.Funcionario
+namespace LocadoraVeiculo.WindowsApp.Features.GrupoVeiculo
 {
-    public class ConfiguracaoFuncionarioToolBox : IConfiguracaoToolBox
+    class ConfiguracaoGrupoVeiculoToolBox : IConfiguracaoToolBox
     {
         public string ToolTipAdicionar
         {
-            get { return "Cadastrar um Funcionário"; }
+            get { return "Adicionar um Grupo Veiculo"; }
         }
-
         public string TipoCadastro
         {
-            get { return "Cadastro de Funcionários"; }
+            get { return "Cadastro de Grupo Veiculos"; }
         }
 
         public string ToolTipEditar
         {
-            get { return "Editar um Funcionário"; }
+            get { return "Editar um Grupo Veiculo"; }
         }
 
         public string ToolTipExcluir
         {
-            get { return "Excluir um Funcionário"; }
+            get { return "Excluir um Grupo Veiculo"; }
         }
 
         public string ToolTipFiltrar
         {
-            get { return "Filtrar Funcionários"; }
+            get { return "Filtrar Grupo Veiculo"; }
         }
 
         public string ToolTipDevolver
         {
-            get { return "Devolver um veículo"; }
+            get { return "Devolver um Grupo Veiculo"; }
         }
 
         public bool EnabledFiltrar
         {
             get { return false; }
         }
+
         public bool EnabledDevolver
         {
             get { return false; }

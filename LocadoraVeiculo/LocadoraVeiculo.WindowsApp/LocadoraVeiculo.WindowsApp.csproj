@@ -48,10 +48,44 @@
   <ItemGroup>
     <Compile Include="Features\Cliente\ConfiguracaoClienteToolBox.cs" />
     <Compile Include="Features\Cliente\OperacoesCliente.cs" />
+    <Compile Include="Features\Cliente\TabelaClienteControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Features\Cliente\TabelaClienteControl.Designer.cs">
+      <DependentUpon>TabelaClienteControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Features\Funcionario\ConfiguracaoFuncionarioToolBox.cs" />
+    <Compile Include="Features\Funcionario\OperacoesFuncionario.cs" />
+    <Compile Include="Features\Funcionario\TabelaFuncionarioControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Features\Funcionario\TabelaFuncionarioControl.Designer.cs">
+      <DependentUpon>TabelaFuncionarioControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Features\GrupoVeiculo\ConfiguracaoGrupoVeiculoToolBox.cs" />
+    <Compile Include="Features\GrupoVeiculo\OperacoesGrupoVeiculo.cs" />
+    <Compile Include="Features\GrupoVeiculo\TelaGrupoVeiculoForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Features\GrupoVeiculo\TelaGrupoVeiculoForm.Designer.cs">
+      <DependentUpon>TelaGrupoVeiculoForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Features\Locacao\ConfiguracaoLocacaoToolBox.cs" />
     <Compile Include="Features\Locacao\OperacoesLocacao.cs" />
+    <Compile Include="Features\Locacao\TabelaLocacaoControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Features\Locacao\TabelaLocacaoControl.Designer.cs">
+      <DependentUpon>TabelaLocacaoControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="Features\Veiculo\ConfiguracaoVeiculoToolBox.cs" />
     <Compile Include="Features\Veiculo\OperacoesVeiculo.cs" />
+    <Compile Include="Features\Veiculo\TabelaVeiculoControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Features\Veiculo\TabelaVeiculoControl.Designer.cs">
+      <DependentUpon>TabelaVeiculoControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="TelaPrincipalForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -63,6 +97,21 @@
     <Compile Include="Shared\DataGridViewExtensions.cs" />
     <Compile Include="Shared\ICadastravel.cs" />
     <Compile Include="Shared\IConfiguracaoToolBox.cs" />
+    <EmbeddedResource Include="Features\Cliente\TabelaClienteControl.resx">
+      <DependentUpon>TabelaClienteControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Features\Funcionario\TabelaFuncionarioControl.resx">
+      <DependentUpon>TabelaFuncionarioControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Features\Locacao\TabelaLocacaoControl.resx">
+      <DependentUpon>TabelaLocacaoControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Features\Veiculo\TabelaVeiculoControl.resx">
+      <DependentUpon>TabelaVeiculoControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Features\GrupoVeiculo\TelaGrupoVeiculoForm.resx">
+      <DependentUpon>TelaGrupoVeiculoForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="TelaPrincipalForm.resx">
       <DependentUpon>TelaPrincipalForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -91,8 +140,8 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Features\Combustivel\" />
-    <Folder Include="Features\Funcionario\" />
     <Folder Include="Features\GrupoVeiculo\" />
+    <Folder Include="Features\Funcionario\" />
     <Folder Include="Features\Servico\" />
     <Folder Include="Libraries\" />
   </ItemGroup>
@@ -115,6 +164,10 @@
     <ProjectReference Include="..\LocadoraVeiculo.Controladores\LocadoraVeiculo.Controladores.csproj">
       <Project>{3be78018-27c1-4f5d-8891-b57b6b1a3e4d}</Project>
       <Name>LocadoraVeiculo.Controladores</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\LocadoraVeiculo.Dominio\LocadoraVeiculo.Dominio.csproj">
+      <Project>{fd32af45-ef78-416a-b054-b4189d0168b7}</Project>
+      <Name>LocadoraVeiculo.Dominio</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

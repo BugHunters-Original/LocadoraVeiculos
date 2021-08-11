@@ -1,4 +1,4 @@
-﻿using LocadoraVeiculo.Controladores.VeiculoModule;
+﻿using LocadoraVeiculo.Controladores.FuncionarioModule;
 using LocadoraVeiculo.WindowsApp.Shared;
 using System;
 using System.Collections.Generic;
@@ -7,18 +7,19 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace LocadoraVeiculo.WindowsApp.Features.Veiculo
+namespace LocadoraVeiculo.WindowsApp.Features.Funcionario
 {
-    public class OperacoesVeiculo : ICadastravel
+    public class OperacoesFuncionario : ICadastravel
     {
-        private readonly ControladorVeiculo controlador = null;
+        private readonly ControladorFuncionario controlador = null;
         //private readonly TabelaTarefaControl tabelaTarefas = null;
 
-        public OperacoesVeiculo(ControladorVeiculo ctrlVeiculo)
+        public OperacoesFuncionario(ControladorFuncionario ctrlLocacao)
         {
-            controlador = ctrlVeiculo;
+            controlador = ctrlLocacao;
             //tabelaTarefas = new TabelaTarefaControl();
         }
+
 
         public void DevolverVeiculo()
         {
@@ -49,15 +50,5 @@ namespace LocadoraVeiculo.WindowsApp.Features.Veiculo
         {
             throw new NotImplementedException();
         }
-
-        //public UserControl ObterTabela()
-        //{
-        //    List<Tarefa> tarefas = controlador.SelecionarTodos();
-
-        //    tabelaTarefas.AtualizarRegistros(tarefas);
-
-        //    return tabelaTarefas;
-        //}
     }
 }
-
