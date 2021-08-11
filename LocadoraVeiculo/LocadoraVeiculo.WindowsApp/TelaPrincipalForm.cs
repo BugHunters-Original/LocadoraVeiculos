@@ -1,9 +1,11 @@
 ﻿using LocadoraVeiculo.Controladores.ClienteModule;
 using LocadoraVeiculo.Controladores.FuncionarioModule;
+using LocadoraVeiculo.Controladores.GrupoVeiculoModule;
 using LocadoraVeiculo.Controladores.LocacaoModule;
 using LocadoraVeiculo.Controladores.VeiculoModule;
 using LocadoraVeiculo.WindowsApp.Features.Cliente;
 using LocadoraVeiculo.WindowsApp.Features.Funcionario;
+using LocadoraVeiculo.WindowsApp.Features.GrupoVeiculo;
 using LocadoraVeiculo.WindowsApp.Features.Locacao;
 using LocadoraVeiculo.WindowsApp.Features.Veiculo;
 using LocadoraVeiculo.WindowsApp.Shared;
@@ -85,6 +87,19 @@ namespace LocadoraVeiculo.WindowsApp
             AtualizarRodape(configuracao.TipoCadastro);
 
             operacoes = new OperacoesFuncionario(new ControladorFuncionario());
+
+            ConfigurarPainelRegistros();
+        }
+
+        private void gruposDeVeículosToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ConfiguracaoGrupoVeiculoToolBox configuracao = new ConfiguracaoGrupoVeiculoToolBox();
+
+            ConfigurarToolBox(configuracao);
+
+            AtualizarRodape(configuracao.TipoCadastro);
+
+            operacoes = new OperacoesGrupoVeiculo(new ControladorGrupoVeiculo());
 
             ConfigurarPainelRegistros();
         }
