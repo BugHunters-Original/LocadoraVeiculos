@@ -12,7 +12,7 @@ namespace LocadoraVeiculo.Tests.ClienteModule
         public void DeveValidar_Nome()
         {
             //arrange
-            var cliente = new Cliente("", "Guarujá", "(49)99803-5074", "01190011956", "PF");
+            var cliente = new ClienteCNPJ("", "Guarujá", "(49)99803-5074", "01190011956");
 
             //action
             var resultadoValidacao = cliente.Validar();
@@ -24,7 +24,7 @@ namespace LocadoraVeiculo.Tests.ClienteModule
         public void DeveValidar_Endereco()
         {
             //arrange
-            var cliente = new Cliente("Gabriel Marques", "", "(49)99803-5074", "01190011956", "PF");
+            var cliente = new ClienteCNPJ("Gabriel Marques", "", "(49)99803-5074", "01190011956");
 
             //action
             var resultadoValidacao = cliente.Validar();
@@ -36,7 +36,7 @@ namespace LocadoraVeiculo.Tests.ClienteModule
         public void DeveValidar_Telefone()
         {
             //arrange
-            var cliente = new Cliente("Gabriel Marques", "Guarujá", "", "01190011956", "PF");
+            var cliente = new ClienteCNPJ("Gabriel Marques", "Guarujá", "", "01190011956");
 
             //action
             var resultadoValidacao = cliente.Validar();
@@ -48,7 +48,7 @@ namespace LocadoraVeiculo.Tests.ClienteModule
         public void DeveValidar_CPF_CNPJ()
         {
             //arrange
-            var cliente = new Cliente("Gabriel Marques", "Guarujá", "(49)99803-5074", "", "PF");
+            var cliente = new ClienteCNPJ("Gabriel Marques", "Guarujá", "(49)99803-5074", "");
 
             //action
             var resultadoValidacao = cliente.Validar();
@@ -60,7 +60,7 @@ namespace LocadoraVeiculo.Tests.ClienteModule
         public void DeveValidar_Tipo()
         {
             //arrange
-            var cliente = new Cliente("Gabriel Marques", "Guarujá", "(49)99803-5074", "01190011956", "");
+            var cliente = new ClienteCNPJ("Gabriel Marques", "Guarujá", "(49)99803-5074", "01190011956");
 
             //action
             var resultadoValidacao = cliente.Validar();

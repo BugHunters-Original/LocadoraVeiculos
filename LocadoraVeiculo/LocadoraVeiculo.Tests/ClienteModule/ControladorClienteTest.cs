@@ -22,7 +22,7 @@ namespace LocadoraVeiculo.Tests.ClienteModule
         public void DeveInserir_Cliente()
         {
             //arrange
-            var novoCliente = new Cliente("Gabriel Marques", "Guarujá", "(49)99803-5074", "01190011956", "PF");
+            var novoCliente = new ClienteCNPJ("Gabriel Marques", "Guarujá", "(49)99803-5074", "01190011956");
 
             //action
             controlador.InserirNovo(novoCliente);
@@ -35,41 +35,41 @@ namespace LocadoraVeiculo.Tests.ClienteModule
         public void DeveAtualizar_Cliente()
         {
             //arrange
-            var cliente = new Cliente("Gabriel Marques", "Guarujá", "(49)99803-5074", "01190011956", "PF");
+            var cliente = new ClienteCNPJ("Gabriel Marques", "Guarujá", "(49)99803-5074", "01190011956");
             controlador.InserirNovo(cliente);
 
-            var novoCliente = new Cliente("Andrey Silva", "Santa Helena", "(49)99803-5074", "01190011956", "PF");
+            var novoCliente = new ClienteCNPJ("Andrey Silva", "Santa Helena", "(49)99803-5074", "01190011956");
 
             //action
             controlador.Editar(cliente.Id, novoCliente);
 
             //assert
-            Cliente clienteAtualizado = controlador.SelecionarPorId(cliente.Id);
+            ClienteCNPJ clienteAtualizado = controlador.SelecionarPorId(cliente.Id);
             clienteAtualizado.Should().Be(novoCliente);
         }
         [TestMethod]
         public void DeveExcluir_Cliente()
         {
             //arrange            
-            var cliente = new Cliente("Gabriel Marques", "Guarujá", "(49)99803-5074", "01190011956", "PF");
+            var cliente = new ClienteCNPJ("Gabriel Marques", "Guarujá", "(49)99803-5074", "01190011956");
             controlador.InserirNovo(cliente);
 
             //action            
             controlador.Excluir(cliente.Id);
 
             //assert
-            Cliente clienteEncontrado = controlador.SelecionarPorId(cliente.Id);
+            ClienteCNPJ clienteEncontrado = controlador.SelecionarPorId(cliente.Id);
             clienteEncontrado.Should().BeNull();
         }
         [TestMethod]
         public void DeveSelecionar_Cliente_PorId()
         {
             //arrange
-            var cliente = new Cliente("Gabriel Marques", "Guarujá", "(49)99803-5074", "01190011956", "PF");
+            var cliente = new ClienteCNPJ("Gabriel Marques", "Guarujá", "(49)99803-5074", "01190011956");
             controlador.InserirNovo(cliente);
 
             //action
-            Cliente clienteEncontrado = controlador.SelecionarPorId(cliente.Id);
+            ClienteCNPJ clienteEncontrado = controlador.SelecionarPorId(cliente.Id);
 
             //assert
             clienteEncontrado.Should().NotBeNull();
@@ -78,13 +78,13 @@ namespace LocadoraVeiculo.Tests.ClienteModule
         public void DeveSelecionar_TodosClientes()
         {
             //arrange
-            var c1 = new Cliente("Gabriel Marques", "Guarujá", "(49)99803-5074", "01190011956", "PF");
+            var c1 = new ClienteCNPJ("Gabriel Marques", "Guarujá", "(49)99803-5074", "01190011956");
             controlador.InserirNovo(c1);
 
-            var c2 = new Cliente("Andrey Silva", "Santa Helena", "(49)99803-5074", "01190011956", "PF");
+            var c2 = new ClienteCNPJ("Andrey Silva", "Santa Helena", "(49)99803-5074", "01190011956");
             controlador.InserirNovo(c2);
 
-            var c3 = new Cliente("NDD", "Coral", "(49)99803-5074", "01190011956", "PJ");
+            var c3 = new ClienteCNPJ("NDD", "Coral", "(49)99803-5074", "01190011956");
             controlador.InserirNovo(c3);
 
             //action

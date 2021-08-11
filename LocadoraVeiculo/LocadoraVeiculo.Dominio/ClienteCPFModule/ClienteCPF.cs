@@ -8,10 +8,10 @@ using System.Threading.Tasks;
 
 namespace LocadoraVeiculo.CondutorModule
 {
-    public class Condutor : EntidadeBase, IEquatable<Condutor>
+    public class ClienteCPF : EntidadeBase, IEquatable<ClienteCPF>
     {
-        public Condutor(string nome, string telefone, string endereco, string CPF,
-            string RG, string CNH, DateTime dataValidade, Cliente cliente)
+        public ClienteCPF(string nome, string telefone, string endereco, string CPF,
+            string RG, string CNH, DateTime dataValidade, ClienteCNPJ cliente)
         {
             Nome = nome;
             Endereco = endereco;
@@ -29,9 +29,9 @@ namespace LocadoraVeiculo.CondutorModule
         public string Rg { get; set; }
         public string Cnh { get; set; }
         public DateTime DataValidade { get; set; }
-        public Cliente Cliente { get; set; }
+        public ClienteCNPJ Cliente { get; set; }
 
-        public bool Equals(Condutor other)
+        public bool Equals(ClienteCPF other)
         {
             return other != null
                 && Id == other.Id
@@ -45,7 +45,7 @@ namespace LocadoraVeiculo.CondutorModule
         }
         public override bool Equals(object obj)
         {
-            return Equals(obj as Condutor);
+            return Equals(obj as ClienteCPF);
         }
 
         public override int GetHashCode()
@@ -59,7 +59,7 @@ namespace LocadoraVeiculo.CondutorModule
             hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(Rg);
             hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(Cnh);
             hashCode = hashCode * -1521134295 + DataValidade.GetHashCode();
-            hashCode = hashCode * -1521134295 + EqualityComparer<Cliente>.Default.GetHashCode(Cliente);
+            hashCode = hashCode * -1521134295 + EqualityComparer<ClienteCNPJ>.Default.GetHashCode(Cliente);
             return hashCode;
         }
         public override string ToString()

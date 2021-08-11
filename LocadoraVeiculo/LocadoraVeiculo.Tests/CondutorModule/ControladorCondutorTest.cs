@@ -25,16 +25,16 @@ namespace LocadoraVeiculo.Tests.CondutorModule
 
         [TestMethod]
         public void DeveInserir_Condutor()
-        {   
+        {
             //arrange
-            var novoCliente = new Cliente("Gabriel Marques", "Guarujá", "(49)99803-5074", "01190011956", "PF");
+            var novoCliente = new ClienteCNPJ("Gabriel Marques", "Guarujá", "(49)99803-5074", "01190011956");
 
             ctrlCliente.InserirNovo(novoCliente);
 
 
             //action
 
-            var novoCondutor = new Condutor("Pedro", "(49)12345-6789", "Coral", "011.900.119-57",
+            var novoCondutor = new ClienteCPF("Pedro", "(49)12345-6789", "Coral", "011.900.119-57",
                                         "6.187.754", "12345678910", new DateTime(2022, 06, 22), novoCliente);
 
             ctrlCondutor.InserirNovo(novoCondutor);
@@ -46,19 +46,19 @@ namespace LocadoraVeiculo.Tests.CondutorModule
 
         [TestMethod]
         public void DeveAtualizar_Condutor()
-        {   
+        {
             //arrange
-            var cliente = new Cliente("Gabriel Marques", "Guarujá", "(49)99803-5074", "01190011956", "PF");
+            var cliente = new ClienteCNPJ("Gabriel Marques", "Guarujá", "(49)99803-5074", "01190011956");
 
             ctrlCliente.InserirNovo(cliente);
 
-            var condutor = new Condutor("Pedro", "(49)12345-6789", "Coral", "011.900.119-57",
+            var condutor = new ClienteCPF("Pedro", "(49)12345-6789", "Coral", "011.900.119-57",
                                         "6.187.754", "12345678910", new DateTime(2022, 06, 22), cliente);
 
             ctrlCondutor.InserirNovo(condutor);
 
             //action
-            var novoCondutor = new Condutor("Juca", "(49)12345-6789", "Coral", "011.900.119-57",
+            var novoCondutor = new ClienteCPF("Juca", "(49)12345-6789", "Coral", "011.900.119-57",
                                         "6.187.754", "12345678910", new DateTime(2022, 06, 22), cliente);
 
             ctrlCondutor.Editar(condutor.Id, novoCondutor);
@@ -70,13 +70,13 @@ namespace LocadoraVeiculo.Tests.CondutorModule
 
         [TestMethod]
         public void DeveExcluir_Condutor()
-        {   
+        {
             //arrange
-            var cliente = new Cliente("Gabriel Marques", "Guarujá", "(49)99803-5074", "01190011956", "PF");
+            var cliente = new ClienteCNPJ("Gabriel Marques", "Guarujá", "(49)99803-5074", "01190011956");
 
             ctrlCliente.InserirNovo(cliente);
 
-            var condutor = new Condutor("Pedro", "(49)12345-6789", "Coral", "011.900.119-57",
+            var condutor = new ClienteCPF("Pedro", "(49)12345-6789", "Coral", "011.900.119-57",
                                         "6.187.754", "12345678910", new DateTime(2022, 06, 22), cliente);
 
             ctrlCondutor.InserirNovo(condutor);
@@ -91,13 +91,13 @@ namespace LocadoraVeiculo.Tests.CondutorModule
 
         [TestMethod]
         public void DeveSelecionar_Condutor_PorId()
-        {   
+        {
             //arrange
-            var cliente = new Cliente("Gabriel Marques", "Guarujá", "(49)99803-5074", "01190011956", "PF");
+            var cliente = new ClienteCNPJ("Gabriel Marques", "Guarujá", "(49)99803-5074", "01190011956");
 
             ctrlCliente.InserirNovo(cliente);
 
-            var condutor = new Condutor("Pedro", "(49)12345-6789", "Coral", "011.900.119-57",
+            var condutor = new ClienteCPF("Pedro", "(49)12345-6789", "Coral", "011.900.119-57",
                                         "6.187.754", "12345678910", new DateTime(2022, 06, 22), cliente);
 
             ctrlCondutor.InserirNovo(condutor);
@@ -112,26 +112,26 @@ namespace LocadoraVeiculo.Tests.CondutorModule
         public void DeveSelecionar_TodosClientes()
         {
             //arrange
-            var ct1 = new Cliente("Gabriel Marques", "Guarujá", "(49)99803-5074", "01190011956", "PF");
+            var ct1 = new ClienteCNPJ("Gabriel Marques", "Guarujá", "(49)99803-5074", "01190011956");
             ctrlCliente.InserirNovo(ct1);
 
-            var cd1 = new Condutor("Andrey Silva", "(49)12345-6789", "Coral", "011.900.119-57",
+            var cd1 = new ClienteCPF("Andrey Silva", "(49)12345-6789", "Coral", "011.900.119-57",
                                         "6.187.754", "12345678910", new DateTime(2022, 06, 22), ct1);
 
             ctrlCondutor.InserirNovo(cd1);
 
-            var ct2 = new Cliente("Gabriel Marques", "Guarujá", "(49)99803-5074", "01190011956", "PF");
+            var ct2 = new ClienteCNPJ("Gabriel Marques", "Guarujá", "(49)99803-5074", "01190011956");
             ctrlCliente.InserirNovo(ct2);
 
-            var cd2 = new Condutor("Gabriel Marques", "(49)12345-6789", "Coral", "011.900.119-57",
+            var cd2 = new ClienteCPF("Gabriel Marques", "(49)12345-6789", "Coral", "011.900.119-57",
                                         "6.187.754", "12345678910", new DateTime(2022, 06, 22), ct2);
 
             ctrlCondutor.InserirNovo(cd2);
 
-            var ct3 = new Cliente("Gabriel Marques", "Guarujá", "(49)99803-5074", "01190011956", "PF");
+            var ct3 = new ClienteCNPJ("Gabriel Marques", "Guarujá", "(49)99803-5074", "01190011956");
             ctrlCliente.InserirNovo(ct3);
 
-            var cd3 = new Condutor("Pedro", "(49)12345-6789", "Coral", "011.900.119-57",
+            var cd3 = new ClienteCPF("Pedro", "(49)12345-6789", "Coral", "011.900.119-57",
                                         "6.187.754", "12345678910", new DateTime(2022, 06, 22), ct3);
 
             ctrlCondutor.InserirNovo(cd3);
