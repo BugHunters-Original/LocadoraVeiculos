@@ -11,7 +11,7 @@ namespace LocadoraVeiculo.CondutorModule
     public class ClienteCPF : EntidadeBase, IEquatable<ClienteCPF>
     {
         public ClienteCPF(string nome, string telefone, string endereco, string CPF,
-            string RG, string CNH, DateTime dataValidade, ClienteCNPJ cliente)
+            string RG, string CNH, DateTime dataValidade, ClienteCNPJ cliente=null)
         {
             Nome = nome;
             Endereco = endereco;
@@ -91,9 +91,6 @@ namespace LocadoraVeiculo.CondutorModule
 
             if (DataValidade < DateTime.Now)
                 valido += QuebraDeLinha(valido) + "O campo Data de Validade CNH está inválido";
-
-            if (Cliente == null)
-                valido += QuebraDeLinha(valido) + "O campo Cliente está inválido";
 
             if (valido == "")
                 valido = "ESTA_VALIDO";

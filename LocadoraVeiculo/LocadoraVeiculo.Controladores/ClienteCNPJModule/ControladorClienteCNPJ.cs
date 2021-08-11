@@ -9,41 +9,38 @@ using System.Data;
 
 namespace LocadoraVeiculo.Controladores.ClienteModule
 {
-    public class ControladorCliente : Controlador<ClienteCNPJ>
+    public class ControladorClienteCNPJ : Controlador<ClienteCNPJ>
     {
         private const string sqlInserirCliente =
-       @"INSERT INTO TBCLIENTE 
+       @"INSERT INTO TBCLIENTECNPJ 
 	                (
 		                [NOME], 
 		                [ENDERECO], 
 		                [TELEFONE],
-                        [CPF_CNPJ], 
-		                [TIPO]
+                        [CNPJ] 
 	                ) 
 	                VALUES
 	                (
                         @NOME, 
                         @ENDERECO,
                         @TELEFONE,
-		                @CPF_CNPJ, 
-		                @TIPO
+		                @CNPJ
 	                )";
 
         private const string sqlEditarCliente =
-            @"UPDATE TBCLIENTE
+            @"UPDATE TBCLIENTECNPJ
                     SET
                         [NOME] = @NOME,
 		                [ENDERECO] = @ENDERECO, 
 		                [TELEFONE] = @TELEFONE,
-                        [CPF_CNPJ] = @CPF_CNPJ,
-                        [TIPO] = @TIPO
+                        [CNPJ] = @CNPJ
                     WHERE 
                         ID = @ID";
 
         private const string sqlExcluirCliente =
             @"DELETE 
 	                FROM
-                        TBCLIENTE
+                        TBCLIENTECNPJ
                     WHERE 
                         ID = @ID";
 
@@ -53,10 +50,9 @@ namespace LocadoraVeiculo.Controladores.ClienteModule
 		                [NOME], 
 		                [ENDERECO], 
 		                [TELEFONE],
-                        [CPF_CNPJ], 
-		                [TIPO]
+                        [CNPJ]
 	                FROM
-                        TBCLIENTE
+                        TBCLIENTECNPJ
                     WHERE 
                         ID = @ID";
 
@@ -66,16 +62,15 @@ namespace LocadoraVeiculo.Controladores.ClienteModule
 		                [NOME], 
 		                [ENDERECO], 
 		                [TELEFONE],
-                        [CPF_CNPJ], 
-		                [TIPO]
+                        [CNPJ]
 	                FROM
-                        TBCLIENTE";
+                        TBCLIENTECNPJ";
 
         private const string sqlExisteCliente =
             @"SELECT 
                 COUNT(*) 
             FROM 
-                [TBCLIENTE]
+                [TBCLIENTECNPJ]
             WHERE 
                 [ID] = @ID";
         public override string Editar(int id, ClienteCNPJ registro)
@@ -139,7 +134,7 @@ namespace LocadoraVeiculo.Controladores.ClienteModule
             parametros.Add("NOME", cliente.Nome);
             parametros.Add("ENDERECO", cliente.Endereco);
             parametros.Add("TELEFONE", cliente.Telefone);
-            parametros.Add("CPF_CNPJ", cliente.Cpf_cnpj);
+            parametros.Add("CNPJ", cliente.Cnpj);
 
             return parametros;
         }
@@ -149,9 +144,9 @@ namespace LocadoraVeiculo.Controladores.ClienteModule
             string nome = Convert.ToString(reader["NOME"]);
             string endereco = Convert.ToString(reader["ENDERECO"]);
             string telefone = Convert.ToString(reader["TELEFONE"]);
-            string cpf_cnpj = Convert.ToString(reader["CPF_CNPJ"]);
+            string cnpj = Convert.ToString(reader["CNPJ"]);
 
-            ClienteCNPJ cliente = new ClienteCNPJ(nome, endereco, telefone, cpf_cnpj);
+            ClienteCNPJ cliente = new ClienteCNPJ(nome, endereco, telefone, cnpj);
 
             cliente.Id = id;
 

@@ -10,10 +10,10 @@ using System.Threading.Tasks;
 
 namespace LocadoraVeiculo.Controladores.CondutorModule
 {
-    public class ControladorCondutor : Controlador<ClienteCPF>
+    public class ControladorClienteCPF : Controlador<ClienteCPF>
     {
         private const string sqlInserirCondutor =
-            @"INSERT INTO TBCONDUTOR 
+            @"INSERT INTO TBCLIENTECPF
 	                (
 		                [NOMEC], 
 		                [ENDERECOC], 
@@ -37,7 +37,7 @@ namespace LocadoraVeiculo.Controladores.CondutorModule
 	                )";
 
         private const string sqlEditarCondutor =
-            @"UPDATE TBCONDUTOR
+            @"UPDATE TBCLIENTECPF
                     SET
 		                [NOMEC] = @NOMEC, 
 		                [ENDERECOC] = @ENDERECOC, 
@@ -53,7 +53,7 @@ namespace LocadoraVeiculo.Controladores.CondutorModule
         private const string sqlExcluirCondutor =
             @"DELETE 
 	                FROM
-                        TBCONDUTOR
+                        TBCLIENTECPF
                     WHERE 
                         ID = @ID";
 
@@ -71,11 +71,10 @@ namespace LocadoraVeiculo.Controladores.CondutorModule
                         CT.[NOME],
                         CT.[ENDERECO],
                         CT.[TELEFONE],
-                        CT.[CPF_CNPJ],
-                        CT.[TIPO]
+                        CT.[CNPJ]
 	                FROM
-                        TBCONDUTOR AS CD LEFT JOIN
-                        TBCLIENTE AS CT
+                        TBCLIENTECPF AS CD LEFT JOIN
+                        TBCLIENTECNPJ AS CT
                     ON
                         CT.ID = CD.ID_CLIENTE
                     WHERE 
@@ -95,11 +94,10 @@ namespace LocadoraVeiculo.Controladores.CondutorModule
                         CT.[NOME],
                         CT.[ENDERECO],
                         CT.[TELEFONE],
-                        CT.[CPF_CNPJ],
-                        CT.[TIPO]
+                        CT.[CNPJ]
 	                FROM
-                        TBCONDUTOR AS CD LEFT JOIN
-                        TBCLIENTE AS CT
+                        TBCLIENTECPF AS CD LEFT JOIN
+                        TBCLIENTECNPJ AS CT
                     ON
                         CT.ID = CD.ID_CLIENTE";
 
@@ -107,7 +105,7 @@ namespace LocadoraVeiculo.Controladores.CondutorModule
             @"SELECT 
                 COUNT(*) 
             FROM 
-                [TBCONDUTOR]
+                [TBCLIENTECPF]
             WHERE 
                 [ID] = @ID";
         public override string Editar(int id, ClienteCPF registro)
@@ -193,7 +191,7 @@ namespace LocadoraVeiculo.Controladores.CondutorModule
             var nomeC = Convert.ToString(reader["NOME"]);
             var enderecoC = Convert.ToString(reader["ENDERECO"]);
             var telefoneC = Convert.ToString(reader["TELEFONE"]);
-            var cpf_cnpj = Convert.ToString(reader["CPF_CNPJ"]);
+            var cpf_cnpj = Convert.ToString(reader["CNPJ"]);
 
             ClienteCNPJ cliente = new ClienteCNPJ(nomeC, enderecoC, telefoneC, cpf_cnpj);
             cliente.Id = Convert.ToInt32(reader["ID_CLIENTE"]);

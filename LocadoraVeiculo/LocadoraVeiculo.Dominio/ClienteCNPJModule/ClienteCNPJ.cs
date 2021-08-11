@@ -10,17 +10,17 @@ namespace LocadoraVeiculo.ClienteModule
 {
     public class ClienteCNPJ : EntidadeBase, IEquatable<ClienteCNPJ>
     {
-        public ClienteCNPJ(string nome, string endereco, string telefone, string cpf_cnpj)
+        public ClienteCNPJ(string nome, string endereco, string telefone, string cnpj)
         {
             Nome = nome;
             Endereco = endereco;
             Telefone = telefone;
-            Cpf_cnpj = cpf_cnpj;
+            Cnpj = cnpj;
         }
         public string Nome { get; set; }
         public string Endereco { get; set; }
         public string Telefone { get; set; }
-        public string Cpf_cnpj { get; set; }
+        public string Cnpj { get; set; }
 
         public override string Validar()
         {
@@ -35,8 +35,8 @@ namespace LocadoraVeiculo.ClienteModule
             if (string.IsNullOrEmpty(Telefone) || Telefone.Length != 14)
                 valido += QuebraDeLinha(valido) + "O campo Telefone está inválido";
 
-            if (string.IsNullOrEmpty(Cpf_cnpj))
-                valido += QuebraDeLinha(valido) + "O campo CPF/CNPJ está inválido";
+            if (string.IsNullOrEmpty(Cnpj) || Cnpj.Length != 18)
+                valido += QuebraDeLinha(valido) + "O campo CNPJ está inválido";
 
             if (valido == "")
                 valido = "ESTA_VALIDO";
@@ -58,7 +58,7 @@ namespace LocadoraVeiculo.ClienteModule
                 && Nome == other.Nome
                 && Endereco == other.Endereco
                 && Telefone == other.Telefone
-                && Cpf_cnpj == other.Cpf_cnpj;
+                && Cnpj == other.Cnpj;
         }
 
         public override int GetHashCode()
@@ -68,7 +68,7 @@ namespace LocadoraVeiculo.ClienteModule
             hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(Nome);
             hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(Endereco);
             hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(Telefone);
-            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(Cpf_cnpj);
+            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(Cnpj);
             return hashCode;
         }
     }

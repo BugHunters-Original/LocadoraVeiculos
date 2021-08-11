@@ -7,7 +7,7 @@ using System;
 namespace LocadoraVeiculo.Tests.CondutorModule
 {
     [TestClass]
-    public class CondutorTest
+    public class ClienteCPFTest
     {
 
         [TestMethod]
@@ -23,7 +23,7 @@ namespace LocadoraVeiculo.Tests.CondutorModule
 
             //assert
             resultadoValidacao.Should().Be("O campo Nome está inválido");
-        }   
+        }
         [TestMethod]
         public void DeveValidar_Endereco()
         {
@@ -37,7 +37,7 @@ namespace LocadoraVeiculo.Tests.CondutorModule
 
             //assert
             resultadoValidacao.Should().Be("O campo Endereço está inválido");
-        }   
+        }
         [TestMethod]
         public void DeveValidar_Telefone()
         {
@@ -51,7 +51,7 @@ namespace LocadoraVeiculo.Tests.CondutorModule
 
             //assert
             resultadoValidacao.Should().Be("O campo Telefone está inválido");
-        } 
+        }
         [TestMethod]
         public void DeveValidar_CPF()
         {
@@ -65,7 +65,7 @@ namespace LocadoraVeiculo.Tests.CondutorModule
 
             //assert
             resultadoValidacao.Should().Be("O campo CPF está inválido");
-        } 
+        }
         [TestMethod]
         public void DeveValidar_RG()
         {
@@ -79,7 +79,7 @@ namespace LocadoraVeiculo.Tests.CondutorModule
 
             //assert
             resultadoValidacao.Should().Be("O campo RG está inválido");
-        } 
+        }
         [TestMethod]
         public void DeveValidar_CNH()
         {
@@ -107,19 +107,6 @@ namespace LocadoraVeiculo.Tests.CondutorModule
 
             //assert
             resultadoValidacao.Should().Be("O campo Data de Validade CNH está inválido");
-        }
-        [TestMethod]
-        public void DeveValidar_Cliente()
-        {
-            //arrange
-            var condutor = new ClienteCPF("Pedro", "(49)12345-6789", "Coral", "011.900.119-57",
-                                        "6.187.754", "12345678910", new DateTime(2022, 06, 22), null);
-
-            //action
-            var resultadoValidacao = condutor.Validar();
-
-            //assert
-            resultadoValidacao.Should().Be("O campo Cliente está inválido");
         }
 
     }

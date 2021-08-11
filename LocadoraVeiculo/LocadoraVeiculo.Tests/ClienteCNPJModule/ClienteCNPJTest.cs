@@ -6,13 +6,13 @@ using System;
 namespace LocadoraVeiculo.Tests.ClienteModule
 {
     [TestClass]
-    public class ClienteTest
+    public class ClienteCNPJTest
     {
         [TestMethod]
         public void DeveValidar_Nome()
         {
             //arrange
-            var cliente = new ClienteCNPJ("", "Guarujá", "(49)99803-5074", "01190011956");
+            var cliente = new ClienteCNPJ("", "Guarujá", "(49)99803-5074", "77.637.684/0111-61");
 
             //action
             var resultadoValidacao = cliente.Validar();
@@ -24,7 +24,7 @@ namespace LocadoraVeiculo.Tests.ClienteModule
         public void DeveValidar_Endereco()
         {
             //arrange
-            var cliente = new ClienteCNPJ("Gabriel Marques", "", "(49)99803-5074", "01190011956");
+            var cliente = new ClienteCNPJ("Gabriel Marques", "", "(49)99803-5074", "77.637.684/0111-61");
 
             //action
             var resultadoValidacao = cliente.Validar();
@@ -36,7 +36,7 @@ namespace LocadoraVeiculo.Tests.ClienteModule
         public void DeveValidar_Telefone()
         {
             //arrange
-            var cliente = new ClienteCNPJ("Gabriel Marques", "Guarujá", "", "01190011956");
+            var cliente = new ClienteCNPJ("Gabriel Marques", "Guarujá", "", "77.637.684/0111-61");
 
             //action
             var resultadoValidacao = cliente.Validar();
@@ -45,7 +45,7 @@ namespace LocadoraVeiculo.Tests.ClienteModule
             resultadoValidacao.Should().Be("O campo Telefone está inválido");
         }
         [TestMethod]
-        public void DeveValidar_CPF_CNPJ()
+        public void DeveValidar_CNPJ()
         {
             //arrange
             var cliente = new ClienteCNPJ("Gabriel Marques", "Guarujá", "(49)99803-5074", "");
@@ -54,19 +54,7 @@ namespace LocadoraVeiculo.Tests.ClienteModule
             var resultadoValidacao = cliente.Validar();
 
             //assert
-            resultadoValidacao.Should().Be("O campo CPF/CNPJ está inválido");
-        }
-        [TestMethod]
-        public void DeveValidar_Tipo()
-        {
-            //arrange
-            var cliente = new ClienteCNPJ("Gabriel Marques", "Guarujá", "(49)99803-5074", "01190011956");
-
-            //action
-            var resultadoValidacao = cliente.Validar();
-
-            //assert
-            resultadoValidacao.Should().Be("O campo Tipo está inválido");
+            resultadoValidacao.Should().Be("O campo CNPJ está inválido");
         }
     }
 }

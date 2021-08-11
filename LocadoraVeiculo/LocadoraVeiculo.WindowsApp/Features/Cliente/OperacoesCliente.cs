@@ -11,10 +11,10 @@ namespace LocadoraVeiculo.WindowsApp.Features.Cliente
 {
     public class OperacoesCliente : ICadastravel
     {
-        private readonly ControladorCliente controlador = null;
+        private readonly ControladorClienteCNPJ controlador = null;
         //private readonly TabelaTarefaControl tabelaTarefas = null;
 
-        public OperacoesCliente(ControladorCliente ctrlLocacao)
+        public OperacoesCliente(ControladorClienteCNPJ ctrlLocacao)
         {
             controlador = ctrlLocacao;
             //tabelaTarefas = new TabelaTarefaControl();

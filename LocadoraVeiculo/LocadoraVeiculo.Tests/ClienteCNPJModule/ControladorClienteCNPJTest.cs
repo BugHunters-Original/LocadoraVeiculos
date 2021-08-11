@@ -8,21 +8,21 @@ using System;
 namespace LocadoraVeiculo.Tests.ClienteModule
 {
     [TestClass]
-    public class ControladorClienteTest
+    public class ControladorClienteCNPJTest
     {
-        ControladorCliente controlador = null;
+        ControladorClienteCNPJ controlador = null;
 
-        public ControladorClienteTest()
+        public ControladorClienteCNPJTest()
         {
-            controlador = new ControladorCliente();
-            Db.Update("DELETE FROM [TBCLIENTE]");
+            controlador = new ControladorClienteCNPJ();
+            Db.Update("DELETE FROM [TBCLIENTECNPJ]");
         }
 
         [TestMethod]
         public void DeveInserir_Cliente()
         {
             //arrange
-            var novoCliente = new ClienteCNPJ("Gabriel Marques", "Guarujá", "(49)99803-5074", "01190011956");
+            var novoCliente = new ClienteCNPJ("Gabriel Marques", "Guarujá", "(49)99803-5074", "77.637.684/0111-61");
 
             //action
             controlador.InserirNovo(novoCliente);
@@ -35,10 +35,10 @@ namespace LocadoraVeiculo.Tests.ClienteModule
         public void DeveAtualizar_Cliente()
         {
             //arrange
-            var cliente = new ClienteCNPJ("Gabriel Marques", "Guarujá", "(49)99803-5074", "01190011956");
+            var cliente = new ClienteCNPJ("Gabriel Marques", "Guarujá", "(49)99803-5074", "77.637.684/0111-61");
             controlador.InserirNovo(cliente);
 
-            var novoCliente = new ClienteCNPJ("Andrey Silva", "Santa Helena", "(49)99803-5074", "01190011956");
+            var novoCliente = new ClienteCNPJ("Andrey Silva", "Santa Helena", "(49)99803-5074", "77.637.684/0111-61");
 
             //action
             controlador.Editar(cliente.Id, novoCliente);
@@ -51,7 +51,7 @@ namespace LocadoraVeiculo.Tests.ClienteModule
         public void DeveExcluir_Cliente()
         {
             //arrange            
-            var cliente = new ClienteCNPJ("Gabriel Marques", "Guarujá", "(49)99803-5074", "01190011956");
+            var cliente = new ClienteCNPJ("Gabriel Marques", "Guarujá", "(49)99803-5074", "77.637.684/0111-61");
             controlador.InserirNovo(cliente);
 
             //action            
@@ -65,7 +65,7 @@ namespace LocadoraVeiculo.Tests.ClienteModule
         public void DeveSelecionar_Cliente_PorId()
         {
             //arrange
-            var cliente = new ClienteCNPJ("Gabriel Marques", "Guarujá", "(49)99803-5074", "01190011956");
+            var cliente = new ClienteCNPJ("Gabriel Marques", "Guarujá", "(49)99803-5074", "77.637.684/0111-61");
             controlador.InserirNovo(cliente);
 
             //action
@@ -78,13 +78,13 @@ namespace LocadoraVeiculo.Tests.ClienteModule
         public void DeveSelecionar_TodosClientes()
         {
             //arrange
-            var c1 = new ClienteCNPJ("Gabriel Marques", "Guarujá", "(49)99803-5074", "01190011956");
+            var c1 = new ClienteCNPJ("Gabriel Marques", "Guarujá", "(49)99803-5074", "77.637.684/0111-61");
             controlador.InserirNovo(c1);
 
-            var c2 = new ClienteCNPJ("Andrey Silva", "Santa Helena", "(49)99803-5074", "01190011956");
+            var c2 = new ClienteCNPJ("Andrey Silva", "Santa Helena", "(49)99803-5074", "77.637.684/0111-61");
             controlador.InserirNovo(c2);
 
-            var c3 = new ClienteCNPJ("NDD", "Coral", "(49)99803-5074", "01190011956");
+            var c3 = new ClienteCNPJ("NDD", "Coral", "(49)99803-5074", "77.637.684/0111-61");
             controlador.InserirNovo(c3);
 
             //action
