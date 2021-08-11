@@ -27,7 +27,9 @@ namespace LocadoraVeiculo.WindowsApp.Features.GrupoVeiculo
             if(tela.ShowDialog() == DialogResult.OK)
             {
                 controlador.InserirNovo(tela.GrupoContato);
-                tabelaGrupoVeiculo.AtualizarRegistros();
+
+                List<GrupoVeiculoModule.GrupoVeiculo> grupoVeiculos = controlador.SelecionarTodos();
+                tabelaGrupoVeiculo.AtualizarRegistros(grupoVeiculos);
 
                 TelaPrincipalForm.Instancia.AtualizarRodape($"Grupo de Veiculo: [{tela.GrupoContato.categoriaVeiculo}] inserido com sucesso");
             }
@@ -55,8 +57,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.GrupoVeiculo
                 controlador.Editar(id, tela.GrupoContato);
 
                 List<GrupoVeiculoModule.GrupoVeiculo> grupoVeiculos = controlador.SelecionarTodos();
-
-                tabelaGrupoVeiculo.AtualizarRegistros();
+                tabelaGrupoVeiculo.AtualizarRegistros(grupoVeiculos);
 
                 TelaPrincipalForm.Instancia.AtualizarRodape($"Grupo de Veiculo: [{tela.GrupoContato.categoriaVeiculo}] editada com sucesso");
             }
@@ -88,8 +89,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.GrupoVeiculo
                 controlador.Excluir(id);
 
                 List<GrupoVeiculoModule.GrupoVeiculo> grupoVeiculos = controlador.SelecionarTodos();
-
-                tabelaGrupoVeiculo.AtualizarRegistros();
+                tabelaGrupoVeiculo.AtualizarRegistros(grupoVeiculos);
 
                 TelaPrincipalForm.Instancia.AtualizarRodape($"Grupo de Veiculo: [{grupoVeiculoSelecionado.categoriaVeiculo}] removido com sucesso");
             }
@@ -103,8 +103,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.GrupoVeiculo
         public UserControl ObterTabela()
         {
             List<GrupoVeiculoModule.GrupoVeiculo> grupoVeiculos = controlador.SelecionarTodos();
-
-            tabelaGrupoVeiculo.AtualizarRegistros();
+            tabelaGrupoVeiculo.AtualizarRegistros(grupoVeiculos);
 
             return tabelaGrupoVeiculo;
         }
