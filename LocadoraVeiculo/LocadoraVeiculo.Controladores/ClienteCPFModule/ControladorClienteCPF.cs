@@ -173,7 +173,7 @@ namespace LocadoraVeiculo.Controladores.CondutorModule
             parametros.Add("RG", condutor.Rg);
             parametros.Add("CNH", condutor.Cnh);
             parametros.Add("DATA_VALIDADE", condutor.DataValidade);
-            parametros.Add("ID_CLIENTE", condutor.Cliente.Id);
+            parametros.Add("ID_CLIENTE", condutor.Cliente?.Id);
 
             return parametros;
         }
@@ -193,8 +193,12 @@ namespace LocadoraVeiculo.Controladores.CondutorModule
             var telefoneC = Convert.ToString(reader["TELEFONE"]);
             var cpf_cnpj = Convert.ToString(reader["CNPJ"]);
 
-            ClienteCNPJ cliente = new ClienteCNPJ(nomeC, enderecoC, telefoneC, cpf_cnpj);
-            cliente.Id = Convert.ToInt32(reader["ID_CLIENTE"]);
+            ClienteCNPJ cliente = null;
+            if (reader["ID_CLIENTE"] != DBNull.Value)
+            {
+                cliente = new ClienteCNPJ(nomeC, enderecoC, telefoneC, cpf_cnpj);
+                cliente.Id = Convert.ToInt32(reader["ID_CLIENTE"]);
+            }
 
             ClienteCPF condutor = new ClienteCPF(nome, telefone, endereco, cpf, rg, cnh, dataValidade, cliente);
 
