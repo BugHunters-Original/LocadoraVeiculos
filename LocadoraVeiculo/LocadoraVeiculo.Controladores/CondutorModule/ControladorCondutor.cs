@@ -15,9 +15,9 @@ namespace LocadoraVeiculo.Controladores.CondutorModule
         private const string sqlInserirCondutor =
             @"INSERT INTO TBCONDUTOR 
 	                (
-		                [NOME], 
-		                [ENDERECO], 
-		                [TELEFONE],
+		                [NOMEC], 
+		                [ENDERECOC], 
+		                [TELEFONEC],
                         [CPF], 
 		                [RG],
                         [CNH],
@@ -26,9 +26,9 @@ namespace LocadoraVeiculo.Controladores.CondutorModule
 	                ) 
 	                VALUES
 	                (
-		                @NOME, 
-		                @ENDERECO, 
-		                @TELEFONE,
+		                @NOMEC, 
+		                @ENDERECOC, 
+		                @TELEFONEC,
                         @CPF, 
 		                @RG,
                         @CNH,
@@ -39,9 +39,9 @@ namespace LocadoraVeiculo.Controladores.CondutorModule
         private const string sqlEditarCondutor =
             @"UPDATE TBCONDUTOR
                     SET
-		                [NOME] = @NOME, 
-		                [ENDERECO] = @ENDERECO, 
-		                [TELEFONE] = @TELEFONE,
+		                [NOMEC] = @NOMEC, 
+		                [ENDERECOC] = @ENDERECOC, 
+		                [TELEFONEC] = @TELEFONEC,
                         [CPF] = @CPF, 
 		                [RG] = @RG,
                         [CNH] = @CNH,
@@ -59,33 +59,49 @@ namespace LocadoraVeiculo.Controladores.CondutorModule
 
         private const string sqlSelecionarCondutorPorId =
             @"SELECT
-                        [ID],
-		                [NOME], 
-		                [ENDERECO], 
-		                [TELEFONE],
-                        [CPF], 
-		                [RG],
-                        [CNH],
-                        [DATA_VALIDADE],
-                        [ID_CLIENTE]
+                        CD.[ID],
+		                CD.[NOMEC], 
+		                CD.[ENDERECOC], 
+		                CD.[TELEFONEC],
+                        CD.[CPF], 
+		                CD.[RG],
+                        CD.[CNH],
+                        CD.[DATA_VALIDADE],
+                        CD.[ID_CLIENTE],
+                        CT.[NOME],
+                        CT.[ENDERECO],
+                        CT.[TELEFONE],
+                        CT.[CPF_CNPJ],
+                        CT.[TIPO]
 	                FROM
-                        TBCLIENTE
+                        TBCONDUTOR AS CD LEFT JOIN
+                        TBCLIENTE AS CT
+                    ON
+                        CT.ID = CD.ID_CLIENTE
                     WHERE 
-                        ID = @ID";
+                        CD.ID = @ID";
 
         private const string sqlSelecionarTodosCondutores =
             @"SELECT
-                        [ID],
-		                [NOME], 
-		                [ENDERECO], 
-		                [TELEFONE],
-                        [CPF], 
-		                [RG],
-                        [CNH],
-                        [DATA_VALIDADE],
-                        [ID_CLIENTE]
+                        CD.[ID],
+		                CD.[NOMEC], 
+		                CD.[ENDERECOC], 
+		                CD.[TELEFONEC],
+                        CD.[CPF], 
+		                CD.[RG],
+                        CD.[CNH],
+                        CD.[DATA_VALIDADE],
+                        CD.[ID_CLIENTE],
+                        CT.[NOME],
+                        CT.[ENDERECO],
+                        CT.[TELEFONE],
+                        CT.[CPF_CNPJ],
+                        CT.[TIPO]
 	                FROM
-                        TBCONDUTOR";
+                        TBCONDUTOR AS CD LEFT JOIN
+                        TBCLIENTE AS CT
+                    ON
+                        CT.ID = CD.ID_CLIENTE";
 
         private const string sqlExisteCondutor =
             @"SELECT 
@@ -152,12 +168,13 @@ namespace LocadoraVeiculo.Controladores.CondutorModule
             var parametros = new Dictionary<string, object>();
 
             parametros.Add("ID", condutor.Id);
-            parametros.Add("NOME", condutor.Nome);
-            parametros.Add("ENDERECO", condutor.Endereco);
-            parametros.Add("TELEFONE", condutor.Telefone);
-            parametros.Add("CPF_CNPJ", condutor.Cpf);
-            parametros.Add("TIPO", condutor.Rg);
-            parametros.Add("TIPO", condutor.Cnh);
+            parametros.Add("NOMEC", condutor.Nome);
+            parametros.Add("ENDERECOC", condutor.Endereco);
+            parametros.Add("TELEFONEC", condutor.Telefone);
+            parametros.Add("CPF", condutor.Cpf);
+            parametros.Add("RG", condutor.Rg);
+            parametros.Add("CNH", condutor.Cnh);
+            parametros.Add("DATA_VALIDADE", condutor.DataValidade);
             parametros.Add("ID_CLIENTE", condutor.Cliente.Id);
 
             return parametros;
@@ -165,9 +182,9 @@ namespace LocadoraVeiculo.Controladores.CondutorModule
         private Condutor ConverterEmCondutor(IDataReader reader)
         {
             int id = Convert.ToInt32(reader["ID"]);
-            string nome = Convert.ToString(reader["NOME"]);
-            string endereco = Convert.ToString(reader["ENDERECO"]);
-            string telefone = Convert.ToString(reader["TELEFONE"]);
+            string nome = Convert.ToString(reader["NOMEC"]);
+            string endereco = Convert.ToString(reader["ENDERECOC"]);
+            string telefone = Convert.ToString(reader["TELEFONEC"]);
             string cpf = Convert.ToString(reader["CPF"]);
             string rg = Convert.ToString(reader["RG"]);
             string cnh = Convert.ToString(reader["CNH"]);
@@ -182,7 +199,7 @@ namespace LocadoraVeiculo.Controladores.CondutorModule
             Cliente cliente = new Cliente(nomeC, enderecoC, telefoneC, cpf_cnpj, tipo);
             cliente.Id = Convert.ToInt32(reader["ID_CLIENTE"]);
 
-            Condutor condutor = new Condutor(nome, endereco, telefone, cpf, rg, cnh, dataValidade, cliente);
+            Condutor condutor = new Condutor(nome, telefone, endereco, cpf, rg, cnh, dataValidade, cliente);
 
             condutor.Id = id;
 

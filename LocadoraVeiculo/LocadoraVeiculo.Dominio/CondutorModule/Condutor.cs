@@ -41,7 +41,7 @@ namespace LocadoraVeiculo.CondutorModule
                 && Cpf == other.Cpf
                 && Cnh == other.Cnh
                 && DataValidade == other.DataValidade
-                && Cliente == other.Cliente;
+                && Cliente.Equals(other.Cliente);
         }
         public override bool Equals(object obj)
         {
@@ -61,6 +61,10 @@ namespace LocadoraVeiculo.CondutorModule
             hashCode = hashCode * -1521134295 + DataValidade.GetHashCode();
             hashCode = hashCode * -1521134295 + EqualityComparer<Cliente>.Default.GetHashCode(Cliente);
             return hashCode;
+        }
+        public override string ToString()
+        {
+            return Nome;
         }
 
         public override string Validar()
@@ -85,7 +89,7 @@ namespace LocadoraVeiculo.CondutorModule
             if (string.IsNullOrEmpty(Cnh))
                 valido += QuebraDeLinha(valido) + "O campo CNH está inválido";
 
-            if (DataValidade > DateTime.Now)
+            if (DataValidade < DateTime.Now)
                 valido += QuebraDeLinha(valido) + "O campo Data de Validade CNH está inválido";
 
             if (valido == "")
