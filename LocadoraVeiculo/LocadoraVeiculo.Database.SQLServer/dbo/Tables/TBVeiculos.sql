@@ -6,7 +6,7 @@
     [Foto]                  IMAGE        NULL,
     [Cor]                   NCHAR (10)   NULL,
     [Marca]                 NCHAR (10)   NULL,
-    [Ano]                   VARCHAR (50) NULL,
+    [Ano]                   INT          NULL,
     [Numero_portas]         INT          NULL,
     [Capacidade_tanque]     INT          NULL,
     [Tamanho_porta_mala]    CHAR (10)    NULL,
@@ -17,4 +17,6 @@
     CONSTRAINT [PK_TBVeiculos] PRIMARY KEY CLUSTERED ([Id] ASC),
     CONSTRAINT [FK_TBVeiculos_TBTipoVeiculo] FOREIGN KEY ([Id_Tipo_Veiculo]) REFERENCES [dbo].[TBTipoVeiculo] ([Id])
 );
+
+
 
