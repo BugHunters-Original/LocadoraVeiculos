@@ -11,7 +11,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.GrupoVeiculo
     {
         public string ToolTipAdicionar
         {
-            get { return "Adicionar um Grupo Veiculo"; }
+            get { return "Adicionar um Grupo Veiculo"; } 
         }
         public string TipoCadastro
         {
