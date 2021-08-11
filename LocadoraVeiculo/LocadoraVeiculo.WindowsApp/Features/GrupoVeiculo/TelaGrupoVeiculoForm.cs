@@ -43,7 +43,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.GrupoVeiculo
             decimal valor_Diario_PDiario = Convert.ToDecimal(txtValorDiarioPDiario.Text);
             decimal preco_KMDiario = Convert.ToDecimal(txtPrecoKmDiario.Text);
             decimal valor_Diario_PControlado = Convert.ToDecimal(txtValorDiarioPControlado.Text);
-            decimal kmDia__KMControlado = Convert.ToDecimal(txtKmDia_KmControlado.Text);
+            int? kmDia__KMControlado = Convert.ToInt32(txtKmDia_KmControlado.Text);
             decimal preco_KMLivre = Convert.ToDecimal(txtPrecoKmLivre.Text);
 
              grupoVeiculo = new GrupoVeiculoModule.GrupoVeiculo(categoria, valor_Diario_PDiario, preco_KMDiario,

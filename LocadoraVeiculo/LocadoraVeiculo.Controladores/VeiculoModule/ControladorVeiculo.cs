@@ -194,7 +194,7 @@ namespace LocadoraVeiculo.Controladores.VeiculoModule
             //var foto = Convert.ToString(reader["FOTO"]);
             var cor = Convert.ToString(reader["COR"]);
             var marca = Convert.ToString(reader["MARCA"]);
-            var ano = Convert.ToString(reader["ANO"]);
+            var ano = Convert.ToInt32(reader["ANO"]);
             var numero_Portas = Convert.ToInt32(reader["NUMERO_PORTAS"]);
             var capacidade_Tanque = Convert.ToInt32(reader["CAPACIDADE_TANQUE"]);
             var tamanhoPortaMalas = Convert.ToChar(reader["TAMANHO_PORTA_MALA"]);
@@ -206,7 +206,7 @@ namespace LocadoraVeiculo.Controladores.VeiculoModule
             var valor_Diario_PDiario = Convert.ToDecimal(reader["VALOR_DIARIO_PDIARIO"]);
             var preco_KMDiario = Convert.ToDecimal(reader["PRECO_KMDIARIO"]);
             var valor_Diario_PControlado = Convert.ToDecimal(reader["VALOR_DIARIO_PCONTROLADO"]);
-            var kmDia__KMControlado = Convert.ToDecimal(reader["KMDIA__KMCONTROLADO"]);
+            var kmDia__KMControlado = Convert.ToInt32(reader["KMDIA__KMCONTROLADO"]);
             var preco_KMLivre = Convert.ToDecimal(reader["PRECO_KMLIVRE"]);
 
             GrupoVeiculo grupoVeiculo = null;

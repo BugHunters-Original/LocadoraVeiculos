@@ -64,6 +64,12 @@
     </Compile>
     <Compile Include="Features\GrupoVeiculo\ConfiguracaoGrupoVeiculoToolBox.cs" />
     <Compile Include="Features\GrupoVeiculo\OperacoesGrupoVeiculo.cs" />
+    <Compile Include="Features\GrupoVeiculo\TabelaGrupoVeiculoControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Features\GrupoVeiculo\TabelaGrupoVeiculoControl.Designer.cs">
+      <DependentUpon>TabelaGrupoVeiculoControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="Features\GrupoVeiculo\TelaGrupoVeiculoForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -140,8 +146,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Features\Combustivel\" />
-    <Folder Include="Features\GrupoVeiculo\" />
-    <Folder Include="Features\Funcionario\" />
     <Folder Include="Features\Servico\" />
     <Folder Include="Libraries\" />
   </ItemGroup>
