@@ -1,7 +1,9 @@
 ﻿using LocadoraVeiculo.Controladores.ClienteModule;
+using LocadoraVeiculo.Controladores.FuncionarioModule;
 using LocadoraVeiculo.Controladores.LocacaoModule;
 using LocadoraVeiculo.Controladores.VeiculoModule;
 using LocadoraVeiculo.WindowsApp.Features.Cliente;
+using LocadoraVeiculo.WindowsApp.Features.Funcionario;
 using LocadoraVeiculo.WindowsApp.Features.Locacao;
 using LocadoraVeiculo.WindowsApp.Features.Veiculo;
 using LocadoraVeiculo.WindowsApp.Shared;
@@ -70,6 +72,19 @@ namespace LocadoraVeiculo.WindowsApp
             AtualizarRodape(configuracao.TipoCadastro);
 
             operacoes = new OperacoesVeiculo(new ControladorVeiculo());
+
+            ConfigurarPainelRegistros();
+        }
+
+        private void menuItemFuncionario_Click(object sender, EventArgs e)
+        {
+            ConfiguracaoFuncionarioToolBox configuracao = new ConfiguracaoFuncionarioToolBox();
+
+            ConfigurarToolBox(configuracao);
+
+            AtualizarRodape(configuracao.TipoCadastro);
+
+            operacoes = new OperacoesFuncionario(new ControladorFuncionario());
 
             ConfigurarPainelRegistros();
         }
