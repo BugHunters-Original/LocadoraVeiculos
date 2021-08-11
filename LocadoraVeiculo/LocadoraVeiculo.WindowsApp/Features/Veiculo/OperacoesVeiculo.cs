@@ -14,9 +14,9 @@ namespace LocadoraVeiculo.WindowsApp.Features.Veiculo
         private readonly ControladorVeiculo controlador = null;
         //private readonly TabelaTarefaControl tabelaTarefas = null;
 
-        public OperacoesVeiculo(ControladorVeiculo ctrlLocacao)
+        public OperacoesVeiculo(ControladorVeiculo ctrlVeiculo)
         {
-            controlador = ctrlLocacao;
+            controlador = ctrlVeiculo;
             //tabelaTarefas = new TabelaTarefaControl();
         }
 
