@@ -58,6 +58,7 @@
     <Compile Include="ClienteModule\ControladorClienteTest.cs" />
     <Compile Include="ClienteModule\ClienteTest.cs" />
     <Compile Include="CondutorModule\ControladorCondutorTest.cs" />
+    <Compile Include="CondutorModule\CondutorTest.cs" />
     <Compile Include="FuncionarioModule\ControladorFuncionarioTests.cs" />
     <Compile Include="FuncionarioModule\FuncionarioTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

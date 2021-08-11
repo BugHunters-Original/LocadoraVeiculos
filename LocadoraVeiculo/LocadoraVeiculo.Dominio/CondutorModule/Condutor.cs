@@ -80,17 +80,20 @@ namespace LocadoraVeiculo.CondutorModule
             if (string.IsNullOrEmpty(Telefone) || Telefone.Length != 14)
                 valido += QuebraDeLinha(valido) + "O campo Telefone está inválido";
 
-            if (string.IsNullOrEmpty(Cpf))
+            if (string.IsNullOrEmpty(Cpf) || Cpf.Length != 14)
                 valido += QuebraDeLinha(valido) + "O campo CPF está inválido";
 
-            if (string.IsNullOrEmpty(Rg))
+            if (string.IsNullOrEmpty(Rg) || Rg.Length != 9)
                 valido += QuebraDeLinha(valido) + "O campo RG está inválido";
 
-            if (string.IsNullOrEmpty(Cnh))
+            if (string.IsNullOrEmpty(Cnh) || Cnh.Length != 11)
                 valido += QuebraDeLinha(valido) + "O campo CNH está inválido";
 
             if (DataValidade < DateTime.Now)
                 valido += QuebraDeLinha(valido) + "O campo Data de Validade CNH está inválido";
+
+            if (Cliente == null)
+                valido += QuebraDeLinha(valido) + "O campo Cliente está inválido";
 
             if (valido == "")
                 valido = "ESTA_VALIDO";
