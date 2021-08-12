@@ -74,5 +74,15 @@ namespace LocadoraVeiculo.WindowsApp.Shared
 
             return (T)Convert.ChangeType(value, typeof(T));
         }
+        public static T SelecionarTipo<T>(this DataGridView grid)
+        {
+            const int firstLine = 0, quartaColumn = 4;
+            if (grid.SelectedRows.Count == 0)
+                return default(T);
+
+            object value = grid.SelectedRows[firstLine].Cells[quartaColumn].Value;
+
+            return (T)Convert.ChangeType(value, typeof(T));
+        }
     }
 }
