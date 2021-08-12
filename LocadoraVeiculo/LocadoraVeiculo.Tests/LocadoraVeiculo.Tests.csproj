@@ -57,6 +57,7 @@
   <ItemGroup>
     <Compile Include="ClienteCNPJModule\ControladorClienteCNPJTest.cs" />
     <Compile Include="ClienteCNPJModule\ClienteCNPJTest.cs" />
+    <Compile Include="CombustivelModule\CombustivelTests.cs" />
     <Compile Include="CondutorCNPJModule\ControladorClienteCPFTest.cs" />
     <Compile Include="CondutorCNPJModule\ClienteCPFTest.cs" />
     <Compile Include="FuncionarioModule\ControladorFuncionarioTests.cs" />
