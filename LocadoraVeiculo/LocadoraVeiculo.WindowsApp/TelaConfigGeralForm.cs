@@ -27,9 +27,6 @@ namespace LocadoraVeiculo.WindowsApp
 
         private void grupoDeVeículosToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            btnEditar.Enabled = true;
-            btnExcluir.Enabled = true;
-
             ConfiguracaoGrupoVeiculoToolBox configuracao = new ConfiguracaoGrupoVeiculoToolBox();
 
             ConfigurarToolBox(configuracao);
@@ -48,9 +45,6 @@ namespace LocadoraVeiculo.WindowsApp
 
         private void taxasEServiçosToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            btnEditar.Enabled = false;
-            btnExcluir.Enabled = false;
-
             ConfiguracaoTaxaServicoToolBox configuracao = new ConfiguracaoTaxaServicoToolBox();
 
             ConfigurarToolBox(configuracao);

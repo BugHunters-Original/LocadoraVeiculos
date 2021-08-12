@@ -32,9 +32,9 @@ namespace LocadoraVeiculo.WindowsApp.Features.TaxaServico
                 txtPreco.Text = servico.Preco.ToString();
 
                 if (servico.TipoCalculo == 1)
-                    rdDiario.Checked = true;
-                else
                     rdFixo.Checked = true;
+                else
+                    rdDiario.Checked = true;
             }
         }
 

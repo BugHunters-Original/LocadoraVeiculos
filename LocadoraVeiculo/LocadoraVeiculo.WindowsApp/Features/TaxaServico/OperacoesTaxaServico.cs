@@ -27,12 +27,56 @@ namespace LocadoraVeiculo.WindowsApp.Features.TaxaServico
 
         public void EditarRegistro()
         {
-            throw new NotImplementedException();
+            int id = tabelaServico.ObtemIdSelecionado();
+            if (id == 0)
+            {
+                MessageBox.Show("Selecione um serviço para poder editar!", "Edição de Serviços",
+                    MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                return;
+            }
+
+            var servicoSelecionado = controlador.SelecionarPorId(id);
+
+            TelaTaxaServicoForm tela = new TelaTaxaServicoForm();
+
+            tela.Servico = servicoSelecionado;
+
+            if (tela.ShowDialog() == DialogResult.OK)
+            {
+                controlador.Editar(id, tela.Servico);
+
+                List<Servico> servicos = controlador.SelecionarTodos();
+
+                tabelaServico.AtualizarRegistros(servicos);
+
+                TelaPrincipalForm.Instancia.AtualizarRodape($"Serviço: [{tela.Servico}] editado com sucesso");
+            }
         }
 
         public void ExcluirRegistro()
         {
-            throw new NotImplementedException();
+            int id = tabelaServico.ObtemIdSelecionado();
+
+            if (id == 0)
+            {
+                MessageBox.Show("Selecione um serviço para poder excluir!", "Exclusão de Serviços",
+                    MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                return;
+            }
+
+            var servicoSelecionado = controlador.SelecionarPorId(id);
+
+            if (MessageBox.Show($"Tem certeza que deseja excluir o serviço: [{servicoSelecionado}] ?",
+                "Exclusão de Serviços", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK)
+            {
+                controlador.Excluir(id);
+
+                List<Servico> servicos = controlador.SelecionarTodos();
+
+                tabelaServico.AtualizarRegistros(servicos);
+
+                TelaPrincipalForm.Instancia.AtualizarRodape($"Serviço: [{servicoSelecionado}] removido com sucesso");
+            }
         }
 
         public void FiltrarRegistros()

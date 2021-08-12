@@ -29,31 +29,34 @@ namespace LocadoraVeiculo.WindowsApp.Features.TaxaServico
         /// </summary>
         private void InitializeComponent()
         {
-            this.checkBoxTaxa = new System.Windows.Forms.CheckedListBox();
+            this.dgTaxas = new System.Windows.Forms.DataGridView();
+            ((System.ComponentModel.ISupportInitialize)(this.dgTaxas)).BeginInit();
             this.SuspendLayout();
             // 
-            // checkBoxTaxa
+            // dgTaxas
             // 
-            this.checkBoxTaxa.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.checkBoxTaxa.FormattingEnabled = true;
-            this.checkBoxTaxa.Location = new System.Drawing.Point(0, 0);
-            this.checkBoxTaxa.Name = "checkBoxTaxa";
-            this.checkBoxTaxa.Size = new System.Drawing.Size(728, 576);
-            this.checkBoxTaxa.TabIndex = 0;
+            this.dgTaxas.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgTaxas.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dgTaxas.Location = new System.Drawing.Point(0, 0);
+            this.dgTaxas.Name = "dgTaxas";
+            this.dgTaxas.RowHeadersVisible = false;
+            this.dgTaxas.Size = new System.Drawing.Size(728, 576);
+            this.dgTaxas.TabIndex = 0;
             // 
             // TabelaTaxaServicoControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.checkBoxTaxa);
+            this.Controls.Add(this.dgTaxas);
             this.Name = "TabelaTaxaServicoControl";
             this.Size = new System.Drawing.Size(728, 576);
+            ((System.ComponentModel.ISupportInitialize)(this.dgTaxas)).EndInit();
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private System.Windows.Forms.CheckedListBox checkBoxTaxa;
+        private System.Windows.Forms.DataGridView dgTaxas;
     }
 }

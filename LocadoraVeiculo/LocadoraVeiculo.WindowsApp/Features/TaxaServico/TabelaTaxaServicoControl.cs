@@ -1,4 +1,5 @@
 ﻿using LocadoraVeiculo.ServicoModule;
+using LocadoraVeiculo.WindowsApp.Shared;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -16,15 +17,40 @@ namespace LocadoraVeiculo.WindowsApp.Features.TaxaServico
         public TabelaTaxaServicoControl()
         {
             InitializeComponent();
+            dgTaxas.ConfigurarGridZebrado();
+            dgTaxas.ConfigurarGridSomenteLeitura();
+            dgTaxas.Columns.AddRange(ObterColunas());
+        }
+        public DataGridViewColumn[] ObterColunas()
+        {
+            var colunas = new DataGridViewColumn[]
+            {
+                new DataGridViewTextBoxColumn { DataPropertyName = "Id", HeaderText = "Id"},
+
+                new DataGridViewTextBoxColumn { DataPropertyName = "Nome", HeaderText = "Nome"},
+
+                new DataGridViewTextBoxColumn { DataPropertyName = "Preco", HeaderText = "Preco"},
+
+                new DataGridViewTextBoxColumn { DataPropertyName = "TipoDeTaxa", HeaderText = "Tipo de Taxa"}
+            };
+
+            return colunas;
         }
 
+        public int ObtemIdSelecionado()
+        {
+            return dgTaxas.SelecionarId<int>();
+        }
         public void AtualizarRegistros(List<Servico> servicos)
         {
-            checkBoxTaxa.Items.Clear();
+            dgTaxas.Rows.Clear();
 
             foreach (Servico servico in servicos)
             {
-                checkBoxTaxa.Items.Add(servico);
+                string tipo = "Diário";
+                if (servico.TipoCalculo == 1)
+                    tipo = "Fixo";
+                dgTaxas.Rows.Add(servico.Id, servico.Nome, servico.Preco, tipo);
             }
         }
     }
