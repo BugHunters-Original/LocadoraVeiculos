@@ -1,5 +1,7 @@
-﻿using LocadoraVeiculo.Controladores.GrupoVeiculoModule;
+﻿using LocadoraVeiculo.Controladores.CombustivelModule;
+using LocadoraVeiculo.Controladores.GrupoVeiculoModule;
 using LocadoraVeiculo.Controladores.ServicoModule;
+using LocadoraVeiculo.WindowsApp.Features.Combustivel;
 using LocadoraVeiculo.WindowsApp.Features.GrupoVeiculo;
 using LocadoraVeiculo.WindowsApp.Features.TaxaServico;
 using LocadoraVeiculo.WindowsApp.Shared;
@@ -18,6 +20,8 @@ namespace LocadoraVeiculo.WindowsApp
     public partial class TelaConfigGeralForm : Form
     {
         private ICadastravel operacoes;
+
+        private OperacoesCombustivel opCombustivel;
 
         public static TelaConfigGeralForm Instancia;
         public TelaConfigGeralForm()
@@ -96,5 +100,18 @@ namespace LocadoraVeiculo.WindowsApp
             operacoes.ExcluirRegistro();
         }
 
+        private void combustívelToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ConfiguracaoCombustivelToolBox configuracao = new ConfiguracaoCombustivelToolBox();
+
+            ConfigurarToolBox(configuracao);
+
+            AtualizarRodape(configuracao.TipoCadastro);
+
+            opCombustivel = new OperacoesCombustivel(new ControladorCombustivel());
+
+            opCombustivel.Editar();
+
+        }
     }
 }
