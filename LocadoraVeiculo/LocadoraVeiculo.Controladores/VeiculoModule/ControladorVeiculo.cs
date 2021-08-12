@@ -4,9 +4,6 @@ using LocadoraVeiculo.VeiculoModule;
 using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace LocadoraVeiculo.Controladores.VeiculoModule
 {
@@ -217,7 +214,7 @@ namespace LocadoraVeiculo.Controladores.VeiculoModule
                 grupoVeiculo.Id = Convert.ToInt32(reader["ID_TIPO_VEICULO"]);
             }
 
-            Veiculo veiculo = new Veiculo(nome, numero_Placa, numero_Chassi, cor, marca, ano, numero_Portas, 
+            Veiculo veiculo = new Veiculo(nome, numero_Placa, numero_Chassi, cor, marca, ano, numero_Portas,
                 capacidade_Tanque, tamanhoPortaMalas, km_Inicial, tipo_Combustivel, disponibilidade_Veiculo, grupoVeiculo);
             veiculo.Id = Convert.ToInt32(reader["ID"]);
 

@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace LocadoraVeiculo.WindowsApp.Features.Cliente
+﻿namespace LocadoraVeiculo.WindowsApp.Features.Clientes
 {
     public enum TipoClienteEnum
     {

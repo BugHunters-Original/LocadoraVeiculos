@@ -4,7 +4,7 @@ namespace LocadoraVeiculo.GrupoVeiculoModule
     public class GrupoVeiculo : EntidadeBase
     {
         public string categoriaVeiculo { get; set; }
-        public decimal? valor_Diario_PDiario  { get; set; }
+        public decimal? valor_Diario_PDiario { get; set; }
         public decimal? preco_KMDiario { get; set; }
         public decimal? valor_Diario_PControlado { get; set; }
         public int? kmDia__KMControlado { get; set; }

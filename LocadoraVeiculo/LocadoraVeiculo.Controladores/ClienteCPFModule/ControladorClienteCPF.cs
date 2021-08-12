@@ -1,12 +1,8 @@
 ﻿using LocadoraVeiculo.ClienteModule;
-using LocadoraVeiculo.CondutorModule;
 using LocadoraVeiculo.Controladores.Shared;
 using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace LocadoraVeiculo.Controladores.CondutorModule
 {

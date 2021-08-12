@@ -41,10 +41,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ClienteCNPJModule\ClienteCNPJ.cs" />
+    <Compile Include="ClienteModule\ClienteCNPJ.cs" />
     <Compile Include="ClienteModule\Cliente.cs" />
     <Compile Include="CombustivelModule\Combustivel.cs" />
-    <Compile Include="ClienteCPFModule\ClienteCPF.cs" />
+    <Compile Include="ClienteModule\ClienteCPF.cs" />
     <Compile Include="FuncionarioModule\Funcionario.cs" />
     <Compile Include="GrupoVeiculoModule\GrupoVeiculo.cs" />
     <Compile Include="LocacaoModule\Locacao.cs" />
@@ -53,5 +53,6 @@
     <Compile Include="Shared\EntidadeBase.cs" />
     <Compile Include="VeiculoModule\Veiculo.cs" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

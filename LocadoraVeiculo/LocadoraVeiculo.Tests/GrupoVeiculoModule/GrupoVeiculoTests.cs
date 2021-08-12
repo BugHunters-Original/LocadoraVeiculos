@@ -1,7 +1,6 @@
 ﻿using FluentAssertions;
 using LocadoraVeiculo.GrupoVeiculoModule;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System;
 
 namespace LocadoraVeiculo.Tests.GrupoVeiculoModule
 {

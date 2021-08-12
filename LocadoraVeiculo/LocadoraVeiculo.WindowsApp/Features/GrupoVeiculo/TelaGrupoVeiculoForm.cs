@@ -1,12 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace LocadoraVeiculo.WindowsApp.Features.GrupoVeiculo
@@ -46,8 +39,8 @@ namespace LocadoraVeiculo.WindowsApp.Features.GrupoVeiculo
             int? kmDia__KMControlado = Convert.ToInt32(txtKmDia_KmControlado.Text);
             decimal preco_KMLivre = Convert.ToDecimal(txtPrecoKmLivre.Text);
 
-             grupoVeiculo = new GrupoVeiculoModule.GrupoVeiculo(categoria, valor_Diario_PDiario, preco_KMDiario,
-                 valor_Diario_PControlado, kmDia__KMControlado, preco_KMLivre);
+            grupoVeiculo = new GrupoVeiculoModule.GrupoVeiculo(categoria, valor_Diario_PDiario, preco_KMDiario,
+                valor_Diario_PControlado, kmDia__KMControlado, preco_KMLivre);
 
             string resultadoValidacao = grupoVeiculo.Validar();
 

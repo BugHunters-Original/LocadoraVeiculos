@@ -3,9 +3,6 @@ using LocadoraVeiculo.GrupoVeiculoModule;
 using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace LocadoraVeiculo.Controladores.GrupoVeiculoModule
 {
@@ -134,7 +131,7 @@ namespace LocadoraVeiculo.Controladores.GrupoVeiculoModule
 
         public override List<GrupoVeiculo> SelecionarTodos()
         {
-            return Db.GetAll(sqlSelecionarTodosTipoGrupoVeiculo, ConverterEmGrupoVeiculo); 
+            return Db.GetAll(sqlSelecionarTodosTipoGrupoVeiculo, ConverterEmGrupoVeiculo);
         }
 
         private GrupoVeiculo ConverterEmGrupoVeiculo(IDataReader reader)

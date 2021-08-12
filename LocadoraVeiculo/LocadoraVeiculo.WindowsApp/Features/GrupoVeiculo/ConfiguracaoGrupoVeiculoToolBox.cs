@@ -1,9 +1,4 @@
 ﻿using LocadoraVeiculo.WindowsApp.Shared;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace LocadoraVeiculo.WindowsApp.Features.GrupoVeiculo
 {
@@ -11,7 +6,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.GrupoVeiculo
     {
         public string ToolTipAdicionar
         {
-            get { return "Adicionar um Grupo Veiculo"; } 
+            get { return "Adicionar um Grupo Veiculo"; }
         }
         public string TipoCadastro
         {

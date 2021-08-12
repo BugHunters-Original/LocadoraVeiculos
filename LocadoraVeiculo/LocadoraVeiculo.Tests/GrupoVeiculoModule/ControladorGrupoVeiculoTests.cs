@@ -1,9 +1,8 @@
-﻿using LocadoraVeiculo.GrupoVeiculoModule;
+﻿using FluentAssertions;
 using LocadoraVeiculo.Controladores.GrupoVeiculoModule;
 using LocadoraVeiculo.Controladores.Shared;
+using LocadoraVeiculo.GrupoVeiculoModule;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using FluentAssertions;
-using System;
 
 namespace LocadoraVeiculo.Tests.GrupoVeiculoModule
 {

@@ -1,32 +1,21 @@
 ﻿using LocadoraVeiculo.ClienteModule;
-using LocadoraVeiculo.CondutorModule;
 using LocadoraVeiculo.Controladores.ClienteModule;
 using LocadoraVeiculo.Controladores.CondutorModule;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace LocadoraVeiculo.WindowsApp.Features.Cliente
+namespace LocadoraVeiculo.WindowsApp.Features.Clientes
 {
     public partial class TelaClienteForm : Form
     {
-        private dynamic cliente;
-        private ClienteCPF clienteCPF;
-        private ClienteCNPJ clienteCNPJ;
+        private Cliente cliente;
         private ControladorClienteCNPJ controladorClienteCNPJ;
-        private ControladorClienteCPF controladorClienteCPF;
 
         public TelaClienteForm()
         {
             controladorClienteCNPJ = new ControladorClienteCNPJ();
-            controladorClienteCPF = new ControladorClienteCPF();
             InitializeComponent();
             PopularCombobox();
         }
@@ -40,15 +29,18 @@ namespace LocadoraVeiculo.WindowsApp.Features.Cliente
                     return TipoClienteEnum.PessoaJuridica;
             }
         }
-        public Object Cliente
+        public Cliente Cliente
         {
             get { return cliente; }
 
             set
             {
-                if (rbFisico.Checked)
+                cliente = value;
+
+                if (cliente is ClienteCPF)
                 {
-                    cliente = value;
+
+                    ClienteCPF clienteCPF = (ClienteCPF)cliente;
 
                     txtID.Text = clienteCPF.Id.ToString();
                     txtNome.Text = clienteCPF.Nome;
@@ -60,11 +52,10 @@ namespace LocadoraVeiculo.WindowsApp.Features.Cliente
                     dtDataValidade.Value = clienteCPF.DataValidade;
                     cbEmpresas.SelectedItem = clienteCPF.Cliente;
 
-                    cliente = clienteCPF;
                 }
                 else
                 {
-                    cliente = value;
+                    ClienteCNPJ clienteCNPJ = (ClienteCNPJ)cliente;
 
                     txtID.Text = clienteCNPJ.Id.ToString();
                     txtNome.Text = clienteCNPJ.Nome;
@@ -72,7 +63,6 @@ namespace LocadoraVeiculo.WindowsApp.Features.Cliente
                     mskTelefone.Text = clienteCNPJ.Telefone;
                     mskCnpj.Text = clienteCNPJ.Cnpj;
 
-                    cliente = clienteCNPJ;
                 }
 
             }
