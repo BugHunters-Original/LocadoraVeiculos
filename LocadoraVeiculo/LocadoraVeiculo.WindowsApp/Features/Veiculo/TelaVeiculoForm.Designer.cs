@@ -59,9 +59,10 @@ namespace LocadoraVeiculo.WindowsApp.Features.Veiculo
             this.label1 = new System.Windows.Forms.Label();
             this.btnCancelar = new System.Windows.Forms.Button();
             this.btnGravar = new System.Windows.Forms.Button();
-            this.foto = new System.Windows.Forms.PictureBox();
+            this.pictureBoxImagem = new System.Windows.Forms.PictureBox();
             this.btnBuscarFoto = new System.Windows.Forms.Button();
-            ((System.ComponentModel.ISupportInitialize)(this.foto)).BeginInit();
+            this.openFileDialogImagem = new System.Windows.Forms.OpenFileDialog();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxImagem)).BeginInit();
             this.SuspendLayout();
             // 
             // txtNome
@@ -363,23 +364,28 @@ namespace LocadoraVeiculo.WindowsApp.Features.Veiculo
             this.btnGravar.UseVisualStyleBackColor = true;
             this.btnGravar.Click += new System.EventHandler(this.btnGravar_Click_1);
             // 
-            // foto
+            // pictureBoxImagem
             // 
-            this.foto.Location = new System.Drawing.Point(183, 9);
-            this.foto.Name = "foto";
-            this.foto.Size = new System.Drawing.Size(258, 126);
-            this.foto.TabIndex = 114;
-            this.foto.TabStop = false;
+            this.pictureBoxImagem.Location = new System.Drawing.Point(213, 10);
+            this.pictureBoxImagem.Name = "pictureBoxImagem";
+            this.pictureBoxImagem.Size = new System.Drawing.Size(214, 126);
+            this.pictureBoxImagem.TabIndex = 114;
+            this.pictureBoxImagem.TabStop = false;
             // 
             // btnBuscarFoto
             // 
-            this.btnBuscarFoto.Font = new System.Drawing.Font("Lucida Sans Unicode", 8F);
-            this.btnBuscarFoto.Location = new System.Drawing.Point(51, 30);
+            this.btnBuscarFoto.Font = new System.Drawing.Font("Lucida Sans Unicode", 9F);
+            this.btnBuscarFoto.Location = new System.Drawing.Point(44, 49);
             this.btnBuscarFoto.Name = "btnBuscarFoto";
-            this.btnBuscarFoto.Size = new System.Drawing.Size(75, 23);
+            this.btnBuscarFoto.Size = new System.Drawing.Size(126, 34);
             this.btnBuscarFoto.TabIndex = 117;
-            this.btnBuscarFoto.Text = "Foto";
+            this.btnBuscarFoto.Text = "Buscar Foto";
             this.btnBuscarFoto.UseVisualStyleBackColor = true;
+            this.btnBuscarFoto.Click += new System.EventHandler(this.btnBuscarFoto_Click);
+            // 
+            // openFileDialogImagem
+            // 
+            this.openFileDialogImagem.FileName = "openFileDialogImagem";
             // 
             // TelaVeiculoForm
             // 
@@ -389,7 +395,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.Veiculo
             this.Controls.Add(this.btnBuscarFoto);
             this.Controls.Add(this.txtNome);
             this.Controls.Add(this.label14);
-            this.Controls.Add(this.foto);
+            this.Controls.Add(this.pictureBoxImagem);
             this.Controls.Add(this.txtChassi);
             this.Controls.Add(this.label13);
             this.Controls.Add(this.label12);
@@ -420,7 +426,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.Veiculo
             this.Controls.Add(this.btnGravar);
             this.Name = "TelaVeiculoForm";
             this.Text = "TelaVeiculoForm";
-            ((System.ComponentModel.ISupportInitialize)(this.foto)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxImagem)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -430,7 +436,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.Veiculo
 
         private System.Windows.Forms.TextBox txtNome;
         private System.Windows.Forms.Label label14;
-        private System.Windows.Forms.PictureBox foto;
+        private System.Windows.Forms.PictureBox pictureBoxImagem;
         private System.Windows.Forms.TextBox txtChassi;
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.Label label12;
@@ -460,5 +466,6 @@ namespace LocadoraVeiculo.WindowsApp.Features.Veiculo
         private System.Windows.Forms.Button btnCancelar;
         private System.Windows.Forms.Button btnGravar;
         private System.Windows.Forms.Button btnBuscarFoto;
+        private System.Windows.Forms.OpenFileDialog openFileDialogImagem;
     }
 }

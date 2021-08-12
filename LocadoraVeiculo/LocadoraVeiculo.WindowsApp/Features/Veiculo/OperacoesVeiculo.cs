@@ -37,8 +37,6 @@ namespace LocadoraVeiculo.WindowsApp.Features.Veiculo
             }
         }
 
-        public void DevolverVeiculo() { }
-
         public void EditarRegistro()
         {
             int id = tabelaVeiculos.ObtemIdSelecionado();
@@ -93,6 +91,8 @@ namespace LocadoraVeiculo.WindowsApp.Features.Veiculo
                 TelaPrincipalForm.Instancia.AtualizarRodape($"Veículo: [{veiculoSelecionada.nome}] removido com sucesso");
             }
         }
+
+        public void DevolverVeiculo() { }
 
         public void FiltrarRegistros() { }
 
