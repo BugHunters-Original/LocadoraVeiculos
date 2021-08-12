@@ -66,6 +66,7 @@
     <Compile Include="GrupoVeiculoModule\ControladorGrupoVeiculoTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TaxaServicoModule\ServicoTest.cs" />
+    <Compile Include="TaxaServicoModule\ControladorServicoTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
