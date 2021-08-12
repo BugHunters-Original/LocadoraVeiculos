@@ -73,5 +73,18 @@ namespace LocadoraVeiculo.Tests.FuncionarioModule
             //assert
             resultadoValidacao.Should().Be("O campo Data é obrigatório");
         }
+
+        [TestMethod]
+        public void DeveValidar_Salario()
+        {
+            //arrange
+            Funcionario funcionario = new Funcionario("Luisa", Convert.ToDecimal(-2000.0), new DateTime(2021, 03, 03), "09942799909", "JP_USER", "1234567");
+
+            //action
+            var resultadoValidacao = funcionario.Validar();
+
+            //assert
+            resultadoValidacao.Should().Be("O campo Salário é obrigatório e maior que 0");
+        }
     }
 }
