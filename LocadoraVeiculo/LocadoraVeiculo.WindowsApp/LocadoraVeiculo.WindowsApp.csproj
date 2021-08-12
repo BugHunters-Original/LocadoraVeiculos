@@ -61,6 +61,14 @@
       <DependentUpon>TelaClienteForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Features\Cliente\TipoClienteEnum.cs" />
+    <Compile Include="Features\Combustivel\ConfiguracaoCombustivelToolBox.cs" />
+    <Compile Include="Features\Combustivel\OperacoesCombustivel.cs" />
+    <Compile Include="Features\Combustivel\TelaCombustivelForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Features\Combustivel\TelaCombustivelForm.Designer.cs">
+      <DependentUpon>TelaCombustivelForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Features\Funcionario\ConfiguracaoFuncionarioToolBox.cs" />
     <Compile Include="Features\Funcionario\OperacoesFuncionario.cs" />
     <Compile Include="Features\Funcionario\TabelaFuncionarioControl.cs">
@@ -128,6 +136,9 @@
     <EmbeddedResource Include="Features\Cliente\TelaClienteForm.resx">
       <DependentUpon>TelaClienteForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Features\Combustivel\TelaCombustivelForm.resx">
+      <DependentUpon>TelaCombustivelForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Features\Funcionario\TabelaFuncionarioControl.resx">
       <DependentUpon>TabelaFuncionarioControl.cs</DependentUpon>
     </EmbeddedResource>
@@ -176,7 +187,6 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Features\Combustivel\" />
     <Folder Include="Features\Servico\" />
     <Folder Include="Libraries\" />
   </ItemGroup>
