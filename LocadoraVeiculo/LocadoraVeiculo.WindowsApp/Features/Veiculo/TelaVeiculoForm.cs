@@ -58,12 +58,6 @@ namespace LocadoraVeiculo.WindowsApp.Features.Veiculo
 
         private void btnGravar_Click_1(object sender, EventArgs e)
         {
-            if (pictureBoxImagem.Image == null)
-            {
-                
-
-            }
-
             byte[] foto = ConverteImagemParaByteArray(pictureBoxImagem.Image, pictureBoxImagem);
             string nome = txtNome.Text;
             string placa = txtPlaca.Text;

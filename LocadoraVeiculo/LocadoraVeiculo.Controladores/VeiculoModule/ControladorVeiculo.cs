@@ -126,7 +126,7 @@ namespace LocadoraVeiculo.Controladores.VeiculoModule
                 [TBVEICULOS] AS V INNER JOIN
                 [TBTIPOVEICULO] AS TV
             ON
-                TV.ID = V.ID
+                TV.ID = V.ID_TIPO_VEICULO
             WHERE 
                 V.[ID] = @ID";
 
