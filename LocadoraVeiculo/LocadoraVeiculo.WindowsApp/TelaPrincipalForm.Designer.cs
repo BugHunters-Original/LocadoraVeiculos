@@ -181,7 +181,7 @@ namespace LocadoraVeiculo.WindowsApp
             // 
             this.menuItemLocacao.Name = "menuItemLocacao";
             this.menuItemLocacao.ShortcutKeys = System.Windows.Forms.Keys.F1;
-            this.menuItemLocacao.Size = new System.Drawing.Size(180, 22);
+            this.menuItemLocacao.Size = new System.Drawing.Size(163, 22);
             this.menuItemLocacao.Text = "Locações";
             this.menuItemLocacao.Click += new System.EventHandler(this.menuItemLocacao_Click);
             // 
@@ -189,7 +189,7 @@ namespace LocadoraVeiculo.WindowsApp
             // 
             this.menuItemCliente.Name = "menuItemCliente";
             this.menuItemCliente.ShortcutKeys = System.Windows.Forms.Keys.F2;
-            this.menuItemCliente.Size = new System.Drawing.Size(180, 22);
+            this.menuItemCliente.Size = new System.Drawing.Size(163, 22);
             this.menuItemCliente.Text = "Clientes";
             this.menuItemCliente.Click += new System.EventHandler(this.menuItemCliente_Click);
             // 
@@ -197,7 +197,7 @@ namespace LocadoraVeiculo.WindowsApp
             // 
             this.menuItemVeiculo.Name = "menuItemVeiculo";
             this.menuItemVeiculo.ShortcutKeys = System.Windows.Forms.Keys.F3;
-            this.menuItemVeiculo.Size = new System.Drawing.Size(180, 22);
+            this.menuItemVeiculo.Size = new System.Drawing.Size(163, 22);
             this.menuItemVeiculo.Text = "Veículos";
             this.menuItemVeiculo.Click += new System.EventHandler(this.menuItemVeiculo_Click);
             // 
@@ -205,7 +205,7 @@ namespace LocadoraVeiculo.WindowsApp
             // 
             this.menuItemFuncionario.Name = "menuItemFuncionario";
             this.menuItemFuncionario.ShortcutKeys = System.Windows.Forms.Keys.F4;
-            this.menuItemFuncionario.Size = new System.Drawing.Size(180, 22);
+            this.menuItemFuncionario.Size = new System.Drawing.Size(163, 22);
             this.menuItemFuncionario.Text = "Funcionário";
             this.menuItemFuncionario.Click += new System.EventHandler(this.menuItemFuncionario_Click);
             // 
@@ -243,6 +243,7 @@ namespace LocadoraVeiculo.WindowsApp
             this.taxasToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F7;
             this.taxasToolStripMenuItem.Size = new System.Drawing.Size(210, 22);
             this.taxasToolStripMenuItem.Text = "Taxas e Serviços";
+            this.taxasToolStripMenuItem.Click += new System.EventHandler(this.taxasToolStripMenuItem_Click);
             // 
             // statusStripFooter
             // 

@@ -97,6 +97,10 @@ namespace LocadoraVeiculo.WindowsApp
 
             ConfigurarPainelRegistros();
         }
+        private void taxasToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
 
         private void btnAdicionar_Click(object sender, EventArgs e)
         {
@@ -148,5 +152,6 @@ namespace LocadoraVeiculo.WindowsApp
             btnFiltrar.Enabled = configuracao.EnabledFiltrar;
             btnDevolver.Enabled = configuracao.EnabledDevolver;
         }
+
     }
 }

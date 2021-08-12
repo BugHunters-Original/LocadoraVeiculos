@@ -49,7 +49,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.Clientes
                     ClienteCPF clienteCPF = (ClienteCPF)cliente;
                     mskCpf.Text = clienteCPF.Cpf;
                     mskRg.Text = clienteCPF.Rg;
-                    txtCnh.Text = clienteCPF.Cnh;
+                    mskCnh.Text = clienteCPF.Cnh;
                     dtDataValidade.Value = clienteCPF.DataValidade;
                     cbEmpresas.SelectedItem = clienteCPF.Cliente;
                     rbFisico.Checked = true;
@@ -79,7 +79,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.Clientes
         private void rbFisico_CheckedChanged(object sender, EventArgs e)
         {
             mskCpf.Enabled = true;
-            txtCnh.Enabled = true;
+            mskCnh.Enabled = true;
             mskRg.Enabled = true;
             dtDataValidade.Enabled = true;
             cbEmpresas.Enabled = true;
@@ -88,7 +88,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.Clientes
         private void rbJuridico_CheckedChanged(object sender, EventArgs e)
         {
             mskCpf.Enabled = false;
-            txtCnh.Enabled = false;
+            mskCnh.Enabled = false;
             mskRg.Enabled = false;
             dtDataValidade.Enabled = false;
             cbEmpresas.Enabled = false;
@@ -104,7 +104,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.Clientes
                 string telefone = mskTelefone.Text;
                 string cpf = mskCpf.Text;
                 string rg = mskRg.Text;
-                string cnh = txtCnh.Text;
+                string cnh = mskCnh.Text;
                 DateTime dataValidade = dtDataValidade.Value;
                 ClienteCNPJ empresa = (ClienteCNPJ)cbEmpresas.SelectedItem;
 

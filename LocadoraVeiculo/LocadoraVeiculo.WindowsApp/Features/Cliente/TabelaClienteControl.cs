@@ -27,7 +27,9 @@ namespace LocadoraVeiculo.WindowsApp.Features.Clientes
 
                 new DataGridViewTextBoxColumn { DataPropertyName = "Telefone", HeaderText = "Telefone"},
 
-                new DataGridViewTextBoxColumn { DataPropertyName = "CPF/CNPJ", HeaderText = "CPF/CNPJ"}
+                new DataGridViewTextBoxColumn { DataPropertyName = "CPF/CNPJ", HeaderText = "CPF/CNPJ"},
+
+                new DataGridViewTextBoxColumn { DataPropertyName = "EmpresaRelacionada", HeaderText = "Empresa Relacionada"}
             };
 
             return colunas;
@@ -44,7 +46,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.Clientes
             foreach (var clienteCPF in clientesCPF)
             {
                 gridClientes.Rows.Add(clienteCPF.Id, clienteCPF.Nome,
-                    clienteCPF.Endereco, clienteCPF.Telefone, clienteCPF.Cpf);
+                    clienteCPF.Endereco, clienteCPF.Telefone, clienteCPF.Cpf, clienteCPF.Cliente);
             }
             foreach (var clienteCNPJ in clientesCNPJ)
             {

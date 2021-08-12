@@ -51,8 +51,8 @@ namespace LocadoraVeiculo.WindowsApp.Features.Clientes
             this.mskTelefone = new System.Windows.Forms.MaskedTextBox();
             this.mskCpf = new System.Windows.Forms.MaskedTextBox();
             this.mskCnpj = new System.Windows.Forms.MaskedTextBox();
-            this.txtCnh = new System.Windows.Forms.TextBox();
             this.mskRg = new System.Windows.Forms.MaskedTextBox();
+            this.mskCnh = new System.Windows.Forms.MaskedTextBox();
             this.SuspendLayout();
             // 
             // txtID
@@ -254,14 +254,6 @@ namespace LocadoraVeiculo.WindowsApp.Features.Clientes
             this.mskCnpj.Size = new System.Drawing.Size(404, 20);
             this.mskCnpj.TabIndex = 39;
             // 
-            // txtCnh
-            // 
-            this.txtCnh.Enabled = false;
-            this.txtCnh.Location = new System.Drawing.Point(140, 213);
-            this.txtCnh.Name = "txtCnh";
-            this.txtCnh.Size = new System.Drawing.Size(404, 20);
-            this.txtCnh.TabIndex = 40;
-            // 
             // mskRg
             // 
             this.mskRg.Enabled = false;
@@ -271,13 +263,22 @@ namespace LocadoraVeiculo.WindowsApp.Features.Clientes
             this.mskRg.Size = new System.Drawing.Size(404, 20);
             this.mskRg.TabIndex = 41;
             // 
+            // mskCnh
+            // 
+            this.mskCnh.Enabled = false;
+            this.mskCnh.Location = new System.Drawing.Point(140, 213);
+            this.mskCnh.Mask = "00000000000";
+            this.mskCnh.Name = "mskCnh";
+            this.mskCnh.Size = new System.Drawing.Size(404, 20);
+            this.mskCnh.TabIndex = 42;
+            // 
             // TelaClienteForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(634, 391);
+            this.Controls.Add(this.mskCnh);
             this.Controls.Add(this.mskRg);
-            this.Controls.Add(this.txtCnh);
             this.Controls.Add(this.mskCnpj);
             this.Controls.Add(this.mskCpf);
             this.Controls.Add(this.mskTelefone);
@@ -336,7 +337,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.Clientes
         private System.Windows.Forms.MaskedTextBox mskTelefone;
         private System.Windows.Forms.MaskedTextBox mskCpf;
         private System.Windows.Forms.MaskedTextBox mskCnpj;
-        private System.Windows.Forms.TextBox txtCnh;
         private System.Windows.Forms.MaskedTextBox mskRg;
+        private System.Windows.Forms.MaskedTextBox mskCnh;
     }
 }
