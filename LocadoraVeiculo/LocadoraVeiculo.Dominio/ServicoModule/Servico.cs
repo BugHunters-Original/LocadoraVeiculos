@@ -24,6 +24,9 @@ namespace LocadoraVeiculo.ServicoModule
             if (Preco <= 0)
                 valido += QuebraDeLinha(valido) + "O campo Preço está inválido";
 
+            if (TipoCalculo != 1 || TipoCalculo != 0)
+                valido += QuebraDeLinha(valido) + "O campo Tipo está inválido";
+
             if (valido == "")
                 valido = "ESTA_VALIDO";
 
