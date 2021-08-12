@@ -35,20 +35,23 @@
             // gridClientes
             // 
             this.gridClientes.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.gridClientes.Dock = System.Windows.Forms.DockStyle.Fill;
             this.gridClientes.Location = new System.Drawing.Point(0, 0);
+            this.gridClientes.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.gridClientes.Name = "gridClientes";
             this.gridClientes.RowHeadersWidth = 51;
             this.gridClientes.RowTemplate.Height = 24;
-            this.gridClientes.Size = new System.Drawing.Size(948, 665);
+            this.gridClientes.Size = new System.Drawing.Size(711, 540);
             this.gridClientes.TabIndex = 0;
             // 
             // TabelaClienteControl
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.gridClientes);
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "TabelaClienteControl";
-            this.Size = new System.Drawing.Size(948, 665);
+            this.Size = new System.Drawing.Size(711, 540);
             ((System.ComponentModel.ISupportInitialize)(this.gridClientes)).EndInit();
             this.ResumeLayout(false);
 
