@@ -44,6 +44,11 @@ namespace LocadoraVeiculo.WindowsApp.Features.Veiculo
                 txtNome.Text = veiculos.nome;
                 txtPlaca.Text = veiculos.numero_Placa;
                 txtChassi.Text = veiculos.numero_Chassi;
+                if (veiculos.foto != null) 
+                { 
+                    pictureBoxImagem.Image = (Image)(new Bitmap(ConverteByteArrayParaImagem(veiculos.foto), new Size(214, 126)));
+                    pictureBoxImagem.SizeMode = PictureBoxSizeMode.StretchImage;
+                }
                 txtCor.Text = veiculos.cor;
                 txtMarca.Text = veiculos.marca;
                 txtAno.Text = veiculos.ano.ToString();
