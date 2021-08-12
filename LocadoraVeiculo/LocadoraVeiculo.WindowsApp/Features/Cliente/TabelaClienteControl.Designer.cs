@@ -39,6 +39,7 @@
             this.gridClientes.Location = new System.Drawing.Point(0, 0);
             this.gridClientes.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.gridClientes.Name = "gridClientes";
+            this.gridClientes.RowHeadersVisible = false;
             this.gridClientes.RowHeadersWidth = 51;
             this.gridClientes.RowTemplate.Height = 24;
             this.gridClientes.Size = new System.Drawing.Size(711, 540);

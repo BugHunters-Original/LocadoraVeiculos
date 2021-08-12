@@ -40,6 +40,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.Veiculo
             this.gridVeiculos.Location = new System.Drawing.Point(0, 0);
             this.gridVeiculos.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.gridVeiculos.Name = "gridVeiculos";
+            this.gridVeiculos.RowHeadersVisible = false;
             this.gridVeiculos.RowHeadersWidth = 51;
             this.gridVeiculos.RowTemplate.Height = 24;
             this.gridVeiculos.Size = new System.Drawing.Size(711, 540);
