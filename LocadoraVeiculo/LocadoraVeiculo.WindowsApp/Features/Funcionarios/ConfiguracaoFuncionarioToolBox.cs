@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace LocadoraVeiculo.WindowsApp.Features.Funcionario
+namespace LocadoraVeiculo.WindowsApp.Features.Funcionarios
 {
     public class ConfiguracaoFuncionarioToolBox : IConfiguracaoToolBox
     {

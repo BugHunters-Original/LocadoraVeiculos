@@ -54,13 +54,19 @@
     <Compile Include="Features\Cliente\TabelaClienteControl.Designer.cs">
       <DependentUpon>TabelaClienteControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="Features\Funcionario\ConfiguracaoFuncionarioToolBox.cs" />
-    <Compile Include="Features\Funcionario\OperacoesFuncionario.cs" />
-    <Compile Include="Features\Funcionario\TabelaFuncionarioControl.cs">
+    <Compile Include="Features\Funcionarios\ConfiguracaoFuncionarioToolBox.cs" />
+    <Compile Include="Features\Funcionarios\OperacoesFuncionario.cs" />
+    <Compile Include="Features\Funcionarios\TabelaFuncionarioControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Features\Funcionario\TabelaFuncionarioControl.Designer.cs">
+    <Compile Include="Features\Funcionarios\TabelaFuncionarioControl.Designer.cs">
       <DependentUpon>TabelaFuncionarioControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Features\Funcionarios\TelaFuncionarioForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Features\Funcionarios\TelaFuncionarioForm.Designer.cs">
+      <DependentUpon>TelaFuncionarioForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Features\GrupoVeiculo\ConfiguracaoGrupoVeiculoToolBox.cs" />
     <Compile Include="Features\GrupoVeiculo\OperacoesGrupoVeiculo.cs" />
@@ -106,8 +112,11 @@
     <EmbeddedResource Include="Features\Cliente\TabelaClienteControl.resx">
       <DependentUpon>TabelaClienteControl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Features\Funcionario\TabelaFuncionarioControl.resx">
+    <EmbeddedResource Include="Features\Funcionarios\TabelaFuncionarioControl.resx">
       <DependentUpon>TabelaFuncionarioControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Features\Funcionarios\TelaFuncionarioForm.resx">
+      <DependentUpon>TelaFuncionarioForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Features\GrupoVeiculo\TabelaGrupoVeiculoControl.resx">
       <DependentUpon>TabelaGrupoVeiculoControl.cs</DependentUpon>

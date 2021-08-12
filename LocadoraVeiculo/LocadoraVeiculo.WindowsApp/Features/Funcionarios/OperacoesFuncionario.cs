@@ -7,7 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace LocadoraVeiculo.WindowsApp.Features.Funcionario
+namespace LocadoraVeiculo.WindowsApp.Features.Funcionarios
 {
     public class OperacoesFuncionario : ICadastravel
     {
