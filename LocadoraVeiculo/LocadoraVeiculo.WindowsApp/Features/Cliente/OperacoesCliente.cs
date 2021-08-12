@@ -81,7 +81,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.Clientes
                 clienteSelecionado = controladorCNPJ.SelecionarPorId(id);
 
             if (MessageBox.Show($"Tem certeza que deseja excluir o cliente: [{clienteSelecionado}] ?",
-                "Exclusão de Compromissos", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK)
+                "Exclusão de Clientes", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK)
             {
                 if (clienteSelecionado is ClienteCPF)
                     controladorCPF.Excluir(id);
