@@ -207,7 +207,6 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Features\Servico\" />
     <Folder Include="Libraries\" />
   </ItemGroup>
   <ItemGroup>
