@@ -40,8 +40,7 @@ namespace LocadoraVeiculo.WindowsApp
 
         private void cadastrosToolStripMenuItem_Click(object sender, EventArgs e)
         {
-                this.Close();
-            
+            this.Close();
         }
 
         private void taxasEServiçosToolStripMenuItem_Click(object sender, EventArgs e)
