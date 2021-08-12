@@ -1,4 +1,5 @@
 ﻿using LocadoraVeiculo.Controladores.ClienteModule;
+using LocadoraVeiculo.Controladores.CondutorModule;
 using LocadoraVeiculo.Controladores.FuncionarioModule;
 using LocadoraVeiculo.Controladores.LocacaoModule;
 using LocadoraVeiculo.Controladores.VeiculoModule;
@@ -58,7 +59,7 @@ namespace LocadoraVeiculo.WindowsApp
 
             AtualizarRodape(configuracao.TipoCadastro);
 
-            operacoes = new OperacoesCliente(new ControladorClienteCNPJ());
+            operacoes = new OperacoesCliente(new ControladorClienteCNPJ(), new ControladorClienteCPF());
 
             ConfigurarPainelRegistros();
         }

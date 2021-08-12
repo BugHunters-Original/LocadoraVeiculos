@@ -42,6 +42,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ClienteCNPJModule\ClienteCNPJ.cs" />
+    <Compile Include="ClienteModule\Cliente.cs" />
     <Compile Include="CombustivelModule\Combustivel.cs" />
     <Compile Include="ClienteCPFModule\ClienteCPF.cs" />
     <Compile Include="FuncionarioModule\Funcionario.cs" />
