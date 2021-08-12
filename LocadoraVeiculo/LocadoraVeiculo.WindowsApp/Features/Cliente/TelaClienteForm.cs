@@ -37,32 +37,29 @@ namespace LocadoraVeiculo.WindowsApp.Features.Clientes
             {
                 cliente = value;
 
+                txtID.Text = cliente.Id.ToString();
+                txtNome.Text = cliente.Nome;
+                txtEndereco.Text = cliente.Endereco;
+                mskTelefone.Text = cliente.Telefone;
+                rbFisico.Enabled = false;
+                rbJuridico.Enabled = false;
+
                 if (cliente is ClienteCPF)
                 {
-
                     ClienteCPF clienteCPF = (ClienteCPF)cliente;
-
-                    txtID.Text = clienteCPF.Id.ToString();
-                    txtNome.Text = clienteCPF.Nome;
-                    txtEndereco.Text = clienteCPF.Endereco;
-                    mskTelefone.Text = clienteCPF.Telefone;
                     mskCpf.Text = clienteCPF.Cpf;
                     mskRg.Text = clienteCPF.Rg;
                     txtCnh.Text = clienteCPF.Cnh;
                     dtDataValidade.Value = clienteCPF.DataValidade;
                     cbEmpresas.SelectedItem = clienteCPF.Cliente;
+                    rbFisico.Checked = true;
 
                 }
                 else
                 {
                     ClienteCNPJ clienteCNPJ = (ClienteCNPJ)cliente;
-
-                    txtID.Text = clienteCNPJ.Id.ToString();
-                    txtNome.Text = clienteCNPJ.Nome;
-                    txtEndereco.Text = clienteCNPJ.Endereco;
-                    mskTelefone.Text = clienteCNPJ.Telefone;
                     mskCnpj.Text = clienteCNPJ.Cnpj;
-
+                    rbJuridico.Checked = true;
                 }
 
             }

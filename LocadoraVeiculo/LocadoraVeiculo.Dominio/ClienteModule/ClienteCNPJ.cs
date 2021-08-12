@@ -12,9 +12,7 @@ namespace LocadoraVeiculo.ClienteModule
             Telefone = telefone;
             Cnpj = cnpj;
         }
-        public string Nome { get; set; }
-        public string Endereco { get; set; }
-        public string Telefone { get; set; }
+
         public string Cnpj { get; set; }
 
         public override string Validar()
