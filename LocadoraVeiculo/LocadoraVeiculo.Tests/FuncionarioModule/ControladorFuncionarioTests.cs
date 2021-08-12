@@ -86,7 +86,7 @@ namespace LocadoraVeiculo.Tests.FuncionarioModule
         public void DeveSelecionar_TodosFuncionarios()
         {
             //arrange
-            var f1 = new Funcionario("Gabriel", 6000, new DateTime(2021, 03, 03), "321654987000", "user_gabriel", "9876545567");
+            var f1 = new Funcionario("Luisa Farias", 3000, new DateTime(2021, 03, 03), "09988899909", "luisa_f", "1234567");
             controlador.InserirNovo(f1);
 
             var f2 = new Funcionario("Arthur", 6000, new DateTime(2021, 03, 03), "987654321000", "user_arthur", "9999999999");
@@ -100,9 +100,9 @@ namespace LocadoraVeiculo.Tests.FuncionarioModule
 
             //assert
             funcionarios.Should().HaveCount(3);
-            funcionarios[0].Nome.Should().Be("Gabriel");
+            funcionarios[0].Nome.Should().Be("Andrey");
             funcionarios[1].Nome.Should().Be("Arthur");
-            funcionarios[2].Nome.Should().Be("Andrey");
+            funcionarios[2].Nome.Should().Be("Luisa Farias");
         }
     }
 }
