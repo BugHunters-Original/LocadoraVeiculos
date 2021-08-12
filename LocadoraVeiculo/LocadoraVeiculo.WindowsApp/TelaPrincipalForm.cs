@@ -5,9 +5,7 @@ using LocadoraVeiculo.Controladores.GrupoVeiculoModule;
 using LocadoraVeiculo.Controladores.LocacaoModule;
 using LocadoraVeiculo.Controladores.VeiculoModule;
 using LocadoraVeiculo.WindowsApp.Features.Clientes;
-
 using LocadoraVeiculo.WindowsApp.Features.GrupoVeiculo;
-using LocadoraVeiculo.WindowsApp.Features.Cliente;
 using LocadoraVeiculo.WindowsApp.Features.Funcionarios;
 using LocadoraVeiculo.WindowsApp.Features.Locacao;
 using LocadoraVeiculo.WindowsApp.Features.Veiculo;

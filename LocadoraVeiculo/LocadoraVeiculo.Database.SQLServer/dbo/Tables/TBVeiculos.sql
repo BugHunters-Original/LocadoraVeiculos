@@ -13,7 +13,7 @@
     [KM_inicial]            INT          NULL,
     [Tipo_combustivel]      VARCHAR (50) NOT NULL,
     [Id_Tipo_Veiculo]       INT          NOT NULL,
-    [Disponibilida_veiculo] INT          NOT NULL,
+    [Disponibilidade_veiculo] INT          NOT NULL,
     CONSTRAINT [PK_TBVeiculos] PRIMARY KEY CLUSTERED ([Id] ASC),
     CONSTRAINT [FK_TBVeiculos_TBTipoVeiculo] FOREIGN KEY ([Id_Tipo_Veiculo]) REFERENCES [dbo].[TBTipoVeiculo] ([Id])
 );
