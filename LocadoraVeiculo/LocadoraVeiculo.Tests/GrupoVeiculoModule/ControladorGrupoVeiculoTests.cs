@@ -14,6 +14,7 @@ namespace LocadoraVeiculo.Tests.GrupoVeiculoModule
         public ControladorGrupoVeiculoTests()
         {
             controlador = new ControladorGrupoVeiculo();
+            Db.Update("DELETE FROM [TBVEICULOS]");
             Db.Update("DELETE FROM [TBTIPOVEICULO]");
         }
 
