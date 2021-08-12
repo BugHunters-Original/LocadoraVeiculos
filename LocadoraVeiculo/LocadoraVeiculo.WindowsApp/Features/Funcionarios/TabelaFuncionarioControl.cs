@@ -1,4 +1,5 @@
-﻿using LocadoraVeiculo.WindowsApp.Shared;
+﻿using LocadoraVeiculo.FuncionarioModule;
+using LocadoraVeiculo.WindowsApp.Shared;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -27,15 +28,17 @@ namespace LocadoraVeiculo.WindowsApp.Features.Funcionarios
             {
                 new DataGridViewTextBoxColumn { DataPropertyName = "Id", HeaderText = "Id"},
 
-                new DataGridViewTextBoxColumn { DataPropertyName = "", HeaderText = ""},
+                new DataGridViewTextBoxColumn { DataPropertyName = "Nome", HeaderText = "Nome"},
 
-                new DataGridViewTextBoxColumn { DataPropertyName = "", HeaderText = ""},
+                new DataGridViewTextBoxColumn { DataPropertyName = "CPF", HeaderText = "CPF"},
 
-                new DataGridViewTextBoxColumn { DataPropertyName = "", HeaderText = ""},
+                new DataGridViewTextBoxColumn { DataPropertyName = "Salario", HeaderText = "Salário"},
 
-                new DataGridViewTextBoxColumn {DataPropertyName = "", HeaderText = ""},
+                new DataGridViewTextBoxColumn {DataPropertyName = "Data de Entrada", HeaderText = "Data de Entrada"},
 
-                new DataGridViewTextBoxColumn {DataPropertyName = "", HeaderText = ""}
+                new DataGridViewTextBoxColumn {DataPropertyName = "Usuario", HeaderText = "Usuário"},
+
+                new DataGridViewTextBoxColumn {DataPropertyName = "Senha", HeaderText = "Senha"}
             };
 
             return colunas;
@@ -46,14 +49,18 @@ namespace LocadoraVeiculo.WindowsApp.Features.Funcionarios
             return gridFuncionarios.SelecionarId<int>();
         }
 
-        //public void AtualizarRegistros(List<Cliente> clientes)
-        //{
-        //    gridClientes.Rows.Clear();
+        public void AtualizarRegistros(List<Funcionario> funcionarios)
+        {
+            gridFuncionarios.Rows.Clear();
 
-        //    foreach (Cliente cliente in clientes)
-        //    {
-        //        gridClientes.Rows.Add();
-        //    }
-        //}
+            foreach (Funcionario funcionario in funcionarios)
+            {
+
+                gridFuncionarios.Rows.Add(funcionario.Id, funcionario.Nome, funcionario.Cpf_funcionario,
+                    funcionario.Salario, funcionario.DataEntrada, funcionario.Usuario, funcionario.Senha);
+
+
+            }
+        }
     }
 }
