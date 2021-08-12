@@ -8,7 +8,7 @@ using System.Data;
 namespace LocadoraVeiculo.Controladores.VeiculoModule
 {
     public class ControladorVeiculo : Controlador<Veiculo>
-    {//                    [FOTO],                        @FOTO,
+    {
         #region Queries
         private const string sqlInserirVeiculo =
             @"INSERT INTO [TBVEICULOS]
@@ -16,7 +16,7 @@ namespace LocadoraVeiculo.Controladores.VeiculoModule
                     [NOME],       
                     [NUMERO_PLACA], 
                     [NUMERO_CHASSI],
-                
+                    [FOTO],                  
                     [COR],                                                           
                     [MARCA],
                     [ANO],
@@ -33,7 +33,7 @@ namespace LocadoraVeiculo.Controladores.VeiculoModule
                     @NOME,
                     @NUMERO_PLACA,
                     @NUMERO_CHASSI,
-
+                    @FOTO,
                     @COR,
                     @MARCA,
                     @ANO,
@@ -126,7 +126,7 @@ namespace LocadoraVeiculo.Controladores.VeiculoModule
                 [TBVEICULOS] AS V INNER JOIN
                 [TBTIPOVEICULO] AS TV
             ON
-                TV.ID = V.ID
+                TV.ID = V.ID_TIPO_VEICULO
             WHERE 
                 V.[ID] = @ID";
 
@@ -195,10 +195,15 @@ namespace LocadoraVeiculo.Controladores.VeiculoModule
 
         private Veiculo ConverterEmVeiculo(IDataReader reader)
         {
+            byte[] foto;
             var nome = Convert.ToString(reader["NOME"]);
             var numero_Placa = Convert.ToString(reader["NUMERO_PLACA"]);
             var numero_Chassi = Convert.ToString(reader["NUMERO_CHASSI"]);
-            //var foto = Convert.ToString(reader["FOTO"]);
+            if (reader["FOTO"] != DBNull.Value)
+                foto = (byte[])reader["FOTO"];
+            else
+                foto = null;
+
             var cor = Convert.ToString(reader["COR"]);
             var marca = Convert.ToString(reader["MARCA"]);
             var ano = Convert.ToInt32(reader["ANO"]);
@@ -224,7 +229,7 @@ namespace LocadoraVeiculo.Controladores.VeiculoModule
                 grupoVeiculo.Id = Convert.ToInt32(reader["ID_TIPO_VEICULO"]);
             }
 
-            Veiculo veiculo = new Veiculo(nome, numero_Placa, numero_Chassi, cor, marca, ano, numero_Portas,
+            Veiculo veiculo = new Veiculo(nome, numero_Placa, numero_Chassi, foto, cor, marca, ano, numero_Portas,
                 capacidade_Tanque, tamanhoPortaMalas, km_Inicial, tipo_Combustivel, disponibilidade_Veiculo, grupoVeiculo);
             veiculo.Id = Convert.ToInt32(reader["ID"]);
 
@@ -239,7 +244,7 @@ namespace LocadoraVeiculo.Controladores.VeiculoModule
             parametros.Add("NOME", veiculo.nome);
             parametros.Add("NUMERO_PLACA", veiculo.numero_Placa);
             parametros.Add("NUMERO_CHASSI", veiculo.numero_Chassi);
-            //parametros.Add("FOTO", veiculo.foto);
+            parametros.Add("FOTO", veiculo.foto);
             parametros.Add("COR", veiculo.cor);
             parametros.Add("MARCA", veiculo.marca);
             parametros.Add("ANO", veiculo.ano);

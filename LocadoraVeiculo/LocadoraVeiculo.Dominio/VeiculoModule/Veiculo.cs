@@ -8,8 +8,7 @@ namespace LocadoraVeiculo.VeiculoModule
         public string nome { get; set; }
         public string numero_Placa { get; set; }
         public string numero_Chassi { get; set; }
-
-        //public byte[] foto { get; set; }
+        public byte[] foto { get; set; }
         public string cor { get; set; }
         public string marca { get; set; }
         public int? ano { get; set; }
@@ -40,13 +39,14 @@ namespace LocadoraVeiculo.VeiculoModule
             this.grupoVeiculo = grupoVeiculo;
         }
 
-        public Veiculo(string nome, string numero_Placa, string numero_Chassi, string cor,
+        public Veiculo(string nome, string numero_Placa, string numero_Chassi, byte[] foto, string cor,
             string marca, int? ano, int numero_Portas, int capacidade_Tanque, char tamanhoPortaMalas, int km_Inicial,
-            string tipo_Combustivel, GrupoVeiculo grupoVeiculo)
+            string tipo_Combustivel, int disponibilidade_Veiculo, GrupoVeiculo grupoVeiculo)
         {
             this.nome = nome;
             this.numero_Placa = numero_Placa;
             this.numero_Chassi = numero_Chassi;
+            this.foto = foto;
             this.cor = cor;
             this.marca = marca;
             this.ano = ano;
@@ -55,8 +55,12 @@ namespace LocadoraVeiculo.VeiculoModule
             this.tamanhoPortaMalas = tamanhoPortaMalas;
             this.km_Inicial = km_Inicial;
             this.tipo_Combustivel = tipo_Combustivel;
+            this.disponibilidade_Veiculo = disponibilidade_Veiculo;
             this.grupoVeiculo = grupoVeiculo;
+
         }
+
+
 
         public override string Validar()
         {
