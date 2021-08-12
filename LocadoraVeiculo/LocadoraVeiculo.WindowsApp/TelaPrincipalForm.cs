@@ -85,22 +85,6 @@ namespace LocadoraVeiculo.WindowsApp
             ConfigurarPainelRegistros();
         }
 
-        private void gruposDeVeículosToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            ConfiguracaoGrupoVeiculoToolBox configuracao = new ConfiguracaoGrupoVeiculoToolBox();
-
-            ConfigurarToolBox(configuracao);
-
-            AtualizarRodape(configuracao.TipoCadastro);
-
-            operacoes = new OperacoesGrupoVeiculo(new ControladorGrupoVeiculo());
-
-            ConfigurarPainelRegistros();
-        }
-        private void taxasToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-
-        }
 
         private void btnAdicionar_Click(object sender, EventArgs e)
         {
@@ -153,5 +137,12 @@ namespace LocadoraVeiculo.WindowsApp
             btnDevolver.Enabled = configuracao.EnabledDevolver;
         }
 
+        private void configuraçõesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            using (TelaConfigGeralForm tela = new TelaConfigGeralForm())
+            {
+                tela.ShowDialog();
+            }
+        }
     }
 }

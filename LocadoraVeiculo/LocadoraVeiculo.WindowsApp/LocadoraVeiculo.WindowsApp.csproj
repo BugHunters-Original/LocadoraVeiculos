@@ -91,6 +91,14 @@
     <Compile Include="Features\Locacao\TabelaLocacaoControl.Designer.cs">
       <DependentUpon>TabelaLocacaoControl.cs</DependentUpon>
     </Compile>
+    <Compile Include="Features\TaxaServico\ConfiguracaoTaxaServicoToolBox.cs" />
+    <Compile Include="Features\TaxaServico\OperacoesTaxaServico.cs" />
+    <Compile Include="Features\TaxaServico\TabelaTaxaServicoControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Features\TaxaServico\TabelaTaxaServicoControl.Designer.cs">
+      <DependentUpon>TabelaTaxaServicoControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="Features\TaxaServico\TelaTaxaServicoForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -110,6 +118,12 @@
     </Compile>
     <Compile Include="Features\Veiculo\TelaVeiculoForm.Designer.cs">
       <DependentUpon>TelaVeiculoForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="TelaConfigGeralForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="TelaConfigGeralForm.Designer.cs">
+      <DependentUpon>TelaConfigGeralForm.cs</DependentUpon>
     </Compile>
     <Compile Include="TelaPrincipalForm.cs">
       <SubType>Form</SubType>
@@ -137,6 +151,9 @@
     <EmbeddedResource Include="Features\Locacao\TabelaLocacaoControl.resx">
       <DependentUpon>TabelaLocacaoControl.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Features\TaxaServico\TabelaTaxaServicoControl.resx">
+      <DependentUpon>TabelaTaxaServicoControl.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Features\TaxaServico\TelaTaxaServicoForm.resx">
       <DependentUpon>TelaTaxaServicoForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -148,6 +165,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Features\Veiculo\TelaVeiculoForm.resx">
       <DependentUpon>TelaVeiculoForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TelaConfigGeralForm.resx">
+      <DependentUpon>TelaConfigGeralForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="TelaPrincipalForm.resx">
       <DependentUpon>TelaPrincipalForm.cs</DependentUpon>
