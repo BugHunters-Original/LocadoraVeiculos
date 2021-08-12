@@ -3,9 +3,6 @@ using LocadoraVeiculo.FuncionarioModule;
 using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace LocadoraVeiculo.Controladores.FuncionarioModule
 {
@@ -53,6 +50,7 @@ namespace LocadoraVeiculo.Controladores.FuncionarioModule
            @"SELECT
                        [ID],
 		                [NOME], 
+                        [SALARIO],
 		                [CPF], 
 		                [DATA_ENTRADA],
                         [USUARIO], 
@@ -64,8 +62,9 @@ namespace LocadoraVeiculo.Controladores.FuncionarioModule
 
         private const string sqlSelecionarTodosFuncionarios =
                     @"SELECT
-                        [ID],
+                         [ID],
 		                [NOME], 
+                        [SALARIO],
 		                [CPF], 
 		                [DATA_ENTRADA],
                         [USUARIO], 
@@ -141,9 +140,11 @@ namespace LocadoraVeiculo.Controladores.FuncionarioModule
             string nome = Convert.ToString(reader["NOME"]);
             string cpf = Convert.ToString(reader["CPF"]);
             DateTime data_entrada = Convert.ToDateTime(reader["DATA_ENTRADA"]);
-            double salario = Convert.ToDouble(reader["SALARIO"]);
+            decimal salario = Convert.ToDecimal(reader["SALARIO"]);
+
             string usuario = Convert.ToString(reader["USUARIO"]);
             string senha = Convert.ToString(reader["SENHA"]);
+
 
             Funcionario funcionario = new Funcionario(nome, salario, data_entrada, cpf, usuario, senha);
 

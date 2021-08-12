@@ -1,13 +1,6 @@
 ﻿using LocadoraVeiculo.FuncionarioModule;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 
@@ -25,24 +18,25 @@ namespace LocadoraVeiculo.WindowsApp.Features.Funcionarios
         {
             get { return funcionario; }
 
-            set {
+            set
+            {
 
                 funcionario = value;
                 text_IdFuncionario.Text = funcionario.Id.ToString();
                 text_NomeFuncionario.Text = funcionario.Nome;
                 text_CPFFuncionario.Text = funcionario.Cpf_funcionario;
-                text_SalarioFuncionario.Text = funcionario.Salario.ToString();
+                text_salarioFuncionario.Text = funcionario.Salario.ToString();
 
                 text_UsuarioFuncionario.Text = funcionario.Usuario;
                 text_SenhaFuncionario.Text = funcionario.Senha;
-                
 
-            
-            
-            
+
+
+
+
             }
         }
-     
+
 
         private void TelaFuncionarioForm_FormClosing(object sender, FormClosingEventArgs e)
         {
@@ -56,12 +50,12 @@ namespace LocadoraVeiculo.WindowsApp.Features.Funcionarios
             string usuario = text_UsuarioFuncionario.Text;
             string senha = text_SenhaFuncionario.Text;
 
-            double salario = Convert.ToDouble(text_SalarioFuncionario.Text);
+            decimal? salario = Convert.ToDecimal(text_salarioFuncionario.Text);
             DateTime dataEntrada = date_EntradaFuncionario.Value;
 
 
             funcionario = new Funcionario(nome, salario, dataEntrada, cpf, usuario, senha);
-           
+
 
             string resultadoValidacao = funcionario.Validar();
 

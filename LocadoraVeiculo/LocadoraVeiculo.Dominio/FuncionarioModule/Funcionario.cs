@@ -1,9 +1,5 @@
 ﻿using LocadoraVeiculo.Shared;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace LocadoraVeiculo.FuncionarioModule
 {
@@ -11,20 +7,20 @@ namespace LocadoraVeiculo.FuncionarioModule
     {
 
         private string nome;
-        private double salario;
+        private decimal? salario;
         private DateTime dataEntrada;
         private string cpf_funcionario;
         private string usuario;
         private string senha;
 
         public string Nome { get => nome; set => nome = value; }
-        public double Salario { get => salario; set => salario = value; }
+        public decimal? Salario { get => salario; set => salario = value; }
         public DateTime DataEntrada { get => dataEntrada; set => dataEntrada = value; }
         public string Cpf_funcionario { get => cpf_funcionario; set => cpf_funcionario = value; }
         public string Usuario { get => usuario; set => usuario = value; }
         public string Senha { get => senha; set => senha = value; }
 
-        public Funcionario(string nome, double salario, DateTime dataEntrada, string cpf_funcionario, string usuario, string senha)
+        public Funcionario(string nome, decimal? salario, DateTime dataEntrada, string cpf_funcionario, string usuario, string senha)
         {
             this.Nome = nome;
             this.Salario = salario;
@@ -43,11 +39,14 @@ namespace LocadoraVeiculo.FuncionarioModule
             if (Senha.Length < 7)
                 resultadoValidacao += QuebraDeLinha(resultadoValidacao) + "O campo senha possui menos de sete dígitos";
 
-            if (Nome == "")
+            if (string.IsNullOrEmpty(Nome))
                 resultadoValidacao += QuebraDeLinha(resultadoValidacao) + "Digite o nome do funcionário";
 
             if (DataEntrada == DateTime.MinValue)
                 resultadoValidacao += QuebraDeLinha(resultadoValidacao) + "O campo Data é obrigatório";
+
+            if (Salario <= 0)
+                resultadoValidacao += QuebraDeLinha(resultadoValidacao) + "O campo Salário é obrigatório e maior que 0";
 
 
             if (resultadoValidacao == "")

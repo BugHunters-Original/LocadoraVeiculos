@@ -1,7 +1,7 @@
 ﻿using FluentAssertions;
-using LocadoraVeiculo.FuncionarioModule;
 using LocadoraVeiculo.Controladores.FuncionarioModule;
 using LocadoraVeiculo.Controladores.Shared;
+using LocadoraVeiculo.FuncionarioModule;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 
@@ -86,17 +86,17 @@ namespace LocadoraVeiculo.Tests.FuncionarioModule
         public void DeveSelecionar_TodosFuncionarios()
         {
             //arrange
-            var f1 = new Funcionario("Gabriel", 6000, new DateTime(2021, 03, 03), "321654987", "user_gabriel", "9876545567");
+            var f1 = new Funcionario("Gabriel", 6000, new DateTime(2021, 03, 03), "321654987000", "user_gabriel", "9876545567");
             controlador.InserirNovo(f1);
 
-            var f2 = new Funcionario("Arthur", 6000, new DateTime(2021, 03, 03), "987654321", "user_arthur", "9999999999");
+            var f2 = new Funcionario("Arthur", 6000, new DateTime(2021, 03, 03), "987654321000", "user_arthur", "9999999999");
             controlador.InserirNovo(f2);
 
-            var f3 = new Funcionario("Andrey", 6000, new DateTime(2021, 03, 03), "654987321", "user_andrey", "88888898989");
+            var f3 = new Funcionario("Andrey", 6000, new DateTime(2021, 03, 03), "654987321000", "user_andrey", "88888898989");
             controlador.InserirNovo(f3);
 
             //action
-            var funcionarios = controlador.SelecionarTodos();
+           var funcionarios = controlador.SelecionarTodos();
 
             //assert
             funcionarios.Should().HaveCount(3);

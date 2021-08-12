@@ -44,7 +44,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.Funcionarios
             this.bt_GravarFuncionario = new System.Windows.Forms.Button();
             this.bt_Cancelar = new System.Windows.Forms.Button();
             this.date_EntradaFuncionario = new System.Windows.Forms.DateTimePicker();
-            this.text_SalarioFuncionario = new System.Windows.Forms.MaskedTextBox();
+            this.text_salarioFuncionario = new System.Windows.Forms.MaskedTextBox();
             this.SuspendLayout();
             // 
             // label1
@@ -178,21 +178,20 @@ namespace LocadoraVeiculo.WindowsApp.Features.Funcionarios
             this.date_EntradaFuncionario.Size = new System.Drawing.Size(98, 20);
             this.date_EntradaFuncionario.TabIndex = 15;
             // 
-            // text_SalarioFuncionario
+            // text_salarioFuncionario
             // 
-            this.text_SalarioFuncionario.Location = new System.Drawing.Point(189, 165);
-            this.text_SalarioFuncionario.Mask = "$00000.0";
-            this.text_SalarioFuncionario.Name = "text_SalarioFuncionario";
-            this.text_SalarioFuncionario.Size = new System.Drawing.Size(100, 20);
-            this.text_SalarioFuncionario.TabIndex = 16;
-            this.text_SalarioFuncionario.ValidatingType = typeof(int);
+            this.text_salarioFuncionario.Location = new System.Drawing.Point(189, 170);
+            this.text_salarioFuncionario.Name = "text_salarioFuncionario";
+            this.text_salarioFuncionario.Size = new System.Drawing.Size(100, 20);
+            this.text_salarioFuncionario.TabIndex = 16;
+            this.text_salarioFuncionario.ValidatingType = typeof(int);
             // 
             // TelaFuncionarioForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(634, 391);
-            this.Controls.Add(this.text_SalarioFuncionario);
+            this.Controls.Add(this.text_salarioFuncionario);
             this.Controls.Add(this.date_EntradaFuncionario);
             this.Controls.Add(this.bt_Cancelar);
             this.Controls.Add(this.bt_GravarFuncionario);
@@ -234,6 +233,6 @@ namespace LocadoraVeiculo.WindowsApp.Features.Funcionarios
         private System.Windows.Forms.Button bt_GravarFuncionario;
         private System.Windows.Forms.Button bt_Cancelar;
         private System.Windows.Forms.DateTimePicker date_EntradaFuncionario;
-        private System.Windows.Forms.MaskedTextBox text_SalarioFuncionario;
+        private System.Windows.Forms.MaskedTextBox text_salarioFuncionario;
     }
 }

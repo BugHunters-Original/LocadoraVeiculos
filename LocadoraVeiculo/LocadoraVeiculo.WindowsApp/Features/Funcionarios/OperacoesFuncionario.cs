@@ -3,9 +3,6 @@ using LocadoraVeiculo.FuncionarioModule;
 using LocadoraVeiculo.WindowsApp.Shared;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace LocadoraVeiculo.WindowsApp.Features.Funcionarios
@@ -14,13 +11,13 @@ namespace LocadoraVeiculo.WindowsApp.Features.Funcionarios
     {
         private readonly ControladorFuncionario controlador = null;
         private readonly TabelaFuncionarioControl tabelaFuncionarios = null;
-        
+
 
         public OperacoesFuncionario(ControladorFuncionario ctrlLocacao)
         {
             controlador = ctrlLocacao;
             tabelaFuncionarios = new TabelaFuncionarioControl();
-            
+
         }
 
 
@@ -43,7 +40,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.Funcionarios
             Funcionario funcionarioSelecionado = controlador.SelecionarPorId(id);
 
             TelaFuncionarioForm tela = new TelaFuncionarioForm();
-            
+
 
             tela.Funcionario = funcionarioSelecionado;
 
