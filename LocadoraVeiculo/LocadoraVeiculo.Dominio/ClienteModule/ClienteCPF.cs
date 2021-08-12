@@ -1,17 +1,12 @@
-﻿using LocadoraVeiculo.ClienteModule;
-using LocadoraVeiculo.Shared;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace LocadoraVeiculo.CondutorModule
+namespace LocadoraVeiculo.ClienteModule
 {
-    public class ClienteCPF : EntidadeBase, IEquatable<ClienteCPF>
+    public class ClienteCPF : Cliente, IEquatable<ClienteCPF>
     {
         public ClienteCPF(string nome, string telefone, string endereco, string CPF,
-            string RG, string CNH, DateTime dataValidade, ClienteCNPJ cliente=null)
+            string RG, string CNH, DateTime dataValidade, ClienteCNPJ cliente = null)
         {
             Nome = nome;
             Endereco = endereco;
@@ -22,9 +17,6 @@ namespace LocadoraVeiculo.CondutorModule
             DataValidade = dataValidade;
             Cliente = cliente;
         }
-        public string Nome { get; set; }
-        public string Endereco { get; set; }
-        public string Telefone { get; set; }
         public string Cpf { get; set; }
         public string Rg { get; set; }
         public string Cnh { get; set; }

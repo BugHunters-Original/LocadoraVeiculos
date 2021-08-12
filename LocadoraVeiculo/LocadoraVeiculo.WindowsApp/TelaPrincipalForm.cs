@@ -1,20 +1,18 @@
 ﻿using LocadoraVeiculo.Controladores.ClienteModule;
+using LocadoraVeiculo.Controladores.CondutorModule;
 using LocadoraVeiculo.Controladores.FuncionarioModule;
+using LocadoraVeiculo.Controladores.GrupoVeiculoModule;
 using LocadoraVeiculo.Controladores.LocacaoModule;
 using LocadoraVeiculo.Controladores.VeiculoModule;
+using LocadoraVeiculo.WindowsApp.Features.Clientes;
+
+using LocadoraVeiculo.WindowsApp.Features.GrupoVeiculo;
 using LocadoraVeiculo.WindowsApp.Features.Cliente;
 using LocadoraVeiculo.WindowsApp.Features.Funcionarios;
 using LocadoraVeiculo.WindowsApp.Features.Locacao;
 using LocadoraVeiculo.WindowsApp.Features.Veiculo;
 using LocadoraVeiculo.WindowsApp.Shared;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace LocadoraVeiculo.WindowsApp
@@ -58,7 +56,7 @@ namespace LocadoraVeiculo.WindowsApp
 
             AtualizarRodape(configuracao.TipoCadastro);
 
-            operacoes = new OperacoesCliente(new ControladorClienteCNPJ());
+            operacoes = new OperacoesCliente(new ControladorClienteCNPJ(), new ControladorClienteCPF());
 
             ConfigurarPainelRegistros();
         }
@@ -88,6 +86,7 @@ namespace LocadoraVeiculo.WindowsApp
 
             ConfigurarPainelRegistros();
         }
+
 
         private void btnAdicionar_Click(object sender, EventArgs e)
         {
@@ -138,6 +137,14 @@ namespace LocadoraVeiculo.WindowsApp
 
             btnFiltrar.Enabled = configuracao.EnabledFiltrar;
             btnDevolver.Enabled = configuracao.EnabledDevolver;
+        }
+
+        private void configuraçõesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            using (TelaConfigGeralForm tela = new TelaConfigGeralForm())
+            {
+                tela.ShowDialog();
+            }
         }
     }
 }

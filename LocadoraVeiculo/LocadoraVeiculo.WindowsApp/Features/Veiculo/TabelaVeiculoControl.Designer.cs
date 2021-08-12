@@ -36,20 +36,24 @@ namespace LocadoraVeiculo.WindowsApp.Features.Veiculo
             // gridVeiculos
             // 
             this.gridVeiculos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.gridVeiculos.Dock = System.Windows.Forms.DockStyle.Fill;
             this.gridVeiculos.Location = new System.Drawing.Point(0, 0);
+            this.gridVeiculos.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.gridVeiculos.Name = "gridVeiculos";
+            this.gridVeiculos.RowHeadersVisible = false;
             this.gridVeiculos.RowHeadersWidth = 51;
             this.gridVeiculos.RowTemplate.Height = 24;
-            this.gridVeiculos.Size = new System.Drawing.Size(948, 665);
+            this.gridVeiculos.Size = new System.Drawing.Size(711, 540);
             this.gridVeiculos.TabIndex = 0;
             // 
             // TabelaVeiculoControl
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.gridVeiculos);
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "TabelaVeiculoControl";
-            this.Size = new System.Drawing.Size(948, 665);
+            this.Size = new System.Drawing.Size(711, 540);
             ((System.ComponentModel.ISupportInitialize)(this.gridVeiculos)).EndInit();
             this.ResumeLayout(false);
 

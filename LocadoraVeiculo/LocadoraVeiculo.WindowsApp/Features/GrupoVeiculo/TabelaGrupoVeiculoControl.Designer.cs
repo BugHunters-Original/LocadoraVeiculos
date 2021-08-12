@@ -39,6 +39,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.GrupoVeiculo
             this.gridGrupoVeiculo.Dock = System.Windows.Forms.DockStyle.Fill;
             this.gridGrupoVeiculo.Location = new System.Drawing.Point(0, 0);
             this.gridGrupoVeiculo.Name = "gridGrupoVeiculo";
+            this.gridGrupoVeiculo.RowHeadersVisible = false;
             this.gridGrupoVeiculo.Size = new System.Drawing.Size(452, 386);
             this.gridGrupoVeiculo.TabIndex = 1;
             // 

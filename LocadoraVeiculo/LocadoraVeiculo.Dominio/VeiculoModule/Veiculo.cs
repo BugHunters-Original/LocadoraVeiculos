@@ -1,20 +1,14 @@
 ﻿using LocadoraVeiculo.GrupoVeiculoModule;
 using LocadoraVeiculo.Shared;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 namespace LocadoraVeiculo.VeiculoModule
 {
     public class Veiculo : EntidadeBase
     {
-
         public string nome { get; set; }
         public string numero_Placa { get; set; }
         public string numero_Chassi { get; set; }
-
-        //public byte[] foto { get; set; }
+        public byte[] foto { get; set; }
         public string cor { get; set; }
         public string marca { get; set; }
         public int? ano { get; set; }
@@ -23,12 +17,12 @@ namespace LocadoraVeiculo.VeiculoModule
         public char tamanhoPortaMalas { get; set; }
         public int km_Inicial { get; set; }
         public string tipo_Combustivel { get; set; }
-        public bool disponibilidade_Veiculo { get; set; }
+        public int disponibilidade_Veiculo { get; set; }
         public GrupoVeiculo grupoVeiculo { get; set; }
 
         public Veiculo(string nome, string numero_Placa, string numero_Chassi, string cor,
-            string marca, int? ano, int numero_Portas, int capacidade_Tanque, char tamanhoPortaMalas, int km_Inicial, 
-            string tipo_Combustivel, bool disponibilidade_Veiculo, GrupoVeiculo grupoVeiculo)
+            string marca, int? ano, int numero_Portas, int capacidade_Tanque, char tamanhoPortaMalas, int km_Inicial,
+            string tipo_Combustivel, int disponibilidade_Veiculo, GrupoVeiculo grupoVeiculo)
         {
             this.nome = nome;
             this.numero_Placa = numero_Placa;
@@ -44,6 +38,29 @@ namespace LocadoraVeiculo.VeiculoModule
             this.disponibilidade_Veiculo = disponibilidade_Veiculo;
             this.grupoVeiculo = grupoVeiculo;
         }
+
+        public Veiculo(string nome, string numero_Placa, string numero_Chassi, byte[] foto, string cor,
+            string marca, int? ano, int numero_Portas, int capacidade_Tanque, char tamanhoPortaMalas, int km_Inicial,
+            string tipo_Combustivel, int disponibilidade_Veiculo, GrupoVeiculo grupoVeiculo)
+        {
+            this.nome = nome;
+            this.numero_Placa = numero_Placa;
+            this.numero_Chassi = numero_Chassi;
+            this.foto = foto;
+            this.cor = cor;
+            this.marca = marca;
+            this.ano = ano;
+            this.numero_Portas = numero_Portas;
+            this.capacidade_Tanque = capacidade_Tanque;
+            this.tamanhoPortaMalas = tamanhoPortaMalas;
+            this.km_Inicial = km_Inicial;
+            this.tipo_Combustivel = tipo_Combustivel;
+            this.disponibilidade_Veiculo = disponibilidade_Veiculo;
+            this.grupoVeiculo = grupoVeiculo;
+
+        }
+
+
 
         public override string Validar()
         {
@@ -81,7 +98,7 @@ namespace LocadoraVeiculo.VeiculoModule
 
         public bool ValidarDisponibilidade()
         {
-           if (disponibilidade_Veiculo == true)
+            if (disponibilidade_Veiculo == 1)
                 return true;
             else
                 return false;

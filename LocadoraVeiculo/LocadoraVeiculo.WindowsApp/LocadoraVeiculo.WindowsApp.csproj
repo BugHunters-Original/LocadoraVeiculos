@@ -54,6 +54,22 @@
     <Compile Include="Features\Cliente\TabelaClienteControl.Designer.cs">
       <DependentUpon>TabelaClienteControl.cs</DependentUpon>
     </Compile>
+    <Compile Include="Features\Cliente\TelaClienteForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Features\Cliente\TelaClienteForm.Designer.cs">
+      <DependentUpon>TelaClienteForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Features\Cliente\TipoClienteEnum.cs" />
+    <Compile Include="Features\Combustivel\ConfiguracaoCombustivelToolBox.cs" />
+    <Compile Include="Features\Combustivel\OperacoesCombustivel.cs" />
+    <Compile Include="Features\Combustivel\TelaCombustivelForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Features\Combustivel\TelaCombustivelForm.Designer.cs">
+      <DependentUpon>TelaCombustivelForm.cs</DependentUpon>
+    </Compile>
+    
     <Compile Include="Features\Funcionarios\ConfiguracaoFuncionarioToolBox.cs" />
     <Compile Include="Features\Funcionarios\OperacoesFuncionario.cs" />
     <Compile Include="Features\Funcionarios\TabelaFuncionarioControl.cs">
@@ -90,6 +106,20 @@
     <Compile Include="Features\Locacao\TabelaLocacaoControl.Designer.cs">
       <DependentUpon>TabelaLocacaoControl.cs</DependentUpon>
     </Compile>
+    <Compile Include="Features\TaxaServico\ConfiguracaoTaxaServicoToolBox.cs" />
+    <Compile Include="Features\TaxaServico\OperacoesTaxaServico.cs" />
+    <Compile Include="Features\TaxaServico\TabelaTaxaServicoControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Features\TaxaServico\TabelaTaxaServicoControl.Designer.cs">
+      <DependentUpon>TabelaTaxaServicoControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Features\TaxaServico\TelaTaxaServicoForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Features\TaxaServico\TelaTaxaServicoForm.Designer.cs">
+      <DependentUpon>TelaTaxaServicoForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Features\Veiculo\ConfiguracaoVeiculoToolBox.cs" />
     <Compile Include="Features\Veiculo\OperacoesVeiculo.cs" />
     <Compile Include="Features\Veiculo\TabelaVeiculoControl.cs">
@@ -97,6 +127,18 @@
     </Compile>
     <Compile Include="Features\Veiculo\TabelaVeiculoControl.Designer.cs">
       <DependentUpon>TabelaVeiculoControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Features\Veiculo\TelaVeiculoForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Features\Veiculo\TelaVeiculoForm.Designer.cs">
+      <DependentUpon>TelaVeiculoForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="TelaConfigGeralForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="TelaConfigGeralForm.Designer.cs">
+      <DependentUpon>TelaConfigGeralForm.cs</DependentUpon>
     </Compile>
     <Compile Include="TelaPrincipalForm.cs">
       <SubType>Form</SubType>
@@ -112,6 +154,13 @@
     <EmbeddedResource Include="Features\Cliente\TabelaClienteControl.resx">
       <DependentUpon>TabelaClienteControl.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Features\Cliente\TelaClienteForm.resx">
+      <DependentUpon>TelaClienteForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Features\Combustivel\TelaCombustivelForm.resx">
+      <DependentUpon>TelaCombustivelForm.cs</DependentUpon>
+    </EmbeddedResource>
+    
     <EmbeddedResource Include="Features\Funcionarios\TabelaFuncionarioControl.resx">
       <DependentUpon>TabelaFuncionarioControl.cs</DependentUpon>
     </EmbeddedResource>
@@ -124,11 +173,23 @@
     <EmbeddedResource Include="Features\Locacao\TabelaLocacaoControl.resx">
       <DependentUpon>TabelaLocacaoControl.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Features\TaxaServico\TabelaTaxaServicoControl.resx">
+      <DependentUpon>TabelaTaxaServicoControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Features\TaxaServico\TelaTaxaServicoForm.resx">
+      <DependentUpon>TelaTaxaServicoForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Features\Veiculo\TabelaVeiculoControl.resx">
       <DependentUpon>TabelaVeiculoControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Features\GrupoVeiculo\TelaGrupoVeiculoForm.resx">
       <DependentUpon>TelaGrupoVeiculoForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Features\Veiculo\TelaVeiculoForm.resx">
+      <DependentUpon>TelaVeiculoForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TelaConfigGeralForm.resx">
+      <DependentUpon>TelaConfigGeralForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="TelaPrincipalForm.resx">
       <DependentUpon>TelaPrincipalForm.cs</DependentUpon>
@@ -157,8 +218,6 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Features\Combustivel\" />
-    <Folder Include="Features\Servico\" />
     <Folder Include="Libraries\" />
   </ItemGroup>
   <ItemGroup>

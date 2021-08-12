@@ -9,7 +9,7 @@
     [Ano]                   INT          NULL,
     [Numero_portas]         INT          NULL,
     [Capacidade_tanque]     INT          NULL,
-    [Tamanho_porta_mala]    CHAR (10)    NULL,
+    [Tamanho_porta_mala]    CHAR (1)    NULL,
     [KM_inicial]            INT          NULL,
     [Tipo_combustivel]      VARCHAR (50) NOT NULL,
     [Id_Tipo_Veiculo]       INT          NOT NULL,

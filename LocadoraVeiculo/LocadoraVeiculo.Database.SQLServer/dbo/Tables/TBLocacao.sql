@@ -6,7 +6,7 @@
     [Data_saida]           DATE         NULL,
     [Data_retornoEsperado] DATE         NULL,
     [Data_retornoChegada]  DATE         NULL,
-    [Valor_Caucao]         FLOAT (53)   NULL,
+    [Valor_Caucao]         DECIMAL   NULL,
     [Plano]                VARCHAR (50) NULL,
     CONSTRAINT [PK_TBLocacao] PRIMARY KEY CLUSTERED ([Id] ASC),
     CONSTRAINT [FK_TBLocacao_Id_Condutor] FOREIGN KEY ([Id_Condutor]) REFERENCES [dbo].[TBClienteCPF] ([Id]),

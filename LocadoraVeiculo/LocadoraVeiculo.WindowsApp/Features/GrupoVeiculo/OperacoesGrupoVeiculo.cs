@@ -2,9 +2,6 @@
 using LocadoraVeiculo.WindowsApp.Shared;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace LocadoraVeiculo.WindowsApp.Features.GrupoVeiculo
@@ -24,7 +21,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.GrupoVeiculo
         {
             TelaGrupoVeiculoForm tela = new TelaGrupoVeiculoForm();
 
-            if(tela.ShowDialog() == DialogResult.OK)
+            if (tela.ShowDialog() == DialogResult.OK)
             {
                 controlador.InserirNovo(tela.GrupoContato);
 
@@ -68,7 +65,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.GrupoVeiculo
             throw new NotImplementedException();
         }
 
-        
+
 
         public void ExcluirRegistro()
         {

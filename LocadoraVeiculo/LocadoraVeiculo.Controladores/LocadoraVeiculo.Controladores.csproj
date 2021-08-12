@@ -44,6 +44,7 @@
   <ItemGroup>
     <Compile Include="ClienteCNPJModule\ControladorClienteCNPJ.cs" />
     <Compile Include="ClienteCPFModule\ControladorClienteCPF.cs" />
+    <Compile Include="CombustivelModule\ControladorCombustivel.cs" />
     <Compile Include="FuncionarioModule\ControladorFuncionario.cs" />
     <Compile Include="GrupoVeiculoModule\ControladorGrupoVeiculo.cs" />
     <Compile Include="LocacaoModule\ControladorLocacao.cs" />
@@ -59,5 +60,6 @@
       <Name>LocadoraVeiculo.Dominio</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

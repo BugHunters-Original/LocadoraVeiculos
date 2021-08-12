@@ -1,4 +1,5 @@
 ﻿using LocadoraVeiculo.Controladores.VeiculoModule;
+using LocadoraVeiculo.VeiculoModule;
 using LocadoraVeiculo.WindowsApp.Shared;
 using System;
 using System.Collections.Generic;
@@ -12,52 +13,97 @@ namespace LocadoraVeiculo.WindowsApp.Features.Veiculo
     public class OperacoesVeiculo : ICadastravel
     {
         private readonly ControladorVeiculo controlador = null;
-        //private readonly TabelaTarefaControl tabelaTarefas = null;
+        private readonly TabelaVeiculoControl tabelaVeiculos = null;
 
         public OperacoesVeiculo(ControladorVeiculo ctrlVeiculo)
         {
             controlador = ctrlVeiculo;
-            //tabelaTarefas = new TabelaTarefaControl();
-        }
-
-        public void DevolverVeiculo()
-        {
-            throw new NotImplementedException();
-        }
-
-        public void EditarRegistro()
-        {
-            throw new NotImplementedException();
-        }
-
-        public void ExcluirRegistro()
-        {
-            throw new NotImplementedException();
-        }
-
-        public void FiltrarRegistros()
-        {
-            throw new NotImplementedException();
+            tabelaVeiculos = new TabelaVeiculoControl();
         }
 
         public void InserirNovoRegistro()
         {
-            throw new NotImplementedException();
+            TelaVeiculoForm tela = new TelaVeiculoForm();
+
+            if (tela.ShowDialog() == DialogResult.OK)
+            {
+                controlador.InserirNovo(tela.Veiculo);
+
+                List<VeiculoModule.Veiculo> veiculos = controlador.SelecionarTodos();
+
+                tabelaVeiculos.AtualizarRegistros(veiculos);
+
+                TelaPrincipalForm.Instancia.AtualizarRodape($"Veículo: [{tela.veiculos.nome}] inserido com sucesso");
+            }
         }
+
+        public void EditarRegistro()
+        {
+            int id = tabelaVeiculos.ObtemIdSelecionado();
+
+            if (id == 0)
+            {
+                MessageBox.Show("Selecione um veículo para poder editar!", "Edição de Veículos",
+                    MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                return;
+            }
+
+            VeiculoModule.Veiculo veiculoSelecionado = controlador.SelecionarPorId(id);
+
+            TelaVeiculoForm tela = new TelaVeiculoForm();
+
+            tela.Veiculo = veiculoSelecionado;
+
+            if (tela.ShowDialog() == DialogResult.OK)
+            {
+                controlador.Editar(id, tela.Veiculo);
+
+                List<VeiculoModule.Veiculo> veiculos = controlador.SelecionarTodos();
+
+                tabelaVeiculos.AtualizarRegistros(veiculos);
+
+                TelaPrincipalForm.Instancia.AtualizarRodape($"Compromisso: [{tela.veiculos.nome}] editado com sucesso");
+            }
+        }
+
+        public void ExcluirRegistro()
+        {
+            int id = tabelaVeiculos.ObtemIdSelecionado();
+
+            if (id == 0)
+            {
+                MessageBox.Show("Selecione um veículo para poder excluir!", "Exclusão de Veículos",
+                    MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                return;
+            }
+
+            VeiculoModule.Veiculo veiculoSelecionada = controlador.SelecionarPorId(id);
+
+            if (MessageBox.Show($"Tem certeza que deseja excluir o veículo: [{veiculoSelecionada.nome}] ?",
+                "Exclusão de Veículos", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK)
+            {
+                controlador.Excluir(id);
+
+                List<VeiculoModule.Veiculo> veiculos = controlador.SelecionarTodos();
+
+                tabelaVeiculos.AtualizarRegistros(veiculos);
+
+                TelaPrincipalForm.Instancia.AtualizarRodape($"Veículo: [{veiculoSelecionada.nome}] removido com sucesso");
+            }
+        }
+
+        public void DevolverVeiculo() { }
+
+        public void FiltrarRegistros() { }
 
         public UserControl ObterTabela()
         {
-            throw new NotImplementedException();
+            List<VeiculoModule.Veiculo> veiculos = controlador.SelecionarTodos();
+
+            tabelaVeiculos.AtualizarRegistros(veiculos);
+
+            return tabelaVeiculos;
         }
-
-        //public UserControl ObterTabela()
-        //{
-        //    List<Tarefa> tarefas = controlador.SelecionarTodos();
-
-        //    tabelaTarefas.AtualizarRegistros(tarefas);
-
-        //    return tabelaTarefas;
-        //}
     }
 }
 

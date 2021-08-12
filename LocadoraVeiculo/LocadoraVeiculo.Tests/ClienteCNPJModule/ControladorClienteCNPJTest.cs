@@ -1,9 +1,8 @@
-﻿using LocadoraVeiculo.ClienteModule;
+﻿using FluentAssertions;
+using LocadoraVeiculo.ClienteModule;
 using LocadoraVeiculo.Controladores.ClienteModule;
 using LocadoraVeiculo.Controladores.Shared;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using FluentAssertions;
-using System;
 
 namespace LocadoraVeiculo.Tests.ClienteModule
 {

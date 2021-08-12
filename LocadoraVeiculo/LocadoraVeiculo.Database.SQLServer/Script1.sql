@@ -1,6 +1,6 @@
-﻿select * from TBCliente
-
-delete from TBCliente
+﻿select * from TBClienteCNPJ
+delete from TBClienteCNPJ
+DBCC CHECKIDENT ( TBClienteCNPJ, RESEED )
 
 DBCC CHECKIDENT ( TBCliente, RESEED )
 
@@ -20,3 +20,8 @@ INSERT INTO TBCLIENTE
 						'01190011956',
 						'PF'
 	                );
+delete from TBVeiculos
+
+select * from TBClienteCPF
+delete from TBClienteCPF
+DBCC CHECKIDENT ( TBClienteCPF, RESEED )

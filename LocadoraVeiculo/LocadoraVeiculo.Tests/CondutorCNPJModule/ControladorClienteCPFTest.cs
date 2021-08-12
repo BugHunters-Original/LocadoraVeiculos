@@ -1,6 +1,5 @@
 ﻿using FluentAssertions;
 using LocadoraVeiculo.ClienteModule;
-using LocadoraVeiculo.CondutorModule;
 using LocadoraVeiculo.Controladores.ClienteModule;
 using LocadoraVeiculo.Controladores.CondutorModule;
 using LocadoraVeiculo.Controladores.Shared;

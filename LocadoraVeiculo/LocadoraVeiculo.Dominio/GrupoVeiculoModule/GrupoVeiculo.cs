@@ -4,7 +4,7 @@ namespace LocadoraVeiculo.GrupoVeiculoModule
     public class GrupoVeiculo : EntidadeBase
     {
         public string categoriaVeiculo { get; set; }
-        public decimal? valor_Diario_PDiario  { get; set; }
+        public decimal? valor_Diario_PDiario { get; set; }
         public decimal? preco_KMDiario { get; set; }
         public decimal? valor_Diario_PControlado { get; set; }
         public int? kmDia__KMControlado { get; set; }
@@ -27,19 +27,19 @@ namespace LocadoraVeiculo.GrupoVeiculoModule
             if (string.IsNullOrEmpty(categoriaVeiculo))
                 resultadoValidacao = "O campo categoria é obrigatório";
 
-            if (valor_Diario_PDiario == null || valor_Diario_PDiario < 0)
+            if (valor_Diario_PDiario == null || valor_Diario_PDiario <= 0)
                 resultadoValidacao += QuebraDeLinha(resultadoValidacao) + "O campo valor diário não pode ser nulo ou menor que zero";
 
-            if (preco_KMDiario == null || preco_KMDiario < 0)
+            if (preco_KMDiario == null || preco_KMDiario <= 0)
                 resultadoValidacao += QuebraDeLinha(resultadoValidacao) + "O campo preço não pode ser nulo ou menor que zero";
 
-            if (valor_Diario_PControlado == null || valor_Diario_PControlado < 0)
+            if (valor_Diario_PControlado == null || valor_Diario_PControlado <= 0)
                 resultadoValidacao += QuebraDeLinha(resultadoValidacao) + "O campo valor não pode ser nulo ou menor que zero";
 
-            if (kmDia__KMControlado == null || kmDia__KMControlado < 0)
+            if (kmDia__KMControlado == null || kmDia__KMControlado <= 0)
                 resultadoValidacao += QuebraDeLinha(resultadoValidacao) + "O campo km/dia não pode ser nulo ou menor que zero";
 
-            if (preco_KMLivre == null || preco_KMLivre < 0)
+            if (preco_KMLivre == null || preco_KMLivre <= 0)
                 resultadoValidacao += QuebraDeLinha(resultadoValidacao) + "O campo preço não pode ser nulo ou menor que zero";
 
             if (resultadoValidacao == "")

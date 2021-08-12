@@ -4,9 +4,6 @@ using LocadoraVeiculo.VeiculoModule;
 using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace LocadoraVeiculo.Controladores.VeiculoModule
 {
@@ -19,7 +16,7 @@ namespace LocadoraVeiculo.Controladores.VeiculoModule
                     [NOME],       
                     [NUMERO_PLACA], 
                     [NUMERO_CHASSI],
-                    [FOTO],                    
+                    [FOTO],                  
                     [COR],                                                           
                     [MARCA],
                     [ANO],
@@ -90,12 +87,17 @@ namespace LocadoraVeiculo.Controladores.VeiculoModule
                 V.[TIPO_COMBUSTIVEL],
                 V.[ID_TIPO_VEICULO],
                 V.[DISPONIBILIDADE_VEICULO],
-                TV.[NOME]      
+                TV.[NOME],
+                TV.[VALOR_DIARIO_PDIARIO],
+                TV.[PRECO_KMDIARIO],
+                TV.[VALOR_DIARIO_PCONTROLADO],
+                TV.[KMDIA__KMCONTROLADO],
+                TV.[PRECO_KMLIVRE]
             FROM
                 [TBVEICULOS] AS V INNER JOIN
                 [TBTIPOVEICULO] AS TV
             ON
-                TV.ID = V.ID";
+                TV.ID = V.ID_TIPO_VEICULO";
 
         private const string sqlSelecionarVeiculoPorId =
             @"SELECT 
@@ -114,12 +116,17 @@ namespace LocadoraVeiculo.Controladores.VeiculoModule
                 V.[TIPO_COMBUSTIVEL],
                 V.[ID_TIPO_VEICULO],
                 V.[DISPONIBILIDADE_VEICULO],
-                TV.[NOME]      
+                TV.[NOME],
+                TV.[VALOR_DIARIO_PDIARIO],
+                TV.[PRECO_KMDIARIO],
+                TV.[VALOR_DIARIO_PCONTROLADO],
+                TV.[KMDIA__KMCONTROLADO],
+                TV.[PRECO_KMLIVRE]
             FROM
                 [TBVEICULOS] AS V INNER JOIN
                 [TBTIPOVEICULO] AS TV
             ON
-                TV.ID = V.ID
+                TV.ID = V.ID_TIPO_VEICULO
             WHERE 
                 V.[ID] = @ID";
 
@@ -188,10 +195,15 @@ namespace LocadoraVeiculo.Controladores.VeiculoModule
 
         private Veiculo ConverterEmVeiculo(IDataReader reader)
         {
+            byte[] foto;
             var nome = Convert.ToString(reader["NOME"]);
             var numero_Placa = Convert.ToString(reader["NUMERO_PLACA"]);
             var numero_Chassi = Convert.ToString(reader["NUMERO_CHASSI"]);
-            //var foto = Convert.ToString(reader["FOTO"]);
+            if (reader["FOTO"] != DBNull.Value)
+                foto = (byte[])reader["FOTO"];
+            else
+                foto = null;
+
             var cor = Convert.ToString(reader["COR"]);
             var marca = Convert.ToString(reader["MARCA"]);
             var ano = Convert.ToInt32(reader["ANO"]);
@@ -200,7 +212,7 @@ namespace LocadoraVeiculo.Controladores.VeiculoModule
             var tamanhoPortaMalas = Convert.ToChar(reader["TAMANHO_PORTA_MALA"]);
             var km_Inicial = Convert.ToInt32(reader["KM_INICIAL"]);
             var tipo_Combustivel = Convert.ToString(reader["TIPO_COMBUSTIVEL"]);
-            var disponibilidade_Veiculo = Convert.ToBoolean(reader["DISPONIBILIDADE"]);
+            var disponibilidade_Veiculo = Convert.ToInt32(reader["DISPONIBILIDADE_VEICULO"]);
 
             var categoriaVeiculo = Convert.ToString(reader["NOME"]);
             var valor_Diario_PDiario = Convert.ToDecimal(reader["VALOR_DIARIO_PDIARIO"]);
@@ -217,7 +229,7 @@ namespace LocadoraVeiculo.Controladores.VeiculoModule
                 grupoVeiculo.Id = Convert.ToInt32(reader["ID_TIPO_VEICULO"]);
             }
 
-            Veiculo veiculo = new Veiculo(nome, numero_Placa, numero_Chassi, cor, marca, ano, numero_Portas, 
+            Veiculo veiculo = new Veiculo(nome, numero_Placa, numero_Chassi, foto, cor, marca, ano, numero_Portas,
                 capacidade_Tanque, tamanhoPortaMalas, km_Inicial, tipo_Combustivel, disponibilidade_Veiculo, grupoVeiculo);
             veiculo.Id = Convert.ToInt32(reader["ID"]);
 
@@ -232,7 +244,7 @@ namespace LocadoraVeiculo.Controladores.VeiculoModule
             parametros.Add("NOME", veiculo.nome);
             parametros.Add("NUMERO_PLACA", veiculo.numero_Placa);
             parametros.Add("NUMERO_CHASSI", veiculo.numero_Chassi);
-            //parametros.Add("FOTO", veiculo.foto);
+            parametros.Add("FOTO", veiculo.foto);
             parametros.Add("COR", veiculo.cor);
             parametros.Add("MARCA", veiculo.marca);
             parametros.Add("ANO", veiculo.ano);
@@ -241,7 +253,7 @@ namespace LocadoraVeiculo.Controladores.VeiculoModule
             parametros.Add("TAMANHO_PORTA_MALA", veiculo.tamanhoPortaMalas);
             parametros.Add("KM_INICIAL", veiculo.km_Inicial);
             parametros.Add("TIPO_COMBUSTIVEL", veiculo.tipo_Combustivel);
-            parametros.Add("DISPONIBILIDADE", veiculo.disponibilidade_Veiculo);
+            parametros.Add("DISPONIBILIDADE_VEICULO", veiculo.disponibilidade_Veiculo);
             parametros.Add("ID_TIPO_VEICULO", veiculo.grupoVeiculo.Id);
 
             return parametros;

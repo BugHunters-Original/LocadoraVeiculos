@@ -1,14 +1,9 @@
-﻿using LocadoraVeiculo.CondutorModule;
-using LocadoraVeiculo.Shared;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace LocadoraVeiculo.ClienteModule
 {
-    public class ClienteCNPJ : EntidadeBase, IEquatable<ClienteCNPJ>
+    public class ClienteCNPJ : Cliente, IEquatable<ClienteCNPJ>
     {
         public ClienteCNPJ(string nome, string endereco, string telefone, string cnpj)
         {
@@ -17,9 +12,7 @@ namespace LocadoraVeiculo.ClienteModule
             Telefone = telefone;
             Cnpj = cnpj;
         }
-        public string Nome { get; set; }
-        public string Endereco { get; set; }
-        public string Telefone { get; set; }
+
         public string Cnpj { get; set; }
 
         public override string Validar()

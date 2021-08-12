@@ -59,7 +59,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.GrupoVeiculo
             this.tabControl1.Controls.Add(this.tabDiario);
             this.tabControl1.Controls.Add(this.tabControlado);
             this.tabControl1.Controls.Add(this.tabLivre);
-            this.tabControl1.Location = new System.Drawing.Point(116, 137);
+            this.tabControl1.Location = new System.Drawing.Point(133, 104);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
             this.tabControl1.Size = new System.Drawing.Size(331, 208);
@@ -188,7 +188,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.GrupoVeiculo
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(219, 70);
+            this.label6.Location = new System.Drawing.Point(236, 37);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(125, 13);
             this.label6.TabIndex = 5;
@@ -197,7 +197,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.GrupoVeiculo
             // txtNome
             // 
             this.txtNome.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtNome.Location = new System.Drawing.Point(206, 86);
+            this.txtNome.Location = new System.Drawing.Point(223, 53);
             this.txtNome.Name = "txtNome";
             this.txtNome.Size = new System.Drawing.Size(147, 22);
             this.txtNome.TabIndex = 4;
@@ -205,7 +205,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.GrupoVeiculo
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(96, 54);
+            this.label7.Location = new System.Drawing.Point(113, 21);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(18, 13);
             this.label7.TabIndex = 5;
@@ -213,7 +213,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.GrupoVeiculo
             // 
             // txtId
             // 
-            this.txtId.Location = new System.Drawing.Point(120, 51);
+            this.txtId.Location = new System.Drawing.Point(137, 18);
             this.txtId.Name = "txtId";
             this.txtId.ReadOnly = true;
             this.txtId.Size = new System.Drawing.Size(41, 20);
@@ -221,7 +221,8 @@ namespace LocadoraVeiculo.WindowsApp.Features.GrupoVeiculo
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(368, 375);
+            this.button1.DialogResult = System.Windows.Forms.DialogResult.OK;
+            this.button1.Location = new System.Drawing.Point(385, 342);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(75, 23);
             this.button1.TabIndex = 6;
@@ -233,7 +234,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.GrupoVeiculo
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(554, 440);
+            this.ClientSize = new System.Drawing.Size(634, 391);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.label6);
@@ -244,6 +245,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.GrupoVeiculo
             this.MinimizeBox = false;
             this.Name = "TelaGrupoVeiculoForm";
             this.ShowIcon = false;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Grupo Veículos";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.TelaGrupoVeiculoForm_FormClosing);
             this.tabControl1.ResumeLayout(false);

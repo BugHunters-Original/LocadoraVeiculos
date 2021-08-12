@@ -1,9 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace LocadoraVeiculo.WindowsApp.Shared
@@ -71,6 +67,16 @@ namespace LocadoraVeiculo.WindowsApp.Shared
                 return default(T);
 
             object value = grid.SelectedRows[firstLine].Cells[firstColumn].Value;
+
+            return (T)Convert.ChangeType(value, typeof(T));
+        }
+        public static T SelecionarTipo<T>(this DataGridView grid)
+        {
+            const int firstLine = 0, quartaColumn = 4;
+            if (grid.SelectedRows.Count == 0)
+                return default(T);
+
+            object value = grid.SelectedRows[firstLine].Cells[quartaColumn].Value;
 
             return (T)Convert.ChangeType(value, typeof(T));
         }

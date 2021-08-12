@@ -1,17 +1,37 @@
 ﻿using LocadoraVeiculo.Shared;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace LocadoraVeiculo.ServicoModule
 {
     public class Servico : EntidadeBase
     {
+        public Servico(string nome, decimal preco, int tipoCalculo)
+        {
+            Nome = nome;
+            Preco = preco;
+            TipoCalculo = tipoCalculo;
+        }
+        public string Nome { get; set; }
+        public decimal Preco { get; set; }
+        public int TipoCalculo { get; set; }
         public override string Validar()
         {
-            throw new NotImplementedException();
+            string valido = "";
+
+            if (string.IsNullOrEmpty(Nome))
+                valido += "O campo Nome está inválido";
+
+            if (Preco <= 0)
+                valido += QuebraDeLinha(valido) + "O campo Preço está inválido";
+
+            if (valido == "")
+                valido = "ESTA_VALIDO";
+
+            return valido;
+        }
+        public override string ToString()
+        {
+            return Nome;
         }
     }
 }
