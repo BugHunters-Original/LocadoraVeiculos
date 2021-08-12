@@ -92,7 +92,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.Funcionarios
 
         public void InserirNovoRegistro()
         {
-            TelaFuncionarioForm tela = new TelaFuncionarioForm;
+            TelaFuncionarioForm tela = new TelaFuncionarioForm();
 
             if (tela.ShowDialog() == DialogResult.OK)
             {
