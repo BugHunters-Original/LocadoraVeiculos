@@ -1,16 +1,11 @@
 ﻿using LocadoraVeiculo.WindowsApp.Shared;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace LocadoraVeiculo.WindowsApp.Features.Cliente
+namespace LocadoraVeiculo.WindowsApp.Features.Clientes
 {
     public class ConfiguracaoClienteToolBox : IConfiguracaoToolBox
     {
         public string ToolTipAdicionar
-        { 
+        {
             get { return "Adicionar um Cliente"; }
         }
         public string TipoCadastro

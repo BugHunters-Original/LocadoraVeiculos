@@ -1,16 +1,12 @@
 ﻿using LocadoraVeiculo.ClienteModule;
-using LocadoraVeiculo.CondutorModule;
 using LocadoraVeiculo.Controladores.ClienteModule;
 using LocadoraVeiculo.Controladores.CondutorModule;
 using LocadoraVeiculo.WindowsApp.Shared;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace LocadoraVeiculo.WindowsApp.Features.Cliente
+namespace LocadoraVeiculo.WindowsApp.Features.Clientes
 {
     public class OperacoesCliente : ICadastravel
     {
@@ -40,7 +36,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.Cliente
                     MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return;
             }
-            Object clienteSelecionado;
+            Cliente clienteSelecionado;
 
             if (tipo.Length == 14)
                 clienteSelecionado = controladorCPF.SelecionarPorId(id);

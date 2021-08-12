@@ -1,17 +1,9 @@
 ﻿using LocadoraVeiculo.ClienteModule;
-using LocadoraVeiculo.CondutorModule;
 using LocadoraVeiculo.WindowsApp.Shared;
-using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace LocadoraVeiculo.WindowsApp.Features.Cliente
+namespace LocadoraVeiculo.WindowsApp.Features.Clientes
 {
     public partial class TabelaClienteControl : UserControl
     {

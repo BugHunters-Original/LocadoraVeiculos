@@ -1,10 +1,6 @@
 ﻿using LocadoraVeiculo.GrupoVeiculoModule;
 using LocadoraVeiculo.Shared;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 namespace LocadoraVeiculo.VeiculoModule
 {
     public class Veiculo : EntidadeBase
@@ -27,7 +23,7 @@ namespace LocadoraVeiculo.VeiculoModule
         public GrupoVeiculo grupoVeiculo { get; set; }
 
         public Veiculo(string nome, string numero_Placa, string numero_Chassi, string cor,
-            string marca, int? ano, int numero_Portas, int capacidade_Tanque, char tamanhoPortaMalas, int km_Inicial, 
+            string marca, int? ano, int numero_Portas, int capacidade_Tanque, char tamanhoPortaMalas, int km_Inicial,
             string tipo_Combustivel, bool disponibilidade_Veiculo, GrupoVeiculo grupoVeiculo)
         {
             this.nome = nome;
@@ -81,7 +77,7 @@ namespace LocadoraVeiculo.VeiculoModule
 
         public bool ValidarDisponibilidade()
         {
-           if (disponibilidade_Veiculo == true)
+            if (disponibilidade_Veiculo == true)
                 return true;
             else
                 return false;
