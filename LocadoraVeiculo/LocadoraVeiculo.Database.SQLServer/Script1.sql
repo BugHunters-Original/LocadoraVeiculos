@@ -20,3 +20,4 @@ INSERT INTO TBCLIENTE
 						'01190011956',
 						'PF'
 	                );
+delete from TBVeiculos
