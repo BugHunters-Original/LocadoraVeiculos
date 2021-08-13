@@ -96,6 +96,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.GrupoVeiculo
             this.txtPrecoKmDiario.Name = "txtPrecoKmDiario";
             this.txtPrecoKmDiario.Size = new System.Drawing.Size(100, 20);
             this.txtPrecoKmDiario.TabIndex = 2;
+            this.txtPrecoKmDiario.Text = "0";
             this.txtPrecoKmDiario.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox1_KeyPress);
             // 
             // label1
@@ -113,6 +114,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.GrupoVeiculo
             this.txtValorDiarioPDiario.Name = "txtValorDiarioPDiario";
             this.txtValorDiarioPDiario.Size = new System.Drawing.Size(100, 20);
             this.txtValorDiarioPDiario.TabIndex = 1;
+            this.txtValorDiarioPDiario.Text = "0";
             this.txtValorDiarioPDiario.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox1_KeyPress);
             // 
             // tabControlado
@@ -145,6 +147,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.GrupoVeiculo
             this.txtKmDia_KmControlado.Name = "txtKmDia_KmControlado";
             this.txtKmDia_KmControlado.Size = new System.Drawing.Size(100, 20);
             this.txtKmDia_KmControlado.TabIndex = 6;
+            this.txtKmDia_KmControlado.Text = "0";
             this.txtKmDia_KmControlado.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox1_KeyPress);
             // 
             // label4
@@ -162,6 +165,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.GrupoVeiculo
             this.txtValorDiarioPControlado.Name = "txtValorDiarioPControlado";
             this.txtValorDiarioPControlado.Size = new System.Drawing.Size(100, 20);
             this.txtValorDiarioPControlado.TabIndex = 4;
+            this.txtValorDiarioPControlado.Text = "0";
             this.txtValorDiarioPControlado.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox1_KeyPress);
             // 
             // tabLivre
@@ -192,6 +196,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.GrupoVeiculo
             this.txtPrecoKmLivre.Name = "txtPrecoKmLivre";
             this.txtPrecoKmLivre.Size = new System.Drawing.Size(100, 20);
             this.txtPrecoKmLivre.TabIndex = 2;
+            this.txtPrecoKmLivre.Text = "0";
             this.txtPrecoKmLivre.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox1_KeyPress);
             // 
             // label6
