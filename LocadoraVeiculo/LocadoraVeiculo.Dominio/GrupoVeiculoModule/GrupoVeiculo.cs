@@ -1,7 +1,9 @@
 ﻿using LocadoraVeiculo.Shared;
+using System;
+
 namespace LocadoraVeiculo.GrupoVeiculoModule
 {
-    public class GrupoVeiculo : EntidadeBase
+    public class GrupoVeiculo : EntidadeBase, IEquatable<GrupoVeiculo>
     {
         public string categoriaVeiculo { get; set; }
         public decimal? valor_Diario_PDiario { get; set; }

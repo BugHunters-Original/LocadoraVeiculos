@@ -28,7 +28,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.GrupoVeiculo
                 List<GrupoVeiculoModule.GrupoVeiculo> grupoVeiculos = controlador.SelecionarTodos();
                 tabelaGrupoVeiculo.AtualizarRegistros(grupoVeiculos);
 
-                TelaPrincipalForm.Instancia.AtualizarRodape($"Grupo de Veiculo: [{tela.GrupoContato.categoriaVeiculo}] inserido com sucesso");
+                TelaConfigGeralForm.Instancia.AtualizarRodape($"Grupo de Veiculo: [{tela.GrupoContato.categoriaVeiculo}] inserido com sucesso");
             }
         }
 
@@ -56,7 +56,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.GrupoVeiculo
                 List<GrupoVeiculoModule.GrupoVeiculo> grupoVeiculos = controlador.SelecionarTodos();
                 tabelaGrupoVeiculo.AtualizarRegistros(grupoVeiculos);
 
-                TelaPrincipalForm.Instancia.AtualizarRodape($"Grupo de Veiculo: [{tela.GrupoContato.categoriaVeiculo}] editada com sucesso");
+                TelaConfigGeralForm.Instancia.AtualizarRodape($"Grupo de Veiculo: [{tela.GrupoContato.categoriaVeiculo}] editada com sucesso");
             }
         }
 
@@ -90,7 +90,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.GrupoVeiculo
                     List<GrupoVeiculoModule.GrupoVeiculo> grupoVeiculos = controlador.SelecionarTodos();
                     tabelaGrupoVeiculo.AtualizarRegistros(grupoVeiculos);
 
-                    TelaPrincipalForm.Instancia.AtualizarRodape($"Grupo de Veiculo: [{grupoVeiculoSelecionado.categoriaVeiculo}] removido com sucesso");
+                    TelaConfigGeralForm.Instancia.AtualizarRodape($"Grupo de Veiculo: [{grupoVeiculoSelecionado.categoriaVeiculo}] removido com sucesso");
                 }
                 else
                 {

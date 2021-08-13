@@ -31,7 +31,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.GrupoVeiculo
         }
 
         private void btnGravar_Click(object sender, EventArgs e)
-        {
+        {           
             string categoria = txtNome.Text;
             decimal valor_Diario_PDiario = Convert.ToDecimal(txtValorDiarioPDiario.Text);
             decimal preco_KMDiario = Convert.ToDecimal(txtPrecoKmDiario.Text);
@@ -48,7 +48,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.GrupoVeiculo
             {
                 string primeiroErro = new StringReader(resultadoValidacao).ReadLine();
 
-                TelaPrincipalForm.Instancia.AtualizarRodape(primeiroErro);
+                TelaConfigGeralForm.Instancia.AtualizarRodape(primeiroErro);
 
                 DialogResult = DialogResult.None;
             }
@@ -56,7 +56,33 @@ namespace LocadoraVeiculo.WindowsApp.Features.GrupoVeiculo
 
         private void TelaGrupoVeiculoForm_FormClosing(object sender, FormClosingEventArgs e)
         {
-            TelaPrincipalForm.Instancia.AtualizarRodape("");
+            TelaConfigGeralForm.Instancia.AtualizarRodape("");
+        }
+
+        private void textBox1_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) &&
+                (e.KeyChar != '.'))
+            {
+                e.Handled = true;
+            }
+
+            // only allow one decimal point
+            if ((e.KeyChar == '.') && ((sender as TextBox).Text.IndexOf('.') > -1))
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void txtBoxZerado_Leave(object sender, EventArgs e)
+        {
+            foreach (Control item in tabControl1.SelectedTab.Controls)
+            {
+                if (String.IsNullOrEmpty(item.Text))
+                {
+                    item.Text = "0";
+                }
+            }
         }
     }
 }

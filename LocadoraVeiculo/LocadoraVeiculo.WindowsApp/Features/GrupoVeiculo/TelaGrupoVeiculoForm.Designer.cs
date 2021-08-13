@@ -47,7 +47,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.GrupoVeiculo
             this.txtNome = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
             this.txtId = new System.Windows.Forms.TextBox();
-            this.button1 = new System.Windows.Forms.Button();
+            this.bt_GravarFuncionario = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabDiario.SuspendLayout();
             this.tabControlado.SuspendLayout();
@@ -59,11 +59,12 @@ namespace LocadoraVeiculo.WindowsApp.Features.GrupoVeiculo
             this.tabControl1.Controls.Add(this.tabDiario);
             this.tabControl1.Controls.Add(this.tabControlado);
             this.tabControl1.Controls.Add(this.tabLivre);
-            this.tabControl1.Location = new System.Drawing.Point(133, 104);
+            this.tabControl1.Location = new System.Drawing.Point(134, 104);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
             this.tabControl1.Size = new System.Drawing.Size(331, 208);
             this.tabControl1.TabIndex = 0;
+            this.tabControl1.Leave += new System.EventHandler(this.txtBoxZerado_Leave);
             // 
             // tabDiario
             // 
@@ -78,6 +79,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.GrupoVeiculo
             this.tabDiario.TabIndex = 0;
             this.tabDiario.Text = "PLANO DIÁRIO";
             this.tabDiario.UseVisualStyleBackColor = true;
+            this.tabDiario.Leave += new System.EventHandler(this.txtBoxZerado_Leave);
             // 
             // label2
             // 
@@ -94,6 +96,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.GrupoVeiculo
             this.txtPrecoKmDiario.Name = "txtPrecoKmDiario";
             this.txtPrecoKmDiario.Size = new System.Drawing.Size(100, 20);
             this.txtPrecoKmDiario.TabIndex = 2;
+            this.txtPrecoKmDiario.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox1_KeyPress);
             // 
             // label1
             // 
@@ -110,6 +113,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.GrupoVeiculo
             this.txtValorDiarioPDiario.Name = "txtValorDiarioPDiario";
             this.txtValorDiarioPDiario.Size = new System.Drawing.Size(100, 20);
             this.txtValorDiarioPDiario.TabIndex = 0;
+            this.txtValorDiarioPDiario.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox1_KeyPress);
             // 
             // tabControlado
             // 
@@ -124,6 +128,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.GrupoVeiculo
             this.tabControlado.TabIndex = 1;
             this.tabControlado.Text = "PLANO CONTROLADO";
             this.tabControlado.UseVisualStyleBackColor = true;
+            this.tabControlado.Leave += new System.EventHandler(this.txtBoxZerado_Leave);
             // 
             // label3
             // 
@@ -140,6 +145,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.GrupoVeiculo
             this.txtKmDia_KmControlado.Name = "txtKmDia_KmControlado";
             this.txtKmDia_KmControlado.Size = new System.Drawing.Size(100, 20);
             this.txtKmDia_KmControlado.TabIndex = 6;
+            this.txtKmDia_KmControlado.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox1_KeyPress);
             // 
             // label4
             // 
@@ -156,6 +162,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.GrupoVeiculo
             this.txtValorDiarioPControlado.Name = "txtValorDiarioPControlado";
             this.txtValorDiarioPControlado.Size = new System.Drawing.Size(100, 20);
             this.txtValorDiarioPControlado.TabIndex = 4;
+            this.txtValorDiarioPControlado.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox1_KeyPress);
             // 
             // tabLivre
             // 
@@ -168,6 +175,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.GrupoVeiculo
             this.tabLivre.TabIndex = 2;
             this.tabLivre.Text = "PLANO LIVRE";
             this.tabLivre.UseVisualStyleBackColor = true;
+            this.tabLivre.Leave += new System.EventHandler(this.txtBoxZerado_Leave);
             // 
             // label5
             // 
@@ -184,6 +192,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.GrupoVeiculo
             this.txtPrecoKmLivre.Name = "txtPrecoKmLivre";
             this.txtPrecoKmLivre.Size = new System.Drawing.Size(100, 20);
             this.txtPrecoKmLivre.TabIndex = 2;
+            this.txtPrecoKmLivre.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox1_KeyPress);
             // 
             // label6
             // 
@@ -219,23 +228,23 @@ namespace LocadoraVeiculo.WindowsApp.Features.GrupoVeiculo
             this.txtId.Size = new System.Drawing.Size(41, 20);
             this.txtId.TabIndex = 4;
             // 
-            // button1
+            // bt_GravarFuncionario
             // 
-            this.button1.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.button1.Location = new System.Drawing.Point(385, 342);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 6;
-            this.button1.Text = "GRAVAR";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.btnGravar_Click);
+            this.bt_GravarFuncionario.DialogResult = System.Windows.Forms.DialogResult.OK;
+            this.bt_GravarFuncionario.Location = new System.Drawing.Point(385, 339);
+            this.bt_GravarFuncionario.Name = "bt_GravarFuncionario";
+            this.bt_GravarFuncionario.Size = new System.Drawing.Size(75, 23);
+            this.bt_GravarFuncionario.TabIndex = 14;
+            this.bt_GravarFuncionario.Text = "Gravar";
+            this.bt_GravarFuncionario.UseVisualStyleBackColor = true;
+            this.bt_GravarFuncionario.Click += new System.EventHandler(this.btnGravar_Click);
             // 
             // TelaGrupoVeiculoForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(634, 391);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.bt_GravarFuncionario);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.txtId);
@@ -280,6 +289,6 @@ namespace LocadoraVeiculo.WindowsApp.Features.GrupoVeiculo
         private System.Windows.Forms.TextBox txtNome;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.TextBox txtId;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button bt_GravarFuncionario;
     }
 }

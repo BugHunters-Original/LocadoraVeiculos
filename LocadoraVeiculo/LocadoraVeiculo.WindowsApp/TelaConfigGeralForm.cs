@@ -26,6 +26,7 @@ namespace LocadoraVeiculo.WindowsApp
         public static TelaConfigGeralForm Instancia;
         public TelaConfigGeralForm()
         {
+            Instancia = this;
             InitializeComponent();
         }
 
