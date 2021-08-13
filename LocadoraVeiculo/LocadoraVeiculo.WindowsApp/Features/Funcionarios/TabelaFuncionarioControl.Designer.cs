@@ -40,6 +40,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.Funcionarios
             this.gridFuncionarios.Location = new System.Drawing.Point(0, 0);
             this.gridFuncionarios.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.gridFuncionarios.Name = "gridFuncionarios";
+            this.gridFuncionarios.RowHeadersVisible = false;
             this.gridFuncionarios.RowHeadersWidth = 51;
             this.gridFuncionarios.RowTemplate.Height = 24;
             this.gridFuncionarios.Size = new System.Drawing.Size(711, 540);
