@@ -74,21 +74,21 @@ namespace LocadoraVeiculo.WindowsApp
             // taxasEServiçosToolStripMenuItem
             // 
             this.taxasEServiçosToolStripMenuItem.Name = "taxasEServiçosToolStripMenuItem";
-            this.taxasEServiçosToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.taxasEServiçosToolStripMenuItem.Size = new System.Drawing.Size(169, 22);
             this.taxasEServiçosToolStripMenuItem.Text = "Taxas e Serviços";
             this.taxasEServiçosToolStripMenuItem.Click += new System.EventHandler(this.taxasEServiçosToolStripMenuItem_Click);
             // 
             // grupoDeVeículosToolStripMenuItem
             // 
             this.grupoDeVeículosToolStripMenuItem.Name = "grupoDeVeículosToolStripMenuItem";
-            this.grupoDeVeículosToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.grupoDeVeículosToolStripMenuItem.Size = new System.Drawing.Size(169, 22);
             this.grupoDeVeículosToolStripMenuItem.Text = "Grupo de Veículos";
             this.grupoDeVeículosToolStripMenuItem.Click += new System.EventHandler(this.grupoDeVeículosToolStripMenuItem_Click);
             // 
             // combustívelToolStripMenuItem
             // 
             this.combustívelToolStripMenuItem.Name = "combustívelToolStripMenuItem";
-            this.combustívelToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.combustívelToolStripMenuItem.Size = new System.Drawing.Size(169, 22);
             this.combustívelToolStripMenuItem.Text = "Combustível";
             this.combustívelToolStripMenuItem.Click += new System.EventHandler(this.combustívelToolStripMenuItem_Click);
             // 
@@ -119,6 +119,7 @@ namespace LocadoraVeiculo.WindowsApp
             // btnAdicionar
             // 
             this.btnAdicionar.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.btnAdicionar.Enabled = false;
             this.btnAdicionar.Image = global::LocadoraVeiculo.WindowsApp.Properties.Resources.outline_add_circle_outline_black_24dp;
             this.btnAdicionar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.btnAdicionar.ImageTransparentColor = System.Drawing.Color.Magenta;
@@ -131,6 +132,7 @@ namespace LocadoraVeiculo.WindowsApp
             // btnEditar
             // 
             this.btnEditar.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.btnEditar.Enabled = false;
             this.btnEditar.Image = global::LocadoraVeiculo.WindowsApp.Properties.Resources.outline_mode_edit_black_24dp;
             this.btnEditar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.btnEditar.ImageTransparentColor = System.Drawing.Color.Magenta;
@@ -143,6 +145,7 @@ namespace LocadoraVeiculo.WindowsApp
             // btnExcluir
             // 
             this.btnExcluir.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.btnExcluir.Enabled = false;
             this.btnExcluir.Image = global::LocadoraVeiculo.WindowsApp.Properties.Resources.outline_delete_black_24dp;
             this.btnExcluir.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.btnExcluir.ImageTransparentColor = System.Drawing.Color.Magenta;
