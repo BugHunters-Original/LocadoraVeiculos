@@ -209,6 +209,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.Funcionarios
             this.Controls.Add(this.label1);
             this.Name = "TelaFuncionarioForm";
             this.ShowIcon = false;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Cadastro de Funcionários";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.TelaFuncionarioForm_FormClosing);
             this.ResumeLayout(false);
