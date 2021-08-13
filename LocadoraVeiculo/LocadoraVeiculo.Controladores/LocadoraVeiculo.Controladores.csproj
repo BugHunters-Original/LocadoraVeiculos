@@ -48,6 +48,7 @@
     <Compile Include="FuncionarioModule\ControladorFuncionario.cs" />
     <Compile Include="GrupoVeiculoModule\ControladorGrupoVeiculo.cs" />
     <Compile Include="LocacaoModule\ControladorLocacao.cs" />
+    <Compile Include="LoginModule\ControladorLogin.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ServicoModule\ControladorServico.cs" />
     <Compile Include="Shared\Controlador.cs" />

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using LocadoraVeiculo.WindowsApp.Features.Login;
+using System;
 using System.Windows.Forms;
 
 namespace LocadoraVeiculo.WindowsApp
@@ -13,7 +14,7 @@ namespace LocadoraVeiculo.WindowsApp
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new TelaPrincipalForm());
+            Application.Run(new TelaLoginForm());
         }
     }
 }
