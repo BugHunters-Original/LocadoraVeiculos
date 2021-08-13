@@ -87,7 +87,7 @@ namespace LocadoraVeiculo.Controladores.VeiculoModule
                 V.[TIPO_COMBUSTIVEL],
                 V.[ID_TIPO_VEICULO],
                 V.[DISPONIBILIDADE_VEICULO],
-                TV.[NOME],
+                TV.[NOMETIPO],
                 TV.[VALOR_DIARIO_PDIARIO],
                 TV.[PRECO_KMDIARIO],
                 TV.[VALOR_DIARIO_PCONTROLADO],
@@ -116,7 +116,7 @@ namespace LocadoraVeiculo.Controladores.VeiculoModule
                 V.[TIPO_COMBUSTIVEL],
                 V.[ID_TIPO_VEICULO],
                 V.[DISPONIBILIDADE_VEICULO],
-                TV.[NOME],
+                TV.[NOMETIPO],
                 TV.[VALOR_DIARIO_PDIARIO],
                 TV.[PRECO_KMDIARIO],
                 TV.[VALOR_DIARIO_PCONTROLADO],
@@ -214,7 +214,7 @@ namespace LocadoraVeiculo.Controladores.VeiculoModule
             var tipo_Combustivel = Convert.ToString(reader["TIPO_COMBUSTIVEL"]);
             var disponibilidade_Veiculo = Convert.ToInt32(reader["DISPONIBILIDADE_VEICULO"]);
 
-            var categoriaVeiculo = Convert.ToString(reader["NOME"]);
+            var categoriaVeiculo = Convert.ToString(reader["NOMETIPO"]);
             var valor_Diario_PDiario = Convert.ToDecimal(reader["VALOR_DIARIO_PDIARIO"]);
             var preco_KMDiario = Convert.ToDecimal(reader["PRECO_KMDIARIO"]);
             var valor_Diario_PControlado = Convert.ToDecimal(reader["VALOR_DIARIO_PCONTROLADO"]);

@@ -21,8 +21,6 @@ namespace LocadoraVeiculo.WindowsApp
     {
         private ICadastravel operacoes;
 
-        private OperacoesCombustivel opCombustivel;
-
         public static TelaConfigGeralForm Instancia;
         public TelaConfigGeralForm()
         {
@@ -31,6 +29,10 @@ namespace LocadoraVeiculo.WindowsApp
 
         private void grupoDeVeículosToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            btnEditar.Enabled = true;
+            btnAdicionar.Enabled = true;
+            btnExcluir.Enabled = true;
+
             ConfiguracaoGrupoVeiculoToolBox configuracao = new ConfiguracaoGrupoVeiculoToolBox();
 
             ConfigurarToolBox(configuracao);
@@ -42,13 +44,12 @@ namespace LocadoraVeiculo.WindowsApp
             ConfigurarPainelRegistros();
         }
 
-        private void cadastrosToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            this.Close();
-        }
-
         private void taxasEServiçosToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            btnEditar.Enabled = true;
+            btnAdicionar.Enabled = true;
+            btnExcluir.Enabled = true;
+
             ConfiguracaoTaxaServicoToolBox configuracao = new ConfiguracaoTaxaServicoToolBox();
 
             ConfigurarToolBox(configuracao);
@@ -59,7 +60,23 @@ namespace LocadoraVeiculo.WindowsApp
 
             ConfigurarPainelRegistros();
         }
+        private void combustívelToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ConfiguracaoCombustivelToolBox configuracao = new ConfiguracaoCombustivelToolBox();
 
+            ConfigurarToolBox(configuracao);
+
+            AtualizarRodape(configuracao.TipoCadastro);
+
+            OperacoesCombustivel opCombustivel = new OperacoesCombustivel(new ControladorCombustivel());
+
+            opCombustivel.Editar();
+
+        }
+        private void cadastrosToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
         private void ConfigurarPainelRegistros()
         {
             UserControl tabela = operacoes.ObterTabela();
@@ -100,18 +117,6 @@ namespace LocadoraVeiculo.WindowsApp
             operacoes.ExcluirRegistro();
         }
 
-        private void combustívelToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            ConfiguracaoCombustivelToolBox configuracao = new ConfiguracaoCombustivelToolBox();
 
-            ConfigurarToolBox(configuracao);
-
-            AtualizarRodape(configuracao.TipoCadastro);
-
-            opCombustivel = new OperacoesCombustivel(new ControladorCombustivel());
-
-            opCombustivel.Editar();
-
-        }
     }
 }

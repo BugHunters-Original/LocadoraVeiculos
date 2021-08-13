@@ -13,7 +13,7 @@ namespace LocadoraVeiculo.Controladores.GrupoVeiculoModule
         private const string sqlInserirTipoGrupoVeiculo =
             @"INSERT INTO [TBTIPOVEICULO]
                 (
-                    [NOME],       
+                    [NOMETIPO],       
                     [VALOR_DIARIO_PDIARIO], 
                     [PRECO_KMDIARIO],
                     [VALOR_DIARIO_PCONTROLADO],                    
@@ -22,7 +22,7 @@ namespace LocadoraVeiculo.Controladores.GrupoVeiculoModule
                 )
             VALUES
                 (
-                    @NOME,
+                    @NOMETIPO,
                     @VALOR_DIARIO_PDIARIO,
                     @PRECO_KMDIARIO,
                     @VALOR_DIARIO_PCONTROLADO,
@@ -33,7 +33,7 @@ namespace LocadoraVeiculo.Controladores.GrupoVeiculoModule
         private const string sqlEditarTipoGrupoVeiculo =
             @" UPDATE [TBTIPOVEICULO]
                 SET 
-                    [NOME] = @NOME, 
+                    [NOMETIPO] = @NOMETIPO, 
                     [VALOR_DIARIO_PDIARIO] = @VALOR_DIARIO_PDIARIO, 
                     [PRECO_KMDIARIO] = @PRECO_KMDIARIO,
                     [VALOR_DIARIO_PCONTROLADO] = @VALOR_DIARIO_PCONTROLADO, 
@@ -49,7 +49,7 @@ namespace LocadoraVeiculo.Controladores.GrupoVeiculoModule
         private const string sqlSelecionarTodosTipoGrupoVeiculo =
             @"SELECT 
                 [ID],       
-                [NOME],
+                [NOMETIPO],
                 [VALOR_DIARIO_PDIARIO],
                 [PRECO_KMDIARIO],             
                 [VALOR_DIARIO_PCONTROLADO],                    
@@ -61,7 +61,7 @@ namespace LocadoraVeiculo.Controladores.GrupoVeiculoModule
         private const string sqlSelecionarTipoGrupoVeiculoPorId =
             @"SELECT 
                 [ID],       
-                [NOME],
+                [NOMETIPO],
                 [VALOR_DIARIO_PDIARIO],
                 [PRECO_KMDIARIO],             
                 [VALOR_DIARIO_PCONTROLADO],                    
@@ -136,7 +136,7 @@ namespace LocadoraVeiculo.Controladores.GrupoVeiculoModule
 
         private GrupoVeiculo ConverterEmGrupoVeiculo(IDataReader reader)
         {
-            var categoriaVeiculo = Convert.ToString(reader["NOME"]);
+            var categoriaVeiculo = Convert.ToString(reader["NOMETIPO"]);
             var valor_Diario_PDiario = Convert.ToInt32(reader["VALOR_DIARIO_PDIARIO"]);
             var preco_KMDiario = Convert.ToInt32(reader["PRECO_KMDIARIO"]);
             var valor_Diario_PControlado = Convert.ToInt32(reader["VALOR_DIARIO_PCONTROLADO"]);
@@ -154,7 +154,7 @@ namespace LocadoraVeiculo.Controladores.GrupoVeiculoModule
             var parametros = new Dictionary<string, object>();
 
             parametros.Add("ID", grupoVeiculo.Id);
-            parametros.Add("NOME", grupoVeiculo.categoriaVeiculo);
+            parametros.Add("NOMETIPO", grupoVeiculo.categoriaVeiculo);
             parametros.Add("VALOR_DIARIO_PDIARIO", grupoVeiculo.valor_Diario_PDiario);
             parametros.Add("PRECO_KMDIARIO", grupoVeiculo.preco_KMDiario);
             parametros.Add("VALOR_DIARIO_PCONTROLADO", grupoVeiculo.valor_Diario_PControlado);

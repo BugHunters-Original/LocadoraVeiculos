@@ -30,10 +30,6 @@ namespace LocadoraVeiculo.WindowsApp.Features.Veiculo
 
                 new DataGridViewTextBoxColumn { DataPropertyName = "Nome", HeaderText = "Nome"},
 
-                new DataGridViewTextBoxColumn { DataPropertyName = "Numero_placa", HeaderText = "Placa"},
-
-                new DataGridViewTextBoxColumn { DataPropertyName = "Numero_chassi", HeaderText = "Chassi"},
-
                 new DataGridViewTextBoxColumn {DataPropertyName = "Cor", HeaderText = "Cor"},
 
                 new DataGridViewTextBoxColumn {DataPropertyName = "Marca", HeaderText = "Marca"},
@@ -69,9 +65,14 @@ namespace LocadoraVeiculo.WindowsApp.Features.Veiculo
 
             foreach (VeiculoModule.Veiculo veiculo in veiculos)
             {
-                gridVeiculos.Rows.Add(veiculo.Id, veiculo.nome, veiculo.numero_Placa, veiculo.numero_Chassi, veiculo.cor, veiculo.marca, veiculo.ano,
-                veiculo.numero_Portas, veiculo.capacidade_Tanque, veiculo.tamanhoPortaMalas, veiculo.km_Inicial, veiculo.tipo_Combustivel, 
-                veiculo.grupoVeiculo.categoriaVeiculo, veiculo.disponibilidade_Veiculo);
+                string disponivel = "Disponível";
+                if (veiculo.disponibilidade_Veiculo == 0)
+                    disponivel = "Indisponível";
+
+
+                gridVeiculos.Rows.Add(veiculo.Id, veiculo.nome, veiculo.cor, veiculo.marca, veiculo.ano,
+                veiculo.numero_Portas, veiculo.capacidade_Tanque, veiculo.tamanhoPortaMalas, veiculo.km_Inicial, veiculo.tipo_Combustivel,
+                veiculo.grupoVeiculo.categoriaVeiculo, disponivel);
             }
         }
     }
