@@ -46,8 +46,8 @@ namespace LocadoraVeiculo.WindowsApp.Features.GrupoVeiculo
             this.label6 = new System.Windows.Forms.Label();
             this.txtNome = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
-            this.txtId = new System.Windows.Forms.TextBox();
             this.bt_GravarFuncionario = new System.Windows.Forms.Button();
+            this.txtId = new System.Windows.Forms.TextBox();
             this.tabControl1.SuspendLayout();
             this.tabDiario.SuspendLayout();
             this.tabControlado.SuspendLayout();
@@ -225,14 +225,6 @@ namespace LocadoraVeiculo.WindowsApp.Features.GrupoVeiculo
             this.label7.TabIndex = 5;
             this.label7.Text = "ID";
             // 
-            // txtId
-            // 
-            this.txtId.Location = new System.Drawing.Point(137, 18);
-            this.txtId.Name = "txtId";
-            this.txtId.ReadOnly = true;
-            this.txtId.Size = new System.Drawing.Size(41, 20);
-            this.txtId.TabIndex = 4;
-            // 
             // bt_GravarFuncionario
             // 
             this.bt_GravarFuncionario.DialogResult = System.Windows.Forms.DialogResult.OK;
@@ -244,15 +236,25 @@ namespace LocadoraVeiculo.WindowsApp.Features.GrupoVeiculo
             this.bt_GravarFuncionario.UseVisualStyleBackColor = true;
             this.bt_GravarFuncionario.Click += new System.EventHandler(this.btnGravar_Click);
             // 
+            // txtId
+            // 
+            this.txtId.BackColor = System.Drawing.Color.DarkSeaGreen;
+            this.txtId.Enabled = false;
+            this.txtId.ForeColor = System.Drawing.Color.DarkSeaGreen;
+            this.txtId.Location = new System.Drawing.Point(138, 18);
+            this.txtId.Name = "txtId";
+            this.txtId.Size = new System.Drawing.Size(41, 20);
+            this.txtId.TabIndex = 15;
+            // 
             // TelaGrupoVeiculoForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(634, 391);
+            this.Controls.Add(this.txtId);
             this.Controls.Add(this.bt_GravarFuncionario);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.label6);
-            this.Controls.Add(this.txtId);
             this.Controls.Add(this.txtNome);
             this.Controls.Add(this.tabControl1);
             this.MaximizeBox = false;
@@ -293,7 +295,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.GrupoVeiculo
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.TextBox txtNome;
         private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.TextBox txtId;
         private System.Windows.Forms.Button bt_GravarFuncionario;
+        private System.Windows.Forms.TextBox txtId;
     }
 }
