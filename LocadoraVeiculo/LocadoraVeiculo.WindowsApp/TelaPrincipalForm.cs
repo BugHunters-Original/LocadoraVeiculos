@@ -48,6 +48,10 @@ namespace LocadoraVeiculo.WindowsApp
 
         private void menuItemCliente_Click(object sender, EventArgs e)
         {
+            btnEditar.Enabled = true;
+            btnAdicionar.Enabled = true;
+            btnExcluir.Enabled = true;
+
             ConfiguracaoClienteToolBox configuracao = new ConfiguracaoClienteToolBox();
 
             ConfigurarToolBox(configuracao);
@@ -61,6 +65,10 @@ namespace LocadoraVeiculo.WindowsApp
 
         private void menuItemVeiculo_Click(object sender, EventArgs e)
         {
+            btnEditar.Enabled = true;
+            btnAdicionar.Enabled = true;
+            btnExcluir.Enabled = true;
+
             ConfiguracaoVeiculoToolBox configuracao = new ConfiguracaoVeiculoToolBox();
 
             ConfigurarToolBox(configuracao);
@@ -74,6 +82,10 @@ namespace LocadoraVeiculo.WindowsApp
 
         private void menuItemFuncionario_Click(object sender, EventArgs e)
         {
+            btnEditar.Enabled = true;
+            btnAdicionar.Enabled = true;
+            btnExcluir.Enabled = true;
+
             ConfiguracaoFuncionarioToolBox configuracao = new ConfiguracaoFuncionarioToolBox();
 
             ConfigurarToolBox(configuracao);

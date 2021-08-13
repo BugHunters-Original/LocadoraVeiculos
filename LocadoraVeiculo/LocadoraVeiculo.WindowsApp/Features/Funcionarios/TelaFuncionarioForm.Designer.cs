@@ -116,7 +116,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.Funcionarios
             this.text_CPFFuncionario.Mask = "000.000.000-00";
             this.text_CPFFuncionario.Name = "text_CPFFuncionario";
             this.text_CPFFuncionario.Size = new System.Drawing.Size(100, 20);
-            this.text_CPFFuncionario.TabIndex = 7;
+            this.text_CPFFuncionario.TabIndex = 1;
             // 
             // text_IdFuncionario
             // 
@@ -133,21 +133,21 @@ namespace LocadoraVeiculo.WindowsApp.Features.Funcionarios
             this.text_NomeFuncionario.Location = new System.Drawing.Point(189, 97);
             this.text_NomeFuncionario.Name = "text_NomeFuncionario";
             this.text_NomeFuncionario.Size = new System.Drawing.Size(332, 20);
-            this.text_NomeFuncionario.TabIndex = 9;
+            this.text_NomeFuncionario.TabIndex = 0;
             // 
             // text_UsuarioFuncionario
             // 
             this.text_UsuarioFuncionario.Location = new System.Drawing.Point(189, 262);
             this.text_UsuarioFuncionario.Name = "text_UsuarioFuncionario";
             this.text_UsuarioFuncionario.Size = new System.Drawing.Size(100, 20);
-            this.text_UsuarioFuncionario.TabIndex = 11;
+            this.text_UsuarioFuncionario.TabIndex = 4;
             // 
             // text_SenhaFuncionario
             // 
             this.text_SenhaFuncionario.Location = new System.Drawing.Point(189, 290);
             this.text_SenhaFuncionario.Name = "text_SenhaFuncionario";
             this.text_SenhaFuncionario.Size = new System.Drawing.Size(100, 20);
-            this.text_SenhaFuncionario.TabIndex = 12;
+            this.text_SenhaFuncionario.TabIndex = 5;
             // 
             // bt_GravarFuncionario
             // 
@@ -155,7 +155,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.Funcionarios
             this.bt_GravarFuncionario.Location = new System.Drawing.Point(423, 339);
             this.bt_GravarFuncionario.Name = "bt_GravarFuncionario";
             this.bt_GravarFuncionario.Size = new System.Drawing.Size(75, 23);
-            this.bt_GravarFuncionario.TabIndex = 13;
+            this.bt_GravarFuncionario.TabIndex = 6;
             this.bt_GravarFuncionario.Text = "Gravar";
             this.bt_GravarFuncionario.UseVisualStyleBackColor = true;
             this.bt_GravarFuncionario.Click += new System.EventHandler(this.bt_GravarFuncionario_Click);
@@ -166,7 +166,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.Funcionarios
             this.bt_Cancelar.Location = new System.Drawing.Point(524, 339);
             this.bt_Cancelar.Name = "bt_Cancelar";
             this.bt_Cancelar.Size = new System.Drawing.Size(75, 23);
-            this.bt_Cancelar.TabIndex = 14;
+            this.bt_Cancelar.TabIndex = 7;
             this.bt_Cancelar.Text = "Cancelar";
             this.bt_Cancelar.UseVisualStyleBackColor = true;
             // 
@@ -176,14 +176,14 @@ namespace LocadoraVeiculo.WindowsApp.Features.Funcionarios
             this.date_EntradaFuncionario.Location = new System.Drawing.Point(423, 129);
             this.date_EntradaFuncionario.Name = "date_EntradaFuncionario";
             this.date_EntradaFuncionario.Size = new System.Drawing.Size(98, 20);
-            this.date_EntradaFuncionario.TabIndex = 15;
+            this.date_EntradaFuncionario.TabIndex = 2;
             // 
             // text_salarioFuncionario
             // 
             this.text_salarioFuncionario.Location = new System.Drawing.Point(189, 170);
             this.text_salarioFuncionario.Name = "text_salarioFuncionario";
             this.text_salarioFuncionario.Size = new System.Drawing.Size(100, 20);
-            this.text_salarioFuncionario.TabIndex = 16;
+            this.text_salarioFuncionario.TabIndex = 3;
             this.text_salarioFuncionario.ValidatingType = typeof(int);
             // 
             // TelaFuncionarioForm
@@ -209,6 +209,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.Funcionarios
             this.Controls.Add(this.label1);
             this.Name = "TelaFuncionarioForm";
             this.ShowIcon = false;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Cadastro de Funcionários";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.TelaFuncionarioForm_FormClosing);
             this.ResumeLayout(false);

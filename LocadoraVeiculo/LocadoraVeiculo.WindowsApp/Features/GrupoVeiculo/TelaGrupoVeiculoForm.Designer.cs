@@ -112,7 +112,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.GrupoVeiculo
             this.txtValorDiarioPDiario.Location = new System.Drawing.Point(132, 53);
             this.txtValorDiarioPDiario.Name = "txtValorDiarioPDiario";
             this.txtValorDiarioPDiario.Size = new System.Drawing.Size(100, 20);
-            this.txtValorDiarioPDiario.TabIndex = 0;
+            this.txtValorDiarioPDiario.TabIndex = 1;
             this.txtValorDiarioPDiario.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox1_KeyPress);
             // 
             // tabControlado
@@ -209,7 +209,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.GrupoVeiculo
             this.txtNome.Location = new System.Drawing.Point(223, 53);
             this.txtNome.Name = "txtNome";
             this.txtNome.Size = new System.Drawing.Size(147, 22);
-            this.txtNome.TabIndex = 4;
+            this.txtNome.TabIndex = 0;
             // 
             // label7
             // 

@@ -148,7 +148,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.Combustivel
             this.btnSalvar.Location = new System.Drawing.Point(187, 127);
             this.btnSalvar.Name = "btnSalvar";
             this.btnSalvar.Size = new System.Drawing.Size(75, 23);
-            this.btnSalvar.TabIndex = 7;
+            this.btnSalvar.TabIndex = 1;
             this.btnSalvar.Text = "SALVAR";
             this.btnSalvar.UseVisualStyleBackColor = true;
             this.btnSalvar.Click += new System.EventHandler(this.btnSalvar_Click);
@@ -159,7 +159,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.Combustivel
             this.btnCancelar.Location = new System.Drawing.Point(187, 156);
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Size = new System.Drawing.Size(75, 23);
-            this.btnCancelar.TabIndex = 8;
+            this.btnCancelar.TabIndex = 2;
             this.btnCancelar.Text = "CANCELAR";
             this.btnCancelar.UseVisualStyleBackColor = true;
             // 

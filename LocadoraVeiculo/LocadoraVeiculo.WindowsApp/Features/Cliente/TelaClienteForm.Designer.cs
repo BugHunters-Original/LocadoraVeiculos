@@ -69,14 +69,14 @@ namespace LocadoraVeiculo.WindowsApp.Features.Clientes
             this.txtEndereco.Location = new System.Drawing.Point(140, 109);
             this.txtEndereco.Name = "txtEndereco";
             this.txtEndereco.Size = new System.Drawing.Size(404, 20);
-            this.txtEndereco.TabIndex = 7;
+            this.txtEndereco.TabIndex = 3;
             // 
             // txtNome
             // 
-            this.txtNome.Location = new System.Drawing.Point(140, 51);
+            this.txtNome.Location = new System.Drawing.Point(140, 83);
             this.txtNome.Name = "txtNome";
             this.txtNome.Size = new System.Drawing.Size(404, 20);
-            this.txtNome.TabIndex = 8;
+            this.txtNome.TabIndex = 2;
             // 
             // dtDataValidade
             // 
@@ -84,7 +84,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.Clientes
             this.dtDataValidade.Location = new System.Drawing.Point(140, 240);
             this.dtDataValidade.Name = "dtDataValidade";
             this.dtDataValidade.Size = new System.Drawing.Size(404, 20);
-            this.dtDataValidade.TabIndex = 9;
+            this.dtDataValidade.TabIndex = 8;
             // 
             // cbEmpresas
             // 
@@ -107,7 +107,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.Clientes
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(90, 58);
+            this.label3.Location = new System.Drawing.Point(90, 90);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(38, 13);
             this.label3.TabIndex = 13;
@@ -188,10 +188,10 @@ namespace LocadoraVeiculo.WindowsApp.Features.Clientes
             // rbFisico
             // 
             this.rbFisico.AutoSize = true;
-            this.rbFisico.Location = new System.Drawing.Point(225, 77);
+            this.rbFisico.Location = new System.Drawing.Point(218, 60);
             this.rbFisico.Name = "rbFisico";
             this.rbFisico.Size = new System.Drawing.Size(90, 17);
-            this.rbFisico.TabIndex = 22;
+            this.rbFisico.TabIndex = 0;
             this.rbFisico.Text = "Pessoa Fìsica";
             this.rbFisico.UseVisualStyleBackColor = true;
             this.rbFisico.CheckedChanged += new System.EventHandler(this.rbFisico_CheckedChanged);
@@ -199,10 +199,10 @@ namespace LocadoraVeiculo.WindowsApp.Features.Clientes
             // rbJuridico
             // 
             this.rbJuridico.AutoSize = true;
-            this.rbJuridico.Location = new System.Drawing.Point(316, 77);
+            this.rbJuridico.Location = new System.Drawing.Point(309, 60);
             this.rbJuridico.Name = "rbJuridico";
             this.rbJuridico.Size = new System.Drawing.Size(101, 17);
-            this.rbJuridico.TabIndex = 23;
+            this.rbJuridico.TabIndex = 1;
             this.rbJuridico.Text = "Pessoa Jurídica";
             this.rbJuridico.UseVisualStyleBackColor = true;
             this.rbJuridico.CheckedChanged += new System.EventHandler(this.rbJuridico_CheckedChanged);
@@ -213,7 +213,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.Clientes
             this.btnCancelar.Location = new System.Drawing.Point(550, 356);
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Size = new System.Drawing.Size(75, 23);
-            this.btnCancelar.TabIndex = 36;
+            this.btnCancelar.TabIndex = 12;
             this.btnCancelar.Text = "Cancelar";
             this.btnCancelar.UseVisualStyleBackColor = true;
             // 
@@ -223,7 +223,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.Clientes
             this.btnGravar.Location = new System.Drawing.Point(469, 356);
             this.btnGravar.Name = "btnGravar";
             this.btnGravar.Size = new System.Drawing.Size(75, 23);
-            this.btnGravar.TabIndex = 35;
+            this.btnGravar.TabIndex = 11;
             this.btnGravar.Text = "Gravar";
             this.btnGravar.UseVisualStyleBackColor = true;
             this.btnGravar.Click += new System.EventHandler(this.btnGravar_Click);
@@ -234,7 +234,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.Clientes
             this.mskTelefone.Mask = "(00)00000-0000";
             this.mskTelefone.Name = "mskTelefone";
             this.mskTelefone.Size = new System.Drawing.Size(404, 20);
-            this.mskTelefone.TabIndex = 37;
+            this.mskTelefone.TabIndex = 4;
             // 
             // mskCpf
             // 
@@ -243,7 +243,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.Clientes
             this.mskCpf.Mask = "000.000.000-00";
             this.mskCpf.Name = "mskCpf";
             this.mskCpf.Size = new System.Drawing.Size(404, 20);
-            this.mskCpf.TabIndex = 38;
+            this.mskCpf.TabIndex = 5;
             // 
             // mskCnpj
             // 
@@ -252,7 +252,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.Clientes
             this.mskCnpj.Mask = "00.000.000/0000-00";
             this.mskCnpj.Name = "mskCnpj";
             this.mskCnpj.Size = new System.Drawing.Size(404, 20);
-            this.mskCnpj.TabIndex = 39;
+            this.mskCnpj.TabIndex = 6;
             // 
             // mskRg
             // 
@@ -261,7 +261,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.Clientes
             this.mskRg.Mask = "0.000.000";
             this.mskRg.Name = "mskRg";
             this.mskRg.Size = new System.Drawing.Size(404, 20);
-            this.mskRg.TabIndex = 41;
+            this.mskRg.TabIndex = 9;
             // 
             // mskCnh
             // 
@@ -270,7 +270,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.Clientes
             this.mskCnh.Mask = "00000000000";
             this.mskCnh.Name = "mskCnh";
             this.mskCnh.Size = new System.Drawing.Size(404, 20);
-            this.mskCnh.TabIndex = 42;
+            this.mskCnh.TabIndex = 7;
             // 
             // TelaClienteForm
             // 
@@ -306,6 +306,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.Clientes
             this.Name = "TelaClienteForm";
             this.ShowIcon = false;
             this.ShowInTaskbar = false;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Cadastro de Clientes";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.TelaClienteForm_FormClosing);
             this.ResumeLayout(false);
