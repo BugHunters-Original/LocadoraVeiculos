@@ -52,5 +52,33 @@ namespace LocadoraVeiculo.WindowsApp.Features.Combustivel
                 DialogResult = DialogResult.None;
             }
         }
+
+        private void textBox1_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) &&
+                (e.KeyChar != '.'))
+            {
+                e.Handled = true;
+            }
+
+            if ((e.KeyChar == '.') && ((sender as TextBox).Text.IndexOf('.') > -1))
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void txtBoxZerado_Leave(object sender, EventArgs e)
+        {
+            foreach (Control item in tabControl1.SelectedTab.Controls)
+            {
+                if (item is TextBox)
+                { 
+                    if (String.IsNullOrEmpty(item.Text))
+                    {
+                        item.Text = "0";
+                    }
+                }        
+            }
+        }
     }
 }

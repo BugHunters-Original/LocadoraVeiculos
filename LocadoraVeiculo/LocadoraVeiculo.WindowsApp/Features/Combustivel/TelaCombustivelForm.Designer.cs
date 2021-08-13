@@ -52,11 +52,12 @@ namespace LocadoraVeiculo.WindowsApp.Features.Combustivel
             this.tabControl1.Controls.Add(this.tabPage1);
             this.tabControl1.Controls.Add(this.tabPage2);
             this.tabControl1.Controls.Add(this.tabPage3);
-            this.tabControl1.Location = new System.Drawing.Point(12, 12);
+            this.tabControl1.Location = new System.Drawing.Point(13, 12);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
             this.tabControl1.Size = new System.Drawing.Size(173, 171);
             this.tabControl1.TabIndex = 0;
+            this.tabControl1.Leave += new System.EventHandler(this.txtBoxZerado_Leave);
             // 
             // tabPage1
             // 
@@ -69,6 +70,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.Combustivel
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "GASOLINA";
             this.tabPage1.UseVisualStyleBackColor = true;
+            this.tabPage1.Leave += new System.EventHandler(this.txtBoxZerado_Leave);
             // 
             // label1
             // 
@@ -85,6 +87,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.Combustivel
             this.txtGasolina.Name = "txtGasolina";
             this.txtGasolina.Size = new System.Drawing.Size(100, 20);
             this.txtGasolina.TabIndex = 0;
+            this.txtGasolina.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox1_KeyPress);
             // 
             // tabPage2
             // 
@@ -97,11 +100,12 @@ namespace LocadoraVeiculo.WindowsApp.Features.Combustivel
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "ALCOOL";
             this.tabPage2.UseVisualStyleBackColor = true;
+            this.tabPage2.Leave += new System.EventHandler(this.txtBoxZerado_Leave);
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(31, 32);
+            this.label2.Location = new System.Drawing.Point(30, 35);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(44, 13);
             this.label2.TabIndex = 3;
@@ -109,7 +113,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.Combustivel
             // 
             // txtAlcool
             // 
-            this.txtAlcool.Location = new System.Drawing.Point(34, 48);
+            this.txtAlcool.Location = new System.Drawing.Point(33, 51);
             this.txtAlcool.Name = "txtAlcool";
             this.txtAlcool.Size = new System.Drawing.Size(100, 20);
             this.txtAlcool.TabIndex = 2;
@@ -125,11 +129,12 @@ namespace LocadoraVeiculo.WindowsApp.Features.Combustivel
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "DIESEL";
             this.tabPage3.UseVisualStyleBackColor = true;
+            this.tabPage3.Leave += new System.EventHandler(this.txtBoxZerado_Leave);
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(32, 33);
+            this.label3.Location = new System.Drawing.Point(30, 35);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(44, 13);
             this.label3.TabIndex = 3;
@@ -137,10 +142,11 @@ namespace LocadoraVeiculo.WindowsApp.Features.Combustivel
             // 
             // txtDiesel
             // 
-            this.txtDiesel.Location = new System.Drawing.Point(35, 49);
+            this.txtDiesel.Location = new System.Drawing.Point(33, 51);
             this.txtDiesel.Name = "txtDiesel";
             this.txtDiesel.Size = new System.Drawing.Size(100, 20);
             this.txtDiesel.TabIndex = 2;
+            this.txtDiesel.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox1_KeyPress);
             // 
             // btnSalvar
             // 
@@ -155,7 +161,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.Combustivel
             // 
             // btnCancelar
             // 
-            this.btnCancelar.DialogResult = System.Windows.Forms.DialogResult.OK;
+            this.btnCancelar.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btnCancelar.Location = new System.Drawing.Point(187, 156);
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Size = new System.Drawing.Size(75, 23);

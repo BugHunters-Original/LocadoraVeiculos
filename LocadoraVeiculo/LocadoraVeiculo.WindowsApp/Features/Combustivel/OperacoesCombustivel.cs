@@ -27,9 +27,17 @@ namespace LocadoraVeiculo.WindowsApp.Features.Combustivel
 
             if (tela.ShowDialog() == DialogResult.OK)
             {
-                controlador.Editar(1, tela.Combustivel);
-                TelaPrincipalForm.Instancia.AtualizarRodape($"Preço Combustiveis: editada com sucesso");
-            }
+                string editou = controlador.Editar(1, tela.Combustivel);
+
+                if (editou == "ESTA_VALIDO")
+                {
+                    TelaConfigGeralForm.Instancia.AtualizarRodape($"Preço Combustiveis: editada com sucesso");
+                }
+                else
+                {
+                    MessageBox.Show(editou, "Edição de combustível", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+            }  
         }
     }
 }
