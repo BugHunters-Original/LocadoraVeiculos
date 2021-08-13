@@ -91,14 +91,14 @@ namespace LocadoraVeiculo.WindowsApp.Features.TaxaServico
             this.txtNome.Location = new System.Drawing.Point(130, 82);
             this.txtNome.Name = "txtNome";
             this.txtNome.Size = new System.Drawing.Size(160, 20);
-            this.txtNome.TabIndex = 5;
+            this.txtNome.TabIndex = 0;
             // 
             // txtPreco
             // 
             this.txtPreco.Location = new System.Drawing.Point(130, 112);
             this.txtPreco.Name = "txtPreco";
             this.txtPreco.Size = new System.Drawing.Size(160, 20);
-            this.txtPreco.TabIndex = 6;
+            this.txtPreco.TabIndex = 1;
             // 
             // rdFixo
             // 
@@ -106,7 +106,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.TaxaServico
             this.rdFixo.Location = new System.Drawing.Point(132, 146);
             this.rdFixo.Name = "rdFixo";
             this.rdFixo.Size = new System.Drawing.Size(44, 17);
-            this.rdFixo.TabIndex = 7;
+            this.rdFixo.TabIndex = 2;
             this.rdFixo.TabStop = true;
             this.rdFixo.Text = "Fixo";
             this.rdFixo.UseVisualStyleBackColor = true;
@@ -117,7 +117,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.TaxaServico
             this.rdDiario.Location = new System.Drawing.Point(238, 146);
             this.rdDiario.Name = "rdDiario";
             this.rdDiario.Size = new System.Drawing.Size(52, 17);
-            this.rdDiario.TabIndex = 8;
+            this.rdDiario.TabIndex = 3;
             this.rdDiario.TabStop = true;
             this.rdDiario.Text = "Diário";
             this.rdDiario.UseVisualStyleBackColor = true;
@@ -128,7 +128,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.TaxaServico
             this.btnGravar.Location = new System.Drawing.Point(240, 235);
             this.btnGravar.Name = "btnGravar";
             this.btnGravar.Size = new System.Drawing.Size(75, 23);
-            this.btnGravar.TabIndex = 9;
+            this.btnGravar.TabIndex = 4;
             this.btnGravar.Text = "GRAVAR";
             this.btnGravar.UseVisualStyleBackColor = true;
             this.btnGravar.Click += new System.EventHandler(this.btnGravar_Click);
