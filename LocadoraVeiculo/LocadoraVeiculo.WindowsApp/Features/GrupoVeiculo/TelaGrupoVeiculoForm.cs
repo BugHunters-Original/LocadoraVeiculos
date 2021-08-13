@@ -77,7 +77,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.GrupoVeiculo
         private void txtBoxZerado_Leave(object sender, EventArgs e)
         {
             foreach (Control item in tabControl1.SelectedTab.Controls)
-            {
+            { 
                 if (String.IsNullOrEmpty(item.Text))
                 {
                     item.Text = "0";
