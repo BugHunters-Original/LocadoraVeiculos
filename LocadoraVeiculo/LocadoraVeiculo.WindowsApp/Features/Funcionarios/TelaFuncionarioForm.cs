@@ -49,8 +49,10 @@ namespace LocadoraVeiculo.WindowsApp.Features.Funcionarios
             string cpf = text_CPFFuncionario.Text;
             string usuario = text_UsuarioFuncionario.Text;
             string senha = text_SenhaFuncionario.Text;
+            decimal? salario = null;
+            if (!string.IsNullOrEmpty(text_salarioFuncionario.Text))
+                salario = Convert.ToDecimal(text_salarioFuncionario.Text);
 
-            decimal? salario = Convert.ToDecimal(text_salarioFuncionario.Text);
             DateTime dataEntrada = date_EntradaFuncionario.Value;
 
 

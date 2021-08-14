@@ -32,7 +32,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.Clientes
             string tipo = tabelaClientes.ObtemTipo();
             if (id == 0)
             {
-                MessageBox.Show("Selecione um cliente para poder editar!", "Edição de Clientes",
+                MessageBox.Show("Selecione um Cliente para poder editar!", "Edição de Clientes",
                     MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return;
             }
@@ -69,7 +69,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.Clientes
             string tipo = tabelaClientes.ObtemTipo();
             if (id == 0)
             {
-                MessageBox.Show("Selecione um cliente para poder excluir!", "Exclusão de Clientes",
+                MessageBox.Show("Selecione um Cliente para poder excluir!", "Exclusão de Clientes",
                     MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return;
             }
@@ -80,7 +80,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.Clientes
             else
                 clienteSelecionado = controladorCNPJ.SelecionarPorId(id);
 
-            if (MessageBox.Show($"Tem certeza que deseja excluir o cliente: [{clienteSelecionado}] ?",
+            if (MessageBox.Show($"Tem certeza que deseja excluir o Cliente: [{clienteSelecionado}] ?",
                 "Exclusão de Clientes", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK)
             {
                 if (clienteSelecionado is ClienteCPF)

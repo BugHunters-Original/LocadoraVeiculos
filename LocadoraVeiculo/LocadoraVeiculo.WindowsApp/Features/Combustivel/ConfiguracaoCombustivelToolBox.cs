@@ -15,12 +15,12 @@ namespace LocadoraVeiculo.WindowsApp.Features.Combustivel
         }
         public string TipoCadastro
         {
-            get { return "Configuração de combustíveis"; }
+            get { return "Configuração de Combustíveis"; }
         }
 
         public string ToolTipEditar
         {
-            get { return "Editar o preço de combustíveis"; }
+            get { return "Editar o preço de Combustíveis"; }
         }
 
         public string ToolTipExcluir

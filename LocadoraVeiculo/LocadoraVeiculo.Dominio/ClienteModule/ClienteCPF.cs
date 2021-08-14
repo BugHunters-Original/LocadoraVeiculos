@@ -72,7 +72,7 @@ namespace LocadoraVeiculo.ClienteModule
             if (string.IsNullOrEmpty(Telefone) || Telefone.Length != 14)
                 valido += QuebraDeLinha(valido) + "O campo Telefone está inválido";
 
-            if (string.IsNullOrEmpty(Cpf) || Cpf.Length != 14)
+            if (Cpf.Length != 14)
                 valido += QuebraDeLinha(valido) + "O campo CPF está inválido";
 
             if (string.IsNullOrEmpty(Rg) || Rg.Length != 9)

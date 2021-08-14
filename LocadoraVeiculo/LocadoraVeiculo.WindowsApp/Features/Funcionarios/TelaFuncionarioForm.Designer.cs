@@ -29,6 +29,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.Funcionarios
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(TelaFuncionarioForm));
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
@@ -184,6 +185,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.Funcionarios
             this.text_salarioFuncionario.Name = "text_salarioFuncionario";
             this.text_salarioFuncionario.Size = new System.Drawing.Size(100, 20);
             this.text_salarioFuncionario.TabIndex = 3;
+            this.text_salarioFuncionario.Text = "0";
             this.text_salarioFuncionario.ValidatingType = typeof(int);
             // 
             // TelaFuncionarioForm
@@ -207,8 +209,11 @@ namespace LocadoraVeiculo.WindowsApp.Features.Funcionarios
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "TelaFuncionarioForm";
-            this.ShowIcon = false;
+            this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Cadastro de Funcionários";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.TelaFuncionarioForm_FormClosing);

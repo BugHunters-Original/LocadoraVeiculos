@@ -9,15 +9,15 @@ namespace LocadoraVeiculo.WindowsApp.Features.TaxaServico
 {
     class ConfiguracaoTaxaServicoToolBox : IConfiguracaoToolBox
     {
-        public string ToolTipAdicionar => "Adicionar Taxa ou Serviço";
+        public string ToolTipAdicionar => "Adicionar uma Taxa e Serviço";
 
-        public string TipoCadastro => "Cadastro de Taxa ou Serviço";
+        public string TipoCadastro => "Cadastro de Taxas e Serviços";
 
-        public string ToolTipEditar => "Editar uma Taxa ou Serviço";
+        public string ToolTipEditar => "Editar uma Taxa e Serviço";
 
-        public string ToolTipExcluir => "Excluir uma Taxa ou Serviço";
+        public string ToolTipExcluir => "Excluir uma Taxa e Serviço";
 
-        public string ToolTipFiltrar => "Filtrar Taxa ou Serviço";
+        public string ToolTipFiltrar => "Filtrar Taxas e Serviços";
 
         public string ToolTipDevolver => "";
 

@@ -28,7 +28,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.GrupoVeiculo
                 List<GrupoVeiculoModule.GrupoVeiculo> grupoVeiculos = controlador.SelecionarTodos();
                 tabelaGrupoVeiculo.AtualizarRegistros(grupoVeiculos);
 
-                TelaConfigGeralForm.Instancia.AtualizarRodape($"Grupo de Veiculo: [{tela.GrupoContato.categoriaVeiculo}] inserido com sucesso");
+                TelaPrincipalForm.Instancia.AtualizarRodape($"Grupo de Veiculos: [{tela.GrupoContato.categoriaVeiculo}] inserido com sucesso");
             }
         }
 
@@ -38,7 +38,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.GrupoVeiculo
 
             if (id == 0)
             {
-                MessageBox.Show("Selecione um grupo de veiculo para poder editar!", "Edição de Grupo de Veiculo",
+                MessageBox.Show("Selecione um Grupo de Veiculos para poder editar!", "Edição de Grupo de Veiculos",
                     MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return;
             }
@@ -56,7 +56,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.GrupoVeiculo
                 List<GrupoVeiculoModule.GrupoVeiculo> grupoVeiculos = controlador.SelecionarTodos();
                 tabelaGrupoVeiculo.AtualizarRegistros(grupoVeiculos);
 
-                TelaConfigGeralForm.Instancia.AtualizarRodape($"Grupo de Veiculo: [{tela.GrupoContato.categoriaVeiculo}] editada com sucesso");
+                TelaPrincipalForm.Instancia.AtualizarRodape($"Grupo de Veiculos: [{tela.GrupoContato.categoriaVeiculo}] editado com sucesso");
             }
         }
 
@@ -73,15 +73,15 @@ namespace LocadoraVeiculo.WindowsApp.Features.GrupoVeiculo
 
             if (id == 0)
             {
-                MessageBox.Show("Selecione um grupo de veículo para poder excluir!", "Exclusão de Grupo de Veiculo",
+                MessageBox.Show("Selecione um Grupo de Veículos para poder excluir!", "Exclusão de Grupo de Veiculos",
                     MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return;
             }
 
             GrupoVeiculoModule.GrupoVeiculo grupoVeiculoSelecionado = controlador.SelecionarPorId(id);
 
-            if (MessageBox.Show($"Tem certeza que deseja excluir o grupo de veículo: [{grupoVeiculoSelecionado.categoriaVeiculo}] ?",
-                "Exclusão de Grupo de Veiculo", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK)
+            if (MessageBox.Show($"Tem certeza que deseja excluir o Grupo de Veículos: [{grupoVeiculoSelecionado.categoriaVeiculo}] ?",
+                "Exclusão de Grupo de Veiculos", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK)
             {
                 bool excluiu = controlador.Excluir(id);
 
@@ -90,12 +90,12 @@ namespace LocadoraVeiculo.WindowsApp.Features.GrupoVeiculo
                     List<GrupoVeiculoModule.GrupoVeiculo> grupoVeiculos = controlador.SelecionarTodos();
                     tabelaGrupoVeiculo.AtualizarRegistros(grupoVeiculos);
 
-                    TelaConfigGeralForm.Instancia.AtualizarRodape($"Grupo de Veiculo: [{grupoVeiculoSelecionado.categoriaVeiculo}] removido com sucesso");
+                    TelaPrincipalForm.Instancia.AtualizarRodape($"Grupo de Veiculos: [{grupoVeiculoSelecionado.categoriaVeiculo}] removido com sucesso");
                 }
                 else
                 {
-                    MessageBox.Show("Remova primeiro os veículos vinculados ao tipo e tente novamente", 
-                        "Exclusão de Grupos de Veiculo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("Remova primeiro os Veículos vinculados ao tipo e tente novamente",
+                        "Exclusão de Grupos de Veiculos", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
         }

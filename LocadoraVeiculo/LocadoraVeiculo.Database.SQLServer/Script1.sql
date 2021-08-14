@@ -25,3 +25,6 @@ delete from TBVeiculos
 select * from TBClienteCPF
 delete from TBClienteCPF
 DBCC CHECKIDENT ( TBClienteCPF, RESEED )
+
+
+DELETE FROM TBTaxasServicos

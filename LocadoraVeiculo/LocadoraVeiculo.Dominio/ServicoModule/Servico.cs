@@ -6,14 +6,14 @@ namespace LocadoraVeiculo.ServicoModule
 {
     public class Servico : EntidadeBase, IEquatable<Servico>
     {
-        public Servico(string nome, decimal preco, int tipoCalculo)
+        public Servico(string nome, decimal? preco, int tipoCalculo)
         {
             Nome = nome;
             Preco = preco;
             TipoCalculo = tipoCalculo;
         }
         public string Nome { get; set; }
-        public decimal Preco { get; set; }
+        public decimal? Preco { get; set; }
         public int TipoCalculo { get; set; }
         public override string Validar()
         {
@@ -22,7 +22,7 @@ namespace LocadoraVeiculo.ServicoModule
             if (string.IsNullOrEmpty(Nome))
                 valido += "O campo Nome está inválido";
 
-            if (Preco <= 0)
+            if (Preco <= 0 || Preco == null)
                 valido += QuebraDeLinha(valido) + "O campo Preço está inválido";
 
             if (TipoCalculo != 1 && TipoCalculo != 0)
