@@ -37,28 +37,28 @@ namespace LocadoraVeiculo.Controladores.LocacaoModule
                         @ID_CLIENTE
 	                )";
 
-        private const string sqlEditarCondutor =
-            @"UPDATE TBCLIENTECPF
+        private const string sqlEditarLocacao =
+            @"UPDATE TBLOCACAO
                     SET
-		                [NOMEC] = @NOMEC, 
-		                [ENDERECOC] = @ENDERECOC, 
-		                [TELEFONEC] = @TELEFONEC,
-                        [CPF] = @CPF, 
-		                [RG] = @RG,
-                        [CNH] = @CNH,
-                        [DATA_VALIDADE] = @DATA_VALIDADE,
-                        [ID_CLIENTE] = @ID_CLIENTE
+	                (
+		                [ID_CONDUTOR] = @ID_CONDUTOR, 
+		                [ID_CLIENTELOCADOR] = @ID_CLIENTELOCADOR, 
+		                [ID_VEICULO] = @ID_VEICULO,
+                        [DATA_SAIDA] = @DATA_SAIDA, 
+		                [DATA_RETORNOESPERADO] = @DATA_RETORNOESPERADO,
+                        [PLANO] = @PLANO,
+                        [TIPOCLIENTE] = @TÍPOCLIENTE
                     WHERE 
                         ID = @ID";
 
-        private const string sqlExcluirCondutor =
+        private const string sqlExcluirLocacao =
             @"DELETE 
 	                FROM
-                        TBCLIENTECPF
+                        TBLOCACAO
                     WHERE 
                         ID = @ID";
 
-        private const string sqlSelecionarCondutorPorId =
+        private const string sqlSelecionarLocacaoPorId =
             @"SELECT
                         CD.[ID],
 		                CD.[NOMEC], 
@@ -74,14 +74,14 @@ namespace LocadoraVeiculo.Controladores.LocacaoModule
                         CT.[TELEFONE],
                         CT.[CNPJ]
 	                FROM
-                        TBCLIENTECPF AS CD LEFT JOIN
+                        TBLOCACAO AS LC LEFT JOIN
                         TBCLIENTECNPJ AS CT
                     ON
                         CT.ID = CD.ID_CLIENTE
                     WHERE 
                         CD.ID = @ID";
 
-        private const string sqlSelecionarTodosCondutores =
+        private const string sqlSelecionarTodasLocacoes =
             @"SELECT
                         CD.[ID],
 		                CD.[NOMEC], 
@@ -102,11 +102,11 @@ namespace LocadoraVeiculo.Controladores.LocacaoModule
                     ON
                         CT.ID = CD.ID_CLIENTE";
 
-        private const string sqlExisteCondutor =
+        private const string sqlExisteLocacao =
             @"SELECT 
                 COUNT(*) 
             FROM 
-                [TBCLIENTECPF]
+                [TBLOCACAO]
             WHERE 
                 [ID] = @ID";
         public override string Editar(int id, LocacaoVeiculo registro)
