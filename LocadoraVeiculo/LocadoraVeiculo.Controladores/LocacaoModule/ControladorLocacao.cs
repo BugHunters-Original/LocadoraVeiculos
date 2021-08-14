@@ -12,7 +12,7 @@ using System.Data;
 
 namespace LocadoraVeiculo.Controladores.LocacaoModule
 {
-    public class ControladorLocacao : Controlador<Locacao>
+    public class ControladorLocacao : Controlador<LocacaoVeiculo>
     {
         private const string sqlInserirLocacao =
        @"INSERT INTO TBLOCACAO
@@ -141,7 +141,7 @@ namespace LocadoraVeiculo.Controladores.LocacaoModule
             return Db.Exists(sqlExisteLocacao, AdicionarParametro("ID", id));
         }
 
-        public override string InserirNovo(Locacao registro)
+        public override string InserirNovo(LocacaoVeiculo registro)
         {
             string resultadoValidacao = registro.Validar();
 
@@ -153,12 +153,12 @@ namespace LocadoraVeiculo.Controladores.LocacaoModule
             return resultadoValidacao;
         }
 
-        public override Locacao SelecionarPorId(int id)
+        public override LocacaoVeiculo SelecionarPorId(int id)
         {
             return Db.Get(sqlSelecionarLocacaoPorId, ConverterEmLocacao, AdicionarParametro("ID", id));
         }
 
-        public override List<Locacao> SelecionarTodos()
+        public override List<LocacaoVeiculo> SelecionarTodos()
         {
             return Db.GetAll(sqlSelecionarTodasLocacoes, ConverterEmLocacao);
         }
