@@ -31,7 +31,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.GrupoVeiculo
         }
 
         private void btnGravar_Click(object sender, EventArgs e)
-        {           
+        {
             string categoria = txtNome.Text;
             decimal valor_Diario_PDiario = Convert.ToDecimal(txtValorDiarioPDiario.Text);
             decimal preco_KMDiario = Convert.ToDecimal(txtPrecoKmDiario.Text);
@@ -48,7 +48,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.GrupoVeiculo
             {
                 string primeiroErro = new StringReader(resultadoValidacao).ReadLine();
 
-                TelaConfigGeralForm.Instancia.AtualizarRodape(primeiroErro);
+                TelaPrincipalForm.Instancia.AtualizarRodape(primeiroErro);
 
                 DialogResult = DialogResult.None;
             }
@@ -56,7 +56,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.GrupoVeiculo
 
         private void TelaGrupoVeiculoForm_FormClosing(object sender, FormClosingEventArgs e)
         {
-            TelaConfigGeralForm.Instancia.AtualizarRodape("");
+            TelaPrincipalForm.Instancia.AtualizarRodape("");
         }
 
         private void textBox1_KeyPress(object sender, KeyPressEventArgs e)
@@ -77,7 +77,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.GrupoVeiculo
         private void txtBoxZerado_Leave(object sender, EventArgs e)
         {
             foreach (Control item in tabControl1.SelectedTab.Controls)
-            { 
+            {
                 if (String.IsNullOrEmpty(item.Text))
                 {
                     item.Text = "0";

@@ -1,5 +1,6 @@
 ﻿using LocadoraVeiculo.Shared;
 using System;
+using System.Collections.Generic;
 
 namespace LocadoraVeiculo.FuncionarioModule
 {
@@ -72,6 +73,23 @@ namespace LocadoraVeiculo.FuncionarioModule
                 && Senha == other.Senha;
         }
 
-
+        public override int GetHashCode()
+        {
+            int hashCode = 445399706;
+            hashCode = hashCode * -1521134295 + Id.GetHashCode();
+            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(nome);
+            hashCode = hashCode * -1521134295 + salario.GetHashCode();
+            hashCode = hashCode * -1521134295 + dataEntrada.GetHashCode();
+            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(cpf_funcionario);
+            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(usuario);
+            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(senha);
+            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(Nome);
+            hashCode = hashCode * -1521134295 + Salario.GetHashCode();
+            hashCode = hashCode * -1521134295 + DataEntrada.GetHashCode();
+            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(Cpf_funcionario);
+            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(Usuario);
+            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(Senha);
+            return hashCode;
+        }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using LocadoraVeiculo.Shared;
 using System;
+using System.Collections.Generic;
 
 namespace LocadoraVeiculo.GrupoVeiculoModule
 {
@@ -70,6 +71,19 @@ namespace LocadoraVeiculo.GrupoVeiculoModule
                 && valor_Diario_PControlado == other.valor_Diario_PControlado
                 && kmDia__KMControlado == other.kmDia__KMControlado
                 && preco_KMLivre == other.preco_KMLivre;
+        }
+
+        public override int GetHashCode()
+        {
+            int hashCode = 238325422;
+            hashCode = hashCode * -1521134295 + Id.GetHashCode();
+            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(categoriaVeiculo);
+            hashCode = hashCode * -1521134295 + valor_Diario_PDiario.GetHashCode();
+            hashCode = hashCode * -1521134295 + preco_KMDiario.GetHashCode();
+            hashCode = hashCode * -1521134295 + valor_Diario_PControlado.GetHashCode();
+            hashCode = hashCode * -1521134295 + kmDia__KMControlado.GetHashCode();
+            hashCode = hashCode * -1521134295 + preco_KMLivre.GetHashCode();
+            return hashCode;
         }
     }
 }

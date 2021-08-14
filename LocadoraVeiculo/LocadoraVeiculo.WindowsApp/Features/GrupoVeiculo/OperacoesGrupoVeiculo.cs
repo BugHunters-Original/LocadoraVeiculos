@@ -28,7 +28,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.GrupoVeiculo
                 List<GrupoVeiculoModule.GrupoVeiculo> grupoVeiculos = controlador.SelecionarTodos();
                 tabelaGrupoVeiculo.AtualizarRegistros(grupoVeiculos);
 
-                TelaConfigGeralForm.Instancia.AtualizarRodape($"Grupo de Veiculo: [{tela.GrupoContato.categoriaVeiculo}] inserido com sucesso");
+                TelaPrincipalForm.Instancia.AtualizarRodape($"Grupo de Veiculo: [{tela.GrupoContato.categoriaVeiculo}] inserido com sucesso");
             }
         }
 
@@ -56,7 +56,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.GrupoVeiculo
                 List<GrupoVeiculoModule.GrupoVeiculo> grupoVeiculos = controlador.SelecionarTodos();
                 tabelaGrupoVeiculo.AtualizarRegistros(grupoVeiculos);
 
-                TelaConfigGeralForm.Instancia.AtualizarRodape($"Grupo de Veiculo: [{tela.GrupoContato.categoriaVeiculo}] editada com sucesso");
+                TelaPrincipalForm.Instancia.AtualizarRodape($"Grupo de Veiculo: [{tela.GrupoContato.categoriaVeiculo}] editada com sucesso");
             }
         }
 
@@ -90,11 +90,11 @@ namespace LocadoraVeiculo.WindowsApp.Features.GrupoVeiculo
                     List<GrupoVeiculoModule.GrupoVeiculo> grupoVeiculos = controlador.SelecionarTodos();
                     tabelaGrupoVeiculo.AtualizarRegistros(grupoVeiculos);
 
-                    TelaConfigGeralForm.Instancia.AtualizarRodape($"Grupo de Veiculo: [{grupoVeiculoSelecionado.categoriaVeiculo}] removido com sucesso");
+                    TelaPrincipalForm.Instancia.AtualizarRodape($"Grupo de Veiculo: [{grupoVeiculoSelecionado.categoriaVeiculo}] removido com sucesso");
                 }
                 else
                 {
-                    MessageBox.Show("Remova primeiro os veículos vinculados ao tipo e tente novamente", 
+                    MessageBox.Show("Remova primeiro os veículos vinculados ao tipo e tente novamente",
                         "Exclusão de Grupos de Veiculo", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }

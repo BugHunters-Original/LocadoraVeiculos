@@ -12,6 +12,10 @@ using LocadoraVeiculo.WindowsApp.Features.Veiculo;
 using LocadoraVeiculo.WindowsApp.Shared;
 using System;
 using System.Windows.Forms;
+using LocadoraVeiculo.WindowsApp.Features.TaxaServico;
+using LocadoraVeiculo.Controladores.ServicoModule;
+using LocadoraVeiculo.WindowsApp.Features.Combustivel;
+using LocadoraVeiculo.Controladores.CombustivelModule;
 
 namespace LocadoraVeiculo.WindowsApp
 {
@@ -97,7 +101,50 @@ namespace LocadoraVeiculo.WindowsApp
             ConfigurarPainelRegistros();
         }
 
+        private void grupoDeVeículosToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            btnEditar.Enabled = true;
+            btnAdicionar.Enabled = true;
+            btnExcluir.Enabled = true;
 
+            ConfiguracaoGrupoVeiculoToolBox configuracao = new ConfiguracaoGrupoVeiculoToolBox();
+
+            ConfigurarToolBox(configuracao);
+
+            AtualizarRodape(configuracao.TipoCadastro);
+
+            operacoes = new OperacoesGrupoVeiculo(new ControladorGrupoVeiculo());
+
+            ConfigurarPainelRegistros();
+        }
+        private void taxasEServiçosToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            btnEditar.Enabled = true;
+            btnAdicionar.Enabled = true;
+            btnExcluir.Enabled = true;
+
+            ConfiguracaoTaxaServicoToolBox configuracao = new ConfiguracaoTaxaServicoToolBox();
+
+            ConfigurarToolBox(configuracao);
+
+            AtualizarRodape(configuracao.TipoCadastro);
+
+            operacoes = new OperacoesTaxaServico(new ControladorServico());
+
+            ConfigurarPainelRegistros();
+        }
+        private void preçosCombustívelToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ConfiguracaoCombustivelToolBox configuracao = new ConfiguracaoCombustivelToolBox();
+
+            ConfigurarToolBox(configuracao);
+
+            AtualizarRodape(configuracao.TipoCadastro);
+
+            OperacoesCombustivel opCombustivel = new OperacoesCombustivel(new ControladorCombustivel());
+
+            opCombustivel.Editar();
+        }
         private void btnAdicionar_Click(object sender, EventArgs e)
         {
             operacoes.InserirNovoRegistro();
@@ -149,12 +196,6 @@ namespace LocadoraVeiculo.WindowsApp
             btnDevolver.Enabled = configuracao.EnabledDevolver;
         }
 
-        private void configuraçõesToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            using (TelaConfigGeralForm tela = new TelaConfigGeralForm())
-            {
-                tela.ShowDialog();
-            }
-        }
+
     }
 }
