@@ -26,7 +26,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.Locacao
 
         public string ToolTipFiltrar
         {
-            get { return "Filtrar uma Locação"; }
+            get { return "Filtrar Locações"; }
         }
 
         public string ToolTipDevolver

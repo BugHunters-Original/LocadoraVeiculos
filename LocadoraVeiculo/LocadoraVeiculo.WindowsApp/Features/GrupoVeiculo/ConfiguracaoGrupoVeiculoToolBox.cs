@@ -6,31 +6,31 @@ namespace LocadoraVeiculo.WindowsApp.Features.GrupoVeiculo
     {
         public string ToolTipAdicionar
         {
-            get { return "Adicionar um Grupo Veiculo"; }
+            get { return "Adicionar um Grupo Veículos"; }
         }
         public string TipoCadastro
         {
-            get { return "Cadastro de Grupo Veiculos"; }
+            get { return "Cadastro de Grupo de Veículos"; }
         }
 
         public string ToolTipEditar
         {
-            get { return "Editar um Grupo Veiculo"; }
+            get { return "Editar um Grupo de Veículos"; }
         }
 
         public string ToolTipExcluir
         {
-            get { return "Excluir um Grupo Veiculo"; }
+            get { return "Excluir um Grupo de Veículos"; }
         }
 
         public string ToolTipFiltrar
         {
-            get { return "Filtrar Grupo Veiculo"; }
+            get { return "Filtrar Grupo de Veículos"; }
         }
 
         public string ToolTipDevolver
         {
-            get { return "Devolver um Grupo Veiculo"; }
+            get { return "Devolver um Grupo de Veículos"; }
         }
 
         public bool EnabledFiltrar

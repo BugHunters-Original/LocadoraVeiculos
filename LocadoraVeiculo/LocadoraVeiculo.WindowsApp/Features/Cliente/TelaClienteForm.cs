@@ -137,5 +137,6 @@ namespace LocadoraVeiculo.WindowsApp.Features.Clientes
         {
             TelaPrincipalForm.Instancia.AtualizarRodape("");
         }
+
     }
 }

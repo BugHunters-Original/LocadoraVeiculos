@@ -19,13 +19,13 @@ namespace LocadoraVeiculo.CombustivelModule
             string resultadoValidacao = "";
 
             if (preco_Gasolina == null || preco_Gasolina <= 0)
-                resultadoValidacao = "O campo preço gasolina é obrigatório ou deve ser maior que 0";
+                resultadoValidacao = "O campo preço Gasolina é obrigatório ou deve ser maior que 0";
 
             if (preco_Alcool == null || preco_Alcool <= 0)
-                resultadoValidacao += QuebraDeLinha(resultadoValidacao) + "O campo preço alcool é obrigatório ou deve ser maior que 0";
+                resultadoValidacao += QuebraDeLinha(resultadoValidacao) + "O campo preço Alcool é obrigatório ou deve ser maior que 0";
 
             if (preco_Diesel == null || preco_Diesel <= 0)
-                resultadoValidacao += QuebraDeLinha(resultadoValidacao) + "O campo preço diesel é obrigatório ou deve ser maior que 0";
+                resultadoValidacao += QuebraDeLinha(resultadoValidacao) + "O campo preço Diesel é obrigatório ou deve ser maior que 0";
 
             if (resultadoValidacao == "")
                 resultadoValidacao = "ESTA_VALIDO";

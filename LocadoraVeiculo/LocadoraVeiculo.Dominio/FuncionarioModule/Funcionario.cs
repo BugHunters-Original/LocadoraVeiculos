@@ -34,14 +34,12 @@ namespace LocadoraVeiculo.FuncionarioModule
         public override string Validar()
         {
             string resultadoValidacao = "";
-            if (Cpf_funcionario.Length < 10)
-                resultadoValidacao = "O campo CPF está inválido";
 
             if (Senha.Length < 7)
-                resultadoValidacao += QuebraDeLinha(resultadoValidacao) + "O campo senha possui menos de sete dígitos";
+                resultadoValidacao += QuebraDeLinha(resultadoValidacao) + "O campo Senha possui menos de sete dígitos";
 
             if (string.IsNullOrEmpty(Nome))
-                resultadoValidacao += QuebraDeLinha(resultadoValidacao) + "Digite o nome do funcionário";
+                resultadoValidacao += QuebraDeLinha(resultadoValidacao) + "Digite o Nome do funcionário";
 
             if (DataEntrada == DateTime.MinValue)
                 resultadoValidacao += QuebraDeLinha(resultadoValidacao) + "O campo Data é obrigatório";
@@ -49,6 +47,14 @@ namespace LocadoraVeiculo.FuncionarioModule
             if (Salario <= 0)
                 resultadoValidacao += QuebraDeLinha(resultadoValidacao) + "O campo Salário é obrigatório e maior que 0";
 
+            if (Salario == null)
+                resultadoValidacao += QuebraDeLinha(resultadoValidacao) + "O campo Salário está inválido";
+
+            if(Cpf_funcionario.Length != 14)
+                resultadoValidacao += QuebraDeLinha(resultadoValidacao) + "O campo CPF está inválido";
+
+            if(string.IsNullOrEmpty(Usuario))
+                resultadoValidacao += QuebraDeLinha(resultadoValidacao) + "O campo Usuário está inválido";
 
             if (resultadoValidacao == "")
                 resultadoValidacao = "ESTA_VALIDO";

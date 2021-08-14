@@ -29,6 +29,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.GrupoVeiculo
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(TelaGrupoVeiculoForm));
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabDiario = new System.Windows.Forms.TabPage();
             this.label2 = new System.Windows.Forms.Label();
@@ -48,6 +49,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.GrupoVeiculo
             this.label7 = new System.Windows.Forms.Label();
             this.bt_GravarFuncionario = new System.Windows.Forms.Button();
             this.txtId = new System.Windows.Forms.TextBox();
+            this.btnCancelar = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabDiario.SuspendLayout();
             this.tabControlado.SuspendLayout();
@@ -228,7 +230,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.GrupoVeiculo
             // bt_GravarFuncionario
             // 
             this.bt_GravarFuncionario.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.bt_GravarFuncionario.Location = new System.Drawing.Point(385, 339);
+            this.bt_GravarFuncionario.Location = new System.Drawing.Point(453, 342);
             this.bt_GravarFuncionario.Name = "bt_GravarFuncionario";
             this.bt_GravarFuncionario.Size = new System.Drawing.Size(75, 23);
             this.bt_GravarFuncionario.TabIndex = 14;
@@ -246,23 +248,35 @@ namespace LocadoraVeiculo.WindowsApp.Features.GrupoVeiculo
             this.txtId.Size = new System.Drawing.Size(41, 20);
             this.txtId.TabIndex = 15;
             // 
+            // btnCancelar
+            // 
+            this.btnCancelar.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.btnCancelar.Location = new System.Drawing.Point(534, 342);
+            this.btnCancelar.Name = "btnCancelar";
+            this.btnCancelar.Size = new System.Drawing.Size(75, 23);
+            this.btnCancelar.TabIndex = 16;
+            this.btnCancelar.Text = "Cancelar";
+            this.btnCancelar.UseVisualStyleBackColor = true;
+            // 
             // TelaGrupoVeiculoForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(634, 391);
+            this.Controls.Add(this.btnCancelar);
             this.Controls.Add(this.txtId);
             this.Controls.Add(this.bt_GravarFuncionario);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.txtNome);
             this.Controls.Add(this.tabControl1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "TelaGrupoVeiculoForm";
-            this.ShowIcon = false;
+            this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Grupo Veículos";
+            this.Text = "Cadastro de Grupo de Veículos";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.TelaGrupoVeiculoForm_FormClosing);
             this.tabControl1.ResumeLayout(false);
             this.tabDiario.ResumeLayout(false);
@@ -297,5 +311,6 @@ namespace LocadoraVeiculo.WindowsApp.Features.GrupoVeiculo
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Button bt_GravarFuncionario;
         private System.Windows.Forms.TextBox txtId;
+        private System.Windows.Forms.Button btnCancelar;
     }
 }

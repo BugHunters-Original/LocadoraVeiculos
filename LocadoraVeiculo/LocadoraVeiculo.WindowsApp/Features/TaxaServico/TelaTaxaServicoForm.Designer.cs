@@ -29,16 +29,18 @@ namespace LocadoraVeiculo.WindowsApp.Features.TaxaServico
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(TelaTaxaServicoForm));
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.txtID = new System.Windows.Forms.TextBox();
             this.txtNome = new System.Windows.Forms.TextBox();
-            this.txtPreco = new System.Windows.Forms.TextBox();
             this.rdFixo = new System.Windows.Forms.RadioButton();
             this.rdDiario = new System.Windows.Forms.RadioButton();
             this.btnGravar = new System.Windows.Forms.Button();
+            this.btnCancelar = new System.Windows.Forms.Button();
+            this.txtPreco = new System.Windows.Forms.MaskedTextBox();
             this.SuspendLayout();
             // 
             // label1
@@ -93,13 +95,6 @@ namespace LocadoraVeiculo.WindowsApp.Features.TaxaServico
             this.txtNome.Size = new System.Drawing.Size(160, 20);
             this.txtNome.TabIndex = 0;
             // 
-            // txtPreco
-            // 
-            this.txtPreco.Location = new System.Drawing.Point(130, 112);
-            this.txtPreco.Name = "txtPreco";
-            this.txtPreco.Size = new System.Drawing.Size(160, 20);
-            this.txtPreco.TabIndex = 1;
-            // 
             // rdFixo
             // 
             this.rdFixo.AutoSize = true;
@@ -107,13 +102,13 @@ namespace LocadoraVeiculo.WindowsApp.Features.TaxaServico
             this.rdFixo.Name = "rdFixo";
             this.rdFixo.Size = new System.Drawing.Size(44, 17);
             this.rdFixo.TabIndex = 2;
-            this.rdFixo.TabStop = true;
             this.rdFixo.Text = "Fixo";
             this.rdFixo.UseVisualStyleBackColor = true;
             // 
             // rdDiario
             // 
             this.rdDiario.AutoSize = true;
+            this.rdDiario.Checked = true;
             this.rdDiario.Location = new System.Drawing.Point(238, 146);
             this.rdDiario.Name = "rdDiario";
             this.rdDiario.Size = new System.Drawing.Size(52, 17);
@@ -125,31 +120,55 @@ namespace LocadoraVeiculo.WindowsApp.Features.TaxaServico
             // btnGravar
             // 
             this.btnGravar.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.btnGravar.Location = new System.Drawing.Point(240, 235);
+            this.btnGravar.Location = new System.Drawing.Point(226, 254);
             this.btnGravar.Name = "btnGravar";
             this.btnGravar.Size = new System.Drawing.Size(75, 23);
             this.btnGravar.TabIndex = 4;
-            this.btnGravar.Text = "GRAVAR";
+            this.btnGravar.Text = "Gravar";
             this.btnGravar.UseVisualStyleBackColor = true;
             this.btnGravar.Click += new System.EventHandler(this.btnGravar_Click);
+            // 
+            // btnCancelar
+            // 
+            this.btnCancelar.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.btnCancelar.Location = new System.Drawing.Point(307, 254);
+            this.btnCancelar.Name = "btnCancelar";
+            this.btnCancelar.Size = new System.Drawing.Size(75, 23);
+            this.btnCancelar.TabIndex = 13;
+            this.btnCancelar.Text = "Cancelar";
+            this.btnCancelar.UseVisualStyleBackColor = true;
+            // 
+            // txtPreco
+            // 
+            this.txtPreco.Location = new System.Drawing.Point(130, 115);
+            this.txtPreco.Mask = "00000";
+            this.txtPreco.Name = "txtPreco";
+            this.txtPreco.Size = new System.Drawing.Size(160, 20);
+            this.txtPreco.TabIndex = 14;
             // 
             // TelaTaxaServicoForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(394, 289);
+            this.Controls.Add(this.txtPreco);
+            this.Controls.Add(this.btnCancelar);
             this.Controls.Add(this.btnGravar);
             this.Controls.Add(this.rdDiario);
             this.Controls.Add(this.rdFixo);
-            this.Controls.Add(this.txtPreco);
             this.Controls.Add(this.txtNome);
             this.Controls.Add(this.txtID);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "TelaTaxaServicoForm";
+            this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Text = "Cadastro de Taxas e Serviços";
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -163,9 +182,10 @@ namespace LocadoraVeiculo.WindowsApp.Features.TaxaServico
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.TextBox txtID;
         private System.Windows.Forms.TextBox txtNome;
-        private System.Windows.Forms.TextBox txtPreco;
         private System.Windows.Forms.RadioButton rdFixo;
         private System.Windows.Forms.RadioButton rdDiario;
         private System.Windows.Forms.Button btnGravar;
+        private System.Windows.Forms.Button btnCancelar;
+        private System.Windows.Forms.MaskedTextBox txtPreco;
     }
 }

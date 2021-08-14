@@ -246,8 +246,8 @@ namespace LocadoraVeiculo.WindowsApp
             // 
             this.preçosCombustívelToolStripMenuItem.Name = "preçosCombustívelToolStripMenuItem";
             this.preçosCombustívelToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F7;
-            this.preçosCombustívelToolStripMenuItem.Size = new System.Drawing.Size(210, 22);
-            this.preçosCombustívelToolStripMenuItem.Text = "Preços Combustível";
+            this.preçosCombustívelToolStripMenuItem.Size = new System.Drawing.Size(204, 22);
+            this.preçosCombustívelToolStripMenuItem.Text = "Preço Combustível";
             this.preçosCombustívelToolStripMenuItem.Click += new System.EventHandler(this.preçosCombustívelToolStripMenuItem_Click);
             // 
             // statusStripFooter

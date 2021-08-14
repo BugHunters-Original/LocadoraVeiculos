@@ -30,7 +30,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.TaxaServico
             int id = tabelaServico.ObtemIdSelecionado();
             if (id == 0)
             {
-                MessageBox.Show("Selecione um serviço para poder editar!", "Edição de Serviços",
+                MessageBox.Show("Selecione um Serviço para poder editar!", "Edição de Serviços",
                     MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return;
             }
@@ -59,14 +59,14 @@ namespace LocadoraVeiculo.WindowsApp.Features.TaxaServico
 
             if (id == 0)
             {
-                MessageBox.Show("Selecione um serviço para poder excluir!", "Exclusão de Serviços",
+                MessageBox.Show("Selecione um Serviço para poder excluir!", "Exclusão de Serviços",
                     MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return;
             }
 
             var servicoSelecionado = controlador.SelecionarPorId(id);
 
-            if (MessageBox.Show($"Tem certeza que deseja excluir o serviço: [{servicoSelecionado}] ?",
+            if (MessageBox.Show($"Tem certeza que deseja excluir o Serviço: [{servicoSelecionado}] ?",
                 "Exclusão de Serviços", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK)
             {
                 controlador.Excluir(id);

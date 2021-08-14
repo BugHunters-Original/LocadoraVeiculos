@@ -29,6 +29,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.Clientes
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(TelaClienteForm));
             this.txtID = new System.Windows.Forms.TextBox();
             this.txtEndereco = new System.Windows.Forms.TextBox();
             this.txtNome = new System.Windows.Forms.TextBox();
@@ -301,10 +302,10 @@ namespace LocadoraVeiculo.WindowsApp.Features.Clientes
             this.Controls.Add(this.txtNome);
             this.Controls.Add(this.txtEndereco);
             this.Controls.Add(this.txtID);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "TelaClienteForm";
-            this.ShowIcon = false;
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Cadastro de Clientes";

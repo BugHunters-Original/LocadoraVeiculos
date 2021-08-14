@@ -133,7 +133,7 @@ namespace LocadoraVeiculo.Controladores.ServicoModule
         {
             int id = Convert.ToInt32(reader["ID"]);
             string nome = Convert.ToString(reader["NOME_TAXA"]);
-            decimal preco = Convert.ToDecimal(reader["PRECO_TAXA"]);
+            decimal? preco = Convert.ToDecimal(reader["PRECO_TAXA"]);
             int tipoCalculo = Convert.ToInt32(reader["TIPO_CALCULO"]);
 
             Servico servico = new Servico(nome, preco, tipoCalculo);

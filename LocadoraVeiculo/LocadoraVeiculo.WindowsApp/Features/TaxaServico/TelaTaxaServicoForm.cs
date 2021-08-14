@@ -41,7 +41,10 @@ namespace LocadoraVeiculo.WindowsApp.Features.TaxaServico
         private void btnGravar_Click(object sender, EventArgs e)
         {
             string nome = txtNome.Text;
-            decimal preco = Convert.ToDecimal(txtPreco.Text);
+
+            decimal? preco = null;
+            if (!string.IsNullOrEmpty(txtPreco.Text))
+                preco = Convert.ToDecimal(txtPreco.Text);
 
             int tipoCalculo = 0;
             if (rdFixo.Checked == true)

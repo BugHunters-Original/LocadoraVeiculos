@@ -36,8 +36,8 @@ namespace LocadoraVeiculo.WindowsApp.Features.Combustivel
         private void btnSalvar_Click(object sender, EventArgs e)
         {
             decimal precoGasolina = Convert.ToDecimal(txtGasolina.Text);
-            decimal precoAlcool = Convert.ToDecimal(txtDiesel.Text);
-            decimal precoDiesel = Convert.ToDecimal(txtAlcool.Text);
+            decimal precoAlcool = Convert.ToDecimal(txtAlcool.Text);
+            decimal precoDiesel = Convert.ToDecimal(txtDiesel.Text);
 
             combustivel = new CombustivelModule.Combustivel(precoGasolina, precoDiesel, precoAlcool);
 
@@ -72,13 +72,15 @@ namespace LocadoraVeiculo.WindowsApp.Features.Combustivel
             foreach (Control item in tabControl1.SelectedTab.Controls)
             {
                 if (item is TextBox)
-                { 
+                {
                     if (String.IsNullOrEmpty(item.Text))
                     {
                         item.Text = "0";
                     }
-                }        
+                }
             }
         }
+
+
     }
 }

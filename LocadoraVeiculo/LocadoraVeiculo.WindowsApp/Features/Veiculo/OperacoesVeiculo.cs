@@ -43,7 +43,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.Veiculo
 
             if (id == 0)
             {
-                MessageBox.Show("Selecione um veículo para poder editar!", "Edição de Veículos",
+                MessageBox.Show("Selecione um Veículo para poder editar!", "Edição de Veículos",
                     MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return;
             }
@@ -62,7 +62,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.Veiculo
 
                 tabelaVeiculos.AtualizarRegistros(veiculos);
 
-                TelaPrincipalForm.Instancia.AtualizarRodape($"Compromisso: [{tela.veiculos.nome}] editado com sucesso");
+                TelaPrincipalForm.Instancia.AtualizarRodape($"Veículo: [{tela.veiculos.nome}] editado com sucesso");
             }
         }
 
@@ -72,14 +72,14 @@ namespace LocadoraVeiculo.WindowsApp.Features.Veiculo
 
             if (id == 0)
             {
-                MessageBox.Show("Selecione um veículo para poder excluir!", "Exclusão de Veículos",
+                MessageBox.Show("Selecione um Veículo para poder excluir!", "Exclusão de Veículos",
                     MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return;
             }
 
             VeiculoModule.Veiculo veiculoSelecionada = controlador.SelecionarPorId(id);
 
-            if (MessageBox.Show($"Tem certeza que deseja excluir o veículo: [{veiculoSelecionada.nome}] ?",
+            if (MessageBox.Show($"Tem certeza que deseja excluir o Veículo: [{veiculoSelecionada.nome}] ?",
                 "Exclusão de Veículos", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK)
             {
                 controlador.Excluir(id);

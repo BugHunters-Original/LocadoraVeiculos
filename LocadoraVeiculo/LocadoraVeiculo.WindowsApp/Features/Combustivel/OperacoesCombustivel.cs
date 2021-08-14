@@ -31,11 +31,11 @@ namespace LocadoraVeiculo.WindowsApp.Features.Combustivel
 
                 if (editou == "ESTA_VALIDO")
                 {
-                    TelaPrincipalForm.Instancia.AtualizarRodape($"Preço Combustiveis: editada com sucesso");
+                    TelaPrincipalForm.Instancia.AtualizarRodape($"Preço Combustíveis: editado com sucesso");
                 }
                 else
                 {
-                    MessageBox.Show(editou, "Edição de combustível", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBox.Show(editou, "Edição de Combustível", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
             }
         }

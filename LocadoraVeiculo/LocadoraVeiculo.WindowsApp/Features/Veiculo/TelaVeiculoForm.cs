@@ -44,8 +44,8 @@ namespace LocadoraVeiculo.WindowsApp.Features.Veiculo
                 txtNome.Text = veiculos.nome;
                 txtPlaca.Text = veiculos.numero_Placa;
                 txtChassi.Text = veiculos.numero_Chassi;
-                if (veiculos.foto != null) 
-                { 
+                if (veiculos.foto != null)
+                {
                     pictureBoxImagem.Image = (Image)(new Bitmap(ConverteByteArrayParaImagem(veiculos.foto), new Size(214, 126)));
                     pictureBoxImagem.SizeMode = PictureBoxSizeMode.StretchImage;
                 }
@@ -69,13 +69,29 @@ namespace LocadoraVeiculo.WindowsApp.Features.Veiculo
             string chassi = txtChassi.Text;
             string cor = txtCor.Text;
             string marca = txtMarca.Text;
-            int ano = Convert.ToInt32(txtAno.Text);
-            int NPortas = Convert.ToInt32(txtNPortas.Text);
-            int CapacidadeTanque = Convert.ToInt32(txtCapacidadeTanque.Text);
-            char TamanhoPortaMalas = Convert.ToChar(cmbTamanhoPortaMalas.Text);
-            int Km = Convert.ToInt32(txtKm.Text);
+
+            int? ano = null;
+            if (!string.IsNullOrEmpty(txtAno.Text))
+                ano = Convert.ToInt32(txtAno.Text);
+
+            int? NPortas = null;
+            if (!string.IsNullOrEmpty(txtNPortas.Text))
+                NPortas = Convert.ToInt32(txtNPortas.Text);
+
+            int? CapacidadeTanque = null;
+            if (!string.IsNullOrEmpty(txtCapacidadeTanque.Text))
+                CapacidadeTanque = Convert.ToInt32(txtCapacidadeTanque.Text);
+
+            int? Km = null;
+            if (!string.IsNullOrEmpty(txtKm.Text))
+                Km = Convert.ToInt32(txtKm.Text);
+
+            char TamanhoPortaMalas = ' ';
+            if (cmbTamanhoPortaMalas.Text.ToString() != "")
+                TamanhoPortaMalas = Convert.ToChar(cmbTamanhoPortaMalas.Text);
             string TipoCombustivel = cmbTipoCombustivel.Text;
             int disponibidade = 1;
+
             GrupoVeiculoModule.GrupoVeiculo grupo = (GrupoVeiculoModule.GrupoVeiculo)cmbGrupo.SelectedItem;
 
             veiculos = new VeiculoModule.Veiculo(nome, placa, chassi, foto, cor, marca, ano, NPortas, CapacidadeTanque, TamanhoPortaMalas, Km, TipoCombustivel, disponibidade, grupo);
@@ -102,7 +118,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.Veiculo
 
                 pictureBoxImagem.Image = (Image)(new Bitmap(pictureBoxImagem.Image, new Size(214, 126)));
 
-                pictureBoxImagem.SizeMode = PictureBoxSizeMode.StretchImage; 
+                pictureBoxImagem.SizeMode = PictureBoxSizeMode.StretchImage;
             }
         }
 

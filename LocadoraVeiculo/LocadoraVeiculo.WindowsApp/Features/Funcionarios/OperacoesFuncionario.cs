@@ -32,7 +32,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.Funcionarios
 
             if (id == 0)
             {
-                MessageBox.Show("Selecione um funcionário para poder editar!", "Edição de Funcionário",
+                MessageBox.Show("Selecione um Funcionário para poder editar!", "Edição de Funcionário",
                     MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return;
             }
@@ -69,7 +69,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.Funcionarios
 
             Funcionario funcionarioSelecionado = controlador.SelecionarPorId(id);
 
-            if (MessageBox.Show($"Tem certeza que deseja excluir o funcionário: [{funcionarioSelecionado.Nome}] ?",
+            if (MessageBox.Show($"Tem certeza que deseja excluir o Funcionário: [{funcionarioSelecionado.Nome}] ?",
                 "Exclusão de Funcionários", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK)
             {
                 controlador.Excluir(id);

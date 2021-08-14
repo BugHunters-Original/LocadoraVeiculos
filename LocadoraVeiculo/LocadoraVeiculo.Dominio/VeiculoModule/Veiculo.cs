@@ -12,16 +12,16 @@ namespace LocadoraVeiculo.VeiculoModule
         public string cor { get; set; }
         public string marca { get; set; }
         public int? ano { get; set; }
-        public int numero_Portas { get; set; }
-        public int capacidade_Tanque { get; set; }
+        public int? numero_Portas { get; set; }
+        public int? capacidade_Tanque { get; set; }
         public char tamanhoPortaMalas { get; set; }
-        public int km_Inicial { get; set; }
+        public int? km_Inicial { get; set; }
         public string tipo_Combustivel { get; set; }
         public int disponibilidade_Veiculo { get; set; }
         public GrupoVeiculo grupoVeiculo { get; set; }
 
         public Veiculo(string nome, string numero_Placa, string numero_Chassi, string cor,
-            string marca, int? ano, int numero_Portas, int capacidade_Tanque, char tamanhoPortaMalas, int km_Inicial,
+            string marca, int? ano, int? numero_Portas, int? capacidade_Tanque, char tamanhoPortaMalas, int? km_Inicial,
             string tipo_Combustivel, int disponibilidade_Veiculo, GrupoVeiculo grupoVeiculo)
         {
             this.nome = nome;
@@ -40,7 +40,7 @@ namespace LocadoraVeiculo.VeiculoModule
         }
 
         public Veiculo(string nome, string numero_Placa, string numero_Chassi, byte[] foto, string cor,
-            string marca, int? ano, int numero_Portas, int capacidade_Tanque, char tamanhoPortaMalas, int km_Inicial,
+            string marca, int? ano, int? numero_Portas, int? capacidade_Tanque, char tamanhoPortaMalas, int? km_Inicial,
             string tipo_Combustivel, int disponibilidade_Veiculo, GrupoVeiculo grupoVeiculo)
         {
             this.nome = nome;
@@ -66,29 +66,44 @@ namespace LocadoraVeiculo.VeiculoModule
         {
             string resultadoValidacao = "";
 
+            if (foto.Length == 0)
+                resultadoValidacao = "O campo Foto é obrigatório";
+
             if (string.IsNullOrEmpty(nome))
-                resultadoValidacao = "O campo nome é obrigatório";
+                resultadoValidacao = "O campo Nome é obrigatório";
 
             if (string.IsNullOrEmpty(numero_Placa))
-                resultadoValidacao += QuebraDeLinha(resultadoValidacao) + "O campo placa é obrigatório";
+                resultadoValidacao += QuebraDeLinha(resultadoValidacao) + "O campo Placa é obrigatório";
+
+            if (char.IsWhiteSpace(tamanhoPortaMalas))
+                resultadoValidacao += QuebraDeLinha(resultadoValidacao) + "O campo Tamanho Porta-Malas é obrigatório";
 
             if (string.IsNullOrEmpty(numero_Chassi))
-                resultadoValidacao += QuebraDeLinha(resultadoValidacao) + "O campo chassi é obrigatório";
+                resultadoValidacao += QuebraDeLinha(resultadoValidacao) + "O campo Chassi é obrigatório";
 
             if (string.IsNullOrEmpty(cor))
-                resultadoValidacao += QuebraDeLinha(resultadoValidacao) + "O campo cor é obrigatório";
+                resultadoValidacao += QuebraDeLinha(resultadoValidacao) + "O campo Cor é obrigatório";
 
             if (string.IsNullOrEmpty(marca))
-                resultadoValidacao += QuebraDeLinha(resultadoValidacao) + "O campo marca é obrigatório";
+                resultadoValidacao += QuebraDeLinha(resultadoValidacao) + "O campo Marca é obrigatório";
 
             if (string.IsNullOrEmpty(tipo_Combustivel))
-                resultadoValidacao += QuebraDeLinha(resultadoValidacao) + "O campo combústivel é obrigatório";
+                resultadoValidacao += QuebraDeLinha(resultadoValidacao) + "O campo Combústivel é obrigatório";
 
             if (ano == null || ano < 0)
-                resultadoValidacao += QuebraDeLinha(resultadoValidacao) + "O campo ano é obrigatório";
+                resultadoValidacao += QuebraDeLinha(resultadoValidacao) + "O campo Ano é obrigatório";
+
+            if (numero_Portas == null || numero_Portas <= 0)
+                resultadoValidacao += QuebraDeLinha(resultadoValidacao) + "O campo Nº de Portas é obrigatório";
+
+            if (capacidade_Tanque == null || capacidade_Tanque <= 0)
+                resultadoValidacao += QuebraDeLinha(resultadoValidacao) + "O campo Capacidade do Tanque é obrigatório";
+
+            if (km_Inicial == null || km_Inicial <= 0)
+                resultadoValidacao += QuebraDeLinha(resultadoValidacao) + "O campo Quilometragem Inicial obrigatório";
 
             if (Convert.ToInt32(ano) > DateTime.Now.Year || Convert.ToInt32(ano) < 1900)
-                resultadoValidacao += QuebraDeLinha(resultadoValidacao) + "O campo ano não pode ser maior que o ano atual ou muito antigo";
+                resultadoValidacao += QuebraDeLinha(resultadoValidacao) + "O campo Ano não pode ser maior que o ano atual ou muito antigo";
 
             if (resultadoValidacao == "")
                 resultadoValidacao = "ESTA_VALIDO";
