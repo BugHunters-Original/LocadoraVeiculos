@@ -111,6 +111,10 @@ namespace LocadoraVeiculo.VeiculoModule
             return resultadoValidacao;
         }
 
+        public override string ToString()
+        {
+            return nome;
+        }
         public bool ValidarDisponibilidade()
         {
             if (disponibilidade_Veiculo == 1)

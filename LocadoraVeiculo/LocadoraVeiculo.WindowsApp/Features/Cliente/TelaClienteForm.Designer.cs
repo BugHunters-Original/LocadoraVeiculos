@@ -308,7 +308,6 @@ namespace LocadoraVeiculo.WindowsApp.Features.Clientes
             this.Name = "TelaClienteForm";
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Cadastro de Clientes";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.TelaClienteForm_FormClosing);
             this.ResumeLayout(false);
             this.PerformLayout();

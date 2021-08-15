@@ -71,7 +71,7 @@ namespace LocadoraVeiculo.LocacaoModule
             if (Condutor == null)
                 valido += QuebraDeLinha(valido) + "O campo Condutor está inválido";
 
-            if (DataSaida < DataRetorno)
+            if (DataSaida > DataRetorno)
                 valido += QuebraDeLinha(valido) + "O campo Data está inválido";
 
             if (TipoLocacao != 1 && TipoLocacao != 2 && TipoLocacao != 3)
