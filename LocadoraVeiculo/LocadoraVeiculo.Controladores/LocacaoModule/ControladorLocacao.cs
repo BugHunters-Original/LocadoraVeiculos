@@ -28,26 +28,24 @@ namespace LocadoraVeiculo.Controladores.LocacaoModule
 	                VALUES
 	                (
 		                @ID_CONDUTOR, 
-		                @ENDERECOC, 
-		                @TELEFONEC,
-                        @CPF, 
-		                @RG,
-                        @CNH,
-                        @DATA_VALIDADE,
-                        @ID_CLIENTE
+		                @ID_CLIENTELOCADOR, 
+		                @ID_VEICULO,
+                        @DATA_SAIDA, 
+		                @DATA_RETORNOESPERADO,
+                        @PLANO,
+                        @TIPOCLIENTE
 	                )";
 
         private const string sqlEditarLocacao =
             @"UPDATE TBLOCACAO
                     SET
-	                (
 		                [ID_CONDUTOR] = @ID_CONDUTOR, 
 		                [ID_CLIENTELOCADOR] = @ID_CLIENTELOCADOR, 
 		                [ID_VEICULO] = @ID_VEICULO,
                         [DATA_SAIDA] = @DATA_SAIDA, 
 		                [DATA_RETORNOESPERADO] = @DATA_RETORNOESPERADO,
                         [PLANO] = @PLANO,
-                        [TIPOCLIENTE] = @TÍPOCLIENTE
+                        [TIPOCLIENTE] = @TIPOCLIENTE
                     WHERE 
                         ID = @ID";
 
@@ -60,47 +58,31 @@ namespace LocadoraVeiculo.Controladores.LocacaoModule
 
         private const string sqlSelecionarLocacaoPorId =
             @"SELECT
-                        CD.[ID],
-		                CD.[NOMEC], 
-		                CD.[ENDERECOC], 
-		                CD.[TELEFONEC],
-                        CD.[CPF], 
-		                CD.[RG],
-                        CD.[CNH],
-                        CD.[DATA_VALIDADE],
-                        CD.[ID_CLIENTE],
-                        CT.[NOME],
-                        CT.[ENDERECO],
-                        CT.[TELEFONE],
-                        CT.[CNPJ]
+                        [ID],                
+		                [ID_CONDUTOR], 
+		                [ID_CLIENTELOCADOR], 
+		                [ID_VEICULO],
+                        [DATA_SAIDA], 
+		                [DATA_RETORNOESPERADO],
+                        [PLANO],
+                        [TIPOCLIENTE]
 	                FROM
-                        TBLOCACAO AS LC LEFT JOIN
-                        TBCLIENTECNPJ AS CT
-                    ON
-                        CT.ID = CD.ID_CLIENTE
+                        TBLOCACAO
                     WHERE 
-                        CD.ID = @ID";
+                        ID = @ID";
 
         private const string sqlSelecionarTodasLocacoes =
             @"SELECT
-                        CD.[ID],
-		                CD.[NOMEC], 
-		                CD.[ENDERECOC], 
-		                CD.[TELEFONEC],
-                        CD.[CPF], 
-		                CD.[RG],
-                        CD.[CNH],
-                        CD.[DATA_VALIDADE],
-                        CD.[ID_CLIENTE],
-                        CT.[NOME],
-                        CT.[ENDERECO],
-                        CT.[TELEFONE],
-                        CT.[CNPJ]
+                        [ID],                
+		                [ID_CONDUTOR], 
+		                [ID_CLIENTELOCADOR], 
+		                [ID_VEICULO],
+                        [DATA_SAIDA], 
+		                [DATA_RETORNOESPERADO],
+                        [PLANO],
+                        [TIPOCLIENTE]
 	                FROM
-                        TBCLIENTECPF AS CD LEFT JOIN
-                        TBCLIENTECNPJ AS CT
-                    ON
-                        CT.ID = CD.ID_CLIENTE";
+                        TBLOCACAO";
 
         private const string sqlExisteLocacao =
             @"SELECT 

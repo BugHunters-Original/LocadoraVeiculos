@@ -12,7 +12,7 @@ namespace LocadoraVeiculo.Tests.FuncionarioModule
         public void DeveValidar_Funcionario()
         {
             //arrange
-            Funcionario funcionario = new Funcionario("José Pedro", Convert.ToDecimal(2000.00), new DateTime(2021, 03, 03), "09942747979", "JP_USER", "1234567");
+            Funcionario funcionario = new Funcionario("José Pedro", Convert.ToDecimal(2000.00), new DateTime(2021, 03, 03), "099.427.999-09", "JP_USER", "1234567");
 
             //action
             var resultadoValidacao = funcionario.Validar();
@@ -38,13 +38,13 @@ namespace LocadoraVeiculo.Tests.FuncionarioModule
         public void DeveValidar_Senha()
         {
             //arrange
-            Funcionario funcionario = new Funcionario("José Pedro", Convert.ToDecimal(2000.0), new DateTime(2021, 03, 03), "09942799909", "JP_USER", "1234");
+            Funcionario funcionario = new Funcionario("José Pedro", Convert.ToDecimal(2000.0), new DateTime(2021, 03, 03), "099.427.999-09", "JP_USER", "1234");
 
             //action
             var resultadoValidacao = funcionario.Validar();
 
             //assert
-            resultadoValidacao.Should().Be("O campo senha possui menos de sete dígitos");
+            resultadoValidacao.Should().Be("O campo Senha possui menos de sete dígitos");
         }
 
 
@@ -52,20 +52,20 @@ namespace LocadoraVeiculo.Tests.FuncionarioModule
         public void DeveValidar_Nome()
         {
             //arrange
-            Funcionario funcionario = new Funcionario("", Convert.ToDecimal(2000.0), new DateTime(2021, 03, 03), "09942799909", "JP_USER", "1234567");
+            Funcionario funcionario = new Funcionario("", Convert.ToDecimal(2000.0), new DateTime(2021, 03, 03), "099.427.999-09", "JP_USER", "1234567");
 
             //action
             var resultadoValidacao = funcionario.Validar();
 
             //assert
-            resultadoValidacao.Should().Be("Digite o nome do funcionário");
+            resultadoValidacao.Should().Be("Digite o Nome do funcionário");
         }
 
         [TestMethod]
         public void DeveValidar_Data()
         {
             //arrange
-            Funcionario funcionario = new Funcionario("Luisa", Convert.ToDecimal(2000.0), DateTime.MinValue, "09942799909", "JP_USER", "1234567");
+            Funcionario funcionario = new Funcionario("Luisa", Convert.ToDecimal(2000.0), DateTime.MinValue, "099.427.999-09", "JP_USER", "1234567");
 
             //action
             var resultadoValidacao = funcionario.Validar();
@@ -78,7 +78,7 @@ namespace LocadoraVeiculo.Tests.FuncionarioModule
         public void DeveValidar_Salario()
         {
             //arrange
-            Funcionario funcionario = new Funcionario("Luisa", Convert.ToDecimal(-2000.0), new DateTime(2021, 03, 03), "09942799909", "JP_USER", "1234567");
+            Funcionario funcionario = new Funcionario("Luisa", Convert.ToDecimal(-2000.0), new DateTime(2021, 03, 03), "099.427.999-09", "JP_USER", "1234567");
 
             //action
             var resultadoValidacao = funcionario.Validar();

@@ -29,7 +29,7 @@ namespace LocadoraVeiculo.Tests.CombustivelModule
             var resultadoValidacao = combustivel.Validar();
 
             //assert
-            resultadoValidacao.Should().Be("O campo preço diesel é obrigatório ou deve ser maior que 0");
+            resultadoValidacao.Should().Be("O campo preço Diesel é obrigatório ou deve ser maior que 0");
         }
 
         [TestMethod]
@@ -41,7 +41,7 @@ namespace LocadoraVeiculo.Tests.CombustivelModule
             var resultadoValidacao = combustivel.Validar();
 
             //assert
-            resultadoValidacao.Should().Be("O campo preço gasolina é obrigatório ou deve ser maior que 0");
+            resultadoValidacao.Should().Be("O campo preço Gasolina é obrigatório ou deve ser maior que 0");
         }
     }
 }

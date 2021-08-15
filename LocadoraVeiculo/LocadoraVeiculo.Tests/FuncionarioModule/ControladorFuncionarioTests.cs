@@ -24,7 +24,7 @@ namespace LocadoraVeiculo.Tests.FuncionarioModule
         public void DeveInserir_Funcionario()
         {
             //arrange
-            var novoFuncionario = new Funcionario("Luisa Farias", 3000, new DateTime(2021, 03, 03), "09988899909", "luisa_f", "1234567");
+            var novoFuncionario = new Funcionario("Luisa Farias", 3000, new DateTime(2021, 03, 03), "099.427.999-09", "luisa_f", "1234567");
 
             //action
             controlador.InserirNovo(novoFuncionario);
@@ -38,10 +38,10 @@ namespace LocadoraVeiculo.Tests.FuncionarioModule
         public void DeveAtualizar_Funcionario()
         {
             //arrange
-            var funcionario = new Funcionario("Luisa Farias", 3000, new DateTime(2021, 03, 03), "09988899909", "luisa_f", "1234567");
+            var funcionario = new Funcionario("Luisa Farias", 3000, new DateTime(2021, 03, 03), "099.427.999-09", "luisa_f", "1234567");
             controlador.InserirNovo(funcionario);
 
-            var novoFuncionario = new Funcionario("Luisa Farias", 4000, new DateTime(2021, 03, 03), "09988899909", "luisa_f", "1234567");
+            var novoFuncionario = new Funcionario("Luisa Farias", 4000, new DateTime(2021, 03, 03), "099.427.999-09", "luisa_f", "1234567");
 
             //action
             controlador.Editar(funcionario.Id, novoFuncionario);
@@ -57,7 +57,7 @@ namespace LocadoraVeiculo.Tests.FuncionarioModule
         public void DeveExcluir_Funcionario()
         {
             //arrange            
-            var funcionario = new Funcionario("Luisa Farias", 3000, new DateTime(2021, 03, 03), "09988899909", "luisa_f", "1234567");
+            var funcionario = new Funcionario("Luisa Farias", 3000, new DateTime(2021, 03, 03), "099.427.999-09", "luisa_f", "1234567");
             controlador.InserirNovo(funcionario);
 
             //action            
@@ -72,7 +72,7 @@ namespace LocadoraVeiculo.Tests.FuncionarioModule
         public void DeveSelecionar_Funcionario_PorId()
         {
             //arrange
-            var funcionario = new Funcionario("Luisa Farias", 3000, new DateTime(2021, 03, 03), "09988899909", "luisa_f", "1234567");
+            var funcionario = new Funcionario("Luisa Farias", 3000, new DateTime(2021, 03, 03), "099.427.999-09", "luisa_f", "1234567");
             controlador.InserirNovo(funcionario);
 
             //action
@@ -86,13 +86,13 @@ namespace LocadoraVeiculo.Tests.FuncionarioModule
         public void DeveSelecionar_TodosFuncionarios()
         {
             //arrange
-            var f1 = new Funcionario("Luisa Farias", 3000, new DateTime(2021, 03, 03), "09988899909", "luisa_f", "1234567");
+            var f1 = new Funcionario("Luisa Farias", 3000, new DateTime(2021, 03, 03), "099.427.999-09", "luisa_f", "1234567");
             controlador.InserirNovo(f1);
 
-            var f2 = new Funcionario("Arthur", 6000, new DateTime(2021, 03, 03), "987654321000", "user_arthur", "9999999999");
+            var f2 = new Funcionario("Arthur", 6000, new DateTime(2021, 03, 03), "099.427.999-09", "user_arthur", "9999999999");
             controlador.InserirNovo(f2);
 
-            var f3 = new Funcionario("Andrey", 6000, new DateTime(2021, 03, 03), "654987321000", "user_andrey", "88888898989");
+            var f3 = new Funcionario("Andrey", 6000, new DateTime(2021, 03, 03), "099.427.999-09", "user_andrey", "88888898989");
             controlador.InserirNovo(f3);
 
             //action

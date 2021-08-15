@@ -1,4 +1,6 @@
-﻿using LocadoraVeiculo.WindowsApp.Shared;
+﻿using LocadoraVeiculo.LocacaoModule;
+using LocadoraVeiculo.WindowsApp.Shared;
+using System.Collections.Generic;
 using System.Windows.Forms;
 
 namespace LocadoraVeiculo.WindowsApp.Features.Locacao
@@ -19,15 +21,15 @@ namespace LocadoraVeiculo.WindowsApp.Features.Locacao
             {
                 new DataGridViewTextBoxColumn { DataPropertyName = "Id", HeaderText = "Id"},
 
-                new DataGridViewTextBoxColumn { DataPropertyName = "", HeaderText = ""},
+                new DataGridViewTextBoxColumn { DataPropertyName = "Cliente", HeaderText = "Cliente"},
 
-                new DataGridViewTextBoxColumn { DataPropertyName = "", HeaderText = ""},
+                new DataGridViewTextBoxColumn { DataPropertyName = "Condutor", HeaderText = "Condutor"},
 
-                new DataGridViewTextBoxColumn { DataPropertyName = "", HeaderText = ""},
+                new DataGridViewTextBoxColumn { DataPropertyName = "Veiculo", HeaderText = "Veiculo"},
 
-                new DataGridViewTextBoxColumn {DataPropertyName = "", HeaderText = ""},
+                new DataGridViewTextBoxColumn {DataPropertyName = "DataSaida", HeaderText = "Data de Saída"},
 
-                new DataGridViewTextBoxColumn {DataPropertyName = "", HeaderText = ""}
+                new DataGridViewTextBoxColumn {DataPropertyName = "DataRetorno", HeaderText = "Data de Retorno esperada"}
             };
 
             return colunas;
@@ -38,14 +40,14 @@ namespace LocadoraVeiculo.WindowsApp.Features.Locacao
             return gridLocacao.SelecionarId<int>();
         }
 
-        //public void AtualizarRegistros(List<Cliente> clientes)
-        //{
-        //    gridClientes.Rows.Clear();
+        public void AtualizarRegistros(List<LocacaoVeiculo> locacoes)
+        {
+            gridLocacao.Rows.Clear();
 
-        //    foreach (Cliente cliente in clientes)
-        //    {
-        //        gridClientes.Rows.Add();
-        //    }
-        //}
+            foreach (LocacaoVeiculo locacao in locacoes)
+            {
+                gridLocacao.Rows.Add(locacao.Id, locacao.Cliente, locacao.Condutor, locacao.Veiculo, locacao.DataSaida, locacao.DataRetorno);
+            }
+        }
     }
 }
