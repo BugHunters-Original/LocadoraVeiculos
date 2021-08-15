@@ -30,7 +30,7 @@ namespace LocadoraVeiculo.Tests.LoginModule
         public void DeveRetornar_LoginValido()
         {
             //arrange
-            var novoFuncionario = new Funcionario("Luisa Farias", 3000, new DateTime(2021, 03, 03), "09988899909", "luisa_f", "1234567");
+            var novoFuncionario = new Funcionario("Luisa Farias", 3000, new DateTime(2021, 03, 03), "099.427.999-09", "luisa_f", "1234567");
             controladorFuncionario.InserirNovo(novoFuncionario);
 
             //action
@@ -44,7 +44,7 @@ namespace LocadoraVeiculo.Tests.LoginModule
         public void DeveRetornar_SenhaIncorreta()
         {
             //arrange
-            var novoFuncionario = new Funcionario("Luisa Farias", 3000, new DateTime(2021, 03, 03), "09988899909", "luisa_f", "1234567");
+            var novoFuncionario = new Funcionario("Luisa Farias", 3000, new DateTime(2021, 03, 03), "099.427.999-09", "luisa_f", "1234567");
             controladorFuncionario.InserirNovo(novoFuncionario);
 
             //action
@@ -58,7 +58,7 @@ namespace LocadoraVeiculo.Tests.LoginModule
         public void DeveRetornar_UsuarioInexistente()
         {
             //arrange
-            var novoFuncionario = new Funcionario("Luisa Farias", 3000, new DateTime(2021, 03, 03), "09988899909", "luisa_f", "1234567");
+            var novoFuncionario = new Funcionario("Luisa Farias", 3000, new DateTime(2021, 03, 03), "099.427.999-09", "luisa_f", "1234567");
             controladorFuncionario.InserirNovo(novoFuncionario);
 
             //action
