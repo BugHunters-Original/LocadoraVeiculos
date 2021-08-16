@@ -9,48 +9,66 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using LocadoraVeiculo.Combustivel;
 
 namespace LocadoraVeiculo.WindowsApp.Features.Combustivel
 {
     public partial class TelaCombustivelForm : Form
     {
-        private CombustivelModule.Combustivel combustivel;
         public TelaCombustivelForm()
         {
             InitializeComponent();
+            CarregarConfiguracoes();
         }
 
-        public CombustivelModule.Combustivel Combustivel
+        public void CarregarConfiguracoes()
         {
-            get { return combustivel; }
+            txtGasolina.Text = Config.PrecoGasolina.ToString();
+            txtAlcool.Text = Config.PrecoAlcool.ToString();
+            txtDiesel.Text = Config.PrecoDiesel.ToString();
+        }
 
-            set
+        private void btnGravar_Click(object sender, EventArgs e)
+        {
+            double? precoGasolina = PegarDoubleComVerificacao(txtGasolina);
+            if (precoGasolina == null)
+                return;
+
+            double? precoDiesel = PegarDoubleComVerificacao(txtDiesel);
+            if (precoDiesel == null)
+                return;
+
+            double? precoAlcool = PegarDoubleComVerificacao(txtAlcool);
+            if (precoAlcool == null)
+                return;
+
+
+            if (MessageBox.Show("Tem certeza que deseja gravar as configurações atuais?",
+                "Configurações do Sistema",
+                MessageBoxButtons.YesNo,
+                MessageBoxIcon.Warning) == DialogResult.Yes)
             {
-                combustivel = value;
-                txtGasolina.Text = Convert.ToString(combustivel.preco_Gasolina);
-                txtDiesel.Text = Convert.ToString(combustivel.preco_Diesel);
-                txtAlcool.Text = Convert.ToString(combustivel.preco_Alcool);
+                Config.PrecoGasolina = (double)precoGasolina;
+                Config.PrecoDiesel = (double)precoDiesel;
+                Config.PrecoAlcool = (double)precoAlcool;
+
+                TelaPrincipalForm.Instancia.AtualizarRodape("Configurações salvadas com sucesso!");
             }
         }
 
-        private void btnSalvar_Click(object sender, EventArgs e)
+        private double? PegarDoubleComVerificacao(TextBox textBox)
         {
-            decimal precoGasolina = Convert.ToDecimal(txtGasolina.Text);
-            decimal precoAlcool = Convert.ToDecimal(txtAlcool.Text);
-            decimal precoDiesel = Convert.ToDecimal(txtDiesel.Text);
-
-            combustivel = new CombustivelModule.Combustivel(precoGasolina, precoDiesel, precoAlcool);
-
-            string resultadoValidacao = combustivel.Validar();
-
-            if (resultadoValidacao != "ESTA_VALIDO")
+            try
             {
-                string primeiroErro = new StringReader(resultadoValidacao).ReadLine();
-
-                TelaPrincipalForm.Instancia.AtualizarRodape(primeiroErro);
-
-                DialogResult = DialogResult.None;
+                return Convert.ToDouble(textBox.Text);
             }
+            catch (Exception)
+            {
+                TelaPrincipalForm.Instancia
+                    .AtualizarRodape($"Digite um numero no campo {textBox.AccessibleName}");
+            }
+
+            return null;
         }
 
         private void textBox1_KeyPress(object sender, KeyPressEventArgs e)

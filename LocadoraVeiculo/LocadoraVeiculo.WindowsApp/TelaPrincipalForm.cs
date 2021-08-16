@@ -153,7 +153,7 @@ namespace LocadoraVeiculo.WindowsApp
 
             OperacoesCombustivel opCombustivel = new OperacoesCombustivel(new ControladorCombustivel());
 
-            opCombustivel.Editar();
+            //opCombustivel.Editar();
         }
         private void btnAdicionar_Click(object sender, EventArgs e)
         {
