@@ -4,6 +4,7 @@ using LocadoraVeiculo.Controladores.CondutorModule;
 using LocadoraVeiculo.Controladores.LocacaoModule;
 using LocadoraVeiculo.Controladores.VeiculoModule;
 using LocadoraVeiculo.LocacaoModule;
+using LocadoraVeiculo.ServicoModule;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -23,7 +24,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.Locacao
         private ControladorClienteCPF controladorCPF;
         private ControladorClienteCNPJ controladorCNPJ;
         private ControladorVeiculo controladorVeiculo;
-        private decimal? preco;
+        private List<Servico> servicos;
         public TelaLocacaoForm()
         {
             controladorCPF = new ControladorClienteCPF();
@@ -47,6 +48,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.Locacao
                 dtSaida.Value = locacao.DataSaida;
                 dtRetorno.Value = locacao.DataRetorno;
                 cbTipoLocacao.Text = locacao.TipoLocacao.ToString();
+                txtKmRodado.Text = locacao.KmRodado.ToString();
             }
         }
 
@@ -86,11 +88,38 @@ namespace LocadoraVeiculo.WindowsApp.Features.Locacao
 
             DateTime dataSaida = dtSaida.Value;
             DateTime dataRetornoEsperado = dtRetorno.Value;
-            int tipoLocacao = Convert.ToInt32(cbTipoLocacao.SelectedItem);
-            
-            decimal? precoTotal = preco;
 
-            locacao = new LocacaoVeiculo(cliente, veiculo, condutor, dataSaida, dataRetornoEsperado, tipoLocacao, tipoCliente, precoTotal);
+            string tipoLocacao = cbTipoLocacao.Text;
+
+            var dias = Convert.ToInt32((dtRetorno.Value - dtSaida.Value).TotalDays);
+
+            decimal? precoTotal = 0;
+            if (servicos != null)
+            {
+                List<Servico> servicosTaxas = servicos.ToList();
+
+                foreach (var item in servicosTaxas)
+                    precoTotal = item.TipoCalculo != 1 ? precoTotal + item.Preco * dias : precoTotal + item.Preco;
+            }
+
+
+            decimal? kmRodado = null;
+            if (txtKmRodado.Text != "")
+                kmRodado = Convert.ToDecimal(txtKmRodado.Text);
+
+
+            switch (tipoLocacao)
+            {
+                case "Plano Diário":
+                    precoTotal += (veiculo.grupoVeiculo.preco_KMDiario * dias); break;
+
+                case "KM Controlado":
+                    precoTotal += (veiculo.grupoVeiculo.valor_Diario_PControlado * dias) + (veiculo.grupoVeiculo.kmDia__KMControlado * dias * kmRodado); break;
+
+                default: break;
+            }
+
+            locacao = new LocacaoVeiculo(cliente, veiculo, condutor, dataSaida, dataRetornoEsperado, tipoLocacao, tipoCliente, precoTotal, kmRodado);
 
             string resultadoValidacao = locacao.Validar();
 
@@ -130,7 +159,15 @@ namespace LocadoraVeiculo.WindowsApp.Features.Locacao
         {
             TelaAdicionarTaxasForm tela = new TelaAdicionarTaxasForm();
             tela.ShowDialog();
-            preco = tela.Preco;
+            servicos = tela.Servicos;
+        }
+
+        private void cbTipoLocacao_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (cbTipoLocacao.Text == "KM Controlado")
+                txtKmRodado.Enabled = true;
+            else
+                txtKmRodado.Enabled = false;
         }
     }
 }
