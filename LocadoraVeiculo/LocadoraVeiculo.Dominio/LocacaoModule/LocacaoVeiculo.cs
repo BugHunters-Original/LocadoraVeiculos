@@ -9,7 +9,7 @@ namespace LocadoraVeiculo.LocacaoModule
     public class LocacaoVeiculo : EntidadeBase, IEquatable<LocacaoVeiculo>
     {
         public LocacaoVeiculo(Cliente cliente, Veiculo veiculo, ClienteCPF condutor, DateTime dataSaida,
-               DateTime dataRetorno, int tipoLocacao, int tipoCliente)
+               DateTime dataRetorno, int tipoLocacao, int tipoCliente, decimal? precoTotal)
         {
             Cliente = cliente;
             Veiculo = veiculo;
@@ -18,6 +18,7 @@ namespace LocadoraVeiculo.LocacaoModule
             DataRetorno = dataRetorno;
             TipoLocacao = tipoLocacao;
             TipoCliente = tipoCliente;
+            PrecoTotal = precoTotal;
         }
         public Cliente Cliente { get; set; }
         public Veiculo Veiculo { get; set; }
@@ -26,6 +27,7 @@ namespace LocadoraVeiculo.LocacaoModule
         public DateTime DataRetorno { get; set; }
         public int TipoLocacao { get; set; }
         public int TipoCliente { get; set; }
+        public decimal? PrecoTotal { get; set; }
 
         public bool Equals(LocacaoVeiculo other)
         {
@@ -37,7 +39,8 @@ namespace LocadoraVeiculo.LocacaoModule
                 && DataSaida == other.DataSaida
                 && DataRetorno == other.DataRetorno
                 && TipoLocacao == other.TipoLocacao
-                && TipoCliente == other.TipoCliente;
+                && TipoCliente == other.TipoCliente
+                && PrecoTotal == other.PrecoTotal;
         }
         public override bool Equals(object obj)
         {
@@ -46,7 +49,7 @@ namespace LocadoraVeiculo.LocacaoModule
 
         public override int GetHashCode()
         {
-            int hashCode = 445387683;
+            int hashCode = 1990810021;
             hashCode = hashCode * -1521134295 + Id.GetHashCode();
             hashCode = hashCode * -1521134295 + EqualityComparer<Cliente>.Default.GetHashCode(Cliente);
             hashCode = hashCode * -1521134295 + EqualityComparer<Veiculo>.Default.GetHashCode(Veiculo);
@@ -55,6 +58,7 @@ namespace LocadoraVeiculo.LocacaoModule
             hashCode = hashCode * -1521134295 + DataRetorno.GetHashCode();
             hashCode = hashCode * -1521134295 + TipoLocacao.GetHashCode();
             hashCode = hashCode * -1521134295 + TipoCliente.GetHashCode();
+            hashCode = hashCode * -1521134295 + PrecoTotal.GetHashCode();
             return hashCode;
         }
 

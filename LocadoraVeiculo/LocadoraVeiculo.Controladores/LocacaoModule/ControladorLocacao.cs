@@ -23,7 +23,8 @@ namespace LocadoraVeiculo.Controladores.LocacaoModule
                         [DATA_SAIDA], 
 		                [DATA_RETORNOESPERADO],
                         [PLANO],
-                        [TIPOCLIENTE]
+                        [TIPOCLIENTE],
+                        [PRECOTOTAL]
 	                ) 
 	                VALUES
 	                (
@@ -33,7 +34,8 @@ namespace LocadoraVeiculo.Controladores.LocacaoModule
                         @DATA_SAIDA, 
 		                @DATA_RETORNOESPERADO,
                         @PLANO,
-                        @TIPOCLIENTE
+                        @TIPOCLIENTE,
+                        @PRECOTOTAL
 	                )";
 
         private const string sqlEditarLocacao =
@@ -45,7 +47,8 @@ namespace LocadoraVeiculo.Controladores.LocacaoModule
                         [DATA_SAIDA] = @DATA_SAIDA, 
 		                [DATA_RETORNOESPERADO] = @DATA_RETORNOESPERADO,
                         [PLANO] = @PLANO,
-                        [TIPOCLIENTE] = @TIPOCLIENTE
+                        [TIPOCLIENTE] = @TIPOCLIENTE,
+                        [PRECOTOTAL] = @PRECOTOTAL
                     WHERE 
                         ID = @ID";
 
@@ -65,7 +68,8 @@ namespace LocadoraVeiculo.Controladores.LocacaoModule
                         [DATA_SAIDA], 
 		                [DATA_RETORNOESPERADO],
                         [PLANO],
-                        [TIPOCLIENTE]
+                        [TIPOCLIENTE],
+                        [PRECOTOTAL]
 	                FROM
                         TBLOCACAO
                     WHERE 
@@ -80,7 +84,8 @@ namespace LocadoraVeiculo.Controladores.LocacaoModule
                         [DATA_SAIDA], 
 		                [DATA_RETORNOESPERADO],
                         [PLANO],
-                        [TIPOCLIENTE]
+                        [TIPOCLIENTE],
+                        [PRECOTOTAL]
 	                FROM
                         TBLOCACAO";
 
@@ -156,6 +161,8 @@ namespace LocadoraVeiculo.Controladores.LocacaoModule
             parametros.Add("DATA_SAIDA", locacao.DataSaida);
             parametros.Add("DATA_RETORNOESPERADO", locacao.DataRetorno);
             parametros.Add("PLANO", locacao.TipoLocacao);
+            parametros.Add("PRECOTOTAL", locacao.PrecoTotal);
+
 
             return parametros;
         }
@@ -169,6 +176,7 @@ namespace LocadoraVeiculo.Controladores.LocacaoModule
             DateTime dataSaida = Convert.ToDateTime(reader["DATA_SAIDA"]);
             DateTime dataRetorno = Convert.ToDateTime(reader["DATA_RETORNOESPERADO"]);
             int plano = Convert.ToInt32(reader["PLANO"]);
+            decimal? precoTotal = Convert.ToDecimal(reader["PRECOTOTAL"]);
 
             ControladorClienteCPF controladorCPF = new ControladorClienteCPF();
             ControladorClienteCNPJ controladorCNPJ = new ControladorClienteCNPJ();
@@ -186,7 +194,7 @@ namespace LocadoraVeiculo.Controladores.LocacaoModule
 
 
             LocacaoVeiculo locacao = new LocacaoVeiculo(clienteLocador, veiculo, condutor,
-                                                    dataSaida, dataRetorno, plano, tipoCliente);
+                                                    dataSaida, dataRetorno, plano, tipoCliente, precoTotal);
 
             locacao.Id = id;
 

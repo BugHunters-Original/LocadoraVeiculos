@@ -86,8 +86,9 @@ namespace LocadoraVeiculo.WindowsApp.Features.Locacao
             DateTime dataSaida = dtSaida.Value;
             DateTime dataRetornoEsperado = dtRetorno.Value;
             int tipoLocacao = Convert.ToInt32(cbTipoLocacao.SelectedItem);
+            decimal? precoTotal = null;
 
-            locacao = new LocacaoVeiculo(cliente, veiculo, condutor, dataSaida, dataRetornoEsperado, tipoLocacao, tipoCliente);
+            locacao = new LocacaoVeiculo(cliente, veiculo, condutor, dataSaida, dataRetornoEsperado, tipoLocacao, tipoCliente, precoTotal);
 
             string resultadoValidacao = locacao.Validar();
 
@@ -121,6 +122,12 @@ namespace LocadoraVeiculo.WindowsApp.Features.Locacao
         private void TelaLocacaoForm_FormClosing(object sender, FormClosingEventArgs e)
         {
             TelaPrincipalForm.Instancia.AtualizarRodape("");
+        }
+
+        private void btnTaxa_Click(object sender, EventArgs e)
+        {
+            TelaAdicionarTaxasForm tela = new TelaAdicionarTaxasForm();
+            tela.ShowDialog();
         }
     }
 }
