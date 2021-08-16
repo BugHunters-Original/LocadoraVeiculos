@@ -92,6 +92,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.Locacao
             this.btnTaxa.TabIndex = 7;
             this.btnTaxa.Text = "Adicionar Taxas e Serviços";
             this.btnTaxa.UseVisualStyleBackColor = true;
+            this.btnTaxa.Click += new System.EventHandler(this.btnTaxa_Click);
             // 
             // btnCancelar
             // 

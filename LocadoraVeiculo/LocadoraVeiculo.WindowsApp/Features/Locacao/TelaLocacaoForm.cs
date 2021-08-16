@@ -23,6 +23,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.Locacao
         private ControladorClienteCPF controladorCPF;
         private ControladorClienteCNPJ controladorCNPJ;
         private ControladorVeiculo controladorVeiculo;
+        private decimal? preco;
         public TelaLocacaoForm()
         {
             controladorCPF = new ControladorClienteCPF();
@@ -56,10 +57,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.Locacao
             var veiculos = controladorVeiculo.SelecionarTodos();
 
             foreach (var clienteCPF in clientesCPF)
-            {
                 cbCliente.Items.Add(clienteCPF);
-                cbCondutor.Items.Add(clienteCPF);
-            }
 
             foreach (var clienteCNPJ in clientesCNPJ)
                 cbCliente.Items.Add(clienteCNPJ);
@@ -89,8 +87,10 @@ namespace LocadoraVeiculo.WindowsApp.Features.Locacao
             DateTime dataSaida = dtSaida.Value;
             DateTime dataRetornoEsperado = dtRetorno.Value;
             int tipoLocacao = Convert.ToInt32(cbTipoLocacao.SelectedItem);
+            
+            decimal? precoTotal = preco;
 
-            locacao = new LocacaoVeiculo(cliente, veiculo, condutor, dataSaida, dataRetornoEsperado, tipoLocacao, tipoCliente);
+            locacao = new LocacaoVeiculo(cliente, veiculo, condutor, dataSaida, dataRetornoEsperado, tipoLocacao, tipoCliente, precoTotal);
 
             string resultadoValidacao = locacao.Validar();
 
@@ -109,12 +109,28 @@ namespace LocadoraVeiculo.WindowsApp.Features.Locacao
             if (cbCliente.SelectedItem is ClienteCPF)
                 cbCondutor.Enabled = false;
             else
+            {
+                ClienteCNPJ cliente = (ClienteCNPJ)cbCliente.SelectedItem;
+                var id = cliente.Id;
                 cbCondutor.Enabled = true;
+
+                List<ClienteCPF> condutoresRelacionados = controladorCPF.SelecionarPorIdEmpresa(id);
+
+                foreach (var condutor in condutoresRelacionados)
+                    cbCondutor.Items.Add(condutor);
+            }
         }
 
         private void TelaLocacaoForm_FormClosing(object sender, FormClosingEventArgs e)
         {
             TelaPrincipalForm.Instancia.AtualizarRodape("");
+        }
+
+        private void btnTaxa_Click(object sender, EventArgs e)
+        {
+            TelaAdicionarTaxasForm tela = new TelaAdicionarTaxasForm();
+            tela.ShowDialog();
+            preco = tela.Preco;
         }
     }
 }
