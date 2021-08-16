@@ -7,6 +7,7 @@
     [Data_retornoEsperado] DATE NULL,
     [Plano]                INT  NULL,
     [TipoCliente]          INT  NULL,
+    [PrecoTotal] FLOAT NULL, 
     CONSTRAINT [PK_TBLocacao] PRIMARY KEY CLUSTERED ([Id] ASC),
     CONSTRAINT [FK_TBLocacao_Id_Condutor] FOREIGN KEY ([Id_Condutor]) REFERENCES [dbo].[TBClienteCPF] ([Id]),
     CONSTRAINT [FK_TBLocacao_TBVeiculos] FOREIGN KEY ([Id_Veiculo]) REFERENCES [dbo].[TBVeiculos] ([Id])
