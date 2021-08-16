@@ -279,6 +279,10 @@
     <None Include="Resources\devolver.png" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\LocadoraVeiculo.Combustivel\LocadoraVeiculo.Combustivel.csproj">
+      <Project>{7f8b8912-71da-4008-a961-f85e30a6bf97}</Project>
+      <Name>LocadoraVeiculo.Combustivel</Name>
+    </ProjectReference>
     <ProjectReference Include="..\LocadoraVeiculo.Controladores\LocadoraVeiculo.Controladores.csproj">
       <Project>{3be78018-27c1-4f5d-8891-b57b6b1a3e4d}</Project>
       <Name>LocadoraVeiculo.Controladores</Name>

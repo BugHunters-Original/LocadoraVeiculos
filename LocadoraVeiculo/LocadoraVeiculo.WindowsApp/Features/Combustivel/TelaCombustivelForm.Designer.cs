@@ -174,7 +174,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.Combustivel
             this.btnSalvar.TabIndex = 1;
             this.btnSalvar.Text = "Gravar";
             this.btnSalvar.UseVisualStyleBackColor = true;
-            this.btnSalvar.Click += new System.EventHandler(this.btnSalvar_Click);
+            this.btnSalvar.Click += new System.EventHandler(this.btnGravar_Click);
             // 
             // btnCancelar
             // 
