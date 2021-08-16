@@ -15,11 +15,17 @@ namespace LocadoraVeiculo.WindowsApp.Features.Locacao
     public partial class TelaAdicionarTaxasForm : Form
     {
         private ControladorServico controladorServico;
+        private decimal? preco;
         public TelaAdicionarTaxasForm()
         {
             controladorServico = new ControladorServico();
             InitializeComponent();
             PopularBox();
+        }
+
+        public decimal? Preco
+        {
+            get { return preco; }
         }
 
         private void PopularBox()
@@ -40,6 +46,18 @@ namespace LocadoraVeiculo.WindowsApp.Features.Locacao
                 precos.Add(servico.Preco);
 
             txtTotal.Text = "R$" + precos.Sum().ToString();
+        }
+
+        private void btnGravar_Click(object sender, EventArgs e)
+        {
+            var servicos = cBoxTaxas.CheckedItems.OfType<Servico>().ToList();
+
+            List<decimal?> precos = new List<decimal?>();
+
+            foreach (var servico in servicos)
+                precos.Add(servico.Preco);
+
+            preco = precos.Sum();
         }
     }
 }

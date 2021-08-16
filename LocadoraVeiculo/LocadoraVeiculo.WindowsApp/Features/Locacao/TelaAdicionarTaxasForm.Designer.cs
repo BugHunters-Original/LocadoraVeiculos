@@ -92,6 +92,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.Locacao
             this.btnGravar.TabIndex = 15;
             this.btnGravar.Text = "Gravar";
             this.btnGravar.UseVisualStyleBackColor = true;
+            this.btnGravar.Click += new System.EventHandler(this.btnGravar_Click);
             // 
             // button1
             // 

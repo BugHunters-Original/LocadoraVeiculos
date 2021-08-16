@@ -23,6 +23,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.Locacao
         private ControladorClienteCPF controladorCPF;
         private ControladorClienteCNPJ controladorCNPJ;
         private ControladorVeiculo controladorVeiculo;
+        private decimal? preco;
         public TelaLocacaoForm()
         {
             controladorCPF = new ControladorClienteCPF();
@@ -86,7 +87,8 @@ namespace LocadoraVeiculo.WindowsApp.Features.Locacao
             DateTime dataSaida = dtSaida.Value;
             DateTime dataRetornoEsperado = dtRetorno.Value;
             int tipoLocacao = Convert.ToInt32(cbTipoLocacao.SelectedItem);
-            decimal? precoTotal = null;
+            
+            decimal? precoTotal = preco;
 
             locacao = new LocacaoVeiculo(cliente, veiculo, condutor, dataSaida, dataRetornoEsperado, tipoLocacao, tipoCliente, precoTotal);
 
@@ -128,6 +130,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.Locacao
         {
             TelaAdicionarTaxasForm tela = new TelaAdicionarTaxasForm();
             tela.ShowDialog();
+            preco = tela.Preco;
         }
     }
 }
