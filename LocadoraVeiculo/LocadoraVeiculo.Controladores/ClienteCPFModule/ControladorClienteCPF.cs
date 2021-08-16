@@ -76,6 +76,29 @@ namespace LocadoraVeiculo.Controladores.CondutorModule
                     WHERE 
                         CD.ID = @ID";
 
+        private const string sqlSelecionarCondutorPorIdEmpresa =
+            @"SELECT
+                        CD.[ID],
+		                CD.[NOMEC], 
+		                CD.[ENDERECOC], 
+		                CD.[TELEFONEC],
+                        CD.[CPF], 
+		                CD.[RG],
+                        CD.[CNH],
+                        CD.[DATA_VALIDADE],
+                        CD.[ID_CLIENTE],
+                        CT.[NOME],
+                        CT.[ENDERECO],
+                        CT.[TELEFONE],
+                        CT.[CNPJ]
+	                FROM
+                        TBCLIENTECPF AS CD LEFT JOIN
+                        TBCLIENTECNPJ AS CT
+                    ON
+                        CT.ID = CD.ID_CLIENTE
+                    WHERE 
+                        CD.ID_CLIENTE = @ID";
+
         private const string sqlSelecionarTodosCondutores =
             @"SELECT
                         CD.[ID],
@@ -129,6 +152,11 @@ namespace LocadoraVeiculo.Controladores.CondutorModule
             }
 
             return true;
+        }
+
+        public List<ClienteCPF> SelecionarPorIdEmpresa(int id)
+        {
+            return Db.GetAll(sqlSelecionarCondutorPorIdEmpresa, ConverterEmCondutor, AdicionarParametro("ID", id));
         }
 
         public override bool Existe(int id)

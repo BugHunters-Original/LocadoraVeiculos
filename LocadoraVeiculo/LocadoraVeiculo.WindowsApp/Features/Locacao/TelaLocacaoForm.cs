@@ -56,10 +56,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.Locacao
             var veiculos = controladorVeiculo.SelecionarTodos();
 
             foreach (var clienteCPF in clientesCPF)
-            {
                 cbCliente.Items.Add(clienteCPF);
-                cbCondutor.Items.Add(clienteCPF);
-            }
 
             foreach (var clienteCNPJ in clientesCNPJ)
                 cbCliente.Items.Add(clienteCNPJ);
@@ -109,7 +106,16 @@ namespace LocadoraVeiculo.WindowsApp.Features.Locacao
             if (cbCliente.SelectedItem is ClienteCPF)
                 cbCondutor.Enabled = false;
             else
+            {
+                ClienteCNPJ cliente = (ClienteCNPJ)cbCliente.SelectedItem;
+                var id = cliente.Id;
                 cbCondutor.Enabled = true;
+
+                List<ClienteCPF> condutoresRelacionados = controladorCPF.SelecionarPorIdEmpresa(id);
+
+                foreach (var condutor in condutoresRelacionados)
+                    cbCondutor.Items.Add(condutor);
+            }
         }
 
         private void TelaLocacaoForm_FormClosing(object sender, FormClosingEventArgs e)
