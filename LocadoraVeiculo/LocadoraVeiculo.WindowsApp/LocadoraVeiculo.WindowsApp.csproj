@@ -157,6 +157,12 @@
     <Compile Include="Features\Veiculo\TabelaVeiculoControl.Designer.cs">
       <DependentUpon>TabelaVeiculoControl.cs</DependentUpon>
     </Compile>
+    <Compile Include="Features\Veiculo\TelaDetalhesVeiculoForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Features\Veiculo\TelaDetalhesVeiculoForm.Designer.cs">
+      <DependentUpon>TelaDetalhesVeiculoForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Features\Veiculo\TelaVeiculoForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -221,6 +227,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Features\GrupoVeiculo\TelaGrupoVeiculoForm.resx">
       <DependentUpon>TelaGrupoVeiculoForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Features\Veiculo\TelaDetalhesVeiculoForm.resx">
+      <DependentUpon>TelaDetalhesVeiculoForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Features\Veiculo\TelaVeiculoForm.resx">
       <DependentUpon>TelaVeiculoForm.cs</DependentUpon>
