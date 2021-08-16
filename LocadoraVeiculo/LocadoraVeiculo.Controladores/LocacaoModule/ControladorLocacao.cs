@@ -176,7 +176,10 @@ namespace LocadoraVeiculo.Controladores.LocacaoModule
             DateTime dataSaida = Convert.ToDateTime(reader["DATA_SAIDA"]);
             DateTime dataRetorno = Convert.ToDateTime(reader["DATA_RETORNOESPERADO"]);
             int plano = Convert.ToInt32(reader["PLANO"]);
-            decimal? precoTotal = Convert.ToDecimal(reader["PRECOTOTAL"]);
+
+            decimal? precoTotal = null;
+            if (reader["PRECOTOTAL"] != DBNull.Value)
+                precoTotal = Convert.ToDecimal(reader["PRECOTOTAL"]);
 
             ControladorClienteCPF controladorCPF = new ControladorClienteCPF();
             ControladorClienteCNPJ controladorCNPJ = new ControladorClienteCNPJ();
