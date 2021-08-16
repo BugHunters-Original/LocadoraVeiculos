@@ -1,4 +1,5 @@
-﻿using LocadoraVeiculo.VeiculoModule;
+﻿using LocadoraVeiculo.Controladores.VeiculoModule;
+using LocadoraVeiculo.VeiculoModule;
 using LocadoraVeiculo.WindowsApp.Shared;
 using System;
 using System.Collections.Generic;
@@ -14,6 +15,8 @@ namespace LocadoraVeiculo.WindowsApp.Features.Veiculo
 {
     public partial class TabelaVeiculoControl : UserControl
     {
+        ControladorVeiculo controlador = new ControladorVeiculo();
+
         public TabelaVeiculoControl()
         {
             InitializeComponent();
@@ -74,6 +77,23 @@ namespace LocadoraVeiculo.WindowsApp.Features.Veiculo
                 veiculo.numero_Portas, veiculo.capacidade_Tanque, veiculo.tamanhoPortaMalas, veiculo.km_Inicial, veiculo.tipo_Combustivel,
                 veiculo.grupoVeiculo.categoriaVeiculo, disponivel);
             }
+        }
+
+        private void gridVeiculos_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            int id = ObtemIdSelecionado();
+
+            if (id == 0)
+                return;
+
+            VeiculoModule.Veiculo veiculoSelecionado = controlador.SelecionarPorId(id);
+
+            TelaDetalhesVeiculoForm tela = new TelaDetalhesVeiculoForm();
+
+            tela.Veiculo = veiculoSelecionado;
+
+            if (tela.ShowDialog() == DialogResult.OK)
+                TelaPrincipalForm.Instancia.AtualizarRodape($"Veículo: [{tela.veiculos.nome}] visualizado");
         }
     }
 }
