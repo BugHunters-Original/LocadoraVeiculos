@@ -48,6 +48,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.Locacao
                 dtSaida.Value = locacao.DataSaida;
                 dtRetorno.Value = locacao.DataRetorno;
                 cbTipoLocacao.Text = locacao.TipoLocacao.ToString();
+                txtKmRodado.Text = locacao.KmRodado.ToString();
             }
         }
 
@@ -90,16 +91,22 @@ namespace LocadoraVeiculo.WindowsApp.Features.Locacao
 
             string tipoLocacao = cbTipoLocacao.Text;
 
-            List<Servico> servicosTaxas = servicos.ToList();
-
             var dias = Convert.ToInt32((dtRetorno.Value - dtSaida.Value).TotalDays);
+
+            decimal? precoTotal = 0;
+            if (servicos != null)
+            {
+                List<Servico> servicosTaxas = servicos.ToList();
+
+                foreach (var item in servicosTaxas)
+                    precoTotal = item.TipoCalculo != 1 ? precoTotal + item.Preco * dias : precoTotal + item.Preco;
+            }
+
+
             decimal? kmRodado = null;
             if (txtKmRodado.Text != "")
                 kmRodado = Convert.ToDecimal(txtKmRodado.Text);
 
-            decimal? precoTotal = 0;
-            foreach (var item in servicosTaxas)
-                precoTotal = item.TipoCalculo != 1 ? precoTotal + item.Preco * dias : precoTotal + item.Preco;
 
             switch (tipoLocacao)
             {

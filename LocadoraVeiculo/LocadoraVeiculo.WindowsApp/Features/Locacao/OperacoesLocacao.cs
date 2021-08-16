@@ -1,5 +1,6 @@
 ﻿using LocadoraVeiculo.Controladores.LocacaoModule;
 using LocadoraVeiculo.LocacaoModule;
+using LocadoraVeiculo.WindowsApp.Features.NotaFiscal;
 using LocadoraVeiculo.WindowsApp.Shared;
 using System;
 using System.Collections.Generic;
@@ -20,7 +21,24 @@ namespace LocadoraVeiculo.WindowsApp.Features.Locacao
 
         public void DevolverVeiculo()
         {
-            throw new NotImplementedException();
+            int id = tabelaLocacoes.ObtemIdSelecionado();
+            if (id == 0)
+            {
+                MessageBox.Show("Selecione uma Locação para poder devolver!", "Devolução de Locações",
+                    MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                return;
+            }
+
+            var locacaoSelecionada = controlador.SelecionarPorId(id);
+
+            TelaDevolucaoForm tela = new TelaDevolucaoForm();
+
+
+            if (tela.ShowDialog() == DialogResult.OK)
+            {
+                TelaNotaFiscalForm telaa = new TelaNotaFiscalForm();
+                telaa.ShowDialog();
+            }
         }
 
         public void EditarRegistro()
