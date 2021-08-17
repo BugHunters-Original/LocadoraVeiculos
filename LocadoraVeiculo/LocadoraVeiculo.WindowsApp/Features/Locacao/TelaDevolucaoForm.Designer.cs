@@ -97,6 +97,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.Locacao
             this.cbNivelTanque.Name = "cbNivelTanque";
             this.cbNivelTanque.Size = new System.Drawing.Size(216, 21);
             this.cbNivelTanque.TabIndex = 4;
+            this.cbNivelTanque.SelectedIndexChanged += new System.EventHandler(this.cbNivelTanque_SelectedIndexChanged);
             // 
             // label3
             // 
