@@ -62,7 +62,6 @@
     </Compile>
     <Compile Include="Features\Cliente\TipoClienteEnum.cs" />
     <Compile Include="Features\Combustivel\ConfiguracaoCombustivelToolBox.cs" />
-    <Compile Include="Features\Combustivel\OperacoesCombustivel.cs" />
     <Compile Include="Features\Combustivel\TelaCombustivelForm.cs">
       <SubType>Form</SubType>
     </Compile>

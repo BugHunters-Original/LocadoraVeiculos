@@ -20,7 +20,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.Combustivel
 
         public string ToolTipEditar
         {
-            get { return "Editar o preço de Combustíveis"; }
+            get { return ""; }
         }
 
         public string ToolTipExcluir

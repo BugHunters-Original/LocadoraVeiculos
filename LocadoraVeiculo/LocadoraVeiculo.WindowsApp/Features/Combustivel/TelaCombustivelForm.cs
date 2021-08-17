@@ -1,13 +1,4 @@
-﻿using LocadoraVeiculo.Controladores.CombustivelModule;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System;
 using System.Windows.Forms;
 using LocadoraVeiculo.Combustivel;
 
@@ -30,56 +21,43 @@ namespace LocadoraVeiculo.WindowsApp.Features.Combustivel
 
         private void btnGravar_Click(object sender, EventArgs e)
         {
-            double? precoGasolina = PegarDoubleComVerificacao(txtGasolina);
-            if (precoGasolina == null)
-                return;
-
-            double? precoDiesel = PegarDoubleComVerificacao(txtDiesel);
-            if (precoDiesel == null)
-                return;
-
-            double? precoAlcool = PegarDoubleComVerificacao(txtAlcool);
-            if (precoAlcool == null)
-                return;
+            double precoGasolina = Convert.ToDouble(txtGasolina.Text);
+            double precoDiesel = Convert.ToDouble(txtDiesel.Text);
+            double precoAlcool = Convert.ToDouble(txtAlcool.Text);
 
 
             if (MessageBox.Show("Tem certeza que deseja gravar as configurações atuais?",
-                "Configurações do Sistema",
-                MessageBoxButtons.YesNo,
-                MessageBoxIcon.Warning) == DialogResult.Yes)
+            "Configurações do Sistema",
+            MessageBoxButtons.YesNo,
+            MessageBoxIcon.Warning) == DialogResult.Yes)
             {
-                Config.PrecoGasolina = (double)precoGasolina;
-                Config.PrecoDiesel = (double)precoDiesel;
-                Config.PrecoAlcool = (double)precoAlcool;
+                string resultadoValidacao = new CombustivelModule.Combustivel(precoGasolina, precoDiesel, precoAlcool).Validar();
 
-                TelaPrincipalForm.Instancia.AtualizarRodape("Configurações salvadas com sucesso!");
+                if (resultadoValidacao == "ESTA_VALIDO")
+                {
+                    Config.PrecoGasolina = precoGasolina;
+                    Config.PrecoDiesel = precoDiesel;
+                    Config.PrecoAlcool = precoAlcool;
+
+                    TelaPrincipalForm.Instancia.AtualizarRodape("Configurações salvadas com sucesso!");
+                }
+                else
+                {
+                    TelaPrincipalForm.Instancia.AtualizarRodape(resultadoValidacao);
+                    DialogResult = DialogResult.None;
+                }
             }
         }
 
-        private double? PegarDoubleComVerificacao(TextBox textBox)
-        {
-            try
-            {
-                return Convert.ToDouble(textBox.Text);
-            }
-            catch (Exception)
-            {
-                TelaPrincipalForm.Instancia
-                    .AtualizarRodape($"Digite um numero no campo {textBox.AccessibleName}");
-            }
-
-            return null;
-        }
-
-        private void textBox1_KeyPress(object sender, KeyPressEventArgs e)
+        private void txtBoxJustNumbers_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) &&
-                (e.KeyChar != '.'))
+                (e.KeyChar != ','))
             {
                 e.Handled = true;
             }
 
-            if ((e.KeyChar == '.') && ((sender as TextBox).Text.IndexOf('.') > -1))
+            if ((e.KeyChar == ',') && ((sender as TextBox).Text.IndexOf(',') > -1))
             {
                 e.Handled = true;
             }
@@ -98,7 +76,5 @@ namespace LocadoraVeiculo.WindowsApp.Features.Combustivel
                 }
             }
         }
-
-
     }
 }

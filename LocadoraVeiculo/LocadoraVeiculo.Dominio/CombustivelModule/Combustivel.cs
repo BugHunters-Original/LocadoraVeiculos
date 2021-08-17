@@ -4,11 +4,11 @@ namespace LocadoraVeiculo.CombustivelModule
 {
     public class Combustivel : EntidadeBase
     {
-        public decimal? preco_Gasolina { get; set; }
-        public decimal? preco_Diesel { get; set; }
-        public decimal? preco_Alcool { get; set; }
+        public double? preco_Gasolina { get; set; }
+        public double? preco_Diesel { get; set; }
+        public double? preco_Alcool { get; set; }
 
-        public Combustivel(decimal? preco_Gasolina, decimal? preco_Diesel, decimal? preco_Alcool)
+        public Combustivel(double? preco_Gasolina, double? preco_Diesel, double? preco_Alcool)
         {
             this.preco_Alcool = preco_Alcool;
             this.preco_Diesel = preco_Diesel;
