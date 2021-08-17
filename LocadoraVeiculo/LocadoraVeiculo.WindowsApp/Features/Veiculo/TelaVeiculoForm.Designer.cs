@@ -69,7 +69,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.Veiculo
             // txtNome
             // 
             this.txtNome.Location = new System.Drawing.Point(419, 231);
-            this.txtNome.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtNome.Margin = new System.Windows.Forms.Padding(4);
             this.txtNome.Name = "txtNome";
             this.txtNome.Size = new System.Drawing.Size(133, 22);
             this.txtNome.TabIndex = 10;
@@ -88,7 +88,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.Veiculo
             // txtChassi
             // 
             this.txtChassi.Location = new System.Drawing.Point(183, 231);
-            this.txtChassi.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtChassi.Margin = new System.Windows.Forms.Padding(4);
             this.txtChassi.MaxLength = 17;
             this.txtChassi.Name = "txtChassi";
             this.txtChassi.Size = new System.Drawing.Size(133, 22);
@@ -276,7 +276,8 @@ namespace LocadoraVeiculo.WindowsApp.Features.Veiculo
             // txtCor
             // 
             this.txtCor.Location = new System.Drawing.Point(419, 202);
-            this.txtCor.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtCor.Margin = new System.Windows.Forms.Padding(4);
+            this.txtCor.MaxLength = 15;
             this.txtCor.Name = "txtCor";
             this.txtCor.Size = new System.Drawing.Size(133, 22);
             this.txtCor.TabIndex = 9;
@@ -295,7 +296,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.Veiculo
             // txtPlaca
             // 
             this.txtPlaca.Location = new System.Drawing.Point(419, 174);
-            this.txtPlaca.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtPlaca.Margin = new System.Windows.Forms.Padding(4);
             this.txtPlaca.MaxLength = 7;
             this.txtPlaca.Name = "txtPlaca";
             this.txtPlaca.Size = new System.Drawing.Size(133, 22);
@@ -315,7 +316,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.Veiculo
             // txtMarca
             // 
             this.txtMarca.Location = new System.Drawing.Point(183, 174);
-            this.txtMarca.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtMarca.Margin = new System.Windows.Forms.Padding(4);
             this.txtMarca.Name = "txtMarca";
             this.txtMarca.Size = new System.Drawing.Size(133, 22);
             this.txtMarca.TabIndex = 1;
@@ -336,7 +337,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.Veiculo
             this.txtId.BackColor = System.Drawing.Color.DarkSeaGreen;
             this.txtId.Enabled = false;
             this.txtId.Location = new System.Drawing.Point(184, 143);
-            this.txtId.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtId.Margin = new System.Windows.Forms.Padding(4);
             this.txtId.Name = "txtId";
             this.txtId.Size = new System.Drawing.Size(132, 22);
             this.txtId.TabIndex = 89;
@@ -356,7 +357,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.Veiculo
             // 
             this.btnCancelar.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btnCancelar.Location = new System.Drawing.Point(519, 351);
-            this.btnCancelar.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnCancelar.Margin = new System.Windows.Forms.Padding(4);
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Size = new System.Drawing.Size(100, 28);
             this.btnCancelar.TabIndex = 15;
@@ -367,7 +368,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.Veiculo
             // 
             this.btnGravar.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.btnGravar.Location = new System.Drawing.Point(411, 351);
-            this.btnGravar.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnGravar.Margin = new System.Windows.Forms.Padding(4);
             this.btnGravar.Name = "btnGravar";
             this.btnGravar.Size = new System.Drawing.Size(100, 28);
             this.btnGravar.TabIndex = 14;
