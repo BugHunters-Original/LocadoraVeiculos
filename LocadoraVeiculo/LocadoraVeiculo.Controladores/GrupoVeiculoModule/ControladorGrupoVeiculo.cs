@@ -137,11 +137,11 @@ namespace LocadoraVeiculo.Controladores.GrupoVeiculoModule
         private GrupoVeiculo ConverterEmGrupoVeiculo(IDataReader reader)
         {
             var categoriaVeiculo = Convert.ToString(reader["NOMETIPO"]);
-            var valor_Diario_PDiario = Convert.ToInt32(reader["VALOR_DIARIO_PDIARIO"]);
-            var preco_KMDiario = Convert.ToInt32(reader["PRECO_KMDIARIO"]);
-            var valor_Diario_PControlado = Convert.ToInt32(reader["VALOR_DIARIO_PCONTROLADO"]);
+            var valor_Diario_PDiario = Convert.ToDecimal(reader["VALOR_DIARIO_PDIARIO"]);
+            var preco_KMDiario = Convert.ToDecimal(reader["PRECO_KMDIARIO"]);
+            var valor_Diario_PControlado = Convert.ToDecimal(reader["VALOR_DIARIO_PCONTROLADO"]);
             var kmDia__KMControlado = Convert.ToInt32(reader["KMDIA__KMCONTROLADO"]);
-            var preco_KMLivre = Convert.ToInt32(reader["PRECO_KMLIVRE"]);
+            var preco_KMLivre = Convert.ToDecimal(reader["PRECO_KMLIVRE"]);
 
             GrupoVeiculo grupoVeiculo = new GrupoVeiculo(categoriaVeiculo, valor_Diario_PDiario, preco_KMDiario, valor_Diario_PControlado, kmDia__KMControlado, preco_KMLivre);
             grupoVeiculo.Id = Convert.ToInt32(reader["ID"]);
