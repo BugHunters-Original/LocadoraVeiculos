@@ -1,6 +1,9 @@
 ﻿using LocadoraVeiculo.GrupoVeiculoModule;
 using LocadoraVeiculo.Shared;
 using System;
+using System.Collections.Generic;
+using System.Linq;
+
 namespace LocadoraVeiculo.VeiculoModule
 {
     public class Veiculo : EntidadeBase
@@ -19,25 +22,6 @@ namespace LocadoraVeiculo.VeiculoModule
         public string tipo_Combustivel { get; set; }
         public int disponibilidade_Veiculo { get; set; }
         public GrupoVeiculo grupoVeiculo { get; set; }
-
-        public Veiculo(string nome, string numero_Placa, string numero_Chassi, string cor,
-            string marca, int? ano, int? numero_Portas, int? capacidade_Tanque, char tamanhoPortaMalas, int? km_Inicial,
-            string tipo_Combustivel, int disponibilidade_Veiculo, GrupoVeiculo grupoVeiculo)
-        {
-            this.nome = nome;
-            this.numero_Placa = numero_Placa;
-            this.numero_Chassi = numero_Chassi;
-            this.cor = cor;
-            this.marca = marca;
-            this.ano = ano;
-            this.numero_Portas = numero_Portas;
-            this.capacidade_Tanque = capacidade_Tanque;
-            this.tamanhoPortaMalas = tamanhoPortaMalas;
-            this.km_Inicial = km_Inicial;
-            this.tipo_Combustivel = tipo_Combustivel;
-            this.disponibilidade_Veiculo = disponibilidade_Veiculo;
-            this.grupoVeiculo = grupoVeiculo;
-        }
 
         public Veiculo(string nome, string numero_Placa, string numero_Chassi, byte[] foto, string cor,
             string marca, int? ano, int? numero_Portas, int? capacidade_Tanque, char tamanhoPortaMalas, int? km_Inicial,
@@ -121,6 +105,27 @@ namespace LocadoraVeiculo.VeiculoModule
                 return true;
             else
                 return false;
+        }
+
+        public override bool Equals(object obj)
+        {
+            return obj is Veiculo veiculo &&
+                   Id == veiculo.Id &&
+                   nome == veiculo.nome &&
+                   numero_Placa == veiculo.numero_Placa &&
+                   numero_Chassi == veiculo.numero_Chassi &&
+                   EqualityComparer<byte[]>.Default.Equals(foto, veiculo.foto) &&
+                   cor == veiculo.cor &&
+                   marca == veiculo.marca &&
+                   ano == veiculo.ano &&
+                   numero_Portas == veiculo.numero_Portas &&
+                   capacidade_Tanque == veiculo.capacidade_Tanque &&
+                   tamanhoPortaMalas == veiculo.tamanhoPortaMalas &&
+                   km_Inicial == veiculo.km_Inicial &&
+                   tipo_Combustivel == veiculo.tipo_Combustivel &&
+                   disponibilidade_Veiculo == veiculo.disponibilidade_Veiculo &&
+                   EqualityComparer<GrupoVeiculo>.Default.Equals(grupoVeiculo, veiculo.grupoVeiculo) &&
+                   foto.SequenceEqual(veiculo.foto);
         }
     }
 }
