@@ -50,6 +50,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.Funcionarios
             string usuario = text_UsuarioFuncionario.Text;
             string senha = text_SenhaFuncionario.Text;
             decimal? salario = null;
+
             if (!string.IsNullOrEmpty(text_salarioFuncionario.Text))
                 salario = Convert.ToDecimal(text_salarioFuncionario.Text);
 
@@ -68,6 +69,20 @@ namespace LocadoraVeiculo.WindowsApp.Features.Funcionarios
                 TelaPrincipalForm.Instancia.AtualizarRodape(primeiroErro);
 
                 DialogResult = DialogResult.None;
+            }
+        }
+
+        private void textBox_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) &&
+                (e.KeyChar != ','))
+            {
+                e.Handled = true;
+            }
+
+            if ((e.KeyChar == ',') && ((sender as TextBox).Text.IndexOf(',') > -1))
+            {
+                e.Handled = true;
             }
         }
     }
