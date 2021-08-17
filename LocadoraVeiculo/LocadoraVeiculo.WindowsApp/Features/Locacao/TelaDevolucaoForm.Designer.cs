@@ -192,6 +192,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.Locacao
             // 
             // dtRetornoEsperada
             // 
+            this.dtRetornoEsperada.Enabled = false;
             this.dtRetornoEsperada.Location = new System.Drawing.Point(151, 47);
             this.dtRetornoEsperada.Name = "dtRetornoEsperada";
             this.dtRetornoEsperada.Size = new System.Drawing.Size(216, 20);
