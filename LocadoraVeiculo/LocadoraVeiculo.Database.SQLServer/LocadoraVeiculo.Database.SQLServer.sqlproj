@@ -6,7 +6,7 @@
     <Name>LocadoraVeiculo.Database.SQLServer</Name>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectVersion>4.1</ProjectVersion>
-    <ProjectGuid>{f2a7db53-b317-4723-986f-a79712b82d16}</ProjectGuid>
+    <ProjectGuid>{cb1fbebd-5752-42a8-9a96-1fb5523d522c}</ProjectGuid>
     <DSP>Microsoft.Data.Tools.Schema.Sql.Sql130DatabaseSchemaProvider</DSP>
     <OutputType>Database</OutputType>
     <RootPath>
@@ -62,20 +62,13 @@
     <Folder Include="dbo\Tables\" />
   </ItemGroup>
   <ItemGroup>
-    <Build Include="dbo\Tables\TBTipoVeiculo.sql" />
-    <Build Include="dbo\Tables\TBTaxasServicos.sql" />
-    <Build Include="dbo\Tables\TBTaxasDaLocacao.sql" />
-    <Build Include="dbo\Tables\TBLocacao.sql" />
-    <Build Include="dbo\Tables\TBTipoCombustivel.sql" />
-    <Build Include="dbo\Tables\TBVeiculos.sql" />
-    <Build Include="dbo\Tables\TBFuncionario.sql" />
-    <Build Include="dbo\Tables\TBClienteCPF.sql" />
     <Build Include="dbo\Tables\TBClienteCNPJ.sql" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Script1.sql" />
-  </ItemGroup>
-  <ItemGroup>
-    <RefactorLog Include="LocadoraVeiculo.Database.SQLServer.refactorlog" />
+    <Build Include="dbo\Tables\TBClienteCPF.sql" />
+    <Build Include="dbo\Tables\TBFuncionario.sql" />
+    <Build Include="dbo\Tables\TBLocacao.sql" />
+    <Build Include="dbo\Tables\TBTaxasDaLocacao.sql" />
+    <Build Include="dbo\Tables\TBTaxasServicos.sql" />
+    <Build Include="dbo\Tables\TBTipoVeiculo.sql" />
+    <Build Include="dbo\Tables\TBVeiculos.sql" />
   </ItemGroup>
 </Project>

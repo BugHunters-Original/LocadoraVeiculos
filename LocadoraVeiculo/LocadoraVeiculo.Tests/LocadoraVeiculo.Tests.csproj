@@ -83,10 +83,6 @@
       <Project>{5af28947-43d9-409e-bbd6-fb3790e5b635}</Project>
       <Name>LocadoraVeiculo.Database.SQLite</Name>
     </ProjectReference>
-    <ProjectReference Include="..\LocadoraVeiculo.Database.SQLServer\LocadoraVeiculo.Database.SQLServer.sqlproj">
-      <Project>{f2a7db53-b317-4723-986f-a79712b82d16}</Project>
-      <Name>LocadoraVeiculo.Database.SQLServer</Name>
-    </ProjectReference>
     <ProjectReference Include="..\LocadoraVeiculo.Dominio\LocadoraVeiculo.Dominio.csproj">
       <Project>{fd32af45-ef78-416a-b054-b4189d0168b7}</Project>
       <Name>LocadoraVeiculo.Dominio</Name>
