@@ -42,7 +42,10 @@ namespace LocadoraVeiculo.WindowsApp.Features.Combustivel
                     TelaPrincipalForm.Instancia.AtualizarRodape("Configurações salvadas com sucesso!");
                 }
                 else
+                {
                     TelaPrincipalForm.Instancia.AtualizarRodape(resultadoValidacao);
+                    DialogResult = DialogResult.None;
+                }
             }
         }
 
