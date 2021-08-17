@@ -30,7 +30,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.Locacao
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(TelaDevolucaoForm));
-            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
+            this.dtRetorno = new System.Windows.Forms.DateTimePicker();
             this.label1 = new System.Windows.Forms.Label();
             this.txtKmAtual = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
@@ -46,14 +46,16 @@ namespace LocadoraVeiculo.WindowsApp.Features.Locacao
             this.btnCancelar = new System.Windows.Forms.Button();
             this.label7 = new System.Windows.Forms.Label();
             this.txtKmInicial = new System.Windows.Forms.TextBox();
+            this.label8 = new System.Windows.Forms.Label();
+            this.dtRetornoEsperada = new System.Windows.Forms.DateTimePicker();
             this.SuspendLayout();
             // 
-            // dateTimePicker1
+            // dtRetorno
             // 
-            this.dateTimePicker1.Location = new System.Drawing.Point(151, 73);
-            this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.Size = new System.Drawing.Size(216, 20);
-            this.dateTimePicker1.TabIndex = 0;
+            this.dtRetorno.Location = new System.Drawing.Point(151, 73);
+            this.dtRetorno.Name = "dtRetorno";
+            this.dtRetorno.Size = new System.Drawing.Size(216, 20);
+            this.dtRetorno.TabIndex = 0;
             // 
             // label1
             // 
@@ -196,11 +198,29 @@ namespace LocadoraVeiculo.WindowsApp.Features.Locacao
             this.txtKmInicial.Size = new System.Drawing.Size(216, 20);
             this.txtKmInicial.TabIndex = 14;
             // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(56, 53);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(92, 13);
+            this.label8.TabIndex = 17;
+            this.label8.Text = "Data de Previsão:";
+            // 
+            // dtRetornoEsperada
+            // 
+            this.dtRetornoEsperada.Location = new System.Drawing.Point(151, 47);
+            this.dtRetornoEsperada.Name = "dtRetornoEsperada";
+            this.dtRetornoEsperada.Size = new System.Drawing.Size(216, 20);
+            this.dtRetornoEsperada.TabIndex = 16;
+            // 
             // TelaDevolucaoForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(474, 311);
+            this.Controls.Add(this.label8);
+            this.Controls.Add(this.dtRetornoEsperada);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.txtKmInicial);
             this.Controls.Add(this.btnCancelar);
@@ -216,7 +236,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.Locacao
             this.Controls.Add(this.label2);
             this.Controls.Add(this.txtKmAtual);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.dateTimePicker1);
+            this.Controls.Add(this.dtRetorno);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.MinimizeBox = false;
@@ -231,7 +251,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.Locacao
 
         #endregion
 
-        private System.Windows.Forms.DateTimePicker dateTimePicker1;
+        private System.Windows.Forms.DateTimePicker dtRetorno;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox txtKmAtual;
         private System.Windows.Forms.Label label2;
@@ -247,5 +267,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.Locacao
         private System.Windows.Forms.Button btnCancelar;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.TextBox txtKmInicial;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.DateTimePicker dtRetornoEsperada;
     }
 }
