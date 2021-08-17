@@ -44,6 +44,12 @@ namespace LocadoraVeiculo.FuncionarioModule
             if (DataEntrada == DateTime.MinValue)
                 resultadoValidacao += QuebraDeLinha(resultadoValidacao) + "O campo Data é obrigatório";
 
+            if (DateTime.Now.Year - DataEntrada.Year > 70)
+                resultadoValidacao += QuebraDeLinha(resultadoValidacao) + "O campo Data não aceita datas muito antigas";
+
+            if (DataEntrada > DateTime.Now)
+                resultadoValidacao += QuebraDeLinha(resultadoValidacao) + "O campo Data não aceita datas futuras";
+
             if (Salario <= 0)
                 resultadoValidacao += QuebraDeLinha(resultadoValidacao) + "O campo Salário é obrigatório e maior que 0";
 

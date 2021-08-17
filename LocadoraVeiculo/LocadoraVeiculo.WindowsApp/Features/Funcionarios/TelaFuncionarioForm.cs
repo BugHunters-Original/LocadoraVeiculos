@@ -26,14 +26,9 @@ namespace LocadoraVeiculo.WindowsApp.Features.Funcionarios
                 text_NomeFuncionario.Text = funcionario.Nome;
                 text_CPFFuncionario.Text = funcionario.Cpf_funcionario;
                 text_salarioFuncionario.Text = funcionario.Salario.ToString();
-
+                date_EntradaFuncionario.Value = Convert.ToDateTime(funcionario.DataEntrada);
                 text_UsuarioFuncionario.Text = funcionario.Usuario;
                 text_SenhaFuncionario.Text = funcionario.Senha;
-
-
-
-
-
             }
         }
 
