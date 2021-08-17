@@ -37,8 +37,14 @@ namespace LocadoraVeiculo.WindowsApp.Features.Locacao
 
             if (tela.ShowDialog() == DialogResult.OK)
             {
-                TelaNotaFiscalForm telaa = new TelaNotaFiscalForm();
-                telaa.ShowDialog();
+                TelaNotaFiscalForm telaNotaFiscal = new TelaNotaFiscalForm();
+
+                telaNotaFiscal.Locacao = locacaoSelecionada;
+
+                if (telaNotaFiscal.ShowDialog() == DialogResult.OK)
+                {
+
+                }
             }
         }
 

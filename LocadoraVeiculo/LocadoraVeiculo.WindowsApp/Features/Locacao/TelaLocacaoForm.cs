@@ -109,7 +109,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.Locacao
                 default: break;
             }
 
-            locacao = new LocacaoVeiculo(cliente, veiculo, condutor, dataSaida, dataRetornoEsperado, tipoLocacao, tipoCliente, precoTotal, kmRodado);
+            locacao = new LocacaoVeiculo(cliente, veiculo, condutor, dataSaida, dataRetornoEsperado, tipoLocacao, tipoCliente, precoTotal, kmRodado, dias, "Em Aberto");
 
             string resultadoValidacao = locacao.Validar();
 

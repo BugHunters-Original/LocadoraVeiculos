@@ -36,11 +36,9 @@ namespace LocadoraVeiculo.WindowsApp.Features.Locacao
             this.label2 = new System.Windows.Forms.Label();
             this.cbNivelTanque = new System.Windows.Forms.ComboBox();
             this.label3 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.txtTotal = new System.Windows.Forms.TextBox();
-            this.txtMulta = new System.Windows.Forms.TextBox();
             this.txtCombustivel = new System.Windows.Forms.TextBox();
             this.btnNota = new System.Windows.Forms.Button();
             this.btnCancelar = new System.Windows.Forms.Button();
@@ -72,6 +70,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.Locacao
             this.txtKmAtual.Name = "txtKmAtual";
             this.txtKmAtual.Size = new System.Drawing.Size(216, 20);
             this.txtKmAtual.TabIndex = 2;
+            this.txtKmAtual.Leave += new System.EventHandler(this.txtKmAtual_Leave);
             // 
             // label2
             // 
@@ -110,15 +109,6 @@ namespace LocadoraVeiculo.WindowsApp.Features.Locacao
             this.label3.TabIndex = 5;
             this.label3.Text = "Nível do Tanque:";
             // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(109, 209);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(36, 13);
-            this.label4.TabIndex = 6;
-            this.label4.Text = "Multa:";
-            // 
             // label5
             // 
             this.label5.AutoSize = true;
@@ -131,7 +121,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.Locacao
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(109, 235);
+            this.label6.Location = new System.Drawing.Point(109, 209);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(34, 13);
             this.label6.TabIndex = 8;
@@ -139,19 +129,11 @@ namespace LocadoraVeiculo.WindowsApp.Features.Locacao
             // 
             // txtTotal
             // 
-            this.txtTotal.Location = new System.Drawing.Point(151, 232);
+            this.txtTotal.Location = new System.Drawing.Point(151, 206);
             this.txtTotal.Name = "txtTotal";
             this.txtTotal.ReadOnly = true;
             this.txtTotal.Size = new System.Drawing.Size(216, 20);
             this.txtTotal.TabIndex = 9;
-            // 
-            // txtMulta
-            // 
-            this.txtMulta.Location = new System.Drawing.Point(151, 206);
-            this.txtMulta.Name = "txtMulta";
-            this.txtMulta.ReadOnly = true;
-            this.txtMulta.Size = new System.Drawing.Size(216, 20);
-            this.txtMulta.TabIndex = 10;
             // 
             // txtCombustivel
             // 
@@ -160,6 +142,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.Locacao
             this.txtCombustivel.ReadOnly = true;
             this.txtCombustivel.Size = new System.Drawing.Size(216, 20);
             this.txtCombustivel.TabIndex = 11;
+            this.txtCombustivel.TextChanged += new System.EventHandler(this.txtCombustivel_TextChanged);
             // 
             // btnNota
             // 
@@ -226,11 +209,9 @@ namespace LocadoraVeiculo.WindowsApp.Features.Locacao
             this.Controls.Add(this.btnCancelar);
             this.Controls.Add(this.btnNota);
             this.Controls.Add(this.txtCombustivel);
-            this.Controls.Add(this.txtMulta);
             this.Controls.Add(this.txtTotal);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.label5);
-            this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.cbNivelTanque);
             this.Controls.Add(this.label2);
@@ -257,11 +238,9 @@ namespace LocadoraVeiculo.WindowsApp.Features.Locacao
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.ComboBox cbNivelTanque;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.TextBox txtTotal;
-        private System.Windows.Forms.TextBox txtMulta;
         private System.Windows.Forms.TextBox txtCombustivel;
         private System.Windows.Forms.Button btnNota;
         private System.Windows.Forms.Button btnCancelar;

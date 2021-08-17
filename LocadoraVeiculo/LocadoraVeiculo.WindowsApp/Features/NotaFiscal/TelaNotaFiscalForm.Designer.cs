@@ -42,8 +42,6 @@ namespace LocadoraVeiculo.WindowsApp.Features.NotaFiscal
             this.label5 = new System.Windows.Forms.Label();
             this.txtServico = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
-            this.txtMulta = new System.Windows.Forms.TextBox();
-            this.label8 = new System.Windows.Forms.Label();
             this.textBox9 = new System.Windows.Forms.TextBox();
             this.label9 = new System.Windows.Forms.Label();
             this.bt_Voltar = new System.Windows.Forms.Button();
@@ -53,7 +51,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.NotaFiscal
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(11, 51);
+            this.label1.Location = new System.Drawing.Point(80, 51);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(42, 13);
             this.label1.TabIndex = 0;
@@ -61,24 +59,24 @@ namespace LocadoraVeiculo.WindowsApp.Features.NotaFiscal
             // 
             // txtCliente
             // 
-            this.txtCliente.Location = new System.Drawing.Point(59, 48);
+            this.txtCliente.Location = new System.Drawing.Point(128, 48);
             this.txtCliente.Name = "txtCliente";
             this.txtCliente.ReadOnly = true;
-            this.txtCliente.Size = new System.Drawing.Size(305, 20);
+            this.txtCliente.Size = new System.Drawing.Size(236, 20);
             this.txtCliente.TabIndex = 1;
             // 
             // txtPlano
             // 
-            this.txtPlano.Location = new System.Drawing.Point(60, 74);
+            this.txtPlano.Location = new System.Drawing.Point(128, 22);
             this.txtPlano.Name = "txtPlano";
             this.txtPlano.ReadOnly = true;
-            this.txtPlano.Size = new System.Drawing.Size(100, 20);
+            this.txtPlano.Size = new System.Drawing.Size(236, 20);
             this.txtPlano.TabIndex = 3;
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(17, 77);
+            this.label2.Location = new System.Drawing.Point(85, 25);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(37, 13);
             this.label2.TabIndex = 2;
@@ -86,16 +84,16 @@ namespace LocadoraVeiculo.WindowsApp.Features.NotaFiscal
             // 
             // txtPrecoPlano
             // 
-            this.txtPrecoPlano.Location = new System.Drawing.Point(279, 74);
+            this.txtPrecoPlano.Location = new System.Drawing.Point(128, 74);
             this.txtPrecoPlano.Name = "txtPrecoPlano";
             this.txtPrecoPlano.ReadOnly = true;
-            this.txtPrecoPlano.Size = new System.Drawing.Size(85, 20);
+            this.txtPrecoPlano.Size = new System.Drawing.Size(236, 20);
             this.txtPrecoPlano.TabIndex = 5;
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(191, 77);
+            this.label3.Location = new System.Drawing.Point(40, 77);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(82, 13);
             this.label3.TabIndex = 4;
@@ -103,16 +101,17 @@ namespace LocadoraVeiculo.WindowsApp.Features.NotaFiscal
             // 
             // txtCaucao
             // 
-            this.txtCaucao.Location = new System.Drawing.Point(59, 102);
+            this.txtCaucao.Location = new System.Drawing.Point(128, 126);
             this.txtCaucao.Name = "txtCaucao";
             this.txtCaucao.ReadOnly = true;
-            this.txtCaucao.Size = new System.Drawing.Size(100, 20);
+            this.txtCaucao.Size = new System.Drawing.Size(236, 20);
             this.txtCaucao.TabIndex = 7;
+            this.txtCaucao.Text = "R$1000";
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(6, 105);
+            this.label4.Location = new System.Drawing.Point(75, 129);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(47, 13);
             this.label4.TabIndex = 6;
@@ -120,16 +119,16 @@ namespace LocadoraVeiculo.WindowsApp.Features.NotaFiscal
             // 
             // txtGas
             // 
-            this.txtGas.Location = new System.Drawing.Point(279, 103);
+            this.txtGas.Location = new System.Drawing.Point(128, 100);
             this.txtGas.Name = "txtGas";
             this.txtGas.ReadOnly = true;
-            this.txtGas.Size = new System.Drawing.Size(85, 20);
+            this.txtGas.Size = new System.Drawing.Size(236, 20);
             this.txtGas.TabIndex = 9;
             // 
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(162, 105);
+            this.label5.Location = new System.Drawing.Point(11, 103);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(111, 13);
             this.label5.TabIndex = 8;
@@ -137,51 +136,34 @@ namespace LocadoraVeiculo.WindowsApp.Features.NotaFiscal
             // 
             // txtServico
             // 
-            this.txtServico.Location = new System.Drawing.Point(279, 132);
+            this.txtServico.Location = new System.Drawing.Point(128, 152);
             this.txtServico.Name = "txtServico";
             this.txtServico.ReadOnly = true;
-            this.txtServico.Size = new System.Drawing.Size(85, 20);
+            this.txtServico.Size = new System.Drawing.Size(236, 20);
             this.txtServico.TabIndex = 11;
             // 
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(180, 133);
+            this.label6.Location = new System.Drawing.Point(29, 159);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(93, 13);
             this.label6.TabIndex = 10;
             this.label6.Text = "Taxa de Serviços:";
             // 
-            // txtMulta
-            // 
-            this.txtMulta.Location = new System.Drawing.Point(59, 128);
-            this.txtMulta.Name = "txtMulta";
-            this.txtMulta.ReadOnly = true;
-            this.txtMulta.Size = new System.Drawing.Size(100, 20);
-            this.txtMulta.TabIndex = 15;
-            // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(17, 131);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(36, 13);
-            this.label8.TabIndex = 14;
-            this.label8.Text = "Multa:";
-            // 
             // textBox9
             // 
-            this.textBox9.Location = new System.Drawing.Point(59, 187);
+            this.textBox9.Location = new System.Drawing.Point(128, 194);
             this.textBox9.Name = "textBox9";
             this.textBox9.ReadOnly = true;
-            this.textBox9.Size = new System.Drawing.Size(305, 20);
+            this.textBox9.Size = new System.Drawing.Size(236, 20);
             this.textBox9.TabIndex = 17;
             // 
             // label9
             // 
             this.label9.AutoSize = true;
             this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label9.Location = new System.Drawing.Point(174, 168);
+            this.label9.Location = new System.Drawing.Point(40, 198);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(61, 16);
             this.label9.TabIndex = 16;
@@ -216,8 +198,6 @@ namespace LocadoraVeiculo.WindowsApp.Features.NotaFiscal
             this.Controls.Add(this.bt_ConcluirLocacao);
             this.Controls.Add(this.textBox9);
             this.Controls.Add(this.label9);
-            this.Controls.Add(this.txtMulta);
-            this.Controls.Add(this.label8);
             this.Controls.Add(this.txtServico);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.txtGas);
@@ -256,8 +236,6 @@ namespace LocadoraVeiculo.WindowsApp.Features.NotaFiscal
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.TextBox txtServico;
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.TextBox txtMulta;
-        private System.Windows.Forms.Label label8;
         private System.Windows.Forms.TextBox textBox9;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Button bt_Voltar;
