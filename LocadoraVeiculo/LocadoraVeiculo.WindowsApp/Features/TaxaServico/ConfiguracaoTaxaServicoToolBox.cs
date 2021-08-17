@@ -19,7 +19,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.TaxaServico
 
         public string ToolTipFiltrar => "Filtrar Taxas e Serviços";
 
-        public string ToolTipDevolver => "";
+        public string ToolTipDevolver => "Devolver Veículo";
 
         public bool EnabledFiltrar => false;
 
