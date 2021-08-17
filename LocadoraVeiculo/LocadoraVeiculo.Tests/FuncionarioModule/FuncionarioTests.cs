@@ -71,7 +71,7 @@ namespace LocadoraVeiculo.Tests.FuncionarioModule
             var resultadoValidacao = funcionario.Validar();
 
             //assert
-            resultadoValidacao.Should().Be("O campo Data é obrigatório");
+            resultadoValidacao.Should().Be("O campo Data é obrigatório\r\nO campo Data não aceita datas muito antigas");
         }
 
         [TestMethod]
