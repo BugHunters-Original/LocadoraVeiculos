@@ -15,7 +15,6 @@ using System.Windows.Forms;
 using LocadoraVeiculo.WindowsApp.Features.TaxaServico;
 using LocadoraVeiculo.Controladores.ServicoModule;
 using LocadoraVeiculo.WindowsApp.Features.Combustivel;
-using LocadoraVeiculo.Controladores.CombustivelModule;
 
 namespace LocadoraVeiculo.WindowsApp
 {

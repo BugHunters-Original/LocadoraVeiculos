@@ -1,13 +1,4 @@
-﻿using LocadoraVeiculo.Controladores.CombustivelModule;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System;
 using System.Windows.Forms;
 using LocadoraVeiculo.Combustivel;
 
@@ -40,7 +31,9 @@ namespace LocadoraVeiculo.WindowsApp.Features.Combustivel
             MessageBoxButtons.YesNo,
             MessageBoxIcon.Warning) == DialogResult.Yes)
             {
-                if (precoGasolina != 0 && precoDiesel != 0 && precoAlcool != 0)
+                string resultadoValidacao = new CombustivelModule.Combustivel(precoGasolina, precoDiesel, precoAlcool).Validar();
+
+                if (resultadoValidacao == "ESTA_VALIDO")
                 {
                     Config.PrecoGasolina = precoGasolina;
                     Config.PrecoDiesel = precoDiesel;
@@ -49,9 +42,10 @@ namespace LocadoraVeiculo.WindowsApp.Features.Combustivel
                     TelaPrincipalForm.Instancia.AtualizarRodape("Configurações salvadas com sucesso!");
                 }
                 else
-                    TelaPrincipalForm.Instancia.AtualizarRodape("Configurações não foram salvas. Tente novamente!");
+                    TelaPrincipalForm.Instancia.AtualizarRodape(resultadoValidacao);
             }
         }
+
         private void txtBoxJustNumbers_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) &&
