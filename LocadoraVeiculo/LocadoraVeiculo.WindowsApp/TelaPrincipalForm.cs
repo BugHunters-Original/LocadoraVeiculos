@@ -151,9 +151,8 @@ namespace LocadoraVeiculo.WindowsApp
 
             AtualizarRodape(configuracao.TipoCadastro);
 
-            OperacoesCombustivel opCombustivel = new OperacoesCombustivel(new ControladorCombustivel());
-
-            //opCombustivel.Editar();
+            TelaCombustivelForm telaCombustivelForm = new TelaCombustivelForm();
+            telaCombustivelForm.ShowDialog();
         }
         private void btnAdicionar_Click(object sender, EventArgs e)
         {
