@@ -71,22 +71,17 @@ namespace LocadoraVeiculo.WindowsApp.Features.Locacao
         private void btnGravar_Click(object sender, EventArgs e)
         {
             Cliente cliente = (Cliente)cbCliente.SelectedItem;
+
             VeiculoModule.Veiculo veiculo = (VeiculoModule.Veiculo)cbVeiculo.SelectedItem;
 
-            int tipoCliente;
-            ClienteCPF condutor;
-            if (cbCliente.SelectedItem is ClienteCPF)
-            {
-                condutor = (ClienteCPF)cliente;
-                tipoCliente = 0;
-            }
-            else
-            {
-                condutor = (ClienteCPF)cbCondutor.SelectedItem;
-                tipoCliente = 1;
-            }
+            MudarDisponibilidadeVeiculo(veiculo);
+
+            int tipoCliente = cbCliente.SelectedItem is ClienteCPF ? 0 : 1;
+
+            ClienteCPF condutor = cbCliente.SelectedItem is ClienteCPF ? (ClienteCPF)cliente : (ClienteCPF)cbCondutor.SelectedItem;
 
             DateTime dataSaida = dtSaida.Value;
+
             DateTime dataRetornoEsperado = dtRetorno.Value;
 
             string tipoLocacao = cbTipoLocacao.Text;
@@ -94,19 +89,14 @@ namespace LocadoraVeiculo.WindowsApp.Features.Locacao
             var dias = Convert.ToInt32((dtRetorno.Value - dtSaida.Value).TotalDays);
 
             decimal? precoTotal = 0;
+
             if (servicos != null)
-            {
-                List<Servico> servicosTaxas = servicos.ToList();
-
-                foreach (var item in servicosTaxas)
+                foreach (var item in servicos.ToList())
                     precoTotal = item.TipoCalculo != 1 ? precoTotal + item.Preco * dias : precoTotal + item.Preco;
-            }
-
 
             decimal? kmRodado = null;
             if (txtKmRodado.Text != "")
                 kmRodado = Convert.ToDecimal(txtKmRodado.Text);
-
 
             switch (tipoLocacao)
             {
@@ -131,6 +121,13 @@ namespace LocadoraVeiculo.WindowsApp.Features.Locacao
 
                 DialogResult = DialogResult.None;
             }
+        }
+
+        private void MudarDisponibilidadeVeiculo(VeiculoModule.Veiculo veiculo)
+        {
+            veiculo.disponibilidade_Veiculo = 0;
+
+            controladorVeiculo.Editar(veiculo.Id, veiculo);
         }
 
         private void cbCliente_SelectedIndexChanged(object sender, EventArgs e)
@@ -164,10 +161,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.Locacao
 
         private void cbTipoLocacao_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (cbTipoLocacao.Text == "KM Controlado")
-                txtKmRodado.Enabled = true;
-            else
-                txtKmRodado.Enabled = false;
+            txtKmRodado.Enabled = cbTipoLocacao.Text == "KM Controlado" ? true : false;
         }
     }
 }

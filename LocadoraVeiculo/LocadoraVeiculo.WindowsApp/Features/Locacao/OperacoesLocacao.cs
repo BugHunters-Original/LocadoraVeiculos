@@ -33,6 +33,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.Locacao
 
             TelaDevolucaoForm tela = new TelaDevolucaoForm();
 
+            tela.Locacao = locacaoSelecionada;
 
             if (tela.ShowDialog() == DialogResult.OK)
             {
