@@ -3,7 +3,7 @@ using LocadoraVeiculo.Shared;
 using System;
 namespace LocadoraVeiculo.VeiculoModule
 {
-    public class Veiculo : EntidadeBase
+    public class Veiculo : EntidadeBase, IEquatable<Veiculo>
     {
         public string nome { get; set; }
         public string numero_Placa { get; set; }
@@ -42,8 +42,6 @@ namespace LocadoraVeiculo.VeiculoModule
             this.grupoVeiculo = grupoVeiculo;
 
         }
-
-
 
         public override string Validar()
         {
@@ -111,5 +109,54 @@ namespace LocadoraVeiculo.VeiculoModule
             else
                 return false;
         }
+
+
+        public override bool Equals(object obj)
+        {
+            return Equals(obj as Veiculo);
+        }
+
+        public bool Equals(Veiculo other)
+        {
+            return other != null &&
+               Id == other.Id &&
+               nome == other.nome &&
+               numero_Placa == other.numero_Placa &&
+               numero_Chassi == other.numero_Chassi &&               
+               //EqualityComparer<byte[]>.Default.Equals(foto, other.foto) &&
+               cor == other.cor &&
+               marca == other.marca &&
+               ano == other.ano &&
+               numero_Portas == other.numero_Portas &&
+               capacidade_Tanque == other.capacidade_Tanque &&
+               tamanhoPortaMalas == other.tamanhoPortaMalas &&
+               km_Inicial == other.km_Inicial &&
+               tipo_Combustivel == other.tipo_Combustivel &&
+               disponibilidade_Veiculo == other.disponibilidade_Veiculo &&
+               EqualityComparer<GrupoVeiculo>.Default.Equals(grupoVeiculo, other.grupoVeiculo) &&
+               foto.SequenceEqual(other.foto);
+        }
+
+        public override int GetHashCode()
+        {
+            int hashCode = -627672175;
+            hashCode = hashCode * -1521134295 + Id.GetHashCode();
+            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(nome);
+            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(numero_Placa);
+            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(numero_Chassi);
+            hashCode = hashCode * -1521134295 + EqualityComparer<byte[]>.Default.GetHashCode(foto);
+            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(cor);
+            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(marca);
+            hashCode = hashCode * -1521134295 + ano.GetHashCode();
+            hashCode = hashCode * -1521134295 + numero_Portas.GetHashCode();
+            hashCode = hashCode * -1521134295 + capacidade_Tanque.GetHashCode();
+            hashCode = hashCode * -1521134295 + tamanhoPortaMalas.GetHashCode();
+            hashCode = hashCode * -1521134295 + km_Inicial.GetHashCode();
+            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(tipo_Combustivel);
+            hashCode = hashCode * -1521134295 + disponibilidade_Veiculo.GetHashCode();
+            hashCode = hashCode * -1521134295 + EqualityComparer<GrupoVeiculo>.Default.GetHashCode(grupoVeiculo);
+            return hashCode;
+        }
+
     }
 }

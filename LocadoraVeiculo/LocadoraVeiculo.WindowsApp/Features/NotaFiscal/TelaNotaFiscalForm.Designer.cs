@@ -29,23 +29,20 @@ namespace LocadoraVeiculo.WindowsApp.Features.NotaFiscal
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(TelaNotaFiscalForm));
             this.label1 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.txtCliente = new System.Windows.Forms.TextBox();
+            this.txtPlano = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.txtPrecoPlano = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
-            this.textBox4 = new System.Windows.Forms.TextBox();
+            this.txtCaucao = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
-            this.textBox5 = new System.Windows.Forms.TextBox();
+            this.txtGas = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
-            this.textBox6 = new System.Windows.Forms.TextBox();
+            this.txtServico = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
-            this.textBox7 = new System.Windows.Forms.TextBox();
-            this.label7 = new System.Windows.Forms.Label();
-            this.textBox8 = new System.Windows.Forms.TextBox();
-            this.label8 = new System.Windows.Forms.Label();
-            this.textBox9 = new System.Windows.Forms.TextBox();
+            this.txtTotal = new System.Windows.Forms.TextBox();
             this.label9 = new System.Windows.Forms.Label();
             this.bt_Voltar = new System.Windows.Forms.Button();
             this.bt_ConcluirLocacao = new System.Windows.Forms.Button();
@@ -54,143 +51,119 @@ namespace LocadoraVeiculo.WindowsApp.Features.NotaFiscal
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(21, 46);
+            this.label1.Location = new System.Drawing.Point(80, 51);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(88, 13);
+            this.label1.Size = new System.Drawing.Size(42, 13);
             this.label1.TabIndex = 0;
-            this.label1.Text = "Nome do Cliente:";
+            this.label1.Text = "Cliente:";
             // 
-            // textBox1
+            // txtCliente
             // 
-            this.textBox1.Location = new System.Drawing.Point(110, 43);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(269, 20);
-            this.textBox1.TabIndex = 1;
+            this.txtCliente.Location = new System.Drawing.Point(128, 48);
+            this.txtCliente.Name = "txtCliente";
+            this.txtCliente.ReadOnly = true;
+            this.txtCliente.Size = new System.Drawing.Size(236, 20);
+            this.txtCliente.TabIndex = 1;
             // 
-            // textBox2
+            // txtPlano
             // 
-            this.textBox2.Location = new System.Drawing.Point(71, 69);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(100, 20);
-            this.textBox2.TabIndex = 3;
+            this.txtPlano.Location = new System.Drawing.Point(128, 22);
+            this.txtPlano.Name = "txtPlano";
+            this.txtPlano.ReadOnly = true;
+            this.txtPlano.Size = new System.Drawing.Size(236, 20);
+            this.txtPlano.TabIndex = 3;
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(20, 72);
+            this.label2.Location = new System.Drawing.Point(85, 25);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(37, 13);
             this.label2.TabIndex = 2;
             this.label2.Text = "Plano:";
             // 
-            // textBox3
+            // txtPrecoPlano
             // 
-            this.textBox3.Location = new System.Drawing.Point(294, 69);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(85, 20);
-            this.textBox3.TabIndex = 5;
+            this.txtPrecoPlano.Location = new System.Drawing.Point(128, 74);
+            this.txtPrecoPlano.Name = "txtPrecoPlano";
+            this.txtPrecoPlano.ReadOnly = true;
+            this.txtPrecoPlano.Size = new System.Drawing.Size(236, 20);
+            this.txtPrecoPlano.TabIndex = 5;
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(206, 72);
+            this.label3.Location = new System.Drawing.Point(40, 77);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(82, 13);
             this.label3.TabIndex = 4;
             this.label3.Text = "Preço do plano:";
             // 
-            // textBox4
+            // txtCaucao
             // 
-            this.textBox4.Location = new System.Drawing.Point(71, 98);
-            this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(100, 20);
-            this.textBox4.TabIndex = 7;
+            this.txtCaucao.Location = new System.Drawing.Point(128, 126);
+            this.txtCaucao.Name = "txtCaucao";
+            this.txtCaucao.ReadOnly = true;
+            this.txtCaucao.Size = new System.Drawing.Size(236, 20);
+            this.txtCaucao.TabIndex = 7;
+            this.txtCaucao.Text = "R$1000";
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(10, 101);
+            this.label4.Location = new System.Drawing.Point(75, 129);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(47, 13);
             this.label4.TabIndex = 6;
             this.label4.Text = "Caução:";
             // 
-            // textBox5
+            // txtGas
             // 
-            this.textBox5.Location = new System.Drawing.Point(294, 98);
-            this.textBox5.Name = "textBox5";
-            this.textBox5.Size = new System.Drawing.Size(85, 20);
-            this.textBox5.TabIndex = 9;
+            this.txtGas.Location = new System.Drawing.Point(128, 100);
+            this.txtGas.Name = "txtGas";
+            this.txtGas.ReadOnly = true;
+            this.txtGas.Size = new System.Drawing.Size(236, 20);
+            this.txtGas.TabIndex = 9;
             // 
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(177, 100);
+            this.label5.Location = new System.Drawing.Point(11, 103);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(111, 13);
             this.label5.TabIndex = 8;
             this.label5.Text = "Taxa do Combustível:";
             // 
-            // textBox6
+            // txtServico
             // 
-            this.textBox6.Location = new System.Drawing.Point(294, 127);
-            this.textBox6.Name = "textBox6";
-            this.textBox6.Size = new System.Drawing.Size(85, 20);
-            this.textBox6.TabIndex = 11;
+            this.txtServico.Location = new System.Drawing.Point(128, 152);
+            this.txtServico.Name = "txtServico";
+            this.txtServico.ReadOnly = true;
+            this.txtServico.Size = new System.Drawing.Size(236, 20);
+            this.txtServico.TabIndex = 11;
             // 
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(195, 128);
+            this.label6.Location = new System.Drawing.Point(29, 159);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(93, 13);
             this.label6.TabIndex = 10;
             this.label6.Text = "Taxa de Serviços:";
             // 
-            // textBox7
+            // txtTotal
             // 
-            this.textBox7.Location = new System.Drawing.Point(71, 127);
-            this.textBox7.Name = "textBox7";
-            this.textBox7.Size = new System.Drawing.Size(100, 20);
-            this.textBox7.TabIndex = 13;
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(13, 130);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(44, 13);
-            this.label7.TabIndex = 12;
-            this.label7.Text = "Seguro:";
-            // 
-            // textBox8
-            // 
-            this.textBox8.Location = new System.Drawing.Point(71, 156);
-            this.textBox8.Name = "textBox8";
-            this.textBox8.Size = new System.Drawing.Size(100, 20);
-            this.textBox8.TabIndex = 15;
-            // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(21, 159);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(36, 13);
-            this.label8.TabIndex = 14;
-            this.label8.Text = "Multa:";
-            // 
-            // textBox9
-            // 
-            this.textBox9.Location = new System.Drawing.Point(279, 156);
-            this.textBox9.Name = "textBox9";
-            this.textBox9.Size = new System.Drawing.Size(100, 20);
-            this.textBox9.TabIndex = 17;
+            this.txtTotal.Location = new System.Drawing.Point(128, 194);
+            this.txtTotal.Name = "txtTotal";
+            this.txtTotal.ReadOnly = true;
+            this.txtTotal.Size = new System.Drawing.Size(236, 20);
+            this.txtTotal.TabIndex = 17;
             // 
             // label9
             // 
             this.label9.AutoSize = true;
             this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label9.Location = new System.Drawing.Point(212, 160);
+            this.label9.Location = new System.Drawing.Point(40, 198);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(61, 16);
             this.label9.TabIndex = 16;
@@ -203,7 +176,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.NotaFiscal
             this.bt_Voltar.Name = "bt_Voltar";
             this.bt_Voltar.Size = new System.Drawing.Size(75, 23);
             this.bt_Voltar.TabIndex = 19;
-            this.bt_Voltar.Text = "CANCELAR";
+            this.bt_Voltar.Text = "Cancelar";
             this.bt_Voltar.UseVisualStyleBackColor = true;
             // 
             // bt_ConcluirLocacao
@@ -213,7 +186,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.NotaFiscal
             this.bt_ConcluirLocacao.Name = "bt_ConcluirLocacao";
             this.bt_ConcluirLocacao.Size = new System.Drawing.Size(75, 23);
             this.bt_ConcluirLocacao.TabIndex = 18;
-            this.bt_ConcluirLocacao.Text = "CONCLUIR";
+            this.bt_ConcluirLocacao.Text = "Gravar";
             this.bt_ConcluirLocacao.UseVisualStyleBackColor = true;
             // 
             // TelaNotaFiscalForm
@@ -223,30 +196,27 @@ namespace LocadoraVeiculo.WindowsApp.Features.NotaFiscal
             this.ClientSize = new System.Drawing.Size(398, 263);
             this.Controls.Add(this.bt_Voltar);
             this.Controls.Add(this.bt_ConcluirLocacao);
-            this.Controls.Add(this.textBox9);
+            this.Controls.Add(this.txtTotal);
             this.Controls.Add(this.label9);
-            this.Controls.Add(this.textBox8);
-            this.Controls.Add(this.label8);
-            this.Controls.Add(this.textBox7);
-            this.Controls.Add(this.label7);
-            this.Controls.Add(this.textBox6);
+            this.Controls.Add(this.txtServico);
             this.Controls.Add(this.label6);
-            this.Controls.Add(this.textBox5);
+            this.Controls.Add(this.txtGas);
             this.Controls.Add(this.label5);
-            this.Controls.Add(this.textBox4);
+            this.Controls.Add(this.txtCaucao);
             this.Controls.Add(this.label4);
-            this.Controls.Add(this.textBox3);
+            this.Controls.Add(this.txtPrecoPlano);
             this.Controls.Add(this.label3);
-            this.Controls.Add(this.textBox2);
+            this.Controls.Add(this.txtPlano);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.txtCliente);
             this.Controls.Add(this.label1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "TelaNotaFiscalForm";
-            this.ShowIcon = false;
+            this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "NOTA FISCAL";
+            this.Text = "Nota Fiscal da Locação";
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -255,22 +225,18 @@ namespace LocadoraVeiculo.WindowsApp.Features.NotaFiscal
         #endregion
 
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.TextBox txtCliente;
+        private System.Windows.Forms.TextBox txtPlano;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TextBox textBox3;
+        private System.Windows.Forms.TextBox txtPrecoPlano;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.TextBox textBox4;
+        private System.Windows.Forms.TextBox txtCaucao;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.TextBox textBox5;
+        private System.Windows.Forms.TextBox txtGas;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.TextBox textBox6;
+        private System.Windows.Forms.TextBox txtServico;
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.TextBox textBox7;
-        private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.TextBox textBox8;
-        private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.TextBox textBox9;
+        private System.Windows.Forms.TextBox txtTotal;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Button bt_Voltar;
         private System.Windows.Forms.Button bt_ConcluirLocacao;
