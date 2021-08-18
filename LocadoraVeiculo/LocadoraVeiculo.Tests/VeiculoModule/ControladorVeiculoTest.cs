@@ -44,7 +44,7 @@ namespace LocadoraVeiculo.Tests.VeiculoModule
             //assert
             var veiculoEncontrado = controlador.SelecionarPorId(veiculo.Id);
             veiculoEncontrado.Should().Be(veiculo);
-
+            LimparBanco();
         }
 
         [TestMethod]
@@ -62,6 +62,7 @@ namespace LocadoraVeiculo.Tests.VeiculoModule
             //assert
             var veiculoAtualizado = controlador.SelecionarPorId(veiculo.Id);
             veiculoAtualizado.Should().Be(VeiculoEditado);
+            LimparBanco();
         }
 
         [TestMethod]
@@ -77,6 +78,7 @@ namespace LocadoraVeiculo.Tests.VeiculoModule
             //assert
             var veiculoEncontrado = controlador.SelecionarPorId(veiculo.Id);
             veiculoEncontrado.Should().BeNull();
+            LimparBanco();
         }
 
         [TestMethod]
@@ -91,6 +93,7 @@ namespace LocadoraVeiculo.Tests.VeiculoModule
 
             //assert
             veiculoEncontrado.Should().NotBeNull();
+            LimparBanco();
         }
 
         [TestMethod]
@@ -114,6 +117,13 @@ namespace LocadoraVeiculo.Tests.VeiculoModule
             veiculos[0].nome.Should().Be("marea");
             veiculos[1].nome.Should().Be("uno");
             veiculos[2].nome.Should().Be("corsa");
+            LimparBanco();
+        }
+
+        public void LimparBanco()
+        {
+            Db.Update("DELETE FROM [TBVEICULOS]");
+            Db.Update("DELETE FROM [TBTIPOVEICULO]");
         }
     }
 }
