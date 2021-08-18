@@ -1,4 +1,5 @@
 ﻿using LocadoraVeiculo.Combustivel;
+using LocadoraVeiculo.Controladores.VeiculoModule;
 using LocadoraVeiculo.LocacaoModule;
 using System;
 using System.Collections.Generic;
@@ -15,8 +16,10 @@ namespace LocadoraVeiculo.WindowsApp.Features.Locacao
     public partial class TelaDevolucaoForm : Form
     {
         private LocacaoVeiculo locacao;
+        private ControladorVeiculo controlador;
         public TelaDevolucaoForm()
         {
+            controlador = new ControladorVeiculo();
             InitializeComponent();
         }
 
@@ -105,6 +108,8 @@ namespace LocadoraVeiculo.WindowsApp.Features.Locacao
         private void btnNota_Click(object sender, EventArgs e)
         {
             locacao.PrecoTotal = locacao.PrecoCombustivel + locacao.PrecoPlano + locacao.PrecoServicos;
+            locacao.Veiculo.km_Inicial = Convert.ToInt32(txtKmAtual.Text);
+            controlador.Editar(locacao.Veiculo.Id, locacao.Veiculo);
         }
     }
 }
