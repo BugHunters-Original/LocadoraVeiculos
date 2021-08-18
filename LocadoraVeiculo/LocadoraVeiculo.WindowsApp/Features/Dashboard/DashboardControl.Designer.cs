@@ -37,6 +37,8 @@ namespace LocadoraVeiculo.WindowsApp.Features.Dashboard
             this.btnAlugados = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.labelInLoco = new System.Windows.Forms.Label();
+            this.pictureBox4 = new System.Windows.Forms.PictureBox();
             this.btnInLoco = new System.Windows.Forms.Button();
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
             this.label5 = new System.Windows.Forms.Label();
@@ -48,18 +50,16 @@ namespace LocadoraVeiculo.WindowsApp.Features.Dashboard
             this.pictureBox6 = new System.Windows.Forms.PictureBox();
             this.label7 = new System.Windows.Forms.Label();
             this.labelTipoVisualizacao = new System.Windows.Forms.Label();
-            this.labelInLoco = new System.Windows.Forms.Label();
-            this.pictureBox4 = new System.Windows.Forms.PictureBox();
             this.panelCarrosAlugados.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtDashboard)).BeginInit();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -157,6 +157,27 @@ namespace LocadoraVeiculo.WindowsApp.Features.Dashboard
             this.panel1.Size = new System.Drawing.Size(242, 164);
             this.panel1.TabIndex = 4;
             // 
+            // labelInLoco
+            // 
+            this.labelInLoco.BackColor = System.Drawing.Color.Transparent;
+            this.labelInLoco.Font = new System.Drawing.Font("Nirmala UI", 20.25F, System.Drawing.FontStyle.Bold);
+            this.labelInLoco.Location = new System.Drawing.Point(11, 63);
+            this.labelInLoco.Name = "labelInLoco";
+            this.labelInLoco.Size = new System.Drawing.Size(85, 37);
+            this.labelInLoco.TabIndex = 11;
+            this.labelInLoco.Text = "150";
+            this.labelInLoco.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // pictureBox4
+            // 
+            this.pictureBox4.Image = global::LocadoraVeiculo.WindowsApp.Properties.Resources.bordaCircular;
+            this.pictureBox4.Location = new System.Drawing.Point(11, 35);
+            this.pictureBox4.Name = "pictureBox4";
+            this.pictureBox4.Size = new System.Drawing.Size(85, 95);
+            this.pictureBox4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox4.TabIndex = 10;
+            this.pictureBox4.TabStop = false;
+            // 
             // btnInLoco
             // 
             this.btnInLoco.FlatAppearance.BorderSize = 0;
@@ -189,9 +210,9 @@ namespace LocadoraVeiculo.WindowsApp.Features.Dashboard
             this.label5.Font = new System.Drawing.Font("Nirmala UI", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label5.Location = new System.Drawing.Point(3, 0);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(188, 30);
+            this.label5.Size = new System.Drawing.Size(234, 30);
             this.label5.TabIndex = 0;
-            this.label5.Text = "CARROS IN LOCO";
+            this.label5.Text = "CARROS DISPONÍVEIS";
             // 
             // dtDashboard
             // 
@@ -287,27 +308,6 @@ namespace LocadoraVeiculo.WindowsApp.Features.Dashboard
             this.labelTipoVisualizacao.TabIndex = 6;
             this.labelTipoVisualizacao.Text = "LOCAÇÕES PENDENTES";
             // 
-            // labelInLoco
-            // 
-            this.labelInLoco.BackColor = System.Drawing.Color.Transparent;
-            this.labelInLoco.Font = new System.Drawing.Font("Nirmala UI", 20.25F, System.Drawing.FontStyle.Bold);
-            this.labelInLoco.Location = new System.Drawing.Point(11, 63);
-            this.labelInLoco.Name = "labelInLoco";
-            this.labelInLoco.Size = new System.Drawing.Size(85, 37);
-            this.labelInLoco.TabIndex = 11;
-            this.labelInLoco.Text = "150";
-            this.labelInLoco.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // pictureBox4
-            // 
-            this.pictureBox4.Image = global::LocadoraVeiculo.WindowsApp.Properties.Resources.bordaCircular;
-            this.pictureBox4.Location = new System.Drawing.Point(11, 35);
-            this.pictureBox4.Name = "pictureBox4";
-            this.pictureBox4.Size = new System.Drawing.Size(85, 95);
-            this.pictureBox4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox4.TabIndex = 10;
-            this.pictureBox4.TabStop = false;
-            // 
             // DashboardControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -326,13 +326,13 @@ namespace LocadoraVeiculo.WindowsApp.Features.Dashboard
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtDashboard)).EndInit();
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 

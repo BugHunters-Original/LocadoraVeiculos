@@ -143,18 +143,24 @@ namespace LocadoraVeiculo.Controladores.VeiculoModule
         private const string sqlQuantidadeAlugados =
             @"SELECT 
                 *
-            FROM 
-                [TBVEICULOS]
-           WHERE 
-                [DISPONIBILIDADE_VEICULO] = 1";
+            FROM
+                [TBVEICULOS] AS V INNER JOIN
+                [TBTIPOVEICULO] AS TV
+            ON
+                TV.ID = V.ID_TIPO_VEICULO
+            WHERE 
+                [DISPONIBILIDADE_VEICULO] = 0";
 
         private const string sqlQuantidadeDisponiveis =
             @"SELECT 
                 *
-            FROM 
-                [TBVEICULOS]
+            FROM
+                [TBVEICULOS] AS V INNER JOIN
+                [TBTIPOVEICULO] AS TV
+            ON
+                TV.ID = V.ID_TIPO_VEICULO
             WHERE 
-                [DISPONIBILIDADE_VEICULO] = 0";
+                [DISPONIBILIDADE_VEICULO] = 1";
 
         private const string sqlVeiculoAlugado =
             @"SELECT 
@@ -186,7 +192,7 @@ namespace LocadoraVeiculo.Controladores.VeiculoModule
             ON
                 TV.ID = V.ID_TIPO_VEICULO
             WHERE 
-                [DISPONIBILIDADE_VEICULO] = 1";
+                [DISPONIBILIDADE_VEICULO] = 0";
 
         private const string sqlVeiculoDisponivel =
             @"SELECT 
@@ -218,7 +224,7 @@ namespace LocadoraVeiculo.Controladores.VeiculoModule
             ON
                 TV.ID = V.ID_TIPO_VEICULO
             WHERE 
-                [DISPONIBILIDADE_VEICULO] = 0";
+                [DISPONIBILIDADE_VEICULO] = 1";
         #endregion
 
         public override string InserirNovo(Veiculo registro)
