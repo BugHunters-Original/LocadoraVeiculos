@@ -126,7 +126,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.Dashboard
             labelAlugados.Text = quantidadeAlugados.ToString();
 
             int quantidadeDisponiveis = controlador.ReturnQuantidadeDisponiveis();
-            labelAlugados.Text = quantidadeDisponiveis.ToString();
+            labelInLoco.Text = quantidadeDisponiveis.ToString();
 
             //int quantidadeAlugados = controlador.ReturnQuantidadeAlugados();
             //labelAlugados.Text = quantidadeAlugados.ToString();

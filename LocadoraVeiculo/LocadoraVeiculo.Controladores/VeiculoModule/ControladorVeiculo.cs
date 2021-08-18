@@ -140,7 +140,7 @@ namespace LocadoraVeiculo.Controladores.VeiculoModule
 
         private const string sqlQuantidadeAlugados =
             @"SELECT 
-                COUNT(*) 
+                *
             FROM 
                 [TBVEICULOS]
            WHERE 
@@ -148,11 +148,11 @@ namespace LocadoraVeiculo.Controladores.VeiculoModule
 
         private const string sqlQuantidadeDisponiveis =
             @"SELECT 
-                COUNT(*) 
+                *
             FROM 
                 [TBVEICULOS]
             WHERE 
-                [DISPONIBILIDADE_VEICULO] = 1";
+                [DISPONIBILIDADE_VEICULO] = 0";
 
         private const string sqlVeiculoAlugado =
             @"SELECT 
@@ -283,12 +283,12 @@ namespace LocadoraVeiculo.Controladores.VeiculoModule
 
         public int ReturnQuantidadeAlugados()
         {
-            return Db.GetAllNumber(sqlQuantidadeAlugados, ConverterEmVeiculo);
+            return Db.GetAll(sqlQuantidadeAlugados, ConverterEmVeiculo).Count;
         }
 
         public int ReturnQuantidadeDisponiveis()
         {
-            return Db.GetAllNumber(sqlQuantidadeDisponiveis, ConverterEmVeiculo);
+            return Db.GetAll(sqlQuantidadeDisponiveis, ConverterEmVeiculo).Count;
         }
 
         private Veiculo ConverterEmVeiculo(IDataReader reader)
