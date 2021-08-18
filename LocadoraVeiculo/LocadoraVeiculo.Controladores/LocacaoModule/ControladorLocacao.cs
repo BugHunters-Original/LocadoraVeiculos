@@ -136,6 +136,35 @@ namespace LocadoraVeiculo.Controladores.LocacaoModule
             WHERE 
                 [ID] = @ID";
 
+        private const string sqlLocacoesPendentes =
+            @"SELECT 
+                * 
+            FROM 
+                [TBLOCACAO]
+            WHERE 
+                [STATUS] = 'Em Aberto'";
+
+        private const string sqlSelecionarLocacoesPendentes =
+            @"SELECT
+                        [ID],                
+		                [ID_CONDUTOR], 
+		                [ID_CLIENTELOCADOR], 
+		                [ID_VEICULO],
+                        [DATA_SAIDA], 
+		                [DATA_RETORNOESPERADO],
+                        [PLANO],
+                        [TIPOCLIENTE],
+                        [PRECOSERVICOS],
+                        [DIAS],
+                        [STATUS],    
+                        [PRECOCOMBUSTIVEL],    
+                        [PRECOPLANO],    
+                        [PRECOTOTAL] 
+	                FROM
+                        TBLOCACAO
+                    WHERE 
+                        [STATUS] = 'Em Aberto'";
+
         public override string Editar(int id, LocacaoVeiculo registro)
         {
             string resultadoValidacao = registro.Validar();
@@ -156,6 +185,8 @@ namespace LocadoraVeiculo.Controladores.LocacaoModule
             Db.Update(sqlConcluirLocacao, ObtemParametrosLocacao(locacao));
             Db.Update(sqlMudarDisponibilidade, ObtemParametrosLocacao(locacao));
         }
+
+        
 
         public override bool Excluir(int id)
         {
@@ -196,6 +227,15 @@ namespace LocadoraVeiculo.Controladores.LocacaoModule
         public override List<LocacaoVeiculo> SelecionarTodos()
         {
             return Db.GetAll(sqlSelecionarTodasLocacoes, ConverterEmLocacao);
+        }
+        public List<LocacaoVeiculo> SelecionarTodasLocacoesPendentes()
+        {
+            return Db.GetAll(sqlSelecionarLocacoesPendentes, ConverterEmLocacao);
+        }
+
+        public int SelecionaPendentes()
+        {
+            return Db.GetAll(sqlLocacoesPendentes, ConverterEmLocacao).Count;
         }
         private Dictionary<string, object> ObtemParametrosLocacao(LocacaoVeiculo locacao)
         {

@@ -214,6 +214,9 @@ namespace LocadoraVeiculo.WindowsApp
             btnDevolver.Enabled = configuracao.EnabledDevolver;
         }
 
-
+        private void menuToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ConfigurarPainelDashBoard();
+        }
     }
 }
