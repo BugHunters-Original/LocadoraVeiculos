@@ -1,6 +1,9 @@
 ﻿using LocadoraVeiculo.GrupoVeiculoModule;
 using LocadoraVeiculo.Shared;
 using System;
+using System.Collections.Generic;
+using System.Linq;
+
 namespace LocadoraVeiculo.VeiculoModule
 {
     public class Veiculo : EntidadeBase, IEquatable<Veiculo>
