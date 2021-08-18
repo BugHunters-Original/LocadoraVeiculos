@@ -106,6 +106,39 @@ namespace LocadoraVeiculo.Controladores.Shared
             }
         }
 
+        public static int GetAllNumber<T>(string sql, ConverterDelegate<T> convert, Dictionary<string, object> parameters = null)
+        {
+            using (IDbConnection connection = fabricaProvedor.CreateConnection())
+            {
+                connection.ConnectionString = connectionString;
+
+                using (IDbCommand command = fabricaProvedor.CreateCommand())
+                {
+                    command.CommandText = sql;
+
+                    command.Connection = connection;
+
+                    command.SetParameters(parameters);
+
+                    connection.Open();
+
+                    var list = new List<T>();
+                    int quantidade;
+
+                    using (IDataReader reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            var obj = convert(reader);
+                            list.Add(obj);
+                        }
+
+                        return quantidade = list.Count;
+                    }
+                }
+            }
+        }
+
         public static T Get<T>(string sql, ConverterDelegate<T> convert, Dictionary<string, object> parameters)
         {
             using (IDbConnection connection = fabricaProvedor.CreateConnection())
