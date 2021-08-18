@@ -22,13 +22,17 @@ namespace LocadoraVeiculo.WindowsApp.Features.GrupoVeiculo
 
                 new DataGridViewTextBoxColumn { DataPropertyName = "Categoria", HeaderText = "Categoria"},
 
-                new DataGridViewTextBoxColumn { DataPropertyName = "Preço Diaria", HeaderText = "Preço Diaria"},
+                new DataGridViewTextBoxColumn { DataPropertyName = "PrecoDiariaPDiario", HeaderText = "Preço da Diária no Plano Diário"},
 
-                new DataGridViewTextBoxColumn { DataPropertyName = "Preço KM Diário", HeaderText = "Preço KM Diário"},
+                new DataGridViewTextBoxColumn { DataPropertyName = "PrecoKmRodadoPDiario", HeaderText = "Preço por KM Rodado no Plano Diário"},
 
-                new DataGridViewTextBoxColumn {DataPropertyName = "Preço Diária Controlada", HeaderText = "Preço Diária Controlada"},
+                new DataGridViewTextBoxColumn {DataPropertyName = "PrecoDiariaPControlado", HeaderText = "Preço da Diária no Plano Controlada"},
 
-                new DataGridViewTextBoxColumn {DataPropertyName = "Preço KM Livre", HeaderText = "Preço KM Livre"}
+                new DataGridViewTextBoxColumn {DataPropertyName = "LimiteKmPControlado", HeaderText = "Limite KM no Plano Controlado"},
+
+                new DataGridViewTextBoxColumn {DataPropertyName = "PrecoKmROdadoPControaldo", HeaderText = "Preço por KM Rodado no Plano Controlado"},
+
+                new DataGridViewTextBoxColumn {DataPropertyName = "PrecoDiariaPLivre", HeaderText = "Preço da Diária no Plano Livre"}
             };
 
             return colunas;
@@ -44,8 +48,9 @@ namespace LocadoraVeiculo.WindowsApp.Features.GrupoVeiculo
 
             foreach (GrupoVeiculoModule.GrupoVeiculo grupo in grupoVeiculos)
             {
-                gridGrupoVeiculo.Rows.Add(grupo.Id, grupo.categoriaVeiculo, grupo.valor_Diario_PDiario,
-                    grupo.preco_KMDiario, grupo.valor_Diario_PControlado, grupo.preco_KMLivre);
+                gridGrupoVeiculo.Rows.Add(grupo.Id, grupo.NomeTipo, grupo.ValorDiarioPDiario,
+                    grupo.ValorKmRodadoPDiario, grupo.ValorDiarioPControlado, grupo.LimitePControlado,
+                    grupo.ValorDiarioPControlado, grupo.ValorDiarioPLivre);
             }
         }
     }

@@ -28,7 +28,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.GrupoVeiculo
                 List<GrupoVeiculoModule.GrupoVeiculo> grupoVeiculos = controlador.SelecionarTodos();
                 tabelaGrupoVeiculo.AtualizarRegistros(grupoVeiculos);
 
-                TelaPrincipalForm.Instancia.AtualizarRodape($"Grupo de Veiculos: [{tela.GrupoContato.categoriaVeiculo}] inserido com sucesso");
+                TelaPrincipalForm.Instancia.AtualizarRodape($"Grupo de Veiculos: [{tela.GrupoContato.NomeTipo}] inserido com sucesso");
             }
         }
 
@@ -56,7 +56,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.GrupoVeiculo
                 List<GrupoVeiculoModule.GrupoVeiculo> grupoVeiculos = controlador.SelecionarTodos();
                 tabelaGrupoVeiculo.AtualizarRegistros(grupoVeiculos);
 
-                TelaPrincipalForm.Instancia.AtualizarRodape($"Grupo de Veiculos: [{tela.GrupoContato.categoriaVeiculo}] editado com sucesso");
+                TelaPrincipalForm.Instancia.AtualizarRodape($"Grupo de Veiculos: [{tela.GrupoContato.NomeTipo}] editado com sucesso");
             }
         }
 
@@ -80,7 +80,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.GrupoVeiculo
 
             GrupoVeiculoModule.GrupoVeiculo grupoVeiculoSelecionado = controlador.SelecionarPorId(id);
 
-            if (MessageBox.Show($"Tem certeza que deseja excluir o Grupo de Veículos: [{grupoVeiculoSelecionado.categoriaVeiculo}] ?",
+            if (MessageBox.Show($"Tem certeza que deseja excluir o Grupo de Veículos: [{grupoVeiculoSelecionado.NomeTipo}] ?",
                 "Exclusão de Grupo de Veiculos", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK)
             {
                 bool excluiu = controlador.Excluir(id);
@@ -90,7 +90,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.GrupoVeiculo
                     List<GrupoVeiculoModule.GrupoVeiculo> grupoVeiculos = controlador.SelecionarTodos();
                     tabelaGrupoVeiculo.AtualizarRegistros(grupoVeiculos);
 
-                    TelaPrincipalForm.Instancia.AtualizarRodape($"Grupo de Veiculos: [{grupoVeiculoSelecionado.categoriaVeiculo}] removido com sucesso");
+                    TelaPrincipalForm.Instancia.AtualizarRodape($"Grupo de Veiculos: [{grupoVeiculoSelecionado.NomeTipo}] removido com sucesso");
                 }
                 else
                 {

@@ -6,44 +6,49 @@ namespace LocadoraVeiculo.GrupoVeiculoModule
 {
     public class GrupoVeiculo : EntidadeBase, IEquatable<GrupoVeiculo>
     {
-        public string categoriaVeiculo { get; set; }
-        public decimal? valor_Diario_PDiario { get; set; }
-        public decimal? preco_KMDiario { get; set; }
-        public decimal? valor_Diario_PControlado { get; set; }
-        public int? kmDia__KMControlado { get; set; }
-        public decimal? preco_KMLivre { get; set; }
+        public string NomeTipo { get; set; }
+        public decimal? ValorDiarioPDiario { get; set; }
+        public decimal? ValorKmRodadoPDiario { get; set; }
+        public decimal? ValorDiarioPControlado { get; set; }
+        public decimal? LimitePControlado { get; set; }
+        public decimal? ValorKmRodadoPControlado { get; set; }
+        public decimal? ValorDiarioPLivre { get; set; }
 
-        public GrupoVeiculo(string categoriaVeiculo, decimal? valor_Diario_PDiario, decimal? preco_KMDiario, decimal? valor_Diario_PControlado, int? kmDia__KMControlado, decimal? preco_KMLivre)
+        public GrupoVeiculo(string nomeTipo, decimal? valorDiarioPDiario, decimal? valorKmRodadoPDiario,
+            decimal? valorDiarioPControlado, decimal? limitePControlado, decimal? valorKmRodadoPControlado,
+            decimal? valorDiarioPLivre)
         {
-            this.categoriaVeiculo = categoriaVeiculo;
-            this.valor_Diario_PDiario = valor_Diario_PDiario;
-            this.preco_KMDiario = preco_KMDiario;
-            this.valor_Diario_PControlado = valor_Diario_PControlado;
-            this.kmDia__KMControlado = kmDia__KMControlado;
-            this.preco_KMLivre = preco_KMLivre;
+            NomeTipo = nomeTipo;
+            ValorDiarioPDiario = valorDiarioPDiario;
+            ValorKmRodadoPDiario = valorKmRodadoPDiario;
+            ValorDiarioPControlado = valorDiarioPControlado;
+            LimitePControlado = limitePControlado;
+            ValorKmRodadoPControlado = valorKmRodadoPControlado;
+            ValorDiarioPLivre = valorDiarioPLivre;
         }
 
         public override string Validar()
         {
             string resultadoValidacao = "";
 
-            if (string.IsNullOrEmpty(categoriaVeiculo))
+            if (string.IsNullOrEmpty(NomeTipo))
                 resultadoValidacao = "O campo categoria é obrigatório";
 
-            if (valor_Diario_PDiario == null || valor_Diario_PDiario <= 0)
+            if (ValorDiarioPDiario == null || ValorDiarioPDiario <= 0)
                 resultadoValidacao += QuebraDeLinha(resultadoValidacao) + "O campo valor diário não pode ser nulo ou menor que zero";
 
-            if (preco_KMDiario == null || preco_KMDiario <= 0)
+            if (ValorKmRodadoPDiario == null || ValorKmRodadoPDiario <= 0)
                 resultadoValidacao += QuebraDeLinha(resultadoValidacao) + "O campo preço não pode ser nulo ou menor que zero";
 
-            if (valor_Diario_PControlado == null || valor_Diario_PControlado <= 0)
+            if (ValorDiarioPControlado == null || ValorDiarioPControlado <= 0)
                 resultadoValidacao += QuebraDeLinha(resultadoValidacao) + "O campo valor não pode ser nulo ou menor que zero";
 
-            if (kmDia__KMControlado == null || kmDia__KMControlado <= 0)
+            if (LimitePControlado <= 0)
+                resultadoValidacao += QuebraDeLinha(resultadoValidacao) + "O campo valor não pode ser nulo ou menor que zero";
+
+            if (ValorKmRodadoPControlado == null || ValorKmRodadoPControlado <= 0)
                 resultadoValidacao += QuebraDeLinha(resultadoValidacao) + "O campo km/dia não pode ser nulo ou menor que zero";
 
-            if (preco_KMLivre == null || preco_KMLivre <= 0)
-                resultadoValidacao += QuebraDeLinha(resultadoValidacao) + "O campo preço não pode ser nulo ou menor que zero";
 
             if (resultadoValidacao == "")
                 resultadoValidacao = "ESTA_VALIDO";
@@ -53,7 +58,7 @@ namespace LocadoraVeiculo.GrupoVeiculoModule
 
         public override string ToString()
         {
-            return categoriaVeiculo;
+            return NomeTipo;
         }
 
         public override bool Equals(object obj)
@@ -65,24 +70,26 @@ namespace LocadoraVeiculo.GrupoVeiculoModule
         {
             return other != null
                 && Id == other.Id
-                && categoriaVeiculo == other.categoriaVeiculo
-                && valor_Diario_PDiario == other.valor_Diario_PDiario
-                && preco_KMDiario == other.preco_KMDiario
-                && valor_Diario_PControlado == other.valor_Diario_PControlado
-                && kmDia__KMControlado == other.kmDia__KMControlado
-                && preco_KMLivre == other.preco_KMLivre;
+                && NomeTipo == other.NomeTipo
+                && ValorDiarioPDiario == other.ValorDiarioPDiario
+                && ValorKmRodadoPDiario == other.ValorKmRodadoPDiario
+                && ValorDiarioPControlado == other.ValorDiarioPControlado
+                && ValorKmRodadoPControlado == other.ValorKmRodadoPControlado
+                && LimitePControlado == other.LimitePControlado
+                && ValorDiarioPLivre == other.ValorDiarioPLivre;
         }
 
         public override int GetHashCode()
         {
-            int hashCode = 238325422;
+            int hashCode = -1108870241;
             hashCode = hashCode * -1521134295 + Id.GetHashCode();
-            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(categoriaVeiculo);
-            hashCode = hashCode * -1521134295 + valor_Diario_PDiario.GetHashCode();
-            hashCode = hashCode * -1521134295 + preco_KMDiario.GetHashCode();
-            hashCode = hashCode * -1521134295 + valor_Diario_PControlado.GetHashCode();
-            hashCode = hashCode * -1521134295 + kmDia__KMControlado.GetHashCode();
-            hashCode = hashCode * -1521134295 + preco_KMLivre.GetHashCode();
+            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(NomeTipo);
+            hashCode = hashCode * -1521134295 + ValorDiarioPDiario.GetHashCode();
+            hashCode = hashCode * -1521134295 + ValorKmRodadoPDiario.GetHashCode();
+            hashCode = hashCode * -1521134295 + ValorDiarioPControlado.GetHashCode();
+            hashCode = hashCode * -1521134295 + LimitePControlado.GetHashCode();
+            hashCode = hashCode * -1521134295 + ValorKmRodadoPControlado.GetHashCode();
+            hashCode = hashCode * -1521134295 + ValorDiarioPLivre.GetHashCode();
             return hashCode;
         }
     }

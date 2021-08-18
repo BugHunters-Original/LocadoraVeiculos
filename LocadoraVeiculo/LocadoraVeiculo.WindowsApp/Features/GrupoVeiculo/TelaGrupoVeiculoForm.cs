@@ -21,26 +21,28 @@ namespace LocadoraVeiculo.WindowsApp.Features.GrupoVeiculo
             {
                 grupoVeiculo = value;
                 txtId.Text = grupoVeiculo.Id.ToString();
-                txtNome.Text = grupoVeiculo.categoriaVeiculo;
-                txtValorDiarioPDiario.Text = Convert.ToString(grupoVeiculo.valor_Diario_PDiario);
-                txtPrecoKmDiario.Text = Convert.ToString(grupoVeiculo.preco_KMDiario);
-                txtValorDiarioPControlado.Text = Convert.ToString(grupoVeiculo.valor_Diario_PControlado);
-                txtKmDia_KmControlado.Text = Convert.ToString(grupoVeiculo.kmDia__KMControlado);
-                txtPrecoKmLivre.Text = Convert.ToString(grupoVeiculo.preco_KMLivre);
+                txtNome.Text = grupoVeiculo.NomeTipo;
+                txtValorDiarioPDiario.Text = Convert.ToString(grupoVeiculo.ValorDiarioPDiario);
+                txtValorKmRodadoPDiario.Text = Convert.ToString(grupoVeiculo.ValorKmRodadoPDiario);
+                txtValorDiarioPControlado.Text = Convert.ToString(grupoVeiculo.ValorDiarioPControlado);
+                txtLimitePControlado.Text = Convert.ToString(grupoVeiculo.LimitePControlado);
+                txtDiariaPLivre.Text = Convert.ToString(grupoVeiculo.ValorDiarioPLivre);
+                txtValorKmRodadoPControlado.Text = Convert.ToString(grupoVeiculo.ValorKmRodadoPControlado);
             }
         }
 
         private void btnGravar_Click(object sender, EventArgs e)
         {
-            string categoria = txtNome.Text;
-            decimal valor_Diario_PDiario = Convert.ToDecimal(txtValorDiarioPDiario.Text);
-            decimal preco_KMDiario = Convert.ToDecimal(txtPrecoKmDiario.Text);
-            decimal valor_Diario_PControlado = Convert.ToDecimal(txtValorDiarioPControlado.Text);
-            int? kmDia__KMControlado = Convert.ToInt32(txtKmDia_KmControlado.Text);
-            decimal preco_KMLivre = Convert.ToDecimal(txtPrecoKmLivre.Text);
+            var nomeTipo = txtNome.Text;
+            var valorDiarioPDiario = Convert.ToDecimal(txtValorDiarioPDiario.Text);
+            var valorKmRodadoPDiario = Convert.ToDecimal(txtValorKmRodadoPDiario.Text);
+            var valorDiarioPControlado = Convert.ToDecimal(txtValorDiarioPControlado.Text);
+            var limitePControlado = Convert.ToDecimal(txtLimitePControlado.Text);
+            var valorKmRodadoPControlado = Convert.ToDecimal(txtValorKmRodadoPControlado.Text);
+            var valorDiarioPLivre = Convert.ToDecimal(txtDiariaPLivre.Text);
 
-            grupoVeiculo = new GrupoVeiculoModule.GrupoVeiculo(categoria, valor_Diario_PDiario, preco_KMDiario,
-                valor_Diario_PControlado, kmDia__KMControlado, preco_KMLivre);
+            grupoVeiculo = new GrupoVeiculoModule.GrupoVeiculo(nomeTipo, valorDiarioPDiario, valorKmRodadoPDiario, valorDiarioPControlado,
+                                                                limitePControlado, valorKmRodadoPControlado, valorDiarioPLivre);
 
             string resultadoValidacao = grupoVeiculo.Validar();
 

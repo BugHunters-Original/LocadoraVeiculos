@@ -87,12 +87,13 @@ namespace LocadoraVeiculo.Controladores.VeiculoModule
                 V.[TIPO_COMBUSTIVEL],
                 V.[ID_TIPO_VEICULO],
                 V.[DISPONIBILIDADE_VEICULO],
-                TV.[NOMETIPO],
-                TV.[VALOR_DIARIO_PDIARIO],
-                TV.[PRECO_KMDIARIO],
-                TV.[VALOR_DIARIO_PCONTROLADO],
-                TV.[KMDIA__KMCONTROLADO],
-                TV.[PRECO_KMLIVRE]
+                TV.[NOMETIPO],       
+                TV.[VALOR_DIARIO_PDIARIO], 
+                TV.[VALOR_KMRODADO_PDIARIO],
+                TV.[VALOR_DIARIO_PCONTROLADO],                    
+                TV.[LIMITE_PCONTROLADO],                                                           
+                TV.[VALOR_KMRODAD_PCONTROLADO],        
+                TV.[VALOR_DIARIO_PLIVRE]  
             FROM
                 [TBVEICULOS] AS V INNER JOIN
                 [TBTIPOVEICULO] AS TV
@@ -116,12 +117,13 @@ namespace LocadoraVeiculo.Controladores.VeiculoModule
                 V.[TIPO_COMBUSTIVEL],
                 V.[ID_TIPO_VEICULO],
                 V.[DISPONIBILIDADE_VEICULO],
-                TV.[NOMETIPO],
-                TV.[VALOR_DIARIO_PDIARIO],
-                TV.[PRECO_KMDIARIO],
-                TV.[VALOR_DIARIO_PCONTROLADO],
-                TV.[KMDIA__KMCONTROLADO],
-                TV.[PRECO_KMLIVRE]
+                TV.[NOMETIPO],       
+                TV.[VALOR_DIARIO_PDIARIO], 
+                TV.[VALOR_KMRODADO_PDIARIO],
+                TV.[VALOR_DIARIO_PCONTROLADO],                    
+                TV.[LIMITE_PCONTROLADO],                                                           
+                TV.[VALOR_KMRODAD_PCONTROLADO],        
+                TV.[VALOR_DIARIO_PLIVRE]
             FROM
                 [TBVEICULOS] AS V INNER JOIN
                 [TBTIPOVEICULO] AS TV
@@ -155,12 +157,13 @@ namespace LocadoraVeiculo.Controladores.VeiculoModule
                 V.[TIPO_COMBUSTIVEL],
                 V.[ID_TIPO_VEICULO],
                 V.[DISPONIBILIDADE_VEICULO],
-                TV.[NOMETIPO],
-                TV.[VALOR_DIARIO_PDIARIO],
-                TV.[PRECO_KMDIARIO],
-                TV.[VALOR_DIARIO_PCONTROLADO],
-                TV.[KMDIA__KMCONTROLADO],
-                TV.[PRECO_KMLIVRE]
+                TV.[NOMETIPO],       
+                TV.[VALOR_DIARIO_PDIARIO], 
+                TV.[VALOR_KMRODADO_PDIARIO],
+                TV.[VALOR_DIARIO_PCONTROLADO],                    
+                TV.[LIMITE_PCONTROLADO],                                                           
+                TV.[VALOR_KMRODAD_PCONTROLADO],        
+                TV.[VALOR_DIARIO_PLIVRE]
             FROM
                 [TBVEICULOS] AS V INNER JOIN
                 [TBTIPOVEICULO] AS TV
@@ -186,12 +189,13 @@ namespace LocadoraVeiculo.Controladores.VeiculoModule
                 V.[TIPO_COMBUSTIVEL],
                 V.[ID_TIPO_VEICULO],
                 V.[DISPONIBILIDADE_VEICULO],
-                TV.[NOMETIPO],
-                TV.[VALOR_DIARIO_PDIARIO],
-                TV.[PRECO_KMDIARIO],
-                TV.[VALOR_DIARIO_PCONTROLADO],
-                TV.[KMDIA__KMCONTROLADO],
-                TV.[PRECO_KMLIVRE]
+                TV.[NOMETIPO],       
+                TV.[VALOR_DIARIO_PDIARIO], 
+                TV.[VALOR_KMRODADO_PDIARIO],
+                TV.[VALOR_DIARIO_PCONTROLADO],                    
+                TV.[LIMITE_PCONTROLADO],                                                           
+                TV.[VALOR_KMRODAD_PCONTROLADO],        
+                TV.[VALOR_DIARIO_PLIVRE]
             FROM
                 [TBVEICULOS] AS V INNER JOIN
                 [TBTIPOVEICULO] AS TV
@@ -285,18 +289,20 @@ namespace LocadoraVeiculo.Controladores.VeiculoModule
             var tipo_Combustivel = Convert.ToString(reader["TIPO_COMBUSTIVEL"]);
             var disponibilidade_Veiculo = Convert.ToInt32(reader["DISPONIBILIDADE_VEICULO"]);
 
-            var categoriaVeiculo = Convert.ToString(reader["NOMETIPO"]);
-            var valor_Diario_PDiario = Convert.ToDecimal(reader["VALOR_DIARIO_PDIARIO"]);
-            var preco_KMDiario = Convert.ToDecimal(reader["PRECO_KMDIARIO"]);
-            var valor_Diario_PControlado = Convert.ToDecimal(reader["VALOR_DIARIO_PCONTROLADO"]);
-            var kmDia__KMControlado = Convert.ToInt32(reader["KMDIA__KMCONTROLADO"]);
-            var preco_KMLivre = Convert.ToDecimal(reader["PRECO_KMLIVRE"]);
+            var nomeTipo = Convert.ToString(reader["NOMETIPO"]);
+            var valorDiarioPDiario = Convert.ToDecimal(reader["VALOR_DIARIO_PDIARIO"]);
+            var valorKmRodadoPDiario = Convert.ToDecimal(reader["VALOR_KMRODADO_PDIARIO"]);
+            var valorDiarioPControlado = Convert.ToDecimal(reader["VALOR_DIARIO_PCONTROLADO"]);
+            var limitePControlado = Convert.ToDecimal(reader["LIMITE_PCONTROLADO"]);
+            var valorKmRodadoPControlado = Convert.ToDecimal(reader["VALOR_KMRODAD_PCONTROLADO"]);
+            var valorDiarioPLivre = Convert.ToDecimal(reader["VALOR_DIARIO_PLIVRE"]);
 
             GrupoVeiculo grupoVeiculo = null;
 
             if (reader["ID_TIPO_VEICULO"] != DBNull.Value)
             {
-                grupoVeiculo = new GrupoVeiculo(categoriaVeiculo, valor_Diario_PDiario, preco_KMDiario, valor_Diario_PControlado, kmDia__KMControlado, preco_KMLivre);
+                grupoVeiculo = new GrupoVeiculo(nomeTipo, valorDiarioPDiario, valorKmRodadoPDiario, valorDiarioPControlado,
+                                                                limitePControlado, valorKmRodadoPControlado, valorDiarioPLivre);
                 grupoVeiculo.Id = Convert.ToInt32(reader["ID_TIPO_VEICULO"]);
             }
 

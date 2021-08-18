@@ -14,7 +14,7 @@ namespace LocadoraVeiculo.Tests.VeiculoModule
         public VeiculoTest() {
 
             imagem = new byte[] { 0x20, 0x20, 0x20, 0x20 }; 
-            grupoVeiculo = new GrupoVeiculo("Econômico", 40, 5, 50, 30, 40);
+            grupoVeiculo = new GrupoVeiculo("Econômico", 40, 5, 50, 30, 40,10);
         }
 
         [TestMethod]

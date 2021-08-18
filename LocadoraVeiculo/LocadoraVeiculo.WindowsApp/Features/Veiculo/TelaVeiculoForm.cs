@@ -57,7 +57,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.Veiculo
                 cmbTamanhoPortaMalas.Text = veiculos.tamanhoPortaMalas.ToString();
                 txtKm.Text = veiculos.km_Inicial.ToString();
                 cmbTipoCombustivel.Text = veiculos.tipo_Combustivel;
-                cmbGrupo.Text = veiculos.grupoVeiculo.categoriaVeiculo;
+                cmbGrupo.Text = veiculos.grupoVeiculo.NomeTipo;
             }
         }
 
