@@ -21,13 +21,10 @@ namespace LocadoraVeiculo.WindowsApp.Features.Dashboard
             controlador = new ControladorVeiculo();
 
             InitializeComponent();
-
+            TrataLabels();
             dtDashboard.ConfigurarGridZebrado();
             dtDashboard.ConfigurarGridSomenteLeitura();
             dtDashboard.Columns.AddRange(ObterColunasLocacoesPendentes());
-
-            label4.Parent = pictureBox4;
-            //label4.Location = new Point(5, 26);
         }
 
         public DataGridViewColumn[] ObterColunasLocacoesPendentes()
@@ -121,6 +118,18 @@ namespace LocadoraVeiculo.WindowsApp.Features.Dashboard
             dtDashboard.Rows.Clear();
             dtDashboard.Columns.AddRange(ObterColunasLocacoesPendentes());
             labelTipoVisualizacao.Text = "LOCAÇÕES PENDENTES";
+        }
+
+        private void TrataLabels()
+        {
+            int quantidadeAlugados = controlador.ReturnQuantidadeAlugados();
+            labelAlugados.Text = quantidadeAlugados.ToString();
+
+            int quantidadeDisponiveis = controlador.ReturnQuantidadeDisponiveis();
+            labelAlugados.Text = quantidadeDisponiveis.ToString();
+
+            //int quantidadeAlugados = controlador.ReturnQuantidadeAlugados();
+            //labelAlugados.Text = quantidadeAlugados.ToString();
         }
     }
 }

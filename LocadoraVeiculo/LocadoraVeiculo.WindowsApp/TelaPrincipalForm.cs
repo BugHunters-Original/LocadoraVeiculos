@@ -30,8 +30,7 @@ namespace LocadoraVeiculo.WindowsApp
         {
             InitializeComponent();
             Instancia = this;
-            dash = new DashboardControl();
-            panelRegistros.Controls.Add(dash);
+            ConfigurarPainelDashBoard();
         }
 
         public void AtualizarRodape(string mensagem)
@@ -190,6 +189,14 @@ namespace LocadoraVeiculo.WindowsApp
 
             panelRegistros.Controls.Clear();
 
+            panelRegistros.Controls.Add(tabela);
+        }
+
+        private void ConfigurarPainelDashBoard()
+        {
+            UserControl tabela = new DashboardControl();
+            tabela.Dock = DockStyle.Fill;
+            panelRegistros.Controls.Clear();
             panelRegistros.Controls.Add(tabela);
         }
 
