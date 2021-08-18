@@ -51,7 +51,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.NotaFiscal
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(80, 51);
+            this.label1.Location = new System.Drawing.Point(80, 55);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(42, 13);
             this.label1.TabIndex = 0;
@@ -76,7 +76,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.NotaFiscal
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(85, 25);
+            this.label2.Location = new System.Drawing.Point(85, 29);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(37, 13);
             this.label2.TabIndex = 2;
@@ -93,7 +93,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.NotaFiscal
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(40, 77);
+            this.label3.Location = new System.Drawing.Point(40, 81);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(82, 13);
             this.label3.TabIndex = 4;
@@ -111,7 +111,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.NotaFiscal
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(75, 129);
+            this.label4.Location = new System.Drawing.Point(75, 133);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(47, 13);
             this.label4.TabIndex = 6;
@@ -128,7 +128,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.NotaFiscal
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(11, 103);
+            this.label5.Location = new System.Drawing.Point(11, 107);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(111, 13);
             this.label5.TabIndex = 8;
@@ -163,7 +163,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.NotaFiscal
             // 
             this.label9.AutoSize = true;
             this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label9.Location = new System.Drawing.Point(40, 198);
+            this.label9.Location = new System.Drawing.Point(61, 198);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(61, 16);
             this.label9.TabIndex = 16;
@@ -172,7 +172,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.NotaFiscal
             // bt_Voltar
             // 
             this.bt_Voltar.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.bt_Voltar.Location = new System.Drawing.Point(304, 223);
+            this.bt_Voltar.Location = new System.Drawing.Point(289, 233);
             this.bt_Voltar.Name = "bt_Voltar";
             this.bt_Voltar.Size = new System.Drawing.Size(75, 23);
             this.bt_Voltar.TabIndex = 19;
@@ -182,7 +182,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.NotaFiscal
             // bt_ConcluirLocacao
             // 
             this.bt_ConcluirLocacao.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.bt_ConcluirLocacao.Location = new System.Drawing.Point(223, 223);
+            this.bt_ConcluirLocacao.Location = new System.Drawing.Point(208, 233);
             this.bt_ConcluirLocacao.Name = "bt_ConcluirLocacao";
             this.bt_ConcluirLocacao.Size = new System.Drawing.Size(75, 23);
             this.bt_ConcluirLocacao.TabIndex = 18;
@@ -193,7 +193,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.NotaFiscal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(398, 263);
+            this.ClientSize = new System.Drawing.Size(398, 276);
             this.Controls.Add(this.bt_Voltar);
             this.Controls.Add(this.bt_ConcluirLocacao);
             this.Controls.Add(this.txtTotal);
