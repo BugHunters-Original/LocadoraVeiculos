@@ -39,12 +39,6 @@ namespace LocadoraVeiculo.WindowsApp.Features.Veiculo
 
                 new DataGridViewTextBoxColumn {DataPropertyName = "Ano", HeaderText = "Ano"},
 
-                new DataGridViewTextBoxColumn {DataPropertyName = "Numero_Portas", HeaderText = "N° Portas"},
-
-                new DataGridViewTextBoxColumn {DataPropertyName = "Capacidade_tanque", HeaderText = "Capacidade do Tanque"},
-
-                new DataGridViewTextBoxColumn {DataPropertyName = "Tamanho_porta_mala", HeaderText = "Tamanho do Porta Malas"},
-
                 new DataGridViewTextBoxColumn {DataPropertyName = "KM_inicial", HeaderText = "Quilometragem"},
 
                 new DataGridViewTextBoxColumn {DataPropertyName = "Tipo_combustivel", HeaderText = "Tipo de Combustível"},
@@ -74,7 +68,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.Veiculo
 
 
                 gridVeiculos.Rows.Add(veiculo.Id, veiculo.nome, veiculo.cor, veiculo.marca, veiculo.ano,
-                veiculo.numero_Portas, veiculo.capacidade_Tanque, veiculo.tamanhoPortaMalas, veiculo.km_Inicial, veiculo.tipo_Combustivel,
+                veiculo.km_Inicial, veiculo.tipo_Combustivel,
                 veiculo.grupoVeiculo.categoriaVeiculo, disponivel);
             }
         }

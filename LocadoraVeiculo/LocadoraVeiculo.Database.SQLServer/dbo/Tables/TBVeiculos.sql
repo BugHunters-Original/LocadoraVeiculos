@@ -17,8 +17,3 @@
     CONSTRAINT [PK_TBVeiculos] PRIMARY KEY CLUSTERED ([Id] ASC),
     CONSTRAINT [FK_TBVeiculos_TBTipoVeiculo] FOREIGN KEY ([Id_Tipo_Veiculo]) REFERENCES [dbo].[TBTipoVeiculo] ([Id])
 );
-
-
-
-
-

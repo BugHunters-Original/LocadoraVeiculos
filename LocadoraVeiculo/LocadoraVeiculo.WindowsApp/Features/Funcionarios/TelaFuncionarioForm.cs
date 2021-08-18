@@ -26,14 +26,9 @@ namespace LocadoraVeiculo.WindowsApp.Features.Funcionarios
                 text_NomeFuncionario.Text = funcionario.Nome;
                 text_CPFFuncionario.Text = funcionario.Cpf_funcionario;
                 text_salarioFuncionario.Text = funcionario.Salario.ToString();
-
+                date_EntradaFuncionario.Value = Convert.ToDateTime(funcionario.DataEntrada);
                 text_UsuarioFuncionario.Text = funcionario.Usuario;
                 text_SenhaFuncionario.Text = funcionario.Senha;
-
-
-
-
-
             }
         }
 
@@ -50,6 +45,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.Funcionarios
             string usuario = text_UsuarioFuncionario.Text;
             string senha = text_SenhaFuncionario.Text;
             decimal? salario = null;
+
             if (!string.IsNullOrEmpty(text_salarioFuncionario.Text))
                 salario = Convert.ToDecimal(text_salarioFuncionario.Text);
 
@@ -68,6 +64,20 @@ namespace LocadoraVeiculo.WindowsApp.Features.Funcionarios
                 TelaPrincipalForm.Instancia.AtualizarRodape(primeiroErro);
 
                 DialogResult = DialogResult.None;
+            }
+        }
+
+        private void textBox_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) &&
+                (e.KeyChar != ','))
+            {
+                e.Handled = true;
+            }
+
+            if ((e.KeyChar == ',') && ((sender as TextBox).Text.IndexOf(',') > -1))
+            {
+                e.Handled = true;
             }
         }
     }

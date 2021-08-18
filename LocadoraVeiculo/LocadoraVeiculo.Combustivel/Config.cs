@@ -11,7 +11,7 @@ namespace LocadoraVeiculo.Combustivel
         private static readonly Dictionary<string, string> camposIniciais = new Dictionary<string, string>()
             {
                 {"precoGasolina", "0"},
-                {"precoDieses", "0" },
+                {"precoDiesel", "0" },
                 {"precoAlcool", "0" },
             };
 
@@ -38,11 +38,11 @@ namespace LocadoraVeiculo.Combustivel
         {
             get
             {
-                return Convert.ToDouble(appConfigControler.Ler("precoDieses"));
+                return Convert.ToDouble(appConfigControler.Ler("precoDiesel"));
             }
             set
             {
-                appConfigControler.Setar("precoDieses", value);
+                appConfigControler.Setar("precoDiesel", value);
             }
         }
 

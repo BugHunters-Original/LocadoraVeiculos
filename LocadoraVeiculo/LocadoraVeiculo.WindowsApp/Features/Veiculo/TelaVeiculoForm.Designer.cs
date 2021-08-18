@@ -89,6 +89,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.Veiculo
             // 
             this.txtChassi.Location = new System.Drawing.Point(183, 231);
             this.txtChassi.Margin = new System.Windows.Forms.Padding(4);
+            this.txtChassi.MaxLength = 17;
             this.txtChassi.Name = "txtChassi";
             this.txtChassi.Size = new System.Drawing.Size(133, 22);
             this.txtChassi.TabIndex = 3;
@@ -207,7 +208,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.Veiculo
             // 
             this.txtNPortas.Location = new System.Drawing.Point(419, 260);
             this.txtNPortas.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.txtNPortas.Mask = "11";
+            this.txtNPortas.Mask = "00";
             this.txtNPortas.Name = "txtNPortas";
             this.txtNPortas.Size = new System.Drawing.Size(133, 22);
             this.txtNPortas.TabIndex = 102;
@@ -247,7 +248,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.Veiculo
             // 
             this.txtCapacidadePessoas.Location = new System.Drawing.Point(519, 289);
             this.txtCapacidadePessoas.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.txtCapacidadePessoas.Mask = "12";
+            this.txtCapacidadePessoas.Mask = "00";
             this.txtCapacidadePessoas.Name = "txtCapacidadePessoas";
             this.txtCapacidadePessoas.Size = new System.Drawing.Size(33, 22);
             this.txtCapacidadePessoas.TabIndex = 98;
@@ -276,6 +277,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.Veiculo
             // 
             this.txtCor.Location = new System.Drawing.Point(419, 202);
             this.txtCor.Margin = new System.Windows.Forms.Padding(4);
+            this.txtCor.MaxLength = 15;
             this.txtCor.Name = "txtCor";
             this.txtCor.Size = new System.Drawing.Size(133, 22);
             this.txtCor.TabIndex = 9;
@@ -295,6 +297,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.Veiculo
             // 
             this.txtPlaca.Location = new System.Drawing.Point(419, 174);
             this.txtPlaca.Margin = new System.Windows.Forms.Padding(4);
+            this.txtPlaca.MaxLength = 7;
             this.txtPlaca.Name = "txtPlaca";
             this.txtPlaca.Size = new System.Drawing.Size(133, 22);
             this.txtPlaca.TabIndex = 8;
