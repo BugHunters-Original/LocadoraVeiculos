@@ -68,6 +68,12 @@
     <Compile Include="Features\Combustivel\TelaCombustivelForm.Designer.cs">
       <DependentUpon>TelaCombustivelForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Features\Dashboard\DashboardControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Features\Dashboard\DashboardControl.Designer.cs">
+      <DependentUpon>DashboardControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="Features\Funcionarios\ConfiguracaoFuncionarioToolBox.cs" />
     <Compile Include="Features\Funcionarios\OperacoesFuncionario.cs" />
     <Compile Include="Features\Funcionarios\TabelaFuncionarioControl.cs">
@@ -188,6 +194,9 @@
     <EmbeddedResource Include="Features\Combustivel\TelaCombustivelForm.resx">
       <DependentUpon>TelaCombustivelForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Features\Dashboard\DashboardControl.resx">
+      <DependentUpon>DashboardControl.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Features\Funcionarios\TabelaFuncionarioControl.resx">
       <DependentUpon>TabelaFuncionarioControl.cs</DependentUpon>
     </EmbeddedResource>
@@ -290,6 +299,21 @@
       <Project>{fd32af45-ef78-416a-b054-b4189d0168b7}</Project>
       <Name>LocadoraVeiculo.Dominio</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\bordaCircular.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\carRented.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\carRented1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\carRented3.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\lupa %281%29.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

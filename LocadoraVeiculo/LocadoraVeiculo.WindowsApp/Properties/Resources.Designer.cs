@@ -63,6 +63,26 @@ namespace LocadoraVeiculo.WindowsApp.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap bordaCircular {
+            get {
+                object obj = ResourceManager.GetObject("bordaCircular", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap carRented3 {
+            get {
+                object obj = ResourceManager.GetObject("carRented3", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap devolver {
             get {
                 object obj = ResourceManager.GetObject("devolver", resourceCulture);
@@ -76,6 +96,16 @@ namespace LocadoraVeiculo.WindowsApp.Properties {
         internal static System.Drawing.Bitmap devolver1 {
             get {
                 object obj = ResourceManager.GetObject("devolver1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap lupa__1_ {
+            get {
+                object obj = ResourceManager.GetObject("lupa (1)", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
