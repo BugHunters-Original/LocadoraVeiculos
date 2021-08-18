@@ -71,55 +71,36 @@ namespace LocadoraVeiculo.WindowsApp.Features.Locacao
         private void btnGravar_Click(object sender, EventArgs e)
         {
             Cliente cliente = (Cliente)cbCliente.SelectedItem;
+
             VeiculoModule.Veiculo veiculo = (VeiculoModule.Veiculo)cbVeiculo.SelectedItem;
 
-            int tipoCliente;
-            ClienteCPF condutor;
-            if (cbCliente.SelectedItem is ClienteCPF)
-            {
-                condutor = (ClienteCPF)cliente;
-                tipoCliente = 0;
-            }
-            else
-            {
-                condutor = (ClienteCPF)cbCondutor.SelectedItem;
-                tipoCliente = 1;
-            }
+            MudarDisponibilidadeVeiculo(veiculo);
+
+            int tipoCliente = cbCliente.SelectedItem is ClienteCPF ? 0 : 1;
+
+            ClienteCPF condutor = cbCliente.SelectedItem is ClienteCPF ? (ClienteCPF)cliente : (ClienteCPF)cbCondutor.SelectedItem;
 
             DateTime dataSaida = dtSaida.Value;
+
             DateTime dataRetornoEsperado = dtRetorno.Value;
 
             string tipoLocacao = cbTipoLocacao.Text;
 
             var dias = Convert.ToInt32((dtRetorno.Value - dtSaida.Value).TotalDays);
 
-            decimal? precoTotal = 0;
-            if (servicos != null)
-            {
-                List<Servico> servicosTaxas = servicos.ToList();
-
-                foreach (var item in servicosTaxas)
-                    precoTotal = item.TipoCalculo != 1 ? precoTotal + item.Preco * dias : precoTotal + item.Preco;
-            }
-
-
             decimal? kmRodado = null;
             if (txtKmRodado.Text != "")
                 kmRodado = Convert.ToDecimal(txtKmRodado.Text);
 
+            decimal? precoServicos = 0;
+            if (servicos != null)
+                foreach (var item in servicos.ToList())
+                    precoServicos = item.TipoCalculo != 1 ? precoServicos + item.Preco * dias : precoServicos + item.Preco;
 
-            switch (tipoLocacao)
-            {
-                case "Plano Diário":
-                    precoTotal += (veiculo.grupoVeiculo.preco_KMDiario * dias); break;
+            decimal? precoPlano = CalcularPrecoPlano(veiculo, tipoLocacao, dias, kmRodado);
 
-                case "KM Controlado":
-                    precoTotal += (veiculo.grupoVeiculo.valor_Diario_PControlado * dias) + (veiculo.grupoVeiculo.kmDia__KMControlado * dias * kmRodado); break;
-
-                default: break;
-            }
-
-            locacao = new LocacaoVeiculo(cliente, veiculo, condutor, dataSaida, dataRetornoEsperado, tipoLocacao, tipoCliente, precoTotal, kmRodado);
+            locacao = new LocacaoVeiculo(cliente, veiculo, condutor, dataSaida, dataRetornoEsperado, tipoLocacao,
+                                    tipoCliente, precoServicos, kmRodado, dias, "Em Aberto", null, precoPlano, null);
 
             string resultadoValidacao = locacao.Validar();
 
@@ -131,6 +112,27 @@ namespace LocadoraVeiculo.WindowsApp.Features.Locacao
 
                 DialogResult = DialogResult.None;
             }
+        }
+
+        private static decimal? CalcularPrecoPlano(VeiculoModule.Veiculo veiculo, string tipoLocacao, int dias, decimal? kmRodado)
+        {
+            switch (tipoLocacao)
+            {
+                case "Plano Diário":
+                    return (veiculo.grupoVeiculo.preco_KMDiario * dias);
+
+                case "KM Controlado":
+                    return (veiculo.grupoVeiculo.valor_Diario_PControlado * dias) + (veiculo.grupoVeiculo.kmDia__KMControlado * dias * kmRodado);
+
+                default: return 0;
+            }
+        }
+
+        private void MudarDisponibilidadeVeiculo(VeiculoModule.Veiculo veiculo)
+        {
+            veiculo.disponibilidade_Veiculo = 0;
+
+            controladorVeiculo.Editar(veiculo.Id, veiculo);
         }
 
         private void cbCliente_SelectedIndexChanged(object sender, EventArgs e)
@@ -164,10 +166,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.Locacao
 
         private void cbTipoLocacao_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (cbTipoLocacao.Text == "KM Controlado")
-                txtKmRodado.Enabled = true;
-            else
-                txtKmRodado.Enabled = false;
+            txtKmRodado.Enabled = cbTipoLocacao.Text == "KM Controlado";
         }
     }
 }

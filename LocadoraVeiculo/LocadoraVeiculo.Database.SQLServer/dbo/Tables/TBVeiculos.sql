@@ -2,7 +2,7 @@
     [Id]                      INT          IDENTITY (1, 1) NOT NULL,
     [Nome]                    VARCHAR (50) NOT NULL,
     [Numero_placa]            VARCHAR (50) NOT NULL,
-    [Numero_chassi]           NCHAR (10)   NULL,
+    [Numero_chassi]           NCHAR (17)   NULL,
     [Foto]                    IMAGE        NULL,
     [Cor]                     NCHAR (10)   NULL,
     [Marca]                   NCHAR (10)   NULL,
@@ -17,4 +17,3 @@
     CONSTRAINT [PK_TBVeiculos] PRIMARY KEY CLUSTERED ([Id] ASC),
     CONSTRAINT [FK_TBVeiculos_TBTipoVeiculo] FOREIGN KEY ([Id_Tipo_Veiculo]) REFERENCES [dbo].[TBTipoVeiculo] ([Id])
 );
-

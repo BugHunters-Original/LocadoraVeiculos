@@ -29,7 +29,10 @@ namespace LocadoraVeiculo.WindowsApp.Features.Locacao
 
                 new DataGridViewTextBoxColumn {DataPropertyName = "DataSaida", HeaderText = "Data de Saída"},
 
-                new DataGridViewTextBoxColumn {DataPropertyName = "DataRetorno", HeaderText = "Data de Retorno esperada"}
+                new DataGridViewTextBoxColumn {DataPropertyName = "DataRetorno", HeaderText = "Data de Retorno esperada"},
+
+                new DataGridViewTextBoxColumn {DataPropertyName = "Status", HeaderText = "Status da Locação"}
+
             };
 
             return colunas;
@@ -46,7 +49,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.Locacao
 
             foreach (LocacaoVeiculo locacao in locacoes)
             {
-                gridLocacao.Rows.Add(locacao.Id, locacao.Cliente, locacao.Condutor, locacao.Veiculo, locacao.DataSaida, locacao.DataRetorno);
+                gridLocacao.Rows.Add(locacao.Id, locacao.Cliente, locacao.Condutor, locacao.Veiculo, locacao.DataSaida, locacao.DataRetorno, locacao.StatusLocacao);
             }
         }
     }

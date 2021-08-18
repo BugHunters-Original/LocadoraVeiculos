@@ -9,7 +9,8 @@ namespace LocadoraVeiculo.LocacaoModule
     public class LocacaoVeiculo : EntidadeBase, IEquatable<LocacaoVeiculo>
     {
         public LocacaoVeiculo(Cliente cliente, Veiculo veiculo, ClienteCPF condutor, DateTime dataSaida,
-               DateTime dataRetorno, string tipoLocacao, int tipoCliente, decimal? precoTotal, decimal? kmRodado)
+               DateTime dataRetorno, string tipoLocacao, int tipoCliente, decimal? precoServicos, decimal? kmRodado, int dias,
+               string statusLocacao, decimal? precoCombustivel, decimal? precoPlano, decimal? precoTotal)
         {
             Cliente = cliente;
             Veiculo = veiculo;
@@ -18,8 +19,13 @@ namespace LocadoraVeiculo.LocacaoModule
             DataRetorno = dataRetorno;
             TipoLocacao = tipoLocacao;
             TipoCliente = tipoCliente;
-            PrecoTotal = precoTotal;
+            PrecoServicos = precoServicos;
+            Dias = dias;
             KmRodado = kmRodado;
+            StatusLocacao = statusLocacao;
+            PrecoCombustivel = precoCombustivel;
+            PrecoPlano = precoPlano;
+            PrecoTotal = precoTotal;
         }
         public Cliente Cliente { get; set; }
         public Veiculo Veiculo { get; set; }
@@ -27,9 +33,14 @@ namespace LocadoraVeiculo.LocacaoModule
         public DateTime DataSaida { get; set; }
         public DateTime DataRetorno { get; set; }
         public string TipoLocacao { get; set; }
+        public string StatusLocacao { get; set; }
         public int TipoCliente { get; set; }
-        public decimal? PrecoTotal { get; set; }
+        public int Dias { get; set; }
+        public decimal? PrecoServicos { get; set; }
         public decimal? KmRodado { get; }
+        public decimal? PrecoCombustivel { get; set; }
+        public decimal? PrecoPlano { get; set; }
+        public decimal? PrecoTotal { get; set; }
 
         public bool Equals(LocacaoVeiculo other)
         {
@@ -42,7 +53,7 @@ namespace LocadoraVeiculo.LocacaoModule
                 && DataRetorno == other.DataRetorno
                 && TipoLocacao == other.TipoLocacao
                 && TipoCliente == other.TipoCliente
-                && PrecoTotal == other.PrecoTotal
+                && PrecoServicos == other.PrecoServicos
                 && KmRodado == other.KmRodado;
         }
         public override bool Equals(object obj)
@@ -61,7 +72,7 @@ namespace LocadoraVeiculo.LocacaoModule
             hashCode = hashCode * -1521134295 + DataRetorno.GetHashCode();
             hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(TipoLocacao);
             hashCode = hashCode * -1521134295 + TipoCliente.GetHashCode();
-            hashCode = hashCode * -1521134295 + PrecoTotal.GetHashCode();
+            hashCode = hashCode * -1521134295 + PrecoServicos.GetHashCode();
             hashCode = hashCode * -1521134295 + KmRodado.GetHashCode();
             return hashCode;
         }
