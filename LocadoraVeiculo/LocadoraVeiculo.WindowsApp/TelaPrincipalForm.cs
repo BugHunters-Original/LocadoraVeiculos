@@ -15,6 +15,7 @@ using System.Windows.Forms;
 using LocadoraVeiculo.WindowsApp.Features.TaxaServico;
 using LocadoraVeiculo.Controladores.ServicoModule;
 using LocadoraVeiculo.WindowsApp.Features.Combustivel;
+using LocadoraVeiculo.WindowsApp.Features.Dashboard;
 
 namespace LocadoraVeiculo.WindowsApp
 {
@@ -23,12 +24,14 @@ namespace LocadoraVeiculo.WindowsApp
         private ICadastravel operacoes;
 
         public static TelaPrincipalForm Instancia;
+        public static DashboardControl dash;
 
         public TelaPrincipalForm()
         {
             InitializeComponent();
-
             Instancia = this;
+            dash = new DashboardControl();
+            panelRegistros.Controls.Add(dash);
         }
 
         public void AtualizarRodape(string mensagem)

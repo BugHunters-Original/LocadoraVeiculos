@@ -137,6 +137,68 @@ namespace LocadoraVeiculo.Controladores.VeiculoModule
                 [TBVEICULOS]
             WHERE 
                 [ID] = @ID";
+
+        private const string sqlVeiculoAlugado =
+            @"SELECT 
+                V.[ID],       
+                V.[NOME],
+                V.[NUMERO_PLACA],
+                V.[NUMERO_CHASSI],             
+                V.[FOTO],                    
+                V.[COR],                                
+                V.[MARCA],
+                V.[ANO],
+                V.[NUMERO_PORTAS],
+                V.[CAPACIDADE_TANQUE],
+                V.[TAMANHO_PORTA_MALA],
+                V.[KM_INICIAL],
+                V.[TIPO_COMBUSTIVEL],
+                V.[ID_TIPO_VEICULO],
+                V.[DISPONIBILIDADE_VEICULO],
+                TV.[NOMETIPO],
+                TV.[VALOR_DIARIO_PDIARIO],
+                TV.[PRECO_KMDIARIO],
+                TV.[VALOR_DIARIO_PCONTROLADO],
+                TV.[KMDIA__KMCONTROLADO],
+                TV.[PRECO_KMLIVRE]
+            FROM
+                [TBVEICULOS] AS V INNER JOIN
+                [TBTIPOVEICULO] AS TV
+            ON
+                TV.ID = V.ID_TIPO_VEICULO
+            WHERE 
+                [DISPONIBILIDADE_VEICULO] = 1";
+
+        private const string sqlVeiculoDisponivel =
+            @"SELECT 
+                V.[ID],       
+                V.[NOME],
+                V.[NUMERO_PLACA],
+                V.[NUMERO_CHASSI],             
+                V.[FOTO],                    
+                V.[COR],                                
+                V.[MARCA],
+                V.[ANO],
+                V.[NUMERO_PORTAS],
+                V.[CAPACIDADE_TANQUE],
+                V.[TAMANHO_PORTA_MALA],
+                V.[KM_INICIAL],
+                V.[TIPO_COMBUSTIVEL],
+                V.[ID_TIPO_VEICULO],
+                V.[DISPONIBILIDADE_VEICULO],
+                TV.[NOMETIPO],
+                TV.[VALOR_DIARIO_PDIARIO],
+                TV.[PRECO_KMDIARIO],
+                TV.[VALOR_DIARIO_PCONTROLADO],
+                TV.[KMDIA__KMCONTROLADO],
+                TV.[PRECO_KMLIVRE]
+            FROM
+                [TBVEICULOS] AS V INNER JOIN
+                [TBTIPOVEICULO] AS TV
+            ON
+                TV.ID = V.ID_TIPO_VEICULO
+            WHERE 
+                [DISPONIBILIDADE_VEICULO] = 0";
         #endregion
 
         public override string InserirNovo(Veiculo registro)
@@ -191,6 +253,16 @@ namespace LocadoraVeiculo.Controladores.VeiculoModule
         public override List<Veiculo> SelecionarTodos()
         {
             return Db.GetAll(sqlSelecionarTodosVeiculos, ConverterEmVeiculo);
+        }
+
+        public List<Veiculo> SelecionarTodosAlugados()
+        {
+            return Db.GetAll(sqlVeiculoAlugado, ConverterEmVeiculo);
+        }
+
+        public List<Veiculo> SelecionarTodosDisponiveis()
+        {
+            return Db.GetAll(sqlVeiculoDisponivel, ConverterEmVeiculo);
         }
 
         private Veiculo ConverterEmVeiculo(IDataReader reader)
