@@ -104,7 +104,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.Dashboard
             this.labelAlugados.Name = "labelAlugados";
             this.labelAlugados.Size = new System.Drawing.Size(85, 37);
             this.labelAlugados.TabIndex = 9;
-            this.labelAlugados.Text = "150";
+            this.labelAlugados.Text = "0";
             this.labelAlugados.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // pictureBox2
@@ -165,7 +165,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.Dashboard
             this.labelInLoco.Name = "labelInLoco";
             this.labelInLoco.Size = new System.Drawing.Size(85, 37);
             this.labelInLoco.TabIndex = 11;
-            this.labelInLoco.Text = "150";
+            this.labelInLoco.Text = "0";
             this.labelInLoco.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // pictureBox4
@@ -248,7 +248,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.Dashboard
             this.labelPendentes.Name = "labelPendentes";
             this.labelPendentes.Size = new System.Drawing.Size(85, 37);
             this.labelPendentes.TabIndex = 9;
-            this.labelPendentes.Text = "150";
+            this.labelPendentes.Text = "0";
             this.labelPendentes.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // pictureBox1
