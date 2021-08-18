@@ -1,6 +1,9 @@
 ﻿using LocadoraVeiculo.GrupoVeiculoModule;
 using LocadoraVeiculo.Shared;
 using System;
+using System.Collections.Generic;
+using System.Linq;
+
 namespace LocadoraVeiculo.VeiculoModule
 {
     public class Veiculo : EntidadeBase, IEquatable<Veiculo>
@@ -56,7 +59,7 @@ namespace LocadoraVeiculo.VeiculoModule
             if (string.IsNullOrEmpty(numero_Placa))
                 resultadoValidacao += QuebraDeLinha(resultadoValidacao) + "O campo Placa é obrigatório";
 
-            if (!string.IsNullOrEmpty(numero_Placa)  && numero_Placa.Length != 7)
+            if (!string.IsNullOrEmpty(numero_Placa) && numero_Placa.Length != 7)
                 resultadoValidacao += QuebraDeLinha(resultadoValidacao) + "O campo Placa possui 7 dígitos";
 
             if (tamanhoPortaMalas != 'M' && tamanhoPortaMalas != 'P' && tamanhoPortaMalas != 'G')
@@ -65,7 +68,7 @@ namespace LocadoraVeiculo.VeiculoModule
             if (string.IsNullOrEmpty(numero_Chassi))
                 resultadoValidacao += QuebraDeLinha(resultadoValidacao) + "O campo Chassi é obrigatório";
 
-            if (!string.IsNullOrEmpty(numero_Chassi) && numero_Chassi.Length != 17 )
+            if (!string.IsNullOrEmpty(numero_Chassi) && numero_Chassi.Length != 17)
                 resultadoValidacao += QuebraDeLinha(resultadoValidacao) + "O campo Chassi possui 17 dígitos";
 
             if (string.IsNullOrEmpty(cor))
@@ -89,7 +92,7 @@ namespace LocadoraVeiculo.VeiculoModule
             if (km_Inicial == null || km_Inicial <= 0)
                 resultadoValidacao += QuebraDeLinha(resultadoValidacao) + "O campo Quilometragem Inicial obrigatório";
 
-            if (Convert.ToInt32(ano) > DateTime.Now.Year || Convert.ToInt32(ano) < 1900 && ano!=null)
+            if (Convert.ToInt32(ano) > DateTime.Now.Year || Convert.ToInt32(ano) < 1900 && ano != null)
                 resultadoValidacao += QuebraDeLinha(resultadoValidacao) + "O campo Ano não pode ser maior que o ano atual ou muito antigo";
 
             if (resultadoValidacao == "")
@@ -122,7 +125,7 @@ namespace LocadoraVeiculo.VeiculoModule
                Id == other.Id &&
                nome == other.nome &&
                numero_Placa == other.numero_Placa &&
-               numero_Chassi == other.numero_Chassi &&               
+               numero_Chassi == other.numero_Chassi &&
                //EqualityComparer<byte[]>.Default.Equals(foto, other.foto) &&
                cor == other.cor &&
                marca == other.marca &&

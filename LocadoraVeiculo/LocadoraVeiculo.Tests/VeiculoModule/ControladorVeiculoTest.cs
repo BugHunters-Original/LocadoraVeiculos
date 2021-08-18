@@ -27,7 +27,7 @@ namespace LocadoraVeiculo.Tests.VeiculoModule
             Db.Update("DELETE FROM [TBVEICULOS]");
             Db.Update("DELETE FROM [TBTIPOVEICULO]");
 
-            Grupo = new GrupoVeiculo("Econômico", 10, 10, 10, 10, 10);
+            Grupo = new GrupoVeiculo("Econômico", 10, 10, 10, 10, 10, 10);
             controladorGrupo.InserirNovo(Grupo);
             imagem = new byte[] { 0x20, 0x20, 0x20, 0x20, 0x20, 0x20, 0x20 };
         }
@@ -36,8 +36,8 @@ namespace LocadoraVeiculo.Tests.VeiculoModule
         public void DeveInserir_Veiculo()
         {
             //arrange
-            var veiculo = new Veiculo("marea","1234567","12345678901234567",imagem,"azul","fiat",2000,2,80,'G',1000,"gasolina",1, Grupo);
-            
+            var veiculo = new Veiculo("marea", "1234567", "12345678901234567", imagem, "azul", "fiat", 2000, 2, 80, 'G', 1000, "gasolina", 1, Grupo);
+
             //action
             controlador.InserirNovo(veiculo);
 

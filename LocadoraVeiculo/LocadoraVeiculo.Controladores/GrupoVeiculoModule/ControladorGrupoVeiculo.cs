@@ -15,19 +15,21 @@ namespace LocadoraVeiculo.Controladores.GrupoVeiculoModule
                 (
                     [NOMETIPO],       
                     [VALOR_DIARIO_PDIARIO], 
-                    [PRECO_KMDIARIO],
+                    [VALOR_KMRODADO_PDIARIO],
                     [VALOR_DIARIO_PCONTROLADO],                    
-                    [KMDIA__KMCONTROLADO],                                                           
-                    [PRECO_KMLIVRE]        
+                    [LIMITE_PCONTROLADO],                                                           
+                    [VALOR_KMRODAD_PCONTROLADO],        
+                    [VALOR_DIARIO_PLIVRE]        
                 )
             VALUES
                 (
                     @NOMETIPO,
                     @VALOR_DIARIO_PDIARIO,
-                    @PRECO_KMDIARIO,
+                    @VALOR_KMRODADO_PDIARIO,
                     @VALOR_DIARIO_PCONTROLADO,
-                    @KMDIA__KMCONTROLADO,
-                    @PRECO_KMLIVRE
+                    @LIMITE_PCONTROLADO,
+                    @VALOR_KMRODAD_PCONTROLADO,
+                    @VALOR_DIARIO_PLIVRE
                 )";
 
         private const string sqlEditarTipoGrupoVeiculo =
@@ -35,10 +37,11 @@ namespace LocadoraVeiculo.Controladores.GrupoVeiculoModule
                 SET 
                     [NOMETIPO] = @NOMETIPO, 
                     [VALOR_DIARIO_PDIARIO] = @VALOR_DIARIO_PDIARIO, 
-                    [PRECO_KMDIARIO] = @PRECO_KMDIARIO,
+                    [VALOR_KMRODADO_PDIARIO] = @VALOR_KMRODADO_PDIARIO,
                     [VALOR_DIARIO_PCONTROLADO] = @VALOR_DIARIO_PCONTROLADO, 
-                    [KMDIA__KMCONTROLADO] = @KMDIA__KMCONTROLADO,
-                    [PRECO_KMLIVRE] =@PRECO_KMLIVRE
+                    [LIMITE_PCONTROLADO] = @LIMITE_PCONTROLADO,
+                    [VALOR_KMRODAD_PCONTROLADO] =@VALOR_KMRODAD_PCONTROLADO,
+                    [VALOR_DIARIO_PLIVRE] =@VALOR_DIARIO_PLIVRE
 
                 WHERE [ID] = @ID";
 
@@ -49,24 +52,26 @@ namespace LocadoraVeiculo.Controladores.GrupoVeiculoModule
         private const string sqlSelecionarTodosTipoGrupoVeiculo =
             @"SELECT 
                 [ID],       
-                [NOMETIPO],
-                [VALOR_DIARIO_PDIARIO],
-                [PRECO_KMDIARIO],             
-                [VALOR_DIARIO_PCONTROLADO],                    
-                [KMDIA__KMCONTROLADO],                                
-                [PRECO_KMLIVRE]
+                    [NOMETIPO],       
+                    [VALOR_DIARIO_PDIARIO], 
+                    [VALOR_KMRODADO_PDIARIO],
+                    [VALOR_DIARIO_PCONTROLADO],                    
+                    [LIMITE_PCONTROLADO],                                                           
+                    [VALOR_KMRODAD_PCONTROLADO],        
+                    [VALOR_DIARIO_PLIVRE]  
             FROM
                 [TBTIPOVEICULO]";
 
         private const string sqlSelecionarTipoGrupoVeiculoPorId =
             @"SELECT 
                 [ID],       
-                [NOMETIPO],
-                [VALOR_DIARIO_PDIARIO],
-                [PRECO_KMDIARIO],             
-                [VALOR_DIARIO_PCONTROLADO],                    
-                [KMDIA__KMCONTROLADO],                                
-                [PRECO_KMLIVRE]
+                    [NOMETIPO],       
+                    [VALOR_DIARIO_PDIARIO], 
+                    [VALOR_KMRODADO_PDIARIO],
+                    [VALOR_DIARIO_PCONTROLADO],                    
+                    [LIMITE_PCONTROLADO],                                                           
+                    [VALOR_KMRODAD_PCONTROLADO],        
+                    [VALOR_DIARIO_PLIVRE]  
             FROM
                 [TBTIPOVEICULO]
             WHERE 
@@ -136,14 +141,16 @@ namespace LocadoraVeiculo.Controladores.GrupoVeiculoModule
 
         private GrupoVeiculo ConverterEmGrupoVeiculo(IDataReader reader)
         {
-            var categoriaVeiculo = Convert.ToString(reader["NOMETIPO"]);
-            var valor_Diario_PDiario = Convert.ToDecimal(reader["VALOR_DIARIO_PDIARIO"]);
-            var preco_KMDiario = Convert.ToDecimal(reader["PRECO_KMDIARIO"]);
-            var valor_Diario_PControlado = Convert.ToDecimal(reader["VALOR_DIARIO_PCONTROLADO"]);
-            var kmDia__KMControlado = Convert.ToInt32(reader["KMDIA__KMCONTROLADO"]);
-            var preco_KMLivre = Convert.ToDecimal(reader["PRECO_KMLIVRE"]);
+            var nomeTipo = Convert.ToString(reader["NOMETIPO"]);
+            var valorDiarioPDiario = Convert.ToDecimal(reader["VALOR_DIARIO_PDIARIO"]);
+            var valorKmRodadoPDiario = Convert.ToDecimal(reader["VALOR_KMRODADO_PDIARIO"]);
+            var valorDiarioPControlado = Convert.ToDecimal(reader["VALOR_DIARIO_PCONTROLADO"]);
+            var limitePControlado = Convert.ToDecimal(reader["LIMITE_PCONTROLADO"]);
+            var valorKmRodadoPControlado = Convert.ToDecimal(reader["VALOR_KMRODAD_PCONTROLADO"]);
+            var valorDiarioPLivre = Convert.ToDecimal(reader["VALOR_DIARIO_PLIVRE"]);
 
-            GrupoVeiculo grupoVeiculo = new GrupoVeiculo(categoriaVeiculo, valor_Diario_PDiario, preco_KMDiario, valor_Diario_PControlado, kmDia__KMControlado, preco_KMLivre);
+            GrupoVeiculo grupoVeiculo = new GrupoVeiculo(nomeTipo, valorDiarioPDiario, valorKmRodadoPDiario, valorDiarioPControlado,
+                                                                limitePControlado, valorKmRodadoPControlado, valorDiarioPLivre);
             grupoVeiculo.Id = Convert.ToInt32(reader["ID"]);
 
             return grupoVeiculo;
@@ -154,12 +161,13 @@ namespace LocadoraVeiculo.Controladores.GrupoVeiculoModule
             var parametros = new Dictionary<string, object>();
 
             parametros.Add("ID", grupoVeiculo.Id);
-            parametros.Add("NOMETIPO", grupoVeiculo.categoriaVeiculo);
-            parametros.Add("VALOR_DIARIO_PDIARIO", grupoVeiculo.valor_Diario_PDiario);
-            parametros.Add("PRECO_KMDIARIO", grupoVeiculo.preco_KMDiario);
-            parametros.Add("VALOR_DIARIO_PCONTROLADO", grupoVeiculo.valor_Diario_PControlado);
-            parametros.Add("KMDIA__KMCONTROLADO", grupoVeiculo.kmDia__KMControlado);
-            parametros.Add("PRECO_KMLIVRE", grupoVeiculo.preco_KMLivre);
+            parametros.Add("NOMETIPO", grupoVeiculo.NomeTipo);
+            parametros.Add("VALOR_DIARIO_PDIARIO", grupoVeiculo.ValorDiarioPDiario);
+            parametros.Add("VALOR_KMRODADO_PDIARIO", grupoVeiculo.ValorKmRodadoPDiario);
+            parametros.Add("VALOR_DIARIO_PCONTROLADO", grupoVeiculo.ValorDiarioPControlado);
+            parametros.Add("LIMITE_PCONTROLADO", grupoVeiculo.LimitePControlado);
+            parametros.Add("VALOR_KMRODAD_PCONTROLADO", grupoVeiculo.ValorKmRodadoPControlado);
+            parametros.Add("VALOR_DIARIO_PLIVRE", grupoVeiculo.ValorDiarioPLivre);
 
             return parametros;
         }

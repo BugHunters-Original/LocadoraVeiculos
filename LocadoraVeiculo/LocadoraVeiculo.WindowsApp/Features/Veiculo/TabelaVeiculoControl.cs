@@ -69,7 +69,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.Veiculo
 
                 gridVeiculos.Rows.Add(veiculo.Id, veiculo.nome, veiculo.cor, veiculo.marca, veiculo.ano,
                 veiculo.km_Inicial, veiculo.tipo_Combustivel,
-                veiculo.grupoVeiculo.categoriaVeiculo, disponivel);
+                veiculo.grupoVeiculo.NomeTipo, disponivel);
             }
         }
 

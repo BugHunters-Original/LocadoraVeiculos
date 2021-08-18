@@ -65,11 +65,11 @@ namespace LocadoraVeiculo.WindowsApp.Features.Locacao
             switch (locacao.TipoLocacao)
             {
                 case "Plano Diário":
-                    return (locacao.Veiculo.grupoVeiculo.valor_Diario_PDiario * locacao.Dias) + (totalKm * locacao.Veiculo.grupoVeiculo.preco_KMDiario);
+                    return (locacao.Veiculo.grupoVeiculo.ValorDiarioPDiario * locacao.Dias) + (totalKm * locacao.Veiculo.grupoVeiculo.ValorKmRodadoPDiario);
                 case "KM Controlado":
-                    return (locacao.Veiculo.grupoVeiculo.valor_Diario_PControlado * locacao.Dias) + (totalKm * locacao.Veiculo.grupoVeiculo.kmDia__KMControlado);
+                    return (locacao.Veiculo.grupoVeiculo.ValorDiarioPControlado * locacao.Dias) + ((totalKm - locacao.Veiculo.grupoVeiculo.LimitePControlado) * locacao.Veiculo.grupoVeiculo.ValorKmRodadoPControlado);
                 case "KM Livre":
-                    return locacao.Dias * locacao.Veiculo.grupoVeiculo.preco_KMLivre;
+                    return locacao.Dias * locacao.Veiculo.grupoVeiculo.ValorDiarioPLivre;
                 default: return 0;
             }
 

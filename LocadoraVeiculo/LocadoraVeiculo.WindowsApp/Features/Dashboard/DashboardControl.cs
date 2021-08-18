@@ -96,7 +96,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.Dashboard
             {
                 dtDashboard.Rows.Add(veiculo.Id, veiculo.nome, veiculo.cor, veiculo.marca, veiculo.ano,
                 veiculo.numero_Portas, veiculo.capacidade_Tanque, veiculo.tamanhoPortaMalas, veiculo.km_Inicial, veiculo.tipo_Combustivel,
-                veiculo.grupoVeiculo.categoriaVeiculo);
+                veiculo.grupoVeiculo.NomeTipo);
             }
         }
 
@@ -112,7 +112,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.Dashboard
             {
                 dtDashboard.Rows.Add(veiculo.Id, veiculo.nome, veiculo.cor, veiculo.marca, veiculo.ano,
                 veiculo.numero_Portas, veiculo.capacidade_Tanque, veiculo.tamanhoPortaMalas, veiculo.km_Inicial, veiculo.tipo_Combustivel,
-                veiculo.grupoVeiculo.categoriaVeiculo);
+                veiculo.grupoVeiculo.NomeTipo);
             }
         }
 

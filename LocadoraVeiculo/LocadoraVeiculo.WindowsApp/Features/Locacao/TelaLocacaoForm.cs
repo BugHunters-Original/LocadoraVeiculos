@@ -119,10 +119,10 @@ namespace LocadoraVeiculo.WindowsApp.Features.Locacao
             switch (tipoLocacao)
             {
                 case "Plano Diário":
-                    return (veiculo.grupoVeiculo.preco_KMDiario * dias);
+                    return (veiculo.grupoVeiculo.ValorDiarioPDiario * dias);
 
                 case "KM Controlado":
-                    return (veiculo.grupoVeiculo.valor_Diario_PControlado * dias) + (veiculo.grupoVeiculo.kmDia__KMControlado * dias * kmRodado);
+                    return (veiculo.grupoVeiculo.ValorDiarioPControlado * dias) + (veiculo.grupoVeiculo.ValorKmRodadoPControlado * dias * kmRodado);
 
                 default: return 0;
             }
