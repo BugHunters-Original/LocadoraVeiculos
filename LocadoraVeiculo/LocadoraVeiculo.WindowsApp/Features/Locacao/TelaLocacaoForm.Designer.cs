@@ -47,8 +47,6 @@ namespace LocadoraVeiculo.WindowsApp.Features.Locacao
             this.cbTipoLocacao = new System.Windows.Forms.ComboBox();
             this.cbCondutor = new System.Windows.Forms.ComboBox();
             this.cbVeiculo = new System.Windows.Forms.ComboBox();
-            this.txtKmRodado = new System.Windows.Forms.TextBox();
-            this.label2 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // cbCliente
@@ -190,7 +188,6 @@ namespace LocadoraVeiculo.WindowsApp.Features.Locacao
             this.cbTipoLocacao.Name = "cbTipoLocacao";
             this.cbTipoLocacao.Size = new System.Drawing.Size(215, 21);
             this.cbTipoLocacao.TabIndex = 24;
-            this.cbTipoLocacao.SelectedIndexChanged += new System.EventHandler(this.cbTipoLocacao_SelectedIndexChanged);
             // 
             // cbCondutor
             // 
@@ -210,30 +207,11 @@ namespace LocadoraVeiculo.WindowsApp.Features.Locacao
             this.cbVeiculo.Size = new System.Drawing.Size(215, 21);
             this.cbVeiculo.TabIndex = 26;
             // 
-            // txtKmRodado
-            // 
-            this.txtKmRodado.Enabled = false;
-            this.txtKmRodado.Location = new System.Drawing.Point(220, 218);
-            this.txtKmRodado.Name = "txtKmRodado";
-            this.txtKmRodado.Size = new System.Drawing.Size(215, 20);
-            this.txtKmRodado.TabIndex = 28;
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(104, 221);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(99, 13);
-            this.label2.TabIndex = 29;
-            this.label2.Text = "Km/Dia Desejados:";
-            // 
             // TelaLocacaoForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(634, 391);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.txtKmRodado);
             this.Controls.Add(this.cbVeiculo);
             this.Controls.Add(this.cbCondutor);
             this.Controls.Add(this.cbTipoLocacao);
@@ -283,7 +261,5 @@ namespace LocadoraVeiculo.WindowsApp.Features.Locacao
         private System.Windows.Forms.ComboBox cbTipoLocacao;
         private System.Windows.Forms.ComboBox cbCondutor;
         private System.Windows.Forms.ComboBox cbVeiculo;
-        private System.Windows.Forms.TextBox txtKmRodado;
-        private System.Windows.Forms.Label label2;
     }
 }

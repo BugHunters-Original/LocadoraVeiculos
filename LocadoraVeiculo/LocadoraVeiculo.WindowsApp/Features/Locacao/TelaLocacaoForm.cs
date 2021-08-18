@@ -48,7 +48,6 @@ namespace LocadoraVeiculo.WindowsApp.Features.Locacao
                 dtSaida.Value = locacao.DataSaida;
                 dtRetorno.Value = locacao.DataRetorno;
                 cbTipoLocacao.Text = locacao.TipoLocacao.ToString();
-                txtKmRodado.Text = locacao.KmRodado.ToString();
             }
         }
 
@@ -88,19 +87,15 @@ namespace LocadoraVeiculo.WindowsApp.Features.Locacao
 
             var dias = Convert.ToInt32((dtRetorno.Value - dtSaida.Value).TotalDays);
 
-            decimal? kmRodado = null;
-            if (txtKmRodado.Text != "")
-                kmRodado = Convert.ToDecimal(txtKmRodado.Text);
-
             decimal? precoServicos = 0;
             if (servicos != null)
                 foreach (var item in servicos.ToList())
                     precoServicos = item.TipoCalculo != 1 ? precoServicos + item.Preco * dias : precoServicos + item.Preco;
 
-            decimal? precoPlano = CalcularPrecoPlano(veiculo, tipoLocacao, dias, kmRodado);
+            decimal? precoPlano = CalcularPrecoPlano(veiculo, tipoLocacao, dias);
 
             locacao = new LocacaoVeiculo(cliente, veiculo, condutor, dataSaida, dataRetornoEsperado, tipoLocacao,
-                                    tipoCliente, precoServicos, kmRodado, dias, "Em Aberto", null, precoPlano, null);
+                                    tipoCliente, precoServicos, dias, "Em Aberto", null, precoPlano, null);
 
             string resultadoValidacao = locacao.Validar();
 
@@ -114,7 +109,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.Locacao
             }
         }
 
-        private static decimal? CalcularPrecoPlano(VeiculoModule.Veiculo veiculo, string tipoLocacao, int dias, decimal? kmRodado)
+        private static decimal? CalcularPrecoPlano(VeiculoModule.Veiculo veiculo, string tipoLocacao, int dias)
         {
             switch (tipoLocacao)
             {
@@ -122,7 +117,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.Locacao
                     return (veiculo.grupoVeiculo.ValorDiarioPDiario * dias);
 
                 case "KM Controlado":
-                    return (veiculo.grupoVeiculo.ValorDiarioPControlado * dias) + (veiculo.grupoVeiculo.ValorKmRodadoPControlado * dias * kmRodado);
+                    return (veiculo.grupoVeiculo.ValorDiarioPControlado * dias);
 
                 default: return 0;
             }
@@ -164,9 +159,5 @@ namespace LocadoraVeiculo.WindowsApp.Features.Locacao
             servicos = tela.Servicos;
         }
 
-        private void cbTipoLocacao_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            txtKmRodado.Enabled = cbTipoLocacao.Text == "KM Controlado";
-        }
     }
 }
