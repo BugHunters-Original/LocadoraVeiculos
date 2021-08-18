@@ -15,7 +15,6 @@ namespace LocadoraVeiculo.WindowsApp.Features.Locacao
     public partial class TelaDevolucaoForm : Form
     {
         private LocacaoVeiculo locacao;
-        private double total = 1000;
         public TelaDevolucaoForm()
         {
             InitializeComponent();
@@ -29,23 +28,24 @@ namespace LocadoraVeiculo.WindowsApp.Features.Locacao
                 locacao = value;
                 txtKmInicial.Text = locacao.Veiculo.km_Inicial.ToString();
                 dtRetornoEsperada.Value = locacao.DataRetorno;
-
+                txtServico.Text = locacao.PrecoServicos.ToString();
+                txtCaucao.Text = "1000";
             }
         }
 
-        private double CalcularTipoCombustivel(double combustivelGasto)
+        private decimal? CalcularTipoCombustivel(decimal? combustivelGasto)
         {
             switch (locacao.Veiculo.tipo_Combustivel)
             {
-                case "Gasolina": combustivelGasto *= Config.PrecoGasolina; break;
-                case "Álcool": combustivelGasto *= Config.PrecoAlcool; break;
-                case "Diesel": combustivelGasto *= Config.PrecoDiesel; break;
+                case "Gasolina": combustivelGasto *= Convert.ToDecimal(Config.PrecoGasolina); break;
+                case "Álcool": combustivelGasto *= Convert.ToDecimal(Config.PrecoAlcool); break;
+                case "Diesel": combustivelGasto *= Convert.ToDecimal(Config.PrecoDiesel); break;
                 default: break;
             }
 
             return combustivelGasto;
         }
-        private double CalcularGastosCombustível(double totalTanque)
+        private decimal? CalcularGastosCombustível(decimal? totalTanque)
         {
             switch (cbNivelTanque.SelectedItem.ToString())
             {
@@ -60,43 +60,51 @@ namespace LocadoraVeiculo.WindowsApp.Features.Locacao
             }
 
         }
-        private double CalcularGastosLocacao(int? totalKm)
+        private decimal? CalcularGastosLocacao(int? totalKm)
         {
             switch (locacao.TipoLocacao)
             {
                 case "Plano Diário":
-                    return (double)((locacao.Veiculo.grupoVeiculo.valor_Diario_PDiario * locacao.Dias) + (totalKm * locacao.Veiculo.grupoVeiculo.preco_KMDiario));
+                    return (locacao.Veiculo.grupoVeiculo.valor_Diario_PDiario * locacao.Dias) + (totalKm * locacao.Veiculo.grupoVeiculo.preco_KMDiario);
                 case "KM Controlado":
-                    return (double)((locacao.Veiculo.grupoVeiculo.valor_Diario_PControlado * locacao.Dias) + (totalKm * locacao.Veiculo.grupoVeiculo.kmDia__KMControlado));
+                    return (locacao.Veiculo.grupoVeiculo.valor_Diario_PControlado * locacao.Dias) + (totalKm * locacao.Veiculo.grupoVeiculo.kmDia__KMControlado);
                 case "KM Livre":
-                    return (double)(locacao.Dias * locacao.Veiculo.grupoVeiculo.preco_KMLivre);
+                    return locacao.Dias * locacao.Veiculo.grupoVeiculo.preco_KMLivre;
                 default: return 0;
             }
 
         }
         private void cbNivelTanque_SelectedIndexChanged(object sender, EventArgs e)
         {
-            var totalTanque = Convert.ToDouble(locacao.Veiculo.capacidade_Tanque);
+            decimal? totalTanque = Convert.ToDecimal(locacao.Veiculo.capacidade_Tanque);
 
-            double combustivelGasto = CalcularGastosCombustível(totalTanque);
+            decimal? combustivelGasto = CalcularGastosCombustível(totalTanque);
 
             combustivelGasto = CalcularTipoCombustivel(combustivelGasto);
+
+            locacao.PrecoCombustivel = combustivelGasto;
 
             txtCombustivel.Text = combustivelGasto.ToString();
 
         }
         private void txtKmAtual_Leave(object sender, EventArgs e)
         {
+            if (txtKmAtual.Text == "")
+                return;
+
             var totalKm = Convert.ToInt32(txtKmAtual.Text) - locacao.Veiculo.km_Inicial;
 
-            total += CalcularGastosLocacao(totalKm);
-
-            txtTotal.Text = total.ToString();
+            locacao.PrecoPlano = CalcularGastosLocacao(totalKm);
         }
 
         private void txtCombustivel_TextChanged(object sender, EventArgs e)
         {
-            txtTotal.Text = (total + Convert.ToDouble(txtCombustivel.Text)).ToString();
+            txtTotal.Text = (locacao.PrecoServicos + locacao.PrecoPlano + locacao.PrecoCombustivel + 1000).ToString();
+        }
+
+        private void btnNota_Click(object sender, EventArgs e)
+        {
+            locacao.PrecoTotal = locacao.PrecoCombustivel + locacao.PrecoPlano + locacao.PrecoServicos;
         }
     }
 }

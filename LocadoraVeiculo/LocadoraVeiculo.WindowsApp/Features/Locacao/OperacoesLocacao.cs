@@ -1,6 +1,7 @@
 ﻿using LocadoraVeiculo.Controladores.LocacaoModule;
 using LocadoraVeiculo.LocacaoModule;
 using LocadoraVeiculo.WindowsApp.Features.NotaFiscal;
+using LocadoraVeiculo.WindowsApp.Features.Veiculo;
 using LocadoraVeiculo.WindowsApp.Shared;
 using System;
 using System.Collections.Generic;
@@ -31,6 +32,13 @@ namespace LocadoraVeiculo.WindowsApp.Features.Locacao
 
             var locacaoSelecionada = controlador.SelecionarPorId(id);
 
+            if (locacaoSelecionada.StatusLocacao == "Concluída")
+            {
+                MessageBox.Show("Locação já concluída, impossível realizar devolução!", "Devolução de Locações",
+                    MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                return;
+            }
+
             TelaDevolucaoForm tela = new TelaDevolucaoForm();
 
             tela.Locacao = locacaoSelecionada;
@@ -39,18 +47,27 @@ namespace LocadoraVeiculo.WindowsApp.Features.Locacao
             {
                 TelaNotaFiscalForm telaNotaFiscal = new TelaNotaFiscalForm();
 
-                telaNotaFiscal.Locacao = locacaoSelecionada;
+                telaNotaFiscal.Locacao = tela.Locacao;
 
                 if (telaNotaFiscal.ShowDialog() == DialogResult.OK)
                 {
 
+                    controlador.ConcluirLocacao(locacaoSelecionada.Id, telaNotaFiscal.Locacao);
+
+                    List<LocacaoVeiculo> locacaoes = controlador.SelecionarTodos();
+
+                    tabelaLocacoes.AtualizarRegistros(locacaoes);
+
+                    TelaPrincipalForm.Instancia.AtualizarRodape($"Locação: [{tela.Locacao}] editada com sucesso");
                 }
             }
+
         }
 
         public void EditarRegistro()
         {
             int id = tabelaLocacoes.ObtemIdSelecionado();
+
             if (id == 0)
             {
                 MessageBox.Show("Selecione uma Locação para poder editar!", "Edição de Locações",

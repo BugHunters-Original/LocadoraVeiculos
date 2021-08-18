@@ -28,6 +28,9 @@ namespace LocadoraVeiculo.WindowsApp.Features.NotaFiscal
                 txtCliente.Text = locacao.Cliente.ToString();
                 txtPlano.Text = locacao.TipoLocacao.ToString();
                 txtServico.Text = "R$" + locacao.PrecoServicos.ToString();
+                txtGas.Text = "R$" + locacao.PrecoCombustivel.ToString();
+                txtPrecoPlano.Text = "R$" + locacao.PrecoPlano.ToString();
+                txtTotal.Text = "R$" + locacao.PrecoTotal.ToString();
             }
         }
     }

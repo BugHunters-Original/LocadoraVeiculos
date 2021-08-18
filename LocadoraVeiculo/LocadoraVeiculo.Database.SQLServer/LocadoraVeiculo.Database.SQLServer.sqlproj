@@ -66,7 +66,6 @@
     <Build Include="dbo\Tables\TBTaxasServicos.sql" />
     <Build Include="dbo\Tables\TBTaxasDaLocacao.sql" />
     <Build Include="dbo\Tables\TBLocacao.sql" />
-    <Build Include="dbo\Tables\TBTipoCombustivel.sql" />
     <Build Include="dbo\Tables\TBVeiculos.sql" />
     <Build Include="dbo\Tables\TBFuncionario.sql" />
     <Build Include="dbo\Tables\TBClienteCPF.sql" />

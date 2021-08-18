@@ -27,7 +27,10 @@ namespace LocadoraVeiculo.Controladores.LocacaoModule
                         [PRECOSERVICOS],
                         [KMRODADO],
                         [DIAS],
-                        [STATUS]    
+                        [STATUS],    
+                        [PRECOCOMBUSTIVEL],    
+                        [PRECOPLANO],    
+                        [PRECOTOTAL] 
 	                ) 
 	                VALUES
 	                (
@@ -41,7 +44,10 @@ namespace LocadoraVeiculo.Controladores.LocacaoModule
                         @PRECOSERVICOS,
                         @KMRODADO,
                         @DIAS,
-                        @STATUS
+                        @STATUS,
+                        @PRECOCOMBUSTIVEL,
+                        @PRECOPLANO,
+                        @PRECOTOTAL
 	                )";
 
         private const string sqlEditarLocacao =
@@ -56,7 +62,25 @@ namespace LocadoraVeiculo.Controladores.LocacaoModule
                         [TIPOCLIENTE] = @TIPOCLIENTE,
                         [PRECOSERVICOS] = @PRECOSERVICOS,
                         [KMRODADO] = @KMRODADO,
-                        [DIAS] = @DIAS
+                        [DIAS] = @DIAS,
+                        [STATUS] = @STATUS,
+                        [PRECOCOMBUSTIVEL] = @PRECOCOMBUSTIVEL,
+                        [PRECOPLANO] = @PRECOPLANO,
+                        [PRECOTOTAL] = @PRECOTOTAL
+                    WHERE 
+                        ID = @ID";
+
+        private const string sqlConcluirLocacao =
+            @"UPDATE TBLOCACAO
+                    SET
+                        [STATUS] = @STATUS
+                    WHERE 
+                        ID = @ID";
+
+        private const string sqlMudarDisponibilidade =
+            @"UPDATE TBVEICULOS
+                    SET
+                        [DISPONIBILIDADE_VEICULO] = @DISPONIBILIDADE_VEICULO
                     WHERE 
                         ID = @ID";
 
@@ -80,7 +104,10 @@ namespace LocadoraVeiculo.Controladores.LocacaoModule
                         [PRECOSERVICOS],
                         [KMRODADO],
                         [DIAS],
-                        [STATUS]
+                        [STATUS],    
+                        [PRECOCOMBUSTIVEL],    
+                        [PRECOPLANO],    
+                        [PRECOTOTAL] 
 	                FROM
                         TBLOCACAO
                     WHERE 
@@ -99,7 +126,10 @@ namespace LocadoraVeiculo.Controladores.LocacaoModule
                         [PRECOSERVICOS],
                         [KMRODADO],
                         [DIAS],
-                        [STATUS]
+                        [STATUS],    
+                        [PRECOCOMBUSTIVEL],    
+                        [PRECOPLANO],    
+                        [PRECOTOTAL] 
 	                FROM
                         TBLOCACAO";
 
@@ -110,6 +140,7 @@ namespace LocadoraVeiculo.Controladores.LocacaoModule
                 [TBLOCACAO]
             WHERE 
                 [ID] = @ID";
+
         public override string Editar(int id, LocacaoVeiculo registro)
         {
             string resultadoValidacao = registro.Validar();
@@ -121,6 +152,14 @@ namespace LocadoraVeiculo.Controladores.LocacaoModule
             }
 
             return resultadoValidacao;
+        }
+        public void ConcluirLocacao(int id, LocacaoVeiculo locacao)
+        {
+            locacao.Id = id;
+            locacao.StatusLocacao = "Concluída";
+            locacao.Veiculo.disponibilidade_Veiculo = 1;
+            Db.Update(sqlConcluirLocacao, ObtemParametrosLocacao(locacao));
+            Db.Update(sqlMudarDisponibilidade, ObtemParametrosLocacao(locacao));
         }
 
         public override bool Excluir(int id)
@@ -179,6 +218,10 @@ namespace LocadoraVeiculo.Controladores.LocacaoModule
             parametros.Add("KMRODADO", locacao.KmRodado);
             parametros.Add("DIAS", locacao.Dias);
             parametros.Add("STATUS", locacao.StatusLocacao);
+            parametros.Add("PRECOCOMBUSTIVEL", locacao.PrecoCombustivel);
+            parametros.Add("PRECOPLANO", locacao.PrecoPlano);
+            parametros.Add("PRECOTOTAL", locacao.PrecoTotal);
+            parametros.Add("DISPONIBILIDADE_VEICULO", locacao.Veiculo.disponibilidade_Veiculo);
 
             return parametros;
         }
@@ -198,6 +241,18 @@ namespace LocadoraVeiculo.Controladores.LocacaoModule
             decimal? kmRodado = null;
             if (reader["KMRODADO"] != DBNull.Value)
                 kmRodado = Convert.ToDecimal(reader["KMRODADO"]);
+
+            decimal? precoGas = null;
+            if (reader["PRECOCOMBUSTIVEL"] != DBNull.Value)
+                kmRodado = Convert.ToDecimal(reader["PRECOCOMBUSTIVEL"]);
+
+            decimal? precoPlano = null;
+            if (reader["PRECOPLANO"] != DBNull.Value)
+                kmRodado = Convert.ToDecimal(reader["PRECOPLANO"]);
+
+            decimal? precoTotal = null;
+            if (reader["PRECOTOTAL"] != DBNull.Value)
+                kmRodado = Convert.ToDecimal(reader["PRECOTOTAL"]);
 
             decimal? precoServico = null;
             if (reader["PRECOSERVICOS"] != DBNull.Value)
@@ -219,7 +274,8 @@ namespace LocadoraVeiculo.Controladores.LocacaoModule
 
 
             LocacaoVeiculo locacao = new LocacaoVeiculo(clienteLocador, veiculo, condutor,
-                                                    dataSaida, dataRetorno, plano, tipoCliente, precoServico, kmRodado, dias, status);
+                                                    dataSaida, dataRetorno, plano, tipoCliente, precoServico, kmRodado,
+                                                    dias, status, precoGas, precoPlano, precoTotal);
 
             locacao.Id = id;
 

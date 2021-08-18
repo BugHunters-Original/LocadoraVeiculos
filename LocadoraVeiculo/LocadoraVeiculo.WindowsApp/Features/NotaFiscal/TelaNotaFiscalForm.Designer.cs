@@ -42,7 +42,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.NotaFiscal
             this.label5 = new System.Windows.Forms.Label();
             this.txtServico = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
-            this.textBox9 = new System.Windows.Forms.TextBox();
+            this.txtTotal = new System.Windows.Forms.TextBox();
             this.label9 = new System.Windows.Forms.Label();
             this.bt_Voltar = new System.Windows.Forms.Button();
             this.bt_ConcluirLocacao = new System.Windows.Forms.Button();
@@ -151,13 +151,13 @@ namespace LocadoraVeiculo.WindowsApp.Features.NotaFiscal
             this.label6.TabIndex = 10;
             this.label6.Text = "Taxa de Serviços:";
             // 
-            // textBox9
+            // txtTotal
             // 
-            this.textBox9.Location = new System.Drawing.Point(128, 194);
-            this.textBox9.Name = "textBox9";
-            this.textBox9.ReadOnly = true;
-            this.textBox9.Size = new System.Drawing.Size(236, 20);
-            this.textBox9.TabIndex = 17;
+            this.txtTotal.Location = new System.Drawing.Point(128, 194);
+            this.txtTotal.Name = "txtTotal";
+            this.txtTotal.ReadOnly = true;
+            this.txtTotal.Size = new System.Drawing.Size(236, 20);
+            this.txtTotal.TabIndex = 17;
             // 
             // label9
             // 
@@ -196,7 +196,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.NotaFiscal
             this.ClientSize = new System.Drawing.Size(398, 263);
             this.Controls.Add(this.bt_Voltar);
             this.Controls.Add(this.bt_ConcluirLocacao);
-            this.Controls.Add(this.textBox9);
+            this.Controls.Add(this.txtTotal);
             this.Controls.Add(this.label9);
             this.Controls.Add(this.txtServico);
             this.Controls.Add(this.label6);
@@ -236,7 +236,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.NotaFiscal
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.TextBox txtServico;
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.TextBox textBox9;
+        private System.Windows.Forms.TextBox txtTotal;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Button bt_Voltar;
         private System.Windows.Forms.Button bt_ConcluirLocacao;
