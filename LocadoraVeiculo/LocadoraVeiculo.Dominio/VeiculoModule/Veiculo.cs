@@ -1,9 +1,6 @@
 ﻿using LocadoraVeiculo.GrupoVeiculoModule;
 using LocadoraVeiculo.Shared;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-
 namespace LocadoraVeiculo.VeiculoModule
 {
     public class Veiculo : EntidadeBase
@@ -22,6 +19,8 @@ namespace LocadoraVeiculo.VeiculoModule
         public string tipo_Combustivel { get; set; }
         public int disponibilidade_Veiculo { get; set; }
         public GrupoVeiculo grupoVeiculo { get; set; }
+
+
 
         public Veiculo(string nome, string numero_Placa, string numero_Chassi, byte[] foto, string cor,
             string marca, int? ano, int? numero_Portas, int? capacidade_Tanque, char tamanhoPortaMalas, int? km_Inicial,
@@ -59,11 +58,17 @@ namespace LocadoraVeiculo.VeiculoModule
             if (string.IsNullOrEmpty(numero_Placa))
                 resultadoValidacao += QuebraDeLinha(resultadoValidacao) + "O campo Placa é obrigatório";
 
-            if (char.IsWhiteSpace(tamanhoPortaMalas))
-                resultadoValidacao += QuebraDeLinha(resultadoValidacao) + "O campo Tamanho Porta-Malas é obrigatório";
+            if (!string.IsNullOrEmpty(numero_Placa)  && numero_Placa.Length != 7)
+                resultadoValidacao += QuebraDeLinha(resultadoValidacao) + "O campo Placa possui 7 dígitos";
+
+            if (tamanhoPortaMalas != 'M' && tamanhoPortaMalas != 'P' && tamanhoPortaMalas != 'G')
+                resultadoValidacao += QuebraDeLinha(resultadoValidacao) + "O campo Tamanho Porta-Malas deve ser P, M ou G";
 
             if (string.IsNullOrEmpty(numero_Chassi))
                 resultadoValidacao += QuebraDeLinha(resultadoValidacao) + "O campo Chassi é obrigatório";
+
+            if (!string.IsNullOrEmpty(numero_Chassi) && numero_Chassi.Length != 17 )
+                resultadoValidacao += QuebraDeLinha(resultadoValidacao) + "O campo Chassi possui 17 dígitos";
 
             if (string.IsNullOrEmpty(cor))
                 resultadoValidacao += QuebraDeLinha(resultadoValidacao) + "O campo Cor é obrigatório";
@@ -72,9 +77,9 @@ namespace LocadoraVeiculo.VeiculoModule
                 resultadoValidacao += QuebraDeLinha(resultadoValidacao) + "O campo Marca é obrigatório";
 
             if (string.IsNullOrEmpty(tipo_Combustivel))
-                resultadoValidacao += QuebraDeLinha(resultadoValidacao) + "O campo Combústivel é obrigatório";
+                resultadoValidacao += QuebraDeLinha(resultadoValidacao) + "O campo Combustível é obrigatório";
 
-            if (ano == null || ano < 0)
+            if (ano == null)
                 resultadoValidacao += QuebraDeLinha(resultadoValidacao) + "O campo Ano é obrigatório";
 
             if (numero_Portas == null || numero_Portas <= 0)
@@ -86,7 +91,7 @@ namespace LocadoraVeiculo.VeiculoModule
             if (km_Inicial == null || km_Inicial <= 0)
                 resultadoValidacao += QuebraDeLinha(resultadoValidacao) + "O campo Quilometragem Inicial obrigatório";
 
-            if (Convert.ToInt32(ano) > DateTime.Now.Year || Convert.ToInt32(ano) < 1900)
+            if (Convert.ToInt32(ano) > DateTime.Now.Year || Convert.ToInt32(ano) < 1900 && ano!=null)
                 resultadoValidacao += QuebraDeLinha(resultadoValidacao) + "O campo Ano não pode ser maior que o ano atual ou muito antigo";
 
             if (resultadoValidacao == "")
@@ -105,27 +110,6 @@ namespace LocadoraVeiculo.VeiculoModule
                 return true;
             else
                 return false;
-        }
-
-        public override bool Equals(object obj)
-        {
-            return obj is Veiculo veiculo &&
-                   Id == veiculo.Id &&
-                   nome == veiculo.nome &&
-                   numero_Placa == veiculo.numero_Placa &&
-                   numero_Chassi == veiculo.numero_Chassi &&
-                   EqualityComparer<byte[]>.Default.Equals(foto, veiculo.foto) &&
-                   cor == veiculo.cor &&
-                   marca == veiculo.marca &&
-                   ano == veiculo.ano &&
-                   numero_Portas == veiculo.numero_Portas &&
-                   capacidade_Tanque == veiculo.capacidade_Tanque &&
-                   tamanhoPortaMalas == veiculo.tamanhoPortaMalas &&
-                   km_Inicial == veiculo.km_Inicial &&
-                   tipo_Combustivel == veiculo.tipo_Combustivel &&
-                   disponibilidade_Veiculo == veiculo.disponibilidade_Veiculo &&
-                   EqualityComparer<GrupoVeiculo>.Default.Equals(grupoVeiculo, veiculo.grupoVeiculo) &&
-                   foto.SequenceEqual(veiculo.foto);
         }
     }
 }
