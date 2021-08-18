@@ -140,6 +140,22 @@ namespace LocadoraVeiculo.Controladores.VeiculoModule
             WHERE 
                 [ID] = @ID";
 
+        private const string sqlQuantidadeAlugados =
+            @"SELECT 
+                *
+            FROM 
+                [TBVEICULOS]
+           WHERE 
+                [DISPONIBILIDADE_VEICULO] = 1";
+
+        private const string sqlQuantidadeDisponiveis =
+            @"SELECT 
+                *
+            FROM 
+                [TBVEICULOS]
+            WHERE 
+                [DISPONIBILIDADE_VEICULO] = 0";
+
         private const string sqlVeiculoAlugado =
             @"SELECT 
                 V.[ID],       
@@ -267,6 +283,16 @@ namespace LocadoraVeiculo.Controladores.VeiculoModule
         public List<Veiculo> SelecionarTodosDisponiveis()
         {
             return Db.GetAll(sqlVeiculoDisponivel, ConverterEmVeiculo);
+        }
+
+        public int ReturnQuantidadeAlugados()
+        {
+            return Db.GetAll(sqlQuantidadeAlugados, ConverterEmVeiculo).Count;
+        }
+
+        public int ReturnQuantidadeDisponiveis()
+        {
+            return Db.GetAll(sqlQuantidadeDisponiveis, ConverterEmVeiculo).Count;
         }
 
         private Veiculo ConverterEmVeiculo(IDataReader reader)
