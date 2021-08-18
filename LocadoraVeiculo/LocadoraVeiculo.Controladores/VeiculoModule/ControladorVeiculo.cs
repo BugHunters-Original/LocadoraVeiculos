@@ -203,7 +203,6 @@ namespace LocadoraVeiculo.Controladores.VeiculoModule
                 foto = (byte[])reader["FOTO"];
             else
                 foto = null;
-
             var cor = Convert.ToString(reader["COR"]);
             var marca = Convert.ToString(reader["MARCA"]);
             var ano = Convert.ToInt32(reader["ANO"]);
