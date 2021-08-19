@@ -71,7 +71,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.Combustivel
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
             this.tabPage1.Size = new System.Drawing.Size(282, 105);
             this.tabPage1.TabIndex = 0;
-            this.tabPage1.Text = "GASOLINA";
+            this.tabPage1.Text = "Gasolina";
             this.tabPage1.UseVisualStyleBackColor = true;
             this.tabPage1.Leave += new System.EventHandler(this.txtBoxZerado_Leave);
             // 
@@ -80,9 +80,9 @@ namespace LocadoraVeiculo.WindowsApp.Features.Combustivel
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(35, 40);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(46, 15);
+            this.label1.Size = new System.Drawing.Size(40, 15);
             this.label1.TabIndex = 1;
-            this.label1.Text = "PREÇO:";
+            this.label1.Text = "Preço:";
             // 
             // txtGasolina
             // 
@@ -102,7 +102,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.Combustivel
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
             this.tabPage2.Size = new System.Drawing.Size(282, 105);
             this.tabPage2.TabIndex = 1;
-            this.tabPage2.Text = "ALCOOL";
+            this.tabPage2.Text = "Álcool";
             this.tabPage2.UseVisualStyleBackColor = true;
             this.tabPage2.Leave += new System.EventHandler(this.txtBoxZerado_Leave);
             // 
@@ -111,9 +111,9 @@ namespace LocadoraVeiculo.WindowsApp.Features.Combustivel
             this.label2.AutoSize = true;
             this.label2.Location = new System.Drawing.Point(35, 40);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(46, 15);
+            this.label2.Size = new System.Drawing.Size(40, 15);
             this.label2.TabIndex = 3;
-            this.label2.Text = "PREÇO:";
+            this.label2.Text = "Preço:";
             // 
             // txtAlcool
             // 
@@ -133,7 +133,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.Combustivel
             this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
             this.tabPage3.Size = new System.Drawing.Size(282, 105);
             this.tabPage3.TabIndex = 2;
-            this.tabPage3.Text = "DIESEL";
+            this.tabPage3.Text = "Diesel";
             this.tabPage3.UseVisualStyleBackColor = true;
             // 
             // label3
@@ -141,9 +141,9 @@ namespace LocadoraVeiculo.WindowsApp.Features.Combustivel
             this.label3.AutoSize = true;
             this.label3.Location = new System.Drawing.Point(35, 40);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(46, 15);
+            this.label3.Size = new System.Drawing.Size(40, 15);
             this.label3.TabIndex = 3;
-            this.label3.Text = "PREÇO:";
+            this.label3.Text = "Preço:";
             // 
             // txtDiesel
             // 

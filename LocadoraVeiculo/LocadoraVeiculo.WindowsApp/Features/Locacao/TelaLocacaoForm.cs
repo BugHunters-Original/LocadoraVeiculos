@@ -55,7 +55,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.Locacao
         {
             var clientesCNPJ = controladorCNPJ.SelecionarTodos();
             var clientesCPF = controladorCPF.SelecionarTodos();
-            var veiculos = controladorVeiculo.SelecionarTodos();
+            var veiculos = controladorVeiculo.SelecionarTodosDisponiveis();
 
             foreach (var clienteCPF in clientesCPF)
                 cbCliente.Items.Add(clienteCPF);
@@ -72,8 +72,6 @@ namespace LocadoraVeiculo.WindowsApp.Features.Locacao
             Cliente cliente = (Cliente)cbCliente.SelectedItem;
 
             VeiculoModule.Veiculo veiculo = (VeiculoModule.Veiculo)cbVeiculo.SelectedItem;
-
-            MudarDisponibilidadeVeiculo(veiculo);
 
             int tipoCliente = cbCliente.SelectedItem is ClienteCPF ? 0 : 1;
 
@@ -107,6 +105,8 @@ namespace LocadoraVeiculo.WindowsApp.Features.Locacao
 
                 DialogResult = DialogResult.None;
             }
+            else
+                MudarDisponibilidadeVeiculo(veiculo);
         }
 
         private static decimal? CalcularPrecoPlanoPorDias(VeiculoModule.Veiculo veiculo, string tipoLocacao, int dias)
