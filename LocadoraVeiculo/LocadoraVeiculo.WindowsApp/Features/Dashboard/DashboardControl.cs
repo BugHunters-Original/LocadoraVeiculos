@@ -11,6 +11,7 @@ using LocadoraVeiculo.Controladores.LocacaoModule;
 using LocadoraVeiculo.Controladores.Shared;
 using LocadoraVeiculo.Controladores.VeiculoModule;
 using LocadoraVeiculo.LocacaoModule;
+using LocadoraVeiculo.WindowsApp.Features.Veiculo;
 using LocadoraVeiculo.WindowsApp.Shared;
 
 namespace LocadoraVeiculo.WindowsApp.Features.Dashboard
@@ -85,6 +86,11 @@ namespace LocadoraVeiculo.WindowsApp.Features.Dashboard
             return colunas;
         }
 
+        public int ObtemIdSelecionado()
+        {
+            return dtDashboard.SelecionarId<int>();
+        }
+
         private void btnAlugados_Click(object sender, EventArgs e)
         {
             dtDashboard.Rows.Clear();
@@ -148,5 +154,27 @@ namespace LocadoraVeiculo.WindowsApp.Features.Dashboard
             int quantidadePendentes = controladorLocacao.SelecionaPendentes();
             labelPendentes.Text = quantidadePendentes.ToString();
         }
+
+        private void dtDashboard_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            if (dtDashboard.Columns.Count > 6)
+            {
+                int id = ObtemIdSelecionado();
+
+                if (id == 0)
+                    return;
+
+                VeiculoModule.Veiculo veiculoSelecionado = controladorVeiculo.SelecionarPorId(id);
+
+                TelaDetalhesVeiculoForm tela = new TelaDetalhesVeiculoForm();
+
+                tela.Veiculo = veiculoSelecionado;
+
+                if (tela.ShowDialog() == DialogResult.OK)
+                    TelaPrincipalForm.Instancia.AtualizarRodape($"Veículo: [{tela.veiculos.nome}] visualizado");
+            }  
+        }
+
+        
     }
 }

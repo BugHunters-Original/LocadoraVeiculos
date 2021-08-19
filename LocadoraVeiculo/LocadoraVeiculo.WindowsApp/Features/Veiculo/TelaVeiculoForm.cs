@@ -58,6 +58,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.Veiculo
                 txtKm.Text = veiculos.km_Inicial.ToString();
                 cmbTipoCombustivel.Text = veiculos.tipo_Combustivel;
                 cmbGrupo.Text = veiculos.grupoVeiculo.NomeTipo;
+                txtDisponivel.Text = veiculos.disponibilidade_Veiculo.ToString();
             }
         }
 
@@ -90,11 +91,12 @@ namespace LocadoraVeiculo.WindowsApp.Features.Veiculo
             if (cmbTamanhoPortaMalas.Text.ToString() != "")
                 TamanhoPortaMalas = Convert.ToChar(cmbTamanhoPortaMalas.Text);
             string TipoCombustivel = cmbTipoCombustivel.Text;
-            int disponibidade = 1;
 
+            int disponibilidade = Convert.ToInt32(txtDisponivel.Text);
+            
             GrupoVeiculoModule.GrupoVeiculo grupo = (GrupoVeiculoModule.GrupoVeiculo)cmbGrupo.SelectedItem;
 
-            veiculos = new VeiculoModule.Veiculo(nome, placa, chassi, foto, cor, marca, ano, NPortas, CapacidadeTanque, TamanhoPortaMalas, Km, TipoCombustivel, disponibidade, grupo);
+            veiculos = new VeiculoModule.Veiculo(nome, placa, chassi, foto, cor, marca, ano, NPortas, CapacidadeTanque, TamanhoPortaMalas, Km, TipoCombustivel, disponibilidade, grupo);
 
             string resultadoValidacao = veiculos.Validar();
 

@@ -81,9 +81,9 @@ namespace LocadoraVeiculo.WindowsApp.Features.Dashboard
             this.panelCarrosAlugados.Controls.Add(this.pictureBox2);
             this.panelCarrosAlugados.Controls.Add(this.btnAlugados);
             this.panelCarrosAlugados.Controls.Add(this.label2);
-            this.panelCarrosAlugados.Location = new System.Drawing.Point(1, 57);
+            this.panelCarrosAlugados.Location = new System.Drawing.Point(569, 57);
             this.panelCarrosAlugados.Name = "panelCarrosAlugados";
-            this.panelCarrosAlugados.Size = new System.Drawing.Size(241, 164);
+            this.panelCarrosAlugados.Size = new System.Drawing.Size(244, 164);
             this.panelCarrosAlugados.TabIndex = 1;
             // 
             // pictureBox7
@@ -154,7 +154,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.Dashboard
             this.panel1.Controls.Add(this.label5);
             this.panel1.Location = new System.Drawing.Point(284, 57);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(242, 164);
+            this.panel1.Size = new System.Drawing.Size(244, 164);
             this.panel1.TabIndex = 4;
             // 
             // labelInLoco
@@ -225,6 +225,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.Dashboard
             this.dtDashboard.RowHeadersVisible = false;
             this.dtDashboard.Size = new System.Drawing.Size(813, 415);
             this.dtDashboard.TabIndex = 6;
+            this.dtDashboard.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.dtDashboard_MouseDoubleClick);
             // 
             // panel2
             // 
@@ -235,7 +236,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.Dashboard
             this.panel2.Controls.Add(this.btnLocacoesPendentes);
             this.panel2.Controls.Add(this.pictureBox6);
             this.panel2.Controls.Add(this.label7);
-            this.panel2.Location = new System.Drawing.Point(569, 57);
+            this.panel2.Location = new System.Drawing.Point(1, 57);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(244, 164);
             this.panel2.TabIndex = 7;
