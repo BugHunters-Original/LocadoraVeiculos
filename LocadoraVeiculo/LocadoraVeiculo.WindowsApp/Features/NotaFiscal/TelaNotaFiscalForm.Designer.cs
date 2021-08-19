@@ -61,7 +61,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.NotaFiscal
             this.txtCliente.Name = "txtCliente";
             this.txtCliente.ReadOnly = true;
             this.txtCliente.Size = new System.Drawing.Size(275, 24);
-            this.txtCliente.TabIndex = 1;
+            this.txtCliente.TabIndex = 20;
             // 
             // txtPlano
             // 
@@ -69,7 +69,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.NotaFiscal
             this.txtPlano.Name = "txtPlano";
             this.txtPlano.ReadOnly = true;
             this.txtPlano.Size = new System.Drawing.Size(275, 24);
-            this.txtPlano.TabIndex = 3;
+            this.txtPlano.TabIndex = 21;
             // 
             // label2
             // 
@@ -155,7 +155,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.NotaFiscal
             this.bt_Voltar.Location = new System.Drawing.Point(337, 269);
             this.bt_Voltar.Name = "bt_Voltar";
             this.bt_Voltar.Size = new System.Drawing.Size(87, 27);
-            this.bt_Voltar.TabIndex = 19;
+            this.bt_Voltar.TabIndex = 1;
             this.bt_Voltar.Text = "Cancelar";
             this.bt_Voltar.UseVisualStyleBackColor = true;
             // 
@@ -165,7 +165,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.NotaFiscal
             this.bt_ConcluirLocacao.Location = new System.Drawing.Point(243, 269);
             this.bt_ConcluirLocacao.Name = "bt_ConcluirLocacao";
             this.bt_ConcluirLocacao.Size = new System.Drawing.Size(87, 27);
-            this.bt_ConcluirLocacao.TabIndex = 18;
+            this.bt_ConcluirLocacao.TabIndex = 0;
             this.bt_ConcluirLocacao.Text = "Gravar";
             this.bt_ConcluirLocacao.UseVisualStyleBackColor = true;
             this.bt_ConcluirLocacao.Click += new System.EventHandler(this.bt_ConcluirLocacao_Click);
