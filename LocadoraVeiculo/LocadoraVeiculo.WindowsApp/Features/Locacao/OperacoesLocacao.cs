@@ -121,7 +121,28 @@ namespace LocadoraVeiculo.WindowsApp.Features.Locacao
 
         public void FiltrarRegistros()
         {
-            throw new NotImplementedException();
+            TelaFiltroLocacaoForm telaFiltro = new TelaFiltroLocacaoForm();
+
+            if (telaFiltro.ShowDialog() == DialogResult.OK)
+            {
+                List<LocacaoVeiculo> locacoes = new List<LocacaoVeiculo>();
+
+                switch (telaFiltro.TipoFiltro)
+                {
+                    case FiltroLocacaoEnum.TodasLocacoes:
+                        locacoes = controlador.SelecionarTodos();
+                        break;
+                    case FiltroLocacaoEnum.LocacoesPendentes:
+                        locacoes = controlador.SelecionarTodasLocacoesPendentes();
+                        break;
+                    case FiltroLocacaoEnum.LocacoesConcluidas:
+                        locacoes = controlador.SelecionarTodasLocacoesConcluidas();
+                        break;
+                    default:
+                        break;
+                }
+                tabelaLocacoes.AtualizarRegistros(locacoes);
+            }
         }
 
         public void InserirNovoRegistro()

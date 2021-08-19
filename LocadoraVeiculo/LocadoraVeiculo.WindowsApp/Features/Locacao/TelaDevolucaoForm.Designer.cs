@@ -48,7 +48,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.Locacao
             this.dtRetornoEsperada = new System.Windows.Forms.DateTimePicker();
             this.txtServico = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
-            this.txtCaucao = new System.Windows.Forms.TextBox();
+            this.txtMulta = new System.Windows.Forms.TextBox();
             this.label9 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
@@ -58,6 +58,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.Locacao
             this.dtRetorno.Name = "dtRetorno";
             this.dtRetorno.Size = new System.Drawing.Size(216, 20);
             this.dtRetorno.TabIndex = 0;
+            this.dtRetorno.ValueChanged += new System.EventHandler(this.dtRetorno_ValueChanged);
             // 
             // label1
             // 
@@ -146,7 +147,6 @@ namespace LocadoraVeiculo.WindowsApp.Features.Locacao
             this.txtCombustivel.ReadOnly = true;
             this.txtCombustivel.Size = new System.Drawing.Size(216, 20);
             this.txtCombustivel.TabIndex = 11;
-            this.txtCombustivel.TextChanged += new System.EventHandler(this.txtCombustivel_TextChanged);
             // 
             // btnNota
             // 
@@ -220,29 +220,29 @@ namespace LocadoraVeiculo.WindowsApp.Features.Locacao
             this.label4.TabIndex = 18;
             this.label4.Text = "Serviços:";
             // 
-            // txtCaucao
+            // txtMulta
             // 
-            this.txtCaucao.Location = new System.Drawing.Point(147, 215);
-            this.txtCaucao.Name = "txtCaucao";
-            this.txtCaucao.ReadOnly = true;
-            this.txtCaucao.Size = new System.Drawing.Size(216, 20);
-            this.txtCaucao.TabIndex = 21;
+            this.txtMulta.Location = new System.Drawing.Point(147, 215);
+            this.txtMulta.Name = "txtMulta";
+            this.txtMulta.ReadOnly = true;
+            this.txtMulta.Size = new System.Drawing.Size(216, 20);
+            this.txtMulta.TabIndex = 21;
             // 
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(92, 218);
+            this.label9.Location = new System.Drawing.Point(103, 218);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(47, 13);
+            this.label9.Size = new System.Drawing.Size(36, 13);
             this.label9.TabIndex = 20;
-            this.label9.Text = "Caução:";
+            this.label9.Text = "Multa:";
             // 
             // TelaDevolucaoForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(474, 311);
-            this.Controls.Add(this.txtCaucao);
+            this.Controls.Add(this.txtMulta);
             this.Controls.Add(this.label9);
             this.Controls.Add(this.txtServico);
             this.Controls.Add(this.label4);
@@ -294,7 +294,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.Locacao
         private System.Windows.Forms.DateTimePicker dtRetornoEsperada;
         private System.Windows.Forms.TextBox txtServico;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.TextBox txtCaucao;
+        private System.Windows.Forms.TextBox txtMulta;
         private System.Windows.Forms.Label label9;
     }
 }

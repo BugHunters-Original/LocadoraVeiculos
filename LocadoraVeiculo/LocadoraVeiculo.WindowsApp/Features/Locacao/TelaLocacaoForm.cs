@@ -92,7 +92,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.Locacao
                 foreach (var item in servicos.ToList())
                     precoServicos = item.TipoCalculo != 1 ? precoServicos + item.Preco * dias : precoServicos + item.Preco;
 
-            decimal? precoPlano = CalcularPrecoPlano(veiculo, tipoLocacao, dias);
+            decimal? precoPlano = CalcularPrecoPlanoPorDias(veiculo, tipoLocacao, dias);
 
             locacao = new LocacaoVeiculo(cliente, veiculo, condutor, dataSaida, dataRetornoEsperado, tipoLocacao,
                                     tipoCliente, precoServicos, dias, "Em Aberto", null, precoPlano, null);
@@ -109,12 +109,15 @@ namespace LocadoraVeiculo.WindowsApp.Features.Locacao
             }
         }
 
-        private static decimal? CalcularPrecoPlano(VeiculoModule.Veiculo veiculo, string tipoLocacao, int dias)
+        private static decimal? CalcularPrecoPlanoPorDias(VeiculoModule.Veiculo veiculo, string tipoLocacao, int dias)
         {
             switch (tipoLocacao)
             {
                 case "Plano Diário":
                     return (veiculo.grupoVeiculo.ValorDiarioPDiario * dias);
+
+                case "KM Livre":
+                    return (veiculo.grupoVeiculo.ValorDiarioPLivre * dias);
 
                 case "KM Controlado":
                     return (veiculo.grupoVeiculo.ValorDiarioPControlado * dias);

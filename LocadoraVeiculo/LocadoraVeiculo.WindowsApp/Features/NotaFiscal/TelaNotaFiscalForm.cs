@@ -1,4 +1,5 @@
-﻿using LocadoraVeiculo.LocacaoModule;
+﻿using LocadoraVeiculo.Controladores.VeiculoModule;
+using LocadoraVeiculo.LocacaoModule;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -14,8 +15,10 @@ namespace LocadoraVeiculo.WindowsApp.Features.NotaFiscal
     public partial class TelaNotaFiscalForm : Form
     {
         private LocacaoVeiculo locacao;
+        private ControladorVeiculo controladorVeiculo;
         public TelaNotaFiscalForm()
         {
+            controladorVeiculo = new ControladorVeiculo();
             InitializeComponent();
         }
         public LocacaoVeiculo Locacao
@@ -32,6 +35,11 @@ namespace LocadoraVeiculo.WindowsApp.Features.NotaFiscal
                 txtPrecoPlano.Text = "R$" + locacao.PrecoPlano.ToString();
                 txtTotal.Text = "R$" + locacao.PrecoTotal.ToString();
             }
+        }
+
+        private void bt_ConcluirLocacao_Click(object sender, EventArgs e)
+        {
+            controladorVeiculo.Editar(locacao.Veiculo.Id, locacao.Veiculo);
         }
     }
 }
