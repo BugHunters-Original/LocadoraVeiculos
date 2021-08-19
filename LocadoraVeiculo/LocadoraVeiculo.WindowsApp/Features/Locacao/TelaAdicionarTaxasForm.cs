@@ -33,7 +33,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.Locacao
             List<Servico> servicos = controladorServico.SelecionarTodos();
 
             foreach (var servico in servicos)
-                cBoxTaxas.Items.Add(servico);
+                cBoxTaxas.Items.Add(servico); 
         }
 
 
