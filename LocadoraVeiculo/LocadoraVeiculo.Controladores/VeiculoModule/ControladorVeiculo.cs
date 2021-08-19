@@ -140,6 +140,28 @@ namespace LocadoraVeiculo.Controladores.VeiculoModule
             WHERE 
                 [ID] = @ID";
 
+        private const string sqlQuantidadeAlugados =
+            @"SELECT 
+                *
+            FROM
+                [TBVEICULOS] AS V INNER JOIN
+                [TBTIPOVEICULO] AS TV
+            ON
+                TV.ID = V.ID_TIPO_VEICULO
+            WHERE 
+                [DISPONIBILIDADE_VEICULO] = 0";
+
+        private const string sqlQuantidadeDisponiveis =
+            @"SELECT 
+                *
+            FROM
+                [TBVEICULOS] AS V INNER JOIN
+                [TBTIPOVEICULO] AS TV
+            ON
+                TV.ID = V.ID_TIPO_VEICULO
+            WHERE 
+                [DISPONIBILIDADE_VEICULO] = 1";
+
         private const string sqlVeiculoAlugado =
             @"SELECT 
                 V.[ID],       
@@ -170,7 +192,7 @@ namespace LocadoraVeiculo.Controladores.VeiculoModule
             ON
                 TV.ID = V.ID_TIPO_VEICULO
             WHERE 
-                [DISPONIBILIDADE_VEICULO] = 1";
+                [DISPONIBILIDADE_VEICULO] = 0";
 
         private const string sqlVeiculoDisponivel =
             @"SELECT 
@@ -202,7 +224,7 @@ namespace LocadoraVeiculo.Controladores.VeiculoModule
             ON
                 TV.ID = V.ID_TIPO_VEICULO
             WHERE 
-                [DISPONIBILIDADE_VEICULO] = 0";
+                [DISPONIBILIDADE_VEICULO] = 1";
         #endregion
 
         public override string InserirNovo(Veiculo registro)
@@ -267,6 +289,16 @@ namespace LocadoraVeiculo.Controladores.VeiculoModule
         public List<Veiculo> SelecionarTodosDisponiveis()
         {
             return Db.GetAll(sqlVeiculoDisponivel, ConverterEmVeiculo);
+        }
+
+        public int ReturnQuantidadeAlugados()
+        {
+            return Db.GetAll(sqlQuantidadeAlugados, ConverterEmVeiculo).Count;
+        }
+
+        public int ReturnQuantidadeDisponiveis()
+        {
+            return Db.GetAll(sqlQuantidadeDisponiveis, ConverterEmVeiculo).Count;
         }
 
         private Veiculo ConverterEmVeiculo(IDataReader reader)

@@ -31,7 +31,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.Locacao
 
         public string ToolTipDevolver
         {
-            get { return "Devolver um veículo"; }
+            get { return "Devolver um Veículo"; }
         }
 
         public bool EnabledFiltrar

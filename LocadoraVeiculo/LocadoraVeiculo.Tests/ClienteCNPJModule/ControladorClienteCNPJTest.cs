@@ -14,6 +14,7 @@ namespace LocadoraVeiculo.Tests.ClienteModule
         public ControladorClienteCNPJTest()
         {
             controlador = new ControladorClienteCNPJ();
+            Db.Update("DELETE FROM [TBLOCACAO]");
             Db.Update("DELETE FROM [TBCLIENTECPF]");
             Db.Update("DELETE FROM [TBCLIENTECNPJ]");
         }

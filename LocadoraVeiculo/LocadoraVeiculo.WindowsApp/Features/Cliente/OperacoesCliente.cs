@@ -1,6 +1,7 @@
 ﻿using LocadoraVeiculo.ClienteModule;
 using LocadoraVeiculo.Controladores.ClienteModule;
 using LocadoraVeiculo.Controladores.CondutorModule;
+using LocadoraVeiculo.Controladores.LocacaoModule;
 using LocadoraVeiculo.WindowsApp.Shared;
 using System;
 using System.Collections.Generic;
@@ -12,10 +13,12 @@ namespace LocadoraVeiculo.WindowsApp.Features.Clientes
     {
         private readonly ControladorClienteCNPJ controladorCNPJ = null;
         private readonly ControladorClienteCPF controladorCPF = null;
+        private readonly ControladorLocacao controladorLocacao = null;
         private readonly TabelaClienteControl tabelaClientes = null;
 
-        public OperacoesCliente(ControladorClienteCNPJ controladorCNPJ, ControladorClienteCPF controladorCPF)
+        public OperacoesCliente(ControladorClienteCNPJ controladorCNPJ, ControladorClienteCPF controladorCPF, ControladorLocacao controladorLocacao)
         {
+            this.controladorLocacao = controladorLocacao;
             this.controladorCNPJ = controladorCNPJ;
             this.controladorCPF = controladorCPF;
             tabelaClientes = new TabelaClienteControl();
@@ -73,6 +76,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.Clientes
                     MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return;
             }
+
             Object clienteSelecionado = null;
 
             if (tipo.Length == 14)
@@ -83,17 +87,26 @@ namespace LocadoraVeiculo.WindowsApp.Features.Clientes
             if (MessageBox.Show($"Tem certeza que deseja excluir o Cliente: [{clienteSelecionado}] ?",
                 "Exclusão de Clientes", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK)
             {
+                bool excluiu = false;
                 if (clienteSelecionado is ClienteCPF)
-                    controladorCPF.Excluir(id);
+                    excluiu = controladorCPF.Excluir(id);
                 else
-                    controladorCNPJ.Excluir(id);
+                    excluiu = controladorCNPJ.Excluir(id);
 
-                List<ClienteCPF> clientesCPF = controladorCPF.SelecionarTodos();
-                List<ClienteCNPJ> clientesCNPJ = controladorCNPJ.SelecionarTodos();
+                if (excluiu)
+                {
+                    List<ClienteCPF> clientesCPF = controladorCPF.SelecionarTodos();
+                    List<ClienteCNPJ> clientesCNPJ = controladorCNPJ.SelecionarTodos();
 
-                tabelaClientes.AtualizarRegistros(clientesCPF, clientesCNPJ);
+                    tabelaClientes.AtualizarRegistros(clientesCPF, clientesCNPJ);
 
-                TelaPrincipalForm.Instancia.AtualizarRodape($"Cliente: [{clienteSelecionado}] removido com sucesso");
+                    TelaPrincipalForm.Instancia.AtualizarRodape($"Cliente: [{clienteSelecionado}] removido com sucesso");
+                }
+                else
+                {
+                    MessageBox.Show("Remova primeiro as Locações vinculadas ao Cliente e tente novamente",
+                        "Exclusão de Clientes", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
         }
 

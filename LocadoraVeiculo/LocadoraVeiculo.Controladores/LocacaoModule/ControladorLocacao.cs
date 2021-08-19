@@ -14,6 +14,7 @@ namespace LocadoraVeiculo.Controladores.LocacaoModule
 {
     public class ControladorLocacao : Controlador<LocacaoVeiculo>
     {
+        #region Queries
         private const string sqlInserirLocacao =
        @"INSERT INTO TBLOCACAO
 	                (
@@ -25,7 +26,6 @@ namespace LocadoraVeiculo.Controladores.LocacaoModule
                         [PLANO],
                         [TIPOCLIENTE],
                         [PRECOSERVICOS],
-                        [KMRODADO],
                         [DIAS],
                         [STATUS],    
                         [PRECOCOMBUSTIVEL],    
@@ -42,7 +42,6 @@ namespace LocadoraVeiculo.Controladores.LocacaoModule
                         @PLANO,
                         @TIPOCLIENTE,
                         @PRECOSERVICOS,
-                        @KMRODADO,
                         @DIAS,
                         @STATUS,
                         @PRECOCOMBUSTIVEL,
@@ -61,7 +60,6 @@ namespace LocadoraVeiculo.Controladores.LocacaoModule
                         [PLANO] = @PLANO,
                         [TIPOCLIENTE] = @TIPOCLIENTE,
                         [PRECOSERVICOS] = @PRECOSERVICOS,
-                        [KMRODADO] = @KMRODADO,
                         [DIAS] = @DIAS,
                         [STATUS] = @STATUS,
                         [PRECOCOMBUSTIVEL] = @PRECOCOMBUSTIVEL,
@@ -77,12 +75,15 @@ namespace LocadoraVeiculo.Controladores.LocacaoModule
                     WHERE 
                         ID = @ID";
 
+
         private const string sqlMudarDisponibilidade =
             @"UPDATE TBVEICULOS
                     SET
                         [DISPONIBILIDADE_VEICULO] = @DISPONIBILIDADE_VEICULO
                     WHERE 
-                        ID = @ID";
+                        ID = @ID_VEICULO";
+
+
 
         private const string sqlExcluirLocacao =
             @"DELETE 
@@ -102,7 +103,6 @@ namespace LocadoraVeiculo.Controladores.LocacaoModule
                         [PLANO],
                         [TIPOCLIENTE],
                         [PRECOSERVICOS],
-                        [KMRODADO],
                         [DIAS],
                         [STATUS],    
                         [PRECOCOMBUSTIVEL],    
@@ -124,7 +124,6 @@ namespace LocadoraVeiculo.Controladores.LocacaoModule
                         [PLANO],
                         [TIPOCLIENTE],
                         [PRECOSERVICOS],
-                        [KMRODADO],
                         [DIAS],
                         [STATUS],    
                         [PRECOCOMBUSTIVEL],    
@@ -140,7 +139,90 @@ namespace LocadoraVeiculo.Controladores.LocacaoModule
                 [TBLOCACAO]
             WHERE 
                 [ID] = @ID";
+        private const string sqlExisteVeiculo =
+            @"SELECT 
+                COUNT(*) 
+            FROM 
+                [TBLOCACAO]
+            WHERE 
+                [ID_VEICULO] = @ID";
 
+
+
+        private const string sqlExisteCliente =
+            @"SELECT 
+                COUNT(*) 
+            FROM 
+                [TBLOCACAO]
+            WHERE 
+                [ID_CLIENTELOCADOR] = @ID";
+
+        private const string sqlLocacoesPendentes =
+            @"SELECT 
+                * 
+            FROM 
+                [TBLOCACAO]
+            WHERE 
+                [STATUS] = 'Em Aberto'";
+
+        private const string sqlSelecionarLocacoesPendentes =
+            @"SELECT
+                        [ID],                
+		                [ID_CONDUTOR], 
+		                [ID_CLIENTELOCADOR], 
+		                [ID_VEICULO],
+                        [DATA_SAIDA], 
+		                [DATA_RETORNOESPERADO],
+                        [PLANO],
+                        [TIPOCLIENTE],
+                        [PRECOSERVICOS],
+                        [DIAS],
+                        [STATUS],    
+                        [PRECOCOMBUSTIVEL],    
+                        [PRECOPLANO],    
+                        [PRECOTOTAL] 
+	                FROM
+                        TBLOCACAO
+                    WHERE 
+                        [STATUS] = 'Em Aberto'";
+        private const string sqlSelecionarLocacoesConcluidas =
+            @"SELECT
+                        [ID],                
+		                [ID_CONDUTOR], 
+		                [ID_CLIENTELOCADOR], 
+		                [ID_VEICULO],
+                        [DATA_SAIDA], 
+		                [DATA_RETORNOESPERADO],
+                        [PLANO],
+                        [TIPOCLIENTE],
+                        [PRECOSERVICOS],
+                        [DIAS],
+                        [STATUS],    
+                        [PRECOCOMBUSTIVEL],    
+                        [PRECOPLANO],    
+                        [PRECOTOTAL] 
+	                FROM
+                        TBLOCACAO
+                    WHERE 
+                        [STATUS] = 'Concluída'";
+        #endregion
+
+        public bool VerificarCliente(int id)
+        {
+            return Db.Exists(sqlExisteCliente, AdicionarParametro("ID", id));
+        }
+        public bool VerificarVeiculo(int id)
+        {
+            return Db.Exists(sqlExisteVeiculo, AdicionarParametro("ID", id));
+        }
+        public void ConcluirLocacao(int id, LocacaoVeiculo locacao)
+        {
+            locacao.Id = id;
+            locacao.StatusLocacao = "Concluída";
+            locacao.Veiculo.disponibilidade_Veiculo = 1;
+            Db.Update(sqlConcluirLocacao, ObtemParametrosLocacao(locacao));
+            Db.Update(sqlMudarDisponibilidade, ObtemParametrosLocacao(locacao));
+        }
         public override string Editar(int id, LocacaoVeiculo registro)
         {
             string resultadoValidacao = registro.Validar();
@@ -153,15 +235,6 @@ namespace LocadoraVeiculo.Controladores.LocacaoModule
 
             return resultadoValidacao;
         }
-        public void ConcluirLocacao(int id, LocacaoVeiculo locacao)
-        {
-            locacao.Id = id;
-            locacao.StatusLocacao = "Concluída";
-            locacao.Veiculo.disponibilidade_Veiculo = 1;
-            Db.Update(sqlConcluirLocacao, ObtemParametrosLocacao(locacao));
-            Db.Update(sqlMudarDisponibilidade, ObtemParametrosLocacao(locacao));
-        }
-
         public override bool Excluir(int id)
         {
             try
@@ -175,12 +248,10 @@ namespace LocadoraVeiculo.Controladores.LocacaoModule
 
             return true;
         }
-
         public override bool Existe(int id)
         {
             return Db.Exists(sqlExisteLocacao, AdicionarParametro("ID", id));
         }
-
         public override string InserirNovo(LocacaoVeiculo registro)
         {
             string resultadoValidacao = registro.Validar();
@@ -192,15 +263,25 @@ namespace LocadoraVeiculo.Controladores.LocacaoModule
 
             return resultadoValidacao;
         }
-
         public override LocacaoVeiculo SelecionarPorId(int id)
         {
             return Db.Get(sqlSelecionarLocacaoPorId, ConverterEmLocacao, AdicionarParametro("ID", id));
         }
-
         public override List<LocacaoVeiculo> SelecionarTodos()
         {
             return Db.GetAll(sqlSelecionarTodasLocacoes, ConverterEmLocacao);
+        }
+        public List<LocacaoVeiculo> SelecionarTodasLocacoesConcluidas()
+        {
+            return Db.GetAll(sqlSelecionarLocacoesConcluidas, ConverterEmLocacao);
+        }
+        public List<LocacaoVeiculo> SelecionarTodasLocacoesPendentes()
+        {
+            return Db.GetAll(sqlSelecionarLocacoesPendentes, ConverterEmLocacao);
+        }
+        public int SelecionaPendentes()
+        {
+            return Db.GetAll(sqlLocacoesPendentes, ConverterEmLocacao).Count;
         }
         private Dictionary<string, object> ObtemParametrosLocacao(LocacaoVeiculo locacao)
         {
@@ -215,7 +296,6 @@ namespace LocadoraVeiculo.Controladores.LocacaoModule
             parametros.Add("DATA_RETORNOESPERADO", locacao.DataRetorno);
             parametros.Add("PLANO", locacao.TipoLocacao);
             parametros.Add("PRECOSERVICOS", locacao.PrecoServicos);
-            parametros.Add("KMRODADO", locacao.KmRodado);
             parametros.Add("DIAS", locacao.Dias);
             parametros.Add("STATUS", locacao.StatusLocacao);
             parametros.Add("PRECOCOMBUSTIVEL", locacao.PrecoCombustivel);
@@ -238,21 +318,18 @@ namespace LocadoraVeiculo.Controladores.LocacaoModule
             int dias = Convert.ToInt32(reader["DIAS"]);
             string status = Convert.ToString(reader["STATUS"]);
 
-            decimal? kmRodado = null;
-            if (reader["KMRODADO"] != DBNull.Value)
-                kmRodado = Convert.ToDecimal(reader["KMRODADO"]);
 
             decimal? precoGas = null;
             if (reader["PRECOCOMBUSTIVEL"] != DBNull.Value)
-                kmRodado = Convert.ToDecimal(reader["PRECOCOMBUSTIVEL"]);
+                precoGas = Convert.ToDecimal(reader["PRECOCOMBUSTIVEL"]);
 
             decimal? precoPlano = null;
             if (reader["PRECOPLANO"] != DBNull.Value)
-                kmRodado = Convert.ToDecimal(reader["PRECOPLANO"]);
+                precoPlano = Convert.ToDecimal(reader["PRECOPLANO"]);
 
             decimal? precoTotal = null;
             if (reader["PRECOTOTAL"] != DBNull.Value)
-                kmRodado = Convert.ToDecimal(reader["PRECOTOTAL"]);
+                precoTotal = Convert.ToDecimal(reader["PRECOTOTAL"]);
 
             decimal? precoServico = null;
             if (reader["PRECOSERVICOS"] != DBNull.Value)
@@ -274,7 +351,7 @@ namespace LocadoraVeiculo.Controladores.LocacaoModule
 
 
             LocacaoVeiculo locacao = new LocacaoVeiculo(clienteLocador, veiculo, condutor,
-                                                    dataSaida, dataRetorno, plano, tipoCliente, precoServico, kmRodado,
+                                                    dataSaida, dataRetorno, plano, tipoCliente, precoServico,
                                                     dias, status, precoGas, precoPlano, precoTotal);
 
             locacao.Id = id;

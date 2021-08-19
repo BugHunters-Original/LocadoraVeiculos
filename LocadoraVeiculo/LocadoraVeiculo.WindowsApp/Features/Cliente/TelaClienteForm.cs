@@ -115,9 +115,10 @@ namespace LocadoraVeiculo.WindowsApp.Features.Clientes
         {
             mskCpf.Enabled = true;
             mskCnh.Enabled = true;
-            mskRg.Enabled = true;
             dtDataValidade.Enabled = true;
+            mskRg.Enabled = true;
             cbEmpresas.Enabled = true;
+            mskCnpj.Enabled = false;
         }
 
         private void rbJuridico_CheckedChanged(object sender, EventArgs e)

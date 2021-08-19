@@ -203,6 +203,7 @@
       <DependentUpon>TelaGrupoVeiculoForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Features\Locacao\ConfiguracaoLocacaoToolBox.cs" />
+    <Compile Include="Features\Locacao\FiltroLocacaoEnum.cs" />
     <Compile Include="Features\Locacao\OperacoesLocacao.cs" />
     <Compile Include="Features\Locacao\TabelaLocacaoControl.cs">
       <SubType>UserControl</SubType>

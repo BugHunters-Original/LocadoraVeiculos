@@ -32,9 +32,11 @@ namespace LocadoraVeiculo.WindowsApp
         {
             InitializeComponent();
             Instancia = this;
+
             dash = new DashboardControl();
             panelRegistros.Controls.Add(dash);
             SetColor();
+
         }
 
         public void AtualizarRodape(string mensagem)
@@ -73,7 +75,7 @@ namespace LocadoraVeiculo.WindowsApp
 
             AtualizarRodape(configuracao.TipoCadastro);
 
-            operacoes = new OperacoesCliente(new ControladorClienteCNPJ(), new ControladorClienteCPF());
+            operacoes = new OperacoesCliente(new ControladorClienteCNPJ(), new ControladorClienteCPF(), new ControladorLocacao());
 
             ConfigurarPainelRegistros();
         }
@@ -243,6 +245,14 @@ namespace LocadoraVeiculo.WindowsApp
             panelRegistros.Controls.Add(tabela);
         }
 
+        private void ConfigurarPainelDashBoard()
+        {
+            UserControl tabela = new DashboardControl();
+            tabela.Dock = DockStyle.Fill;
+            panelRegistros.Controls.Clear();
+            panelRegistros.Controls.Add(tabela);
+        }
+
         private void ConfigurarToolBox(IConfiguracaoToolBox configuracao)
         {
             labelTipoCadastro.Text = configuracao.TipoCadastro;
@@ -257,9 +267,15 @@ namespace LocadoraVeiculo.WindowsApp
             btnDevolver.Enabled = configuracao.EnabledDevolver;
         }
 
+
         private void btnClose_Click(object sender, EventArgs e)
         {
             Application.Exit();
+        }
+        private void menuToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ConfigurarPainelDashBoard();
+
         }
     }
 }

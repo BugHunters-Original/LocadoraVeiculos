@@ -55,10 +55,10 @@ namespace LocadoraVeiculo.WindowsApp.Features.Combustivel
             this.tabControl1.Controls.Add(this.tabPage2);
             this.tabControl1.Controls.Add(this.tabPage3);
             this.tabControl1.Font = new System.Drawing.Font("Lucida Sans Unicode", 8F);
-            this.tabControl1.Location = new System.Drawing.Point(9, 12);
+            this.tabControl1.Location = new System.Drawing.Point(10, 14);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(249, 115);
+            this.tabControl1.Size = new System.Drawing.Size(290, 133);
             this.tabControl1.TabIndex = 0;
             this.tabControl1.Leave += new System.EventHandler(this.txtBoxZerado_Leave);
             // 
@@ -69,27 +69,27 @@ namespace LocadoraVeiculo.WindowsApp.Features.Combustivel
             this.tabPage1.Location = new System.Drawing.Point(4, 24);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(241, 87);
+            this.tabPage1.Size = new System.Drawing.Size(282, 105);
             this.tabPage1.TabIndex = 0;
-            this.tabPage1.Text = "GASOLINA";
+            this.tabPage1.Text = "Gasolina";
             this.tabPage1.UseVisualStyleBackColor = true;
             this.tabPage1.Leave += new System.EventHandler(this.txtBoxZerado_Leave);
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(30, 35);
+            this.label1.Location = new System.Drawing.Point(35, 40);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(46, 15);
+            this.label1.Size = new System.Drawing.Size(40, 15);
             this.label1.TabIndex = 1;
-            this.label1.Text = "PREÇO:";
+            this.label1.Text = "Preço:";
             // 
             // txtGasolina
             // 
             this.txtGasolina.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F);
-            this.txtGasolina.Location = new System.Drawing.Point(79, 35);
+            this.txtGasolina.Location = new System.Drawing.Point(92, 40);
             this.txtGasolina.Name = "txtGasolina";
-            this.txtGasolina.Size = new System.Drawing.Size(100, 19);
+            this.txtGasolina.Size = new System.Drawing.Size(116, 19);
             this.txtGasolina.TabIndex = 0;
             this.txtGasolina.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtBoxJustNumbers_KeyPress);
             // 
@@ -100,27 +100,27 @@ namespace LocadoraVeiculo.WindowsApp.Features.Combustivel
             this.tabPage2.Location = new System.Drawing.Point(4, 24);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(241, 87);
+            this.tabPage2.Size = new System.Drawing.Size(282, 105);
             this.tabPage2.TabIndex = 1;
-            this.tabPage2.Text = "ALCOOL";
+            this.tabPage2.Text = "Álcool";
             this.tabPage2.UseVisualStyleBackColor = true;
             this.tabPage2.Leave += new System.EventHandler(this.txtBoxZerado_Leave);
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(30, 35);
+            this.label2.Location = new System.Drawing.Point(35, 40);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(46, 15);
+            this.label2.Size = new System.Drawing.Size(40, 15);
             this.label2.TabIndex = 3;
-            this.label2.Text = "PREÇO:";
+            this.label2.Text = "Preço:";
             // 
             // txtAlcool
             // 
             this.txtAlcool.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F);
-            this.txtAlcool.Location = new System.Drawing.Point(79, 35);
+            this.txtAlcool.Location = new System.Drawing.Point(92, 40);
             this.txtAlcool.Name = "txtAlcool";
-            this.txtAlcool.Size = new System.Drawing.Size(100, 19);
+            this.txtAlcool.Size = new System.Drawing.Size(116, 19);
             this.txtAlcool.TabIndex = 2;
             this.txtAlcool.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtBoxJustNumbers_KeyPress);
             // 
@@ -131,27 +131,27 @@ namespace LocadoraVeiculo.WindowsApp.Features.Combustivel
             this.tabPage3.Location = new System.Drawing.Point(4, 24);
             this.tabPage3.Name = "tabPage3";
             this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage3.Size = new System.Drawing.Size(241, 87);
+            this.tabPage3.Size = new System.Drawing.Size(282, 105);
             this.tabPage3.TabIndex = 2;
-            this.tabPage3.Text = "DIESEL";
+            this.tabPage3.Text = "Diesel";
             this.tabPage3.UseVisualStyleBackColor = true;
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(30, 35);
+            this.label3.Location = new System.Drawing.Point(35, 40);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(46, 15);
+            this.label3.Size = new System.Drawing.Size(40, 15);
             this.label3.TabIndex = 3;
-            this.label3.Text = "PREÇO:";
+            this.label3.Text = "Preço:";
             // 
             // txtDiesel
             // 
             this.txtDiesel.AccessibleName = "preço do diesel";
             this.txtDiesel.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F);
-            this.txtDiesel.Location = new System.Drawing.Point(79, 35);
+            this.txtDiesel.Location = new System.Drawing.Point(92, 40);
             this.txtDiesel.Name = "txtDiesel";
-            this.txtDiesel.Size = new System.Drawing.Size(100, 19);
+            this.txtDiesel.Size = new System.Drawing.Size(116, 19);
             this.txtDiesel.TabIndex = 2;
             this.txtDiesel.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtBoxJustNumbers_KeyPress);
             // 
@@ -159,9 +159,9 @@ namespace LocadoraVeiculo.WindowsApp.Features.Combustivel
             // 
             this.btnSalvar.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.btnSalvar.Font = new System.Drawing.Font("Lucida Sans Unicode", 8F);
-            this.btnSalvar.Location = new System.Drawing.Point(102, 133);
+            this.btnSalvar.Location = new System.Drawing.Point(119, 153);
             this.btnSalvar.Name = "btnSalvar";
-            this.btnSalvar.Size = new System.Drawing.Size(75, 23);
+            this.btnSalvar.Size = new System.Drawing.Size(87, 27);
             this.btnSalvar.TabIndex = 1;
             this.btnSalvar.Text = "Gravar";
             this.btnSalvar.UseVisualStyleBackColor = true;
@@ -171,21 +171,22 @@ namespace LocadoraVeiculo.WindowsApp.Features.Combustivel
             // 
             this.btnCancelar.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btnCancelar.Font = new System.Drawing.Font("Lucida Sans Unicode", 8F);
-            this.btnCancelar.Location = new System.Drawing.Point(183, 133);
+            this.btnCancelar.Location = new System.Drawing.Point(213, 153);
             this.btnCancelar.Name = "btnCancelar";
-            this.btnCancelar.Size = new System.Drawing.Size(75, 23);
+            this.btnCancelar.Size = new System.Drawing.Size(87, 27);
             this.btnCancelar.TabIndex = 2;
             this.btnCancelar.Text = "Cancelar";
             this.btnCancelar.UseVisualStyleBackColor = true;
             // 
             // TelaCombustivelForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(267, 163);
+            this.ClientSize = new System.Drawing.Size(311, 188);
             this.Controls.Add(this.btnCancelar);
             this.Controls.Add(this.btnSalvar);
             this.Controls.Add(this.tabControl1);
+            this.Font = new System.Drawing.Font("Lucida Sans Unicode", 8F);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;

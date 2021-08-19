@@ -7,27 +7,29 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using LocadoraVeiculo.Controladores.LocacaoModule;
 using LocadoraVeiculo.Controladores.Shared;
 using LocadoraVeiculo.Controladores.VeiculoModule;
+using LocadoraVeiculo.LocacaoModule;
+using LocadoraVeiculo.WindowsApp.Features.Veiculo;
 using LocadoraVeiculo.WindowsApp.Shared;
 
 namespace LocadoraVeiculo.WindowsApp.Features.Dashboard
 {
     public partial class DashboardControl : UserControl
     {
-        ControladorVeiculo controlador;
+        ControladorVeiculo controladorVeiculo;
+        ControladorLocacao controladorLocacao;
         public DashboardControl()
         {
-            controlador = new ControladorVeiculo();
-
+            controladorVeiculo = new ControladorVeiculo();
+            controladorLocacao = new ControladorLocacao();
             InitializeComponent();
-
+            TrataLabels();
             dtDashboard.ConfigurarGridZebrado();
             dtDashboard.ConfigurarGridSomenteLeitura();
             dtDashboard.Columns.AddRange(ObterColunasLocacoesPendentes());
-
-            label4.Parent = pictureBox4;
-            //label4.Location = new Point(5, 26);
+            LocacaoPendentes();
         }
 
         public DataGridViewColumn[] ObterColunasLocacoesPendentes()
@@ -84,13 +86,18 @@ namespace LocadoraVeiculo.WindowsApp.Features.Dashboard
             return colunas;
         }
 
+        public int ObtemIdSelecionado()
+        {
+            return dtDashboard.SelecionarId<int>();
+        }
+
         private void btnAlugados_Click(object sender, EventArgs e)
         {
             dtDashboard.Rows.Clear();
             dtDashboard.Columns.AddRange(ObterColunasCarros());
             labelTipoVisualizacao.Text = "CARROS ALUGADOS";
 
-            List<VeiculoModule.Veiculo> veiculos = controlador.SelecionarTodosAlugados();
+            List<VeiculoModule.Veiculo> veiculos = controladorVeiculo.SelecionarTodosAlugados();
 
             foreach (VeiculoModule.Veiculo veiculo in veiculos)
             {
@@ -106,7 +113,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.Dashboard
             dtDashboard.Columns.AddRange(ObterColunasCarros());
             labelTipoVisualizacao.Text = "CARROS DISPONIVEIS";
 
-            List<VeiculoModule.Veiculo> veiculos = controlador.SelecionarTodosDisponiveis();
+            List<VeiculoModule.Veiculo> veiculos = controladorVeiculo.SelecionarTodosDisponiveis();
 
             foreach (VeiculoModule.Veiculo veiculo in veiculos)
             {
@@ -118,9 +125,56 @@ namespace LocadoraVeiculo.WindowsApp.Features.Dashboard
 
         private void btnLocacoesPendentes_Click(object sender, EventArgs e)
         {
+            LocacaoPendentes();
+        }
+
+        private void LocacaoPendentes()
+        {
             dtDashboard.Rows.Clear();
             dtDashboard.Columns.AddRange(ObterColunasLocacoesPendentes());
             labelTipoVisualizacao.Text = "LOCAÇÕES PENDENTES";
+
+            List<LocacaoVeiculo> locacoes = controladorLocacao.SelecionarTodasLocacoesPendentes();
+
+            foreach (LocacaoVeiculo locacao in locacoes)
+            {
+                dtDashboard.Rows.Add(locacao.Id, locacao.Cliente, locacao.Condutor, locacao.Veiculo, locacao.DataSaida,
+                locacao.DataRetorno);
+            }
         }
+
+        private void TrataLabels()
+        {
+            int quantidadeAlugados = controladorVeiculo.ReturnQuantidadeAlugados();
+            labelAlugados.Text = quantidadeAlugados.ToString();
+
+            int quantidadeDisponiveis = controladorVeiculo.ReturnQuantidadeDisponiveis();
+            labelInLoco.Text = quantidadeDisponiveis.ToString();
+
+            int quantidadePendentes = controladorLocacao.SelecionaPendentes();
+            labelPendentes.Text = quantidadePendentes.ToString();
+        }
+
+        private void dtDashboard_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            if (dtDashboard.Columns.Count > 6)
+            {
+                int id = ObtemIdSelecionado();
+
+                if (id == 0)
+                    return;
+
+                VeiculoModule.Veiculo veiculoSelecionado = controladorVeiculo.SelecionarPorId(id);
+
+                TelaDetalhesVeiculoForm tela = new TelaDetalhesVeiculoForm();
+
+                tela.Veiculo = veiculoSelecionado;
+
+                if (tela.ShowDialog() == DialogResult.OK)
+                    TelaPrincipalForm.Instancia.AtualizarRodape($"Veículo: [{tela.veiculos.nome}] visualizado");
+            }  
+        }
+
+        
     }
 }

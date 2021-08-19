@@ -1,10 +1,12 @@
 ﻿using LocadoraVeiculo.Combustivel;
+using LocadoraVeiculo.Controladores.VeiculoModule;
 using LocadoraVeiculo.LocacaoModule;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -15,6 +17,8 @@ namespace LocadoraVeiculo.WindowsApp.Features.Locacao
     public partial class TelaDevolucaoForm : Form
     {
         private LocacaoVeiculo locacao;
+        private static decimal? precoDias;
+        private double multa = 1;
         public TelaDevolucaoForm()
         {
             InitializeComponent();
@@ -28,12 +32,13 @@ namespace LocadoraVeiculo.WindowsApp.Features.Locacao
                 locacao = value;
                 txtKmInicial.Text = locacao.Veiculo.km_Inicial.ToString();
                 dtRetornoEsperada.Value = locacao.DataRetorno;
-                txtServico.Text = locacao.PrecoServicos.ToString();
-                txtCaucao.Text = "1000";
+                txtServico.Text = "R$" + locacao.PrecoServicos.ToString();
+                precoDias = locacao.PrecoPlano;
+                txtMulta.Text = "Sem Multa";
             }
         }
 
-        private decimal? CalcularTipoCombustivel(decimal? combustivelGasto)
+        private decimal? CalcularPrecoTipoCombustivel(decimal? combustivelGasto)
         {
             switch (locacao.Veiculo.tipo_Combustivel)
             {
@@ -45,7 +50,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.Locacao
 
             return combustivelGasto;
         }
-        private decimal? CalcularGastosCombustível(decimal? totalTanque)
+        private decimal? CalcularPrecoTanqueCombustivel(decimal? totalTanque)
         {
             switch (cbNivelTanque.SelectedItem.ToString())
             {
@@ -60,32 +65,36 @@ namespace LocadoraVeiculo.WindowsApp.Features.Locacao
             }
 
         }
-        private decimal? CalcularGastosLocacao(int? totalKm)
+        private decimal? CalcularPrecoKmRodado(int? totalKm)
         {
             switch (locacao.TipoLocacao)
             {
                 case "Plano Diário":
-                    return (locacao.Veiculo.grupoVeiculo.ValorDiarioPDiario * locacao.Dias) + (totalKm * locacao.Veiculo.grupoVeiculo.ValorKmRodadoPDiario);
+                    return totalKm * locacao.Veiculo.grupoVeiculo.ValorKmRodadoPDiario;
                 case "KM Controlado":
-                    return (locacao.Veiculo.grupoVeiculo.ValorDiarioPControlado * locacao.Dias) + ((totalKm - locacao.Veiculo.grupoVeiculo.LimitePControlado) * locacao.Veiculo.grupoVeiculo.ValorKmRodadoPControlado);
-                case "KM Livre":
-                    return locacao.Dias * locacao.Veiculo.grupoVeiculo.ValorDiarioPLivre;
+                    return (totalKm - locacao.Veiculo.grupoVeiculo.LimitePControlado) * locacao.Veiculo.grupoVeiculo.ValorKmRodadoPControlado;
                 default: return 0;
             }
 
+        }
+        private void AtualizarTotal()
+        {
+            double total = Convert.ToDouble(locacao.PrecoServicos) + Convert.ToDouble(locacao.PrecoPlano) + Convert.ToDouble(locacao.PrecoCombustivel);
+            txtTotal.Text = "R$" + (total * multa).ToString();
         }
         private void cbNivelTanque_SelectedIndexChanged(object sender, EventArgs e)
         {
             decimal? totalTanque = Convert.ToDecimal(locacao.Veiculo.capacidade_Tanque);
 
-            decimal? combustivelGasto = CalcularGastosCombustível(totalTanque);
+            decimal? combustivelGasto = CalcularPrecoTanqueCombustivel(totalTanque);
 
-            combustivelGasto = CalcularTipoCombustivel(combustivelGasto);
+            combustivelGasto = CalcularPrecoTipoCombustivel(combustivelGasto);
 
             locacao.PrecoCombustivel = combustivelGasto;
 
-            txtCombustivel.Text = combustivelGasto.ToString();
+            txtCombustivel.Text = "R$" + combustivelGasto.ToString();
 
+            AtualizarTotal();
         }
         private void txtKmAtual_Leave(object sender, EventArgs e)
         {
@@ -94,17 +103,61 @@ namespace LocadoraVeiculo.WindowsApp.Features.Locacao
 
             var totalKm = Convert.ToInt32(txtKmAtual.Text) - locacao.Veiculo.km_Inicial;
 
-            locacao.PrecoPlano = CalcularGastosLocacao(totalKm);
+            locacao.PrecoPlano = precoDias;
+            locacao.PrecoPlano += CalcularPrecoKmRodado(totalKm);
+
+            AtualizarTotal();
         }
 
-        private void txtCombustivel_TextChanged(object sender, EventArgs e)
-        {
-            txtTotal.Text = (locacao.PrecoServicos + locacao.PrecoPlano + locacao.PrecoCombustivel + 1000).ToString();
-        }
 
         private void btnNota_Click(object sender, EventArgs e)
         {
-            locacao.PrecoTotal = locacao.PrecoCombustivel + locacao.PrecoPlano + locacao.PrecoServicos;
+            if (ValidarCampos() != "Valido")
+            {
+                DialogResult = DialogResult.None;
+
+                string primeiroErro = new StringReader(ValidarCampos()).ReadLine();
+
+                TelaPrincipalForm.Instancia.AtualizarRodape(primeiroErro);
+                return;
+            }
+
+            locacao.PrecoTotal = Convert.ToDecimal(multa) * (locacao.PrecoCombustivel + locacao.PrecoPlano + locacao.PrecoServicos);
+            locacao.Veiculo.km_Inicial = Convert.ToInt32(txtKmAtual.Text);
+        }
+
+        private string ValidarCampos()
+        {
+            string valido = "";
+
+            if (dtRetorno.Value.Day < dtRetornoEsperada.Value.Day)
+                valido += "A Data de Retorno não pode ser menor que a Data de Retorno Esperada\r\n";
+
+            if (txtKmAtual.Text == "")
+                valido += "O Campo Quilometragem Atual não pode ser nulo\r\n";
+
+            if (cbNivelTanque.Text == "")
+                valido += "O Campo Nível do Tanque não pode ser nulo\r\n";
+
+            if (valido == "")
+                return "Valido";
+
+            return valido;
+        }
+
+        private void dtRetorno_ValueChanged(object sender, EventArgs e)
+        {
+            if (dtRetorno.Value.Day > dtRetornoEsperada.Value.Day)
+            {
+                multa = 1.1;
+                txtMulta.Text = "10% no total";
+            }
+            else
+            {
+                multa = 1;
+                txtMulta.Text = "Sem Multa";
+            }
+            AtualizarTotal();
         }
     }
 }
