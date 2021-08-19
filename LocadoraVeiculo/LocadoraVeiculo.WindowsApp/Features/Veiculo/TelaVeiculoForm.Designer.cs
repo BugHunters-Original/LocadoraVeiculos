@@ -316,7 +316,11 @@ namespace LocadoraVeiculo.WindowsApp.Features.Veiculo
             // txtMarca
             // 
             this.txtMarca.Font = new System.Drawing.Font("Lucida Sans Unicode", 8F);
-            this.txtMarca.Location = new System.Drawing.Point(136, 84);
+
+            this.txtMarca.Location = new System.Drawing.Point(182, 104);
+            this.txtMarca.Margin = new System.Windows.Forms.Padding(4);
+            this.txtMarca.MaxLength = 50;
+
             this.txtMarca.Name = "txtMarca";
             this.txtMarca.Size = new System.Drawing.Size(101, 24);
             this.txtMarca.TabIndex = 1;

@@ -140,7 +140,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.Clientes
             List<ClienteCNPJ> clientesCNPJ = controladorCNPJ.SelecionarTodos();
 
             tabelaClientes.AtualizarRegistros(clientesCPF, clientesCNPJ);
-
+            tabelaClientes.Refresh();
             return tabelaClientes;
         }
     }

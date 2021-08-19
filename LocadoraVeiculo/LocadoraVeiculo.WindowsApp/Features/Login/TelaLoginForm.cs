@@ -9,6 +9,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using LocadoraVeiculo.WindowsApp.Features.DarkMode;
 
 namespace LocadoraVeiculo.WindowsApp.Features.Login
 {
@@ -20,6 +21,23 @@ namespace LocadoraVeiculo.WindowsApp.Features.Login
         public TelaLoginForm()
         {
             InitializeComponent();
+            ControladorDarkMode.TrocarModo();
+            SetColor();
+        }
+
+        private void SetColor()
+        {
+            this.BackColor = ControladorDarkMode.corFundo;
+            this.ForeColor = ControladorDarkMode.corFonte;
+            btnModo.BackColor = ControladorDarkMode.corFundoTxBox;
+            btnLogar.BackColor = ControladorDarkMode.corFundoTxBox;
+            Footer.BackColor = ControladorDarkMode.corPanel;
+            txtUsuario.BackColor = ControladorDarkMode.corFundoTxBox;
+            txtSenha.BackColor = ControladorDarkMode.corFundoTxBox;
+            txtUsuario.ForeColor = ControladorDarkMode.corFonte;
+            txtSenha.ForeColor = ControladorDarkMode.corFonte;
+            btnClose.Image = ControladorDarkMode.imgClose;
+            btnModo.Image = ControladorDarkMode.imgModo;
         }
 
         private void btnLogar_Click(object sender, EventArgs e)
@@ -48,6 +66,17 @@ namespace LocadoraVeiculo.WindowsApp.Features.Login
         private void ChamarTelaPrincipal(object obj)
         {
             Application.Run(new TelaPrincipalForm());
+        }
+
+        private void btnModo_Click_1(object sender, EventArgs e)
+        {
+            ControladorDarkMode.TrocarModo();
+            SetColor();
+        }
+
+        private void btnClose_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
         }
     }
 }
