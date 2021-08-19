@@ -32,23 +32,25 @@ namespace LocadoraVeiculo.GrupoVeiculoModule
             string resultadoValidacao = "";
 
             if (string.IsNullOrEmpty(NomeTipo))
-                resultadoValidacao = "O campo categoria é obrigatório";
+                resultadoValidacao = "O campo Categoria é obrigatório";
 
             if (ValorDiarioPDiario == null || ValorDiarioPDiario <= 0)
-                resultadoValidacao += QuebraDeLinha(resultadoValidacao) + "O campo valor diário não pode ser nulo ou menor que zero";
+                resultadoValidacao += QuebraDeLinha(resultadoValidacao) + "O campo Valor Diária no Plano Diário não pode ser nulo ou menor que zero";
 
             if (ValorKmRodadoPDiario == null || ValorKmRodadoPDiario <= 0)
-                resultadoValidacao += QuebraDeLinha(resultadoValidacao) + "O campo preço não pode ser nulo ou menor que zero";
+                resultadoValidacao += QuebraDeLinha(resultadoValidacao) + "O campo Valor Km Rodado no Plano Diário não pode ser nulo ou menor que zero";
 
             if (ValorDiarioPControlado == null || ValorDiarioPControlado <= 0)
-                resultadoValidacao += QuebraDeLinha(resultadoValidacao) + "O campo valor não pode ser nulo ou menor que zero";
+                resultadoValidacao += QuebraDeLinha(resultadoValidacao) + "O campo Valor Diária no Plano Controlado não pode ser nulo ou menor que zero";
 
             if (LimitePControlado <= 0)
-                resultadoValidacao += QuebraDeLinha(resultadoValidacao) + "O campo valor não pode ser nulo ou menor que zero";
+                resultadoValidacao += QuebraDeLinha(resultadoValidacao) + "O campo Limite KM no Plano Controlado não pode ser nulo ou menor que zero";
 
             if (ValorKmRodadoPControlado == null || ValorKmRodadoPControlado <= 0)
-                resultadoValidacao += QuebraDeLinha(resultadoValidacao) + "O campo km/dia não pode ser nulo ou menor que zero";
+                resultadoValidacao += QuebraDeLinha(resultadoValidacao) + "O campo Valor Km Rodado no Plano Controlado não pode ser nulo ou menor que zero";
 
+            if (ValorDiarioPLivre == null || ValorDiarioPLivre <= 0)
+                resultadoValidacao += QuebraDeLinha(resultadoValidacao) + "O campo Valor Diária no Plano Controlado não pode ser nulo ou menor que zero";
 
             if (resultadoValidacao == "")
                 resultadoValidacao = "ESTA_VALIDO";

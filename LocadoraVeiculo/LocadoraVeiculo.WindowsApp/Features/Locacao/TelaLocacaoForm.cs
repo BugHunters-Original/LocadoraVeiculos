@@ -73,8 +73,6 @@ namespace LocadoraVeiculo.WindowsApp.Features.Locacao
 
             VeiculoModule.Veiculo veiculo = (VeiculoModule.Veiculo)cbVeiculo.SelectedItem;
 
-            MudarDisponibilidadeVeiculo(veiculo);
-
             int tipoCliente = cbCliente.SelectedItem is ClienteCPF ? 0 : 1;
 
             ClienteCPF condutor = cbCliente.SelectedItem is ClienteCPF ? (ClienteCPF)cliente : (ClienteCPF)cbCondutor.SelectedItem;
@@ -107,6 +105,8 @@ namespace LocadoraVeiculo.WindowsApp.Features.Locacao
 
                 DialogResult = DialogResult.None;
             }
+            else
+                MudarDisponibilidadeVeiculo(veiculo);
         }
 
         private static decimal? CalcularPrecoPlanoPorDias(VeiculoModule.Veiculo veiculo, string tipoLocacao, int dias)

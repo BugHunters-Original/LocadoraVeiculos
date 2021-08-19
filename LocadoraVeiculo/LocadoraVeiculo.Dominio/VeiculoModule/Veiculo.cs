@@ -105,14 +105,6 @@ namespace LocadoraVeiculo.VeiculoModule
         {
             return nome;
         }
-        public bool ValidarDisponibilidade()
-        {
-            if (disponibilidade_Veiculo == 1)
-                return true;
-            else
-                return false;
-        }
-
 
         public override bool Equals(object obj)
         {
@@ -126,7 +118,6 @@ namespace LocadoraVeiculo.VeiculoModule
                nome == other.nome &&
                numero_Placa == other.numero_Placa &&
                numero_Chassi == other.numero_Chassi &&
-               //EqualityComparer<byte[]>.Default.Equals(foto, other.foto) &&
                cor == other.cor &&
                marca == other.marca &&
                ano == other.ano &&

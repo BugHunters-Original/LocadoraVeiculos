@@ -94,7 +94,13 @@ namespace LocadoraVeiculo.LocacaoModule
                 valido += QuebraDeLinha(valido) + "O campo Data está inválido";
 
             if (TipoLocacao != "Plano Diário" && TipoLocacao != "KM Controlado" && TipoLocacao != "KM Livre")
-                valido += QuebraDeLinha(valido) + "O campo Tipo está inválido";
+                valido += QuebraDeLinha(valido) + "O campo Tipo Locação está inválido";
+
+            if (TipoCliente != 0 && TipoCliente != 1)
+                valido += QuebraDeLinha(valido) + "O campo Tipo Cliente está inválido";
+
+            if (Dias <= 0)
+                valido += QuebraDeLinha(valido) + "O campo Data Retorno está inválido";
 
             if (valido == "")
                 valido = "ESTA_VALIDO";
