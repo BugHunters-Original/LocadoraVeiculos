@@ -99,8 +99,6 @@ namespace LocadoraVeiculo.LocacaoModule
             if (TipoCliente != 0 && TipoCliente != 1)
                 valido += QuebraDeLinha(valido) + "O campo Tipo Cliente está inválido";
 
-            if (Dias <= 0)
-                valido += QuebraDeLinha(valido) + "O campo Data Retorno está inválido";
 
             if (valido == "")
                 valido = "ESTA_VALIDO";

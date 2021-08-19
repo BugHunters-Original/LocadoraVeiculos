@@ -55,7 +55,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.Locacao
         {
             var clientesCNPJ = controladorCNPJ.SelecionarTodos();
             var clientesCPF = controladorCPF.SelecionarTodos();
-            var veiculos = controladorVeiculo.SelecionarTodos();
+            var veiculos = controladorVeiculo.SelecionarTodosDisponiveis();
 
             foreach (var clienteCPF in clientesCPF)
                 cbCliente.Items.Add(clienteCPF);
