@@ -63,9 +63,39 @@ namespace LocadoraVeiculo.WindowsApp.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap _2565014 {
+            get {
+                object obj = ResourceManager.GetObject("2565014", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap _293801_200 {
+            get {
+                object obj = ResourceManager.GetObject("293801-200", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap bordaCircular {
             get {
                 object obj = ResourceManager.GetObject("bordaCircular", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap carRented {
+            get {
+                object obj = ResourceManager.GetObject("carRented", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
