@@ -1,6 +1,7 @@
 ﻿using LocadoraVeiculo.ClienteModule;
 using LocadoraVeiculo.Controladores.ClienteModule;
 using LocadoraVeiculo.Controladores.CondutorModule;
+using LocadoraVeiculo.WindowsApp.Features.DarkMode;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -18,7 +19,41 @@ namespace LocadoraVeiculo.WindowsApp.Features.Clientes
             controladorClienteCNPJ = new ControladorClienteCNPJ();
             InitializeComponent();
             PopularCombobox();
+            SetColor();
         }
+
+        private void SetColor()
+        {
+            this.BackColor = ControladorDarkMode.corFundo;
+            this.ForeColor = ControladorDarkMode.corFonte;
+            txtID.BackColor = ControladorDarkMode.corFundoTxBox;
+            txtNome.BackColor = ControladorDarkMode.corFundoTxBox;
+            txtEndereco.BackColor = ControladorDarkMode.corFundoTxBox;
+            mskTelefone.BackColor = ControladorDarkMode.corFundoTxBox;
+            mskCpf.BackColor = ControladorDarkMode.corFundoTxBox;
+            mskCnpj.BackColor = ControladorDarkMode.corFundoTxBox;
+            mskCnh.BackColor = ControladorDarkMode.corFundoTxBox;
+            dtDataValidade.BackColor = ControladorDarkMode.corFundoTxBox;
+            mskRg.BackColor = ControladorDarkMode.corFundoTxBox;
+            cbEmpresas.BackColor = ControladorDarkMode.corFundoTxBox;
+
+            txtID.ForeColor = ControladorDarkMode.corFonte;
+            txtNome.ForeColor = ControladorDarkMode.corFonte;
+            txtEndereco.ForeColor = ControladorDarkMode.corFonte;
+            mskTelefone.ForeColor = ControladorDarkMode.corFonte;
+            mskCpf.ForeColor = ControladorDarkMode.corFonte;
+            mskCnpj.ForeColor = ControladorDarkMode.corFonte;
+            mskCnh.ForeColor = ControladorDarkMode.corFonte;
+            dtDataValidade.ForeColor = ControladorDarkMode.corFonte;
+            mskRg.ForeColor = ControladorDarkMode.corFonte;
+            cbEmpresas.ForeColor = ControladorDarkMode.corFonte;
+
+            btnGravar.BackColor = ControladorDarkMode.corFundoTxBox;
+            btnCancelar.BackColor = ControladorDarkMode.corFundoTxBox;
+            rbFisico.ForeColor = ControladorDarkMode.corFonte;
+            rbJuridico.ForeColor = ControladorDarkMode.corFonte;
+        }
+
         public TipoClienteEnum TipoCliente
         {
             get

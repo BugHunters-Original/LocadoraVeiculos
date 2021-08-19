@@ -2,6 +2,10 @@
 
 namespace LocadoraVeiculo.WindowsApp.Shared
 {
+    public interface IApareciaAlteravel
+    {
+        void AtualizarAparencia();
+    }
     public interface ICadastravel
     {
         void InserirNovoRegistro();
