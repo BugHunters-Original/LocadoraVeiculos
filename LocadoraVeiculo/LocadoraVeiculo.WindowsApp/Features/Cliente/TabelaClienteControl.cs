@@ -1,18 +1,25 @@
 ﻿using LocadoraVeiculo.ClienteModule;
 using LocadoraVeiculo.WindowsApp.Shared;
+using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Windows.Forms;
 
 namespace LocadoraVeiculo.WindowsApp.Features.Clientes
 {
-    public partial class TabelaClienteControl : UserControl
+    public partial class TabelaClienteControl : UserControl, IApareciaAlteravel
     {
         public TabelaClienteControl()
         {
             InitializeComponent();
-            gridClientes.ConfigurarGridZebrado();
+            ConfigurarGridLightMode();
             gridClientes.ConfigurarGridSomenteLeitura();
             gridClientes.Columns.AddRange(ObterColunas());
+        }
+
+        public void ConfigurarGridLightMode()
+        {
+            gridClientes.ConfigurarGridZebrado();
         }
 
         public DataGridViewColumn[] ObterColunas()
@@ -58,6 +65,11 @@ namespace LocadoraVeiculo.WindowsApp.Features.Clientes
         public string ObtemTipo()
         {
             return gridClientes.SelecionarTipo<string>();
+        }
+
+        public void AtualizarAparencia()
+        {
+            ConfigurarGridLightMode();
         }
     }
 }

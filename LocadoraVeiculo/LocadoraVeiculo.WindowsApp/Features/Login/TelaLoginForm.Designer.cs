@@ -29,6 +29,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.Login
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(TelaLoginForm));
             this.label1 = new System.Windows.Forms.Label();
             this.txtUsuario = new System.Windows.Forms.TextBox();
@@ -38,6 +39,9 @@ namespace LocadoraVeiculo.WindowsApp.Features.Login
             this.btnLogar = new System.Windows.Forms.Button();
             this.Footer = new System.Windows.Forms.StatusStrip();
             this.labelFooter = new System.Windows.Forms.ToolStripStatusLabel();
+            this.btnModo = new System.Windows.Forms.Button();
+            this.bunifuElipse1 = new Bunifu.Framework.UI.BunifuElipse(this.components);
+            this.btnClose = new System.Windows.Forms.Button();
             this.Footer.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -116,12 +120,41 @@ namespace LocadoraVeiculo.WindowsApp.Features.Login
             this.labelFooter.Size = new System.Drawing.Size(91, 18);
             this.labelFooter.Text = "Bem vindo!";
             // 
+            // btnModo
+            // 
+            this.btnModo.Image = global::LocadoraVeiculo.WindowsApp.Properties.Resources.whiteMode;
+            this.btnModo.Location = new System.Drawing.Point(550, 12);
+            this.btnModo.Name = "btnModo";
+            this.btnModo.Size = new System.Drawing.Size(30, 30);
+            this.btnModo.TabIndex = 8;
+            this.btnModo.UseVisualStyleBackColor = true;
+            this.btnModo.Click += new System.EventHandler(this.btnModo_Click_1);
+            // 
+            // bunifuElipse1
+            // 
+            this.bunifuElipse1.ElipseRadius = 8;
+            this.bunifuElipse1.TargetControl = this;
+            // 
+            // btnClose
+            // 
+            this.btnClose.BackColor = System.Drawing.Color.Transparent;
+            this.btnClose.ForeColor = System.Drawing.Color.Transparent;
+            this.btnClose.Image = global::LocadoraVeiculo.WindowsApp.Properties.Resources.close_dark;
+            this.btnClose.Location = new System.Drawing.Point(590, 12);
+            this.btnClose.Name = "btnClose";
+            this.btnClose.Size = new System.Drawing.Size(30, 30);
+            this.btnClose.TabIndex = 9;
+            this.btnClose.UseVisualStyleBackColor = false;
+            this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
+            // 
             // TelaLoginForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 18F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ButtonFace;
             this.ClientSize = new System.Drawing.Size(632, 383);
+            this.Controls.Add(this.btnClose);
+            this.Controls.Add(this.btnModo);
             this.Controls.Add(this.Footer);
             this.Controls.Add(this.btnLogar);
             this.Controls.Add(this.label4);
@@ -130,7 +163,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.Login
             this.Controls.Add(this.txtUsuario);
             this.Controls.Add(this.label1);
             this.Font = new System.Drawing.Font("Lucida Sans Unicode", 9F);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.MinimizeBox = false;
@@ -155,5 +188,8 @@ namespace LocadoraVeiculo.WindowsApp.Features.Login
         private System.Windows.Forms.Button btnLogar;
         private System.Windows.Forms.StatusStrip Footer;
         private System.Windows.Forms.ToolStripStatusLabel labelFooter;
+        private System.Windows.Forms.Button btnModo;
+        private System.Windows.Forms.Button btnClose;
+        private Bunifu.Framework.UI.BunifuElipse bunifuElipse1;
     }
 }

@@ -83,6 +83,36 @@ namespace LocadoraVeiculo.WindowsApp.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap close {
+            get {
+                object obj = ResourceManager.GetObject("close", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap close_dark {
+            get {
+                object obj = ResourceManager.GetObject("close_dark", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap darkMode {
+            get {
+                object obj = ResourceManager.GetObject("darkMode", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap devolver {
             get {
                 object obj = ResourceManager.GetObject("devolver", resourceCulture);
@@ -146,6 +176,16 @@ namespace LocadoraVeiculo.WindowsApp.Properties {
         internal static System.Drawing.Bitmap outline_mode_edit_black_24dp {
             get {
                 object obj = ResourceManager.GetObject("outline_mode_edit_black_24dp", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap whiteMode {
+            get {
+                object obj = ResourceManager.GetObject("whiteMode", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

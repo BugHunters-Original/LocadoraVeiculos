@@ -16,6 +16,8 @@ using LocadoraVeiculo.WindowsApp.Features.TaxaServico;
 using LocadoraVeiculo.Controladores.ServicoModule;
 using LocadoraVeiculo.WindowsApp.Features.Combustivel;
 using LocadoraVeiculo.WindowsApp.Features.Dashboard;
+using LocadoraVeiculo.WindowsApp.Features.DarkMode;
+using System.Drawing;
 
 namespace LocadoraVeiculo.WindowsApp
 {
@@ -30,7 +32,11 @@ namespace LocadoraVeiculo.WindowsApp
         {
             InitializeComponent();
             Instancia = this;
-            ConfigurarPainelDashBoard();
+
+            dash = new DashboardControl();
+            panelRegistros.Controls.Add(dash);
+            SetColor();
+
         }
 
         public void AtualizarRodape(string mensagem)
@@ -181,6 +187,53 @@ namespace LocadoraVeiculo.WindowsApp
             operacoes.DevolverVeiculo();
         }
 
+        private void btnModo_Click(object sender, EventArgs e)
+        {
+            ControladorDarkMode.TrocarModo();
+            SetColor();
+            if (operacoes != null)
+            {
+                IApareciaAlteravel tabela = (IApareciaAlteravel)operacoes.ObterTabela();
+
+                tabela.AtualizarAparencia();
+            }
+        }
+
+        private void SetColor()
+        {
+            this.BackColor = ControladorDarkMode.corFundo;
+            this.ForeColor = ControladorDarkMode.corFonte;
+
+            menuStrip.BackColor = ControladorDarkMode.corTabela;
+            cadastrosToolStripMenuItem.BackColor = ControladorDarkMode.corTabela;
+            configuraçõesToolStripMenuItem.BackColor = ControladorDarkMode.corTabela;
+
+            cadastrosToolStripMenuItem.ForeColor = ControladorDarkMode.corFonte;
+            configuraçõesToolStripMenuItem.ForeColor = ControladorDarkMode.corFonte;
+
+            btnClose.Image = ControladorDarkMode.imgClose;
+            toolboxAcoes.BackColor = ControladorDarkMode.corPanel;
+            btnModo.Image = ControladorDarkMode.imgModo;
+
+            menuItemCliente.BackColor = ControladorDarkMode.corDark;
+            menuItemFuncionario.BackColor = ControladorDarkMode.corDark;
+            menuItemLocacao.BackColor = ControladorDarkMode.corDark;
+            menuItemVeiculo.BackColor = ControladorDarkMode.corDark;
+            grupoDeVeículosToolStripMenuItem.BackColor = ControladorDarkMode.corDark;
+            taxasEServiçosToolStripMenuItem.BackColor = ControladorDarkMode.corDark;
+            preçosCombustívelToolStripMenuItem.BackColor = ControladorDarkMode.corDark;
+
+            menuItemCliente.ForeColor = ControladorDarkMode.corFonte;
+            menuItemFuncionario.ForeColor = ControladorDarkMode.corFonte;
+            menuItemLocacao.ForeColor = ControladorDarkMode.corFonte;
+            menuItemVeiculo.ForeColor = ControladorDarkMode.corFonte;
+            grupoDeVeículosToolStripMenuItem.ForeColor = ControladorDarkMode.corFonte;
+            taxasEServiçosToolStripMenuItem.ForeColor = ControladorDarkMode.corFonte;
+            preçosCombustívelToolStripMenuItem.ForeColor = ControladorDarkMode.corFonte;
+
+            statusStripFooter.BackColor = ControladorDarkMode.corPanel;
+        }
+
         private void ConfigurarPainelRegistros()
         {
             UserControl tabela = operacoes.ObterTabela();
@@ -214,9 +267,15 @@ namespace LocadoraVeiculo.WindowsApp
             btnDevolver.Enabled = configuracao.EnabledDevolver;
         }
 
+
+        private void btnClose_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
         private void menuToolStripMenuItem_Click(object sender, EventArgs e)
         {
             ConfigurarPainelDashBoard();
+
         }
     }
 }

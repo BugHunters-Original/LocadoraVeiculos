@@ -1,4 +1,5 @@
-﻿using System;
+﻿using LocadoraVeiculo.WindowsApp.Features.DarkMode;
+using System;
 using System.Drawing;
 using System.Windows.Forms;
 
@@ -6,10 +7,19 @@ namespace LocadoraVeiculo.WindowsApp.Shared
 {
     public static class DataGridViewExtensions
     {
+
         public static void ConfigurarGridZebrado(this DataGridView grid)
         {
             Font font = new Font("Microsoft Sans Serif", 8.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            grid.ClearSelection();
+            if (ControladorDarkMode.ligado)
+                ConfigurarZebradoModoClaro(grid, font);
+            else
+                ConfigurarZebradoModoEscuro(grid, font);
+        }
 
+        public static void ConfigurarZebradoModoClaro(DataGridView grid, Font font)
+        {
             DataGridViewCellStyle linhaEscura = new DataGridViewCellStyle
             {
                 BackColor = Color.LightGray,
@@ -27,6 +37,30 @@ namespace LocadoraVeiculo.WindowsApp.Shared
                 Font = font,
                 SelectionBackColor = Color.LightYellow,
                 SelectionForeColor = Color.Black
+            };
+
+            grid.RowsDefaultCellStyle = linhaClara;
+        }
+
+        public static void ConfigurarZebradoModoEscuro(DataGridView grid, Font font)
+        {
+            DataGridViewCellStyle linhaEscura = new DataGridViewCellStyle
+            {
+                BackColor = Color.FromArgb(51, 51, 51),
+                Font = font,
+                ForeColor = Color.White,
+                SelectionBackColor = Color.Gray,
+                SelectionForeColor = Color.White
+            };
+
+            grid.AlternatingRowsDefaultCellStyle = linhaEscura;
+
+            DataGridViewCellStyle linhaClara = new DataGridViewCellStyle
+            {
+                BackColor = Color.Black,
+                Font = font,
+                SelectionBackColor = Color.Gray,
+                SelectionForeColor = Color.White
             };
 
             grid.RowsDefaultCellStyle = linhaClara;
