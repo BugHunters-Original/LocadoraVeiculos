@@ -14,6 +14,7 @@ namespace LocadoraVeiculo.Controladores.LocacaoModule
 {
     public class ControladorLocacao : Controlador<LocacaoVeiculo>
     {
+        #region Queries
         private const string sqlInserirLocacao =
        @"INSERT INTO TBLOCACAO
 	                (
@@ -74,12 +75,15 @@ namespace LocadoraVeiculo.Controladores.LocacaoModule
                     WHERE 
                         ID = @ID";
 
+
         private const string sqlMudarDisponibilidade =
             @"UPDATE TBVEICULOS
                     SET
                         [DISPONIBILIDADE_VEICULO] = @DISPONIBILIDADE_VEICULO
                     WHERE 
                         ID = @ID_VEICULO";
+
+
 
         private const string sqlExcluirLocacao =
             @"DELETE 
@@ -135,6 +139,23 @@ namespace LocadoraVeiculo.Controladores.LocacaoModule
                 [TBLOCACAO]
             WHERE 
                 [ID] = @ID";
+        private const string sqlExisteVeiculo =
+            @"SELECT 
+                COUNT(*) 
+            FROM 
+                [TBLOCACAO]
+            WHERE 
+                [ID_VEICULO] = @ID";
+
+
+
+        private const string sqlExisteCliente =
+            @"SELECT 
+                COUNT(*) 
+            FROM 
+                [TBLOCACAO]
+            WHERE 
+                [ID_CLIENTELOCADOR] = @ID";
 
         private const string sqlLocacoesPendentes =
             @"SELECT 
@@ -164,7 +185,44 @@ namespace LocadoraVeiculo.Controladores.LocacaoModule
                         TBLOCACAO
                     WHERE 
                         [STATUS] = 'Em Aberto'";
+        private const string sqlSelecionarLocacoesConcluidas =
+            @"SELECT
+                        [ID],                
+		                [ID_CONDUTOR], 
+		                [ID_CLIENTELOCADOR], 
+		                [ID_VEICULO],
+                        [DATA_SAIDA], 
+		                [DATA_RETORNOESPERADO],
+                        [PLANO],
+                        [TIPOCLIENTE],
+                        [PRECOSERVICOS],
+                        [DIAS],
+                        [STATUS],    
+                        [PRECOCOMBUSTIVEL],    
+                        [PRECOPLANO],    
+                        [PRECOTOTAL] 
+	                FROM
+                        TBLOCACAO
+                    WHERE 
+                        [STATUS] = 'Concluída'";
+        #endregion
 
+        public bool VerificarCliente(int id)
+        {
+            return Db.Exists(sqlExisteCliente, AdicionarParametro("ID", id));
+        }
+        public bool VerificarVeiculo(int id)
+        {
+            return Db.Exists(sqlExisteVeiculo, AdicionarParametro("ID", id));
+        }
+        public void ConcluirLocacao(int id, LocacaoVeiculo locacao)
+        {
+            locacao.Id = id;
+            locacao.StatusLocacao = "Concluída";
+            locacao.Veiculo.disponibilidade_Veiculo = 1;
+            Db.Update(sqlConcluirLocacao, ObtemParametrosLocacao(locacao));
+            Db.Update(sqlMudarDisponibilidade, ObtemParametrosLocacao(locacao));
+        }
         public override string Editar(int id, LocacaoVeiculo registro)
         {
             string resultadoValidacao = registro.Validar();
@@ -177,17 +235,6 @@ namespace LocadoraVeiculo.Controladores.LocacaoModule
 
             return resultadoValidacao;
         }
-        public void ConcluirLocacao(int id, LocacaoVeiculo locacao)
-        {
-            locacao.Id = id;
-            locacao.StatusLocacao = "Concluída";
-            locacao.Veiculo.disponibilidade_Veiculo = 1;
-            Db.Update(sqlConcluirLocacao, ObtemParametrosLocacao(locacao));
-            Db.Update(sqlMudarDisponibilidade, ObtemParametrosLocacao(locacao));
-        }
-
-        
-
         public override bool Excluir(int id)
         {
             try
@@ -201,12 +248,10 @@ namespace LocadoraVeiculo.Controladores.LocacaoModule
 
             return true;
         }
-
         public override bool Existe(int id)
         {
             return Db.Exists(sqlExisteLocacao, AdicionarParametro("ID", id));
         }
-
         public override string InserirNovo(LocacaoVeiculo registro)
         {
             string resultadoValidacao = registro.Validar();
@@ -218,21 +263,22 @@ namespace LocadoraVeiculo.Controladores.LocacaoModule
 
             return resultadoValidacao;
         }
-
         public override LocacaoVeiculo SelecionarPorId(int id)
         {
             return Db.Get(sqlSelecionarLocacaoPorId, ConverterEmLocacao, AdicionarParametro("ID", id));
         }
-
         public override List<LocacaoVeiculo> SelecionarTodos()
         {
             return Db.GetAll(sqlSelecionarTodasLocacoes, ConverterEmLocacao);
+        }
+        public List<LocacaoVeiculo> SelecionarTodasLocacoesConcluidas()
+        {
+            return Db.GetAll(sqlSelecionarLocacoesConcluidas, ConverterEmLocacao);
         }
         public List<LocacaoVeiculo> SelecionarTodasLocacoesPendentes()
         {
             return Db.GetAll(sqlSelecionarLocacoesPendentes, ConverterEmLocacao);
         }
-
         public int SelecionaPendentes()
         {
             return Db.GetAll(sqlLocacoesPendentes, ConverterEmLocacao).Count;

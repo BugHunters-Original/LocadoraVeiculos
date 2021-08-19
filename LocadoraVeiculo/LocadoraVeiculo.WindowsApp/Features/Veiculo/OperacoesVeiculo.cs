@@ -1,4 +1,5 @@
-﻿using LocadoraVeiculo.Controladores.VeiculoModule;
+﻿using LocadoraVeiculo.Controladores.LocacaoModule;
+using LocadoraVeiculo.Controladores.VeiculoModule;
 using LocadoraVeiculo.VeiculoModule;
 using LocadoraVeiculo.WindowsApp.Shared;
 using System;
@@ -13,10 +14,12 @@ namespace LocadoraVeiculo.WindowsApp.Features.Veiculo
     public class OperacoesVeiculo : ICadastravel
     {
         private readonly ControladorVeiculo controlador = null;
+        private readonly ControladorLocacao controladorLocacao = null;
         private readonly TabelaVeiculoControl tabelaVeiculos = null;
 
         public OperacoesVeiculo(ControladorVeiculo ctrlVeiculo)
         {
+            controladorLocacao = new ControladorLocacao();
             controlador = ctrlVeiculo;
             tabelaVeiculos = new TabelaVeiculoControl();
         }
@@ -82,14 +85,25 @@ namespace LocadoraVeiculo.WindowsApp.Features.Veiculo
             if (MessageBox.Show($"Tem certeza que deseja excluir o Veículo: [{veiculoSelecionada.nome}] ?",
                 "Exclusão de Veículos", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK)
             {
-                controlador.Excluir(id);
+                bool excluiu = controlador.Excluir(id);
 
-                List<VeiculoModule.Veiculo> veiculos = controlador.SelecionarTodos();
+                if (excluiu)
+                {
+                    controlador.Excluir(id);
 
-                tabelaVeiculos.AtualizarRegistros(veiculos);
+                    List<VeiculoModule.Veiculo> veiculos = controlador.SelecionarTodos();
 
-                TelaPrincipalForm.Instancia.AtualizarRodape($"Veículo: [{veiculoSelecionada.nome}] removido com sucesso");
+                    tabelaVeiculos.AtualizarRegistros(veiculos);
+
+                    TelaPrincipalForm.Instancia.AtualizarRodape($"Veículo: [{veiculoSelecionada.nome}] removido com sucesso");
+                }
+                else
+                {
+                    MessageBox.Show("Remova primeiro as Locações vinculadas ao Veículo e tente novamente",
+                        "Exclusão de Veículos", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
+
         }
 
         public void DevolverVeiculo() { }

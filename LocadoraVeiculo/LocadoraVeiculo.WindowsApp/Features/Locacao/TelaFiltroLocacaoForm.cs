@@ -16,5 +16,17 @@ namespace LocadoraVeiculo.WindowsApp.Features.Locacao
         {
             InitializeComponent();
         }
+        public FiltroLocacaoEnum TipoFiltro
+        {
+            get
+            {
+                if (rdbChegadasPendentes.Checked)
+                    return FiltroLocacaoEnum.LocacoesPendentes;
+                else if (rdbDevolucoes.Checked)
+                    return FiltroLocacaoEnum.LocacoesConcluidas;
+                else
+                    return FiltroLocacaoEnum.TodasLocacoes;
+            }
+        }
     }
 }
