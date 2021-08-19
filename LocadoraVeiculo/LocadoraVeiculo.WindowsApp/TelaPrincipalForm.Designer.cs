@@ -49,8 +49,8 @@ namespace LocadoraVeiculo.WindowsApp
             this.menuItemFuncionario = new System.Windows.Forms.ToolStripMenuItem();
             this.grupoDeVeículosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.taxasEServiçosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
+            this.configuraçõesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.preçosCombustívelToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.statusStripFooter = new System.Windows.Forms.StatusStrip();
             this.labelRodape = new System.Windows.Forms.ToolStripStatusLabel();
             this.panelRegistros = new System.Windows.Forms.Panel();
@@ -174,7 +174,7 @@ namespace LocadoraVeiculo.WindowsApp
             this.menuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.menuToolStripMenuItem,
             this.cadastrosToolStripMenuItem,
-            this.toolStripMenuItem1});
+            this.configuraçõesToolStripMenuItem});
             this.menuStrip.Location = new System.Drawing.Point(0, 0);
             this.menuStrip.Name = "menuStrip";
             this.menuStrip.Padding = new System.Windows.Forms.Padding(9, 2, 0, 2);
@@ -255,7 +255,6 @@ namespace LocadoraVeiculo.WindowsApp
             // 
             // toolStripMenuItem1
             // 
-
             this.configuraçõesToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.preçosCombustívelToolStripMenuItem});
             this.configuraçõesToolStripMenuItem.Font = new System.Drawing.Font("Lucida Sans Unicode", 9F);
@@ -385,8 +384,8 @@ namespace LocadoraVeiculo.WindowsApp
         private System.Windows.Forms.ToolStripMenuItem menuToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem grupoDeVeículosToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem taxasEServiçosToolStripMenuItem;
-
         private System.Windows.Forms.ToolStripMenuItem preçosCombustívelToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem configuraçõesToolStripMenuItem;
         private System.Windows.Forms.ToolStripButton btnDevolver;
         private System.Windows.Forms.Button btnClose;
         private Bunifu.Framework.UI.BunifuElipse bunifuElipse1;
