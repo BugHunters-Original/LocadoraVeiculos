@@ -56,7 +56,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.Locacao
             // 
             this.dtRetorno.Location = new System.Drawing.Point(147, 56);
             this.dtRetorno.Name = "dtRetorno";
-            this.dtRetorno.Size = new System.Drawing.Size(216, 20);
+            this.dtRetorno.Size = new System.Drawing.Size(279, 20);
             this.dtRetorno.TabIndex = 0;
             this.dtRetorno.ValueChanged += new System.EventHandler(this.dtRetorno_ValueChanged);
             // 
@@ -73,7 +73,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.Locacao
             // 
             this.txtKmAtual.Location = new System.Drawing.Point(147, 109);
             this.txtKmAtual.Name = "txtKmAtual";
-            this.txtKmAtual.Size = new System.Drawing.Size(216, 20);
+            this.txtKmAtual.Size = new System.Drawing.Size(279, 20);
             this.txtKmAtual.TabIndex = 2;
             this.txtKmAtual.Leave += new System.EventHandler(this.txtKmAtual_Leave);
             // 
@@ -101,7 +101,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.Locacao
             "Cheio"});
             this.cbNivelTanque.Location = new System.Drawing.Point(147, 136);
             this.cbNivelTanque.Name = "cbNivelTanque";
-            this.cbNivelTanque.Size = new System.Drawing.Size(216, 21);
+            this.cbNivelTanque.Size = new System.Drawing.Size(279, 21);
             this.cbNivelTanque.TabIndex = 4;
             this.cbNivelTanque.SelectedIndexChanged += new System.EventHandler(this.cbNivelTanque_SelectedIndexChanged);
             // 
@@ -137,7 +137,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.Locacao
             this.txtTotal.Location = new System.Drawing.Point(147, 241);
             this.txtTotal.Name = "txtTotal";
             this.txtTotal.ReadOnly = true;
-            this.txtTotal.Size = new System.Drawing.Size(216, 20);
+            this.txtTotal.Size = new System.Drawing.Size(279, 20);
             this.txtTotal.TabIndex = 9;
             // 
             // txtCombustivel
@@ -145,13 +145,13 @@ namespace LocadoraVeiculo.WindowsApp.Features.Locacao
             this.txtCombustivel.Location = new System.Drawing.Point(147, 163);
             this.txtCombustivel.Name = "txtCombustivel";
             this.txtCombustivel.ReadOnly = true;
-            this.txtCombustivel.Size = new System.Drawing.Size(216, 20);
+            this.txtCombustivel.Size = new System.Drawing.Size(279, 20);
             this.txtCombustivel.TabIndex = 11;
             // 
             // btnNota
             // 
             this.btnNota.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.btnNota.Location = new System.Drawing.Point(306, 276);
+            this.btnNota.Location = new System.Drawing.Point(270, 276);
             this.btnNota.Name = "btnNota";
             this.btnNota.Size = new System.Drawing.Size(75, 23);
             this.btnNota.TabIndex = 12;
@@ -162,7 +162,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.Locacao
             // btnCancelar
             // 
             this.btnCancelar.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnCancelar.Location = new System.Drawing.Point(387, 276);
+            this.btnCancelar.Location = new System.Drawing.Point(351, 276);
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Size = new System.Drawing.Size(75, 23);
             this.btnCancelar.TabIndex = 13;
@@ -183,7 +183,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.Locacao
             this.txtKmInicial.Location = new System.Drawing.Point(147, 82);
             this.txtKmInicial.Name = "txtKmInicial";
             this.txtKmInicial.ReadOnly = true;
-            this.txtKmInicial.Size = new System.Drawing.Size(216, 20);
+            this.txtKmInicial.Size = new System.Drawing.Size(279, 20);
             this.txtKmInicial.TabIndex = 14;
             // 
             // label8
@@ -200,7 +200,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.Locacao
             this.dtRetornoEsperada.Enabled = false;
             this.dtRetornoEsperada.Location = new System.Drawing.Point(147, 30);
             this.dtRetornoEsperada.Name = "dtRetornoEsperada";
-            this.dtRetornoEsperada.Size = new System.Drawing.Size(216, 20);
+            this.dtRetornoEsperada.Size = new System.Drawing.Size(279, 20);
             this.dtRetornoEsperada.TabIndex = 16;
             // 
             // txtServico
@@ -208,7 +208,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.Locacao
             this.txtServico.Location = new System.Drawing.Point(147, 189);
             this.txtServico.Name = "txtServico";
             this.txtServico.ReadOnly = true;
-            this.txtServico.Size = new System.Drawing.Size(216, 20);
+            this.txtServico.Size = new System.Drawing.Size(279, 20);
             this.txtServico.TabIndex = 19;
             // 
             // label4
@@ -225,7 +225,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.Locacao
             this.txtMulta.Location = new System.Drawing.Point(147, 215);
             this.txtMulta.Name = "txtMulta";
             this.txtMulta.ReadOnly = true;
-            this.txtMulta.Size = new System.Drawing.Size(216, 20);
+            this.txtMulta.Size = new System.Drawing.Size(279, 20);
             this.txtMulta.TabIndex = 21;
             // 
             // label9

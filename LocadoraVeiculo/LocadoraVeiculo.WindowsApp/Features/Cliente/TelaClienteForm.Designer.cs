@@ -110,7 +110,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.Clientes
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Lucida Sans Unicode", 8F);
-            this.label3.Location = new System.Drawing.Point(118, 102);
+            this.label3.Location = new System.Drawing.Point(121, 99);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(42, 15);
             this.label3.TabIndex = 13;
@@ -150,7 +150,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.Clientes
             // 
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Lucida Sans Unicode", 8F);
-            this.label7.Location = new System.Drawing.Point(21, 282);
+            this.label7.Location = new System.Drawing.Point(36, 283);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(125, 15);
             this.label7.TabIndex = 17;
@@ -170,7 +170,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.Clientes
             // 
             this.label9.AutoSize = true;
             this.label9.Font = new System.Drawing.Font("Lucida Sans Unicode", 8F);
-            this.label9.Location = new System.Drawing.Point(24, 343);
+            this.label9.Location = new System.Drawing.Point(38, 339);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(122, 15);
             this.label9.TabIndex = 19;
@@ -180,7 +180,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.Clientes
             // 
             this.label10.AutoSize = true;
             this.label10.Font = new System.Drawing.Font("Lucida Sans Unicode", 8F);
-            this.label10.Location = new System.Drawing.Point(97, 132);
+            this.label10.Location = new System.Drawing.Point(103, 129);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(60, 15);
             this.label10.TabIndex = 20;
@@ -190,7 +190,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.Clientes
             // 
             this.label11.AutoSize = true;
             this.label11.Font = new System.Drawing.Font("Lucida Sans Unicode", 8F);
-            this.label11.Location = new System.Drawing.Point(101, 162);
+            this.label11.Location = new System.Drawing.Point(105, 159);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(56, 15);
             this.label11.TabIndex = 21;

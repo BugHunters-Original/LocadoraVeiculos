@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -111,13 +112,42 @@ namespace LocadoraVeiculo.WindowsApp.Features.Locacao
 
         private void btnNota_Click(object sender, EventArgs e)
         {
+            if (ValidarCampos() != "Valido")
+            {
+                DialogResult = DialogResult.None;
+
+                string primeiroErro = new StringReader(ValidarCampos()).ReadLine();
+
+                TelaPrincipalForm.Instancia.AtualizarRodape(primeiroErro);
+                return;
+            }
+
             locacao.PrecoTotal = Convert.ToDecimal(multa) * (locacao.PrecoCombustivel + locacao.PrecoPlano + locacao.PrecoServicos);
             locacao.Veiculo.km_Inicial = Convert.ToInt32(txtKmAtual.Text);
         }
 
+        private string ValidarCampos()
+        {
+            string valido = "";
+
+            if (dtRetorno.Value.Day < dtRetornoEsperada.Value.Day)
+                valido += "A Data de Retorno não pode ser menor que a Data de Retorno Esperada\r\n";
+
+            if (txtKmAtual.Text == "")
+                valido += "O Campo Quilometragem Atual não pode ser nulo\r\n";
+
+            if (cbNivelTanque.Text == "")
+                valido += "O Campo Nível do Tanque não pode ser nulo\r\n";
+
+            if (valido == "")
+                return "Valido";
+
+            return valido;
+        }
+
         private void dtRetorno_ValueChanged(object sender, EventArgs e)
         {
-            if (dtRetorno.Value > dtRetornoEsperada.Value)
+            if (dtRetorno.Value.Day > dtRetornoEsperada.Value.Day)
             {
                 multa = 1.1;
                 txtMulta.Text = "10% no total";
