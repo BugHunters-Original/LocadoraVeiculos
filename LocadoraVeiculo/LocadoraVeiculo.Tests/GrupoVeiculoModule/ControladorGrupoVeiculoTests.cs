@@ -14,6 +14,11 @@ namespace LocadoraVeiculo.Tests.GrupoVeiculoModule
         public ControladorGrupoVeiculoTests()
         {
             controlador = new ControladorGrupoVeiculo();
+            LimparBancos();
+        }
+
+        private static void LimparBancos()
+        {
             Db.Update("DELETE FROM [TBLOCACAO]");
             Db.Update("DELETE FROM [TBVEICULOS]");
             Db.Update("DELETE FROM [TBTIPOVEICULO]");
@@ -31,6 +36,7 @@ namespace LocadoraVeiculo.Tests.GrupoVeiculoModule
             //assert
             var clienteEncontrado = controlador.SelecionarPorId(novoTipoGrupo.Id);
             clienteEncontrado.Should().Be(novoTipoGrupo);
+            LimparBancos();
         }
 
         [TestMethod]
@@ -48,6 +54,7 @@ namespace LocadoraVeiculo.Tests.GrupoVeiculoModule
             //assert
             GrupoVeiculo grupoAtualizado = controlador.SelecionarPorId(novoTipoGrupo.Id);
             grupoAtualizado.Should().Be(novoTipoGrupoEditado);
+            LimparBancos();
         }
 
         [TestMethod]
@@ -63,6 +70,7 @@ namespace LocadoraVeiculo.Tests.GrupoVeiculoModule
             //assert
             GrupoVeiculo grupoEncontrado = controlador.SelecionarPorId(novoTipoGrupo.Id);
             grupoEncontrado.Should().BeNull();
+            LimparBancos();
         }
 
         [TestMethod]
@@ -77,6 +85,7 @@ namespace LocadoraVeiculo.Tests.GrupoVeiculoModule
 
             //assert
             grupoEncontrado.Should().NotBeNull();
+            LimparBancos();
         }
         [TestMethod]
         public void DeveSelecionar_Todos()
@@ -99,6 +108,7 @@ namespace LocadoraVeiculo.Tests.GrupoVeiculoModule
             contatos[0].NomeTipo.Should().Be("Econômico");
             contatos[1].NomeTipo.Should().Be("Esportivo");
             contatos[2].NomeTipo.Should().Be("Vintage");
+            LimparBancos();
         }
     }
 }

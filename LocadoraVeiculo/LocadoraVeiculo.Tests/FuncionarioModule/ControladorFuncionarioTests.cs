@@ -16,8 +16,13 @@ namespace LocadoraVeiculo.Tests.FuncionarioModule
         public ControladorFuncionarioTests()
         {
             controlador = new ControladorFuncionario();
-            Db.Update("DELETE FROM [TBFUNCIONARIO]");
+            LimparBanco();
 
+        }
+
+        private static void LimparBanco()
+        {
+            Db.Update("DELETE FROM [TBFUNCIONARIO]");
         }
 
         [TestMethod]
@@ -32,6 +37,7 @@ namespace LocadoraVeiculo.Tests.FuncionarioModule
             //assert
             var funcionarioEncontrado = controlador.SelecionarPorId(novoFuncionario.Id);
             funcionarioEncontrado.Should().Be(novoFuncionario);
+            LimparBanco();
         }
 
         [TestMethod]
@@ -49,6 +55,7 @@ namespace LocadoraVeiculo.Tests.FuncionarioModule
             //assert
             Funcionario funcionarioAtualizado = controlador.SelecionarPorId(funcionario.Id);
             funcionarioAtualizado.Should().Be(novoFuncionario);
+            LimparBanco();
         }
 
 
@@ -66,6 +73,7 @@ namespace LocadoraVeiculo.Tests.FuncionarioModule
             //assert
             Funcionario funcionarioEncontrado = controlador.SelecionarPorId(funcionario.Id);
             funcionarioEncontrado.Should().BeNull();
+            LimparBanco();
         }
 
         [TestMethod]
@@ -80,6 +88,7 @@ namespace LocadoraVeiculo.Tests.FuncionarioModule
 
             //assert
             funcionarioEncontrado.Should().NotBeNull();
+            LimparBanco();
         }
 
         [TestMethod]
@@ -103,6 +112,7 @@ namespace LocadoraVeiculo.Tests.FuncionarioModule
             funcionarios[0].Nome.Should().Be("Andrey");
             funcionarios[1].Nome.Should().Be("Arthur");
             funcionarios[2].Nome.Should().Be("Luisa Farias");
+            LimparBanco();
         }
     }
 }
