@@ -168,6 +168,7 @@
       <DependentUpon>TelaCombustivelForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Features\DarkMode\ControladorDarkMode.cs" />
+    <Compile Include="Features\Dashboard\ConfiguracaoDashboardToolBox.cs" />
     <Compile Include="Features\Dashboard\DashboardControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -446,6 +447,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\carRented2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\outline_add_circle_outline_white_24dp.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
