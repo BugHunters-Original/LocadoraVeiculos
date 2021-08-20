@@ -18,6 +18,11 @@ namespace LocadoraVeiculo.Tests.CondutorModule
         {
             ctrlCliente = new ControladorClienteCNPJ();
             ctrlCondutor = new ControladorClienteCPF();
+            LimparBancos();
+        }
+
+        private static void LimparBancos()
+        {
             Db.Update("DELETE FROM [TBLOCACAO]");
             Db.Update("DELETE FROM [TBCLIENTECPF]");
             Db.Update("DELETE FROM [TBCLIENTECNPJ]");
@@ -42,6 +47,7 @@ namespace LocadoraVeiculo.Tests.CondutorModule
             //assert
             var condutorEncontrado = ctrlCondutor.SelecionarPorId(novoClienteCPF.Id);
             condutorEncontrado.Should().Be(novoClienteCPF);
+            LimparBancos();
         }
 
         [TestMethod]
@@ -66,6 +72,7 @@ namespace LocadoraVeiculo.Tests.CondutorModule
             //assert
             var clienteCPFEncontrado = ctrlCondutor.SelecionarPorId(clienteCPF.Id);
             clienteCPFEncontrado.Should().Be(novoClienteCPF);
+            LimparBancos();
         }
 
         [TestMethod]
@@ -87,6 +94,7 @@ namespace LocadoraVeiculo.Tests.CondutorModule
             //assert
             var condutorEncontrado = ctrlCondutor.SelecionarPorId(clienteCPF.Id);
             condutorEncontrado.Should().BeNull();
+            LimparBancos();
         }
 
         [TestMethod]
@@ -107,6 +115,7 @@ namespace LocadoraVeiculo.Tests.CondutorModule
 
             //assert
             clienteCPFEncontrado.Should().NotBeNull();
+            LimparBancos();
         }
         [TestMethod]
         public void DeveSelecionar_TodosClientes()
@@ -143,6 +152,7 @@ namespace LocadoraVeiculo.Tests.CondutorModule
             clientesCPF[0].Nome.Should().Be("Andrey Silva");
             clientesCPF[1].Nome.Should().Be("Gabriel Marques");
             clientesCPF[2].Nome.Should().Be("Pedro");
+            LimparBancos();
         }
     }
 }
