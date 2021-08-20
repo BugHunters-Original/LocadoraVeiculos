@@ -32,7 +32,13 @@ namespace LocadoraVeiculo.WindowsApp
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(TelaPrincipalForm));
             this.toolboxAcoes = new System.Windows.Forms.ToolStrip();
+            this.btnAdicionar = new System.Windows.Forms.ToolStripButton();
+            this.btnEditar = new System.Windows.Forms.ToolStripButton();
+            this.btnExcluir = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.btnFiltrar = new System.Windows.Forms.ToolStripButton();
+            this.btnDevolver = new System.Windows.Forms.ToolStripButton();
+            this.btnModo = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.labelTipoCadastro = new System.Windows.Forms.ToolStripLabel();
             this.menuStrip = new System.Windows.Forms.MenuStrip();
@@ -53,12 +59,6 @@ namespace LocadoraVeiculo.WindowsApp
             this.btnMinimize = new System.Windows.Forms.Button();
             this.btnMaximize = new System.Windows.Forms.Button();
             this.btnClose = new System.Windows.Forms.Button();
-            this.btnAdicionar = new System.Windows.Forms.ToolStripButton();
-            this.btnEditar = new System.Windows.Forms.ToolStripButton();
-            this.btnExcluir = new System.Windows.Forms.ToolStripButton();
-            this.btnFiltrar = new System.Windows.Forms.ToolStripButton();
-            this.btnDevolver = new System.Windows.Forms.ToolStripButton();
-            this.btnModo = new System.Windows.Forms.ToolStripButton();
             this.toolboxAcoes.SuspendLayout();
             this.menuStrip.SuspendLayout();
             this.statusStripFooter.SuspendLayout();
@@ -83,10 +83,91 @@ namespace LocadoraVeiculo.WindowsApp
             this.toolboxAcoes.TabIndex = 4;
             this.toolboxAcoes.Text = "toolStrip1";
             // 
+            // btnAdicionar
+            // 
+            this.btnAdicionar.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.btnAdicionar.Enabled = false;
+            this.btnAdicionar.Image = global::LocadoraVeiculo.WindowsApp.Properties.Resources.outline_add_circle_outline_black_24dp;
+            this.btnAdicionar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.btnAdicionar.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnAdicionar.Name = "btnAdicionar";
+            this.btnAdicionar.Padding = new System.Windows.Forms.Padding(5);
+            this.btnAdicionar.Size = new System.Drawing.Size(38, 38);
+            this.btnAdicionar.Text = "toolStripButton1";
+            this.btnAdicionar.ToolTipText = "Inserir";
+            this.btnAdicionar.Click += new System.EventHandler(this.btnAdicionar_Click);
+            // 
+            // btnEditar
+            // 
+            this.btnEditar.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.btnEditar.Enabled = false;
+            this.btnEditar.Image = global::LocadoraVeiculo.WindowsApp.Properties.Resources.outline_mode_edit_black_24dp;
+            this.btnEditar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.btnEditar.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnEditar.Name = "btnEditar";
+            this.btnEditar.Padding = new System.Windows.Forms.Padding(5);
+            this.btnEditar.Size = new System.Drawing.Size(38, 38);
+            this.btnEditar.Text = "toolStripButton1";
+            this.btnEditar.ToolTipText = "Editar";
+            this.btnEditar.Click += new System.EventHandler(this.btnEditar_Click);
+            // 
+            // btnExcluir
+            // 
+            this.btnExcluir.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.btnExcluir.Enabled = false;
+            this.btnExcluir.Image = global::LocadoraVeiculo.WindowsApp.Properties.Resources.outline_delete_black_24dp;
+            this.btnExcluir.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.btnExcluir.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnExcluir.Name = "btnExcluir";
+            this.btnExcluir.Padding = new System.Windows.Forms.Padding(5);
+            this.btnExcluir.Size = new System.Drawing.Size(38, 38);
+            this.btnExcluir.Text = "toolStripButton1";
+            this.btnExcluir.ToolTipText = "Excluir";
+            this.btnExcluir.Click += new System.EventHandler(this.btnExcluir_Click);
+            // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
             this.toolStripSeparator1.Size = new System.Drawing.Size(6, 41);
+            // 
+            // btnFiltrar
+            // 
+            this.btnFiltrar.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.btnFiltrar.Enabled = false;
+            this.btnFiltrar.Image = global::LocadoraVeiculo.WindowsApp.Properties.Resources.outline_filter_alt_black_24dp;
+            this.btnFiltrar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.btnFiltrar.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnFiltrar.Name = "btnFiltrar";
+            this.btnFiltrar.Padding = new System.Windows.Forms.Padding(5);
+            this.btnFiltrar.Size = new System.Drawing.Size(38, 38);
+            this.btnFiltrar.Text = "btn";
+            this.btnFiltrar.ToolTipText = "Filtrar";
+            this.btnFiltrar.Click += new System.EventHandler(this.btnFiltrar_Click);
+            // 
+            // btnDevolver
+            // 
+            this.btnDevolver.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.btnDevolver.Enabled = false;
+            this.btnDevolver.Image = global::LocadoraVeiculo.WindowsApp.Properties.Resources.devolver1;
+            this.btnDevolver.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.btnDevolver.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnDevolver.Name = "btnDevolver";
+            this.btnDevolver.Padding = new System.Windows.Forms.Padding(5);
+            this.btnDevolver.Size = new System.Drawing.Size(38, 38);
+            this.btnDevolver.Text = "toolStripButton1";
+            this.btnDevolver.ToolTipText = "Devolver veículo";
+            this.btnDevolver.Click += new System.EventHandler(this.btnDevolver_Click);
+            // 
+            // btnModo
+            // 
+            this.btnModo.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.btnModo.Image = global::LocadoraVeiculo.WindowsApp.Properties.Resources.whiteMode;
+            this.btnModo.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnModo.Name = "btnModo";
+            this.btnModo.Size = new System.Drawing.Size(24, 38);
+            this.btnModo.Text = "toolStripButton1";
+            this.btnModo.ToolTipText = "Mudar Tema";
+            this.btnModo.Click += new System.EventHandler(this.btnModo_Click);
             // 
             // toolStripSeparator2
             // 
@@ -267,6 +348,8 @@ namespace LocadoraVeiculo.WindowsApp
             // btnClose
             // 
             this.btnClose.BackColor = System.Drawing.Color.Transparent;
+            this.btnClose.FlatAppearance.BorderSize = 0;
+            this.btnClose.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnClose.ForeColor = System.Drawing.Color.Transparent;
             this.btnClose.Image = global::LocadoraVeiculo.WindowsApp.Properties.Resources.close;
             this.btnClose.Location = new System.Drawing.Point(962, 0);
@@ -275,87 +358,6 @@ namespace LocadoraVeiculo.WindowsApp
             this.btnClose.TabIndex = 10;
             this.btnClose.UseVisualStyleBackColor = false;
             this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
-            // 
-            // btnAdicionar
-            // 
-            this.btnAdicionar.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.btnAdicionar.Enabled = false;
-            this.btnAdicionar.Image = global::LocadoraVeiculo.WindowsApp.Properties.Resources.outline_add_circle_outline_black_24dp;
-            this.btnAdicionar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.btnAdicionar.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.btnAdicionar.Name = "btnAdicionar";
-            this.btnAdicionar.Padding = new System.Windows.Forms.Padding(5);
-            this.btnAdicionar.Size = new System.Drawing.Size(38, 38);
-            this.btnAdicionar.Text = "toolStripButton1";
-            this.btnAdicionar.ToolTipText = "Inserir";
-            this.btnAdicionar.Click += new System.EventHandler(this.btnAdicionar_Click);
-            // 
-            // btnEditar
-            // 
-            this.btnEditar.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.btnEditar.Enabled = false;
-            this.btnEditar.Image = global::LocadoraVeiculo.WindowsApp.Properties.Resources.outline_mode_edit_black_24dp;
-            this.btnEditar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.btnEditar.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.btnEditar.Name = "btnEditar";
-            this.btnEditar.Padding = new System.Windows.Forms.Padding(5);
-            this.btnEditar.Size = new System.Drawing.Size(38, 38);
-            this.btnEditar.Text = "toolStripButton1";
-            this.btnEditar.ToolTipText = "Editar";
-            this.btnEditar.Click += new System.EventHandler(this.btnEditar_Click);
-            // 
-            // btnExcluir
-            // 
-            this.btnExcluir.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.btnExcluir.Enabled = false;
-            this.btnExcluir.Image = global::LocadoraVeiculo.WindowsApp.Properties.Resources.outline_delete_black_24dp;
-            this.btnExcluir.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.btnExcluir.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.btnExcluir.Name = "btnExcluir";
-            this.btnExcluir.Padding = new System.Windows.Forms.Padding(5);
-            this.btnExcluir.Size = new System.Drawing.Size(38, 38);
-            this.btnExcluir.Text = "toolStripButton1";
-            this.btnExcluir.ToolTipText = "Excluir";
-            this.btnExcluir.Click += new System.EventHandler(this.btnExcluir_Click);
-            // 
-            // btnFiltrar
-            // 
-            this.btnFiltrar.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.btnFiltrar.Enabled = false;
-            this.btnFiltrar.Image = global::LocadoraVeiculo.WindowsApp.Properties.Resources.outline_filter_alt_black_24dp;
-            this.btnFiltrar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.btnFiltrar.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.btnFiltrar.Name = "btnFiltrar";
-            this.btnFiltrar.Padding = new System.Windows.Forms.Padding(5);
-            this.btnFiltrar.Size = new System.Drawing.Size(38, 38);
-            this.btnFiltrar.Text = "btn";
-            this.btnFiltrar.ToolTipText = "Filtrar";
-            this.btnFiltrar.Click += new System.EventHandler(this.btnFiltrar_Click);
-            // 
-            // btnDevolver
-            // 
-            this.btnDevolver.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.btnDevolver.Enabled = false;
-            this.btnDevolver.Image = global::LocadoraVeiculo.WindowsApp.Properties.Resources.devolver1;
-            this.btnDevolver.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.btnDevolver.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.btnDevolver.Name = "btnDevolver";
-            this.btnDevolver.Padding = new System.Windows.Forms.Padding(5);
-            this.btnDevolver.Size = new System.Drawing.Size(38, 38);
-            this.btnDevolver.Text = "toolStripButton1";
-            this.btnDevolver.ToolTipText = "Devolver veículo";
-            this.btnDevolver.Click += new System.EventHandler(this.btnDevolver_Click);
-            // 
-            // btnModo
-            // 
-            this.btnModo.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.btnModo.Image = global::LocadoraVeiculo.WindowsApp.Properties.Resources.whiteMode;
-            this.btnModo.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.btnModo.Name = "btnModo";
-            this.btnModo.Size = new System.Drawing.Size(24, 38);
-            this.btnModo.Text = "toolStripButton1";
-            this.btnModo.ToolTipText = "Mudar Tema";
-            this.btnModo.Click += new System.EventHandler(this.btnModo_Click);
             // 
             // TelaPrincipalForm
             // 

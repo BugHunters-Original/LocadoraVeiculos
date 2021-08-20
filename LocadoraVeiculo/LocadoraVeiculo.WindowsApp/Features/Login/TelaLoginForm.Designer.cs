@@ -51,7 +51,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.Login
             this.label1.Font = new System.Drawing.Font("Lucida Sans Unicode", 12F);
             this.label1.Location = new System.Drawing.Point(92, 160);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(89, 23);
+            this.label1.Size = new System.Drawing.Size(74, 20);
             this.label1.TabIndex = 0;
             this.label1.Text = "Usuário:";
             // 
@@ -59,7 +59,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.Login
             // 
             this.txtUsuario.Location = new System.Drawing.Point(182, 156);
             this.txtUsuario.Name = "txtUsuario";
-            this.txtUsuario.Size = new System.Drawing.Size(255, 31);
+            this.txtUsuario.Size = new System.Drawing.Size(255, 26);
             this.txtUsuario.TabIndex = 1;
             // 
             // label2
@@ -68,7 +68,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.Login
             this.label2.Font = new System.Drawing.Font("Lucida Sans Unicode", 20F);
             this.label2.Location = new System.Drawing.Point(210, 67);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(230, 42);
+            this.label2.Size = new System.Drawing.Size(186, 34);
             this.label2.TabIndex = 2;
             this.label2.Text = "ALUGA RECH";
             // 
@@ -77,7 +77,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.Login
             this.txtSenha.Location = new System.Drawing.Point(182, 201);
             this.txtSenha.Name = "txtSenha";
             this.txtSenha.PasswordChar = '*';
-            this.txtSenha.Size = new System.Drawing.Size(255, 31);
+            this.txtSenha.Size = new System.Drawing.Size(255, 26);
             this.txtSenha.TabIndex = 3;
             // 
             // label4
@@ -86,7 +86,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.Login
             this.label4.Font = new System.Drawing.Font("Lucida Sans Unicode", 12F);
             this.label4.Location = new System.Drawing.Point(92, 205);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(73, 23);
+            this.label4.Size = new System.Drawing.Size(62, 20);
             this.label4.TabIndex = 5;
             this.label4.Text = "Senha:";
             // 
@@ -107,9 +107,9 @@ namespace LocadoraVeiculo.WindowsApp.Features.Login
             this.Footer.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.Footer.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.labelFooter});
-            this.Footer.Location = new System.Drawing.Point(0, 359);
+            this.Footer.Location = new System.Drawing.Point(0, 361);
             this.Footer.Name = "Footer";
-            this.Footer.Size = new System.Drawing.Size(632, 24);
+            this.Footer.Size = new System.Drawing.Size(632, 22);
             this.Footer.TabIndex = 7;
             this.Footer.Text = "statusStrip1";
             // 
@@ -117,11 +117,13 @@ namespace LocadoraVeiculo.WindowsApp.Features.Login
             // 
             this.labelFooter.Font = new System.Drawing.Font("Lucida Sans Unicode", 9F);
             this.labelFooter.Name = "labelFooter";
-            this.labelFooter.Size = new System.Drawing.Size(91, 18);
+            this.labelFooter.Size = new System.Drawing.Size(72, 17);
             this.labelFooter.Text = "Bem vindo!";
             // 
             // btnModo
             // 
+            this.btnModo.FlatAppearance.BorderSize = 0;
+            this.btnModo.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnModo.Image = global::LocadoraVeiculo.WindowsApp.Properties.Resources.whiteMode;
             this.btnModo.Location = new System.Drawing.Point(550, 12);
             this.btnModo.Name = "btnModo";
@@ -138,6 +140,8 @@ namespace LocadoraVeiculo.WindowsApp.Features.Login
             // btnClose
             // 
             this.btnClose.BackColor = System.Drawing.Color.Transparent;
+            this.btnClose.FlatAppearance.BorderSize = 0;
+            this.btnClose.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnClose.ForeColor = System.Drawing.Color.Transparent;
             this.btnClose.Image = global::LocadoraVeiculo.WindowsApp.Properties.Resources.close_dark;
             this.btnClose.Location = new System.Drawing.Point(590, 12);
@@ -149,7 +153,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.Login
             // 
             // TelaLoginForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 18F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ButtonFace;
             this.ClientSize = new System.Drawing.Size(632, 383);
