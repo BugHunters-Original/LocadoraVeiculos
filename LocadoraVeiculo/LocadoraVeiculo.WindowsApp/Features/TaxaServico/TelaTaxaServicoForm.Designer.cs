@@ -29,6 +29,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.TaxaServico
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(TelaTaxaServicoForm));
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
@@ -41,6 +42,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.TaxaServico
             this.btnGravar = new System.Windows.Forms.Button();
             this.btnCancelar = new System.Windows.Forms.Button();
             this.txtPreco = new System.Windows.Forms.MaskedTextBox();
+            this.bunifuElipse1 = new Bunifu.Framework.UI.BunifuElipse(this.components);
             this.SuspendLayout();
             // 
             // label1
@@ -49,7 +51,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.TaxaServico
             this.label1.Font = new System.Drawing.Font("Lucida Sans Unicode", 8F);
             this.label1.Location = new System.Drawing.Point(84, 39);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(20, 15);
+            this.label1.Size = new System.Drawing.Size(25, 17);
             this.label1.TabIndex = 0;
             this.label1.Text = "Id:";
             // 
@@ -59,7 +61,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.TaxaServico
             this.label2.Font = new System.Drawing.Font("Lucida Sans Unicode", 8F);
             this.label2.Location = new System.Drawing.Point(21, 151);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(77, 15);
+            this.label2.Size = new System.Drawing.Size(98, 17);
             this.label2.TabIndex = 1;
             this.label2.Text = "Tipo Calculo:";
             // 
@@ -69,7 +71,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.TaxaServico
             this.label3.Font = new System.Drawing.Font("Lucida Sans Unicode", 8F);
             this.label3.Location = new System.Drawing.Point(61, 75);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(42, 15);
+            this.label3.Size = new System.Drawing.Size(52, 17);
             this.label3.TabIndex = 2;
             this.label3.Text = "Nome:";
             // 
@@ -79,7 +81,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.TaxaServico
             this.label4.Font = new System.Drawing.Font("Lucida Sans Unicode", 8F);
             this.label4.Location = new System.Drawing.Point(63, 111);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(40, 15);
+            this.label4.Size = new System.Drawing.Size(50, 17);
             this.label4.TabIndex = 3;
             this.label4.Text = "Preço:";
             // 
@@ -89,14 +91,14 @@ namespace LocadoraVeiculo.WindowsApp.Features.TaxaServico
             this.txtID.Enabled = false;
             this.txtID.Location = new System.Drawing.Point(112, 33);
             this.txtID.Name = "txtID";
-            this.txtID.Size = new System.Drawing.Size(186, 24);
+            this.txtID.Size = new System.Drawing.Size(186, 28);
             this.txtID.TabIndex = 4;
             // 
             // txtNome
             // 
             this.txtNome.Location = new System.Drawing.Point(112, 69);
             this.txtNome.Name = "txtNome";
-            this.txtNome.Size = new System.Drawing.Size(186, 24);
+            this.txtNome.Size = new System.Drawing.Size(186, 28);
             this.txtNome.TabIndex = 0;
             // 
             // rdFixo
@@ -105,7 +107,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.TaxaServico
             this.rdFixo.Font = new System.Drawing.Font("Lucida Sans Unicode", 8F);
             this.rdFixo.Location = new System.Drawing.Point(119, 149);
             this.rdFixo.Name = "rdFixo";
-            this.rdFixo.Size = new System.Drawing.Size(48, 19);
+            this.rdFixo.Size = new System.Drawing.Size(59, 21);
             this.rdFixo.TabIndex = 2;
             this.rdFixo.Text = "Fixo";
             this.rdFixo.UseVisualStyleBackColor = true;
@@ -117,7 +119,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.TaxaServico
             this.rdDiario.Font = new System.Drawing.Font("Lucida Sans Unicode", 8F);
             this.rdDiario.Location = new System.Drawing.Point(236, 149);
             this.rdDiario.Name = "rdDiario";
-            this.rdDiario.Size = new System.Drawing.Size(57, 19);
+            this.rdDiario.Size = new System.Drawing.Size(70, 21);
             this.rdDiario.TabIndex = 3;
             this.rdDiario.TabStop = true;
             this.rdDiario.Text = "Diário";
@@ -149,12 +151,17 @@ namespace LocadoraVeiculo.WindowsApp.Features.TaxaServico
             this.txtPreco.Location = new System.Drawing.Point(112, 105);
             this.txtPreco.Mask = "00000";
             this.txtPreco.Name = "txtPreco";
-            this.txtPreco.Size = new System.Drawing.Size(186, 24);
+            this.txtPreco.Size = new System.Drawing.Size(186, 28);
             this.txtPreco.TabIndex = 14;
+            // 
+            // bunifuElipse1
+            // 
+            this.bunifuElipse1.ElipseRadius = 8;
+            this.bunifuElipse1.TargetControl = this;
             // 
             // TelaTaxaServicoForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(335, 267);
             this.Controls.Add(this.txtPreco);
@@ -169,7 +176,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.TaxaServico
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Font = new System.Drawing.Font("Lucida Sans Unicode", 8F);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.MinimizeBox = false;
@@ -195,5 +202,6 @@ namespace LocadoraVeiculo.WindowsApp.Features.TaxaServico
         private System.Windows.Forms.Button btnGravar;
         private System.Windows.Forms.Button btnCancelar;
         private System.Windows.Forms.MaskedTextBox txtPreco;
+        private Bunifu.Framework.UI.BunifuElipse bunifuElipse1;
     }
 }
