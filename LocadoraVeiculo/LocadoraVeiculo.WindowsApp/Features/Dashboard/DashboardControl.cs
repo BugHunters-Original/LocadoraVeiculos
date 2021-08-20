@@ -29,7 +29,6 @@ namespace LocadoraVeiculo.WindowsApp.Features.Dashboard
             ConfigurarGridLightMode();
             dtDashboard.ConfigurarGridSomenteLeitura();
             dtDashboard.Columns.AddRange(ObterColunasLocacoesPendentes());
-            LocacaoPendentes();
         }
 
         public void ConfigurarGridLightMode()

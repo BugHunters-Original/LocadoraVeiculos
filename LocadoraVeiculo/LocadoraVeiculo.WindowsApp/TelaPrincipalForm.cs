@@ -34,7 +34,6 @@ namespace LocadoraVeiculo.WindowsApp
             Instancia = this;
             ConfigurarPainelDashBoard();
             SetColor();
-
         }
 
         public void AtualizarRodape(string mensagem)
@@ -164,7 +163,6 @@ namespace LocadoraVeiculo.WindowsApp
             operacoes.InserirNovoRegistro();
         }
 
-
         private void btnEditar_Click(object sender, EventArgs e)
         {
             operacoes.EditarRegistro();
@@ -197,9 +195,7 @@ namespace LocadoraVeiculo.WindowsApp
             }
             else
             {
-                IApareciaAlteravel tabela = new DashboardControl();
-
-                tabela.AtualizarAparencia();
+                BotaoHome();
             }
         }
 
@@ -286,12 +282,13 @@ namespace LocadoraVeiculo.WindowsApp
             btnDevolver.Enabled = configuracao.EnabledDevolver;
         }
 
-
-        private void btnClose_Click(object sender, EventArgs e)
-        {
-            Application.Exit();
-        }
         private void menuToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            operacoes = null;
+            BotaoHome();
+        }
+
+        private void BotaoHome()
         {
             btnEditar.Enabled = false;
             btnAdicionar.Enabled = false;
@@ -307,11 +304,14 @@ namespace LocadoraVeiculo.WindowsApp
             ConfigurarPainelDashBoard();
         }
 
+        private void btnClose_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
         private void btnMinimize_Click(object sender, EventArgs e)
         {
             this.WindowState = FormWindowState.Minimized;
         }
-
         private void btnMaximize_Click(object sender, EventArgs e)
         {
             if (this.WindowState == FormWindowState.Maximized) { this.WindowState = FormWindowState.Normal; }
