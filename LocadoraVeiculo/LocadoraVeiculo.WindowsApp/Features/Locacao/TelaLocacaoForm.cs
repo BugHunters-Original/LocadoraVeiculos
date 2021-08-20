@@ -5,6 +5,7 @@ using LocadoraVeiculo.Controladores.LocacaoModule;
 using LocadoraVeiculo.Controladores.VeiculoModule;
 using LocadoraVeiculo.LocacaoModule;
 using LocadoraVeiculo.ServicoModule;
+using LocadoraVeiculo.WindowsApp.Features.DarkMode;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -32,9 +33,35 @@ namespace LocadoraVeiculo.WindowsApp.Features.Locacao
             controladorVeiculo = new ControladorVeiculo();
             InitializeComponent();
             PopularComboboxes();
+            SetColor();
         }
 
-        public LocacaoVeiculo Locacao
+        private void SetColor()
+        {
+            this.BackColor = ControladorDarkMode.corPanel;
+            this.ForeColor = ControladorDarkMode.corFonte;
+
+            txtID.BackColor = ControladorDarkMode.corFundoTxBox;
+            cbCliente.BackColor = ControladorDarkMode.corFundoTxBox;
+            cbVeiculo.BackColor = ControladorDarkMode.corFundoTxBox;
+            cbCondutor.BackColor = ControladorDarkMode.corFundoTxBox;
+            dtSaida.BackColor = ControladorDarkMode.corFundoTxBox;
+            dtRetorno.BackColor = ControladorDarkMode.corFundoTxBox;
+
+            txtID.ForeColor = ControladorDarkMode.corFonte;
+            cbCliente.ForeColor = ControladorDarkMode.corFonte;
+            cbVeiculo.ForeColor = ControladorDarkMode.corFonte;
+            cbCondutor.ForeColor = ControladorDarkMode.corFonte;
+            dtSaida.ForeColor = ControladorDarkMode.corFonte;
+            dtRetorno.ForeColor = ControladorDarkMode.corFonte;
+            cbTipoLocacao.ForeColor = ControladorDarkMode.corFonte;
+
+            btnGravar.BackColor = ControladorDarkMode.corFundoTxBox;
+            btnCancelar.BackColor = ControladorDarkMode.corFundoTxBox;
+            btnTaxa.BackColor = ControladorDarkMode.corFundoTxBox;
+        }
+
+    public LocacaoVeiculo Locacao
         {
             get { return locacao; }
             set

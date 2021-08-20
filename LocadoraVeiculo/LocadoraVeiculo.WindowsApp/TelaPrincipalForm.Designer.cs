@@ -240,7 +240,7 @@ namespace LocadoraVeiculo.WindowsApp
             // 
             this.btnClose.BackColor = System.Drawing.Color.Transparent;
             this.btnClose.ForeColor = System.Drawing.Color.Transparent;
-            this.btnClose.Image = global::LocadoraVeiculo.WindowsApp.Properties.Resources.close_dark;
+            this.btnClose.Image = global::LocadoraVeiculo.WindowsApp.Properties.Resources.close;
             this.btnClose.Location = new System.Drawing.Point(962, 0);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(30, 30);

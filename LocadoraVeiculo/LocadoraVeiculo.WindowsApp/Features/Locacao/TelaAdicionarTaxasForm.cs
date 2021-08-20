@@ -1,5 +1,6 @@
 ﻿using LocadoraVeiculo.Controladores.ServicoModule;
 using LocadoraVeiculo.ServicoModule;
+using LocadoraVeiculo.WindowsApp.Features.DarkMode;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -21,6 +22,19 @@ namespace LocadoraVeiculo.WindowsApp.Features.Locacao
             controladorServico = new ControladorServico();
             InitializeComponent();
             PopularBox();
+        }
+
+        private void SetColor()
+        {
+            this.BackColor = ControladorDarkMode.corPanel;
+            this.ForeColor = ControladorDarkMode.corFonte;
+
+            cBoxTaxas.BackColor = ControladorDarkMode.corFundoTxBox;
+           
+            cBoxTaxas.ForeColor = ControladorDarkMode.corFonte;
+
+            btnGravar.BackColor = ControladorDarkMode.corFundoTxBox;
+            btnCancelar.BackColor = ControladorDarkMode.corFundoTxBox;
         }
 
         public List<Servico> Servicos

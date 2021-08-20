@@ -205,6 +205,10 @@ namespace LocadoraVeiculo.WindowsApp
             this.ForeColor = ControladorDarkMode.corFonte;
 
             btnAdicionar.Image = ControladorDarkMode.imgAdd;
+            btnEditar.Image = ControladorDarkMode.imgEditar;
+            btnExcluir.Image = ControladorDarkMode.imgExcluir;
+            btnFiltrar.Image = ControladorDarkMode.imgFiltro;
+            btnDevolver.Image = ControladorDarkMode.imgDevolver;
 
             menuToolStripMenuItem.ForeColor = ControladorDarkMode.corFonte;
             menuToolStripMenuItem.BackColor = ControladorDarkMode.corTabela;
