@@ -1,4 +1,5 @@
-﻿using System;
+﻿using LocadoraVeiculo.WindowsApp.Features.DarkMode;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -15,7 +16,20 @@ namespace LocadoraVeiculo.WindowsApp.Features.Locacao
         public TelaFiltroLocacaoForm()
         {
             InitializeComponent();
+            SetColor();
         }
+
+        private void SetColor()
+        {
+            this.BackColor = ControladorDarkMode.corPanel;
+            this.ForeColor = ControladorDarkMode.corFonte;
+
+            btnGravar.BackColor = ControladorDarkMode.corFundoTxBox;
+            btnCancelar.BackColor = ControladorDarkMode.corFundoTxBox;
+        }
+
+
+
         public FiltroLocacaoEnum TipoFiltro
         {
             get
