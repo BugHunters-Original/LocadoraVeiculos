@@ -206,6 +206,8 @@ namespace LocadoraVeiculo.WindowsApp
 
             btnAdicionar.Image = ControladorDarkMode.imgAdd;
 
+            menuToolStripMenuItem.ForeColor = ControladorDarkMode.corFonte;
+            menuToolStripMenuItem.BackColor = ControladorDarkMode.corTabela;
             menuStrip.BackColor = ControladorDarkMode.corTabela;
             cadastrosToolStripMenuItem.BackColor = ControladorDarkMode.corTabela;
             configuraçõesToolStripMenuItem.BackColor = ControladorDarkMode.corTabela;
@@ -288,7 +290,6 @@ namespace LocadoraVeiculo.WindowsApp
             AtualizarRodape(configuracao.TipoCadastro);
 
             ConfigurarPainelDashBoard();
-
         }
     }
 }
