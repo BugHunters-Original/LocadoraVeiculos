@@ -204,6 +204,10 @@ namespace LocadoraVeiculo.WindowsApp
             this.BackColor = ControladorDarkMode.corFundo;
             this.ForeColor = ControladorDarkMode.corFonte;
 
+            btnAdicionar.Image = ControladorDarkMode.imgAdd;
+
+            menuToolStripMenuItem.ForeColor = ControladorDarkMode.corFonte;
+            menuToolStripMenuItem.BackColor = ControladorDarkMode.corTabela;
             menuStrip.BackColor = ControladorDarkMode.corTabela;
             cadastrosToolStripMenuItem.BackColor = ControladorDarkMode.corTabela;
             configuraçõesToolStripMenuItem.BackColor = ControladorDarkMode.corTabela;
@@ -274,8 +278,18 @@ namespace LocadoraVeiculo.WindowsApp
         }
         private void menuToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            ConfigurarPainelDashBoard();
+            btnEditar.Enabled = false;
+            btnAdicionar.Enabled = false;
+            btnExcluir.Enabled = false;
+            btnDevolver.Enabled = false;
 
+            ConfiguracaoDashboardToolBox configuracao = new ConfiguracaoDashboardToolBox();
+
+            ConfigurarToolBox(configuracao);
+
+            AtualizarRodape(configuracao.TipoCadastro);
+
+            ConfigurarPainelDashBoard();
         }
     }
 }

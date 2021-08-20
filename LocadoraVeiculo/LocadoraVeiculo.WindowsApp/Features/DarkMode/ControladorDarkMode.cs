@@ -22,10 +22,18 @@ namespace LocadoraVeiculo.WindowsApp.Features.DarkMode
         public static Image imgModo;
         public static bool ligado = false;
 
+        public static Image imgAdd;
+
+
+
+
+
         public static void TrocarModo()
         {
             if (ligado == false)
             {
+                imgAdd = Resources.outline_add_circle_outline_black_24dp;
+
                 imgModo = Resources.whiteMode;
                 imgClose = Resources.close;
                 corGrid = Color.FromArgb(171, 171, 171);
@@ -39,6 +47,8 @@ namespace LocadoraVeiculo.WindowsApp.Features.DarkMode
             }
             else
             {
+                imgAdd = Resources.outline_add_circle_outline_white_24dp;
+
                 imgModo = Resources.darkMode;
                 imgClose = Resources.close_dark;
                 corGrid = Color.FromArgb(77, 77, 77);
