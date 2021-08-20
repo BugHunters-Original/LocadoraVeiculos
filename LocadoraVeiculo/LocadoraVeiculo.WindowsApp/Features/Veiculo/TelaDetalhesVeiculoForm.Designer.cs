@@ -29,6 +29,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.Veiculo
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(TelaDetalhesVeiculoForm));
             this.txtNome = new System.Windows.Forms.TextBox();
             this.label14 = new System.Windows.Forms.Label();
@@ -61,6 +62,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.Veiculo
             this.label10 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.label15 = new System.Windows.Forms.Label();
+            this.bunifuElipse1 = new Bunifu.Framework.UI.BunifuElipse(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxImagem)).BeginInit();
             this.SuspendLayout();
             // 
@@ -393,6 +395,11 @@ namespace LocadoraVeiculo.WindowsApp.Features.Veiculo
             this.label15.TabIndex = 154;
             this.label15.Text = "Foto:";
             // 
+            // bunifuElipse1
+            // 
+            this.bunifuElipse1.ElipseRadius = 8;
+            this.bunifuElipse1.TargetControl = this;
+            // 
             // TelaDetalhesVeiculoForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -429,7 +436,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.Veiculo
             this.Controls.Add(this.txtId);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.btnOK);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.MinimizeBox = false;
@@ -475,5 +482,6 @@ namespace LocadoraVeiculo.WindowsApp.Features.Veiculo
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label15;
+        private Bunifu.Framework.UI.BunifuElipse bunifuElipse1;
     }
 }

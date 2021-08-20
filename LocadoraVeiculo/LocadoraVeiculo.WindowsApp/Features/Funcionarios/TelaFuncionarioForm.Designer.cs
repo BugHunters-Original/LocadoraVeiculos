@@ -29,6 +29,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.Funcionarios
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(TelaFuncionarioForm));
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
@@ -46,6 +47,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.Funcionarios
             this.bt_Cancelar = new System.Windows.Forms.Button();
             this.date_EntradaFuncionario = new System.Windows.Forms.DateTimePicker();
             this.text_salarioFuncionario = new System.Windows.Forms.TextBox();
+            this.bunifuElipse1 = new Bunifu.Framework.UI.BunifuElipse(this.components);
             this.SuspendLayout();
             // 
             // label1
@@ -54,7 +56,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.Funcionarios
             this.label1.Font = new System.Drawing.Font("Lucida Sans Unicode", 8F);
             this.label1.Location = new System.Drawing.Point(50, 92);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(42, 15);
+            this.label1.Size = new System.Drawing.Size(52, 17);
             this.label1.TabIndex = 0;
             this.label1.Text = "Nome:";
             // 
@@ -64,7 +66,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.Funcionarios
             this.label2.Font = new System.Drawing.Font("Lucida Sans Unicode", 8F);
             this.label2.Location = new System.Drawing.Point(62, 131);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(30, 15);
+            this.label2.Size = new System.Drawing.Size(38, 17);
             this.label2.TabIndex = 1;
             this.label2.Text = "CPF:";
             // 
@@ -74,7 +76,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.Funcionarios
             this.label3.Font = new System.Drawing.Font("Lucida Sans Unicode", 8F);
             this.label3.Location = new System.Drawing.Point(271, 131);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(94, 15);
+            this.label3.Size = new System.Drawing.Size(121, 17);
             this.label3.TabIndex = 2;
             this.label3.Text = "Data de Entrada:";
             // 
@@ -84,7 +86,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.Funcionarios
             this.label4.Font = new System.Drawing.Font("Lucida Sans Unicode", 8F);
             this.label4.Location = new System.Drawing.Point(40, 172);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(52, 15);
+            this.label4.Size = new System.Drawing.Size(65, 17);
             this.label4.TabIndex = 3;
             this.label4.Text = "Usuário:";
             // 
@@ -94,7 +96,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.Funcionarios
             this.label5.Font = new System.Drawing.Font("Lucida Sans Unicode", 8F);
             this.label5.Location = new System.Drawing.Point(319, 172);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(46, 15);
+            this.label5.Size = new System.Drawing.Size(59, 17);
             this.label5.TabIndex = 4;
             this.label5.Text = "Salário:";
             // 
@@ -104,7 +106,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.Funcionarios
             this.label6.Font = new System.Drawing.Font("Lucida Sans Unicode", 8F);
             this.label6.Location = new System.Drawing.Point(50, 211);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(42, 15);
+            this.label6.Size = new System.Drawing.Size(54, 17);
             this.label6.TabIndex = 5;
             this.label6.Text = "Senha:";
             // 
@@ -114,7 +116,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.Funcionarios
             this.label7.Font = new System.Drawing.Font("Lucida Sans Unicode", 8F);
             this.label7.Location = new System.Drawing.Point(72, 53);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(20, 15);
+            this.label7.Size = new System.Drawing.Size(25, 17);
             this.label7.TabIndex = 6;
             this.label7.Text = "Id:";
             // 
@@ -123,7 +125,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.Funcionarios
             this.text_CPFFuncionario.Location = new System.Drawing.Point(107, 122);
             this.text_CPFFuncionario.Mask = "000.000.000-00";
             this.text_CPFFuncionario.Name = "text_CPFFuncionario";
-            this.text_CPFFuncionario.Size = new System.Drawing.Size(116, 24);
+            this.text_CPFFuncionario.Size = new System.Drawing.Size(116, 28);
             this.text_CPFFuncionario.TabIndex = 1;
             // 
             // text_IdFuncionario
@@ -133,28 +135,28 @@ namespace LocadoraVeiculo.WindowsApp.Features.Funcionarios
             this.text_IdFuncionario.ForeColor = System.Drawing.Color.DarkSeaGreen;
             this.text_IdFuncionario.Location = new System.Drawing.Point(107, 44);
             this.text_IdFuncionario.Name = "text_IdFuncionario";
-            this.text_IdFuncionario.Size = new System.Drawing.Size(116, 24);
+            this.text_IdFuncionario.Size = new System.Drawing.Size(116, 28);
             this.text_IdFuncionario.TabIndex = 8;
             // 
             // text_NomeFuncionario
             // 
             this.text_NomeFuncionario.Location = new System.Drawing.Point(107, 83);
             this.text_NomeFuncionario.Name = "text_NomeFuncionario";
-            this.text_NomeFuncionario.Size = new System.Drawing.Size(387, 24);
+            this.text_NomeFuncionario.Size = new System.Drawing.Size(387, 28);
             this.text_NomeFuncionario.TabIndex = 0;
             // 
             // text_UsuarioFuncionario
             // 
             this.text_UsuarioFuncionario.Location = new System.Drawing.Point(107, 163);
             this.text_UsuarioFuncionario.Name = "text_UsuarioFuncionario";
-            this.text_UsuarioFuncionario.Size = new System.Drawing.Size(116, 24);
+            this.text_UsuarioFuncionario.Size = new System.Drawing.Size(116, 28);
             this.text_UsuarioFuncionario.TabIndex = 4;
             // 
             // text_SenhaFuncionario
             // 
             this.text_SenhaFuncionario.Location = new System.Drawing.Point(107, 202);
             this.text_SenhaFuncionario.Name = "text_SenhaFuncionario";
-            this.text_SenhaFuncionario.Size = new System.Drawing.Size(116, 24);
+            this.text_SenhaFuncionario.Size = new System.Drawing.Size(116, 28);
             this.text_SenhaFuncionario.TabIndex = 5;
             // 
             // bt_GravarFuncionario
@@ -185,21 +187,26 @@ namespace LocadoraVeiculo.WindowsApp.Features.Funcionarios
             this.date_EntradaFuncionario.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.date_EntradaFuncionario.Location = new System.Drawing.Point(380, 122);
             this.date_EntradaFuncionario.Name = "date_EntradaFuncionario";
-            this.date_EntradaFuncionario.Size = new System.Drawing.Size(114, 24);
+            this.date_EntradaFuncionario.Size = new System.Drawing.Size(114, 28);
             this.date_EntradaFuncionario.TabIndex = 2;
             // 
             // text_salarioFuncionario
             // 
             this.text_salarioFuncionario.Location = new System.Drawing.Point(378, 163);
             this.text_salarioFuncionario.Name = "text_salarioFuncionario";
-            this.text_salarioFuncionario.Size = new System.Drawing.Size(116, 24);
+            this.text_salarioFuncionario.Size = new System.Drawing.Size(116, 28);
             this.text_salarioFuncionario.TabIndex = 9;
             this.text_salarioFuncionario.Text = "0";
             this.text_salarioFuncionario.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox_KeyPress);
             // 
+            // bunifuElipse1
+            // 
+            this.bunifuElipse1.ElipseRadius = 8;
+            this.bunifuElipse1.TargetControl = this;
+            // 
             // TelaFuncionarioForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(537, 327);
             this.Controls.Add(this.text_salarioFuncionario);
@@ -219,7 +226,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.Funcionarios
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Font = new System.Drawing.Font("Lucida Sans Unicode", 8F);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.MinimizeBox = false;
@@ -251,5 +258,6 @@ namespace LocadoraVeiculo.WindowsApp.Features.Funcionarios
         private System.Windows.Forms.Button bt_Cancelar;
         private System.Windows.Forms.DateTimePicker date_EntradaFuncionario;
         private System.Windows.Forms.TextBox text_salarioFuncionario;
+        private Bunifu.Framework.UI.BunifuElipse bunifuElipse1;
     }
 }

@@ -222,8 +222,14 @@ namespace LocadoraVeiculo.WindowsApp
 
             cadastrosToolStripMenuItem.ForeColor = ControladorDarkMode.corFonte;
             configuraçõesToolStripMenuItem.ForeColor = ControladorDarkMode.corFonte;
-
+            
             btnClose.Image = ControladorDarkMode.imgClose;
+            btnMaximize.Image = ControladorDarkMode.imgMax;
+            btnMinimize.Image = ControladorDarkMode.imgMin;
+            btnClose.BackColor = ControladorDarkMode.corTabela;
+            btnMaximize.BackColor = ControladorDarkMode.corTabela;
+            btnMinimize.BackColor = ControladorDarkMode.corTabela;
+
             toolboxAcoes.BackColor = ControladorDarkMode.corPanel;
             btnModo.Image = ControladorDarkMode.imgModo;
 

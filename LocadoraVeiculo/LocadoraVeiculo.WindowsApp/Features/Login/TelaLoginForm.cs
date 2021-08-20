@@ -29,7 +29,6 @@ namespace LocadoraVeiculo.WindowsApp.Features.Login
         {
             this.BackColor = ControladorDarkMode.corFundo;
             this.ForeColor = ControladorDarkMode.corFonte;
-            btnModo.BackColor = ControladorDarkMode.corFundoTxBox;
             btnLogar.BackColor = ControladorDarkMode.corFundoTxBox;
             Footer.BackColor = ControladorDarkMode.corPanel;
             txtUsuario.BackColor = ControladorDarkMode.corFundoTxBox;

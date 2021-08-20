@@ -1,5 +1,6 @@
 ﻿using LocadoraVeiculo.Controladores.VeiculoModule;
 using LocadoraVeiculo.LocacaoModule;
+using LocadoraVeiculo.WindowsApp.Features.DarkMode;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -20,6 +21,30 @@ namespace LocadoraVeiculo.WindowsApp.Features.NotaFiscal
         {
             controladorVeiculo = new ControladorVeiculo();
             InitializeComponent();
+            SetColor();
+        }
+
+        private void SetColor()
+        {
+            this.BackColor = ControladorDarkMode.corPanel;
+            this.ForeColor = ControladorDarkMode.corFonte;
+
+            txtPlano.BackColor = ControladorDarkMode.corFundoTxBox;
+            txtCliente.BackColor = ControladorDarkMode.corFundoTxBox;
+            txtPrecoPlano.BackColor = ControladorDarkMode.corFundoTxBox;
+            txtGas.BackColor = ControladorDarkMode.corFundoTxBox;
+            txtServico.BackColor = ControladorDarkMode.corFundoTxBox;
+            txtTotal.BackColor = ControladorDarkMode.corFundoTxBox;
+
+            txtPlano.ForeColor = ControladorDarkMode.corFonte;
+            txtCliente.ForeColor = ControladorDarkMode.corFonte;
+            txtPrecoPlano.ForeColor = ControladorDarkMode.corFonte;
+            txtGas.ForeColor = ControladorDarkMode.corFonte;
+            txtServico.ForeColor = ControladorDarkMode.corFonte;
+            txtTotal.ForeColor = ControladorDarkMode.corFonte;
+
+            bt_ConcluirLocacao.BackColor = ControladorDarkMode.corFundoTxBox;
+            bt_Voltar.BackColor = ControladorDarkMode.corFundoTxBox;
         }
         public LocacaoVeiculo Locacao
         {

@@ -20,13 +20,10 @@ namespace LocadoraVeiculo.WindowsApp.Features.DarkMode
         public static Color corGrid;
 
         public static Image imgClose;
+        public static Image imgMax;
+        public static Image imgMin;
+
         public static bool ligado = false;
-
-
-
-
-
-
 
         public static Image imgAdd;
         public static Image imgEditar;
@@ -53,6 +50,9 @@ namespace LocadoraVeiculo.WindowsApp.Features.DarkMode
             imgModo = Resources.darkMode;
 
             imgClose = Resources.close_dark;
+            imgMax = Resources.maximize_button_white;
+            imgMin = Resources.minimize_white;
+
             corGrid = Color.FromArgb(77, 77, 77);
             corDark = Color.FromArgb(26, 26, 26);
             corFonte = Color.White;
@@ -73,6 +73,9 @@ namespace LocadoraVeiculo.WindowsApp.Features.DarkMode
             imgModo = Resources.whiteMode;
 
             imgClose = Resources.close;
+            imgMax = Resources.maximize_button__1_;
+            imgMin = Resources.minimize_1779402_1512859__1_;
+
             corGrid = Color.FromArgb(171, 171, 171);
             corDark = Color.FromArgb(255, 255, 255);
             corFonte = Color.Black;
