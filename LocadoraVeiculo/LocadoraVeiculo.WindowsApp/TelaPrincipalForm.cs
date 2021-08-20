@@ -197,7 +197,7 @@ namespace LocadoraVeiculo.WindowsApp
             }
             else
             {
-                IApareciaAlteravel tabela = apareciaAlteravel;
+                IApareciaAlteravel tabela = new DashboardControl();
 
                 tabela.AtualizarAparencia();
             }
@@ -305,6 +305,17 @@ namespace LocadoraVeiculo.WindowsApp
             AtualizarRodape(configuracao.TipoCadastro);
 
             ConfigurarPainelDashBoard();
+        }
+
+        private void btnMinimize_Click(object sender, EventArgs e)
+        {
+            this.WindowState = FormWindowState.Minimized;
+        }
+
+        private void btnMaximize_Click(object sender, EventArgs e)
+        {
+            if (this.WindowState == FormWindowState.Maximized) { this.WindowState = FormWindowState.Normal; }
+            else { this.WindowState = FormWindowState.Maximized; }
         }
     }
 }

@@ -26,10 +26,15 @@ namespace LocadoraVeiculo.WindowsApp.Features.Dashboard
             controladorLocacao = new ControladorLocacao();
             InitializeComponent();
             TrataLabels();
-            dtDashboard.ConfigurarGridZebrado();
+            ConfigurarGridLightMode();
             dtDashboard.ConfigurarGridSomenteLeitura();
             dtDashboard.Columns.AddRange(ObterColunasLocacoesPendentes());
             LocacaoPendentes();
+        }
+
+        public void ConfigurarGridLightMode()
+        {
+            dtDashboard.ConfigurarGridZebrado();
         }
 
         public DataGridViewColumn[] ObterColunasLocacoesPendentes()
@@ -177,7 +182,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.Dashboard
 
         public void AtualizarAparencia()
         {
-
+            ConfigurarGridLightMode();
         }
     }
 }
