@@ -5,14 +5,19 @@ using System.Windows.Forms;
 
 namespace LocadoraVeiculo.WindowsApp.Features.Funcionarios
 {
-    public partial class TabelaFuncionarioControl : UserControl
+    public partial class TabelaFuncionarioControl : UserControl, IApareciaAlteravel
     {
         public TabelaFuncionarioControl()
         {
             InitializeComponent();
-            gridFuncionarios.ConfigurarGridZebrado();
+            ConfigurarGridLightMode();
             gridFuncionarios.ConfigurarGridSomenteLeitura();
             gridFuncionarios.Columns.AddRange(ObterColunas());
+        }
+
+        public void ConfigurarGridLightMode()
+        {
+            gridFuncionarios.ConfigurarGridZebrado();            
         }
 
         public DataGridViewColumn[] ObterColunas()
@@ -54,6 +59,10 @@ namespace LocadoraVeiculo.WindowsApp.Features.Funcionarios
 
 
             }
+        }
+        public void AtualizarAparencia()
+        {
+            ConfigurarGridLightMode();
         }
     }
 }

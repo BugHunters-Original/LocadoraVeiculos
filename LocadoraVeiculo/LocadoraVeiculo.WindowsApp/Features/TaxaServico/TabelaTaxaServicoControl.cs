@@ -12,15 +12,21 @@ using System.Windows.Forms;
 
 namespace LocadoraVeiculo.WindowsApp.Features.TaxaServico
 {
-    public partial class TabelaTaxaServicoControl : UserControl
+    public partial class TabelaTaxaServicoControl : UserControl, IApareciaAlteravel
     {
         public TabelaTaxaServicoControl()
         {
             InitializeComponent();
-            dgTaxas.ConfigurarGridZebrado();
+            ConfigurarGridLightMode();
             dgTaxas.ConfigurarGridSomenteLeitura();
             dgTaxas.Columns.AddRange(ObterColunas());
         }
+
+        public void ConfigurarGridLightMode()
+        {
+            dgTaxas.ConfigurarGridZebrado();
+        }
+
         public DataGridViewColumn[] ObterColunas()
         {
             var colunas = new DataGridViewColumn[]
@@ -52,6 +58,11 @@ namespace LocadoraVeiculo.WindowsApp.Features.TaxaServico
                     tipo = "Fixo";
                 dgTaxas.Rows.Add(servico.Id, servico.Nome, servico.Preco, tipo);
             }
+        }
+
+        public void AtualizarAparencia()
+        {
+            ConfigurarGridLightMode();
         }
     }
 }

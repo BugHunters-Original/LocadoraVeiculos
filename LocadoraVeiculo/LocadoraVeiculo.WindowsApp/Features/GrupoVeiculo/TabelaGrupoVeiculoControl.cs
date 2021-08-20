@@ -4,14 +4,19 @@ using System.Windows.Forms;
 
 namespace LocadoraVeiculo.WindowsApp.Features.GrupoVeiculo
 {
-    public partial class TabelaGrupoVeiculoControl : UserControl
+    public partial class TabelaGrupoVeiculoControl : UserControl, IApareciaAlteravel
     {
         public TabelaGrupoVeiculoControl()
         {
             InitializeComponent();
-            gridGrupoVeiculo.ConfigurarGridZebrado();
+            ConfigurarGridLightMode();
             gridGrupoVeiculo.ConfigurarGridSomenteLeitura();
             gridGrupoVeiculo.Columns.AddRange(ObterColunas());
+        }
+
+        public void ConfigurarGridLightMode()
+        {
+            gridGrupoVeiculo.ConfigurarGridZebrado();
         }
 
         public DataGridViewColumn[] ObterColunas()
@@ -52,6 +57,11 @@ namespace LocadoraVeiculo.WindowsApp.Features.GrupoVeiculo
                     grupo.ValorKmRodadoPDiario, grupo.ValorDiarioPControlado, grupo.LimitePControlado,
                     grupo.ValorDiarioPControlado, grupo.ValorDiarioPLivre);
             }
+        }
+
+        public void AtualizarAparencia()
+        {
+            ConfigurarGridLightMode();
         }
     }
 }
