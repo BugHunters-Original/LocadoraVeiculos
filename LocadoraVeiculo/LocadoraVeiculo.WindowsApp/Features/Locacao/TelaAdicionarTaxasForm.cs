@@ -22,6 +22,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.Locacao
             controladorServico = new ControladorServico();
             InitializeComponent();
             PopularBox();
+            SetColor();
         }
 
         private void SetColor()
