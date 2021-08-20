@@ -1,4 +1,5 @@
-﻿using System;
+﻿using LocadoraVeiculo.WindowsApp.Features.DarkMode;
+using System;
 using System.IO;
 using System.Windows.Forms;
 
@@ -11,6 +12,40 @@ namespace LocadoraVeiculo.WindowsApp.Features.GrupoVeiculo
         public TelaGrupoVeiculoForm()
         {
             InitializeComponent();
+            SetColor();
+        }
+
+        private void SetColor()
+        {
+            this.BackColor = ControladorDarkMode.corPanel;
+            this.ForeColor = ControladorDarkMode.corFonte;
+            txtId.BackColor = ControladorDarkMode.corFundoTxBox;
+            txtNome.BackColor = ControladorDarkMode.corFundoTxBox;
+            txtDiariaPLivre.BackColor = ControladorDarkMode.corFundoTxBox;
+            txtValorDiarioPDiario.BackColor = ControladorDarkMode.corFundoTxBox;
+            txtValorKmRodadoPDiario.BackColor = ControladorDarkMode.corFundoTxBox;
+            txtValorKmRodadoPControlado.BackColor = ControladorDarkMode.corFundoTxBox;
+            txtValorDiarioPControlado.BackColor = ControladorDarkMode.corFundoTxBox;
+            txtLimitePControlado.BackColor = ControladorDarkMode.corFundoTxBox;
+
+            txtId.ForeColor = ControladorDarkMode.corFonte;
+            txtNome.ForeColor = ControladorDarkMode.corFonte;
+            txtDiariaPLivre.ForeColor = ControladorDarkMode.corFonte;
+            txtValorDiarioPDiario.ForeColor = ControladorDarkMode.corFonte;
+            txtValorKmRodadoPDiario.ForeColor = ControladorDarkMode.corFonte;
+            txtValorKmRodadoPControlado.ForeColor = ControladorDarkMode.corFonte;
+            txtValorDiarioPControlado.ForeColor = ControladorDarkMode.corFonte;
+            txtLimitePControlado.ForeColor = ControladorDarkMode.corFonte;
+
+            tabDiario.BackColor = ControladorDarkMode.corFundoTxBox;
+            tabDiario.ForeColor = ControladorDarkMode.corFonte;
+            tabLivre.BackColor = ControladorDarkMode.corFundoTxBox;
+            tabLivre.ForeColor = ControladorDarkMode.corFonte;
+            tabControlado.BackColor = ControladorDarkMode.corFundoTxBox;
+            tabControlado.ForeColor = ControladorDarkMode.corFonte;
+
+            btnGravar.BackColor = ControladorDarkMode.corFundoTxBox;
+            btnCancelar.BackColor = ControladorDarkMode.corFundoTxBox;
         }
 
         public GrupoVeiculoModule.GrupoVeiculo GrupoContato

@@ -29,31 +29,33 @@ namespace LocadoraVeiculo.WindowsApp.Features.Combustivel
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(TelaCombustivelForm));
             this.tabControl1 = new System.Windows.Forms.TabControl();
-            this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.tabPageGasolina = new System.Windows.Forms.TabPage();
             this.label1 = new System.Windows.Forms.Label();
             this.txtGasolina = new System.Windows.Forms.TextBox();
-            this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.tabPageAlcool = new System.Windows.Forms.TabPage();
             this.label2 = new System.Windows.Forms.Label();
             this.txtAlcool = new System.Windows.Forms.TextBox();
-            this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.tabPageDiesel = new System.Windows.Forms.TabPage();
             this.label3 = new System.Windows.Forms.Label();
             this.txtDiesel = new System.Windows.Forms.TextBox();
             this.btnSalvar = new System.Windows.Forms.Button();
             this.btnCancelar = new System.Windows.Forms.Button();
+            this.bunifuElipse1 = new Bunifu.Framework.UI.BunifuElipse(this.components);
             this.tabControl1.SuspendLayout();
-            this.tabPage1.SuspendLayout();
-            this.tabPage2.SuspendLayout();
-            this.tabPage3.SuspendLayout();
+            this.tabPageGasolina.SuspendLayout();
+            this.tabPageAlcool.SuspendLayout();
+            this.tabPageDiesel.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabControl1
             // 
             this.tabControl1.AccessibleName = "preço da gasolina";
-            this.tabControl1.Controls.Add(this.tabPage1);
-            this.tabControl1.Controls.Add(this.tabPage2);
-            this.tabControl1.Controls.Add(this.tabPage3);
+            this.tabControl1.Controls.Add(this.tabPageGasolina);
+            this.tabControl1.Controls.Add(this.tabPageAlcool);
+            this.tabControl1.Controls.Add(this.tabPageDiesel);
             this.tabControl1.Font = new System.Drawing.Font("Lucida Sans Unicode", 8F);
             this.tabControl1.Location = new System.Drawing.Point(10, 14);
             this.tabControl1.Name = "tabControl1";
@@ -62,18 +64,18 @@ namespace LocadoraVeiculo.WindowsApp.Features.Combustivel
             this.tabControl1.TabIndex = 0;
             this.tabControl1.Leave += new System.EventHandler(this.txtBoxZerado_Leave);
             // 
-            // tabPage1
+            // tabPageGasolina
             // 
-            this.tabPage1.Controls.Add(this.label1);
-            this.tabPage1.Controls.Add(this.txtGasolina);
-            this.tabPage1.Location = new System.Drawing.Point(4, 24);
-            this.tabPage1.Name = "tabPage1";
-            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(282, 105);
-            this.tabPage1.TabIndex = 0;
-            this.tabPage1.Text = "Gasolina";
-            this.tabPage1.UseVisualStyleBackColor = true;
-            this.tabPage1.Leave += new System.EventHandler(this.txtBoxZerado_Leave);
+            this.tabPageGasolina.Controls.Add(this.label1);
+            this.tabPageGasolina.Controls.Add(this.txtGasolina);
+            this.tabPageGasolina.Location = new System.Drawing.Point(4, 24);
+            this.tabPageGasolina.Name = "tabPageGasolina";
+            this.tabPageGasolina.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPageGasolina.Size = new System.Drawing.Size(282, 105);
+            this.tabPageGasolina.TabIndex = 0;
+            this.tabPageGasolina.Text = "Gasolina";
+            this.tabPageGasolina.UseVisualStyleBackColor = true;
+            this.tabPageGasolina.Leave += new System.EventHandler(this.txtBoxZerado_Leave);
             // 
             // label1
             // 
@@ -93,18 +95,18 @@ namespace LocadoraVeiculo.WindowsApp.Features.Combustivel
             this.txtGasolina.TabIndex = 0;
             this.txtGasolina.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtBoxJustNumbers_KeyPress);
             // 
-            // tabPage2
+            // tabPageAlcool
             // 
-            this.tabPage2.Controls.Add(this.label2);
-            this.tabPage2.Controls.Add(this.txtAlcool);
-            this.tabPage2.Location = new System.Drawing.Point(4, 24);
-            this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(282, 105);
-            this.tabPage2.TabIndex = 1;
-            this.tabPage2.Text = "Álcool";
-            this.tabPage2.UseVisualStyleBackColor = true;
-            this.tabPage2.Leave += new System.EventHandler(this.txtBoxZerado_Leave);
+            this.tabPageAlcool.Controls.Add(this.label2);
+            this.tabPageAlcool.Controls.Add(this.txtAlcool);
+            this.tabPageAlcool.Location = new System.Drawing.Point(4, 24);
+            this.tabPageAlcool.Name = "tabPageAlcool";
+            this.tabPageAlcool.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPageAlcool.Size = new System.Drawing.Size(282, 105);
+            this.tabPageAlcool.TabIndex = 1;
+            this.tabPageAlcool.Text = "Álcool";
+            this.tabPageAlcool.UseVisualStyleBackColor = true;
+            this.tabPageAlcool.Leave += new System.EventHandler(this.txtBoxZerado_Leave);
             // 
             // label2
             // 
@@ -124,17 +126,17 @@ namespace LocadoraVeiculo.WindowsApp.Features.Combustivel
             this.txtAlcool.TabIndex = 2;
             this.txtAlcool.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtBoxJustNumbers_KeyPress);
             // 
-            // tabPage3
+            // tabPageDiesel
             // 
-            this.tabPage3.Controls.Add(this.label3);
-            this.tabPage3.Controls.Add(this.txtDiesel);
-            this.tabPage3.Location = new System.Drawing.Point(4, 24);
-            this.tabPage3.Name = "tabPage3";
-            this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage3.Size = new System.Drawing.Size(282, 105);
-            this.tabPage3.TabIndex = 2;
-            this.tabPage3.Text = "Diesel";
-            this.tabPage3.UseVisualStyleBackColor = true;
+            this.tabPageDiesel.Controls.Add(this.label3);
+            this.tabPageDiesel.Controls.Add(this.txtDiesel);
+            this.tabPageDiesel.Location = new System.Drawing.Point(4, 24);
+            this.tabPageDiesel.Name = "tabPageDiesel";
+            this.tabPageDiesel.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPageDiesel.Size = new System.Drawing.Size(282, 105);
+            this.tabPageDiesel.TabIndex = 2;
+            this.tabPageDiesel.Text = "Diesel";
+            this.tabPageDiesel.UseVisualStyleBackColor = true;
             // 
             // label3
             // 
@@ -178,6 +180,11 @@ namespace LocadoraVeiculo.WindowsApp.Features.Combustivel
             this.btnCancelar.Text = "Cancelar";
             this.btnCancelar.UseVisualStyleBackColor = true;
             // 
+            // bunifuElipse1
+            // 
+            this.bunifuElipse1.ElipseRadius = 8;
+            this.bunifuElipse1.TargetControl = this;
+            // 
             // TelaCombustivelForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -187,7 +194,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.Combustivel
             this.Controls.Add(this.btnSalvar);
             this.Controls.Add(this.tabControl1);
             this.Font = new System.Drawing.Font("Lucida Sans Unicode", 8F);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.MinimizeBox = false;
@@ -196,12 +203,12 @@ namespace LocadoraVeiculo.WindowsApp.Features.Combustivel
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Preço Combustível";
             this.tabControl1.ResumeLayout(false);
-            this.tabPage1.ResumeLayout(false);
-            this.tabPage1.PerformLayout();
-            this.tabPage2.ResumeLayout(false);
-            this.tabPage2.PerformLayout();
-            this.tabPage3.ResumeLayout(false);
-            this.tabPage3.PerformLayout();
+            this.tabPageGasolina.ResumeLayout(false);
+            this.tabPageGasolina.PerformLayout();
+            this.tabPageAlcool.ResumeLayout(false);
+            this.tabPageAlcool.PerformLayout();
+            this.tabPageDiesel.ResumeLayout(false);
+            this.tabPageDiesel.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -209,16 +216,17 @@ namespace LocadoraVeiculo.WindowsApp.Features.Combustivel
         #endregion
 
         private System.Windows.Forms.TabControl tabControl1;
-        private System.Windows.Forms.TabPage tabPage1;
+        private System.Windows.Forms.TabPage tabPageGasolina;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox txtGasolina;
-        private System.Windows.Forms.TabPage tabPage2;
+        private System.Windows.Forms.TabPage tabPageAlcool;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox txtAlcool;
-        private System.Windows.Forms.TabPage tabPage3;
+        private System.Windows.Forms.TabPage tabPageDiesel;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox txtDiesel;
         private System.Windows.Forms.Button btnSalvar;
         private System.Windows.Forms.Button btnCancelar;
+        private Bunifu.Framework.UI.BunifuElipse bunifuElipse1;
     }
 }

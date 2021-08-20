@@ -24,7 +24,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.Clientes
 
         private void SetColor()
         {
-            this.BackColor = ControladorDarkMode.corFundo;
+            this.BackColor = ControladorDarkMode.corPanel;
             this.ForeColor = ControladorDarkMode.corFonte;
             txtID.BackColor = ControladorDarkMode.corFundoTxBox;
             txtNome.BackColor = ControladorDarkMode.corFundoTxBox;

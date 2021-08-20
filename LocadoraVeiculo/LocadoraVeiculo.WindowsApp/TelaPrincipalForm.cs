@@ -24,7 +24,7 @@ namespace LocadoraVeiculo.WindowsApp
     public partial class TelaPrincipalForm : Form
     {
         private ICadastravel operacoes;
-
+        private IApareciaAlteravel apareciaAlteravel;
         public static TelaPrincipalForm Instancia;
         public static DashboardControl dash;
 
@@ -32,9 +32,7 @@ namespace LocadoraVeiculo.WindowsApp
         {
             InitializeComponent();
             Instancia = this;
-
-            dash = new DashboardControl();
-            panelRegistros.Controls.Add(dash);
+            ConfigurarPainelDashBoard();
             SetColor();
 
         }
@@ -197,6 +195,12 @@ namespace LocadoraVeiculo.WindowsApp
 
                 tabela.AtualizarAparencia();
             }
+            else
+            {
+                IApareciaAlteravel tabela = apareciaAlteravel;
+
+                tabela.AtualizarAparencia();
+            }
         }
 
         private void SetColor()
@@ -252,6 +256,7 @@ namespace LocadoraVeiculo.WindowsApp
         private void ConfigurarPainelDashBoard()
         {
             UserControl tabela = new DashboardControl();
+            apareciaAlteravel = (IApareciaAlteravel)tabela;
             tabela.Dock = DockStyle.Fill;
             panelRegistros.Controls.Clear();
             panelRegistros.Controls.Add(tabela);

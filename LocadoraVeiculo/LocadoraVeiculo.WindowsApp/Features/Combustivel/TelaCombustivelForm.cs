@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Windows.Forms;
 using LocadoraVeiculo.Combustivel;
+using LocadoraVeiculo.WindowsApp.Features.DarkMode;
 
 namespace LocadoraVeiculo.WindowsApp.Features.Combustivel
 {
@@ -10,8 +11,32 @@ namespace LocadoraVeiculo.WindowsApp.Features.Combustivel
         {
             InitializeComponent();
             CarregarConfiguracoes();
+            SetColor();
         }
 
+        private void SetColor()
+        {
+            this.BackColor = ControladorDarkMode.corPanel;
+            this.ForeColor = ControladorDarkMode.corFonte;
+            txtGasolina.BackColor = ControladorDarkMode.corFundoTxBox;
+            txtDiesel.BackColor = ControladorDarkMode.corFundoTxBox;
+            txtAlcool.BackColor = ControladorDarkMode.corFundoTxBox;
+
+            txtGasolina.ForeColor = ControladorDarkMode.corFonte;
+            txtDiesel.ForeColor = ControladorDarkMode.corFonte;
+            txtAlcool.ForeColor = ControladorDarkMode.corFonte;
+
+            btnSalvar.BackColor = ControladorDarkMode.corFundoTxBox;
+            btnCancelar.BackColor = ControladorDarkMode.corFundoTxBox;
+
+            tabPageGasolina.BackColor = ControladorDarkMode.corFundoTxBox;
+            tabPageGasolina.ForeColor = ControladorDarkMode.corFundoTxBox;
+            tabPageAlcool.BackColor = ControladorDarkMode.corFundoTxBox;
+            tabPageAlcool.ForeColor = ControladorDarkMode.corFundoTxBox;
+            tabPageDiesel.BackColor = ControladorDarkMode.corFundoTxBox;
+            tabPageDiesel.ForeColor = ControladorDarkMode.corFundoTxBox;
+
+        }
         public void CarregarConfiguracoes()
         {
             txtGasolina.Text = Config.PrecoGasolina.ToString();

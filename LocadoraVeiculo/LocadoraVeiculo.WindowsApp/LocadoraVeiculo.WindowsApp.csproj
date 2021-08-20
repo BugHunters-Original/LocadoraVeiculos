@@ -175,6 +175,7 @@
     <Compile Include="Features\Dashboard\DashboardControl.Designer.cs">
       <DependentUpon>DashboardControl.cs</DependentUpon>
     </Compile>
+    <Compile Include="Features\Dashboard\OperacoesDashboard.cs" />
     <Compile Include="Features\Funcionarios\ConfiguracaoFuncionarioToolBox.cs" />
     <Compile Include="Features\Funcionarios\OperacoesFuncionario.cs" />
     <Compile Include="Features\Funcionarios\TabelaFuncionarioControl.cs">
@@ -450,6 +451,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\outline_add_circle_outline_white_24dp.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\maximize-button %281%29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\minimize-1779402-1512859 %281%29.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

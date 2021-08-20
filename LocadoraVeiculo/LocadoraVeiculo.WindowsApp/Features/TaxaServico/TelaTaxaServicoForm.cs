@@ -1,4 +1,5 @@
 ﻿using LocadoraVeiculo.ServicoModule;
+using LocadoraVeiculo.WindowsApp.Features.DarkMode;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -18,6 +19,21 @@ namespace LocadoraVeiculo.WindowsApp.Features.TaxaServico
         public TelaTaxaServicoForm()
         {
             InitializeComponent();
+            SetColor();
+        }
+
+        private void SetColor()
+        {
+            this.BackColor = ControladorDarkMode.corPanel;
+            this.ForeColor = ControladorDarkMode.corFonte;
+            txtID.BackColor = ControladorDarkMode.corFundoTxBox;
+            txtNome.BackColor = ControladorDarkMode.corFundoTxBox;
+            txtPreco.BackColor = ControladorDarkMode.corFundoTxBox;
+
+            btnGravar.BackColor = ControladorDarkMode.corFundoTxBox;
+            btnCancelar.BackColor = ControladorDarkMode.corFundoTxBox;
+            rdDiario.ForeColor = ControladorDarkMode.corFonte;
+            rdFixo.ForeColor = ControladorDarkMode.corFonte;
         }
 
         public Servico Servico

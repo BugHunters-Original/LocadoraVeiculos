@@ -1,4 +1,5 @@
 ﻿using LocadoraVeiculo.Controladores.GrupoVeiculoModule;
+using LocadoraVeiculo.WindowsApp.Features.DarkMode;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -19,6 +20,44 @@ namespace LocadoraVeiculo.WindowsApp.Features.Veiculo
         public TelaDetalhesVeiculoForm()
         {
             InitializeComponent();
+            SetColor();
+        }
+
+        private void SetColor()
+        {
+            this.BackColor = ControladorDarkMode.corFundo;
+            this.ForeColor = ControladorDarkMode.corFonte;
+            txtId.BackColor = ControladorDarkMode.corFundoTxBox;
+            txtNome.BackColor = ControladorDarkMode.corFundoTxBox;
+            txtMarca.BackColor = ControladorDarkMode.corFundoTxBox;
+            txtChassi.BackColor = ControladorDarkMode.corFundoTxBox;
+            txtPlaca.BackColor = ControladorDarkMode.corFundoTxBox;
+            txtNPortas.BackColor = ControladorDarkMode.corFundoTxBox;
+            txtCor.BackColor = ControladorDarkMode.corFundoTxBox;
+            txtKm.BackColor = ControladorDarkMode.corFundoTxBox;
+            txtAno.BackColor = ControladorDarkMode.corFundoTxBox;
+            txtCapacidadePessoas.BackColor = ControladorDarkMode.corFundoTxBox;
+            txtCapacidadeTanque.BackColor = ControladorDarkMode.corFundoTxBox;
+            cmbGrupo.BackColor = ControladorDarkMode.corFundoTxBox;
+            cmbTamanhoPortaMalas.BackColor = ControladorDarkMode.corFundoTxBox;
+            cmbTipoCombustivel.BackColor = ControladorDarkMode.corFundoTxBox;
+
+            txtId.ForeColor = ControladorDarkMode.corFonte;
+            txtNome.ForeColor = ControladorDarkMode.corFonte;
+            txtMarca.ForeColor = ControladorDarkMode.corFonte;
+            txtChassi.ForeColor = ControladorDarkMode.corFonte;
+            txtPlaca.ForeColor = ControladorDarkMode.corFonte;
+            txtNPortas.ForeColor = ControladorDarkMode.corFonte;
+            txtCor.ForeColor = ControladorDarkMode.corFonte;
+            txtKm.ForeColor = ControladorDarkMode.corFonte;
+            txtAno.ForeColor = ControladorDarkMode.corFonte;
+            txtCapacidadePessoas.ForeColor = ControladorDarkMode.corFonte;
+            txtCapacidadeTanque.ForeColor = ControladorDarkMode.corFonte;
+            cmbGrupo.ForeColor = ControladorDarkMode.corFonte;
+            cmbTamanhoPortaMalas.ForeColor = ControladorDarkMode.corFonte;
+            cmbTipoCombustivel.ForeColor = ControladorDarkMode.corFonte;
+
+            btnOK.BackColor = ControladorDarkMode.corFundoTxBox;
         }
 
         public VeiculoModule.Veiculo Veiculo

@@ -119,7 +119,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.Veiculo
             // 
             this.txtKm.Font = new System.Drawing.Font("Lucida Sans Unicode", 8F);
             this.txtKm.Location = new System.Drawing.Point(136, 180);
-            this.txtKm.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtKm.Margin = new System.Windows.Forms.Padding(2);
             this.txtKm.Mask = "999999999";
             this.txtKm.Name = "txtKm";
             this.txtKm.Size = new System.Drawing.Size(101, 24);
@@ -144,7 +144,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.Veiculo
             "Álcool",
             "Diesel"});
             this.cmbTipoCombustivel.Location = new System.Drawing.Point(518, 181);
-            this.cmbTipoCombustivel.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.cmbTipoCombustivel.Margin = new System.Windows.Forms.Padding(2);
             this.cmbTipoCombustivel.Name = "cmbTipoCombustivel";
             this.cmbTipoCombustivel.Size = new System.Drawing.Size(101, 23);
             this.cmbTipoCombustivel.TabIndex = 5;
@@ -153,7 +153,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.Veiculo
             // 
             this.txtCapacidadeTanque.Font = new System.Drawing.Font("Lucida Sans Unicode", 8F);
             this.txtCapacidadeTanque.Location = new System.Drawing.Point(329, 180);
-            this.txtCapacidadeTanque.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtCapacidadeTanque.Margin = new System.Windows.Forms.Padding(2);
             this.txtCapacidadeTanque.Mask = "999";
             this.txtCapacidadeTanque.Name = "txtCapacidadeTanque";
             this.txtCapacidadeTanque.Size = new System.Drawing.Size(101, 24);
@@ -190,7 +190,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.Veiculo
             "M",
             "G"});
             this.cmbTamanhoPortaMalas.Location = new System.Drawing.Point(518, 150);
-            this.cmbTamanhoPortaMalas.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.cmbTamanhoPortaMalas.Margin = new System.Windows.Forms.Padding(2);
             this.cmbTamanhoPortaMalas.Name = "cmbTamanhoPortaMalas";
             this.cmbTamanhoPortaMalas.Size = new System.Drawing.Size(101, 23);
             this.cmbTamanhoPortaMalas.TabIndex = 4;
@@ -209,7 +209,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.Veiculo
             // 
             this.txtNPortas.Font = new System.Drawing.Font("Lucida Sans Unicode", 8F);
             this.txtNPortas.Location = new System.Drawing.Point(329, 148);
-            this.txtNPortas.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtNPortas.Margin = new System.Windows.Forms.Padding(2);
             this.txtNPortas.Mask = "00";
             this.txtNPortas.Name = "txtNPortas";
             this.txtNPortas.Size = new System.Drawing.Size(101, 24);
@@ -230,7 +230,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.Veiculo
             this.cmbGrupo.Font = new System.Drawing.Font("Lucida Sans Unicode", 8F);
             this.cmbGrupo.FormattingEnabled = true;
             this.cmbGrupo.Location = new System.Drawing.Point(518, 86);
-            this.cmbGrupo.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.cmbGrupo.Margin = new System.Windows.Forms.Padding(2);
             this.cmbGrupo.Name = "cmbGrupo";
             this.cmbGrupo.Size = new System.Drawing.Size(101, 23);
             this.cmbGrupo.TabIndex = 7;
@@ -249,7 +249,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.Veiculo
             // 
             this.txtCapacidadePessoas.Font = new System.Drawing.Font("Lucida Sans Unicode", 8F);
             this.txtCapacidadePessoas.Location = new System.Drawing.Point(136, 148);
-            this.txtCapacidadePessoas.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtCapacidadePessoas.Margin = new System.Windows.Forms.Padding(2);
             this.txtCapacidadePessoas.Mask = "00";
             this.txtCapacidadePessoas.Name = "txtCapacidadePessoas";
             this.txtCapacidadePessoas.Size = new System.Drawing.Size(101, 24);
@@ -269,7 +269,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.Veiculo
             // 
             this.txtAno.Font = new System.Drawing.Font("Lucida Sans Unicode", 8F);
             this.txtAno.Location = new System.Drawing.Point(136, 116);
-            this.txtAno.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtAno.Margin = new System.Windows.Forms.Padding(2);
             this.txtAno.Mask = "9999";
             this.txtAno.Name = "txtAno";
             this.txtAno.Size = new System.Drawing.Size(101, 24);
@@ -316,11 +316,9 @@ namespace LocadoraVeiculo.WindowsApp.Features.Veiculo
             // txtMarca
             // 
             this.txtMarca.Font = new System.Drawing.Font("Lucida Sans Unicode", 8F);
-
-            this.txtMarca.Location = new System.Drawing.Point(182, 104);
+            this.txtMarca.Location = new System.Drawing.Point(136, 84);
             this.txtMarca.Margin = new System.Windows.Forms.Padding(4);
             this.txtMarca.MaxLength = 50;
-
             this.txtMarca.Name = "txtMarca";
             this.txtMarca.Size = new System.Drawing.Size(101, 24);
             this.txtMarca.TabIndex = 1;
@@ -380,7 +378,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.Veiculo
             // 
             this.pictureBoxImagem.BackColor = System.Drawing.SystemColors.ControlDark;
             this.pictureBoxImagem.Location = new System.Drawing.Point(136, 219);
-            this.pictureBoxImagem.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.pictureBoxImagem.Margin = new System.Windows.Forms.Padding(2);
             this.pictureBoxImagem.Name = "pictureBoxImagem";
             this.pictureBoxImagem.Size = new System.Drawing.Size(316, 173);
             this.pictureBoxImagem.TabIndex = 114;
@@ -390,7 +388,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.Veiculo
             // 
             this.btnBuscarFoto.Font = new System.Drawing.Font("Lucida Sans Unicode", 10F);
             this.btnBuscarFoto.Location = new System.Drawing.Point(518, 219);
-            this.btnBuscarFoto.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnBuscarFoto.Margin = new System.Windows.Forms.Padding(2);
             this.btnBuscarFoto.Name = "btnBuscarFoto";
             this.btnBuscarFoto.Size = new System.Drawing.Size(100, 27);
             this.btnBuscarFoto.TabIndex = 0;
@@ -462,7 +460,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.Veiculo
             this.Controls.Add(this.btnGravar);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "TelaVeiculoForm";

@@ -173,6 +173,26 @@ namespace LocadoraVeiculo.WindowsApp.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap maximize_button__1_ {
+            get {
+                object obj = ResourceManager.GetObject("maximize-button (1)", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap minimize_1779402_1512859__1_ {
+            get {
+                object obj = ResourceManager.GetObject("minimize-1779402-1512859 (1)", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap outline_add_circle_outline_black_24dp {
             get {
                 object obj = ResourceManager.GetObject("outline_add_circle_outline_black_24dp", resourceCulture);

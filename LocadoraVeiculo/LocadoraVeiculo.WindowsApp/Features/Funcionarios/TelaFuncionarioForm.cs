@@ -1,4 +1,5 @@
 ﻿using LocadoraVeiculo.FuncionarioModule;
+using LocadoraVeiculo.WindowsApp.Features.DarkMode;
 using System;
 using System.IO;
 using System.Windows.Forms;
@@ -12,6 +13,31 @@ namespace LocadoraVeiculo.WindowsApp.Features.Funcionarios
         public TelaFuncionarioForm()
         {
             InitializeComponent();
+            SetColor();
+        }
+
+        private void SetColor()
+        {
+            this.BackColor = ControladorDarkMode.corPanel;
+            this.ForeColor = ControladorDarkMode.corFonte;
+            text_IdFuncionario.BackColor = ControladorDarkMode.corFundoTxBox;
+            text_NomeFuncionario.BackColor = ControladorDarkMode.corFundoTxBox;
+            text_salarioFuncionario.BackColor = ControladorDarkMode.corFundoTxBox;
+            text_SenhaFuncionario.BackColor = ControladorDarkMode.corFundoTxBox;
+            text_UsuarioFuncionario.BackColor = ControladorDarkMode.corFundoTxBox;
+            date_EntradaFuncionario.BackColor = ControladorDarkMode.corFundoTxBox;
+            text_CPFFuncionario.BackColor = ControladorDarkMode.corFundoTxBox;
+
+            text_IdFuncionario.ForeColor = ControladorDarkMode.corFonte;
+            text_NomeFuncionario.ForeColor = ControladorDarkMode.corFonte;
+            text_salarioFuncionario.ForeColor = ControladorDarkMode.corFonte;
+            text_SenhaFuncionario.ForeColor = ControladorDarkMode.corFonte;
+            text_UsuarioFuncionario.ForeColor = ControladorDarkMode.corFonte;
+            date_EntradaFuncionario.ForeColor = ControladorDarkMode.corFonte;
+            text_CPFFuncionario.ForeColor = ControladorDarkMode.corFonte;
+
+            bt_GravarFuncionario.BackColor = ControladorDarkMode.corFundoTxBox;
+            bt_Cancelar.BackColor = ControladorDarkMode.corFundoTxBox;
         }
 
         public Funcionario Funcionario

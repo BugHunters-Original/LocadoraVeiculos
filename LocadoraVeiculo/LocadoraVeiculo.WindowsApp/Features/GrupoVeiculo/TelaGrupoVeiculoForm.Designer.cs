@@ -49,7 +49,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.GrupoVeiculo
             this.label6 = new System.Windows.Forms.Label();
             this.txtNome = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
-            this.bt_GravarFuncionario = new System.Windows.Forms.Button();
+            this.btnGravar = new System.Windows.Forms.Button();
             this.txtId = new System.Windows.Forms.TextBox();
             this.btnCancelar = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
@@ -257,17 +257,17 @@ namespace LocadoraVeiculo.WindowsApp.Features.GrupoVeiculo
             this.label7.TabIndex = 5;
             this.label7.Text = "Id:";
             // 
-            // bt_GravarFuncionario
+            // btnGravar
             // 
-            this.bt_GravarFuncionario.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.bt_GravarFuncionario.Font = new System.Drawing.Font("Lucida Sans Unicode", 8F);
-            this.bt_GravarFuncionario.Location = new System.Drawing.Point(241, 332);
-            this.bt_GravarFuncionario.Name = "bt_GravarFuncionario";
-            this.bt_GravarFuncionario.Size = new System.Drawing.Size(87, 27);
-            this.bt_GravarFuncionario.TabIndex = 14;
-            this.bt_GravarFuncionario.Text = "Gravar";
-            this.bt_GravarFuncionario.UseVisualStyleBackColor = true;
-            this.bt_GravarFuncionario.Click += new System.EventHandler(this.btnGravar_Click);
+            this.btnGravar.DialogResult = System.Windows.Forms.DialogResult.OK;
+            this.btnGravar.Font = new System.Drawing.Font("Lucida Sans Unicode", 8F);
+            this.btnGravar.Location = new System.Drawing.Point(241, 332);
+            this.btnGravar.Name = "btnGravar";
+            this.btnGravar.Size = new System.Drawing.Size(87, 27);
+            this.btnGravar.TabIndex = 14;
+            this.btnGravar.Text = "Gravar";
+            this.btnGravar.UseVisualStyleBackColor = true;
+            this.btnGravar.Click += new System.EventHandler(this.btnGravar_Click);
             // 
             // txtId
             // 
@@ -297,7 +297,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.GrupoVeiculo
             this.ClientSize = new System.Drawing.Size(471, 385);
             this.Controls.Add(this.btnCancelar);
             this.Controls.Add(this.txtId);
-            this.Controls.Add(this.bt_GravarFuncionario);
+            this.Controls.Add(this.btnGravar);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.txtNome);
@@ -342,7 +342,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.GrupoVeiculo
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.TextBox txtNome;
         private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.Button bt_GravarFuncionario;
+        private System.Windows.Forms.Button btnGravar;
         private System.Windows.Forms.TextBox txtId;
         private System.Windows.Forms.Button btnCancelar;
         private System.Windows.Forms.Label label8;
