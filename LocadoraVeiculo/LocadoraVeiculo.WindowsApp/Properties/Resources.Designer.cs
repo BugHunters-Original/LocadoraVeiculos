@@ -153,6 +153,16 @@ namespace LocadoraVeiculo.WindowsApp.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap devolver_white {
+            get {
+                object obj = ResourceManager.GetObject("devolver_white", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap devolver1 {
             get {
                 object obj = ResourceManager.GetObject("devolver1", resourceCulture);
@@ -203,6 +213,16 @@ namespace LocadoraVeiculo.WindowsApp.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap outline_delete_white_24dp {
+            get {
+                object obj = ResourceManager.GetObject("outline_delete_white_24dp", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap outline_filter_alt_black_24dp {
             get {
                 object obj = ResourceManager.GetObject("outline_filter_alt_black_24dp", resourceCulture);
@@ -213,9 +233,29 @@ namespace LocadoraVeiculo.WindowsApp.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap outline_filter_alt_white_24dp {
+            get {
+                object obj = ResourceManager.GetObject("outline_filter_alt_white_24dp", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap outline_mode_edit_black_24dp {
             get {
                 object obj = ResourceManager.GetObject("outline_mode_edit_black_24dp", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap outline_mode_edit_white_24dp {
+            get {
+                object obj = ResourceManager.GetObject("outline_mode_edit_white_24dp", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

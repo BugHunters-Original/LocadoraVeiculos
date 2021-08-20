@@ -18,23 +18,34 @@ namespace LocadoraVeiculo.WindowsApp.Features.DarkMode
         public static Color corTabela;
         public static Color corDark;
         public static Color corGrid;
+
         public static Image imgClose;
-        public static Image imgModo;
         public static bool ligado = false;
 
+
+
+
+
+
+
         public static Image imgAdd;
-
-
-
-
+        public static Image imgEditar;
+        public static Image imgExcluir;
+        public static Image imgFiltro;
+        public static Image imgDevolver;
+        public static Image imgModo;
 
         public static void TrocarModo()
         {
             if (ligado == false)
             {
                 imgAdd = Resources.outline_add_circle_outline_black_24dp;
-
+                imgEditar = Resources.outline_mode_edit_black_24dp;
+                imgExcluir = Resources.outline_delete_black_24dp;
+                imgFiltro = Resources.outline_filter_alt_black_24dp;
+                imgDevolver = Resources.devolver;
                 imgModo = Resources.whiteMode;
+
                 imgClose = Resources.close;
                 corGrid = Color.FromArgb(171, 171, 171);
                 corDark = Color.FromArgb(255, 255, 255);
@@ -48,8 +59,12 @@ namespace LocadoraVeiculo.WindowsApp.Features.DarkMode
             else
             {
                 imgAdd = Resources.outline_add_circle_outline_white_24dp;
-
+                imgEditar = Resources.outline_mode_edit_white_24dp;
+                imgExcluir = Resources.outline_delete_white_24dp;
+                imgFiltro = Resources.outline_filter_alt_white_24dp;
+                imgDevolver = Resources.devolver_white;
                 imgModo = Resources.darkMode;
+
                 imgClose = Resources.close_dark;
                 corGrid = Color.FromArgb(77, 77, 77);
                 corDark = Color.FromArgb(26, 26, 26);
