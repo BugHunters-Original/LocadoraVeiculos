@@ -29,12 +29,14 @@ namespace LocadoraVeiculo.WindowsApp.Features.Locacao
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(TelaFiltroLocacaoForm));
             this.rdbDevolucoes = new System.Windows.Forms.RadioButton();
             this.rdbChegadasPendentes = new System.Windows.Forms.RadioButton();
             this.rdbTodasLocacoes = new System.Windows.Forms.RadioButton();
             this.btnCancelar = new System.Windows.Forms.Button();
             this.btnGravar = new System.Windows.Forms.Button();
+            this.bunifuElipse1 = new Bunifu.Framework.UI.BunifuElipse(this.components);
             this.SuspendLayout();
             // 
             // rdbDevolucoes
@@ -43,7 +45,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.Locacao
             this.rdbDevolucoes.Font = new System.Drawing.Font("Lucida Sans Unicode", 10F);
             this.rdbDevolucoes.Location = new System.Drawing.Point(48, 123);
             this.rdbDevolucoes.Name = "rdbDevolucoes";
-            this.rdbDevolucoes.Size = new System.Drawing.Size(239, 21);
+            this.rdbDevolucoes.Size = new System.Drawing.Size(290, 25);
             this.rdbDevolucoes.TabIndex = 2;
             this.rdbDevolucoes.TabStop = true;
             this.rdbDevolucoes.Text = "Visualizar Locações Concluídas";
@@ -55,7 +57,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.Locacao
             this.rdbChegadasPendentes.Font = new System.Drawing.Font("Lucida Sans Unicode", 10F);
             this.rdbChegadasPendentes.Location = new System.Drawing.Point(48, 197);
             this.rdbChegadasPendentes.Name = "rdbChegadasPendentes";
-            this.rdbChegadasPendentes.Size = new System.Drawing.Size(234, 21);
+            this.rdbChegadasPendentes.Size = new System.Drawing.Size(283, 25);
             this.rdbChegadasPendentes.TabIndex = 3;
             this.rdbChegadasPendentes.TabStop = true;
             this.rdbChegadasPendentes.Text = "Visualizar Locações Pendentes";
@@ -67,7 +69,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.Locacao
             this.rdbTodasLocacoes.Font = new System.Drawing.Font("Lucida Sans Unicode", 10F);
             this.rdbTodasLocacoes.Location = new System.Drawing.Point(48, 53);
             this.rdbTodasLocacoes.Name = "rdbTodasLocacoes";
-            this.rdbTodasLocacoes.Size = new System.Drawing.Size(224, 21);
+            this.rdbTodasLocacoes.Size = new System.Drawing.Size(273, 25);
             this.rdbTodasLocacoes.TabIndex = 1;
             this.rdbTodasLocacoes.TabStop = true;
             this.rdbTodasLocacoes.Text = "Visualizar Todas as Locações";
@@ -93,9 +95,14 @@ namespace LocadoraVeiculo.WindowsApp.Features.Locacao
             this.btnGravar.Text = "Gravar";
             this.btnGravar.UseVisualStyleBackColor = true;
             // 
+            // bunifuElipse1
+            // 
+            this.bunifuElipse1.ElipseRadius = 8;
+            this.bunifuElipse1.TargetControl = this;
+            // 
             // TelaFiltroLocacaoForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(348, 324);
             this.Controls.Add(this.btnCancelar);
@@ -104,7 +111,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.Locacao
             this.Controls.Add(this.rdbChegadasPendentes);
             this.Controls.Add(this.rdbDevolucoes);
             this.Font = new System.Drawing.Font("Lucida Sans Unicode", 8F);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.MinimizeBox = false;
@@ -124,5 +131,6 @@ namespace LocadoraVeiculo.WindowsApp.Features.Locacao
         private System.Windows.Forms.RadioButton rdbTodasLocacoes;
         private System.Windows.Forms.Button btnCancelar;
         private System.Windows.Forms.Button btnGravar;
+        private Bunifu.Framework.UI.BunifuElipse bunifuElipse1;
     }
 }

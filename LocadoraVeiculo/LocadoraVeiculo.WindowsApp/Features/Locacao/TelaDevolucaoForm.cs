@@ -1,6 +1,7 @@
 ﻿using LocadoraVeiculo.Combustivel;
 using LocadoraVeiculo.Controladores.VeiculoModule;
 using LocadoraVeiculo.LocacaoModule;
+using LocadoraVeiculo.WindowsApp.Features.DarkMode;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -22,6 +23,36 @@ namespace LocadoraVeiculo.WindowsApp.Features.Locacao
         public TelaDevolucaoForm()
         {
             InitializeComponent();
+            SetColor();
+        }
+
+        private void SetColor()
+        {
+            this.BackColor = ControladorDarkMode.corPanel;
+            this.ForeColor = ControladorDarkMode.corFonte;
+
+            dtRetornoEsperada.BackColor = ControladorDarkMode.corFundoTxBox;
+            dtRetorno.BackColor = ControladorDarkMode.corFundoTxBox;
+            txtKmInicial.BackColor = ControladorDarkMode.corFundoTxBox;
+            txtKmAtual.BackColor = ControladorDarkMode.corFundoTxBox;
+            cbNivelTanque.BackColor = ControladorDarkMode.corFundoTxBox;
+            txtCombustivel.BackColor = ControladorDarkMode.corFundoTxBox;
+            txtServico.BackColor = ControladorDarkMode.corFundoTxBox;
+            txtMulta.BackColor = ControladorDarkMode.corFundoTxBox;
+            txtTotal.BackColor = ControladorDarkMode.corFundoTxBox;
+
+            dtRetornoEsperada.ForeColor = ControladorDarkMode.corFonte;
+            dtRetorno.ForeColor = ControladorDarkMode.corFonte;
+            txtKmInicial.ForeColor = ControladorDarkMode.corFonte;
+            txtKmAtual.ForeColor = ControladorDarkMode.corFonte;
+            cbNivelTanque.ForeColor = ControladorDarkMode.corFonte;
+            txtCombustivel.ForeColor = ControladorDarkMode.corFonte;
+            txtServico.ForeColor = ControladorDarkMode.corFonte;
+            txtMulta.ForeColor = ControladorDarkMode.corFonte;
+            txtTotal.ForeColor = ControladorDarkMode.corFonte;
+
+            btnNota.BackColor = ControladorDarkMode.corFundoTxBox;
+            btnCancelar.BackColor = ControladorDarkMode.corFundoTxBox;
         }
 
         public LocacaoVeiculo Locacao
