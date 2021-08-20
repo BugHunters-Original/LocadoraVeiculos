@@ -5,14 +5,19 @@ using System.Windows.Forms;
 
 namespace LocadoraVeiculo.WindowsApp.Features.Locacao
 {
-    public partial class TabelaLocacaoControl : UserControl
+    public partial class TabelaLocacaoControl : UserControl, IApareciaAlteravel
     {
         public TabelaLocacaoControl()
         {
             InitializeComponent();
-            gridLocacao.ConfigurarGridZebrado();
+            ConfigurarGridLightMode();
             gridLocacao.ConfigurarGridSomenteLeitura();
             gridLocacao.Columns.AddRange(ObterColunas());
+        }
+
+        public void ConfigurarGridLightMode()
+        {
+            gridLocacao.ConfigurarGridZebrado();
         }
 
         public DataGridViewColumn[] ObterColunas()
@@ -52,6 +57,10 @@ namespace LocadoraVeiculo.WindowsApp.Features.Locacao
                 gridLocacao.Rows.Add(locacao.Id, locacao.Cliente, locacao.Condutor, locacao.Veiculo,
                     locacao.DataSaida, locacao.DataRetorno, locacao.StatusLocacao);
             }
+        }
+        public void AtualizarAparencia()
+        {
+            ConfigurarGridLightMode();
         }
     }
 }

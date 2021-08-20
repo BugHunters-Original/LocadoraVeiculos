@@ -13,16 +13,21 @@ using System.Windows.Forms;
 
 namespace LocadoraVeiculo.WindowsApp.Features.Veiculo
 {
-    public partial class TabelaVeiculoControl : UserControl
+    public partial class TabelaVeiculoControl : UserControl, IApareciaAlteravel
     {
         ControladorVeiculo controlador = new ControladorVeiculo();
 
         public TabelaVeiculoControl()
         {
             InitializeComponent();
-            gridVeiculos.ConfigurarGridZebrado();
+            ConfigurarGridLightMode();
             gridVeiculos.ConfigurarGridSomenteLeitura();
             gridVeiculos.Columns.AddRange(ObterColunas());
+        }
+
+        public void ConfigurarGridLightMode()
+        {
+            gridVeiculos.ConfigurarGridZebrado();
         }
 
         public DataGridViewColumn[] ObterColunas()
@@ -88,6 +93,11 @@ namespace LocadoraVeiculo.WindowsApp.Features.Veiculo
 
             if (tela.ShowDialog() == DialogResult.OK)
                 TelaPrincipalForm.Instancia.AtualizarRodape($"Veículo: [{tela.veiculos.nome}] visualizado");
+        }
+
+        public void AtualizarAparencia()
+        {
+            ConfigurarGridLightMode();
         }
     }
 }
