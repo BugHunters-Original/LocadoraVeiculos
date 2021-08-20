@@ -15,6 +15,11 @@ namespace LocadoraVeiculo.Tests.TaxaServicoModule
         public ControladorServicoTest()
         {
             controlador = new ControladorServico();
+            LimparBanco();
+        }
+
+        private static void LimparBanco()
+        {
             Db.Update("DELETE FROM [TBTAXASSERVICOS]");
         }
 
@@ -30,6 +35,7 @@ namespace LocadoraVeiculo.Tests.TaxaServicoModule
             //assert
             var clienteEncontrado = controlador.SelecionarPorId(novoServico.Id);
             clienteEncontrado.Should().Be(novoServico);
+            LimparBanco();
         }
         [TestMethod]
         public void DeveAtualizar_Servico()
@@ -46,6 +52,7 @@ namespace LocadoraVeiculo.Tests.TaxaServicoModule
             //assert
             Servico servicoAtualizado = controlador.SelecionarPorId(servico.Id);
             servicoAtualizado.Should().Be(novoServico);
+            LimparBanco();
         }
         [TestMethod]
         public void DeveExcluir_Servico()
@@ -60,6 +67,7 @@ namespace LocadoraVeiculo.Tests.TaxaServicoModule
             //assert
             Servico servicoEncontrado = controlador.SelecionarPorId(servico.Id);
             servicoEncontrado.Should().BeNull();
+            LimparBanco();
         }
         [TestMethod]
         public void DeveSelecionar_Servico_PorId()
@@ -73,6 +81,7 @@ namespace LocadoraVeiculo.Tests.TaxaServicoModule
 
             //assert
             servicoEncontrado.Should().NotBeNull();
+            LimparBanco();
         }
         [TestMethod]
         public void DeveSelecionar_TodosServicos()
@@ -95,6 +104,7 @@ namespace LocadoraVeiculo.Tests.TaxaServicoModule
             servicos[0].Nome.Should().Be("GPS");
             servicos[1].Nome.Should().Be("CADEIRINHA");
             servicos[2].Nome.Should().Be("SEGURO");
+            LimparBanco();
         }
     }
 }
