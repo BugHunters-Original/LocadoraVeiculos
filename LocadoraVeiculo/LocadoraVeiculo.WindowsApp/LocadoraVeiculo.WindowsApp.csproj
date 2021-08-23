@@ -471,6 +471,8 @@
     <None Include="Resources\minimize-1779402-1512859 %281%29.png" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\logOut.png" />
+    <None Include="Resources\logOut_dark.png" />
     <Content Include="Resources\maximize-button_white.png" />
     <None Include="Resources\minimize-white.png" />
   </ItemGroup>
