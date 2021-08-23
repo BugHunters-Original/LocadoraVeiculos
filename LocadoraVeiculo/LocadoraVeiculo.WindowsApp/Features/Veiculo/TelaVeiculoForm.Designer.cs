@@ -417,6 +417,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.Veiculo
             // 
             // txtDisponivel
             // 
+            this.txtDisponivel.Font = new System.Drawing.Font("Lucida Sans Unicode", 8F);
             this.txtDisponivel.Location = new System.Drawing.Point(720, 77);
             this.txtDisponivel.Name = "txtDisponivel";
             this.txtDisponivel.Size = new System.Drawing.Size(1, 24);
