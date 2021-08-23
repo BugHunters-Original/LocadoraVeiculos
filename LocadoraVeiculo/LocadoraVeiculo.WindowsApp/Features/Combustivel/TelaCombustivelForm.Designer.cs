@@ -193,7 +193,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.Combustivel
             this.header_Combustivel.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.header_Combustivel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.header_Combustivel.Controls.Add(this.label8);
-            this.header_Combustivel.Location = new System.Drawing.Point(-3, 0);
+            this.header_Combustivel.Location = new System.Drawing.Point(-3, -1);
             this.header_Combustivel.Name = "header_Combustivel";
             this.header_Combustivel.Size = new System.Drawing.Size(342, 29);
             this.header_Combustivel.TabIndex = 18;
