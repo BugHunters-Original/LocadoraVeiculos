@@ -94,6 +94,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.Veiculo
                 txtAno.Text = veiculos.ano.ToString();
                 txtNPortas.Text = veiculos.numero_Portas.ToString();
                 txtCapacidadeTanque.Text = veiculos.capacidade_Tanque.ToString();
+                txtCapacidadePessoas.Text = veiculos.capacidade_Pessoas.ToString();
                 cmbTamanhoPortaMalas.Text = veiculos.tamanhoPortaMalas.ToString();
                 txtKm.Text = veiculos.km_Inicial.ToString();
                 cmbTipoCombustivel.Text = veiculos.tipo_Combustivel;
@@ -123,6 +124,10 @@ namespace LocadoraVeiculo.WindowsApp.Features.Veiculo
             if (!string.IsNullOrEmpty(txtCapacidadeTanque.Text))
                 CapacidadeTanque = Convert.ToInt32(txtCapacidadeTanque.Text);
 
+            int? CapacidadePessoas = null;
+            if (!string.IsNullOrEmpty(txtCapacidadePessoas.Text))
+                CapacidadePessoas = Convert.ToInt32(txtCapacidadePessoas.Text);
+
             int? Km = null;
             if (!string.IsNullOrEmpty(txtKm.Text))
                 Km = Convert.ToInt32(txtKm.Text);
@@ -136,7 +141,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.Veiculo
             
             GrupoVeiculoModule.GrupoVeiculo grupo = (GrupoVeiculoModule.GrupoVeiculo)cmbGrupo.SelectedItem;
 
-            veiculos = new VeiculoModule.Veiculo(nome, placa, chassi, foto, cor, marca, ano, NPortas, CapacidadeTanque, TamanhoPortaMalas, Km, TipoCombustivel, disponibilidade, grupo);
+            veiculos = new VeiculoModule.Veiculo(nome, placa, chassi, foto, cor, marca, ano, NPortas, CapacidadeTanque, CapacidadePessoas, TamanhoPortaMalas, Km, TipoCombustivel, disponibilidade, grupo);
 
             string resultadoValidacao = veiculos.Validar();
 
