@@ -22,6 +22,7 @@ namespace LocadoraVeiculo.Controladores.VeiculoModule
                     [ANO],
                     [NUMERO_PORTAS],
                     [CAPACIDADE_TANQUE],
+                    [CAPACIDADE_PESSOAS],
                     [TAMANHO_PORTA_MALA],
                     [KM_INICIAL],
                     [TIPO_COMBUSTIVEL],
@@ -39,6 +40,7 @@ namespace LocadoraVeiculo.Controladores.VeiculoModule
                     @ANO,
                     @NUMERO_PORTAS,
                     @CAPACIDADE_TANQUE,
+                    @CAPACIDADE_PESSOAS,
                     @TAMANHO_PORTA_MALA,
                     @KM_INICIAL,
                     @TIPO_COMBUSTIVEL,
@@ -58,6 +60,7 @@ namespace LocadoraVeiculo.Controladores.VeiculoModule
                     [ANO] =@ANO,
                     [NUMERO_PORTAS] =@NUMERO_PORTAS,
                     [CAPACIDADE_TANQUE] =@CAPACIDADE_TANQUE,
+                    [CAPACIDADE_PESSOAS] =@CAPACIDADE_PESSOAS,
                     [TAMANHO_PORTA_MALA] =@TAMANHO_PORTA_MALA,
                     [KM_INICIAL] =@KM_INICIAL,
                     [TIPO_COMBUSTIVEL] =@TIPO_COMBUSTIVEL,
@@ -82,6 +85,7 @@ namespace LocadoraVeiculo.Controladores.VeiculoModule
                 V.[ANO],
                 V.[NUMERO_PORTAS],
                 V.[CAPACIDADE_TANQUE],
+                V.[CAPACIDADE_PESSOAS],
                 V.[TAMANHO_PORTA_MALA],
                 V.[KM_INICIAL],
                 V.[TIPO_COMBUSTIVEL],
@@ -112,6 +116,7 @@ namespace LocadoraVeiculo.Controladores.VeiculoModule
                 V.[ANO],
                 V.[NUMERO_PORTAS],
                 V.[CAPACIDADE_TANQUE],
+                V.[CAPACIDADE_PESSOAS],
                 V.[TAMANHO_PORTA_MALA],
                 V.[KM_INICIAL],
                 V.[TIPO_COMBUSTIVEL],
@@ -174,6 +179,7 @@ namespace LocadoraVeiculo.Controladores.VeiculoModule
                 V.[ANO],
                 V.[NUMERO_PORTAS],
                 V.[CAPACIDADE_TANQUE],
+                V.[CAPACIDADE_PESSOAS],
                 V.[TAMANHO_PORTA_MALA],
                 V.[KM_INICIAL],
                 V.[TIPO_COMBUSTIVEL],
@@ -206,6 +212,7 @@ namespace LocadoraVeiculo.Controladores.VeiculoModule
                 V.[ANO],
                 V.[NUMERO_PORTAS],
                 V.[CAPACIDADE_TANQUE],
+                V.[CAPACIDADE_PESSOAS],
                 V.[TAMANHO_PORTA_MALA],
                 V.[KM_INICIAL],
                 V.[TIPO_COMBUSTIVEL],
@@ -316,6 +323,7 @@ namespace LocadoraVeiculo.Controladores.VeiculoModule
             var ano = Convert.ToInt32(reader["ANO"]);
             var numero_Portas = Convert.ToInt32(reader["NUMERO_PORTAS"]);
             var capacidade_Tanque = Convert.ToInt32(reader["CAPACIDADE_TANQUE"]);
+            var capacidade_Pessoas = Convert.ToInt32(reader["CAPACIDADE_PESSOAS"]);
             var tamanhoPortaMalas = Convert.ToChar(reader["TAMANHO_PORTA_MALA"]);
             var km_Inicial = Convert.ToInt32(reader["KM_INICIAL"]);
             var tipo_Combustivel = Convert.ToString(reader["TIPO_COMBUSTIVEL"]);
@@ -339,7 +347,7 @@ namespace LocadoraVeiculo.Controladores.VeiculoModule
             }
 
             Veiculo veiculo = new Veiculo(nome, numero_Placa, numero_Chassi, foto, cor, marca, ano, numero_Portas,
-                capacidade_Tanque, tamanhoPortaMalas, km_Inicial, tipo_Combustivel, disponibilidade_Veiculo, grupoVeiculo);
+                capacidade_Tanque, capacidade_Pessoas, tamanhoPortaMalas, km_Inicial, tipo_Combustivel, disponibilidade_Veiculo, grupoVeiculo);
             veiculo.Id = Convert.ToInt32(reader["ID"]);
 
             return veiculo;
@@ -359,6 +367,7 @@ namespace LocadoraVeiculo.Controladores.VeiculoModule
             parametros.Add("ANO", veiculo.ano);
             parametros.Add("NUMERO_PORTAS", veiculo.numero_Portas);
             parametros.Add("CAPACIDADE_TANQUE", veiculo.capacidade_Tanque);
+            parametros.Add("CAPACIDADE_PESSOAS", veiculo.capacidade_Pessoas);
             parametros.Add("TAMANHO_PORTA_MALA", veiculo.tamanhoPortaMalas);
             parametros.Add("KM_INICIAL", veiculo.km_Inicial);
             parametros.Add("TIPO_COMBUSTIVEL", veiculo.tipo_Combustivel);
