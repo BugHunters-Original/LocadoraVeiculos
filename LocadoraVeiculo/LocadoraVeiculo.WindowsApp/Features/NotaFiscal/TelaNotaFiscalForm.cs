@@ -26,6 +26,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.NotaFiscal
 
         private void SetColor()
         {
+            this.header_NotaFiscal.BackColor = ControladorDarkMode.corPanel;
             this.BackColor = ControladorDarkMode.corPanel;
             this.ForeColor = ControladorDarkMode.corFonte;
 
