@@ -220,9 +220,11 @@ namespace LocadoraVeiculo.WindowsApp
             btnClose.Image = ControladorDarkMode.imgClose;
             btnMaximize.Image = ControladorDarkMode.imgMax;
             btnMinimize.Image = ControladorDarkMode.imgMin;
+            btnLogOut.Image = ControladorDarkMode.imgLogOut;
             btnClose.BackColor = ControladorDarkMode.corTabela;
             btnMaximize.BackColor = ControladorDarkMode.corTabela;
             btnMinimize.BackColor = ControladorDarkMode.corTabela;
+            btnLogOut.BackColor = ControladorDarkMode.corTabela;
 
             toolboxAcoes.BackColor = ControladorDarkMode.corPanel;
             btnModo.Image = ControladorDarkMode.imgModo;
@@ -313,6 +315,11 @@ namespace LocadoraVeiculo.WindowsApp
         {
             if (this.WindowState == FormWindowState.Maximized) { this.WindowState = FormWindowState.Normal; }
             else { this.WindowState = FormWindowState.Maximized; }
+        }
+
+        private void btnLogOut_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
