@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace LocadoraVeiculo.WindowsApp.Features.DarkMode
 {
-  
+
     public static class ControladorDarkMode
     {
         public static Color corFonte;
@@ -18,6 +18,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.DarkMode
         public static Color corTabela;
         public static Color corDark;
         public static Color corGrid;
+        public static Color corHeader;
 
         public static Image imgClose;
         public static Image imgMax;
@@ -60,6 +61,8 @@ namespace LocadoraVeiculo.WindowsApp.Features.DarkMode
             corFundoTxBox = Color.FromArgb(64, 64, 64);
             corPanel = Color.FromArgb(38, 38, 38);
             corTabela = Color.FromArgb(38, 38, 38);
+            corHeader = Color.FromArgb(13, 13, 13);
+
             ligado = false;
         }
 
@@ -83,6 +86,8 @@ namespace LocadoraVeiculo.WindowsApp.Features.DarkMode
             corFundoTxBox = Color.White;
             corPanel = Color.FromArgb(191, 191, 191);
             corTabela = Color.FromArgb(191, 191, 191);
+            corHeader = Color.FromArgb(217, 217, 217);
+
             ligado = true;
         }
     }
