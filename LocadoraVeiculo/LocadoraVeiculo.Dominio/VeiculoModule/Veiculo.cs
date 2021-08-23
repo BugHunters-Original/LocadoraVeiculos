@@ -17,6 +17,7 @@ namespace LocadoraVeiculo.VeiculoModule
         public int? ano { get; set; }
         public int? numero_Portas { get; set; }
         public int? capacidade_Tanque { get; set; }
+        public int? capacidade_Pessoas { get; set; }
         public char tamanhoPortaMalas { get; set; }
         public int? km_Inicial { get; set; }
         public string tipo_Combustivel { get; set; }
@@ -26,7 +27,7 @@ namespace LocadoraVeiculo.VeiculoModule
 
 
         public Veiculo(string nome, string numero_Placa, string numero_Chassi, byte[] foto, string cor,
-            string marca, int? ano, int? numero_Portas, int? capacidade_Tanque, char tamanhoPortaMalas, int? km_Inicial,
+            string marca, int? ano, int? numero_Portas, int? capacidade_Tanque, int? capacidade_Pessoas, char tamanhoPortaMalas, int? km_Inicial,
             string tipo_Combustivel, int disponibilidade_Veiculo, GrupoVeiculo grupoVeiculo)
         {
             this.nome = nome;
@@ -38,6 +39,7 @@ namespace LocadoraVeiculo.VeiculoModule
             this.ano = ano;
             this.numero_Portas = numero_Portas;
             this.capacidade_Tanque = capacidade_Tanque;
+            this.capacidade_Pessoas = capacidade_Pessoas;
             this.tamanhoPortaMalas = tamanhoPortaMalas;
             this.km_Inicial = km_Inicial;
             this.tipo_Combustivel = tipo_Combustivel;
@@ -88,6 +90,9 @@ namespace LocadoraVeiculo.VeiculoModule
 
             if (capacidade_Tanque == null || capacidade_Tanque <= 0)
                 resultadoValidacao += QuebraDeLinha(resultadoValidacao) + "O campo Capacidade do Tanque é obrigatório";
+
+            if (capacidade_Pessoas == null || capacidade_Pessoas <= 0)
+                resultadoValidacao += QuebraDeLinha(resultadoValidacao) + "O campo Capacidade de Pessoas é obrigatório";
 
             if (km_Inicial == null || km_Inicial <= 0)
                 resultadoValidacao += QuebraDeLinha(resultadoValidacao) + "O campo Quilometragem Inicial obrigatório";
