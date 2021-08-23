@@ -55,45 +55,40 @@ namespace LocadoraVeiculo.WindowsApp.Features.Locacao
             // 
             this.cbCliente.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbCliente.FormattingEnabled = true;
-            this.cbCliente.Location = new System.Drawing.Point(293, 69);
-            this.cbCliente.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cbCliente.Location = new System.Drawing.Point(220, 56);
             this.cbCliente.Name = "cbCliente";
-            this.cbCliente.Size = new System.Drawing.Size(427, 24);
+            this.cbCliente.Size = new System.Drawing.Size(321, 21);
             this.cbCliente.TabIndex = 0;
             this.cbCliente.SelectedIndexChanged += new System.EventHandler(this.cbCliente_SelectedIndexChanged);
             // 
             // dtSaida
             // 
-            this.dtSaida.Location = new System.Drawing.Point(293, 170);
-            this.dtSaida.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dtSaida.Location = new System.Drawing.Point(220, 138);
             this.dtSaida.Name = "dtSaida";
-            this.dtSaida.Size = new System.Drawing.Size(427, 22);
+            this.dtSaida.Size = new System.Drawing.Size(321, 20);
             this.dtSaida.TabIndex = 4;
             // 
             // dtRetorno
             // 
-            this.dtRetorno.Location = new System.Drawing.Point(293, 201);
-            this.dtRetorno.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dtRetorno.Location = new System.Drawing.Point(220, 163);
             this.dtRetorno.Name = "dtRetorno";
-            this.dtRetorno.Size = new System.Drawing.Size(427, 22);
+            this.dtRetorno.Size = new System.Drawing.Size(321, 20);
             this.dtRetorno.TabIndex = 5;
             // 
             // txtID
             // 
             this.txtID.BackColor = System.Drawing.Color.DarkSeaGreen;
             this.txtID.Enabled = false;
-            this.txtID.Location = new System.Drawing.Point(293, 37);
-            this.txtID.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtID.Location = new System.Drawing.Point(220, 30);
             this.txtID.Name = "txtID";
-            this.txtID.Size = new System.Drawing.Size(132, 22);
+            this.txtID.Size = new System.Drawing.Size(100, 20);
             this.txtID.TabIndex = 6;
             // 
             // btnTaxa
             // 
-            this.btnTaxa.Location = new System.Drawing.Point(293, 300);
-            this.btnTaxa.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnTaxa.Location = new System.Drawing.Point(220, 244);
             this.btnTaxa.Name = "btnTaxa";
-            this.btnTaxa.Size = new System.Drawing.Size(428, 28);
+            this.btnTaxa.Size = new System.Drawing.Size(321, 23);
             this.btnTaxa.TabIndex = 7;
             this.btnTaxa.Text = "Adicionar Taxas e Serviços";
             this.btnTaxa.UseVisualStyleBackColor = true;
@@ -102,10 +97,9 @@ namespace LocadoraVeiculo.WindowsApp.Features.Locacao
             // btnCancelar
             // 
             this.btnCancelar.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnCancelar.Location = new System.Drawing.Point(621, 425);
-            this.btnCancelar.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnCancelar.Location = new System.Drawing.Point(466, 345);
             this.btnCancelar.Name = "btnCancelar";
-            this.btnCancelar.Size = new System.Drawing.Size(100, 28);
+            this.btnCancelar.Size = new System.Drawing.Size(75, 23);
             this.btnCancelar.TabIndex = 14;
             this.btnCancelar.Text = "Cancelar";
             this.btnCancelar.UseVisualStyleBackColor = true;
@@ -113,10 +107,9 @@ namespace LocadoraVeiculo.WindowsApp.Features.Locacao
             // btnGravar
             // 
             this.btnGravar.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.btnGravar.Location = new System.Drawing.Point(513, 425);
-            this.btnGravar.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnGravar.Location = new System.Drawing.Point(385, 345);
             this.btnGravar.Name = "btnGravar";
-            this.btnGravar.Size = new System.Drawing.Size(100, 28);
+            this.btnGravar.Size = new System.Drawing.Size(75, 23);
             this.btnGravar.TabIndex = 13;
             this.btnGravar.Text = "Gravar";
             this.btnGravar.UseVisualStyleBackColor = true;
@@ -125,70 +118,63 @@ namespace LocadoraVeiculo.WindowsApp.Features.Locacao
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(243, 44);
-            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label1.Location = new System.Drawing.Point(182, 36);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(25, 17);
+            this.label1.Size = new System.Drawing.Size(19, 13);
             this.label1.TabIndex = 15;
-            this.label1.Text = "ID:";
+            this.label1.Text = "Id:";
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(215, 79);
-            this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label3.Location = new System.Drawing.Point(161, 64);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(55, 17);
+            this.label3.Size = new System.Drawing.Size(42, 13);
             this.label3.TabIndex = 17;
             this.label3.Text = "Cliente:";
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(208, 112);
-            this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label4.Location = new System.Drawing.Point(156, 91);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(58, 17);
+            this.label4.Size = new System.Drawing.Size(47, 13);
             this.label4.TabIndex = 18;
             this.label4.Text = "Veículo:";
             // 
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(200, 145);
-            this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label5.Location = new System.Drawing.Point(150, 118);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(70, 17);
+            this.label5.Size = new System.Drawing.Size(53, 13);
             this.label5.TabIndex = 19;
             this.label5.Text = "Condutor:";
             // 
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(164, 178);
-            this.label6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label6.Location = new System.Drawing.Point(123, 145);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(102, 17);
+            this.label6.Size = new System.Drawing.Size(80, 13);
             this.label6.TabIndex = 20;
             this.label6.Text = "Data de Saída:";
             // 
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(88, 208);
-            this.label7.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label7.Location = new System.Drawing.Point(66, 169);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(182, 17);
+            this.label7.Size = new System.Drawing.Size(137, 13);
             this.label7.TabIndex = 21;
             this.label7.Text = "Data de Retorno Esperada:";
             // 
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(149, 238);
-            this.label8.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label8.Location = new System.Drawing.Point(112, 193);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(118, 17);
+            this.label8.Size = new System.Drawing.Size(91, 13);
             this.label8.TabIndex = 22;
             this.label8.Text = "Tipo de Locação:";
             // 
@@ -200,30 +186,27 @@ namespace LocadoraVeiculo.WindowsApp.Features.Locacao
             "Plano Diário",
             "KM Controlado",
             "KM Livre"});
-            this.cbTipoLocacao.Location = new System.Drawing.Point(293, 234);
-            this.cbTipoLocacao.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cbTipoLocacao.Location = new System.Drawing.Point(220, 190);
             this.cbTipoLocacao.Name = "cbTipoLocacao";
-            this.cbTipoLocacao.Size = new System.Drawing.Size(427, 24);
+            this.cbTipoLocacao.Size = new System.Drawing.Size(321, 21);
             this.cbTipoLocacao.TabIndex = 24;
             // 
             // cbCondutor
             // 
             this.cbCondutor.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbCondutor.FormattingEnabled = true;
-            this.cbCondutor.Location = new System.Drawing.Point(293, 135);
-            this.cbCondutor.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cbCondutor.Location = new System.Drawing.Point(220, 110);
             this.cbCondutor.Name = "cbCondutor";
-            this.cbCondutor.Size = new System.Drawing.Size(427, 24);
+            this.cbCondutor.Size = new System.Drawing.Size(321, 21);
             this.cbCondutor.TabIndex = 25;
             // 
             // cbVeiculo
             // 
             this.cbVeiculo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbVeiculo.FormattingEnabled = true;
-            this.cbVeiculo.Location = new System.Drawing.Point(293, 102);
-            this.cbVeiculo.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cbVeiculo.Location = new System.Drawing.Point(220, 83);
             this.cbVeiculo.Name = "cbVeiculo";
-            this.cbVeiculo.Size = new System.Drawing.Size(427, 24);
+            this.cbVeiculo.Size = new System.Drawing.Size(321, 21);
             this.cbVeiculo.TabIndex = 26;
             // 
             // bunifuElipse1
@@ -233,9 +216,9 @@ namespace LocadoraVeiculo.WindowsApp.Features.Locacao
             // 
             // TelaLocacaoForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(812, 481);
+            this.ClientSize = new System.Drawing.Size(609, 391);
             this.Controls.Add(this.cbVeiculo);
             this.Controls.Add(this.cbCondutor);
             this.Controls.Add(this.cbTipoLocacao);
@@ -255,7 +238,6 @@ namespace LocadoraVeiculo.WindowsApp.Features.Locacao
             this.Controls.Add(this.cbCliente);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "TelaLocacaoForm";
