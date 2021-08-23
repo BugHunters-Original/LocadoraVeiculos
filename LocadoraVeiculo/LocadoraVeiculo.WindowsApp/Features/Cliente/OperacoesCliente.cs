@@ -13,12 +13,10 @@ namespace LocadoraVeiculo.WindowsApp.Features.Clientes
     {
         private readonly ControladorClienteCNPJ controladorCNPJ = null;
         private readonly ControladorClienteCPF controladorCPF = null;
-        private readonly ControladorLocacao controladorLocacao = null;
         private readonly TabelaClienteControl tabelaClientes = null;
 
-        public OperacoesCliente(ControladorClienteCNPJ controladorCNPJ, ControladorClienteCPF controladorCPF, ControladorLocacao controladorLocacao)
+        public OperacoesCliente(ControladorClienteCNPJ controladorCNPJ, ControladorClienteCPF controladorCPF)
         {
-            this.controladorLocacao = controladorLocacao;
             this.controladorCNPJ = controladorCNPJ;
             this.controladorCPF = controladorCPF;
             tabelaClientes = new TabelaClienteControl();
@@ -77,8 +75,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.Clientes
                 return;
             }
 
-            Object clienteSelecionado = null;
-
+            Cliente clienteSelecionado;
             if (tipo.Length == 14)
                 clienteSelecionado = controladorCPF.SelecionarPorId(id);
             else
@@ -87,11 +84,18 @@ namespace LocadoraVeiculo.WindowsApp.Features.Clientes
             if (MessageBox.Show($"Tem certeza que deseja excluir o Cliente: [{clienteSelecionado}] ?",
                 "Exclusão de Clientes", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK)
             {
-                bool excluiu = false;
-                if (clienteSelecionado is ClienteCPF)
-                    excluiu = controladorCPF.Excluir(id);
-                else
-                    excluiu = controladorCNPJ.Excluir(id);
+                if (clienteSelecionado is ClienteCNPJ)
+                {
+                    List<ClienteCPF> condutores = controladorCPF.SelecionarPorIdEmpresa(clienteSelecionado.Id);
+                    if (condutores.Count != 0)
+                    {
+                        MessageBox.Show("Remova primeiro os Condutores vinculados à Empresa e tente novamente",
+                                    "Exclusão de Clientes", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return;
+                    }
+                }
+
+                bool excluiu = clienteSelecionado is ClienteCPF ? controladorCPF.Excluir(id) : controladorCNPJ.Excluir(id);
 
                 if (excluiu)
                 {
@@ -107,6 +111,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.Clientes
                     MessageBox.Show("Remova primeiro as Locações vinculadas ao Cliente e tente novamente",
                         "Exclusão de Clientes", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
+
             }
         }
 

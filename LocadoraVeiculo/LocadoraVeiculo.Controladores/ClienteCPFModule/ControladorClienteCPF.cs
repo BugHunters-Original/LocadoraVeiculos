@@ -120,6 +120,8 @@ namespace LocadoraVeiculo.Controladores.CondutorModule
                     ON
                         CT.ID = CD.ID_CLIENTE";
 
+
+
         private const string sqlExisteCondutor =
             @"SELECT 
                 COUNT(*) 
