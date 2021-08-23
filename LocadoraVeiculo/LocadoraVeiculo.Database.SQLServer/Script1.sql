@@ -1,0 +1,3 @@
+﻿DELETE FROM TBLocacao
+
+SELECT * FROM TBLocacao
