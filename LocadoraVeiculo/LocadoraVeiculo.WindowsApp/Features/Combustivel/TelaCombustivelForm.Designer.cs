@@ -44,10 +44,13 @@ namespace LocadoraVeiculo.WindowsApp.Features.Combustivel
             this.btnSalvar = new System.Windows.Forms.Button();
             this.btnCancelar = new System.Windows.Forms.Button();
             this.bunifuElipse1 = new Bunifu.Framework.UI.BunifuElipse(this.components);
+            this.header_Combustivel = new System.Windows.Forms.Panel();
+            this.label8 = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.tabPageGasolina.SuspendLayout();
             this.tabPageAlcool.SuspendLayout();
             this.tabPageDiesel.SuspendLayout();
+            this.header_Combustivel.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabControl1
@@ -57,7 +60,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.Combustivel
             this.tabControl1.Controls.Add(this.tabPageAlcool);
             this.tabControl1.Controls.Add(this.tabPageDiesel);
             this.tabControl1.Font = new System.Drawing.Font("Lucida Sans Unicode", 8F);
-            this.tabControl1.Location = new System.Drawing.Point(10, 14);
+            this.tabControl1.Location = new System.Drawing.Point(10, 47);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
             this.tabControl1.Size = new System.Drawing.Size(290, 133);
@@ -161,7 +164,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.Combustivel
             // 
             this.btnSalvar.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.btnSalvar.Font = new System.Drawing.Font("Lucida Sans Unicode", 8F);
-            this.btnSalvar.Location = new System.Drawing.Point(119, 153);
+            this.btnSalvar.Location = new System.Drawing.Point(119, 186);
             this.btnSalvar.Name = "btnSalvar";
             this.btnSalvar.Size = new System.Drawing.Size(87, 27);
             this.btnSalvar.TabIndex = 1;
@@ -173,7 +176,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.Combustivel
             // 
             this.btnCancelar.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btnCancelar.Font = new System.Drawing.Font("Lucida Sans Unicode", 8F);
-            this.btnCancelar.Location = new System.Drawing.Point(213, 153);
+            this.btnCancelar.Location = new System.Drawing.Point(213, 186);
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Size = new System.Drawing.Size(87, 27);
             this.btnCancelar.TabIndex = 2;
@@ -185,11 +188,31 @@ namespace LocadoraVeiculo.WindowsApp.Features.Combustivel
             this.bunifuElipse1.ElipseRadius = 8;
             this.bunifuElipse1.TargetControl = this;
             // 
+            // header_Combustivel
+            // 
+            this.header_Combustivel.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.header_Combustivel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.header_Combustivel.Controls.Add(this.label8);
+            this.header_Combustivel.Location = new System.Drawing.Point(-3, 0);
+            this.header_Combustivel.Name = "header_Combustivel";
+            this.header_Combustivel.Size = new System.Drawing.Size(342, 29);
+            this.header_Combustivel.TabIndex = 18;
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(10, 6);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(143, 15);
+            this.label8.TabIndex = 0;
+            this.label8.Text = "Cadastro de Combustível";
+            // 
             // TelaCombustivelForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(311, 188);
+            this.ClientSize = new System.Drawing.Size(316, 234);
+            this.Controls.Add(this.header_Combustivel);
             this.Controls.Add(this.btnCancelar);
             this.Controls.Add(this.btnSalvar);
             this.Controls.Add(this.tabControl1);
@@ -209,6 +232,8 @@ namespace LocadoraVeiculo.WindowsApp.Features.Combustivel
             this.tabPageAlcool.PerformLayout();
             this.tabPageDiesel.ResumeLayout(false);
             this.tabPageDiesel.PerformLayout();
+            this.header_Combustivel.ResumeLayout(false);
+            this.header_Combustivel.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -228,5 +253,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.Combustivel
         private System.Windows.Forms.Button btnSalvar;
         private System.Windows.Forms.Button btnCancelar;
         private Bunifu.Framework.UI.BunifuElipse bunifuElipse1;
+        private System.Windows.Forms.Panel header_Combustivel;
+        private System.Windows.Forms.Label label8;
     }
 }

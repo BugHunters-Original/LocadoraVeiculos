@@ -16,6 +16,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.Combustivel
 
         private void SetColor()
         {
+            this.header_Combustivel.BackColor = ControladorDarkMode.corHeader;
             this.BackColor = ControladorDarkMode.corPanel;
             this.ForeColor = ControladorDarkMode.corFonte;
             txtGasolina.BackColor = ControladorDarkMode.corFundoTxBox;
