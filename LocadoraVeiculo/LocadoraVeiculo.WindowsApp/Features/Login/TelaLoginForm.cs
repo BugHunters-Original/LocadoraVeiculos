@@ -21,7 +21,6 @@ namespace LocadoraVeiculo.WindowsApp.Features.Login
         public TelaLoginForm()
         {
             InitializeComponent();
-            ControladorDarkMode.TrocarModo();
             SetColor();
         }
 
