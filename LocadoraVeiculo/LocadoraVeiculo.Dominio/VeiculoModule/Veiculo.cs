@@ -97,6 +97,9 @@ namespace LocadoraVeiculo.VeiculoModule
             if (km_Inicial == null || km_Inicial <= 0)
                 resultadoValidacao += QuebraDeLinha(resultadoValidacao) + "O campo Quilometragem Inicial obrigatório";
 
+            if (grupoVeiculo == null)
+                resultadoValidacao += QuebraDeLinha(resultadoValidacao) + "O campo tipo é obrigatório";
+
             if (Convert.ToInt32(ano) > DateTime.Now.Year || Convert.ToInt32(ano) < 1900 && ano != null)
                 resultadoValidacao += QuebraDeLinha(resultadoValidacao) + "O campo Ano não pode ser maior que o ano atual ou muito antigo";
 
