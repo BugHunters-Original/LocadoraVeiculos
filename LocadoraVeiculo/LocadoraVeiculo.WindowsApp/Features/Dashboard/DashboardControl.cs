@@ -20,6 +20,8 @@ namespace LocadoraVeiculo.WindowsApp.Features.Dashboard
     {
         ControladorVeiculo controladorVeiculo;
         ControladorLocacao controladorLocacao;
+        private static string telaAtual = "";
+
         public DashboardControl()
         {
             controladorVeiculo = new ControladorVeiculo();
@@ -28,7 +30,27 @@ namespace LocadoraVeiculo.WindowsApp.Features.Dashboard
             TrataLabels();
             ConfigurarGridLightMode();
             dtDashboard.ConfigurarGridSomenteLeitura();
-            dtDashboard.Columns.AddRange(ObterColunasLocacoesPendentes());
+            ObterTela();
+        }
+
+        public void ObterTela()
+        {
+            if (telaAtual == "")
+            {
+                ObterTodasLocacoesPendentes();
+            }
+            else if (telaAtual == "LocacoesPendentes")
+            {
+                ObterTodasLocacoesPendentes();
+            }
+            else if (telaAtual == "CarrosDisponiveis")
+            {
+                ObterTodosCarrosDisponiveis();
+            }
+            else if (telaAtual == "CarrosAlugados")
+            {
+                ObterTodosCarrosAlugados();
+            }
         }
 
         public void ConfigurarGridLightMode()
@@ -97,6 +119,12 @@ namespace LocadoraVeiculo.WindowsApp.Features.Dashboard
 
         private void btnAlugados_Click(object sender, EventArgs e)
         {
+            ObterTodosCarrosAlugados();
+        }
+
+        private void ObterTodosCarrosAlugados()
+        {
+            telaAtual = "CarrosAlugados";
             dtDashboard.Rows.Clear();
             dtDashboard.Columns.AddRange(ObterColunasCarros());
             labelTipoVisualizacao.Text = "CARROS ALUGADOS";
@@ -113,6 +141,12 @@ namespace LocadoraVeiculo.WindowsApp.Features.Dashboard
 
         private void btnInLoco_Click(object sender, EventArgs e)
         {
+            ObterTodosCarrosDisponiveis();
+        }
+
+        private void ObterTodosCarrosDisponiveis()
+        {
+            telaAtual = "CarrosDisponiveis";
             dtDashboard.Rows.Clear();
             dtDashboard.Columns.AddRange(ObterColunasCarros());
             labelTipoVisualizacao.Text = "CARROS DISPONIVEIS";
@@ -129,11 +163,12 @@ namespace LocadoraVeiculo.WindowsApp.Features.Dashboard
 
         private void btnLocacoesPendentes_Click(object sender, EventArgs e)
         {
-            LocacaoPendentes();
+            ObterTodasLocacoesPendentes();
         }
 
-        private void LocacaoPendentes()
+        private void ObterTodasLocacoesPendentes()
         {
+            telaAtual = "LocacoesPendentes";
             dtDashboard.Rows.Clear();
             dtDashboard.Columns.AddRange(ObterColunasLocacoesPendentes());
             labelTipoVisualizacao.Text = "LOCAÇÕES PENDENTES";
