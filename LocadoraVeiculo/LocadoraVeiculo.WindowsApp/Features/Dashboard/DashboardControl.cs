@@ -35,21 +35,17 @@ namespace LocadoraVeiculo.WindowsApp.Features.Dashboard
 
         public void ObterTela()
         {
-            if (telaAtual == "")
+            switch (telaAtual)
             {
-                ObterTodasLocacoesPendentes();
-            }
-            else if (telaAtual == "LocacoesPendentes")
-            {
-                ObterTodasLocacoesPendentes();
-            }
-            else if (telaAtual == "CarrosDisponiveis")
-            {
-                ObterTodosCarrosDisponiveis();
-            }
-            else if (telaAtual == "CarrosAlugados")
-            {
-                ObterTodosCarrosAlugados();
+                case "": ObterTodasLocacoesPendentes(); break;
+
+                case "LocacoesPendentes": ObterTodasLocacoesPendentes(); break;
+
+                case "CarrosDisponiveis": ObterTodosCarrosDisponiveis(); break;
+
+                case "CarrosAlugados": ObterTodosCarrosAlugados(); break;
+
+                default: break;
             }
         }
 
