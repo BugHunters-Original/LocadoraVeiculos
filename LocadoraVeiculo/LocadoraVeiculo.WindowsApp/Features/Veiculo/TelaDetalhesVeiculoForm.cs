@@ -82,6 +82,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.Veiculo
                 txtAno.Text = veiculos.ano.ToString();
                 txtNPortas.Text = veiculos.numero_Portas.ToString();
                 txtCapacidadeTanque.Text = veiculos.capacidade_Tanque.ToString();
+                txtCapacidadePessoas.Text = veiculos.capacidade_Pessoas.ToString();
                 cmbTamanhoPortaMalas.Text = veiculos.tamanhoPortaMalas.ToString();
                 txtKm.Text = veiculos.km_Inicial.ToString();
                 cmbTipoCombustivel.Text = veiculos.tipo_Combustivel;
