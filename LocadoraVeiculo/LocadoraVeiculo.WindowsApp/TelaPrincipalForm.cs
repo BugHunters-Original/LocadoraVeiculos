@@ -332,5 +332,33 @@ namespace LocadoraVeiculo.WindowsApp
         {
             Application.Run(new TelaLoginForm());
         }
+
+        private void btnLogOut_MouseHover(object sender, EventArgs e)
+        {
+            ToolTip toolTip = new ToolTip();
+            toolTip.SetToolTip(this.btnLogOut, "LogOut");
+        }
+
+        private void btnMinimize_MouseHover(object sender, EventArgs e)
+        {
+            ToolTip toolTip = new ToolTip();
+            toolTip.SetToolTip(this.btnMinimize, "Minimizar");
+        }
+
+        private void btnMaximize_MouseHover(object sender, EventArgs e)
+        {
+            ToolTip toolTip = new ToolTip();
+
+            if (this.WindowState == FormWindowState.Maximized)
+                toolTip.SetToolTip(this.btnMaximize, "Normalizar");
+            else
+                toolTip.SetToolTip(this.btnMaximize, "Maximizar");
+        }
+
+        private void btnClose_MouseHover(object sender, EventArgs e)
+        {
+            ToolTip toolTip = new ToolTip();
+            toolTip.SetToolTip(this.btnClose, "Fechar");
+        }
     }
 }
