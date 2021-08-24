@@ -145,7 +145,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.TaxaServico
             this.btnCancelar.Location = new System.Drawing.Point(210, 241);
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Size = new System.Drawing.Size(87, 27);
-            this.btnCancelar.TabIndex = 13;
+            this.btnCancelar.TabIndex = 5;
             this.btnCancelar.Text = "Cancelar";
             this.btnCancelar.UseVisualStyleBackColor = true;
             // 
@@ -155,7 +155,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.TaxaServico
             this.txtPreco.Mask = "00000";
             this.txtPreco.Name = "txtPreco";
             this.txtPreco.Size = new System.Drawing.Size(186, 24);
-            this.txtPreco.TabIndex = 14;
+            this.txtPreco.TabIndex = 1;
             // 
             // bunifuElipse1
             // 

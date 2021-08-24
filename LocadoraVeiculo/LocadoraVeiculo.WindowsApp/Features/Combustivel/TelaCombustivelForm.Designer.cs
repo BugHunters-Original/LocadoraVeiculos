@@ -64,7 +64,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.Combustivel
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
             this.tabControl1.Size = new System.Drawing.Size(290, 133);
-            this.tabControl1.TabIndex = 0;
+            this.tabControl1.TabIndex = 4;
             this.tabControl1.Leave += new System.EventHandler(this.txtBoxZerado_Leave);
             // 
             // tabPageGasolina
@@ -95,7 +95,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.Combustivel
             this.txtGasolina.Location = new System.Drawing.Point(92, 40);
             this.txtGasolina.Name = "txtGasolina";
             this.txtGasolina.Size = new System.Drawing.Size(116, 19);
-            this.txtGasolina.TabIndex = 0;
+            this.txtGasolina.TabIndex = 1;
             this.txtGasolina.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtBoxJustNumbers_KeyPress);
             // 
             // tabPageAlcool
@@ -126,7 +126,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.Combustivel
             this.txtAlcool.Location = new System.Drawing.Point(92, 40);
             this.txtAlcool.Name = "txtAlcool";
             this.txtAlcool.Size = new System.Drawing.Size(116, 19);
-            this.txtAlcool.TabIndex = 2;
+            this.txtAlcool.TabIndex = 3;
             this.txtAlcool.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtBoxJustNumbers_KeyPress);
             // 
             // tabPageDiesel
@@ -157,7 +157,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.Combustivel
             this.txtDiesel.Location = new System.Drawing.Point(92, 40);
             this.txtDiesel.Name = "txtDiesel";
             this.txtDiesel.Size = new System.Drawing.Size(116, 19);
-            this.txtDiesel.TabIndex = 2;
+            this.txtDiesel.TabIndex = 5;
             this.txtDiesel.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtBoxJustNumbers_KeyPress);
             // 
             // btnSalvar
@@ -167,7 +167,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.Combustivel
             this.btnSalvar.Location = new System.Drawing.Point(119, 186);
             this.btnSalvar.Name = "btnSalvar";
             this.btnSalvar.Size = new System.Drawing.Size(87, 27);
-            this.btnSalvar.TabIndex = 1;
+            this.btnSalvar.TabIndex = 6;
             this.btnSalvar.Text = "Gravar";
             this.btnSalvar.UseVisualStyleBackColor = true;
             this.btnSalvar.Click += new System.EventHandler(this.btnGravar_Click);
@@ -179,7 +179,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.Combustivel
             this.btnCancelar.Location = new System.Drawing.Point(213, 186);
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Size = new System.Drawing.Size(87, 27);
-            this.btnCancelar.TabIndex = 2;
+            this.btnCancelar.TabIndex = 7;
             this.btnCancelar.Text = "Cancelar";
             this.btnCancelar.UseVisualStyleBackColor = true;
             // 

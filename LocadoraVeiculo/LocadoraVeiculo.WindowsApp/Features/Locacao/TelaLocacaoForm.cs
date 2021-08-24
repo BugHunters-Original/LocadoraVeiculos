@@ -6,6 +6,7 @@ using LocadoraVeiculo.Controladores.VeiculoModule;
 using LocadoraVeiculo.LocacaoModule;
 using LocadoraVeiculo.ServicoModule;
 using LocadoraVeiculo.WindowsApp.Features.DarkMode;
+using LocadoraVeiculo.WindowsApp.Features.Locacao.TaxasServicos;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;

@@ -281,7 +281,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.Clientes
             this.rbJuridico.Location = new System.Drawing.Point(289, 96);
             this.rbJuridico.Name = "rbJuridico";
             this.rbJuridico.Size = new System.Drawing.Size(105, 19);
-            this.rbJuridico.TabIndex = 22;
+            this.rbJuridico.TabIndex = 1;
             this.rbJuridico.Text = "Pessoa Jurídica";
             this.rbJuridico.UseVisualStyleBackColor = true;
             this.rbJuridico.CheckedChanged += new System.EventHandler(this.rbJuridico_CheckedChanged);

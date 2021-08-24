@@ -1,7 +1,7 @@
 ﻿using LocadoraVeiculo.Controladores.LocacaoModule;
 using LocadoraVeiculo.LocacaoModule;
+using LocadoraVeiculo.WindowsApp.Features.Locacao.Devolucao;
 using LocadoraVeiculo.WindowsApp.Features.NotaFiscal;
-using LocadoraVeiculo.WindowsApp.Features.Veiculo;
 using LocadoraVeiculo.WindowsApp.Shared;
 using System;
 using System.Collections.Generic;
