@@ -137,7 +137,7 @@ namespace LocadoraVeiculo.Tests.LocacaoModule
             var resultadoValidacao = novaLocacao.Validar();
 
             //assert
-            resultadoValidacao.Should().Be("O campo Condutor está inválido");
+            resultadoValidacao.Should().Be("O campo Condutor está inválido\r\nO condutor necessita de uma CNH válida");
         }
 
 
