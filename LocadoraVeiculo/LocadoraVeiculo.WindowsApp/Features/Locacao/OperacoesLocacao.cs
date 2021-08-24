@@ -77,6 +77,13 @@ namespace LocadoraVeiculo.WindowsApp.Features.Locacao
 
             var locacaoSelecionada = controlador.SelecionarPorId(id);
 
+            if (locacaoSelecionada.StatusLocacao == "Concluída")
+            {
+                MessageBox.Show("Impossível editar uma Locação já concluída!", "Edição de Locações",
+                    MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                return;
+            }
+
             TelaLocacaoForm tela = new TelaLocacaoForm();
 
             tela.Locacao = locacaoSelecionada;

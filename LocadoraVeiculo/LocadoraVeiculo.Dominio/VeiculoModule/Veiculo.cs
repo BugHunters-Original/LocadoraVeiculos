@@ -137,6 +137,7 @@ namespace LocadoraVeiculo.VeiculoModule
                disponibilidade_Veiculo == other.disponibilidade_Veiculo &&
                EqualityComparer<GrupoVeiculo>.Default.Equals(grupoVeiculo, other.grupoVeiculo) &&
                foto.SequenceEqual(other.foto);
+               
         }
 
         public override int GetHashCode()
