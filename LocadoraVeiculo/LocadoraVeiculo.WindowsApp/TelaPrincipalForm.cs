@@ -8,7 +8,7 @@ using LocadoraVeiculo.WindowsApp.Features.Clientes;
 using LocadoraVeiculo.WindowsApp.Features.GrupoVeiculo;
 using LocadoraVeiculo.WindowsApp.Features.Funcionarios;
 using LocadoraVeiculo.WindowsApp.Features.Locacao;
-using LocadoraVeiculo.WindowsApp.Features.Veiculo;
+using LocadoraVeiculo.WindowsApp.Features.Veiculos;
 using LocadoraVeiculo.WindowsApp.Shared;
 using System;
 using System.Windows.Forms;

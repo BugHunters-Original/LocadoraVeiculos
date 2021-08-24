@@ -10,7 +10,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace LocadoraVeiculo.WindowsApp.Features.Veiculo
+namespace LocadoraVeiculo.WindowsApp.Features.Veiculos
 {
     public partial class TelaDetalhesVeiculoForm : Form
     {

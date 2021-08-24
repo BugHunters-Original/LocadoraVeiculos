@@ -104,6 +104,7 @@ namespace LocadoraVeiculo.Controladores.VeiculoModule
             ON
                 TV.ID = V.ID_TIPO_VEICULO";
 
+
         private const string sqlSelecionarVeiculoPorId =
             @"SELECT 
                 V.[ID],       
@@ -244,6 +245,13 @@ namespace LocadoraVeiculo.Controladores.VeiculoModule
             }
 
             return resultadoValidacao;
+        }
+        public void EditarDisponibilidade(Veiculo atual, Veiculo antigo)
+        {
+            atual.disponibilidade_Veiculo = 0;
+            antigo.disponibilidade_Veiculo = 1;
+            Db.Update(sqlEditarVeiculo, ObtemParametrosVeiculo(atual));
+            Db.Update(sqlEditarVeiculo, ObtemParametrosVeiculo(antigo));
         }
 
         public override string Editar(int id, Veiculo registro)

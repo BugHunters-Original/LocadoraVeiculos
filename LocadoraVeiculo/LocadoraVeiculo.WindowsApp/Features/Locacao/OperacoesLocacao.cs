@@ -1,4 +1,5 @@
 ﻿using LocadoraVeiculo.Controladores.LocacaoModule;
+using LocadoraVeiculo.Controladores.VeiculoModule;
 using LocadoraVeiculo.LocacaoModule;
 using LocadoraVeiculo.WindowsApp.Features.Locacao.Devolucao;
 using LocadoraVeiculo.WindowsApp.Features.NotaFiscal;
@@ -12,11 +13,13 @@ namespace LocadoraVeiculo.WindowsApp.Features.Locacao
     public class OperacoesLocacao : ICadastravel
     {
         private readonly ControladorLocacao controlador = null;
+        private readonly ControladorVeiculo controladorVeiculo = null;
         private readonly TabelaLocacaoControl tabelaLocacoes = null;
 
         public OperacoesLocacao(ControladorLocacao ctrlLocacao)
         {
             controlador = ctrlLocacao;
+            controladorVeiculo = new ControladorVeiculo();
             tabelaLocacoes = new TabelaLocacaoControl();
         }
 
@@ -90,6 +93,9 @@ namespace LocadoraVeiculo.WindowsApp.Features.Locacao
 
             if (tela.ShowDialog() == DialogResult.OK)
             {
+                if(tela.Locacao.Veiculo != locacaoSelecionada.Veiculo)
+                    controladorVeiculo.EditarDisponibilidade(tela.Locacao.Veiculo, locacaoSelecionada.Veiculo);
+
                 controlador.Editar(id, tela.Locacao);
 
                 List<LocacaoVeiculo> locacaoes = controlador.SelecionarTodos();

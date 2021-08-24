@@ -12,7 +12,7 @@ using LocadoraVeiculo.Controladores.Shared;
 using LocadoraVeiculo.Controladores.VeiculoModule;
 using LocadoraVeiculo.LocacaoModule;
 using LocadoraVeiculo.WindowsApp.Features.DarkMode;
-using LocadoraVeiculo.WindowsApp.Features.Veiculo;
+using LocadoraVeiculo.WindowsApp.Features.Veiculos;
 using LocadoraVeiculo.WindowsApp.Shared;
 
 namespace LocadoraVeiculo.WindowsApp.Features.Dashboard
