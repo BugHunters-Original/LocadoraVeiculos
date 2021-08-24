@@ -36,7 +36,7 @@ namespace LocadoraVeiculo.Tests.VeiculoModule
         public void DeveInserir_Veiculo()
         {
             //arrange
-            var veiculo = new Veiculo("marea", "1234567", "12345678901234567", imagem, "azul", "fiat", 2000, 2, 80, 'G', 1000, "gasolina", 1, Grupo);
+            var veiculo = new Veiculo("marea", "1234567", "12345678901234567", imagem, "azul", "fiat", 2000, 2, 80, 1, 'G', 1000, "gasolina", 1, Grupo);
 
             //action
             controlador.InserirNovo(veiculo);
@@ -51,10 +51,10 @@ namespace LocadoraVeiculo.Tests.VeiculoModule
         public void DeveAtualizar_Veiculo()
         {
             //arrange
-            var veiculo = new Veiculo("marea", "1234567", "12345678901234567", imagem, "azul", "fiat", 2000, 2, 80, 'G', 1000, "gasolina", 1, Grupo);
+            var veiculo = new Veiculo("marea", "1234567", "12345678901234567", imagem, "azul", "fiat", 2000, 2, 80, 1, 'G', 1000, "gasolina", 1, Grupo);
             controlador.InserirNovo(veiculo);
 
-            var VeiculoEditado = new Veiculo("uneiras", "7654321", "12345678901234567", imagem, "preto", "audi", 2012, 2, 80, 'G', 1000, "gasolina", 1, Grupo);
+            var VeiculoEditado = new Veiculo("uneiras", "7654321", "12345678901234567", imagem, "preto", "audi", 2012, 2, 80, 1, 'G', 1000, "gasolina", 1, Grupo);
 
             //action
             controlador.Editar(veiculo.Id, VeiculoEditado);
@@ -69,7 +69,7 @@ namespace LocadoraVeiculo.Tests.VeiculoModule
         public void DeveExcluir_Veiculo()
         {
             //arrange            
-            var veiculo = new Veiculo("marea", "1234567", "12345678901234567", imagem, "azul", "fiat", 2000, 2, 80, 'G', 1000, "gasolina", 1, Grupo);
+            var veiculo = new Veiculo("marea", "1234567", "12345678901234567", imagem, "azul", "fiat", 2000, 2, 80, 1, 'G', 1000, "gasolina", 1, Grupo);
             controlador.InserirNovo(veiculo);
 
             //action            
@@ -85,7 +85,7 @@ namespace LocadoraVeiculo.Tests.VeiculoModule
         public void DeveSelecionar_Veiculo_PorId()
         {
             //arrange
-            var veiculo = new Veiculo("marea", "1234567", "12345678901234567", imagem, "azul", "fiat", 2000, 2, 80, 'G', 1000, "gasolina", 1, Grupo);
+            var veiculo = new Veiculo("marea", "1234567", "12345678901234567", imagem, "azul", "fiat", 2000, 2, 80, 1, 'G', 1000, "gasolina", 1, Grupo);
             controlador.InserirNovo(veiculo);
 
             //action
@@ -100,13 +100,13 @@ namespace LocadoraVeiculo.Tests.VeiculoModule
         public void DeveSelecionar_Todos()
         {
             //arrange
-            var v1 = new Veiculo("marea", "1234567", "12345678901234567", imagem, "azul", "fiat", 2000, 2, 80, 'G', 1000, "gasolina", 1, Grupo);
+            var v1 = new Veiculo("marea", "1234567", "12345678901234567", imagem, "azul", "fiat", 2000, 2, 80, 1, 'G', 1000, "gasolina", 1, Grupo);
             controlador.InserirNovo(v1);
 
-            var v2 = new Veiculo("uno", "1234567", "12345678901234567", imagem, "azul", "fiat", 2000, 2, 80, 'G', 1000, "gasolina", 1, Grupo);
+            var v2 = new Veiculo("uno", "1234567", "12345678901234567", imagem, "azul", "fiat", 2000, 2, 80, 1, 'G', 1000, "gasolina", 1, Grupo);
             controlador.InserirNovo(v2);
 
-            var v3 = new Veiculo("corsa", "1234567", "12345678901234567", imagem, "azul", "fiat", 2000, 2, 80, 'G', 1000, "gasolina", 1, Grupo);
+            var v3 = new Veiculo("corsa", "1234567", "12345678901234567", imagem, "azul", "fiat", 2000, 2, 80, 1, 'G', 1000, "gasolina", 1, Grupo);
             controlador.InserirNovo(v3);
 
             //action

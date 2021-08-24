@@ -22,7 +22,7 @@ namespace LocadoraVeiculo.Tests.VeiculoModule
         {
             //arrange
         
-            Veiculo veiculo = new Veiculo("Carro", "AAA8888", "12345678912345678", imagem, "vermelho", "Ford", 2009, 9, 200, 'M', 90, "Álcool", 1, grupoVeiculo);
+            Veiculo veiculo = new Veiculo("Carro", "AAA8888", "12345678912345678", imagem, "vermelho", "Ford", 2009, 9, 200,1, 'M', 90, "Álcool", 1, grupoVeiculo);
 
             //action
             var resultadoValidacao = veiculo.Validar();
@@ -37,7 +37,7 @@ namespace LocadoraVeiculo.Tests.VeiculoModule
             
             //arrange
             
-            Veiculo veiculo = new Veiculo(null, "AAA8888", "12345678912345678", imagem, "vermelho", "Ford", 2009, 9, 200, 'M', 90, "Álcool", 1, grupoVeiculo);
+            Veiculo veiculo = new Veiculo(null, "AAA8888", "12345678912345678", imagem, "vermelho", "Ford", 2009, 9, 200,1, 'M', 90, "Álcool", 1, grupoVeiculo);
 
             //action
             var resultadoValidacao = veiculo.Validar();
@@ -51,7 +51,7 @@ namespace LocadoraVeiculo.Tests.VeiculoModule
         {
             
             //arrange            
-            Veiculo veiculo = new Veiculo("NomeDoCarro", null, "12345678912345678", imagem, "vermelho", "Ford", 2009, 9, 200, 'M', 90, "Álcool", 1, grupoVeiculo);
+            Veiculo veiculo = new Veiculo("NomeDoCarro", null, "12345678912345678", imagem, "vermelho", "Ford", 2009, 9, 200,1, 'M', 90, "Álcool", 1, grupoVeiculo);
 
             //action
             var resultadoValidacao = veiculo.Validar();
@@ -65,7 +65,7 @@ namespace LocadoraVeiculo.Tests.VeiculoModule
         {
 
             //arrange            
-            Veiculo veiculo = new Veiculo("NomeDoCarro", "AAA", "12345678912345678", imagem, "vermelho", "Ford", 2009, 9, 200, 'M', 90, "Álcool", 1, grupoVeiculo);
+            Veiculo veiculo = new Veiculo("NomeDoCarro", "AAA", "12345678912345678", imagem, "vermelho", "Ford", 2009, 9, 200,1, 'M', 90, "Álcool", 1, grupoVeiculo);
 
             //action
             var resultadoValidacao = veiculo.Validar();
@@ -79,7 +79,7 @@ namespace LocadoraVeiculo.Tests.VeiculoModule
         {
             
             //arrange            
-            Veiculo veiculo = new Veiculo("NomeDoCarro", "AAA8888", null, imagem, "vermelho", "Ford", 2009, 9, 200, 'M', 90, "Álcool", 1, grupoVeiculo);
+            Veiculo veiculo = new Veiculo("NomeDoCarro", "AAA8888", null, imagem, "vermelho", "Ford", 2009, 9, 200,1, 'M', 90, "Álcool", 1, grupoVeiculo);
 
             //action
             var resultadoValidacao = veiculo.Validar();
@@ -93,7 +93,7 @@ namespace LocadoraVeiculo.Tests.VeiculoModule
         {
 
             //arrange            
-            Veiculo veiculo = new Veiculo("NomeDoCarro", "AAA8888", "4444", imagem, "vermelho", "Ford", 2009, 9, 200, 'M', 90, "Álcool", 1, grupoVeiculo);
+            Veiculo veiculo = new Veiculo("NomeDoCarro", "AAA8888", "4444", imagem, "vermelho", "Ford", 2009, 9, 200,1, 'M', 90, "Álcool", 1, grupoVeiculo);
 
             //action
             var resultadoValidacao = veiculo.Validar();
@@ -108,7 +108,7 @@ namespace LocadoraVeiculo.Tests.VeiculoModule
         {
 
             //arrange            
-            Veiculo veiculo = new Veiculo("NomeDoCarro", "AAA8888", "11112345671234675", imagem, "vermelho", "Ford", 2009, 9, 200, 'B', 90, "Álcool", 1, grupoVeiculo);
+            Veiculo veiculo = new Veiculo("NomeDoCarro", "AAA8888", "11112345671234675", imagem, "vermelho", "Ford", 2009, 9, 200,1, 'B', 90, "Álcool", 1, grupoVeiculo);
 
             //action
             var resultadoValidacao = veiculo.Validar();
@@ -122,7 +122,7 @@ namespace LocadoraVeiculo.Tests.VeiculoModule
         {
             
             //arrange            
-            Veiculo veiculo = new Veiculo("NomeDoCarro", "AAA8888", "11112345671234675", new byte[] { }, "vermelho", "Ford", 2009, 9, 200, 'P', 90, "Álcool", 1, grupoVeiculo);
+            Veiculo veiculo = new Veiculo("NomeDoCarro", "AAA8888", "11112345671234675", new byte[] { }, "vermelho", "Ford", 2009, 9, 200,1, 'P', 90, "Álcool", 1, grupoVeiculo);
 
             //action
             var resultadoValidacao = veiculo.Validar();
@@ -136,7 +136,7 @@ namespace LocadoraVeiculo.Tests.VeiculoModule
         {
 
             //arrange            
-            Veiculo veiculo = new Veiculo("NomeDoCarro", "AAA8888", "11112345671234675", imagem, null, "Ford", 2009, 9, 200, 'P', 90, "Álcool", 1, grupoVeiculo);
+            Veiculo veiculo = new Veiculo("NomeDoCarro", "AAA8888", "11112345671234675", imagem, null, "Ford", 2009, 9, 200,1, 'P', 90, "Álcool", 1, grupoVeiculo);
 
             //action
             var resultadoValidacao = veiculo.Validar();
@@ -150,7 +150,7 @@ namespace LocadoraVeiculo.Tests.VeiculoModule
         {
 
             //arrange            
-            Veiculo veiculo = new Veiculo("NomeDoCarro", "AAA8888", "11112345671234675", imagem, "roxo", null, 2009, 9, 200, 'P', 90, "Álcool", 1, grupoVeiculo);
+            Veiculo veiculo = new Veiculo("NomeDoCarro", "AAA8888", "11112345671234675", imagem, "roxo", null, 2009, 9, 200,1, 'P', 90, "Álcool", 1, grupoVeiculo);
 
             //action
             var resultadoValidacao = veiculo.Validar();
@@ -164,7 +164,7 @@ namespace LocadoraVeiculo.Tests.VeiculoModule
         {
 
             //arrange            
-            Veiculo veiculo = new Veiculo("NomeDoCarro", "AAA8888", "11112345671234675", imagem, "roxo", "Volkswagem", 2009, 9, 200, 'P', 90, null, 1, grupoVeiculo);
+            Veiculo veiculo = new Veiculo("NomeDoCarro", "AAA8888", "11112345671234675", imagem, "roxo", "Volkswagem", 2009, 9, 200,1, 'P', 90, null, 1, grupoVeiculo);
 
             //action
             var resultadoValidacao = veiculo.Validar();
@@ -178,7 +178,7 @@ namespace LocadoraVeiculo.Tests.VeiculoModule
         {
 
             //arrange            
-            Veiculo veiculo = new Veiculo("NomeDoCarro", "AAA8888", "11112345671234675", imagem, "roxo", "Volkswagem", null, 9, 200, 'P', 90, "Álcool", 1, grupoVeiculo);
+            Veiculo veiculo = new Veiculo("NomeDoCarro", "AAA8888", "11112345671234675", imagem, "roxo", "Volkswagem", null, 9, 200,1, 'P', 90, "Álcool", 1, grupoVeiculo);
 
             //action
             var resultadoValidacao = veiculo.Validar();
@@ -192,7 +192,7 @@ namespace LocadoraVeiculo.Tests.VeiculoModule
         {
 
             //arrange            
-            Veiculo veiculo = new Veiculo("NomeDoCarro", "AAA8888", "11112345671234675", imagem, "roxo", "Volkswagem", 2000, 0, 200, 'P', 90, "Álcool", 1, grupoVeiculo);
+            Veiculo veiculo = new Veiculo("NomeDoCarro", "AAA8888", "11112345671234675", imagem, "roxo", "Volkswagem", 2000, 0, 200,1, 'P', 90, "Álcool", 1, grupoVeiculo);
 
             //action
             var resultadoValidacao = veiculo.Validar();
@@ -206,7 +206,7 @@ namespace LocadoraVeiculo.Tests.VeiculoModule
         {
 
             //arrange            
-            Veiculo veiculo = new Veiculo("NomeDoCarro", "AAA8888", "11112345671234675", imagem, "roxo", "Volkswagem", 2000, 1, 0, 'P', 90, "Álcool", 1, grupoVeiculo);
+            Veiculo veiculo = new Veiculo("NomeDoCarro", "AAA8888", "11112345671234675", imagem, "roxo", "Volkswagem", 2000, 1, 0,1, 'P', 90, "Álcool", 1, grupoVeiculo);
 
             //action
             var resultadoValidacao = veiculo.Validar();
@@ -220,7 +220,7 @@ namespace LocadoraVeiculo.Tests.VeiculoModule
         {
 
             //arrange            
-            Veiculo veiculo = new Veiculo("NomeDoCarro", "AAA8888", "11112345671234675", imagem, "roxo", "Volkswagem", 2000, 1, 200, 'P', 0, "Álcool", 1, grupoVeiculo);
+            Veiculo veiculo = new Veiculo("NomeDoCarro", "AAA8888", "11112345671234675", imagem, "roxo", "Volkswagem", 2000, 1, 200,1, 'P', 0, "Álcool", 1, grupoVeiculo);
 
             //action
             var resultadoValidacao = veiculo.Validar();
@@ -234,7 +234,7 @@ namespace LocadoraVeiculo.Tests.VeiculoModule
         {
 
             //arrange            
-            Veiculo veiculo = new Veiculo("NomeDoCarro", "AAA8888", "11112345671234675", imagem, "roxo", "Volkswagem", 2100, 1, 200, 'P', 90, "Álcool", 1, grupoVeiculo);
+            Veiculo veiculo = new Veiculo("NomeDoCarro", "AAA8888", "11112345671234675", imagem, "roxo", "Volkswagem", 2100, 1, 200,1, 'P', 90, "Álcool", 1, grupoVeiculo);
 
             //action
             var resultadoValidacao = veiculo.Validar();
