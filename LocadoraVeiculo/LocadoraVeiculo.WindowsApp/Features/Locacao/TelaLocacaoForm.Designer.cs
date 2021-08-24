@@ -69,14 +69,14 @@ namespace LocadoraVeiculo.WindowsApp.Features.Locacao
             this.dtSaida.Location = new System.Drawing.Point(237, 192);
             this.dtSaida.Name = "dtSaida";
             this.dtSaida.Size = new System.Drawing.Size(374, 24);
-            this.dtSaida.TabIndex = 4;
+            this.dtSaida.TabIndex = 3;
             // 
             // dtRetorno
             // 
             this.dtRetorno.Location = new System.Drawing.Point(237, 221);
             this.dtRetorno.Name = "dtRetorno";
             this.dtRetorno.Size = new System.Drawing.Size(374, 24);
-            this.dtRetorno.TabIndex = 5;
+            this.dtRetorno.TabIndex = 4;
             // 
             // txtID
             // 
@@ -92,7 +92,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.Locacao
             this.btnTaxa.Location = new System.Drawing.Point(237, 315);
             this.btnTaxa.Name = "btnTaxa";
             this.btnTaxa.Size = new System.Drawing.Size(374, 27);
-            this.btnTaxa.TabIndex = 7;
+            this.btnTaxa.TabIndex = 6;
             this.btnTaxa.Text = "Adicionar Taxas e Serviços";
             this.btnTaxa.UseVisualStyleBackColor = true;
             this.btnTaxa.Click += new System.EventHandler(this.btnTaxa_Click);
@@ -103,7 +103,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.Locacao
             this.btnCancelar.Location = new System.Drawing.Point(524, 386);
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Size = new System.Drawing.Size(87, 27);
-            this.btnCancelar.TabIndex = 14;
+            this.btnCancelar.TabIndex = 8;
             this.btnCancelar.Text = "Cancelar";
             this.btnCancelar.UseVisualStyleBackColor = true;
             // 
@@ -113,7 +113,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.Locacao
             this.btnGravar.Location = new System.Drawing.Point(429, 386);
             this.btnGravar.Name = "btnGravar";
             this.btnGravar.Size = new System.Drawing.Size(87, 27);
-            this.btnGravar.TabIndex = 13;
+            this.btnGravar.TabIndex = 7;
             this.btnGravar.Text = "Gravar";
             this.btnGravar.UseVisualStyleBackColor = true;
             this.btnGravar.Click += new System.EventHandler(this.btnGravar_Click);
@@ -192,7 +192,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.Locacao
             this.cbTipoLocacao.Location = new System.Drawing.Point(237, 252);
             this.cbTipoLocacao.Name = "cbTipoLocacao";
             this.cbTipoLocacao.Size = new System.Drawing.Size(374, 23);
-            this.cbTipoLocacao.TabIndex = 24;
+            this.cbTipoLocacao.TabIndex = 5;
             // 
             // bunifuElipse1
             // 
@@ -225,7 +225,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.Locacao
             this.cbCondutor.Location = new System.Drawing.Point(237, 158);
             this.cbCondutor.Name = "cbCondutor";
             this.cbCondutor.Size = new System.Drawing.Size(374, 23);
-            this.cbCondutor.TabIndex = 28;
+            this.cbCondutor.TabIndex = 2;
             // 
             // cbVeiculo
             // 
@@ -234,7 +234,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.Locacao
             this.cbVeiculo.Location = new System.Drawing.Point(237, 129);
             this.cbVeiculo.Name = "cbVeiculo";
             this.cbVeiculo.Size = new System.Drawing.Size(374, 23);
-            this.cbVeiculo.TabIndex = 29;
+            this.cbVeiculo.TabIndex = 1;
             // 
             // TelaLocacaoForm
             // 

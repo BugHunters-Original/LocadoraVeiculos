@@ -11,7 +11,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace LocadoraVeiculo.WindowsApp.Features.Locacao
+namespace LocadoraVeiculo.WindowsApp.Features.Locacao.TaxasServicos
 {
     public partial class TelaAdicionarTaxasForm : Form
     {

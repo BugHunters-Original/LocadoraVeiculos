@@ -79,7 +79,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.Veiculo
             this.txtNome.Location = new System.Drawing.Point(170, 114);
             this.txtNome.Name = "txtNome";
             this.txtNome.Size = new System.Drawing.Size(562, 24);
-            this.txtNome.TabIndex = 10;
+            this.txtNome.TabIndex = 0;
             // 
             // label14
             // 
@@ -98,7 +98,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.Veiculo
             this.txtChassi.MaxLength = 17;
             this.txtChassi.Name = "txtChassi";
             this.txtChassi.Size = new System.Drawing.Size(117, 24);
-            this.txtChassi.TabIndex = 3;
+            this.txtChassi.TabIndex = 5;
             // 
             // label13
             // 
@@ -128,7 +128,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.Veiculo
             this.txtKm.Mask = "999999999";
             this.txtKm.Name = "txtKm";
             this.txtKm.Size = new System.Drawing.Size(117, 24);
-            this.txtKm.TabIndex = 13;
+            this.txtKm.TabIndex = 10;
             // 
             // label11
             // 
@@ -152,7 +152,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.Veiculo
             this.cmbTipoCombustivel.Margin = new System.Windows.Forms.Padding(2);
             this.cmbTipoCombustivel.Name = "cmbTipoCombustivel";
             this.cmbTipoCombustivel.Size = new System.Drawing.Size(117, 23);
-            this.cmbTipoCombustivel.TabIndex = 5;
+            this.cmbTipoCombustivel.TabIndex = 12;
             // 
             // txtCapacidadeTanque
             // 
@@ -162,7 +162,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.Veiculo
             this.txtCapacidadeTanque.Mask = "999";
             this.txtCapacidadeTanque.Name = "txtCapacidadeTanque";
             this.txtCapacidadeTanque.Size = new System.Drawing.Size(117, 24);
-            this.txtCapacidadeTanque.TabIndex = 6;
+            this.txtCapacidadeTanque.TabIndex = 11;
             // 
             // label10
             // 
@@ -198,7 +198,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.Veiculo
             this.cmbTamanhoPortaMalas.Margin = new System.Windows.Forms.Padding(2);
             this.cmbTamanhoPortaMalas.Name = "cmbTamanhoPortaMalas";
             this.cmbTamanhoPortaMalas.Size = new System.Drawing.Size(117, 23);
-            this.cmbTamanhoPortaMalas.TabIndex = 4;
+            this.cmbTamanhoPortaMalas.TabIndex = 9;
             // 
             // label4
             // 
@@ -218,7 +218,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.Veiculo
             this.txtNPortas.Mask = "00";
             this.txtNPortas.Name = "txtNPortas";
             this.txtNPortas.Size = new System.Drawing.Size(117, 24);
-            this.txtNPortas.TabIndex = 102;
+            this.txtNPortas.TabIndex = 8;
             // 
             // label9
             // 
@@ -238,7 +238,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.Veiculo
             this.cmbGrupo.Margin = new System.Windows.Forms.Padding(2);
             this.cmbGrupo.Name = "cmbGrupo";
             this.cmbGrupo.Size = new System.Drawing.Size(117, 23);
-            this.cmbGrupo.TabIndex = 7;
+            this.cmbGrupo.TabIndex = 3;
             // 
             // label8
             // 
@@ -258,7 +258,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.Veiculo
             this.txtCapacidadePessoas.Mask = "00";
             this.txtCapacidadePessoas.Name = "txtCapacidadePessoas";
             this.txtCapacidadePessoas.Size = new System.Drawing.Size(117, 24);
-            this.txtCapacidadePessoas.TabIndex = 98;
+            this.txtCapacidadePessoas.TabIndex = 7;
             // 
             // label7
             // 
@@ -278,7 +278,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.Veiculo
             this.txtAno.Mask = "9999";
             this.txtAno.Name = "txtAno";
             this.txtAno.Size = new System.Drawing.Size(117, 24);
-            this.txtAno.TabIndex = 2;
+            this.txtAno.TabIndex = 4;
             // 
             // txtCor
             // 
@@ -287,7 +287,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.Veiculo
             this.txtCor.MaxLength = 15;
             this.txtCor.Name = "txtCor";
             this.txtCor.Size = new System.Drawing.Size(117, 24);
-            this.txtCor.TabIndex = 9;
+            this.txtCor.TabIndex = 2;
             // 
             // label5
             // 
@@ -306,7 +306,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.Veiculo
             this.txtPlaca.MaxLength = 7;
             this.txtPlaca.Name = "txtPlaca";
             this.txtPlaca.Size = new System.Drawing.Size(117, 24);
-            this.txtPlaca.TabIndex = 8;
+            this.txtPlaca.TabIndex = 6;
             // 
             // label3
             // 
@@ -396,7 +396,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.Veiculo
             this.btnBuscarFoto.Margin = new System.Windows.Forms.Padding(2);
             this.btnBuscarFoto.Name = "btnBuscarFoto";
             this.btnBuscarFoto.Size = new System.Drawing.Size(87, 27);
-            this.btnBuscarFoto.TabIndex = 0;
+            this.btnBuscarFoto.TabIndex = 13;
             this.btnBuscarFoto.Text = "Carregar";
             this.btnBuscarFoto.UseVisualStyleBackColor = true;
             this.btnBuscarFoto.Click += new System.EventHandler(this.btnBuscarFoto_Click);

@@ -302,7 +302,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.Veiculo
             this.btnOK.Location = new System.Drawing.Point(656, 514);
             this.btnOK.Name = "btnOK";
             this.btnOK.Size = new System.Drawing.Size(87, 27);
-            this.btnOK.TabIndex = 128;
+            this.btnOK.TabIndex = 0;
             this.btnOK.Text = "OK";
             this.btnOK.UseVisualStyleBackColor = true;
             // 

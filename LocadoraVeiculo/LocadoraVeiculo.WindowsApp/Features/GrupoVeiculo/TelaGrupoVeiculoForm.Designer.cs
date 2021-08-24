@@ -73,7 +73,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.GrupoVeiculo
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
             this.tabControl1.Size = new System.Drawing.Size(386, 193);
-            this.tabControl1.TabIndex = 0;
+            this.tabControl1.TabIndex = 8;
             this.tabControl1.Leave += new System.EventHandler(this.txtBoxZerado_Leave);
             // 
             // tabDiario
@@ -106,7 +106,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.GrupoVeiculo
             this.txtValorKmRodadoPDiario.Location = new System.Drawing.Point(166, 84);
             this.txtValorKmRodadoPDiario.Name = "txtValorKmRodadoPDiario";
             this.txtValorKmRodadoPDiario.Size = new System.Drawing.Size(116, 19);
-            this.txtValorKmRodadoPDiario.TabIndex = 2;
+            this.txtValorKmRodadoPDiario.TabIndex = 3;
             this.txtValorKmRodadoPDiario.Text = "0";
             this.txtValorKmRodadoPDiario.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox1_KeyPress);
             // 
@@ -125,7 +125,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.GrupoVeiculo
             this.txtValorDiarioPDiario.Location = new System.Drawing.Point(166, 54);
             this.txtValorDiarioPDiario.Name = "txtValorDiarioPDiario";
             this.txtValorDiarioPDiario.Size = new System.Drawing.Size(116, 19);
-            this.txtValorDiarioPDiario.TabIndex = 1;
+            this.txtValorDiarioPDiario.TabIndex = 2;
             this.txtValorDiarioPDiario.Text = "0";
             this.txtValorDiarioPDiario.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox1_KeyPress);
             // 
@@ -161,7 +161,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.GrupoVeiculo
             this.txtValorKmRodadoPControlado.Location = new System.Drawing.Point(166, 70);
             this.txtValorKmRodadoPControlado.Name = "txtValorKmRodadoPControlado";
             this.txtValorKmRodadoPControlado.Size = new System.Drawing.Size(116, 19);
-            this.txtValorKmRodadoPControlado.TabIndex = 9;
+            this.txtValorKmRodadoPControlado.TabIndex = 6;
             this.txtValorKmRodadoPControlado.Text = "0";
             // 
             // label4
@@ -188,7 +188,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.GrupoVeiculo
             this.txtLimitePControlado.Location = new System.Drawing.Point(166, 102);
             this.txtLimitePControlado.Name = "txtLimitePControlado";
             this.txtLimitePControlado.Size = new System.Drawing.Size(116, 19);
-            this.txtLimitePControlado.TabIndex = 6;
+            this.txtLimitePControlado.TabIndex = 7;
             this.txtLimitePControlado.Text = "0";
             this.txtLimitePControlado.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox1_KeyPress);
             // 
@@ -198,7 +198,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.GrupoVeiculo
             this.txtValorDiarioPControlado.Location = new System.Drawing.Point(166, 39);
             this.txtValorDiarioPControlado.Name = "txtValorDiarioPControlado";
             this.txtValorDiarioPControlado.Size = new System.Drawing.Size(116, 19);
-            this.txtValorDiarioPControlado.TabIndex = 4;
+            this.txtValorDiarioPControlado.TabIndex = 5;
             this.txtValorDiarioPControlado.Text = "0";
             this.txtValorDiarioPControlado.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox1_KeyPress);
             // 
@@ -230,7 +230,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.GrupoVeiculo
             this.txtDiariaPLivre.Location = new System.Drawing.Point(166, 73);
             this.txtDiariaPLivre.Name = "txtDiariaPLivre";
             this.txtDiariaPLivre.Size = new System.Drawing.Size(116, 19);
-            this.txtDiariaPLivre.TabIndex = 2;
+            this.txtDiariaPLivre.TabIndex = 9;
             this.txtDiariaPLivre.Text = "0";
             this.txtDiariaPLivre.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox1_KeyPress);
             // 
@@ -269,7 +269,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.GrupoVeiculo
             this.btnGravar.Location = new System.Drawing.Point(241, 359);
             this.btnGravar.Name = "btnGravar";
             this.btnGravar.Size = new System.Drawing.Size(87, 27);
-            this.btnGravar.TabIndex = 14;
+            this.btnGravar.TabIndex = 10;
             this.btnGravar.Text = "Gravar";
             this.btnGravar.UseVisualStyleBackColor = true;
             this.btnGravar.Click += new System.EventHandler(this.btnGravar_Click);
@@ -291,7 +291,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.GrupoVeiculo
             this.btnCancelar.Location = new System.Drawing.Point(336, 359);
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Size = new System.Drawing.Size(87, 27);
-            this.btnCancelar.TabIndex = 16;
+            this.btnCancelar.TabIndex = 11;
             this.btnCancelar.Text = "Cancelar";
             this.btnCancelar.UseVisualStyleBackColor = true;
             // 
