@@ -3,6 +3,7 @@ using LocadoraVeiculo.Controladores.ClienteModule;
 using LocadoraVeiculo.Controladores.CondutorModule;
 using LocadoraVeiculo.Controladores.LocacaoModule;
 using LocadoraVeiculo.Controladores.VeiculoModule;
+using LocadoraVeiculo.VeiculoModule;
 using LocadoraVeiculo.LocacaoModule;
 using LocadoraVeiculo.ServicoModule;
 using LocadoraVeiculo.WindowsApp.Features.DarkMode;
@@ -74,8 +75,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.Locacao
                 cbCliente.Text = locacao.Cliente.ToString();
 
                 cbVeiculo.Items.Add(locacao.Veiculo);
-                cbVeiculo.SelectedIndex = 0;
-                cbVeiculo.Enabled = false;
+                cbVeiculo.SelectedIndex = cbVeiculo.Items.Count - 1;
 
                 cbCondutor.Items.Add(locacao.Condutor);
                 cbCondutor.SelectedIndex = 0;
@@ -106,7 +106,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.Locacao
         {
             Cliente cliente = (Cliente)cbCliente.SelectedItem;
 
-            VeiculoModule.Veiculo veiculo = (VeiculoModule.Veiculo)cbVeiculo.SelectedItem;
+            Veiculo veiculo = (VeiculoModule.Veiculo)cbVeiculo.SelectedItem;
 
             int tipoCliente = cbCliente.SelectedItem is ClienteCPF ? 0 : 1;
 

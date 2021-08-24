@@ -231,10 +231,10 @@ namespace LocadoraVeiculo.WindowsApp.Features.Locacao
             // 
             this.cbVeiculo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbVeiculo.FormattingEnabled = true;
-            this.cbVeiculo.Location = new System.Drawing.Point(237, 129);
+            this.cbVeiculo.Location = new System.Drawing.Point(237, 128);
             this.cbVeiculo.Name = "cbVeiculo";
             this.cbVeiculo.Size = new System.Drawing.Size(374, 23);
-            this.cbVeiculo.TabIndex = 1;
+            this.cbVeiculo.TabIndex = 28;
             // 
             // TelaLocacaoForm
             // 
@@ -296,7 +296,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.Locacao
         private Bunifu.Framework.UI.BunifuElipse bunifuElipse1;
         private System.Windows.Forms.Panel header_Locacao;
         private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.ComboBox cbVeiculo;
         private System.Windows.Forms.ComboBox cbCondutor;
+        private System.Windows.Forms.ComboBox cbVeiculo;
     }
 }

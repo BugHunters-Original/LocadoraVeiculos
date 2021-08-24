@@ -14,7 +14,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace LocadoraVeiculo.WindowsApp.Features.Veiculo
+namespace LocadoraVeiculo.WindowsApp.Features.Veiculos
 {
     public partial class TelaVeiculoForm : Form
     {
@@ -139,7 +139,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.Veiculo
             string TipoCombustivel = cmbTipoCombustivel.Text;
 
             int disponibilidade = Convert.ToInt32(txtDisponivel.Text);
-            
+
             GrupoVeiculoModule.GrupoVeiculo grupo = (GrupoVeiculoModule.GrupoVeiculo)cmbGrupo.SelectedItem;
 
             veiculos = new VeiculoModule.Veiculo(nome, placa, chassi, foto, cor, marca, ano, NPortas, CapacidadeTanque, CapacidadePessoas, TamanhoPortaMalas, Km, TipoCombustivel, disponibilidade, grupo);

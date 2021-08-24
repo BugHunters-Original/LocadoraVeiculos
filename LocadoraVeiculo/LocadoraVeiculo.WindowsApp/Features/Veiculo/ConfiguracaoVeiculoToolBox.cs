@@ -1,6 +1,6 @@
 ﻿using LocadoraVeiculo.WindowsApp.Shared;
 
-namespace LocadoraVeiculo.WindowsApp.Features.Veiculo
+namespace LocadoraVeiculo.WindowsApp.Features.Veiculos
 {
     class ConfiguracaoVeiculoToolBox : IConfiguracaoToolBox
     {
