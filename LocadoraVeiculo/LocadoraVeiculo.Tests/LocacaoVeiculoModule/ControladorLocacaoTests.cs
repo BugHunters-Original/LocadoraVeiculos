@@ -68,7 +68,7 @@ namespace LocadoraVeiculo.Tests.LocacaoModule
             grupo = new GrupoVeiculo("Econômico", 10, 10, 10, 10, 10, 10);
             controladorGrupo.InserirNovo(grupo);
 
-            veiculo = new Veiculo("Carro", "AAA8888", "12345678912345678", imagem, "vermelho", "Ford", 2009, 9, 200, 'M', 90, "Álcool", 1, grupo);
+            veiculo = new Veiculo("Carro", "AAA8888", "12345678912345678", imagem, "vermelho", "Ford", 2009, 9, 200, 1, 'M', 90, "Álcool", 1, grupo);
             controladorVeiculo.InserirNovo(veiculo);
 
 
