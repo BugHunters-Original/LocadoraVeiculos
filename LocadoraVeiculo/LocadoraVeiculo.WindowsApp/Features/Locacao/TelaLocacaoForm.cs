@@ -62,7 +62,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.Locacao
             btnTaxa.BackColor = ControladorDarkMode.corFundoTxBox;
         }
 
-    public LocacaoVeiculo Locacao
+        public LocacaoVeiculo Locacao
         {
             get { return locacao; }
             set
@@ -71,8 +71,14 @@ namespace LocadoraVeiculo.WindowsApp.Features.Locacao
 
                 txtID.Text = locacao.Id.ToString();
                 cbCliente.Text = locacao.Cliente.ToString();
-                cbVeiculo.Text = locacao.Veiculo.ToString();
-                cbCondutor.Text = locacao.Condutor.ToString();
+
+                cbVeiculo.Items.Add(locacao.Veiculo);
+                cbVeiculo.SelectedIndex = 0;
+                cbVeiculo.Enabled = false;
+
+                cbCondutor.Items.Add(locacao.Condutor);
+                cbCondutor.SelectedIndex = 0;
+
                 dtSaida.Value = locacao.DataSaida;
                 dtRetorno.Value = locacao.DataRetorno;
                 cbTipoLocacao.Text = locacao.TipoLocacao.ToString();
@@ -189,6 +195,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.Locacao
             tela.ShowDialog();
             servicos = tela.Servicos;
         }
+
 
     }
 }

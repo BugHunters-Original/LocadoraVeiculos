@@ -46,11 +46,11 @@ namespace LocadoraVeiculo.WindowsApp.Features.Locacao
             this.label7 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.cbTipoLocacao = new System.Windows.Forms.ComboBox();
-            this.cbCondutor = new System.Windows.Forms.ComboBox();
-            this.cbVeiculo = new System.Windows.Forms.ComboBox();
             this.bunifuElipse1 = new Bunifu.Framework.UI.BunifuElipse(this.components);
             this.header_Locacao = new System.Windows.Forms.Panel();
             this.label9 = new System.Windows.Forms.Label();
+            this.cbCondutor = new System.Windows.Forms.ComboBox();
+            this.cbVeiculo = new System.Windows.Forms.ComboBox();
             this.header_Locacao.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -194,24 +194,6 @@ namespace LocadoraVeiculo.WindowsApp.Features.Locacao
             this.cbTipoLocacao.Size = new System.Drawing.Size(374, 23);
             this.cbTipoLocacao.TabIndex = 24;
             // 
-            // cbCondutor
-            // 
-            this.cbCondutor.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbCondutor.FormattingEnabled = true;
-            this.cbCondutor.Location = new System.Drawing.Point(237, 160);
-            this.cbCondutor.Name = "cbCondutor";
-            this.cbCondutor.Size = new System.Drawing.Size(374, 23);
-            this.cbCondutor.TabIndex = 25;
-            // 
-            // cbVeiculo
-            // 
-            this.cbVeiculo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbVeiculo.FormattingEnabled = true;
-            this.cbVeiculo.Location = new System.Drawing.Point(237, 129);
-            this.cbVeiculo.Name = "cbVeiculo";
-            this.cbVeiculo.Size = new System.Drawing.Size(374, 23);
-            this.cbVeiculo.TabIndex = 26;
-            // 
             // bunifuElipse1
             // 
             this.bunifuElipse1.ElipseRadius = 8;
@@ -236,14 +218,32 @@ namespace LocadoraVeiculo.WindowsApp.Features.Locacao
             this.label9.TabIndex = 0;
             this.label9.Text = "Cadastro de Locação";
             // 
+            // cbCondutor
+            // 
+            this.cbCondutor.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbCondutor.FormattingEnabled = true;
+            this.cbCondutor.Location = new System.Drawing.Point(237, 158);
+            this.cbCondutor.Name = "cbCondutor";
+            this.cbCondutor.Size = new System.Drawing.Size(374, 23);
+            this.cbCondutor.TabIndex = 28;
+            // 
+            // cbVeiculo
+            // 
+            this.cbVeiculo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbVeiculo.FormattingEnabled = true;
+            this.cbVeiculo.Location = new System.Drawing.Point(237, 129);
+            this.cbVeiculo.Name = "cbVeiculo";
+            this.cbVeiculo.Size = new System.Drawing.Size(374, 23);
+            this.cbVeiculo.TabIndex = 29;
+            // 
             // TelaLocacaoForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(710, 451);
-            this.Controls.Add(this.header_Locacao);
             this.Controls.Add(this.cbVeiculo);
             this.Controls.Add(this.cbCondutor);
+            this.Controls.Add(this.header_Locacao);
             this.Controls.Add(this.cbTipoLocacao);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.label7);
@@ -293,10 +293,10 @@ namespace LocadoraVeiculo.WindowsApp.Features.Locacao
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.ComboBox cbTipoLocacao;
-        private System.Windows.Forms.ComboBox cbCondutor;
-        private System.Windows.Forms.ComboBox cbVeiculo;
         private Bunifu.Framework.UI.BunifuElipse bunifuElipse1;
         private System.Windows.Forms.Panel header_Locacao;
         private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.ComboBox cbVeiculo;
+        private System.Windows.Forms.ComboBox cbCondutor;
     }
 }
