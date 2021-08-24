@@ -11,6 +11,7 @@ using LocadoraVeiculo.Controladores.LocacaoModule;
 using LocadoraVeiculo.Controladores.Shared;
 using LocadoraVeiculo.Controladores.VeiculoModule;
 using LocadoraVeiculo.LocacaoModule;
+using LocadoraVeiculo.WindowsApp.Features.DarkMode;
 using LocadoraVeiculo.WindowsApp.Features.Veiculo;
 using LocadoraVeiculo.WindowsApp.Shared;
 
@@ -31,9 +32,17 @@ namespace LocadoraVeiculo.WindowsApp.Features.Dashboard
             ConfigurarGridLightMode();
             dtDashboard.ConfigurarGridSomenteLeitura();
             ObterTela();
+            SetColor();
         }
 
-        public void ObterTela()
+        private void SetColor()
+        {
+            panel1.BackColor = ControladorDarkMode.corPanel;
+            panel2.BackColor = ControladorDarkMode.corPanel;
+            panelCarrosAlugados.BackColor = ControladorDarkMode.corPanel;
+        }
+
+            public void ObterTela()
         {
             switch (telaAtual)
             {
