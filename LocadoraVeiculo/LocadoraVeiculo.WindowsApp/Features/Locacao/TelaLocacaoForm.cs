@@ -106,7 +106,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.Locacao
         {
             Cliente cliente = (Cliente)cbCliente.SelectedItem;
 
-            Veiculo veiculo = (VeiculoModule.Veiculo)cbVeiculo.SelectedItem;
+            Veiculo veiculo = (Veiculo)cbVeiculo.SelectedItem;
 
             int tipoCliente = cbCliente.SelectedItem is ClienteCPF ? 0 : 1;
 
@@ -195,8 +195,12 @@ namespace LocadoraVeiculo.WindowsApp.Features.Locacao
             TelaAdicionarTaxasForm tela = new TelaAdicionarTaxasForm();
             tela.ShowDialog();
             servicos = tela.Servicos;
-        }
 
+            if (servicos != null)
+                foreach (var servico in servicos)
+                    listServicos.Items.Add(servico);
+
+        }
 
     }
 }
