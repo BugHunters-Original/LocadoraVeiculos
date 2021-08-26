@@ -176,6 +176,7 @@
       <DependentUpon>DashboardControl.cs</DependentUpon>
     </Compile>
     <Compile Include="Features\Dashboard\OperacoesDashboard.cs" />
+    <Compile Include="Features\DescontoFeature\ConfiguracaoDescontoToolBox.cs" />
     <Compile Include="Features\Funcionarios\ConfiguracaoFuncionarioToolBox.cs" />
     <Compile Include="Features\Funcionarios\OperacoesFuncionario.cs" />
     <Compile Include="Features\Funcionarios\TabelaFuncionarioControl.cs">
