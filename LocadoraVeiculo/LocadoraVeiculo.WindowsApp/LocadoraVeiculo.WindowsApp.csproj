@@ -176,6 +176,20 @@
       <DependentUpon>DashboardControl.cs</DependentUpon>
     </Compile>
     <Compile Include="Features\Dashboard\OperacoesDashboard.cs" />
+    <Compile Include="Features\DescontoFeature\ConfiguracaoDescontoToolBox.cs" />
+    <Compile Include="Features\DescontoFeature\OperacoesDesconto.cs" />
+    <Compile Include="Features\DescontoFeature\TabelaDescontoControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Features\DescontoFeature\TabelaDescontoControl.Designer.cs">
+      <DependentUpon>TabelaDescontoControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Features\DescontoFeature\TelaDescontoForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Features\DescontoFeature\TelaDescontoForm.Designer.cs">
+      <DependentUpon>TelaDescontoForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Features\Funcionarios\ConfiguracaoFuncionarioToolBox.cs" />
     <Compile Include="Features\Funcionarios\OperacoesFuncionario.cs" />
     <Compile Include="Features\Funcionarios\TabelaFuncionarioControl.cs">
@@ -310,6 +324,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Features\Dashboard\DashboardControl.resx">
       <DependentUpon>DashboardControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Features\DescontoFeature\TabelaDescontoControl.resx">
+      <DependentUpon>TabelaDescontoControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Features\Funcionarios\TabelaFuncionarioControl.resx">
       <DependentUpon>TabelaFuncionarioControl.cs</DependentUpon>
