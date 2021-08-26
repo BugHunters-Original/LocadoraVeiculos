@@ -42,5 +42,11 @@ namespace LocadoraVeiculo.WindowsApp.Features.Locacao
         {
             get { return true; }
         }
+
+        public bool EnabledAdicionar => true;
+
+        public bool EnabledEditar => true;
+
+        public bool EnabledExcluir => true;
     }
 }
