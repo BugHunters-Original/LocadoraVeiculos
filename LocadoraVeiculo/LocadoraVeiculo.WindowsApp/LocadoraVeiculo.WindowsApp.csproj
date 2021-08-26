@@ -249,6 +249,20 @@
     <Compile Include="Features\NotaFiscal\TelaNotaFiscalForm.Designer.cs">
       <DependentUpon>TelaNotaFiscalForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Features\Parceiro\ConfiguracaoParceiro.cs" />
+    <Compile Include="Features\Parceiro\OperacoesParceiro.cs" />
+    <Compile Include="Features\Parceiro\TabelaParceiroControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Features\Parceiro\TabelaParceiroControl.Designer.cs">
+      <DependentUpon>TabelaParceiroControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Features\Parceiro\TelaParceiroForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Features\Parceiro\TelaParceiroForm.Designer.cs">
+      <DependentUpon>TelaParceiroForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Features\TaxaServico\ConfiguracaoTaxaServicoToolBox.cs" />
     <Compile Include="Features\TaxaServico\OperacoesTaxaServico.cs" />
     <Compile Include="Features\TaxaServico\TabelaTaxaServicoControl.cs">
@@ -340,6 +354,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Features\NotaFiscal\TelaNotaFiscalForm.resx">
       <DependentUpon>TelaNotaFiscalForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Features\Parceiro\TabelaParceiroControl.resx">
+      <DependentUpon>TabelaParceiroControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Features\Parceiro\TelaParceiroForm.resx">
+      <DependentUpon>TelaParceiroForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Features\TaxaServico\TabelaTaxaServicoControl.resx">
       <DependentUpon>TabelaTaxaServicoControl.cs</DependentUpon>
