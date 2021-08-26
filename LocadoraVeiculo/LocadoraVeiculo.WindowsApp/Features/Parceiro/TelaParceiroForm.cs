@@ -1,4 +1,5 @@
 ﻿using LocadoraVeiculo.ParceiroModule;
+using LocadoraVeiculo.WindowsApp.Features.DarkMode;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -18,6 +19,19 @@ namespace LocadoraVeiculo.WindowsApp.Features.Parceiro
         public TelaParceiroForm()
         {
             InitializeComponent();
+            SetColor();
+        }
+
+        private void SetColor()
+        {
+            this.header_parceiro.BackColor = ControladorDarkMode.corHeader;
+            this.BackColor = ControladorDarkMode.corPanel;
+            this.ForeColor = ControladorDarkMode.corFonte;
+            txtID.BackColor = ControladorDarkMode.corFundoTxBox;
+            txtNome.BackColor = ControladorDarkMode.corFundoTxBox;
+
+            btnGravar.BackColor = ControladorDarkMode.corFundoTxBox;
+            btnCancelar.BackColor = ControladorDarkMode.corFundoTxBox;
         }
 
         public ParceiroDesconto Parceiro
