@@ -10,7 +10,7 @@ namespace LocadoraVeiculo.DescontoModule
 {
     public class Desconto : EntidadeBase
     {
-        public Desconto(string codigo, decimal valor, string tipo, DateTime validade, ParceiroTaxa parceiro, string meio)
+        public Desconto(string codigo, decimal valor, string tipo, DateTime validade, ParceiroDesconto parceiro, string meio)
         {
             Codigo = codigo;
             Valor = valor;
@@ -24,7 +24,7 @@ namespace LocadoraVeiculo.DescontoModule
         public decimal Valor { get; set; }
         public string Tipo { get; set; }
         public DateTime Validade { get; set; }
-        public ParceiroTaxa Parceiro { get; set; }
+        public ParceiroDesconto Parceiro { get; set; }
         public string Meio { get; set; }
 
         public override string Validar()

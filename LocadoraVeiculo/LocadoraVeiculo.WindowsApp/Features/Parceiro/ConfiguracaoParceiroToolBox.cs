@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace LocadoraVeiculo.WindowsApp.Features.Parceiro
 {
-    public class ConfiguracaoParceiro : IConfiguracaoToolBox
+    public class ConfiguracaoParceiroToolBox : IConfiguracaoToolBox
     {
         public string ToolTipAdicionar => "Adicionar um Parceiro";
 
@@ -19,10 +19,16 @@ namespace LocadoraVeiculo.WindowsApp.Features.Parceiro
 
         public string ToolTipFiltrar => "Filtrar Parceiros";
 
-        public string ToolTipDevolver => throw new NotImplementedException();
+        public string ToolTipDevolver => "";
 
         public bool EnabledFiltrar => false;
 
         public bool EnabledDevolver => false;
+
+        public bool EnabledAdicionar => true;
+
+        public bool EnabledEditar => true;
+
+        public bool EnabledExcluir => true;
     }
 }

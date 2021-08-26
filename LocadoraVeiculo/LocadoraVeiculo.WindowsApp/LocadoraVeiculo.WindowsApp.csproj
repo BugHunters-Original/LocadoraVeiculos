@@ -263,7 +263,7 @@
     <Compile Include="Features\NotaFiscal\TelaNotaFiscalForm.Designer.cs">
       <DependentUpon>TelaNotaFiscalForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Features\Parceiro\ConfiguracaoParceiro.cs" />
+    <Compile Include="Features\Parceiro\ConfiguracaoParceiroToolBox.cs" />
     <Compile Include="Features\Parceiro\OperacoesParceiro.cs" />
     <Compile Include="Features\Parceiro\TabelaParceiroControl.cs">
       <SubType>UserControl</SubType>

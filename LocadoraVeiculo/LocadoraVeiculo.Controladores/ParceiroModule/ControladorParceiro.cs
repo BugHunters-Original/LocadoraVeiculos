@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace LocadoraVeiculo.Controladores.ParceiroModule
 {
-    public class ControladorParceiro : Controlador<ParceiroTaxa>
+    public class ControladorParceiro : Controlador<ParceiroDesconto>
     {
         private const string sqlInserirParceiro =
        @"INSERT INTO TBPARCEIROS
@@ -58,7 +58,7 @@ namespace LocadoraVeiculo.Controladores.ParceiroModule
                 [TBPARCEIROS]
             WHERE 
                 [ID] = @ID";
-        public override string Editar(int id, ParceiroTaxa registro)
+        public override string Editar(int id, ParceiroDesconto registro)
         {
             string resultadoValidacao = registro.Validar();
 
@@ -90,7 +90,7 @@ namespace LocadoraVeiculo.Controladores.ParceiroModule
             return Db.Exists(sqlExisteParceiro, AdicionarParametro("ID", id));
         }
 
-        public override string InserirNovo(ParceiroTaxa registro)
+        public override string InserirNovo(ParceiroDesconto registro)
         {
             string resultadoValidacao = registro.Validar();
 
@@ -102,30 +102,30 @@ namespace LocadoraVeiculo.Controladores.ParceiroModule
             return resultadoValidacao;
         }
 
-        public override ParceiroTaxa SelecionarPorId(int id)
+        public override ParceiroDesconto SelecionarPorId(int id)
         {
             return Db.Get(sqlSelecionarParceiroPorId, ConverterEmParceiro, AdicionarParametro("ID", id));
         }
 
-        public override List<ParceiroTaxa> SelecionarTodos()
+        public override List<ParceiroDesconto> SelecionarTodos()
         {
             return Db.GetAll(sqlSelecionarTodosParceiros, ConverterEmParceiro);
         }
-        private Dictionary<string, object> ObtemParametrosParceiro(ParceiroTaxa parceiro)
+        private Dictionary<string, object> ObtemParametrosParceiro(ParceiroDesconto parceiro)
         {
             var parametros = new Dictionary<string, object>();
 
             parametros.Add("ID", parceiro.Id);
-            parametros.Add("NOME_TAXA", parceiro.Nome);
+            parametros.Add("NOME_PARCEIRO", parceiro.Nome);
 
             return parametros;
         }
-        private ParceiroTaxa ConverterEmParceiro(IDataReader reader)
+        private ParceiroDesconto ConverterEmParceiro(IDataReader reader)
         {
             int id = Convert.ToInt32(reader["ID"]);
             string nome = Convert.ToString(reader["NOME_PARCEIRO"]);
 
-            ParceiroTaxa parceiro = new ParceiroTaxa(nome);
+            ParceiroDesconto parceiro = new ParceiroDesconto(nome);
 
             parceiro.Id = id;
 

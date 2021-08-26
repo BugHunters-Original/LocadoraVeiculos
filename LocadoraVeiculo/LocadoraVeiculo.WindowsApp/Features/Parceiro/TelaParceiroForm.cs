@@ -14,15 +14,15 @@ namespace LocadoraVeiculo.WindowsApp.Features.Parceiro
 {
     public partial class TelaParceiroForm : Form
     {
-        private ParceiroTaxa parceiro;
+        private ParceiroDesconto parceiro;
         public TelaParceiroForm()
         {
             InitializeComponent();
         }
 
-        public ParceiroTaxa Parceiro
+        public ParceiroDesconto Parceiro
         {
-            get { return Parceiro; }
+            get { return parceiro; }
             set
             {
                 parceiro = value;
@@ -34,6 +34,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.Parceiro
         private void btnGravar_Click(object sender, EventArgs e)
         {
             string nome = txtNome.Text;
+            parceiro = new ParceiroDesconto(nome);
             string resultadoValidacao = parceiro.Validar();
 
             if (resultadoValidacao != "ESTA_VALIDO")
@@ -44,7 +45,6 @@ namespace LocadoraVeiculo.WindowsApp.Features.Parceiro
 
                 DialogResult = DialogResult.None;
             }
-            parceiro = new ParceiroTaxa(nome);
         }
     }
 }

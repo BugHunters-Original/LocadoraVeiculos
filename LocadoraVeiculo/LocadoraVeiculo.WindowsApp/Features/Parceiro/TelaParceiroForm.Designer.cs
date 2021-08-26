@@ -57,17 +57,19 @@ namespace LocadoraVeiculo.WindowsApp.Features.Parceiro
             // 
             // txtID
             // 
+            this.txtID.BackColor = System.Drawing.Color.DarkSeaGreen;
             this.txtID.Location = new System.Drawing.Point(197, 68);
             this.txtID.Name = "txtID";
+            this.txtID.ReadOnly = true;
             this.txtID.Size = new System.Drawing.Size(116, 24);
-            this.txtID.TabIndex = 2;
+            this.txtID.TabIndex = 3;
             // 
             // txtNome
             // 
             this.txtNome.Location = new System.Drawing.Point(196, 98);
             this.txtNome.Name = "txtNome";
             this.txtNome.Size = new System.Drawing.Size(116, 24);
-            this.txtNome.TabIndex = 3;
+            this.txtNome.TabIndex = 0;
             // 
             // btnCancelar
             // 
@@ -75,7 +77,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.Parceiro
             this.btnCancelar.Location = new System.Drawing.Point(346, 250);
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Size = new System.Drawing.Size(101, 31);
-            this.btnCancelar.TabIndex = 7;
+            this.btnCancelar.TabIndex = 2;
             this.btnCancelar.Text = "Cancelar";
             this.btnCancelar.UseVisualStyleBackColor = true;
             // 
@@ -85,7 +87,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.Parceiro
             this.btnGravar.Location = new System.Drawing.Point(237, 250);
             this.btnGravar.Name = "btnGravar";
             this.btnGravar.Size = new System.Drawing.Size(101, 31);
-            this.btnGravar.TabIndex = 6;
+            this.btnGravar.TabIndex = 1;
             this.btnGravar.Text = "Gravar";
             this.btnGravar.UseVisualStyleBackColor = true;
             this.btnGravar.Click += new System.EventHandler(this.btnGravar_Click);
