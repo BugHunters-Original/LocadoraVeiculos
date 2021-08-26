@@ -196,6 +196,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.Locacao
             tela.ShowDialog();
             servicos = tela.Servicos;
 
+            listServicos.Items.Clear();
             if (servicos != null)
                 foreach (var servico in servicos)
                     listServicos.Items.Add(servico);
