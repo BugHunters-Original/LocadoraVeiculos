@@ -130,7 +130,7 @@ namespace LocadoraVeiculo.WindowsApp
 
             AtualizarRodape(configuracao.TipoCadastro);
 
-            //operacoes = new OperacoesTaxaServico(new ControladorServico());
+            operacoes = new OperacoesDesconto(new ControladorDesconto());
 
             ConfigurarPainelRegistros();
         }
