@@ -1,4 +1,5 @@
-﻿using LocadoraVeiculo.Shared;
+﻿using LocadoraVeiculo.ParceiroModule;
+using LocadoraVeiculo.Shared;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,20 +10,22 @@ namespace LocadoraVeiculo.DescontoModule
 {
     public class Desconto : EntidadeBase
     {
+        public Desconto(string codigo, decimal valor, string tipo, DateTime validade, ParceiroTaxa parceiro, string meio)
+        {
+            Codigo = codigo;
+            Valor = valor;
+            Tipo = tipo;
+            Validade = validade;
+            Parceiro = parceiro;
+            Meio = meio;
+        }
+
         public string Codigo { get; set; }
         public decimal Valor { get; set; }
         public string Tipo { get; set; }
         public DateTime Validade { get; set; }
-        public string NomeParceiro { get; set; }
-
-
-        public Desconto()
-        {
-
-        }
-
-
-
+        public ParceiroTaxa Parceiro { get; set; }
+        public string Meio { get; set; }
 
         public override string Validar()
         {
@@ -31,26 +34,26 @@ namespace LocadoraVeiculo.DescontoModule
             if (string.IsNullOrEmpty(Codigo))
                 valido += "O campo Codigo está inválido";
 
-            //if (string.IsNullOrEmpty(Validar))
-            //    valido += QuebraDeLinha(valido) + "O campo Endereço está inválido";
+            if (Valor <= 0)
+                valido += QuebraDeLinha(valido) + "O campo Valor não pode ser zero ou negativo";
 
-            //if (Telefone.Length != 14)
-            //    valido += QuebraDeLinha(valido) + "O campo Telefone está inválido";
+            if (Valor > 100 && Tipo == "Porcentagem")
+                valido += QuebraDeLinha(valido) + "O campo Valor não pode ter uma porcentagem maior que 100%";
 
-            //if (Cpf.Length != 14)
-            //    valido += QuebraDeLinha(valido) + "O campo CPF está inválido";
+            if (string.IsNullOrEmpty(Tipo))
+                valido += QuebraDeLinha(valido) + "O campo Tipo está inválido";
 
-            //if (Rg.Length != 9)
-            //    valido += QuebraDeLinha(valido) + "O campo RG está inválido";
+            if (Validade < DateTime.Now)
+                valido += QuebraDeLinha(valido) + "O campo Data de Validade está inválido";
 
-            //if (Cnh.Length != 11)
-            //    valido += QuebraDeLinha(valido) + "O campo CNH está inválido";
+            if (Parceiro == null)
+                valido += QuebraDeLinha(valido) + "O campo Parceiro não pode ser nulo";
 
-            //if (DataValidade < DateTime.Now)
-            //    valido += QuebraDeLinha(valido) + "O campo Data de Validade CNH está inválido";
+            if (string.IsNullOrEmpty(Meio))
+                valido += "O campo Meio está inválido";
 
-            //if (valido == "")
-            //    valido = "ESTA_VALIDO";
+            if (valido == "")
+                valido = "ESTA_VALIDO";
 
             return valido;
         }

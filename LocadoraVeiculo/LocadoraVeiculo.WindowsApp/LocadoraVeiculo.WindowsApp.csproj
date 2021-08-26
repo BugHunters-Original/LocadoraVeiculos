@@ -328,6 +328,9 @@
     <EmbeddedResource Include="Features\DescontoFeature\TabelaDescontoControl.resx">
       <DependentUpon>TabelaDescontoControl.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Features\DescontoFeature\TelaDescontoForm.resx">
+      <DependentUpon>TelaDescontoForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Features\Funcionarios\TabelaFuncionarioControl.resx">
       <DependentUpon>TabelaFuncionarioControl.cs</DependentUpon>
     </EmbeddedResource>

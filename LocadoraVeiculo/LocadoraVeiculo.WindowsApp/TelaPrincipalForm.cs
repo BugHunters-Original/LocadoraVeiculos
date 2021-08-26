@@ -21,6 +21,7 @@ using System.Drawing;
 using LocadoraVeiculo.WindowsApp.Features.Login;
 using System.Threading;
 using LocadoraVeiculo.WindowsApp.Features.DescontoFeature;
+using LocadoraVeiculo.Controladores.DescontoModule;
 
 namespace LocadoraVeiculo.WindowsApp
 {
@@ -267,6 +268,9 @@ namespace LocadoraVeiculo.WindowsApp
 
             btnFiltrar.Enabled = configuracao.EnabledFiltrar;
             btnDevolver.Enabled = configuracao.EnabledDevolver;
+            btnAdicionar.Enabled = configuracao.EnabledAdicionar;
+            btnEditar.Enabled = configuracao.EnabledEditar;
+            btnExcluir.Enabled = configuracao.EnabledExcluir;
         }
 
         private void menuToolStripMenuItem_Click(object sender, EventArgs e)
