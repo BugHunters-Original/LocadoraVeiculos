@@ -48,6 +48,7 @@
     <Compile Include="FuncionarioModule\Funcionario.cs" />
     <Compile Include="GrupoVeiculoModule\GrupoVeiculo.cs" />
     <Compile Include="LocacaoModule\LocacaoVeiculo.cs" />
+    <Compile Include="ParceiroModule\ParceiroTaxa.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ServicoModule\Servico.cs" />
     <Compile Include="Shared\EntidadeBase.cs" />
