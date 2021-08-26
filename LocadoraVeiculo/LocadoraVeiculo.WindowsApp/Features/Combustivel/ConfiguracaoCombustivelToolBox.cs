@@ -47,5 +47,11 @@ namespace LocadoraVeiculo.WindowsApp.Features.Combustivel
         {
             get { return false; }
         }
+
+        public bool EnabledAdicionar =>false;
+
+        public bool EnabledEditar => false;
+
+        public bool EnabledExcluir => false;
     }
 }
