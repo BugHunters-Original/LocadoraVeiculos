@@ -21,6 +21,12 @@ namespace LocadoraVeiculo.WindowsApp.Features.TaxaServico
 
         public string ToolTipDevolver => "Devolver Veículo";
 
+        public bool EnabledAdicionar => true;
+
+        public bool EnabledEditar => true;
+
+        public bool EnabledExcluir => true;
+
         public bool EnabledFiltrar => false;
 
         public bool EnabledDevolver => false;
