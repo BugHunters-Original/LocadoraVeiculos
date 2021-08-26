@@ -9,6 +9,9 @@
         string ToolTipFiltrar { get; }
         string ToolTipDevolver { get; }
 
+        bool EnabledAdicionar { get; }
+        bool EnabledEditar { get; }
+        bool EnabledExcluir { get; }
         bool EnabledFiltrar { get; }
         bool EnabledDevolver { get; }
     }
