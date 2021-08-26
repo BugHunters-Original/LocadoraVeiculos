@@ -25,5 +25,9 @@ namespace LocadoraVeiculo.ParceiroModule
 
             return valido;
         }
+        public override string ToString()
+        {
+            return Nome;
+        }
     }
 }
