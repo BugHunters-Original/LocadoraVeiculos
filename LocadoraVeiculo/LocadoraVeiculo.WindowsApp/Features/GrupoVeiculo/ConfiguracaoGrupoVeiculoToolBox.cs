@@ -30,7 +30,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.GrupoVeiculo
 
         public string ToolTipDevolver
         {
-            get { return "Devolver um Grupo de Veículos"; }
+            get { return "Devolver um  Veículo"; }
         }
 
         public bool EnabledFiltrar
@@ -42,5 +42,11 @@ namespace LocadoraVeiculo.WindowsApp.Features.GrupoVeiculo
         {
             get { return false; }
         }
+
+        public bool EnabledAdicionar => true;
+
+        public bool EnabledEditar => true;
+
+        public bool EnabledExcluir => true;
     }
 }

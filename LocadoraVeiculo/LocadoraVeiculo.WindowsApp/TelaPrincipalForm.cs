@@ -20,6 +20,7 @@ using LocadoraVeiculo.WindowsApp.Features.DarkMode;
 using System.Drawing;
 using LocadoraVeiculo.WindowsApp.Features.Login;
 using System.Threading;
+using LocadoraVeiculo.WindowsApp.Features.DescontoFeature;
 
 namespace LocadoraVeiculo.WindowsApp
 {
@@ -46,11 +47,6 @@ namespace LocadoraVeiculo.WindowsApp
 
         private void menuItemLocacao_Click(object sender, EventArgs e)
         {
-            btnEditar.Enabled = true;
-            btnAdicionar.Enabled = true;
-            btnExcluir.Enabled = true;
-            btnDevolver.Enabled = true;
-
             ConfiguracaoLocacaoToolBox configuracao = new ConfiguracaoLocacaoToolBox();
 
             ConfigurarToolBox(configuracao);
@@ -64,11 +60,6 @@ namespace LocadoraVeiculo.WindowsApp
 
         private void menuItemCliente_Click(object sender, EventArgs e)
         {
-            btnEditar.Enabled = true;
-            btnAdicionar.Enabled = true;
-            btnExcluir.Enabled = true;
-            btnDevolver.Enabled = false;
-
             ConfiguracaoClienteToolBox configuracao = new ConfiguracaoClienteToolBox();
 
             ConfigurarToolBox(configuracao);
@@ -82,11 +73,6 @@ namespace LocadoraVeiculo.WindowsApp
 
         private void menuItemVeiculo_Click(object sender, EventArgs e)
         {
-            btnEditar.Enabled = true;
-            btnAdicionar.Enabled = true;
-            btnExcluir.Enabled = true;
-            btnDevolver.Enabled = false;
-
             ConfiguracaoVeiculoToolBox configuracao = new ConfiguracaoVeiculoToolBox();
 
             ConfigurarToolBox(configuracao);
@@ -100,11 +86,6 @@ namespace LocadoraVeiculo.WindowsApp
 
         private void menuItemFuncionario_Click(object sender, EventArgs e)
         {
-            btnEditar.Enabled = true;
-            btnAdicionar.Enabled = true;
-            btnExcluir.Enabled = true;
-            btnDevolver.Enabled = false;
-
             ConfiguracaoFuncionarioToolBox configuracao = new ConfiguracaoFuncionarioToolBox();
 
             ConfigurarToolBox(configuracao);
@@ -118,11 +99,6 @@ namespace LocadoraVeiculo.WindowsApp
 
         private void grupoDeVeículosToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            btnEditar.Enabled = true;
-            btnAdicionar.Enabled = true;
-            btnExcluir.Enabled = true;
-            btnDevolver.Enabled = false;
-
             ConfiguracaoGrupoVeiculoToolBox configuracao = new ConfiguracaoGrupoVeiculoToolBox();
 
             ConfigurarToolBox(configuracao);
@@ -135,11 +111,6 @@ namespace LocadoraVeiculo.WindowsApp
         }
         private void taxasEServiçosToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            btnEditar.Enabled = true;
-            btnAdicionar.Enabled = true;
-            btnExcluir.Enabled = true;
-            btnDevolver.Enabled = false;
-
             ConfiguracaoTaxaServicoToolBox configuracao = new ConfiguracaoTaxaServicoToolBox();
 
             ConfigurarToolBox(configuracao);
@@ -150,6 +121,20 @@ namespace LocadoraVeiculo.WindowsApp
 
             ConfigurarPainelRegistros();
         }
+
+        private void descontosToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ConfiguracaoDescontoToolBox configuracao = new ConfiguracaoDescontoToolBox();
+
+            ConfigurarToolBox(configuracao);
+
+            AtualizarRodape(configuracao.TipoCadastro);
+
+            operacoes = new OperacoesDesconto(new ControladorDesconto());
+
+            ConfigurarPainelRegistros();
+        }
+
         private void preçosCombustívelToolStripMenuItem_Click(object sender, EventArgs e)
         {
             ConfiguracaoCombustivelToolBox configuracao = new ConfiguracaoCombustivelToolBox();
