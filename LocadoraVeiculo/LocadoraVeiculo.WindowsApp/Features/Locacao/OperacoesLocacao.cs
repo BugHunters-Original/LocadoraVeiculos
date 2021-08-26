@@ -1,6 +1,8 @@
 ﻿using LocadoraVeiculo.Controladores.LocacaoModule;
+using LocadoraVeiculo.Controladores.TaxaDaLocacaoModule;
 using LocadoraVeiculo.Controladores.VeiculoModule;
 using LocadoraVeiculo.LocacaoModule;
+using LocadoraVeiculo.TaxaDaLocacaoModule;
 using LocadoraVeiculo.WindowsApp.Features.Locacao.Devolucao;
 using LocadoraVeiculo.WindowsApp.Features.NotaFiscal;
 using LocadoraVeiculo.WindowsApp.Shared;
@@ -91,6 +93,8 @@ namespace LocadoraVeiculo.WindowsApp.Features.Locacao
 
             tela.Locacao = locacaoSelecionada;
 
+            //tem que pegar o selecionar todos para voltar na list 
+
             if (tela.ShowDialog() == DialogResult.OK)
             {
                 if(tela.Locacao.Veiculo != locacaoSelecionada.Veiculo)
@@ -167,6 +171,15 @@ namespace LocadoraVeiculo.WindowsApp.Features.Locacao
             if (tela.ShowDialog() == DialogResult.OK)
             {
                 controlador.InserirNovo(tela.Locacao);
+
+                ControladorTaxaDaLocacao controladorTaxaDaLocacao = new ControladorTaxaDaLocacao();
+
+                if(tela.Servicos != null) 
+                    foreach (var item in tela.Servicos)
+                    {
+                    TaxaDaLocacao taxaDaLocacao = new TaxaDaLocacao(item, tela.Locacao);
+                    controladorTaxaDaLocacao.InserirNovo(taxaDaLocacao);
+                    }
 
                 List<LocacaoVeiculo> servicos = controlador.SelecionarTodos();
                 tabelaLocacoes.AtualizarRegistros(servicos);

@@ -1,5 +1,7 @@
 ﻿using LocadoraVeiculo.Controladores.ServicoModule;
+using LocadoraVeiculo.Controladores.TaxaDaLocacaoModule;
 using LocadoraVeiculo.ServicoModule;
+using LocadoraVeiculo.TaxaDaLocacaoModule;
 using LocadoraVeiculo.WindowsApp.Features.DarkMode;
 using System;
 using System.Collections.Generic;
@@ -16,11 +18,15 @@ namespace LocadoraVeiculo.WindowsApp.Features.Locacao.TaxasServicos
     public partial class TelaAdicionarTaxasForm : Form
     {
         private ControladorServico controladorServico;
+        private ControladorTaxaDaLocacao taxaLocacao;
         private List<Servico> servicosTaxas;
+
         public TelaAdicionarTaxasForm()
         {
             controladorServico = new ControladorServico();
+            taxaLocacao = new ControladorTaxaDaLocacao();
             InitializeComponent();
+            
             PopularBox();
             SetColor();
         }
@@ -43,6 +49,22 @@ namespace LocadoraVeiculo.WindowsApp.Features.Locacao.TaxasServicos
             get { return servicosTaxas; }
         }
 
+        public void CheckBoxTaxas(List<TaxaDaLocacao> lista)
+        {
+            List<Servico> servicos = controladorServico.SelecionarTodos();
+           
+            foreach (var item in servicos)
+            {
+                foreach (var taxa in lista)
+                {
+                    if (item.ToString() == taxa.TaxaLocacao.ToString())
+                    {   
+                        cBoxTaxas.SetItemChecked(cBoxTaxas.Items.IndexOf(item), true);
+                    }
+                }
+                
+            }
+        }
         private void PopularBox()
         {
             List<Servico> servicos = controladorServico.SelecionarTodos();

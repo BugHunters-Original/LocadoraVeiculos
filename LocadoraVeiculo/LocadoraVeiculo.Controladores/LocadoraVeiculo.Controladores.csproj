@@ -53,6 +53,7 @@
     <Compile Include="ServicoModule\ControladorServico.cs" />
     <Compile Include="Shared\Controlador.cs" />
     <Compile Include="Shared\Db.cs" />
+    <Compile Include="TaxaDaLocacaoModule\ControladorTaxaDaLocacao.cs" />
     <Compile Include="VeiculoModule\ControladorVeiculo.cs" />
   </ItemGroup>
   <ItemGroup>

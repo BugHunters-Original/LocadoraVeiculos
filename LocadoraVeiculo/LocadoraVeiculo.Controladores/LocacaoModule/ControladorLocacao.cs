@@ -49,6 +49,8 @@ namespace LocadoraVeiculo.Controladores.LocacaoModule
                         @PRECOTOTAL
 	                )";
 
+        
+
         private const string sqlEditarLocacao =
             @"UPDATE TBLOCACAO
                     SET
@@ -263,6 +265,9 @@ namespace LocadoraVeiculo.Controladores.LocacaoModule
 
             return resultadoValidacao;
         }
+
+        
+
         public override LocacaoVeiculo SelecionarPorId(int id)
         {
             return Db.Get(sqlSelecionarLocacaoPorId, ConverterEmLocacao, AdicionarParametro("ID", id));

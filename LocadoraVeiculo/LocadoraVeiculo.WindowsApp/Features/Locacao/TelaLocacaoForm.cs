@@ -18,6 +18,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using LocadoraVeiculo.TaxaDaLocacaoModule;
+using LocadoraVeiculo.Controladores.TaxaDaLocacaoModule;
 
 namespace LocadoraVeiculo.WindowsApp.Features.Locacao
 {
@@ -27,14 +29,20 @@ namespace LocadoraVeiculo.WindowsApp.Features.Locacao
         private ControladorClienteCPF controladorCPF;
         private ControladorClienteCNPJ controladorCNPJ;
         private ControladorVeiculo controladorVeiculo;
-        private List<Servico> servicos;
+        private ControladorTaxaDaLocacao controladorTaxaDaLocacao;
+        TelaAdicionarTaxasForm telaDasTaxas;
+        
+
         public TelaLocacaoForm()
         {
             controladorCPF = new ControladorClienteCPF();
             controladorCNPJ = new ControladorClienteCNPJ();
             controladorVeiculo = new ControladorVeiculo();
+            controladorTaxaDaLocacao = new ControladorTaxaDaLocacao();
+            telaDasTaxas = new TelaAdicionarTaxasForm();
             InitializeComponent();
             PopularComboboxes();
+            
             SetColor();
         }
 
@@ -80,11 +88,15 @@ namespace LocadoraVeiculo.WindowsApp.Features.Locacao
                 cbCondutor.Items.Add(locacao.Condutor);
                 cbCondutor.SelectedIndex = 0;
 
+                PreencherListaTaxa();
                 dtSaida.Value = locacao.DataSaida;
                 dtRetorno.Value = locacao.DataRetorno;
                 cbTipoLocacao.Text = locacao.TipoLocacao.ToString();
             }
         }
+
+        public List<Servico> Servicos { get; set; }
+       
 
         private void PopularComboboxes()
         {
@@ -121,10 +133,12 @@ namespace LocadoraVeiculo.WindowsApp.Features.Locacao
             var dias = Convert.ToInt32((dtRetorno.Value - dtSaida.Value).TotalDays);
 
             decimal? precoServicos = 0;
-            if (servicos != null)
-                foreach (var item in servicos.ToList())
+
+            if (Servicos != null)
+                foreach (var item in Servicos.ToList())
                     precoServicos = item.TipoCalculo != 1 ? precoServicos + item.Preco * dias : precoServicos + item.Preco;
 
+            
             decimal? precoPlano = CalcularPrecoPlanoPorDias(veiculo, tipoLocacao, dias);
 
             locacao = new LocacaoVeiculo(cliente, veiculo, condutor, dataSaida, dataRetornoEsperado, tipoLocacao,
@@ -141,7 +155,11 @@ namespace LocadoraVeiculo.WindowsApp.Features.Locacao
                 DialogResult = DialogResult.None;
             }
             else
+            {
                 MudarDisponibilidadeVeiculo(veiculo);
+
+
+            }
         }
 
         private static decimal? CalcularPrecoPlanoPorDias(VeiculoModule.Veiculo veiculo, string tipoLocacao, int dias)
@@ -192,15 +210,27 @@ namespace LocadoraVeiculo.WindowsApp.Features.Locacao
 
         private void btnTaxa_Click(object sender, EventArgs e)
         {
-            TelaAdicionarTaxasForm tela = new TelaAdicionarTaxasForm();
-            tela.ShowDialog();
-            servicos = tela.Servicos;
+            
+            telaDasTaxas.ShowDialog();
+            Servicos = telaDasTaxas.Servicos;
 
-            listServicos.Items.Clear();
-            if (servicos != null)
-                foreach (var servico in servicos)
+            if (Servicos != null)
+                foreach (var servico in Servicos)
                     listServicos.Items.Add(servico);
 
+        }
+
+        private void PreencherListaTaxa()
+        {
+            List<TaxaDaLocacao> lista = controladorTaxaDaLocacao.SelecionarTodasTaxas(locacao.Id);
+           
+            if (lista != null)
+                foreach (var servico in lista)
+                {                   
+                    listServicos.Items.Add(servico.TaxaLocacao);
+                }
+
+            telaDasTaxas.CheckBoxTaxas(lista);
         }
 
     }

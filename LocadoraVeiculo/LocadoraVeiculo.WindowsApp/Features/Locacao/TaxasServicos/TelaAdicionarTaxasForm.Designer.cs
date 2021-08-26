@@ -104,11 +104,10 @@ namespace LocadoraVeiculo.WindowsApp.Features.Locacao.TaxasServicos
         }
 
         #endregion
-
-        private System.Windows.Forms.CheckedListBox cBoxTaxas;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button btnCancelar;
         private System.Windows.Forms.Button btnGravar;
         private Bunifu.Framework.UI.BunifuElipse bunifuElipse1;
+        public System.Windows.Forms.CheckedListBox cBoxTaxas;
     }
 }
