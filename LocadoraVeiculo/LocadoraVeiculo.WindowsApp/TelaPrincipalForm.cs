@@ -22,6 +22,8 @@ using LocadoraVeiculo.WindowsApp.Features.Login;
 using System.Threading;
 using LocadoraVeiculo.WindowsApp.Features.DescontoFeature;
 using LocadoraVeiculo.Controladores.DescontoModule;
+using LocadoraVeiculo.WindowsApp.Features.Parceiro;
+using LocadoraVeiculo.Controladores.ParceiroModule;
 
 namespace LocadoraVeiculo.WindowsApp
 {
@@ -147,6 +149,18 @@ namespace LocadoraVeiculo.WindowsApp
             TelaCombustivelForm telaCombustivelForm = new TelaCombustivelForm();
             telaCombustivelForm.ShowDialog();
         }
+        private void parceirosToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ConfiguracaoParceiroToolBox configuracao = new ConfiguracaoParceiroToolBox();
+
+            ConfigurarToolBox(configuracao);
+
+            AtualizarRodape(configuracao.TipoCadastro);
+
+            operacoes = new OperacoesParceiro(new ControladorParceiro());
+
+            ConfigurarPainelRegistros();
+        }
         private void btnAdicionar_Click(object sender, EventArgs e)
         {
             operacoes.InserirNovoRegistro();
@@ -205,7 +219,7 @@ namespace LocadoraVeiculo.WindowsApp
 
             cadastrosToolStripMenuItem.ForeColor = ControladorDarkMode.corFonte;
             configuraçõesToolStripMenuItem.ForeColor = ControladorDarkMode.corFonte;
-            
+
             btnClose.Image = ControladorDarkMode.imgClose;
             btnMaximize.Image = ControladorDarkMode.imgMax;
             btnMinimize.Image = ControladorDarkMode.imgMin;
@@ -349,5 +363,6 @@ namespace LocadoraVeiculo.WindowsApp
             ToolTip toolTip = new ToolTip();
             toolTip.SetToolTip(this.btnClose, "Fechar");
         }
+
     }
 }

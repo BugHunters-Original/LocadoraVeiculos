@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 
 namespace LocadoraVeiculo.ParceiroModule
 {
-    public class ParceiroTaxa : EntidadeBase
+    public class ParceiroDesconto : EntidadeBase
     {
-        public ParceiroTaxa(string nome)
+        public ParceiroDesconto(string nome)
         {
             Nome = nome;
         }
@@ -21,7 +21,7 @@ namespace LocadoraVeiculo.ParceiroModule
             if (string.IsNullOrEmpty(Nome))
                 valido += QuebraDeLinha(valido) + "O campo Nome está inválido";
             if (valido == "")
-                return valido;
+                return "ESTA_VALIDO";
 
             return valido;
         }

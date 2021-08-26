@@ -70,6 +70,7 @@
     <Build Include="dbo\Tables\TBTaxasServicos.sql" />
     <Build Include="dbo\Tables\TBTipoVeiculo.sql" />
     <Build Include="dbo\Tables\TBVeiculos.sql" />
+    <Build Include="dbo\Tables\TBParceiros.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Script1.sql" />

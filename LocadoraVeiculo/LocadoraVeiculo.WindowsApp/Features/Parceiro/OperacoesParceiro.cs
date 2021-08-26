@@ -41,7 +41,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.Parceiro
             {
                 controlador.Editar(id, tela.Parceiro);
 
-                List<ParceiroTaxa> locacaoes = controlador.SelecionarTodos();
+                List<ParceiroDesconto> locacaoes = controlador.SelecionarTodos();
 
                 tabelaParceiro.AtualizarRegistros(locacaoes);
 
@@ -66,7 +66,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.Parceiro
             {
                 controlador.Excluir(id);
 
-                List<ParceiroTaxa> parceiros = controlador.SelecionarTodos();
+                List<ParceiroDesconto> parceiros = controlador.SelecionarTodos();
 
                 tabelaParceiro.AtualizarRegistros(parceiros);
 
@@ -81,7 +81,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.Parceiro
             {
                 controlador.InserirNovo(tela.Parceiro);
 
-                List<ParceiroTaxa> parceiros = controlador.SelecionarTodos();
+                List<ParceiroDesconto> parceiros = controlador.SelecionarTodos();
                 tabelaParceiro.AtualizarRegistros(parceiros);
 
                 TelaPrincipalForm.Instancia.AtualizarRodape($"Parceiro: [{tela.Parceiro}] inserido com sucesso");
@@ -89,7 +89,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.Parceiro
         }
         public UserControl ObterTabela()
         {
-            List<ParceiroTaxa> parceiros = controlador.SelecionarTodos();
+            List<ParceiroDesconto> parceiros = controlador.SelecionarTodos();
 
             tabelaParceiro.AtualizarRegistros(parceiros);
 

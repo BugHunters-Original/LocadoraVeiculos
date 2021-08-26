@@ -33,11 +33,11 @@ namespace LocadoraVeiculo.WindowsApp.Features.Parceiro
         {
             return dgvParceiros.SelecionarId<int>();
         }
-        public void AtualizarRegistros(List<ParceiroTaxa> parceiros)
+        public void AtualizarRegistros(List<ParceiroDesconto> parceiros)
         {
             dgvParceiros.Rows.Clear();
 
-            foreach (ParceiroTaxa parceiro in parceiros)
+            foreach (ParceiroDesconto parceiro in parceiros)
             {
                 dgvParceiros.Rows.Add(parceiro.Id, parceiro.Nome);
             }
