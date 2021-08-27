@@ -1,8 +1,10 @@
 ﻿using LocadoraVeiculo.ClienteModule;
 using LocadoraVeiculo.Controladores.ClienteModule;
 using LocadoraVeiculo.Controladores.CondutorModule;
+using LocadoraVeiculo.Controladores.DescontoModule;
 using LocadoraVeiculo.Controladores.Shared;
 using LocadoraVeiculo.Controladores.VeiculoModule;
+using LocadoraVeiculo.DescontoModule;
 using LocadoraVeiculo.GrupoVeiculoModule;
 using LocadoraVeiculo.LocacaoModule;
 using LocadoraVeiculo.VeiculoModule;
@@ -21,6 +23,7 @@ namespace LocadoraVeiculo.Controladores.LocacaoModule
 		                [ID_CONDUTOR], 
 		                [ID_CLIENTELOCADOR], 
 		                [ID_VEICULO],
+		                [ID_DESCONTO],
                         [DATA_SAIDA], 
 		                [DATA_RETORNOESPERADO],
                         [PLANO],
@@ -37,6 +40,7 @@ namespace LocadoraVeiculo.Controladores.LocacaoModule
 		                @ID_CONDUTOR, 
 		                @ID_CLIENTELOCADOR, 
 		                @ID_VEICULO,
+		                @ID_DESCONTO,
                         @DATA_SAIDA, 
 		                @DATA_RETORNOESPERADO,
                         @PLANO,
@@ -57,6 +61,7 @@ namespace LocadoraVeiculo.Controladores.LocacaoModule
 		                [ID_CONDUTOR] = @ID_CONDUTOR, 
 		                [ID_CLIENTELOCADOR] = @ID_CLIENTELOCADOR, 
 		                [ID_VEICULO] = @ID_VEICULO,
+		                [ID_DESCONTO] = @ID_DESCONTO,
                         [DATA_SAIDA] = @DATA_SAIDA, 
 		                [DATA_RETORNOESPERADO] = @DATA_RETORNOESPERADO,
                         [PLANO] = @PLANO,
@@ -100,6 +105,7 @@ namespace LocadoraVeiculo.Controladores.LocacaoModule
 		                [ID_CONDUTOR], 
 		                [ID_CLIENTELOCADOR], 
 		                [ID_VEICULO],
+		                [ID_DESCONTO],
                         [DATA_SAIDA], 
 		                [DATA_RETORNOESPERADO],
                         [PLANO],
@@ -121,6 +127,7 @@ namespace LocadoraVeiculo.Controladores.LocacaoModule
 		                [ID_CONDUTOR], 
 		                [ID_CLIENTELOCADOR], 
 		                [ID_VEICULO],
+                        [ID_DESCONTO],
                         [DATA_SAIDA], 
 		                [DATA_RETORNOESPERADO],
                         [PLANO],
@@ -173,6 +180,7 @@ namespace LocadoraVeiculo.Controladores.LocacaoModule
 		                [ID_CONDUTOR], 
 		                [ID_CLIENTELOCADOR], 
 		                [ID_VEICULO],
+                        [ID_DESCONTO],
                         [DATA_SAIDA], 
 		                [DATA_RETORNOESPERADO],
                         [PLANO],
@@ -193,6 +201,7 @@ namespace LocadoraVeiculo.Controladores.LocacaoModule
 		                [ID_CONDUTOR], 
 		                [ID_CLIENTELOCADOR], 
 		                [ID_VEICULO],
+		                [ID_DESCONTO],  
                         [DATA_SAIDA], 
 		                [DATA_RETORNOESPERADO],
                         [PLANO],
@@ -207,6 +216,17 @@ namespace LocadoraVeiculo.Controladores.LocacaoModule
                         TBLOCACAO
                     WHERE 
                         [STATUS] = 'Concluída'";
+
+        private const string sqlSelecionarLocacoesComCupons =
+            @"SELECT
+                        *
+	                FROM
+                        TBLOCACAO AS L INNER JOIN
+                        TBDESCONTO AS D
+                    ON
+                        L.ID_DESCONTO = D.ID      
+                    WHERE 
+                        [CODIGO] = @CUPOM";
         #endregion
 
         public bool VerificarCliente(int id)
@@ -288,6 +308,12 @@ namespace LocadoraVeiculo.Controladores.LocacaoModule
         {
             return Db.GetAll(sqlLocacoesPendentes, ConverterEmLocacao).Count;
         }
+
+        public int SelecionarLocacoesComCupons(string cupom)
+        {
+            return Db.GetAll(sqlSelecionarLocacoesComCupons, ConverterEmLocacao, AdicionarParametro("CUPOM", cupom)).Count;
+        }
+
         private Dictionary<string, object> ObtemParametrosLocacao(LocacaoVeiculo locacao)
         {
             var parametros = new Dictionary<string, object>();
@@ -297,6 +323,7 @@ namespace LocadoraVeiculo.Controladores.LocacaoModule
             parametros.Add("ID_CONDUTOR", locacao.Condutor.Id);
             parametros.Add("ID_CLIENTELOCADOR", locacao.Cliente.Id);
             parametros.Add("ID_VEICULO", locacao.Veiculo.Id);
+            parametros.Add("ID_DESCONTO", locacao.Desconto.Id);
             parametros.Add("DATA_SAIDA", locacao.DataSaida);
             parametros.Add("DATA_RETORNOESPERADO", locacao.DataRetorno);
             parametros.Add("PLANO", locacao.TipoLocacao);
@@ -317,6 +344,7 @@ namespace LocadoraVeiculo.Controladores.LocacaoModule
             int idCondutor = Convert.ToInt32(reader["ID_CONDUTOR"]);
             int idClienteLocador = Convert.ToInt32(reader["ID_CLIENTELOCADOR"]);
             int idVeiculo = Convert.ToInt32(reader["ID_VEICULO"]);
+            int idDesconto = Convert.ToInt32(reader["ID_DESCONTO"]);
             DateTime dataSaida = Convert.ToDateTime(reader["DATA_SAIDA"]);
             DateTime dataRetorno = Convert.ToDateTime(reader["DATA_RETORNOESPERADO"]);
             string plano = Convert.ToString(reader["PLANO"]);
@@ -343,9 +371,11 @@ namespace LocadoraVeiculo.Controladores.LocacaoModule
             ControladorClienteCPF controladorCPF = new ControladorClienteCPF();
             ControladorClienteCNPJ controladorCNPJ = new ControladorClienteCNPJ();
             ControladorVeiculo controladorVeiculo = new ControladorVeiculo();
+            ControladorDesconto controladorDesconto = new ControladorDesconto();
 
             ClienteCPF condutor = controladorCPF.SelecionarPorId(idCondutor);
             Veiculo veiculo = controladorVeiculo.SelecionarPorId(idVeiculo);
+            Desconto desconto = controladorDesconto.SelecionarPorId(idDesconto);
 
             Cliente clienteLocador;
 
@@ -355,7 +385,7 @@ namespace LocadoraVeiculo.Controladores.LocacaoModule
                 clienteLocador = controladorCPF.SelecionarPorId(idClienteLocador);
 
 
-            LocacaoVeiculo locacao = new LocacaoVeiculo(clienteLocador, veiculo, condutor,
+            LocacaoVeiculo locacao = new LocacaoVeiculo(clienteLocador, veiculo, desconto, condutor,
                                                     dataSaida, dataRetorno, plano, tipoCliente, precoServico,
                                                     dias, status, precoGas, precoPlano, precoTotal);
 
