@@ -57,23 +57,33 @@ namespace LocadoraVeiculo.Controladores.DescontoModule
                     [TIPO],
                     [VALIDADE],                    
                     [ID_PARCEIRO],                                                           
-                    [MEIO]
-            FROM
-                [TBDESCONTO]";
+                    [MEIO],
+                    [NOME_PARCEIRO]
+            FROM 
+                [TBDESCONTO] AS D INNER JOIN
+                [TBPARCEIROS]
+            ON
+                ";
+            
 
         private const string sqlSelecionarDescontoPorId =
             @"SELECT 
-                [ID],       
-                    [CODIGO],       
-                    [VALOR], 
-                    [TIPO],
-                    [VALIDADE],                    
-                    [ID_PARCEIRO],                                                           
-                    [MEIO]
+                D.[ID],       
+                    D.[CODIGO],       
+                    D.[VALOR], 
+                    D.[TIPO],
+                    D.[VALIDADE],                    
+                    D.[ID_PARCEIRO],                                                           
+                    D.[MEIO],
+                    P.[ID],
+                    P.[NOME_PARCEIRO]
             FROM
-                [TBDESCONTO]
+                [TBDESCONTO] AS D INNER JOIN
+                [TBPARCEIROS] AS P
+            ON
+                D.ID_PARCEIRO = P.ID
             WHERE 
-                [ID] = @ID";
+                D.[ID] = @ID";
 
         private const string sqlExisteDesconto =
             @"SELECT 
@@ -145,14 +155,14 @@ namespace LocadoraVeiculo.Controladores.DescontoModule
             var validade = Convert.ToDateTime(reader["VALIDADE"]);
             var meio = Convert.ToString(reader["MEIO"]);
 
-            var nome = Convert.ToString(reader["NOME_PARCEIRO"]);
-
             ParceiroDesconto parceiroDesconto = null;
 
             if (reader["ID_PARCEIRO"] != DBNull.Value)
             {
+                var nome = Convert.ToString(reader["NOME_PARCEIRO"]);
                 parceiroDesconto = new ParceiroDesconto(nome);
                 parceiroDesconto.Id = Convert.ToInt32(reader["ID_PARCEIRO"]);
+
             }
 
             Desconto desconto = new Desconto(codigo, valor, tipo, validade, parceiroDesconto, meio);

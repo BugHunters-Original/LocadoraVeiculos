@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace LocadoraVeiculo.ParceiroModule
 {
-    public class ParceiroDesconto : EntidadeBase
+    public class ParceiroDesconto : EntidadeBase, IEquatable<ParceiroDesconto>
     {
         public ParceiroDesconto(string nome)
         {
@@ -28,6 +28,26 @@ namespace LocadoraVeiculo.ParceiroModule
         public override string ToString()
         {
             return Nome;
+        }
+
+        public bool Equals(ParceiroDesconto other)
+        {
+            return other != null
+            && Id == other.Id
+            && Nome == other.Nome;
+        }
+
+        public override bool Equals(object obj)
+        {
+            return Equals(obj as ParceiroDesconto);
+        }
+
+        public override int GetHashCode()
+        {
+            int hashCode = -1643562096;
+            hashCode = hashCode * -1521134295 + Id.GetHashCode();
+            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(Nome);
+            return hashCode;
         }
     }
 }
