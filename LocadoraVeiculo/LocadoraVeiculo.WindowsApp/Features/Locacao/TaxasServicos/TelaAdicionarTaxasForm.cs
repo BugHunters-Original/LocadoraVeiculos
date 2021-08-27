@@ -61,10 +61,10 @@ namespace LocadoraVeiculo.WindowsApp.Features.Locacao.TaxasServicos
                     {   
                         cBoxTaxas.SetItemChecked(cBoxTaxas.Items.IndexOf(item), true);
                     }
-                }
-                
+                }     
             }
         }
+
         private void PopularBox()
         {
             List<Servico> servicos = controladorServico.SelecionarTodos();
@@ -75,7 +75,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.Locacao.TaxasServicos
 
 
         private void btnGravar_Click(object sender, EventArgs e)
-        {
+        {   
             var servicos = cBoxTaxas.CheckedItems.OfType<Servico>().ToList();
 
             List<decimal?> precos = new List<decimal?>();

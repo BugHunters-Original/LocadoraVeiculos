@@ -16,12 +16,14 @@ namespace LocadoraVeiculo.WindowsApp.Features.Locacao
     {
         private readonly ControladorLocacao controlador = null;
         private readonly ControladorVeiculo controladorVeiculo = null;
+        private readonly ControladorTaxaDaLocacao controladorTaxaDaLocacao = null;
         private readonly TabelaLocacaoControl tabelaLocacoes = null;
 
         public OperacoesLocacao(ControladorLocacao ctrlLocacao)
         {
             controlador = ctrlLocacao;
             controladorVeiculo = new ControladorVeiculo();
+            controladorTaxaDaLocacao = new ControladorTaxaDaLocacao();
             tabelaLocacoes = new TabelaLocacaoControl();
         }
 
@@ -92,14 +94,23 @@ namespace LocadoraVeiculo.WindowsApp.Features.Locacao
 
             tela.Locacao = locacaoSelecionada;
 
-
             if (tela.ShowDialog() == DialogResult.OK)
             {
                 if (tela.Locacao.Veiculo != locacaoSelecionada.Veiculo)
                     controladorVeiculo.EditarDisponibilidade(tela.Locacao.Veiculo, locacaoSelecionada.Veiculo);
-
+   
                 controlador.Editar(id, tela.Locacao);
+                controladorTaxaDaLocacao.Excluir(locacaoSelecionada.Id);
 
+                if (tela.Servicos.Count != 0 || tela.Servicos != null)
+                {
+                    foreach (var item in tela.Servicos)
+                    {
+                        TaxaDaLocacao taxaDaLocacao = new TaxaDaLocacao(item, tela.Locacao);
+                        controladorTaxaDaLocacao.InserirNovo(taxaDaLocacao);
+                    }
+                }
+                    
                 List<LocacaoVeiculo> locacaoes = controlador.SelecionarTodos();
 
                 tabelaLocacoes.AtualizarRegistros(locacaoes);
@@ -169,8 +180,6 @@ namespace LocadoraVeiculo.WindowsApp.Features.Locacao
             if (tela.ShowDialog() == DialogResult.OK)
             {
                 controlador.InserirNovo(tela.Locacao);
-
-                ControladorTaxaDaLocacao controladorTaxaDaLocacao = new ControladorTaxaDaLocacao();
 
                 if (tela.Servicos != null)
                     foreach (var item in tela.Servicos)

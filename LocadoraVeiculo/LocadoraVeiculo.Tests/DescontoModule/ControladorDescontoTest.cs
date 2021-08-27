@@ -52,7 +52,7 @@ namespace LocadoraVeiculo.Tests.DescontoModule
         }
 
         [TestMethod]
-        public void DeveAtualizar_Veiculo()
+        public void DeveAtualizar_Desconto()
         {
             //arrange
             var desconto = new Desconto("dinheiro", 50, "Porcentagem", new DateTime(2030, 10, 10), parceiro, "YouTube");
@@ -69,19 +69,58 @@ namespace LocadoraVeiculo.Tests.DescontoModule
         }
 
         [TestMethod]
-        public void DeveExcluir_Veiculo()
+        public void DeveExcluir_Desconto()
         {
-            ////arrange            
-            //var desconto = new Desconto("dinheiro", 50, "Porcentagem", new DateTime(2030, 10, 10), parceiro, "YouTube"); 
-            //controlador.InserirNovo(desconto);
+            //arrange            
+            var desconto = new Desconto("dinheiro", 50, "Porcentagem", new DateTime(2030, 10, 10), parceiro, "YouTube");
+            controlador.InserirNovo(desconto);
 
-            ////action            
-            //controlador.Excluir(veiculo.Id);
+            //action            
+            controlador.Excluir(desconto.Id);
 
-            ////assert
-            //var veiculoEncontrado = controlador.SelecionarPorId(veiculo.Id);
-            //veiculoEncontrado.Should().BeNull();
-            //LimparBancos();
+            //assert
+            var descontoEncontrado = controlador.SelecionarPorId(desconto.Id);
+            descontoEncontrado.Should().BeNull();
+            LimparBancos();
+        }
+
+        [TestMethod]
+        public void DeveSelecionar_Veiculo_PorId()
+        {
+            //arrange
+            var desconto = new Desconto("dinheiro", 50, "Porcentagem", new DateTime(2030, 10, 10), parceiro, "YouTube");
+            controlador.InserirNovo(desconto);
+
+            //action
+            var descontoEncontrado = controlador.SelecionarPorId(desconto.Id);
+
+            //assert
+            descontoEncontrado.Should().NotBeNull();
+            LimparBancos();
+        }
+
+        [TestMethod]
+        public void DeveSelecionar_Todos()
+        {
+            //arrange
+            var d1 = new Desconto("dinheiro", 50, "Porcentagem", new DateTime(2030, 10, 10), parceiro, "YouTube");
+            controlador.InserirNovo(d1);
+
+            var d2 = new Desconto("xuxu", 50, "Porcentagem", new DateTime(2030, 10, 10), parceiro, "YouTube");
+            controlador.InserirNovo(d2);
+
+            var d3 = new Desconto("leilao", 50, "Porcentagem", new DateTime(2030, 10, 10), parceiro, "YouTube");
+            controlador.InserirNovo(d3);
+
+            //action
+            var veiculos = controlador.SelecionarTodos();
+
+            //assert
+            veiculos.Should().HaveCount(3);
+            veiculos[0].Codigo.Should().Be("dinheiro");
+            veiculos[1].Codigo.Should().Be("xuxu");
+            veiculos[2].Codigo.Should().Be("leilao");
+            LimparBancos();
         }
     }
 }
