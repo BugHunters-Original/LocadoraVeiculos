@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace LocadoraVeiculo.DescontoModule
 {
-    public class Desconto : EntidadeBase
+    public class Desconto : EntidadeBase, IEquatable<Desconto>
     {
         public Desconto(string codigo, decimal valor, string tipo, DateTime validade, ParceiroDesconto parceiro, string meio)
         {
@@ -26,6 +26,36 @@ namespace LocadoraVeiculo.DescontoModule
         public DateTime Validade { get; set; }
         public ParceiroDesconto Parceiro { get; set; }
         public string Meio { get; set; }
+
+        public bool Equals(Desconto other)
+        {
+            return other != null
+            && Id == other.Id
+            && Codigo == other.Codigo
+            && Valor == other.Valor
+            && Tipo == other.Tipo
+            && Validade == other.Validade
+            && Parceiro.Equals(other.Parceiro)
+            && Meio == other.Meio;
+        }
+
+        public override bool Equals(object obj)
+        {
+            return Equals(obj as Desconto);
+        }
+
+        public override int GetHashCode()
+        {
+            int hashCode = -157931640;
+            hashCode = hashCode * -1521134295 + Id.GetHashCode();
+            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(Codigo);
+            hashCode = hashCode * -1521134295 + Valor.GetHashCode();
+            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(Tipo);
+            hashCode = hashCode * -1521134295 + Validade.GetHashCode();
+            hashCode = hashCode * -1521134295 + EqualityComparer<ParceiroDesconto>.Default.GetHashCode(Parceiro);
+            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(Meio);
+            return hashCode;
+        }
 
         public override string Validar()
         {
