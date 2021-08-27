@@ -210,7 +210,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.Locacao
 
         private void btnTaxa_Click(object sender, EventArgs e)
         {
-
+            listServicos.Items.Clear();
             telaDasTaxas.ShowDialog();
             Servicos = telaDasTaxas.Servicos;
 
