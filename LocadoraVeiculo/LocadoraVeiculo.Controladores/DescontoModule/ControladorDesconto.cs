@@ -51,19 +51,20 @@ namespace LocadoraVeiculo.Controladores.DescontoModule
 
         private const string sqlSelecionarTodosDescontos =
             @"SELECT 
-                [ID],       
-                    [CODIGO],       
-                    [VALOR], 
-                    [TIPO],
-                    [VALIDADE],                    
-                    [ID_PARCEIRO],                                                           
-                    [MEIO],
-                    [NOME_PARCEIRO]
-            FROM 
+                D.[ID],       
+                    D.[CODIGO],       
+                    D.[VALOR], 
+                    D.[TIPO],
+                    D.[VALIDADE],                    
+                    D.[ID_PARCEIRO],                                                           
+                    D.[MEIO],
+                    P.[ID],
+                    P.[NOME_PARCEIRO]
+            FROM
                 [TBDESCONTO] AS D INNER JOIN
-                [TBPARCEIROS]
+                [TBPARCEIROS] AS P
             ON
-                ";
+                D.ID_PARCEIRO = P.ID";
             
 
         private const string sqlSelecionarDescontoPorId =
