@@ -62,6 +62,7 @@
     <Compile Include="CondutorCNPJModule\ControladorClienteCPFTest.cs" />
     <Compile Include="CondutorCNPJModule\ClienteCPFTest.cs" />
     <Compile Include="DescontoModule\ControladorDescontoTest.cs" />
+    <Compile Include="DescontoModule\DescontoTests.cs" />
     <Compile Include="FuncionarioModule\ControladorFuncionarioTests.cs" />
     <Compile Include="FuncionarioModule\FuncionarioTests.cs" />
     <Compile Include="GrupoVeiculoModule\GrupoVeiculoTests.cs" />
