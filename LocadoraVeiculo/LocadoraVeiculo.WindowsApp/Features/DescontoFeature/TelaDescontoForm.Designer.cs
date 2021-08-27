@@ -41,11 +41,11 @@ namespace LocadoraVeiculo.WindowsApp.Features.DescontoFeature
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
-            this.textBox4 = new System.Windows.Forms.TextBox();
-            this.radioButton1 = new System.Windows.Forms.RadioButton();
-            this.radioButton2 = new System.Windows.Forms.RadioButton();
-            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.txtMeio = new System.Windows.Forms.TextBox();
+            this.rbPorcentagem = new System.Windows.Forms.RadioButton();
+            this.rbInteiro = new System.Windows.Forms.RadioButton();
+            this.dtValidade = new System.Windows.Forms.DateTimePicker();
+            this.cbParceiros = new System.Windows.Forms.ComboBox();
             this.label5 = new System.Windows.Forms.Label();
             this.btnCancelar = new System.Windows.Forms.Button();
             this.btnGravar = new System.Windows.Forms.Button();
@@ -73,7 +73,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.DescontoFeature
             this.label9.AutoSize = true;
             this.label9.Location = new System.Drawing.Point(13, 7);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(166, 17);
+            this.label9.Size = new System.Drawing.Size(132, 15);
             this.label9.TabIndex = 0;
             this.label9.Text = "Cadastro de Descontos";
             // 
@@ -84,7 +84,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.DescontoFeature
             this.txtId.ForeColor = System.Drawing.Color.DarkSeaGreen;
             this.txtId.Location = new System.Drawing.Point(151, 63);
             this.txtId.Name = "txtId";
-            this.txtId.Size = new System.Drawing.Size(59, 28);
+            this.txtId.Size = new System.Drawing.Size(59, 24);
             this.txtId.TabIndex = 19;
             // 
             // label7
@@ -93,7 +93,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.DescontoFeature
             this.label7.Font = new System.Drawing.Font("Lucida Sans Unicode", 8F);
             this.label7.Location = new System.Drawing.Point(109, 69);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(25, 17);
+            this.label7.Size = new System.Drawing.Size(20, 15);
             this.label7.TabIndex = 18;
             this.label7.Text = "Id:";
             // 
@@ -103,7 +103,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.DescontoFeature
             this.label6.Font = new System.Drawing.Font("Lucida Sans Unicode", 8F);
             this.label6.Location = new System.Drawing.Point(72, 107);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(62, 17);
+            this.label6.Size = new System.Drawing.Size(49, 15);
             this.label6.TabIndex = 22;
             this.label6.Text = "Código:";
             // 
@@ -112,7 +112,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.DescontoFeature
             this.txtCodigo.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtCodigo.Location = new System.Drawing.Point(151, 102);
             this.txtCodigo.Name = "txtCodigo";
-            this.txtCodigo.Size = new System.Drawing.Size(272, 26);
+            this.txtCodigo.Size = new System.Drawing.Size(272, 22);
             this.txtCodigo.TabIndex = 21;
             // 
             // label1
@@ -121,7 +121,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.DescontoFeature
             this.label1.Font = new System.Drawing.Font("Lucida Sans Unicode", 8F);
             this.label1.Location = new System.Drawing.Point(86, 144);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(48, 17);
+            this.label1.Size = new System.Drawing.Size(38, 15);
             this.label1.TabIndex = 24;
             this.label1.Text = "Valor:";
             // 
@@ -131,7 +131,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.DescontoFeature
             this.label2.Font = new System.Drawing.Font("Lucida Sans Unicode", 8F);
             this.label2.Location = new System.Drawing.Point(63, 219);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(71, 17);
+            this.label2.Size = new System.Drawing.Size(55, 15);
             this.label2.TabIndex = 26;
             this.label2.Text = "Validade:";
             // 
@@ -141,7 +141,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.DescontoFeature
             this.label3.Font = new System.Drawing.Font("Lucida Sans Unicode", 8F);
             this.label3.Location = new System.Drawing.Point(66, 256);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(68, 17);
+            this.label3.Size = new System.Drawing.Size(54, 15);
             this.label3.TabIndex = 28;
             this.label3.Text = "Parceiro:";
             // 
@@ -151,54 +151,54 @@ namespace LocadoraVeiculo.WindowsApp.Features.DescontoFeature
             this.label4.Font = new System.Drawing.Font("Lucida Sans Unicode", 8F);
             this.label4.Location = new System.Drawing.Point(89, 292);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(45, 17);
+            this.label4.Size = new System.Drawing.Size(35, 15);
             this.label4.TabIndex = 30;
             this.label4.Text = "Meio:";
             // 
-            // textBox4
+            // txtMeio
             // 
-            this.textBox4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox4.Location = new System.Drawing.Point(151, 287);
-            this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(272, 26);
-            this.textBox4.TabIndex = 29;
+            this.txtMeio.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtMeio.Location = new System.Drawing.Point(151, 287);
+            this.txtMeio.Name = "txtMeio";
+            this.txtMeio.Size = new System.Drawing.Size(272, 22);
+            this.txtMeio.TabIndex = 29;
             // 
-            // radioButton1
+            // rbPorcentagem
             // 
-            this.radioButton1.AutoSize = true;
-            this.radioButton1.Location = new System.Drawing.Point(304, 179);
-            this.radioButton1.Name = "radioButton1";
-            this.radioButton1.Size = new System.Drawing.Size(119, 21);
-            this.radioButton1.TabIndex = 31;
-            this.radioButton1.TabStop = true;
-            this.radioButton1.Text = "Porcentagem";
-            this.radioButton1.UseVisualStyleBackColor = true;
+            this.rbPorcentagem.AutoSize = true;
+            this.rbPorcentagem.Location = new System.Drawing.Point(304, 179);
+            this.rbPorcentagem.Name = "rbPorcentagem";
+            this.rbPorcentagem.Size = new System.Drawing.Size(96, 19);
+            this.rbPorcentagem.TabIndex = 31;
+            this.rbPorcentagem.Text = "Porcentagem";
+            this.rbPorcentagem.UseVisualStyleBackColor = true;
             // 
-            // radioButton2
+            // rbInteiro
             // 
-            this.radioButton2.AutoSize = true;
-            this.radioButton2.Location = new System.Drawing.Point(151, 179);
-            this.radioButton2.Name = "radioButton2";
-            this.radioButton2.Size = new System.Drawing.Size(74, 21);
-            this.radioButton2.TabIndex = 32;
-            this.radioButton2.TabStop = true;
-            this.radioButton2.Text = "Inteiro";
-            this.radioButton2.UseVisualStyleBackColor = true;
+            this.rbInteiro.AutoSize = true;
+            this.rbInteiro.Checked = true;
+            this.rbInteiro.Location = new System.Drawing.Point(151, 179);
+            this.rbInteiro.Name = "rbInteiro";
+            this.rbInteiro.Size = new System.Drawing.Size(60, 19);
+            this.rbInteiro.TabIndex = 32;
+            this.rbInteiro.TabStop = true;
+            this.rbInteiro.Text = "Inteiro";
+            this.rbInteiro.UseVisualStyleBackColor = true;
             // 
-            // dateTimePicker1
+            // dtValidade
             // 
-            this.dateTimePicker1.Location = new System.Drawing.Point(151, 213);
-            this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.Size = new System.Drawing.Size(272, 28);
-            this.dateTimePicker1.TabIndex = 33;
+            this.dtValidade.Location = new System.Drawing.Point(151, 213);
+            this.dtValidade.Name = "dtValidade";
+            this.dtValidade.Size = new System.Drawing.Size(272, 24);
+            this.dtValidade.TabIndex = 33;
             // 
-            // comboBox1
+            // cbParceiros
             // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(151, 252);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(272, 24);
-            this.comboBox1.TabIndex = 34;
+            this.cbParceiros.FormattingEnabled = true;
+            this.cbParceiros.Location = new System.Drawing.Point(151, 252);
+            this.cbParceiros.Name = "cbParceiros";
+            this.cbParceiros.Size = new System.Drawing.Size(272, 23);
+            this.cbParceiros.TabIndex = 34;
             // 
             // label5
             // 
@@ -206,7 +206,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.DescontoFeature
             this.label5.Font = new System.Drawing.Font("Lucida Sans Unicode", 8F);
             this.label5.Location = new System.Drawing.Point(91, 181);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(43, 17);
+            this.label5.Size = new System.Drawing.Size(34, 15);
             this.label5.TabIndex = 35;
             this.label5.Text = "Tipo:";
             // 
@@ -231,30 +231,31 @@ namespace LocadoraVeiculo.WindowsApp.Features.DescontoFeature
             this.btnGravar.TabIndex = 36;
             this.btnGravar.Text = "Gravar";
             this.btnGravar.UseVisualStyleBackColor = true;
+            this.btnGravar.Click += new System.EventHandler(this.btnGravar_Click);
             // 
             // txtValor
             // 
             this.txtValor.Location = new System.Drawing.Point(151, 139);
             this.txtValor.Mask = "000000";
             this.txtValor.Name = "txtValor";
-            this.txtValor.Size = new System.Drawing.Size(272, 28);
+            this.txtValor.Size = new System.Drawing.Size(272, 24);
             this.txtValor.TabIndex = 38;
             // 
             // TelaDescontoForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(471, 410);
             this.Controls.Add(this.txtValor);
             this.Controls.Add(this.btnCancelar);
             this.Controls.Add(this.btnGravar);
             this.Controls.Add(this.label5);
-            this.Controls.Add(this.comboBox1);
-            this.Controls.Add(this.dateTimePicker1);
-            this.Controls.Add(this.radioButton2);
-            this.Controls.Add(this.radioButton1);
+            this.Controls.Add(this.cbParceiros);
+            this.Controls.Add(this.dtValidade);
+            this.Controls.Add(this.rbInteiro);
+            this.Controls.Add(this.rbPorcentagem);
             this.Controls.Add(this.label4);
-            this.Controls.Add(this.textBox4);
+            this.Controls.Add(this.txtMeio);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
@@ -267,6 +268,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.DescontoFeature
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "TelaDescontoForm";
             this.Text = "TelaDescontoForm";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.TelaDescontoForm_FormClosing);
             this.header_GrupoVeiculo.ResumeLayout(false);
             this.header_GrupoVeiculo.PerformLayout();
             this.ResumeLayout(false);
@@ -284,14 +286,14 @@ namespace LocadoraVeiculo.WindowsApp.Features.DescontoFeature
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.TextBox txtCodigo;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.TextBox textBox4;
+        private System.Windows.Forms.TextBox txtMeio;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.RadioButton radioButton2;
-        private System.Windows.Forms.RadioButton radioButton1;
-        private System.Windows.Forms.DateTimePicker dateTimePicker1;
-        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.RadioButton rbInteiro;
+        private System.Windows.Forms.RadioButton rbPorcentagem;
+        private System.Windows.Forms.DateTimePicker dtValidade;
+        private System.Windows.Forms.ComboBox cbParceiros;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Button btnCancelar;
         private System.Windows.Forms.Button btnGravar;
