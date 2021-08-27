@@ -56,14 +56,13 @@ namespace LocadoraVeiculo.WindowsApp.Features.Locacao
 
                 if (telaNotaFiscal.ShowDialog() == DialogResult.OK)
                 {
-
                     controlador.ConcluirLocacao(locacaoSelecionada.Id, telaNotaFiscal.Locacao);
 
                     List<LocacaoVeiculo> locacaoes = controlador.SelecionarTodos();
 
                     tabelaLocacoes.AtualizarRegistros(locacaoes);
 
-                    TelaPrincipalForm.Instancia.AtualizarRodape($"Locação: [{tela.Locacao}] editada com sucesso");
+                    TelaPrincipalForm.Instancia.AtualizarRodape($"Locação: [{tela.Locacao}] concluída com sucesso");
                 }
             }
 
@@ -97,7 +96,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.Locacao
 
             if (tela.ShowDialog() == DialogResult.OK)
             {
-                if(tela.Locacao.Veiculo != locacaoSelecionada.Veiculo)
+                if (tela.Locacao.Veiculo != locacaoSelecionada.Veiculo)
                     controladorVeiculo.EditarDisponibilidade(tela.Locacao.Veiculo, locacaoSelecionada.Veiculo);
 
                 controlador.Editar(id, tela.Locacao);
@@ -174,11 +173,11 @@ namespace LocadoraVeiculo.WindowsApp.Features.Locacao
 
                 ControladorTaxaDaLocacao controladorTaxaDaLocacao = new ControladorTaxaDaLocacao();
 
-                if(tela.Servicos != null) 
+                if (tela.Servicos != null)
                     foreach (var item in tela.Servicos)
                     {
-                    TaxaDaLocacao taxaDaLocacao = new TaxaDaLocacao(item, tela.Locacao);
-                    controladorTaxaDaLocacao.InserirNovo(taxaDaLocacao);
+                        TaxaDaLocacao taxaDaLocacao = new TaxaDaLocacao(item, tela.Locacao);
+                        controladorTaxaDaLocacao.InserirNovo(taxaDaLocacao);
                     }
 
                 List<LocacaoVeiculo> servicos = controlador.SelecionarTodos();
