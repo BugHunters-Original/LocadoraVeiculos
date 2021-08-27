@@ -51,22 +51,37 @@ namespace LocadoraVeiculo.Tests.DescontoModule
             LimparBancos();
         }
 
-        //[TestMethod]
-        //public void DeveAtualizar_Veiculo()
-        //{
-        //    //arrange
-        //    var desconto = new Desconto("dinheiro", 50, "Porcentagem", new DateTime(10, 10, 2000), parceiro, "YouTube");
-        //    controlador.InserirNovo(veiculo);
+        [TestMethod]
+        public void DeveAtualizar_Veiculo()
+        {
+            //arrange
+            var desconto = new Desconto("dinheiro", 50, "Porcentagem", new DateTime(2030, 10, 10), parceiro, "YouTube");
+            controlador.InserirNovo(desconto);
+            var descontoEditado = new Desconto("xuxu", 100, "Porcentagem", new DateTime(2030, 11, 11), parceiro, "Radio");
 
-        //    var VeiculoEditado = new Veiculo("uneiras", "7654321", "12345678901234567", imagem, "preto", "audi", 2012, 2, 80, 1, 'G', 1000, "gasolina", 1, Grupo);
+            //action
+            controlador.Editar(desconto.Id, descontoEditado);
 
-        //    //action
-        //    controlador.Editar(veiculo.Id, VeiculoEditado);
+            //assert
+            var descontoAtualizado = controlador.SelecionarPorId(desconto.Id);
+            descontoAtualizado.Should().Be(descontoEditado);
+            LimparBancos();
+        }
 
-        //    //assert
-        //    var veiculoAtualizado = controlador.SelecionarPorId(veiculo.Id);
-        //    veiculoAtualizado.Should().Be(VeiculoEditado);
-        //    LimparBancos();
-        //}
+        [TestMethod]
+        public void DeveExcluir_Veiculo()
+        {
+            ////arrange            
+            //var desconto = new Desconto("dinheiro", 50, "Porcentagem", new DateTime(2030, 10, 10), parceiro, "YouTube"); 
+            //controlador.InserirNovo(desconto);
+
+            ////action            
+            //controlador.Excluir(veiculo.Id);
+
+            ////assert
+            //var veiculoEncontrado = controlador.SelecionarPorId(veiculo.Id);
+            //veiculoEncontrado.Should().BeNull();
+            //LimparBancos();
+        }
     }
 }
