@@ -91,7 +91,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.DescontoFeature
             // 
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Lucida Sans Unicode", 8F);
-            this.label7.Location = new System.Drawing.Point(109, 69);
+            this.label7.Location = new System.Drawing.Point(120, 68);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(20, 15);
             this.label7.TabIndex = 18;
@@ -101,7 +101,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.DescontoFeature
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Lucida Sans Unicode", 8F);
-            this.label6.Location = new System.Drawing.Point(72, 107);
+            this.label6.Location = new System.Drawing.Point(91, 106);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(49, 15);
             this.label6.TabIndex = 22;
@@ -119,7 +119,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.DescontoFeature
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Lucida Sans Unicode", 8F);
-            this.label1.Location = new System.Drawing.Point(86, 144);
+            this.label1.Location = new System.Drawing.Point(102, 143);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(38, 15);
             this.label1.TabIndex = 24;
@@ -129,7 +129,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.DescontoFeature
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Lucida Sans Unicode", 8F);
-            this.label2.Location = new System.Drawing.Point(63, 219);
+            this.label2.Location = new System.Drawing.Point(85, 218);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(55, 15);
             this.label2.TabIndex = 26;
@@ -139,7 +139,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.DescontoFeature
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Lucida Sans Unicode", 8F);
-            this.label3.Location = new System.Drawing.Point(66, 256);
+            this.label3.Location = new System.Drawing.Point(86, 255);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(54, 15);
             this.label3.TabIndex = 28;
@@ -149,7 +149,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.DescontoFeature
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Lucida Sans Unicode", 8F);
-            this.label4.Location = new System.Drawing.Point(89, 292);
+            this.label4.Location = new System.Drawing.Point(105, 291);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(35, 15);
             this.label4.TabIndex = 30;
@@ -204,7 +204,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.DescontoFeature
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Lucida Sans Unicode", 8F);
-            this.label5.Location = new System.Drawing.Point(91, 181);
+            this.label5.Location = new System.Drawing.Point(106, 180);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(34, 15);
             this.label5.TabIndex = 35;
@@ -267,6 +267,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.DescontoFeature
             this.Font = new System.Drawing.Font("Lucida Sans Unicode", 8F);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "TelaDescontoForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "TelaDescontoForm";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.TelaDescontoForm_FormClosing);
             this.header_GrupoVeiculo.ResumeLayout(false);

@@ -23,17 +23,17 @@ namespace LocadoraVeiculo.WindowsApp.Features.DescontoFeature
 
         public void InserirNovoRegistro()
         {
-            //TelaDescontoForm tela = new TelaDescontoForm();
+            TelaDescontoForm tela = new TelaDescontoForm();
 
-            //if (tela.ShowDialog() == DialogResult.OK)
-            //{
-            //    controlador.InserirNovo(tela.Desconto);
+            if (tela.ShowDialog() == DialogResult.OK)
+            {
+                controlador.InserirNovo(tela.Desconto);
 
-            //    List<Desconto> descontos = controlador.SelecionarTodos();
-            //    tabelaDesconto.AtualizarRegistros(descontos);
+                List<Desconto> descontos = controlador.SelecionarTodos();
+                tabelaDesconto.AtualizarRegistros(descontos);
 
-            //    TelaPrincipalForm.Instancia.AtualizarRodape($"Cupom de desconto: [{tela.Desconto.Codigo}] inserido com sucesso");
-            //}
+                TelaPrincipalForm.Instancia.AtualizarRodape($"Cupom de desconto: [{tela.Desconto.Codigo}] inserido com sucesso");
+            }
         }
 
         public void DevolverVeiculo()
@@ -43,30 +43,30 @@ namespace LocadoraVeiculo.WindowsApp.Features.DescontoFeature
 
         public void EditarRegistro()
         {
-            //int id = tabelaDesconto.ObtemIdSelecionado();
+            int id = tabelaDesconto.ObtemIdSelecionado();
 
-            //if (id == 0)
-            //{
-            //    MessageBox.Show("Selecione um Cupom de Desconto para poder editar!", "Edição de Cupom de Desconto",
-            //        MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-            //    return;
-            //}
+            if (id == 0)
+            {
+                MessageBox.Show("Selecione um Cupom de Desconto para poder editar!", "Edição de Cupom de Desconto",
+                    MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                return;
+            }
 
-            //Desconto descontoSelecionado = controlador.SelecionarPorId(id);
+            Desconto descontoSelecionado = controlador.SelecionarPorId(id);
 
-            //TelaDescontoForm tela = new TelaDescontoForm();
+            TelaDescontoForm tela = new TelaDescontoForm();
 
-            //tela.Desconto = descontoSelecionado;
+            tela.Desconto = descontoSelecionado;
 
-            //if (tela.ShowDialog() == DialogResult.OK)
-            //{
-            //    controlador.Editar(id, tela.Desconto);
+            if (tela.ShowDialog() == DialogResult.OK)
+            {
+                controlador.Editar(id, tela.Desconto);
 
-            //    List<Desconto> desconto = controlador.SelecionarTodos();
-            //    tabelaDesconto.AtualizarRegistros(desconto);
+                List<Desconto> desconto = controlador.SelecionarTodos();
+                tabelaDesconto.AtualizarRegistros(desconto);
 
-            //    TelaPrincipalForm.Instancia.AtualizarRodape($"Grupo de Veiculos: [{tela.Desconto.Codigo}] editado com sucesso");
-            //}
+                TelaPrincipalForm.Instancia.AtualizarRodape($"Grupo de Veiculos: [{tela.Desconto.Codigo}] editado com sucesso");
+            }
         }
 
         public void ExcluirRegistro()
