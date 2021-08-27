@@ -1,4 +1,5 @@
 ﻿using LocadoraVeiculo.Controladores.DescontoModule;
+using LocadoraVeiculo.Controladores.LocacaoModule;
 using LocadoraVeiculo.DescontoModule;
 using LocadoraVeiculo.WindowsApp.Shared;
 using System;
@@ -13,6 +14,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.DescontoFeature
     public class OperacoesDesconto : ICadastravel
     {
         private readonly ControladorDesconto controlador = null;
+        private readonly ControladorLocacao controladorLocacao = new ControladorLocacao();
         private readonly TabelaDescontoControl tabelaDesconto = null;
 
         public OperacoesDesconto(ControladorDesconto ctrlGrupoDesconto)
@@ -71,33 +73,35 @@ namespace LocadoraVeiculo.WindowsApp.Features.DescontoFeature
 
         public void ExcluirRegistro()
         {
-            //int id = tabelaDesconto.ObtemIdSelecionado();
+            int id = tabelaDesconto.ObtemIdSelecionado();
 
-            //if (id == 0)
-            //{
-            //    MessageBox.Show("Selecione um Cupom de Desconto para poder excluir!", "Exclusão de Cupom de Desconto",
-            //        MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-            //    return;
-            //}
+            if (id == 0)
+            {
+                MessageBox.Show("Selecione um Cupom de Desconto para poder excluir!", "Exclusão de Cupom de Desconto",
+                    MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                return;
+            }
 
-            //Desconto descontoSelecionado = controlador.SelecionarPorId(id);
+            Desconto descontoSelecionado = controlador.SelecionarPorId(id);
 
-            //if (MessageBox.Show($"Tem certeza que deseja excluir o Cupom de Desconto: [{descontoSelecionado.Codigo}] ?",
-            //    "Exclusão de Cupom de Desconto", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK)
-            //{
-            //    if (//CUPOM NAO USADO)
-            //        {
-            //        controlador.Excluir(id);
-            //        List<Desconto> desconto = controlador.SelecionarTodos();
-            //        tabelaDesconto.AtualizarRegistros(desconto);
-            //        TelaPrincipalForm.Instancia.AtualizarRodape($"Grupo de Veiculos: [{descontoSelecionado.Codigo}] removido com sucesso");
-            //    }
-            //    else
-            //    {
-            //        MessageBox.Show("ESTE CUPOM JÁ FOI UTILIZADO, PORTANTO NÃO É PERMITIDO REMOVE-LO ",
-            //            "Exclusão de Cupom de Desconto", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            //    }
-            //}
+            if (MessageBox.Show($"Tem certeza que deseja excluir o Cupom de Desconto: [{descontoSelecionado.Codigo}] ?",
+                "Exclusão de Cupom de Desconto", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK)
+            {
+                int contador = controladorLocacao.SelecionarLocacoesComCupons(descontoSelecionado.Codigo);
+
+                if (contador == 0)
+                {
+                    controlador.Excluir(id);
+                    List<Desconto> desconto = controlador.SelecionarTodos();
+                    tabelaDesconto.AtualizarRegistros(desconto);
+                    TelaPrincipalForm.Instancia.AtualizarRodape($"Grupo de Veiculos: [{descontoSelecionado.Codigo}] removido com sucesso");
+                }
+                else
+                {
+                    MessageBox.Show("ESTE CUPOM JÁ FOI UTILIZADO, PORTANTO NÃO É PERMITIDO REMOVE-LO!",
+                        "Exclusão de Cupom de Desconto", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
         }
 
         public void FiltrarRegistros()
