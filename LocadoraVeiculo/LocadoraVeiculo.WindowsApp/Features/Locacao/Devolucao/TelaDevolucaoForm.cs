@@ -104,11 +104,18 @@ namespace LocadoraVeiculo.WindowsApp.Features.Locacao.Devolucao
                 case "Plano Diário":
                     return totalKm * locacao.Veiculo.grupoVeiculo.ValorKmRodadoPDiario;
                 case "KM Controlado":
-                    return (totalKm - locacao.Veiculo.grupoVeiculo.LimitePControlado) * locacao.Veiculo.grupoVeiculo.ValorKmRodadoPControlado;
+                    return (CalcularKmRodado(totalKm)) * locacao.Veiculo.grupoVeiculo.ValorKmRodadoPControlado;
                 default: return 0;
             }
 
         }
+
+        private decimal? CalcularKmRodado(int? totalKm)
+        {
+            var resto = totalKm - locacao.Veiculo.grupoVeiculo.LimitePControlado;
+            return resto <= 0 ? 0 : resto;
+        }
+
         private void AtualizarTotal()
         {
             double total = Convert.ToDouble(locacao.PrecoServicos) + Convert.ToDouble(locacao.PrecoPlano) + Convert.ToDouble(locacao.PrecoCombustivel);
@@ -162,6 +169,9 @@ namespace LocadoraVeiculo.WindowsApp.Features.Locacao.Devolucao
         {
             string valido = "";
 
+            if (Convert.ToInt32(txtKmInicial.Text) >= Convert.ToInt32(txtKmAtual.Text))
+                valido += "O Campo Quilometragem Atual não pode ser menor que a esperada\r\n";
+
             if (dtRetorno.Value.Day < dtRetornoEsperada.Value.Day)
                 valido += "A Data de Retorno não pode ser menor que a Data de Retorno Esperada\r\n";
 
@@ -179,7 +189,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.Locacao.Devolucao
 
         private void dtRetorno_ValueChanged(object sender, EventArgs e)
         {
-            if (dtRetorno.Value.Day > dtRetornoEsperada.Value.Day)
+            if (dtRetorno.Value.Date > dtRetornoEsperada.Value.Date)
             {
                 multa = 1.1;
                 txtMulta.Text = "10% no total";

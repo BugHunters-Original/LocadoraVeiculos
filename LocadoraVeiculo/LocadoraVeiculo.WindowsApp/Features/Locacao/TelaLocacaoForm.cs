@@ -31,7 +31,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.Locacao
         private ControladorVeiculo controladorVeiculo;
         private ControladorTaxaDaLocacao controladorTaxaDaLocacao;
         TelaAdicionarTaxasForm telaDasTaxas;
-        
+
 
         public TelaLocacaoForm()
         {
@@ -42,7 +42,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.Locacao
             telaDasTaxas = new TelaAdicionarTaxasForm();
             InitializeComponent();
             PopularComboboxes();
-            
+
             SetColor();
         }
 
@@ -96,7 +96,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.Locacao
         }
 
         public List<Servico> Servicos { get; set; }
-       
+
 
         private void PopularComboboxes()
         {
@@ -138,7 +138,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.Locacao
                 foreach (var item in Servicos.ToList())
                     precoServicos = item.TipoCalculo != 1 ? precoServicos + item.Preco * dias : precoServicos + item.Preco;
 
-            
+
             decimal? precoPlano = CalcularPrecoPlanoPorDias(veiculo, tipoLocacao, dias);
 
             locacao = new LocacaoVeiculo(cliente, veiculo, condutor, dataSaida, dataRetornoEsperado, tipoLocacao,
@@ -210,7 +210,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.Locacao
 
         private void btnTaxa_Click(object sender, EventArgs e)
         {
-            
+
             telaDasTaxas.ShowDialog();
             Servicos = telaDasTaxas.Servicos;
 
@@ -223,10 +223,10 @@ namespace LocadoraVeiculo.WindowsApp.Features.Locacao
         private void PreencherListaTaxa()
         {
             List<TaxaDaLocacao> lista = controladorTaxaDaLocacao.SelecionarTodasTaxas(locacao.Id);
-           
+
             if (lista != null)
                 foreach (var servico in lista)
-                {                   
+                {
                     listServicos.Items.Add(servico.TaxaLocacao);
                 }
 
