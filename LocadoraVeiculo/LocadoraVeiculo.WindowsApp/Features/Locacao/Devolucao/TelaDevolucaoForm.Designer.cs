@@ -54,6 +54,8 @@ namespace LocadoraVeiculo.WindowsApp.Features.Locacao.Devolucao
             this.bunifuElipse1 = new Bunifu.Framework.UI.BunifuElipse(this.components);
             this.header_Devolucao = new System.Windows.Forms.Panel();
             this.label10 = new System.Windows.Forms.Label();
+            this.txtCupom = new System.Windows.Forms.TextBox();
+            this.label11 = new System.Windows.Forms.Label();
             this.header_Devolucao.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -131,7 +133,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.Locacao.Devolucao
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(122, 326);
+            this.label6.Location = new System.Drawing.Point(122, 330);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(37, 15);
             this.label6.TabIndex = 8;
@@ -139,7 +141,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.Locacao.Devolucao
             // 
             // txtTotal
             // 
-            this.txtTotal.Location = new System.Drawing.Point(171, 322);
+            this.txtTotal.Location = new System.Drawing.Point(171, 326);
             this.txtTotal.Name = "txtTotal";
             this.txtTotal.ReadOnly = true;
             this.txtTotal.Size = new System.Drawing.Size(325, 24);
@@ -156,7 +158,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.Locacao.Devolucao
             // btnNota
             // 
             this.btnNota.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.btnNota.Location = new System.Drawing.Point(315, 352);
+            this.btnNota.Location = new System.Drawing.Point(315, 365);
             this.btnNota.Name = "btnNota";
             this.btnNota.Size = new System.Drawing.Size(87, 27);
             this.btnNota.TabIndex = 9;
@@ -167,7 +169,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.Locacao.Devolucao
             // btnCancelar
             // 
             this.btnCancelar.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnCancelar.Location = new System.Drawing.Point(409, 352);
+            this.btnCancelar.Location = new System.Drawing.Point(409, 365);
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Size = new System.Drawing.Size(87, 27);
             this.btnCancelar.TabIndex = 10;
@@ -266,11 +268,30 @@ namespace LocadoraVeiculo.WindowsApp.Features.Locacao.Devolucao
             this.label10.TabIndex = 0;
             this.label10.Text = "Devolução do Veículo";
             // 
+            // txtCupom
+            // 
+            this.txtCupom.Location = new System.Drawing.Point(171, 296);
+            this.txtCupom.Name = "txtCupom";
+            this.txtCupom.ReadOnly = true;
+            this.txtCupom.Size = new System.Drawing.Size(325, 24);
+            this.txtCupom.TabIndex = 23;
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(55, 305);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(104, 15);
+            this.label11.TabIndex = 24;
+            this.label11.Text = "Desconto Cupom:";
+            // 
             // TelaDevolucaoForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(553, 404);
+            this.Controls.Add(this.txtCupom);
+            this.Controls.Add(this.label11);
             this.Controls.Add(this.header_Devolucao);
             this.Controls.Add(this.txtMulta);
             this.Controls.Add(this.label9);
@@ -333,5 +354,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.Locacao.Devolucao
         private Bunifu.Framework.UI.BunifuElipse bunifuElipse1;
         private System.Windows.Forms.Panel header_Devolucao;
         private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.TextBox txtCupom;
+        private System.Windows.Forms.Label label11;
     }
 }

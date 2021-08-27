@@ -92,7 +92,6 @@ namespace LocadoraVeiculo.WindowsApp.Features.Locacao
 
             tela.Locacao = locacaoSelecionada;
 
-            //tem que pegar o selecionar todos para voltar na list 
 
             if (tela.ShowDialog() == DialogResult.OK)
             {

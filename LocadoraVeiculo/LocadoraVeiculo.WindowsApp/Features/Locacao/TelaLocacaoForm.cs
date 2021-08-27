@@ -20,6 +20,8 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using LocadoraVeiculo.TaxaDaLocacaoModule;
 using LocadoraVeiculo.Controladores.TaxaDaLocacaoModule;
+using LocadoraVeiculo.DescontoModule;
+using LocadoraVeiculo.Controladores.DescontoModule;
 
 namespace LocadoraVeiculo.WindowsApp.Features.Locacao
 {
@@ -30,6 +32,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.Locacao
         private ControladorClienteCNPJ controladorCNPJ;
         private ControladorVeiculo controladorVeiculo;
         private ControladorTaxaDaLocacao controladorTaxaDaLocacao;
+        private readonly ControladorDesconto controladorDesconto;
         TelaAdicionarTaxasForm telaDasTaxas;
 
 
@@ -39,6 +42,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.Locacao
             controladorCNPJ = new ControladorClienteCNPJ();
             controladorVeiculo = new ControladorVeiculo();
             controladorTaxaDaLocacao = new ControladorTaxaDaLocacao();
+            controladorDesconto = new ControladorDesconto();
             telaDasTaxas = new TelaAdicionarTaxasForm();
             InitializeComponent();
             PopularComboboxes();
@@ -120,6 +124,8 @@ namespace LocadoraVeiculo.WindowsApp.Features.Locacao
 
             Veiculo veiculo = (Veiculo)cbVeiculo.SelectedItem;
 
+            Desconto desconto = txtCupom.Text != "" ? controladorDesconto.ExisteCodigo(txtCupom.Text) : null;
+
             int tipoCliente = cbCliente.SelectedItem is ClienteCPF ? 0 : 1;
 
             ClienteCPF condutor = cbCliente.SelectedItem is ClienteCPF ? (ClienteCPF)cliente : (ClienteCPF)cbCondutor.SelectedItem;
@@ -141,7 +147,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.Locacao
 
             decimal? precoPlano = CalcularPrecoPlanoPorDias(veiculo, tipoLocacao, dias);
 
-            locacao = new LocacaoVeiculo(cliente, veiculo, condutor, dataSaida, dataRetornoEsperado, tipoLocacao,
+            locacao = new LocacaoVeiculo(cliente, veiculo, desconto, condutor, dataSaida, dataRetornoEsperado, tipoLocacao,
                                     tipoCliente, precoServicos, dias, "Em Aberto", null, precoPlano, null);
 
             string resultadoValidacao = locacao.Validar();
@@ -162,7 +168,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.Locacao
             }
         }
 
-        private static decimal? CalcularPrecoPlanoPorDias(VeiculoModule.Veiculo veiculo, string tipoLocacao, int dias)
+        private static decimal? CalcularPrecoPlanoPorDias(Veiculo veiculo, string tipoLocacao, int dias)
         {
             switch (tipoLocacao)
             {
@@ -179,7 +185,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.Locacao
             }
         }
 
-        private void MudarDisponibilidadeVeiculo(VeiculoModule.Veiculo veiculo)
+        private void MudarDisponibilidadeVeiculo(Veiculo veiculo)
         {
             veiculo.disponibilidade_Veiculo = 0;
 
