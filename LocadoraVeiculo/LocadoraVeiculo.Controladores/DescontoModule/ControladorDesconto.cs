@@ -65,11 +65,11 @@ namespace LocadoraVeiculo.Controladores.DescontoModule
                 [TBPARCEIROS] AS P
             ON
                 D.ID_PARCEIRO = P.ID";
-            
+
 
         private const string sqlSelecionarDescontoPorId =
             @"SELECT 
-                D.[ID],       
+                    D.[ID],       
                     D.[CODIGO],       
                     D.[VALOR], 
                     D.[TIPO],
@@ -85,6 +85,24 @@ namespace LocadoraVeiculo.Controladores.DescontoModule
                 D.ID_PARCEIRO = P.ID
             WHERE 
                 D.[ID] = @ID";
+        private const string sqlSelecionarDescontoPorCodigo =
+            @"SELECT 
+                    D.[ID],       
+                    D.[CODIGO],       
+                    D.[VALOR], 
+                    D.[TIPO],
+                    D.[VALIDADE],                    
+                    D.[ID_PARCEIRO],                                                           
+                    D.[MEIO],
+                    P.[ID],
+                    P.[NOME_PARCEIRO]
+            FROM
+                [TBDESCONTO] AS D INNER JOIN
+                [TBPARCEIROS] AS P
+            ON
+                D.ID_PARCEIRO = P.ID
+            WHERE 
+                D.[CODIGO] = @CODIGO";
 
         private const string sqlExisteDesconto =
             @"SELECT 
@@ -132,7 +150,10 @@ namespace LocadoraVeiculo.Controladores.DescontoModule
 
             return true;
         }
-
+        public Desconto ExisteCodigo(string codigo)
+        {
+            return Db.Get(sqlSelecionarDescontoPorCodigo, ConverterEmDesconto, AdicionarParametro("CODIGO", codigo));
+        }
         public override bool Existe(int id)
         {
             return Db.Exists(sqlExisteDesconto, AdicionarParametro("ID", id));
