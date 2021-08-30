@@ -1,6 +1,7 @@
 ﻿using LocadoraVeiculo.FuncionarioModule;
 using LocadoraVeiculo.WindowsApp.Features.DarkMode;
 using System;
+using System.Drawing;
 using System.IO;
 using System.Windows.Forms;
 
@@ -22,7 +23,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.Funcionarios
             this.header_Funcionario.BackColor = ControladorDarkMode.corHeader;
             this.BackColor = ControladorDarkMode.corPanel;
             this.ForeColor = ControladorDarkMode.corFonte;
-            text_IdFuncionario.BackColor = ControladorDarkMode.corFundoTxBox;
+            text_IdFuncionario.BackColor = Color.DarkSeaGreen;
             text_NomeFuncionario.BackColor = ControladorDarkMode.corFundoTxBox;
             text_salarioFuncionario.BackColor = ControladorDarkMode.corFundoTxBox;
             text_SenhaFuncionario.BackColor = ControladorDarkMode.corFundoTxBox;

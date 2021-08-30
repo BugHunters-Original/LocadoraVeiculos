@@ -27,7 +27,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.Parceiro
             this.header_parceiro.BackColor = ControladorDarkMode.corHeader;
             this.BackColor = ControladorDarkMode.corPanel;
             this.ForeColor = ControladorDarkMode.corFonte;
-            txtID.BackColor = ControladorDarkMode.corFundoTxBox;
+            txtID.BackColor = Color.DarkSeaGreen;
             txtNome.BackColor = ControladorDarkMode.corFundoTxBox;
 
             btnGravar.BackColor = ControladorDarkMode.corFundoTxBox;

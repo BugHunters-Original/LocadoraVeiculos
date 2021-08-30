@@ -16,6 +16,7 @@ using LocadoraVeiculo.TaxaDaLocacaoModule;
 using LocadoraVeiculo.Controladores.TaxaDaLocacaoModule;
 using LocadoraVeiculo.DescontoModule;
 using LocadoraVeiculo.Controladores.DescontoModule;
+using System.Drawing;
 
 namespace LocadoraVeiculo.WindowsApp.Features.Locacao
 {
@@ -75,7 +76,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.Locacao
             BackColor = ControladorDarkMode.corPanel;
             ForeColor = ControladorDarkMode.corFonte;
 
-            txtID.BackColor = ControladorDarkMode.corFundoTxBox;
+            txtID.BackColor = Color.DarkSeaGreen;
             cbCliente.BackColor = ControladorDarkMode.corFundoTxBox;
             cbVeiculo.BackColor = ControladorDarkMode.corFundoTxBox;
             cbCondutor.BackColor = ControladorDarkMode.corFundoTxBox;

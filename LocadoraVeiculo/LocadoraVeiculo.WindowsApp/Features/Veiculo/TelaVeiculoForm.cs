@@ -25,7 +25,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.Veiculos
             this.header_Veiculo.BackColor = ControladorDarkMode.corHeader;
             this.BackColor = ControladorDarkMode.corPanel;
             this.ForeColor = ControladorDarkMode.corFonte;
-            txtId.BackColor = ControladorDarkMode.corFundoTxBox;
+            txtId.BackColor = Color.DarkSeaGreen;
             txtNome.BackColor = ControladorDarkMode.corFundoTxBox;
             txtMarca.BackColor = ControladorDarkMode.corFundoTxBox;
             txtChassi.BackColor = ControladorDarkMode.corFundoTxBox;
@@ -58,6 +58,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.Veiculos
             btnGravar.BackColor = ControladorDarkMode.corFundoTxBox;
             btnCancelar.BackColor = ControladorDarkMode.corFundoTxBox;
             btnBuscarFoto.BackColor = ControladorDarkMode.corFundoTxBox;
+
         }
 
         private void CarregarGrupos()

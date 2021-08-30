@@ -35,7 +35,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.DescontoFeature
             this.header_GrupoVeiculo.BackColor = ControladorDarkMode.corHeader;
             this.BackColor = ControladorDarkMode.corPanel;
             this.ForeColor = ControladorDarkMode.corFonte;
-            txtId.BackColor = ControladorDarkMode.corFundoTxBox;
+            txtId.BackColor = Color.DarkSeaGreen;
             txtCodigo.BackColor = ControladorDarkMode.corFundoTxBox;
             txtValor.BackColor = ControladorDarkMode.corFundoTxBox;
             txtMeio.BackColor = ControladorDarkMode.corFundoTxBox;
