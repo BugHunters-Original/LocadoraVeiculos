@@ -70,12 +70,7 @@ namespace LocadoraVeiculo.Controladores.LocacaoModule
                         [PRECOTOTAL] = @PRECOTOTAL
                     WHERE 
                         ID = @ID";
-        private const string sqlConcluirLocacao =
-            @"UPDATE TBLOCACAO
-                    SET
-                        [STATUS] = @STATUS
-                    WHERE 
-                        ID = @ID";
+
         private const string sqlMudarDisponibilidade =
             @"UPDATE TBVEICULOS
                     SET
@@ -135,20 +130,7 @@ namespace LocadoraVeiculo.Controladores.LocacaoModule
                 [TBLOCACAO]
             WHERE 
                 [ID] = @ID";
-        private const string sqlExisteVeiculo =
-            @"SELECT 
-                COUNT(*) 
-            FROM 
-                [TBLOCACAO]
-            WHERE 
-                [ID_VEICULO] = @ID";
-        private const string sqlExisteCliente =
-            @"SELECT 
-                COUNT(*) 
-            FROM 
-                [TBLOCACAO]
-            WHERE 
-                [ID_CLIENTELOCADOR] = @ID";
+
         private const string sqlLocacoesPendentes =
             @"SELECT 
                 * 
@@ -215,7 +197,7 @@ namespace LocadoraVeiculo.Controladores.LocacaoModule
             locacao.Id = id;
             locacao.StatusLocacao = "Concluída";
             locacao.Veiculo.disponibilidade_Veiculo = 1;
-            Db.Update(sqlConcluirLocacao, ObtemParametrosLocacao(locacao));
+            Db.Update(sqlEditarLocacao, ObtemParametrosLocacao(locacao));
             Db.Update(sqlMudarDisponibilidade, ObtemParametrosLocacao(locacao));
         }
         public List<LocacaoVeiculo> SelecionarTodasLocacoesConcluidas()

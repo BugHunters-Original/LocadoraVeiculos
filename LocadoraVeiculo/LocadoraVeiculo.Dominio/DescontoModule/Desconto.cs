@@ -70,10 +70,10 @@ namespace LocadoraVeiculo.DescontoModule
             string valido = "";
 
             if (string.IsNullOrEmpty(Codigo))
-                valido += "O campo Codigo está inválido";
+                valido += QuebraDeLinha(valido) + "O campo Codigo está inválido";
 
             if (string.IsNullOrEmpty(Nome))
-                valido += "O campo Nome está inválido";
+                valido += QuebraDeLinha(valido) + "O campo Nome está inválido";
 
             if (ValorMinimo <= 0)
                 valido += QuebraDeLinha(valido) + "O campo Valor Mínimo não pode ser zero ou negativo";
@@ -94,7 +94,7 @@ namespace LocadoraVeiculo.DescontoModule
                 valido += QuebraDeLinha(valido) + "O campo Parceiro não pode ser nulo";
 
             if (string.IsNullOrEmpty(Meio))
-                valido += "O campo Meio está inválido";
+                valido += QuebraDeLinha(valido) + "O campo Meio está inválido";
 
             if (valido == "")
                 valido = "ESTA_VALIDO";

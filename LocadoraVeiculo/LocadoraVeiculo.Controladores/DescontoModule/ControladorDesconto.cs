@@ -107,6 +107,9 @@ namespace LocadoraVeiculo.Controladores.DescontoModule
                 D.ID_PARCEIRO = P.ID
             WHERE 
                 D.[CODIGO] = @CODIGO";
+
+
+
         private const string sqlExisteDesconto =
             @"SELECT 
                 COUNT(*) 
@@ -114,11 +117,22 @@ namespace LocadoraVeiculo.Controladores.DescontoModule
                 [TBDESCONTO]
             WHERE 
                 [ID] = @ID";
+        private const string sqlExisteCodigo =
+            @"SELECT 
+                COUNT(*) 
+            FROM 
+                [TBDESCONTO]
+            WHERE 
+                [CODIGO] = @CODIGO";
         #endregion
 
         public Desconto VerificarCodigoValido(string codigo)
         {
             return Db.Get(sqlSelecionarDescontoPorCodigo, ConverterEmDesconto, AdicionarParametro("CODIGO", codigo));
+        }
+        public bool VerificarCodigoExistente(string codigo)
+        {
+            return Db.Exists(sqlExisteCodigo, AdicionarParametro("CODIGO", codigo));
         }
         public override string InserirNovo(Desconto registro)
         {

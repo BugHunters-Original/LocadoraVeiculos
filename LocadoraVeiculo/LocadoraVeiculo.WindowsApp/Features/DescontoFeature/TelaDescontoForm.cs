@@ -1,4 +1,5 @@
-﻿using LocadoraVeiculo.Controladores.ParceiroModule;
+﻿using LocadoraVeiculo.Controladores.DescontoModule;
+using LocadoraVeiculo.Controladores.ParceiroModule;
 using LocadoraVeiculo.DescontoModule;
 using LocadoraVeiculo.ParceiroModule;
 using LocadoraVeiculo.WindowsApp.Features.DarkMode;
@@ -18,9 +19,12 @@ namespace LocadoraVeiculo.WindowsApp.Features.DescontoFeature
     public partial class TelaDescontoForm : Form
     {
         private Desconto desconto;
-        ControladorParceiro controladorParceiros = new ControladorParceiro();
+        ControladorParceiro controladorParceiro;
+        ControladorDesconto controladorDesconto;
         public TelaDescontoForm()
         {
+            controladorParceiro = new ControladorParceiro();
+            controladorDesconto = new ControladorDesconto();
             InitializeComponent();
             SetColor();
             CarregarParceiros();
@@ -59,6 +63,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.DescontoFeature
                 txtId.Text = desconto.Id.ToString();
                 txtValor.Text = Convert.ToString(desconto.Valor);
                 txtCodigo.Text = desconto.Codigo;
+                txtCodigo.Enabled = false;
                 txtMeio.Text = desconto.Meio;
                 txtNome.Text = desconto.Nome;
                 txtValorMinimo.Text = desconto.ValorMinimo.ToString();
@@ -75,7 +80,6 @@ namespace LocadoraVeiculo.WindowsApp.Features.DescontoFeature
         {
             var codigo = txtCodigo.Text;
 
-            
             var valor = txtValor.Text == "" ? 0 : Convert.ToDecimal(txtValor.Text);
 
             var tipo = rbPorcentagem.Checked ? "Porcentagem" : "Inteiro";
@@ -92,7 +96,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.DescontoFeature
 
             desconto = new Desconto(codigo, valor, tipo, dataValidade, parceiro, meio, nome, valorMinimo);
 
-            string resultadoValidacao = desconto.Validar();
+            string resultadoValidacao = desconto.Validar();       
 
             if (resultadoValidacao != "ESTA_VALIDO")
             {
@@ -111,7 +115,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.DescontoFeature
 
         private void CarregarParceiros()
         {
-            cbParceiros.DataSource = controladorParceiros.SelecionarTodos();
+            cbParceiros.DataSource = controladorParceiro.SelecionarTodos();
         }
     }
 }

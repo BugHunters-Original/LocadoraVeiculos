@@ -44,7 +44,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.DescontoFeature
 
                 new DataGridViewTextBoxColumn { DataPropertyName = "Parceiro", HeaderText = "Parceiro"},
 
-                new DataGridViewTextBoxColumn {DataPropertyName = "Meio", HeaderText = "Meio"},
+                new DataGridViewTextBoxColumn {DataPropertyName = "Meio", HeaderText = "Meio de Comunicação"},
             };
 
             return colunas;
