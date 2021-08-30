@@ -10,23 +10,31 @@ namespace LocadoraVeiculo.DescontoModule
 {
     public class Desconto : EntidadeBase, IEquatable<Desconto>
     {
-        public Desconto(string codigo, decimal valor, string tipo, DateTime validade, ParceiroDesconto parceiro, string meio)
+        public Desconto(string codigo, decimal valor, string tipo, DateTime validade,
+            ParceiroDesconto parceiro, string meio, string nome, decimal valorMinimo)
         {
+            Nome = nome;
             Codigo = codigo;
             Valor = valor;
             Tipo = tipo;
             Validade = validade;
             Parceiro = parceiro;
             Meio = meio;
+            ValorMinimo = valorMinimo;
         }
 
+        public string Nome { get; set; }
         public string Codigo { get; set; }
         public decimal Valor { get; set; }
+        public decimal ValorMinimo { get; set; }
         public string Tipo { get; set; }
         public DateTime Validade { get; set; }
         public ParceiroDesconto Parceiro { get; set; }
         public string Meio { get; set; }
-
+        public override string ToString()
+        {
+            return Nome;
+        }
         public bool Equals(Desconto other)
         {
             return other != null
@@ -63,6 +71,12 @@ namespace LocadoraVeiculo.DescontoModule
 
             if (string.IsNullOrEmpty(Codigo))
                 valido += "O campo Codigo está inválido";
+
+            if (string.IsNullOrEmpty(Nome))
+                valido += "O campo Nome está inválido";
+
+            if (ValorMinimo <= 0)
+                valido += QuebraDeLinha(valido) + "O campo Valor Mínimo não pode ser zero ou negativo";
 
             if (Valor <= 0)
                 valido += QuebraDeLinha(valido) + "O campo Valor não pode ser zero ou negativo";

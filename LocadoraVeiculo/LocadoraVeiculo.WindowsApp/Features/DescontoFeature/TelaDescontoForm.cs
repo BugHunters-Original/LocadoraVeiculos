@@ -1,5 +1,6 @@
 ﻿using LocadoraVeiculo.Controladores.ParceiroModule;
 using LocadoraVeiculo.DescontoModule;
+using LocadoraVeiculo.ParceiroModule;
 using LocadoraVeiculo.WindowsApp.Features.DarkMode;
 using System;
 using System.Collections.Generic;
@@ -59,6 +60,8 @@ namespace LocadoraVeiculo.WindowsApp.Features.DescontoFeature
                 txtValor.Text = Convert.ToString(desconto.Valor);
                 txtCodigo.Text = desconto.Codigo;
                 txtMeio.Text = desconto.Meio;
+                txtNome.Text = desconto.Nome;
+                txtValorMinimo.Text = desconto.ValorMinimo.ToString();
                 cbParceiros.SelectedItem = desconto.Parceiro;
                 dtValidade.Value = Convert.ToDateTime(desconto.Validade);
                 if (desconto.Tipo == "Inteiro")
@@ -71,17 +74,22 @@ namespace LocadoraVeiculo.WindowsApp.Features.DescontoFeature
         private void btnGravar_Click(object sender, EventArgs e)
         {
             var codigo = txtCodigo.Text;
+
             var valor = Convert.ToDecimal(txtValor.Text);
 
-            var tipo = "Inteiro";
-            if (rbPorcentagem.Checked)
-                tipo = "Porcentagem";
+            var tipo = rbPorcentagem.Checked ? "Porcentagem" : "Inteiro";
 
             var dataValidade = Convert.ToDateTime(dtValidade.Value);
-            ParceiroModule.ParceiroDesconto parceiro = (ParceiroModule.ParceiroDesconto)cbParceiros.SelectedItem;
+
+            ParceiroDesconto parceiro = (ParceiroDesconto)cbParceiros.SelectedItem;
+
             var meio = txtMeio.Text;
 
-            desconto = new Desconto(codigo, valor, tipo, dataValidade, parceiro, meio);
+            var nome = txtNome.Text;
+
+            var valorMinimo = txtValorMinimo.Text == "" ? 0 : Convert.ToDecimal(txtValorMinimo.Text);
+
+            desconto = new Desconto(codigo, valor, tipo, dataValidade, parceiro, meio, nome, valorMinimo);
 
             string resultadoValidacao = desconto.Validar();
 

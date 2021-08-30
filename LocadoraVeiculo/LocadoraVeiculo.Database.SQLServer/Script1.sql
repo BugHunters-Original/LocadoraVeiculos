@@ -1,3 +1,4 @@
-﻿DELETE FROM TBLocacao
+﻿DELETE FROM TBDesconto
+DELETE FROM TBLocacao
 
-SELECT * FROM TBLocacao
+SELECT * FROM TBDesconto

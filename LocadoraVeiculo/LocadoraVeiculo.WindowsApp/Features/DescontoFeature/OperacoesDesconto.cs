@@ -45,7 +45,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.DescontoFeature
                 List<Desconto> descontos = controladorDesconto.SelecionarTodos();
                 tabelaDesconto.AtualizarRegistros(descontos);
 
-                TelaPrincipalForm.Instancia.AtualizarRodape($"Cupom de desconto: [{tela.Desconto.Codigo}] inserido com sucesso");
+                TelaPrincipalForm.Instancia.AtualizarRodape($"Cupom de desconto: [{tela.Desconto}] inserido com sucesso");
             }
         }
 
@@ -78,7 +78,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.DescontoFeature
                 List<Desconto> desconto = controladorDesconto.SelecionarTodos();
                 tabelaDesconto.AtualizarRegistros(desconto);
 
-                TelaPrincipalForm.Instancia.AtualizarRodape($"Grupo de Veiculos: [{tela.Desconto.Codigo}] editado com sucesso");
+                TelaPrincipalForm.Instancia.AtualizarRodape($"Grupo de Veiculos: [{tela.Desconto}] editado com sucesso");
             }
         }
 
@@ -95,7 +95,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.DescontoFeature
 
             Desconto descontoSelecionado = controladorDesconto.SelecionarPorId(id);
 
-            if (MessageBox.Show($"Tem certeza que deseja excluir o Cupom de Desconto: [{descontoSelecionado.Codigo}] ?",
+            if (MessageBox.Show($"Tem certeza que deseja excluir o Cupom de Desconto: [{descontoSelecionado}] ?",
                 "Exclusão de Cupom de Desconto", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK)
             {
                 int contador = controladorLocacao.SelecionarLocacoesComCupons(descontoSelecionado.Codigo);
@@ -105,7 +105,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.DescontoFeature
                     controladorDesconto.Excluir(id);
                     List<Desconto> desconto = controladorDesconto.SelecionarTodos();
                     tabelaDesconto.AtualizarRegistros(desconto);
-                    TelaPrincipalForm.Instancia.AtualizarRodape($"Grupo de Veiculos: [{descontoSelecionado.Codigo}] removido com sucesso");
+                    TelaPrincipalForm.Instancia.AtualizarRodape($"Grupo de Veiculos: [{descontoSelecionado}] removido com sucesso");
                 }
                 else
                 {
