@@ -63,6 +63,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.Parceiro
             // txtID
             // 
             this.txtID.BackColor = System.Drawing.Color.DarkSeaGreen;
+            this.txtID.Enabled = false;
             this.txtID.Location = new System.Drawing.Point(97, 60);
             this.txtID.Name = "txtID";
             this.txtID.ReadOnly = true;
@@ -79,9 +80,10 @@ namespace LocadoraVeiculo.WindowsApp.Features.Parceiro
             // btnCancelar
             // 
             this.btnCancelar.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnCancelar.Location = new System.Drawing.Point(209, 230);
+            this.btnCancelar.Font = new System.Drawing.Font("Lucida Sans Unicode", 8F);
+            this.btnCancelar.Location = new System.Drawing.Point(220, 153);
             this.btnCancelar.Name = "btnCancelar";
-            this.btnCancelar.Size = new System.Drawing.Size(101, 31);
+            this.btnCancelar.Size = new System.Drawing.Size(87, 27);
             this.btnCancelar.TabIndex = 2;
             this.btnCancelar.Text = "Cancelar";
             this.btnCancelar.UseVisualStyleBackColor = true;
@@ -89,9 +91,9 @@ namespace LocadoraVeiculo.WindowsApp.Features.Parceiro
             // btnGravar
             // 
             this.btnGravar.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.btnGravar.Location = new System.Drawing.Point(100, 230);
+            this.btnGravar.Location = new System.Drawing.Point(126, 153);
             this.btnGravar.Name = "btnGravar";
-            this.btnGravar.Size = new System.Drawing.Size(101, 31);
+            this.btnGravar.Size = new System.Drawing.Size(87, 27);
             this.btnGravar.TabIndex = 1;
             this.btnGravar.Text = "Gravar";
             this.btnGravar.UseVisualStyleBackColor = true;
@@ -124,7 +126,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.Parceiro
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(399, 285);
+            this.ClientSize = new System.Drawing.Size(343, 211);
             this.Controls.Add(this.header_parceiro);
             this.Controls.Add(this.btnCancelar);
             this.Controls.Add(this.btnGravar);
