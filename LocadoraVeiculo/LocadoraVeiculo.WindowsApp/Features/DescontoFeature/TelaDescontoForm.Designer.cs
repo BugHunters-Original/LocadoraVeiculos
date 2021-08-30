@@ -86,7 +86,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.DescontoFeature
             this.txtId.BackColor = System.Drawing.Color.DarkSeaGreen;
             this.txtId.Enabled = false;
             this.txtId.ForeColor = System.Drawing.Color.DarkSeaGreen;
-            this.txtId.Location = new System.Drawing.Point(151, 63);
+            this.txtId.Location = new System.Drawing.Point(182, 75);
             this.txtId.Name = "txtId";
             this.txtId.Size = new System.Drawing.Size(59, 24);
             this.txtId.TabIndex = 19;
@@ -95,7 +95,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.DescontoFeature
             // 
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Lucida Sans Unicode", 8F);
-            this.label7.Location = new System.Drawing.Point(120, 68);
+            this.label7.Location = new System.Drawing.Point(151, 80);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(20, 15);
             this.label7.TabIndex = 18;
@@ -105,7 +105,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.DescontoFeature
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Lucida Sans Unicode", 8F);
-            this.label6.Location = new System.Drawing.Point(91, 133);
+            this.label6.Location = new System.Drawing.Point(122, 145);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(49, 15);
             this.label6.TabIndex = 22;
@@ -114,7 +114,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.DescontoFeature
             // txtCodigo
             // 
             this.txtCodigo.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtCodigo.Location = new System.Drawing.Point(151, 129);
+            this.txtCodigo.Location = new System.Drawing.Point(182, 141);
             this.txtCodigo.Name = "txtCodigo";
             this.txtCodigo.Size = new System.Drawing.Size(272, 22);
             this.txtCodigo.TabIndex = 21;
@@ -123,7 +123,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.DescontoFeature
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Lucida Sans Unicode", 8F);
-            this.label1.Location = new System.Drawing.Point(31, 194);
+            this.label1.Location = new System.Drawing.Point(62, 206);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(109, 15);
             this.label1.TabIndex = 24;
@@ -133,7 +133,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.DescontoFeature
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Lucida Sans Unicode", 8F);
-            this.label2.Location = new System.Drawing.Point(85, 264);
+            this.label2.Location = new System.Drawing.Point(116, 276);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(55, 15);
             this.label2.TabIndex = 26;
@@ -143,7 +143,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.DescontoFeature
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Lucida Sans Unicode", 8F);
-            this.label3.Location = new System.Drawing.Point(86, 301);
+            this.label3.Location = new System.Drawing.Point(117, 313);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(54, 15);
             this.label3.TabIndex = 28;
@@ -153,7 +153,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.DescontoFeature
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Lucida Sans Unicode", 8F);
-            this.label4.Location = new System.Drawing.Point(12, 337);
+            this.label4.Location = new System.Drawing.Point(43, 349);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(128, 15);
             this.label4.TabIndex = 30;
@@ -162,7 +162,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.DescontoFeature
             // txtMeio
             // 
             this.txtMeio.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtMeio.Location = new System.Drawing.Point(151, 333);
+            this.txtMeio.Location = new System.Drawing.Point(182, 345);
             this.txtMeio.Name = "txtMeio";
             this.txtMeio.Size = new System.Drawing.Size(272, 22);
             this.txtMeio.TabIndex = 29;
@@ -170,7 +170,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.DescontoFeature
             // rbPorcentagem
             // 
             this.rbPorcentagem.AutoSize = true;
-            this.rbPorcentagem.Location = new System.Drawing.Point(304, 225);
+            this.rbPorcentagem.Location = new System.Drawing.Point(335, 237);
             this.rbPorcentagem.Name = "rbPorcentagem";
             this.rbPorcentagem.Size = new System.Drawing.Size(96, 19);
             this.rbPorcentagem.TabIndex = 31;
@@ -181,7 +181,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.DescontoFeature
             // 
             this.rbInteiro.AutoSize = true;
             this.rbInteiro.Checked = true;
-            this.rbInteiro.Location = new System.Drawing.Point(151, 225);
+            this.rbInteiro.Location = new System.Drawing.Point(182, 237);
             this.rbInteiro.Name = "rbInteiro";
             this.rbInteiro.Size = new System.Drawing.Size(60, 19);
             this.rbInteiro.TabIndex = 32;
@@ -191,7 +191,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.DescontoFeature
             // 
             // dtValidade
             // 
-            this.dtValidade.Location = new System.Drawing.Point(151, 259);
+            this.dtValidade.Location = new System.Drawing.Point(182, 271);
             this.dtValidade.Name = "dtValidade";
             this.dtValidade.Size = new System.Drawing.Size(272, 24);
             this.dtValidade.TabIndex = 33;
@@ -199,7 +199,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.DescontoFeature
             // cbParceiros
             // 
             this.cbParceiros.FormattingEnabled = true;
-            this.cbParceiros.Location = new System.Drawing.Point(151, 298);
+            this.cbParceiros.Location = new System.Drawing.Point(182, 310);
             this.cbParceiros.Name = "cbParceiros";
             this.cbParceiros.Size = new System.Drawing.Size(272, 23);
             this.cbParceiros.TabIndex = 34;
@@ -208,7 +208,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.DescontoFeature
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Lucida Sans Unicode", 8F);
-            this.label5.Location = new System.Drawing.Point(106, 226);
+            this.label5.Location = new System.Drawing.Point(137, 238);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(34, 15);
             this.label5.TabIndex = 35;
@@ -218,7 +218,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.DescontoFeature
             // 
             this.btnCancelar.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btnCancelar.Font = new System.Drawing.Font("Lucida Sans Unicode", 8F);
-            this.btnCancelar.Location = new System.Drawing.Point(336, 359);
+            this.btnCancelar.Location = new System.Drawing.Point(367, 394);
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Size = new System.Drawing.Size(87, 27);
             this.btnCancelar.TabIndex = 37;
@@ -229,7 +229,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.DescontoFeature
             // 
             this.btnGravar.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.btnGravar.Font = new System.Drawing.Font("Lucida Sans Unicode", 8F);
-            this.btnGravar.Location = new System.Drawing.Point(241, 359);
+            this.btnGravar.Location = new System.Drawing.Point(272, 394);
             this.btnGravar.Name = "btnGravar";
             this.btnGravar.Size = new System.Drawing.Size(87, 27);
             this.btnGravar.TabIndex = 36;
@@ -239,7 +239,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.DescontoFeature
             // 
             // txtValor
             // 
-            this.txtValor.Location = new System.Drawing.Point(151, 191);
+            this.txtValor.Location = new System.Drawing.Point(182, 203);
             this.txtValor.Mask = "000000";
             this.txtValor.Name = "txtValor";
             this.txtValor.Size = new System.Drawing.Size(272, 24);
@@ -249,7 +249,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.DescontoFeature
             // 
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("Lucida Sans Unicode", 8F);
-            this.label8.Location = new System.Drawing.Point(59, 161);
+            this.label8.Location = new System.Drawing.Point(90, 173);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(81, 15);
             this.label8.TabIndex = 40;
@@ -259,7 +259,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.DescontoFeature
             // 
             this.label10.AutoSize = true;
             this.label10.Font = new System.Drawing.Font("Lucida Sans Unicode", 8F);
-            this.label10.Location = new System.Drawing.Point(56, 105);
+            this.label10.Location = new System.Drawing.Point(87, 117);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(84, 15);
             this.label10.TabIndex = 42;
@@ -268,14 +268,14 @@ namespace LocadoraVeiculo.WindowsApp.Features.DescontoFeature
             // txtNome
             // 
             this.txtNome.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtNome.Location = new System.Drawing.Point(151, 101);
+            this.txtNome.Location = new System.Drawing.Point(182, 113);
             this.txtNome.Name = "txtNome";
             this.txtNome.Size = new System.Drawing.Size(272, 22);
             this.txtNome.TabIndex = 41;
             // 
             // txtValorMinimo
             // 
-            this.txtValorMinimo.Location = new System.Drawing.Point(151, 158);
+            this.txtValorMinimo.Location = new System.Drawing.Point(182, 170);
             this.txtValorMinimo.Mask = "000000";
             this.txtValorMinimo.Name = "txtValorMinimo";
             this.txtValorMinimo.Size = new System.Drawing.Size(272, 24);
@@ -285,7 +285,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.DescontoFeature
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(471, 410);
+            this.ClientSize = new System.Drawing.Size(515, 455);
             this.Controls.Add(this.txtValorMinimo);
             this.Controls.Add(this.label10);
             this.Controls.Add(this.txtNome);
