@@ -1,4 +1,5 @@
-﻿using LocadoraVeiculo.Controladores.LocacaoModule;
+﻿using LocadoraVeiculo.Controladores.CondutorModule;
+using LocadoraVeiculo.Controladores.LocacaoModule;
 using LocadoraVeiculo.Controladores.TaxaDaLocacaoModule;
 using LocadoraVeiculo.Controladores.VeiculoModule;
 using LocadoraVeiculo.LocacaoModule;
@@ -16,6 +17,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.Locacao
     {
         private readonly ControladorLocacao controladorLocacao;
         private readonly ControladorVeiculo controladorVeiculo;
+        private readonly ControladorClienteCPF controladorClienteCPF;
         private readonly ControladorTaxaDaLocacao controladorTaxaDaLocacao;
         private readonly TabelaLocacaoControl tabelaLocacoes;
 
@@ -24,6 +26,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.Locacao
             controladorLocacao = ctrlLocacao;
             controladorVeiculo = new ControladorVeiculo();
             controladorTaxaDaLocacao = new ControladorTaxaDaLocacao();
+            controladorClienteCPF = new ControladorClienteCPF();
             tabelaLocacoes = new TabelaLocacaoControl();
         }
 
@@ -171,6 +174,20 @@ namespace LocadoraVeiculo.WindowsApp.Features.Locacao
         }
         public void InserirNovoRegistro()
         {
+            if (controladorVeiculo.SelecionarTodosDisponiveis().Count == 0)
+            {
+                MessageBox.Show("Nenhum Veículo disponível para Locação!", "Adição de Locações",
+                            MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                return;
+            }
+            //if (controladorClienteCPF.SelecionarTodosIndisponíveisDisponiveis().Count != 0)
+            //{
+            //    MessageBox.Show("Nenhum Condutor disponível para Locação!", "Adição de Locações",
+            //                MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            //    return;
+            //} TEM QUE CONFERIR ESSA QUERIE KKKKKKKKK................
+
+
             TelaLocacaoForm tela = new TelaLocacaoForm();
 
             if (tela.ShowDialog() == DialogResult.OK)
