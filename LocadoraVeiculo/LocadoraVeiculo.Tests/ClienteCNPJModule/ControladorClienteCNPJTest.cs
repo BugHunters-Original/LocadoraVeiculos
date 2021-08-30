@@ -19,6 +19,7 @@ namespace LocadoraVeiculo.Tests.ClienteModule
 
         private static void LimparBanco()
         {
+            Db.Update("DELETE FROM [TBTAXASDALOCACAO]");
             Db.Update("DELETE FROM [TBLOCACAO]");
             Db.Update("DELETE FROM [TBCLIENTECPF]");
             Db.Update("DELETE FROM [TBCLIENTECNPJ]");

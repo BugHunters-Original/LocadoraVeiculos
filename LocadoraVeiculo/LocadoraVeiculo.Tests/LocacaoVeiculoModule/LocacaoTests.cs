@@ -48,7 +48,7 @@ namespace LocadoraVeiculo.Tests.LocacaoModule
         {
             //arrange
 
-            LocacaoVeiculo novaLocacao = new LocacaoVeiculo(cliente, veiculo, condutor, dataSaida, dataRetorno,
+            LocacaoVeiculo novaLocacao = new LocacaoVeiculo(cliente, veiculo, null, condutor, dataSaida, dataRetorno,
                                   "Plano Diário", 0, precoServicos, dias, "Em Aberto", null, grupo.ValorDiarioPDiario * dias, null);
 
 
@@ -68,7 +68,7 @@ namespace LocadoraVeiculo.Tests.LocacaoModule
 
             var diasInvalidos = Convert.ToInt32((dataSaida - dataRetorno).TotalDays);
 
-            LocacaoVeiculo novaLocacao = new LocacaoVeiculo(cliente, veiculo, condutor, dataSaidaInvalida, dataRetornoInvalida,
+            LocacaoVeiculo novaLocacao = new LocacaoVeiculo(cliente, veiculo,null, condutor, dataSaidaInvalida, dataRetornoInvalida,
                                   "Plano Diário", 0, precoServicos, diasInvalidos, "Em Aberto", null, grupo.ValorDiarioPDiario * dias, null);
 
 
@@ -84,7 +84,7 @@ namespace LocadoraVeiculo.Tests.LocacaoModule
         {
             //arrange
 
-            LocacaoVeiculo novaLocacao = new LocacaoVeiculo(cliente, veiculo, condutor, dataSaida, dataRetorno,
+            LocacaoVeiculo novaLocacao = new LocacaoVeiculo(cliente, veiculo,null, condutor, dataSaida, dataRetorno,
                                   "Plano", 0, precoServicos, dias, "Em Aberto", null, grupo.ValorDiarioPDiario * dias, null);
 
 
@@ -99,7 +99,7 @@ namespace LocadoraVeiculo.Tests.LocacaoModule
         public void DeveValidar_Cliente()
         {
             //arrange
-            LocacaoVeiculo novaLocacao = new LocacaoVeiculo(null, veiculo, condutor, dataSaida, dataRetorno,
+            LocacaoVeiculo novaLocacao = new LocacaoVeiculo(null, veiculo, null, condutor, dataSaida, dataRetorno,
                                    "Plano Diário", 0, precoServicos, dias, "Em Aberto", null, grupo.ValorDiarioPDiario * dias, null);
 
 
@@ -114,7 +114,7 @@ namespace LocadoraVeiculo.Tests.LocacaoModule
         public void DeveValidar_TipoCliente()
         {
             //arrange
-            LocacaoVeiculo novaLocacao = new LocacaoVeiculo(cliente, veiculo, condutor, dataSaida, dataRetorno,
+            LocacaoVeiculo novaLocacao = new LocacaoVeiculo(cliente, veiculo, null, condutor, dataSaida, dataRetorno,
                                    "Plano Diário", 2, precoServicos, dias, "Em Aberto", null, grupo.ValorDiarioPDiario * dias, null);
 
 
@@ -129,7 +129,7 @@ namespace LocadoraVeiculo.Tests.LocacaoModule
         public void DeveValidar_Condutor()
         {
             //arrange
-            LocacaoVeiculo novaLocacao = new LocacaoVeiculo(cliente, veiculo, null, dataSaida, dataRetorno,
+            LocacaoVeiculo novaLocacao = new LocacaoVeiculo(cliente, veiculo, null, null, dataSaida, dataRetorno,
                                     "Plano Diário", 0, precoServicos, dias, "Em Aberto", null, grupo.ValorDiarioPDiario * dias, null);
 
 

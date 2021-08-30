@@ -291,7 +291,7 @@ namespace LocadoraVeiculo.Controladores.LocacaoModule
             parametros.Add("ID_CONDUTOR", locacao.Condutor.Id);
             parametros.Add("ID_CLIENTELOCADOR", locacao.Cliente.Id);
             parametros.Add("ID_VEICULO", locacao.Veiculo.Id);
-            parametros.Add("ID_DESCONTO", locacao.Desconto.Id);
+            parametros.Add("ID_DESCONTO", locacao.Desconto?.Id);
             parametros.Add("DATA_SAIDA", locacao.DataSaida);
             parametros.Add("DATA_RETORNOESPERADO", locacao.DataRetorno);
             parametros.Add("PLANO", locacao.TipoLocacao);
@@ -312,7 +312,15 @@ namespace LocadoraVeiculo.Controladores.LocacaoModule
             int idCondutor = Convert.ToInt32(reader["ID_CONDUTOR"]);
             int idClienteLocador = Convert.ToInt32(reader["ID_CLIENTELOCADOR"]);
             int idVeiculo = Convert.ToInt32(reader["ID_VEICULO"]);
-            int idDesconto = Convert.ToInt32(reader["ID_DESCONTO"]);
+
+            Desconto desconto = null;
+            if (reader["ID_DESCONTO"] != DBNull.Value)
+            {
+                ControladorDesconto controladorDesconto = new ControladorDesconto();
+                int idDesconto = Convert.ToInt32(reader["ID_DESCONTO"]);
+                desconto = controladorDesconto.SelecionarPorId(idDesconto);
+            }
+
             DateTime dataSaida = Convert.ToDateTime(reader["DATA_SAIDA"]);
             DateTime dataRetorno = Convert.ToDateTime(reader["DATA_RETORNOESPERADO"]);
             string plano = Convert.ToString(reader["PLANO"]);
@@ -339,11 +347,9 @@ namespace LocadoraVeiculo.Controladores.LocacaoModule
             ControladorClienteCPF controladorCPF = new ControladorClienteCPF();
             ControladorClienteCNPJ controladorCNPJ = new ControladorClienteCNPJ();
             ControladorVeiculo controladorVeiculo = new ControladorVeiculo();
-            ControladorDesconto controladorDesconto = new ControladorDesconto();
 
             ClienteCPF condutor = controladorCPF.SelecionarPorId(idCondutor);
             Veiculo veiculo = controladorVeiculo.SelecionarPorId(idVeiculo);
-            Desconto desconto = controladorDesconto.SelecionarPorId(idDesconto);
 
             Cliente clienteLocador;
 
