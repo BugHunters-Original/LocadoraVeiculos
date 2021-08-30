@@ -1,5 +1,6 @@
 ﻿using LocadoraVeiculo.WindowsApp.Features.DarkMode;
 using System;
+using System.Drawing;
 using System.IO;
 using System.Windows.Forms;
 
@@ -20,7 +21,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.GrupoVeiculo
             this.header_GrupoVeiculo.BackColor = ControladorDarkMode.corHeader;
             this.BackColor = ControladorDarkMode.corPanel;
             this.ForeColor = ControladorDarkMode.corFonte;
-            txtId.BackColor = ControladorDarkMode.corFundoTxBox;
+            txtId.BackColor = Color.DarkSeaGreen;
             txtNome.BackColor = ControladorDarkMode.corFundoTxBox;
             txtDiariaPLivre.BackColor = ControladorDarkMode.corFundoTxBox;
             txtValorDiarioPDiario.BackColor = ControladorDarkMode.corFundoTxBox;

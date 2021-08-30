@@ -28,7 +28,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.Veiculos
             this.header_DetalheVeiculo.BackColor = ControladorDarkMode.corHeader;
             this.BackColor = ControladorDarkMode.corFundo;
             this.ForeColor = ControladorDarkMode.corFonte;
-            txtId.BackColor = ControladorDarkMode.corFundoTxBox;
+            txtId.BackColor = Color.DarkSeaGreen;
             txtNome.BackColor = ControladorDarkMode.corFundoTxBox;
             txtMarca.BackColor = ControladorDarkMode.corFundoTxBox;
             txtChassi.BackColor = ControladorDarkMode.corFundoTxBox;

@@ -70,7 +70,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.Locacao.Visualizacao
             BackColor = ControladorDarkMode.corPanel;
             ForeColor = ControladorDarkMode.corFonte;
 
-            txtID.BackColor = ControladorDarkMode.corFundoTxBox;
+            txtID.BackColor = Color.DarkSeaGreen;
             cbCliente.BackColor = ControladorDarkMode.corFundoTxBox;
             cbVeiculo.BackColor = ControladorDarkMode.corFundoTxBox;
             cbCondutor.BackColor = ControladorDarkMode.corFundoTxBox;

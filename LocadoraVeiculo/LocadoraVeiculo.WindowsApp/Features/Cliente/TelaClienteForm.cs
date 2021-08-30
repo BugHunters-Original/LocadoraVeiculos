@@ -4,6 +4,7 @@ using LocadoraVeiculo.Controladores.CondutorModule;
 using LocadoraVeiculo.WindowsApp.Features.DarkMode;
 using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.IO;
 using System.Windows.Forms;
 
@@ -27,7 +28,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.Clientes
             this.header_Cliente.BackColor = ControladorDarkMode.corHeader;
             this.BackColor = ControladorDarkMode.corPanel;
             this.ForeColor = ControladorDarkMode.corFonte;
-            txtID.BackColor = ControladorDarkMode.corFundoTxBox;
+            txtID.BackColor = Color.DarkSeaGreen;
             txtNome.BackColor = ControladorDarkMode.corFundoTxBox;
             txtEndereco.BackColor = ControladorDarkMode.corFundoTxBox;
             mskTelefone.BackColor = ControladorDarkMode.corFundoTxBox;
