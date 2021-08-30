@@ -126,7 +126,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.Locacao
                 "Exclusão de Locações", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK)
             {
                 controlador.ConcluirLocacao(locacaoSelecionada.Id, locacaoSelecionada);
-
+                controladorTaxaDaLocacao.Excluir(locacaoSelecionada.Id);
                 controlador.Excluir(id);
 
                 List<LocacaoVeiculo> servicos = controlador.SelecionarTodos();
