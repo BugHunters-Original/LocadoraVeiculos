@@ -92,7 +92,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.Combustivel
             // txtGasolina
             // 
             this.txtGasolina.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F);
-            this.txtGasolina.Location = new System.Drawing.Point(92, 40);
+            this.txtGasolina.Location = new System.Drawing.Point(76, 38);
             this.txtGasolina.Name = "txtGasolina";
             this.txtGasolina.Size = new System.Drawing.Size(116, 19);
             this.txtGasolina.TabIndex = 1;
@@ -123,7 +123,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.Combustivel
             // txtAlcool
             // 
             this.txtAlcool.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F);
-            this.txtAlcool.Location = new System.Drawing.Point(92, 40);
+            this.txtAlcool.Location = new System.Drawing.Point(76, 38);
             this.txtAlcool.Name = "txtAlcool";
             this.txtAlcool.Size = new System.Drawing.Size(116, 19);
             this.txtAlcool.TabIndex = 3;
@@ -154,7 +154,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.Combustivel
             // 
             this.txtDiesel.AccessibleName = "preço do diesel";
             this.txtDiesel.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F);
-            this.txtDiesel.Location = new System.Drawing.Point(92, 40);
+            this.txtDiesel.Location = new System.Drawing.Point(76, 38);
             this.txtDiesel.Name = "txtDiesel";
             this.txtDiesel.Size = new System.Drawing.Size(116, 19);
             this.txtDiesel.TabIndex = 5;
