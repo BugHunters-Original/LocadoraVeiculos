@@ -18,7 +18,7 @@ namespace LocadoraVeiculo.Controladores.TaxaDaLocacaoModule
         #region Queries
         private const string sqlInserirTaxaLocacao =
 	   @"INSERT INTO TBTAXASDALOCACAO
-	                (
+	                (   
 		                [ID_LOCACAO], 
 		                [ID_TAXA] 		                
 	                ) 
@@ -33,7 +33,7 @@ namespace LocadoraVeiculo.Controladores.TaxaDaLocacaoModule
 	                FROM
                         TBTAXASDALOCACAO
                     WHERE 
-                        ID = @ID";
+                        ID_LOCACAO = @ID_LOCACAO";
 
         private const string sqlEditarTaxaLocacao =
             @"UPDATE TBTAXASDALOCACAO
@@ -42,31 +42,19 @@ namespace LocadoraVeiculo.Controladores.TaxaDaLocacaoModule
 		                [ID_TAXA] = @ID_TAXA
 		                
                     WHERE 
-                        ID = @ID";
-
-        private const string sqlSelecionarTodasTaxasLocacoes =
-            @"SELECT
-                        [ID],                
-		                [ID_LOCACAO], 
-		                [ID_TAXA] 
-		                
-	                FROM
-                        TBTAXASDALOCACAO";
+                        ID_LOCACAO = @ID_LOCACAO";
 
         private const string sqlSelecionarTaxaLocacaoPorId =
-            @"SELECT
-                        [ID],                
+            @"SELECT            
 		                [ID_LOCACAO], 
 		                [ID_TAXA]
-		                
 	                FROM
                         TBTAXASDALOCACAO
                     WHERE 
-                        ID = @ID";
+                        ID_LOCACAO = @ID_LOCACAO";
 
         private const string sqlSelecionarTaxaLocacaoEspecifica =
-           @"SELECT
-                                   
+           @"SELECT                
 		                [ID_LOCACAO], 
 		                [ID_TAXA]
 		                
@@ -93,7 +81,7 @@ namespace LocadoraVeiculo.Controladores.TaxaDaLocacaoModule
         {
             try
             {
-                Db.Delete(sqlExcluirTaxaLocacao, AdicionarParametro("ID", id));
+                Db.Delete(sqlExcluirTaxaLocacao, AdicionarParametro("ID_LOCACAO", id));
             }
             catch (Exception)
             {
@@ -128,7 +116,6 @@ namespace LocadoraVeiculo.Controladores.TaxaDaLocacaoModule
             parametros.Add("ID_LOCACAO", taxaLocacao.LocacaoEscolhida.Id);
             parametros.Add("ID_TAXA", taxaLocacao.TaxaLocacao.Id);
 
-
             return parametros;
         }
 
@@ -152,7 +139,6 @@ namespace LocadoraVeiculo.Controladores.TaxaDaLocacaoModule
 
         private TaxaDaLocacao ConverterEmTaxaLocacao(IDataReader reader)
         {
-            
             int id_locacao = Convert.ToInt32(reader["ID_LOCACAO"]);
             int id_taxa = Convert.ToInt32(reader["ID_TAXA"]);
 

@@ -1,4 +1,5 @@
-﻿using LocadoraVeiculo.Controladores.LocacaoModule;
+﻿using LocadoraVeiculo.Controladores.CondutorModule;
+using LocadoraVeiculo.Controladores.LocacaoModule;
 using LocadoraVeiculo.Controladores.TaxaDaLocacaoModule;
 using LocadoraVeiculo.Controladores.VeiculoModule;
 using LocadoraVeiculo.LocacaoModule;
@@ -14,14 +15,18 @@ namespace LocadoraVeiculo.WindowsApp.Features.Locacao
 {
     public class OperacoesLocacao : ICadastravel
     {
-        private readonly ControladorLocacao controlador = null;
-        private readonly ControladorVeiculo controladorVeiculo = null;
-        private readonly TabelaLocacaoControl tabelaLocacoes = null;
+        private readonly ControladorLocacao controladorLocacao;
+        private readonly ControladorVeiculo controladorVeiculo;
+        private readonly ControladorClienteCPF controladorClienteCPF;
+        private readonly ControladorTaxaDaLocacao controladorTaxaDaLocacao;
+        private readonly TabelaLocacaoControl tabelaLocacoes;
 
         public OperacoesLocacao(ControladorLocacao ctrlLocacao)
         {
-            controlador = ctrlLocacao;
+            controladorLocacao = ctrlLocacao;
             controladorVeiculo = new ControladorVeiculo();
+            controladorTaxaDaLocacao = new ControladorTaxaDaLocacao();
+            controladorClienteCPF = new ControladorClienteCPF();
             tabelaLocacoes = new TabelaLocacaoControl();
         }
 
@@ -35,7 +40,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.Locacao
                 return;
             }
 
-            var locacaoSelecionada = controlador.SelecionarPorId(id);
+            var locacaoSelecionada = controladorLocacao.SelecionarPorId(id);
 
             if (locacaoSelecionada.StatusLocacao == "Concluída")
             {
@@ -56,9 +61,9 @@ namespace LocadoraVeiculo.WindowsApp.Features.Locacao
 
                 if (telaNotaFiscal.ShowDialog() == DialogResult.OK)
                 {
-                    controlador.ConcluirLocacao(locacaoSelecionada.Id, telaNotaFiscal.Locacao);
+                    controladorLocacao.ConcluirLocacao(locacaoSelecionada.Id, telaNotaFiscal.Locacao);
 
-                    List<LocacaoVeiculo> locacaoes = controlador.SelecionarTodos();
+                    List<LocacaoVeiculo> locacaoes = controladorLocacao.SelecionarTodos();
 
                     tabelaLocacoes.AtualizarRegistros(locacaoes);
 
@@ -67,7 +72,6 @@ namespace LocadoraVeiculo.WindowsApp.Features.Locacao
             }
 
         }
-
         public void EditarRegistro()
         {
             int id = tabelaLocacoes.ObtemIdSelecionado();
@@ -79,7 +83,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.Locacao
                 return;
             }
 
-            var locacaoSelecionada = controlador.SelecionarPorId(id);
+            var locacaoSelecionada = controladorLocacao.SelecionarPorId(id);
 
             if (locacaoSelecionada.StatusLocacao == "Concluída")
             {
@@ -92,23 +96,30 @@ namespace LocadoraVeiculo.WindowsApp.Features.Locacao
 
             tela.Locacao = locacaoSelecionada;
 
-            //tem que pegar o selecionar todos para voltar na list 
-
             if (tela.ShowDialog() == DialogResult.OK)
             {
                 if (tela.Locacao.Veiculo != locacaoSelecionada.Veiculo)
                     controladorVeiculo.EditarDisponibilidade(tela.Locacao.Veiculo, locacaoSelecionada.Veiculo);
 
-                controlador.Editar(id, tela.Locacao);
+                controladorLocacao.Editar(id, tela.Locacao);
+                controladorTaxaDaLocacao.Excluir(locacaoSelecionada.Id);
 
-                List<LocacaoVeiculo> locacaoes = controlador.SelecionarTodos();
+                if (tela.Servicos != null)
+                {
+                    foreach (var item in tela.Servicos)
+                    {
+                        TaxaDaLocacao taxaDaLocacao = new TaxaDaLocacao(item, tela.Locacao);
+                        controladorTaxaDaLocacao.InserirNovo(taxaDaLocacao);
+                    }
+                }
+
+                List<LocacaoVeiculo> locacaoes = controladorLocacao.SelecionarTodos();
 
                 tabelaLocacoes.AtualizarRegistros(locacaoes);
 
                 TelaPrincipalForm.Instancia.AtualizarRodape($"Locação: [{tela.Locacao}] editada com sucesso");
             }
         }
-
         public void ExcluirRegistro()
         {
             int id = tabelaLocacoes.ObtemIdSelecionado();
@@ -120,7 +131,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.Locacao
                 return;
             }
 
-            var locacaoSelecionada = controlador.SelecionarPorId(id);
+            var locacaoSelecionada = controladorLocacao.SelecionarPorId(id);
 
             if (MessageBox.Show($"Tem certeza que deseja excluir a Locação: [{locacaoSelecionada}] ?",
                 "Exclusão de Locações", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK)
@@ -129,14 +140,13 @@ namespace LocadoraVeiculo.WindowsApp.Features.Locacao
                 controladorTaxaDaLocacao.Excluir(locacaoSelecionada.Id);
                 controlador.Excluir(id);
 
-                List<LocacaoVeiculo> servicos = controlador.SelecionarTodos();
+                List<LocacaoVeiculo> servicos = controladorLocacao.SelecionarTodos();
 
                 tabelaLocacoes.AtualizarRegistros(servicos);
 
                 TelaPrincipalForm.Instancia.AtualizarRodape($"Locação: [{locacaoSelecionada}] removida com sucesso");
             }
         }
-
         public void FiltrarRegistros()
         {
             TelaFiltroLocacaoForm telaFiltro = new TelaFiltroLocacaoForm();
@@ -148,13 +158,13 @@ namespace LocadoraVeiculo.WindowsApp.Features.Locacao
                 switch (telaFiltro.TipoFiltro)
                 {
                     case FiltroLocacaoEnum.TodasLocacoes:
-                        locacoes = controlador.SelecionarTodos();
+                        locacoes = controladorLocacao.SelecionarTodos();
                         break;
                     case FiltroLocacaoEnum.LocacoesPendentes:
-                        locacoes = controlador.SelecionarTodasLocacoesPendentes();
+                        locacoes = controladorLocacao.SelecionarTodasLocacoesPendentes();
                         break;
                     case FiltroLocacaoEnum.LocacoesConcluidas:
-                        locacoes = controlador.SelecionarTodasLocacoesConcluidas();
+                        locacoes = controladorLocacao.SelecionarTodasLocacoesConcluidas();
                         break;
                     default:
                         break;
@@ -162,16 +172,27 @@ namespace LocadoraVeiculo.WindowsApp.Features.Locacao
                 tabelaLocacoes.AtualizarRegistros(locacoes);
             }
         }
-
         public void InserirNovoRegistro()
         {
+            if (controladorVeiculo.SelecionarTodosDisponiveis().Count == 0)
+            {
+                MessageBox.Show("Nenhum Veículo disponível para Locação!", "Adição de Locações",
+                            MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                return;
+            }
+            //if (controladorClienteCPF.SelecionarTodosIndisponíveisDisponiveis().Count != 0)
+            //{
+            //    MessageBox.Show("Nenhum Condutor disponível para Locação!", "Adição de Locações",
+            //                MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            //    return;
+            //} TEM QUE CONFERIR ESSA QUERIE KKKKKKKKK................
+
+
             TelaLocacaoForm tela = new TelaLocacaoForm();
 
             if (tela.ShowDialog() == DialogResult.OK)
             {
-                controlador.InserirNovo(tela.Locacao);
-
-                ControladorTaxaDaLocacao controladorTaxaDaLocacao = new ControladorTaxaDaLocacao();
+                controladorLocacao.InserirNovo(tela.Locacao);
 
                 if (tela.Servicos != null)
                     foreach (var item in tela.Servicos)
@@ -180,16 +201,15 @@ namespace LocadoraVeiculo.WindowsApp.Features.Locacao
                         controladorTaxaDaLocacao.InserirNovo(taxaDaLocacao);
                     }
 
-                List<LocacaoVeiculo> servicos = controlador.SelecionarTodos();
+                List<LocacaoVeiculo> servicos = controladorLocacao.SelecionarTodos();
                 tabelaLocacoes.AtualizarRegistros(servicos);
 
                 TelaPrincipalForm.Instancia.AtualizarRodape($"Locação: [{tela.Locacao}] inserida com sucesso");
             }
         }
-
         public UserControl ObterTabela()
         {
-            List<LocacaoVeiculo> locacoes = controlador.SelecionarTodos();
+            List<LocacaoVeiculo> locacoes = controladorLocacao.SelecionarTodos();
 
             tabelaLocacoes.AtualizarRegistros(locacoes);
 

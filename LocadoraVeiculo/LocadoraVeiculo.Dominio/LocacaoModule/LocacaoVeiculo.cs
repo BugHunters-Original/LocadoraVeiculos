@@ -1,4 +1,5 @@
 ﻿using LocadoraVeiculo.ClienteModule;
+using LocadoraVeiculo.DescontoModule;
 using LocadoraVeiculo.Shared;
 using LocadoraVeiculo.VeiculoModule;
 using System;
@@ -8,12 +9,13 @@ namespace LocadoraVeiculo.LocacaoModule
 {
     public class LocacaoVeiculo : EntidadeBase, IEquatable<LocacaoVeiculo>
     {
-        public LocacaoVeiculo(Cliente cliente, Veiculo veiculo, ClienteCPF condutor, DateTime dataSaida,
+        public LocacaoVeiculo(Cliente cliente, Veiculo veiculo, Desconto desconto, ClienteCPF condutor, DateTime dataSaida,
                DateTime dataRetorno, string tipoLocacao, int tipoCliente, decimal? precoServicos, int dias,
                string statusLocacao, decimal? precoCombustivel, decimal? precoPlano, decimal? precoTotal)
         {
             Cliente = cliente;
             Veiculo = veiculo;
+            Desconto = desconto;
             Condutor = condutor;
             DataSaida = dataSaida;
             DataRetorno = dataRetorno;
@@ -28,6 +30,7 @@ namespace LocadoraVeiculo.LocacaoModule
         }
         public Cliente Cliente { get; set; }
         public Veiculo Veiculo { get; set; }
+        public Desconto Desconto { get; set; }
         public ClienteCPF Condutor { get; set; }
         public DateTime DataSaida { get; set; }
         public DateTime DataRetorno { get; set; }

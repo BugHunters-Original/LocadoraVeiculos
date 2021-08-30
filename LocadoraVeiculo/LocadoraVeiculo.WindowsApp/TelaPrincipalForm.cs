@@ -100,6 +100,12 @@ namespace LocadoraVeiculo.WindowsApp
             ConfigurarPainelRegistros();
         }
 
+        private void menuToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            operacoes = null;
+            BotaoHome();
+        }
+
         private void grupoDeVeículosToolStripMenuItem_Click(object sender, EventArgs e)
         {
             ConfiguracaoGrupoVeiculoToolBox configuracao = new ConfiguracaoGrupoVeiculoToolBox();
@@ -112,6 +118,7 @@ namespace LocadoraVeiculo.WindowsApp
 
             ConfigurarPainelRegistros();
         }
+
         private void taxasEServiçosToolStripMenuItem_Click(object sender, EventArgs e)
         {
             ConfiguracaoTaxaServicoToolBox configuracao = new ConfiguracaoTaxaServicoToolBox();
@@ -149,6 +156,7 @@ namespace LocadoraVeiculo.WindowsApp
             TelaCombustivelForm telaCombustivelForm = new TelaCombustivelForm();
             telaCombustivelForm.ShowDialog();
         }
+
         private void parceirosToolStripMenuItem_Click(object sender, EventArgs e)
         {
             ConfiguracaoParceiroToolBox configuracao = new ConfiguracaoParceiroToolBox();
@@ -161,6 +169,7 @@ namespace LocadoraVeiculo.WindowsApp
 
             ConfigurarPainelRegistros();
         }
+
         private void btnAdicionar_Click(object sender, EventArgs e)
         {
             operacoes.InserirNovoRegistro();
@@ -287,12 +296,6 @@ namespace LocadoraVeiculo.WindowsApp
             btnExcluir.Enabled = configuracao.EnabledExcluir;
         }
 
-        private void menuToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            operacoes = null;
-            BotaoHome();
-        }
-
         private void BotaoHome()
         {
             btnEditar.Enabled = false;
@@ -309,14 +312,21 @@ namespace LocadoraVeiculo.WindowsApp
             ConfigurarPainelDashBoard();
         }
 
+        private void ChamarTelaLogin(object obj)
+        {
+            Application.Run(new TelaLoginForm());
+        }
+
         private void btnClose_Click(object sender, EventArgs e)
         {
             Application.Exit();
         }
+
         private void btnMinimize_Click(object sender, EventArgs e)
         {
             this.WindowState = FormWindowState.Minimized;
         }
+
         private void btnMaximize_Click(object sender, EventArgs e)
         {
             if (this.WindowState == FormWindowState.Maximized) { this.WindowState = FormWindowState.Normal; }
@@ -329,11 +339,6 @@ namespace LocadoraVeiculo.WindowsApp
             th = new Thread(ChamarTelaLogin);
             th.SetApartmentState(ApartmentState.STA);
             th.Start();
-        }
-
-        private void ChamarTelaLogin(object obj)
-        {
-            Application.Run(new TelaLoginForm());
         }
 
         private void btnLogOut_MouseHover(object sender, EventArgs e)
@@ -363,6 +368,7 @@ namespace LocadoraVeiculo.WindowsApp
             ToolTip toolTip = new ToolTip();
             toolTip.SetToolTip(this.btnClose, "Fechar");
         }
+
 
     }
 }

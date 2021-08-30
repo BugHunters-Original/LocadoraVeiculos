@@ -142,6 +142,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.Veiculos
             // 
             // cmbTipoCombustivel
             // 
+            this.cmbTipoCombustivel.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbTipoCombustivel.Font = new System.Drawing.Font("Lucida Sans Unicode", 8F);
             this.cmbTipoCombustivel.FormattingEnabled = true;
             this.cmbTipoCombustivel.Items.AddRange(new object[] {
@@ -188,6 +189,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.Veiculos
             // 
             // cmbTamanhoPortaMalas
             // 
+            this.cmbTamanhoPortaMalas.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbTamanhoPortaMalas.Font = new System.Drawing.Font("Lucida Sans Unicode", 8F);
             this.cmbTamanhoPortaMalas.FormattingEnabled = true;
             this.cmbTamanhoPortaMalas.Items.AddRange(new object[] {
@@ -232,6 +234,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.Veiculos
             // 
             // cmbGrupo
             // 
+            this.cmbGrupo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbGrupo.Font = new System.Drawing.Font("Lucida Sans Unicode", 8F);
             this.cmbGrupo.FormattingEnabled = true;
             this.cmbGrupo.Location = new System.Drawing.Point(615, 150);

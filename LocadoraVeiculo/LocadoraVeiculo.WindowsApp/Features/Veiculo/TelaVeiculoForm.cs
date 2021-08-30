@@ -1,24 +1,16 @@
 ﻿using LocadoraVeiculo.Controladores.GrupoVeiculoModule;
-using LocadoraVeiculo.Controladores.VeiculoModule;
-using LocadoraVeiculo.GrupoVeiculoModule;
 using LocadoraVeiculo.VeiculoModule;
 using LocadoraVeiculo.WindowsApp.Features.DarkMode;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace LocadoraVeiculo.WindowsApp.Features.Veiculos
 {
     public partial class TelaVeiculoForm : Form
     {
-        public VeiculoModule.Veiculo veiculos;
+        public Veiculo veiculos;
         ControladorGrupoVeiculo controladorGrupoVeiculo = new ControladorGrupoVeiculo();
 
         public TelaVeiculoForm()
@@ -73,7 +65,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.Veiculos
             cmbGrupo.DataSource = controladorGrupoVeiculo.SelecionarTodos();
         }
 
-        public VeiculoModule.Veiculo Veiculo
+        public Veiculo Veiculo
         {
             get { return veiculos; }
 
@@ -142,7 +134,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.Veiculos
 
             GrupoVeiculoModule.GrupoVeiculo grupo = (GrupoVeiculoModule.GrupoVeiculo)cmbGrupo.SelectedItem;
 
-            veiculos = new VeiculoModule.Veiculo(nome, placa, chassi, foto, cor, marca, ano, NPortas, CapacidadeTanque, CapacidadePessoas, TamanhoPortaMalas, Km, TipoCombustivel, disponibilidade, grupo);
+            veiculos = new Veiculo(nome, placa, chassi, foto, cor, marca, ano, NPortas, CapacidadeTanque, CapacidadePessoas, TamanhoPortaMalas, Km, TipoCombustivel, disponibilidade, grupo);
 
             string resultadoValidacao = veiculos.Validar();
 

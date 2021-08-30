@@ -1,9 +1,10 @@
 ﻿using LocadoraVeiculo.ClienteModule;
 using LocadoraVeiculo.Controladores.ClienteModule;
 using LocadoraVeiculo.Controladores.CondutorModule;
+using LocadoraVeiculo.Controladores.DescontoModule;
 using LocadoraVeiculo.Controladores.Shared;
 using LocadoraVeiculo.Controladores.VeiculoModule;
-using LocadoraVeiculo.GrupoVeiculoModule;
+using LocadoraVeiculo.DescontoModule;
 using LocadoraVeiculo.LocacaoModule;
 using LocadoraVeiculo.VeiculoModule;
 using System;
@@ -16,11 +17,12 @@ namespace LocadoraVeiculo.Controladores.LocacaoModule
     {
         #region Queries
         private const string sqlInserirLocacao =
-       @"INSERT INTO TBLOCACAO
+            @"INSERT INTO TBLOCACAO
 	                (
 		                [ID_CONDUTOR], 
 		                [ID_CLIENTELOCADOR], 
 		                [ID_VEICULO],
+		                [ID_DESCONTO],
                         [DATA_SAIDA], 
 		                [DATA_RETORNOESPERADO],
                         [PLANO],
@@ -37,6 +39,7 @@ namespace LocadoraVeiculo.Controladores.LocacaoModule
 		                @ID_CONDUTOR, 
 		                @ID_CLIENTELOCADOR, 
 		                @ID_VEICULO,
+		                @ID_DESCONTO,
                         @DATA_SAIDA, 
 		                @DATA_RETORNOESPERADO,
                         @PLANO,
@@ -48,15 +51,13 @@ namespace LocadoraVeiculo.Controladores.LocacaoModule
                         @PRECOPLANO,
                         @PRECOTOTAL
 	                )";
-
-        
-
         private const string sqlEditarLocacao =
             @"UPDATE TBLOCACAO
                     SET
 		                [ID_CONDUTOR] = @ID_CONDUTOR, 
 		                [ID_CLIENTELOCADOR] = @ID_CLIENTELOCADOR, 
 		                [ID_VEICULO] = @ID_VEICULO,
+		                [ID_DESCONTO] = @ID_DESCONTO,
                         [DATA_SAIDA] = @DATA_SAIDA, 
 		                [DATA_RETORNOESPERADO] = @DATA_RETORNOESPERADO,
                         [PLANO] = @PLANO,
@@ -69,37 +70,31 @@ namespace LocadoraVeiculo.Controladores.LocacaoModule
                         [PRECOTOTAL] = @PRECOTOTAL
                     WHERE 
                         ID = @ID";
-
         private const string sqlConcluirLocacao =
             @"UPDATE TBLOCACAO
                     SET
                         [STATUS] = @STATUS
                     WHERE 
                         ID = @ID";
-
-
         private const string sqlMudarDisponibilidade =
             @"UPDATE TBVEICULOS
                     SET
                         [DISPONIBILIDADE_VEICULO] = @DISPONIBILIDADE_VEICULO
                     WHERE 
                         ID = @ID_VEICULO";
-
-
-
         private const string sqlExcluirLocacao =
             @"DELETE 
 	                FROM
                         TBLOCACAO
                     WHERE 
                         ID = @ID";
-
         private const string sqlSelecionarLocacaoPorId =
             @"SELECT
                         [ID],                
 		                [ID_CONDUTOR], 
 		                [ID_CLIENTELOCADOR], 
 		                [ID_VEICULO],
+		                [ID_DESCONTO],
                         [DATA_SAIDA], 
 		                [DATA_RETORNOESPERADO],
                         [PLANO],
@@ -114,13 +109,13 @@ namespace LocadoraVeiculo.Controladores.LocacaoModule
                         TBLOCACAO
                     WHERE 
                         ID = @ID";
-
         private const string sqlSelecionarTodasLocacoes =
             @"SELECT
                         [ID],                
 		                [ID_CONDUTOR], 
 		                [ID_CLIENTELOCADOR], 
 		                [ID_VEICULO],
+                        [ID_DESCONTO],
                         [DATA_SAIDA], 
 		                [DATA_RETORNOESPERADO],
                         [PLANO],
@@ -133,7 +128,6 @@ namespace LocadoraVeiculo.Controladores.LocacaoModule
                         [PRECOTOTAL] 
 	                FROM
                         TBLOCACAO";
-
         private const string sqlExisteLocacao =
             @"SELECT 
                 COUNT(*) 
@@ -148,9 +142,6 @@ namespace LocadoraVeiculo.Controladores.LocacaoModule
                 [TBLOCACAO]
             WHERE 
                 [ID_VEICULO] = @ID";
-
-
-
         private const string sqlExisteCliente =
             @"SELECT 
                 COUNT(*) 
@@ -158,7 +149,6 @@ namespace LocadoraVeiculo.Controladores.LocacaoModule
                 [TBLOCACAO]
             WHERE 
                 [ID_CLIENTELOCADOR] = @ID";
-
         private const string sqlLocacoesPendentes =
             @"SELECT 
                 * 
@@ -166,13 +156,13 @@ namespace LocadoraVeiculo.Controladores.LocacaoModule
                 [TBLOCACAO]
             WHERE 
                 [STATUS] = 'Em Aberto'";
-
         private const string sqlSelecionarLocacoesPendentes =
             @"SELECT
                         [ID],                
 		                [ID_CONDUTOR], 
 		                [ID_CLIENTELOCADOR], 
 		                [ID_VEICULO],
+                        [ID_DESCONTO],
                         [DATA_SAIDA], 
 		                [DATA_RETORNOESPERADO],
                         [PLANO],
@@ -193,6 +183,7 @@ namespace LocadoraVeiculo.Controladores.LocacaoModule
 		                [ID_CONDUTOR], 
 		                [ID_CLIENTELOCADOR], 
 		                [ID_VEICULO],
+		                [ID_DESCONTO],  
                         [DATA_SAIDA], 
 		                [DATA_RETORNOESPERADO],
                         [PLANO],
@@ -207,16 +198,18 @@ namespace LocadoraVeiculo.Controladores.LocacaoModule
                         TBLOCACAO
                     WHERE 
                         [STATUS] = 'Concluída'";
+        private const string sqlSelecionarLocacoesComCupons =
+            @"SELECT
+                        *
+	                FROM
+                        TBLOCACAO AS L INNER JOIN
+                        TBDESCONTO AS D
+                    ON
+                        L.ID_DESCONTO = D.ID      
+                    WHERE 
+                        [CODIGO] = @CUPOM";
         #endregion
 
-        public bool VerificarCliente(int id)
-        {
-            return Db.Exists(sqlExisteCliente, AdicionarParametro("ID", id));
-        }
-        public bool VerificarVeiculo(int id)
-        {
-            return Db.Exists(sqlExisteVeiculo, AdicionarParametro("ID", id));
-        }
         public void ConcluirLocacao(int id, LocacaoVeiculo locacao)
         {
             locacao.Id = id;
@@ -224,6 +217,18 @@ namespace LocadoraVeiculo.Controladores.LocacaoModule
             locacao.Veiculo.disponibilidade_Veiculo = 1;
             Db.Update(sqlConcluirLocacao, ObtemParametrosLocacao(locacao));
             Db.Update(sqlMudarDisponibilidade, ObtemParametrosLocacao(locacao));
+        }
+        public List<LocacaoVeiculo> SelecionarTodasLocacoesConcluidas()
+        {
+            return Db.GetAll(sqlSelecionarLocacoesConcluidas, ConverterEmLocacao);
+        }
+        public List<LocacaoVeiculo> SelecionarTodasLocacoesPendentes()
+        {
+            return Db.GetAll(sqlSelecionarLocacoesPendentes, ConverterEmLocacao);
+        }
+        public int SelecionarQuantidadeLocacoesPendentes()
+        {
+            return Db.GetAll(sqlLocacoesPendentes, ConverterEmLocacao).Count;
         }
         public override string Editar(int id, LocacaoVeiculo registro)
         {
@@ -265,9 +270,6 @@ namespace LocadoraVeiculo.Controladores.LocacaoModule
 
             return resultadoValidacao;
         }
-
-        
-
         public override LocacaoVeiculo SelecionarPorId(int id)
         {
             return Db.Get(sqlSelecionarLocacaoPorId, ConverterEmLocacao, AdicionarParametro("ID", id));
@@ -276,17 +278,9 @@ namespace LocadoraVeiculo.Controladores.LocacaoModule
         {
             return Db.GetAll(sqlSelecionarTodasLocacoes, ConverterEmLocacao);
         }
-        public List<LocacaoVeiculo> SelecionarTodasLocacoesConcluidas()
+        public int SelecionarLocacoesComCupons(string cupom)
         {
-            return Db.GetAll(sqlSelecionarLocacoesConcluidas, ConverterEmLocacao);
-        }
-        public List<LocacaoVeiculo> SelecionarTodasLocacoesPendentes()
-        {
-            return Db.GetAll(sqlSelecionarLocacoesPendentes, ConverterEmLocacao);
-        }
-        public int SelecionaPendentes()
-        {
-            return Db.GetAll(sqlLocacoesPendentes, ConverterEmLocacao).Count;
+            return Db.GetAll(sqlSelecionarLocacoesComCupons, ConverterEmLocacao, AdicionarParametro("CUPOM", cupom)).Count;
         }
         private Dictionary<string, object> ObtemParametrosLocacao(LocacaoVeiculo locacao)
         {
@@ -297,6 +291,7 @@ namespace LocadoraVeiculo.Controladores.LocacaoModule
             parametros.Add("ID_CONDUTOR", locacao.Condutor.Id);
             parametros.Add("ID_CLIENTELOCADOR", locacao.Cliente.Id);
             parametros.Add("ID_VEICULO", locacao.Veiculo.Id);
+            parametros.Add("ID_DESCONTO", locacao.Desconto?.Id);
             parametros.Add("DATA_SAIDA", locacao.DataSaida);
             parametros.Add("DATA_RETORNOESPERADO", locacao.DataRetorno);
             parametros.Add("PLANO", locacao.TipoLocacao);
@@ -317,6 +312,15 @@ namespace LocadoraVeiculo.Controladores.LocacaoModule
             int idCondutor = Convert.ToInt32(reader["ID_CONDUTOR"]);
             int idClienteLocador = Convert.ToInt32(reader["ID_CLIENTELOCADOR"]);
             int idVeiculo = Convert.ToInt32(reader["ID_VEICULO"]);
+
+            Desconto desconto = null;
+            if (reader["ID_DESCONTO"] != DBNull.Value)
+            {
+                ControladorDesconto controladorDesconto = new ControladorDesconto();
+                int idDesconto = Convert.ToInt32(reader["ID_DESCONTO"]);
+                desconto = controladorDesconto.SelecionarPorId(idDesconto);
+            }
+
             DateTime dataSaida = Convert.ToDateTime(reader["DATA_SAIDA"]);
             DateTime dataRetorno = Convert.ToDateTime(reader["DATA_RETORNOESPERADO"]);
             string plano = Convert.ToString(reader["PLANO"]);
@@ -355,7 +359,7 @@ namespace LocadoraVeiculo.Controladores.LocacaoModule
                 clienteLocador = controladorCPF.SelecionarPorId(idClienteLocador);
 
 
-            LocacaoVeiculo locacao = new LocacaoVeiculo(clienteLocador, veiculo, condutor,
+            LocacaoVeiculo locacao = new LocacaoVeiculo(clienteLocador, veiculo, desconto, condutor,
                                                     dataSaida, dataRetorno, plano, tipoCliente, precoServico,
                                                     dias, status, precoGas, precoPlano, precoTotal);
 

@@ -1,4 +1,5 @@
-﻿using LocadoraVeiculo.DescontoModule;
+﻿using LocadoraVeiculo.Controladores.ParceiroModule;
+using LocadoraVeiculo.DescontoModule;
 using LocadoraVeiculo.WindowsApp.Features.DarkMode;
 using System;
 using System.Collections.Generic;
@@ -16,10 +17,12 @@ namespace LocadoraVeiculo.WindowsApp.Features.DescontoFeature
     public partial class TelaDescontoForm : Form
     {
         private Desconto desconto;
+        ControladorParceiro controladorParceiros = new ControladorParceiro();
         public TelaDescontoForm()
         {
             InitializeComponent();
             SetColor();
+            CarregarParceiros();
         }
 
         private void SetColor()
@@ -95,6 +98,11 @@ namespace LocadoraVeiculo.WindowsApp.Features.DescontoFeature
         private void TelaDescontoForm_FormClosing(object sender, FormClosingEventArgs e)
         {
             TelaPrincipalForm.Instancia.AtualizarRodape("");
+        }
+
+        private void CarregarParceiros()
+        {
+            cbParceiros.DataSource = controladorParceiros.SelecionarTodos();
         }
     }
 }

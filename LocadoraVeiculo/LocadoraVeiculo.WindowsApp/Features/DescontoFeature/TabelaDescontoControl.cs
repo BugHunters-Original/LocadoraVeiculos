@@ -56,12 +56,12 @@ namespace LocadoraVeiculo.WindowsApp.Features.DescontoFeature
             foreach (Desconto item in descontos)
             {
                 if (item.Tipo == "Porcentagem")
-                    gridDesconto.Rows.Add(item.Id, item.Valor+" %", item.Validade, item.Parceiro, item.Meio);
+                    gridDesconto.Rows.Add(item.Id, item.Valor + " %", item.Validade.ToString("d"), item.Parceiro, item.Meio);
                 else
-                    gridDesconto.Rows.Add(item.Id, item.Valor, item.Validade, item.Parceiro, item.Meio);
+                    gridDesconto.Rows.Add(item.Id, item.Valor, item.Validade.ToString("d"), item.Parceiro, item.Meio);
             }
         }
-        
+
         public void AtualizarAparencia()
         {
             ConfigurarGridLightMode();

@@ -1,4 +1,6 @@
 ﻿using LocadoraVeiculo.Controladores.DescontoModule;
+using LocadoraVeiculo.Controladores.LocacaoModule;
+using LocadoraVeiculo.Controladores.ParceiroModule;
 using LocadoraVeiculo.DescontoModule;
 using LocadoraVeiculo.WindowsApp.Shared;
 using System;
@@ -12,28 +14,39 @@ namespace LocadoraVeiculo.WindowsApp.Features.DescontoFeature
 {
     public class OperacoesDesconto : ICadastravel
     {
-        private readonly ControladorDesconto controlador = null;
-        private readonly TabelaDescontoControl tabelaDesconto = null;
+        private readonly ControladorDesconto controladorDesconto;
+        private readonly ControladorLocacao controladorLocacao;
+        private readonly ControladorParceiro controladorParceiro;
+        private readonly TabelaDescontoControl tabelaDesconto;
 
         public OperacoesDesconto(ControladorDesconto ctrlGrupoDesconto)
         {
-            controlador = ctrlGrupoDesconto;
+            controladorParceiro = new ControladorParceiro();
+            controladorLocacao = new ControladorLocacao();
+            controladorDesconto = ctrlGrupoDesconto;
             tabelaDesconto = new TabelaDescontoControl();
         }
 
         public void InserirNovoRegistro()
         {
-            //TelaDescontoForm tela = new TelaDescontoForm();
+            if (controladorParceiro.SelecionarTodos().Count == 0)
+            {
+                MessageBox.Show("Cadastre primeiro um Parceiro!", "Adição de Descontos",
+                    MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                return;
 
-            //if (tela.ShowDialog() == DialogResult.OK)
-            //{
-            //    controlador.InserirNovo(tela.Desconto);
+            }
+            TelaDescontoForm tela = new TelaDescontoForm();
 
-            //    List<Desconto> descontos = controlador.SelecionarTodos();
-            //    tabelaDesconto.AtualizarRegistros(descontos);
+            if (tela.ShowDialog() == DialogResult.OK)
+            {
+                controladorDesconto.InserirNovo(tela.Desconto);
 
-            //    TelaPrincipalForm.Instancia.AtualizarRodape($"Cupom de desconto: [{tela.Desconto.Codigo}] inserido com sucesso");
-            //}
+                List<Desconto> descontos = controladorDesconto.SelecionarTodos();
+                tabelaDesconto.AtualizarRegistros(descontos);
+
+                TelaPrincipalForm.Instancia.AtualizarRodape($"Cupom de desconto: [{tela.Desconto.Codigo}] inserido com sucesso");
+            }
         }
 
         public void DevolverVeiculo()
@@ -43,61 +56,63 @@ namespace LocadoraVeiculo.WindowsApp.Features.DescontoFeature
 
         public void EditarRegistro()
         {
-            //int id = tabelaDesconto.ObtemIdSelecionado();
+            int id = tabelaDesconto.ObtemIdSelecionado();
 
-            //if (id == 0)
-            //{
-            //    MessageBox.Show("Selecione um Cupom de Desconto para poder editar!", "Edição de Cupom de Desconto",
-            //        MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-            //    return;
-            //}
+            if (id == 0)
+            {
+                MessageBox.Show("Selecione um Cupom de Desconto para poder editar!", "Edição de Cupom de Desconto",
+                    MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                return;
+            }
 
-            //Desconto descontoSelecionado = controlador.SelecionarPorId(id);
+            Desconto descontoSelecionado = controladorDesconto.SelecionarPorId(id);
 
-            //TelaDescontoForm tela = new TelaDescontoForm();
+            TelaDescontoForm tela = new TelaDescontoForm();
 
-            //tela.Desconto = descontoSelecionado;
+            tela.Desconto = descontoSelecionado;
 
-            //if (tela.ShowDialog() == DialogResult.OK)
-            //{
-            //    controlador.Editar(id, tela.Desconto);
+            if (tela.ShowDialog() == DialogResult.OK)
+            {
+                controladorDesconto.Editar(id, tela.Desconto);
 
-            //    List<Desconto> desconto = controlador.SelecionarTodos();
-            //    tabelaDesconto.AtualizarRegistros(desconto);
+                List<Desconto> desconto = controladorDesconto.SelecionarTodos();
+                tabelaDesconto.AtualizarRegistros(desconto);
 
-            //    TelaPrincipalForm.Instancia.AtualizarRodape($"Grupo de Veiculos: [{tela.Desconto.Codigo}] editado com sucesso");
-            //}
+                TelaPrincipalForm.Instancia.AtualizarRodape($"Grupo de Veiculos: [{tela.Desconto.Codigo}] editado com sucesso");
+            }
         }
 
         public void ExcluirRegistro()
         {
-            //int id = tabelaDesconto.ObtemIdSelecionado();
+            int id = tabelaDesconto.ObtemIdSelecionado();
 
-            //if (id == 0)
-            //{
-            //    MessageBox.Show("Selecione um Cupom de Desconto para poder excluir!", "Exclusão de Cupom de Desconto",
-            //        MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-            //    return;
-            //}
+            if (id == 0)
+            {
+                MessageBox.Show("Selecione um Cupom de Desconto para poder excluir!", "Exclusão de Cupom de Desconto",
+                    MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                return;
+            }
 
-            //Desconto descontoSelecionado = controlador.SelecionarPorId(id);
+            Desconto descontoSelecionado = controladorDesconto.SelecionarPorId(id);
 
-            //if (MessageBox.Show($"Tem certeza que deseja excluir o Cupom de Desconto: [{descontoSelecionado.Codigo}] ?",
-            //    "Exclusão de Cupom de Desconto", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK)
-            //{
-            //    if (//CUPOM NAO USADO)
-            //        {
-            //        controlador.Excluir(id);
-            //        List<Desconto> desconto = controlador.SelecionarTodos();
-            //        tabelaDesconto.AtualizarRegistros(desconto);
-            //        TelaPrincipalForm.Instancia.AtualizarRodape($"Grupo de Veiculos: [{descontoSelecionado.Codigo}] removido com sucesso");
-            //    }
-            //    else
-            //    {
-            //        MessageBox.Show("ESTE CUPOM JÁ FOI UTILIZADO, PORTANTO NÃO É PERMITIDO REMOVE-LO ",
-            //            "Exclusão de Cupom de Desconto", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            //    }
-            //}
+            if (MessageBox.Show($"Tem certeza que deseja excluir o Cupom de Desconto: [{descontoSelecionado.Codigo}] ?",
+                "Exclusão de Cupom de Desconto", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK)
+            {
+                int contador = controladorLocacao.SelecionarLocacoesComCupons(descontoSelecionado.Codigo);
+
+                if (contador == 0)
+                {
+                    controladorDesconto.Excluir(id);
+                    List<Desconto> desconto = controladorDesconto.SelecionarTodos();
+                    tabelaDesconto.AtualizarRegistros(desconto);
+                    TelaPrincipalForm.Instancia.AtualizarRodape($"Grupo de Veiculos: [{descontoSelecionado.Codigo}] removido com sucesso");
+                }
+                else
+                {
+                    MessageBox.Show("ESTE CUPOM JÁ FOI UTILIZADO, PORTANTO NÃO É PERMITIDO REMOVE-LO!",
+                        "Exclusão de Cupom de Desconto", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
         }
 
         public void FiltrarRegistros()
@@ -107,7 +122,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.DescontoFeature
 
         public UserControl ObterTabela()
         {
-            List<Desconto> desconto = controlador.SelecionarTodos();
+            List<Desconto> desconto = controladorDesconto.SelecionarTodos();
             tabelaDesconto.AtualizarRegistros(desconto);
 
             return tabelaDesconto;
