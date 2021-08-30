@@ -57,27 +57,27 @@ namespace LocadoraVeiculo.WindowsApp.Features.Locacao.Visualizacao
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(144, 270);
+            this.label2.Location = new System.Drawing.Point(156, 267);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(62, 17);
+            this.label2.Size = new System.Drawing.Size(50, 15);
             this.label2.TabIndex = 50;
             this.label2.Text = "Cupom:";
             // 
             // txtCupom
             // 
-            this.txtCupom.Location = new System.Drawing.Point(212, 264);
+            this.txtCupom.Location = new System.Drawing.Point(212, 262);
             this.txtCupom.Name = "txtCupom";
             this.txtCupom.ReadOnly = true;
-            this.txtCupom.Size = new System.Drawing.Size(399, 28);
+            this.txtCupom.Size = new System.Drawing.Size(399, 24);
             this.txtCupom.TabIndex = 49;
             // 
             // listServicos
             // 
             this.listServicos.FormattingEnabled = true;
-            this.listServicos.ItemHeight = 16;
+            this.listServicos.ItemHeight = 15;
             this.listServicos.Location = new System.Drawing.Point(212, 298);
             this.listServicos.Name = "listServicos";
-            this.listServicos.Size = new System.Drawing.Size(211, 116);
+            this.listServicos.Size = new System.Drawing.Size(211, 109);
             this.listServicos.TabIndex = 48;
             // 
             // header_Locacao
@@ -95,70 +95,70 @@ namespace LocadoraVeiculo.WindowsApp.Features.Locacao.Visualizacao
             this.label9.AutoSize = true;
             this.label9.Location = new System.Drawing.Point(13, 7);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(147, 17);
+            this.label9.Size = new System.Drawing.Size(116, 15);
             this.label9.TabIndex = 0;
             this.label9.Text = "Detalhes da Locação";
             // 
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(83, 239);
+            this.label8.Location = new System.Drawing.Point(109, 238);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(123, 17);
+            this.label8.Size = new System.Drawing.Size(97, 15);
             this.label8.TabIndex = 45;
             this.label8.Text = "Tipo de Locação:";
             // 
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(16, 208);
+            this.label7.Location = new System.Drawing.Point(58, 207);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(190, 17);
+            this.label7.Size = new System.Drawing.Size(148, 15);
             this.label7.TabIndex = 44;
             this.label7.Text = "Data de Retorno Esperada:";
             // 
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(101, 177);
+            this.label6.Location = new System.Drawing.Point(125, 176);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(105, 17);
+            this.label6.Size = new System.Drawing.Size(81, 15);
             this.label6.TabIndex = 43;
             this.label6.Text = "Data de Saída:";
             // 
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(128, 146);
+            this.label5.Location = new System.Drawing.Point(144, 145);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(78, 17);
+            this.label5.Size = new System.Drawing.Size(62, 15);
             this.label5.TabIndex = 42;
             this.label5.Text = "Condutor:";
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(144, 115);
+            this.label4.Location = new System.Drawing.Point(157, 114);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(62, 17);
+            this.label4.Size = new System.Drawing.Size(49, 15);
             this.label4.TabIndex = 41;
             this.label4.Text = "Veículo:";
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(146, 84);
+            this.label3.Location = new System.Drawing.Point(159, 83);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(60, 17);
+            this.label3.Size = new System.Drawing.Size(47, 15);
             this.label3.TabIndex = 40;
             this.label3.Text = "Cliente:";
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(181, 53);
+            this.label1.Location = new System.Drawing.Point(186, 50);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(25, 17);
+            this.label1.Size = new System.Drawing.Size(20, 15);
             this.label1.TabIndex = 39;
             this.label1.Text = "Id:";
             // 
@@ -166,9 +166,9 @@ namespace LocadoraVeiculo.WindowsApp.Features.Locacao.Visualizacao
             // 
             this.txtID.BackColor = System.Drawing.Color.DarkSeaGreen;
             this.txtID.Enabled = false;
-            this.txtID.Location = new System.Drawing.Point(212, 47);
+            this.txtID.Location = new System.Drawing.Point(212, 45);
             this.txtID.Name = "txtID";
-            this.txtID.Size = new System.Drawing.Size(99, 28);
+            this.txtID.Size = new System.Drawing.Size(99, 24);
             this.txtID.TabIndex = 37;
             // 
             // bunifuElipse1
@@ -191,7 +191,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.Locacao.Visualizacao
             this.cbCliente.Location = new System.Drawing.Point(212, 78);
             this.cbCliente.Name = "cbCliente";
             this.cbCliente.ReadOnly = true;
-            this.cbCliente.Size = new System.Drawing.Size(399, 28);
+            this.cbCliente.Size = new System.Drawing.Size(399, 24);
             this.cbCliente.TabIndex = 52;
             // 
             // cbVeiculo
@@ -199,7 +199,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.Locacao.Visualizacao
             this.cbVeiculo.Location = new System.Drawing.Point(212, 109);
             this.cbVeiculo.Name = "cbVeiculo";
             this.cbVeiculo.ReadOnly = true;
-            this.cbVeiculo.Size = new System.Drawing.Size(399, 28);
+            this.cbVeiculo.Size = new System.Drawing.Size(399, 24);
             this.cbVeiculo.TabIndex = 53;
             // 
             // cbCondutor
@@ -207,7 +207,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.Locacao.Visualizacao
             this.cbCondutor.Location = new System.Drawing.Point(212, 140);
             this.cbCondutor.Name = "cbCondutor";
             this.cbCondutor.ReadOnly = true;
-            this.cbCondutor.Size = new System.Drawing.Size(399, 28);
+            this.cbCondutor.Size = new System.Drawing.Size(399, 24);
             this.cbCondutor.TabIndex = 54;
             // 
             // cbTipoLocacao
@@ -215,7 +215,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.Locacao.Visualizacao
             this.cbTipoLocacao.Location = new System.Drawing.Point(212, 233);
             this.cbTipoLocacao.Name = "cbTipoLocacao";
             this.cbTipoLocacao.ReadOnly = true;
-            this.cbTipoLocacao.Size = new System.Drawing.Size(399, 28);
+            this.cbTipoLocacao.Size = new System.Drawing.Size(399, 24);
             this.cbTipoLocacao.TabIndex = 55;
             // 
             // dtSaida
@@ -223,7 +223,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.Locacao.Visualizacao
             this.dtSaida.Location = new System.Drawing.Point(212, 171);
             this.dtSaida.Name = "dtSaida";
             this.dtSaida.ReadOnly = true;
-            this.dtSaida.Size = new System.Drawing.Size(399, 28);
+            this.dtSaida.Size = new System.Drawing.Size(399, 24);
             this.dtSaida.TabIndex = 56;
             // 
             // dtRetorno
@@ -231,12 +231,12 @@ namespace LocadoraVeiculo.WindowsApp.Features.Locacao.Visualizacao
             this.dtRetorno.Location = new System.Drawing.Point(212, 202);
             this.dtRetorno.Name = "dtRetorno";
             this.dtRetorno.ReadOnly = true;
-            this.dtRetorno.Size = new System.Drawing.Size(399, 28);
+            this.dtRetorno.Size = new System.Drawing.Size(399, 24);
             this.dtRetorno.TabIndex = 57;
             // 
             // TelaDetalhesLocacaoEmAbertoForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(710, 451);
             this.Controls.Add(this.dtRetorno);
