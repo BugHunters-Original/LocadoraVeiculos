@@ -75,7 +75,8 @@ namespace LocadoraVeiculo.WindowsApp.Features.DescontoFeature
         {
             var codigo = txtCodigo.Text;
 
-            var valor = Convert.ToDecimal(txtValor.Text);
+            
+            var valor = txtValor.Text == "" ? 0 : Convert.ToDecimal(txtValor.Text);
 
             var tipo = rbPorcentagem.Checked ? "Porcentagem" : "Inteiro";
 
