@@ -40,6 +40,12 @@ namespace LocadoraVeiculo.WindowsApp.Features.DescontoFeature
 
             if (tela.ShowDialog() == DialogResult.OK)
             {
+                if (controladorDesconto.VerificarCodigoExistente(tela.Desconto.Codigo))
+                {
+                    MessageBox.Show("Código já utilizado, escolha outro para prosseguir!", "Adição de Cupom de Desconto",
+                                     MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    return;
+                }
                 controladorDesconto.InserirNovo(tela.Desconto);
 
                 List<Desconto> descontos = controladorDesconto.SelecionarTodos();
@@ -73,6 +79,17 @@ namespace LocadoraVeiculo.WindowsApp.Features.DescontoFeature
 
             if (tela.ShowDialog() == DialogResult.OK)
             {
+                if (tela.Desconto.Codigo != descontoSelecionado.Codigo)
+                {
+                    if (controladorDesconto.VerificarCodigoExistente(tela.Desconto.Codigo))
+                    {
+                        MessageBox.Show("Código já utilizado, escolha outro para prosseguir!", "Adição de Cupom de Desconto",
+                                         MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                        return;
+                    }
+
+                }
+
                 controladorDesconto.Editar(id, tela.Desconto);
 
                 List<Desconto> desconto = controladorDesconto.SelecionarTodos();

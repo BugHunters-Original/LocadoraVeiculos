@@ -153,11 +153,11 @@ namespace LocadoraVeiculo.WindowsApp.Features.DescontoFeature
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Lucida Sans Unicode", 8F);
-            this.label4.Location = new System.Drawing.Point(105, 337);
+            this.label4.Location = new System.Drawing.Point(12, 337);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(35, 15);
+            this.label4.Size = new System.Drawing.Size(128, 15);
             this.label4.TabIndex = 30;
-            this.label4.Text = "Meio:";
+            this.label4.Text = "Meio de Comunicação:";
             // 
             // txtMeio
             // 

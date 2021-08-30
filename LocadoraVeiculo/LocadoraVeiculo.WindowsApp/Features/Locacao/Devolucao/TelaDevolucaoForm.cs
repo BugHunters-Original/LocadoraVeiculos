@@ -111,8 +111,8 @@ namespace LocadoraVeiculo.WindowsApp.Features.Locacao.Devolucao
         private double CalcularDesconto(double totalSemDesconto)
         {
             double desconto = 0;
-            if (locacao.Desconto.ValorMinimo <= Convert.ToDecimal(total) &&
-                locacao.Desconto != null && dtRetorno.Value.Date <= locacao.Desconto.Validade)
+            if (locacao.Desconto != null && locacao.Desconto.ValorMinimo <= Convert.ToDecimal(total)
+                && dtRetorno.Value.Date <= locacao.Desconto.Validade)
             {
                 switch (locacao.Desconto.Tipo)
                 {
