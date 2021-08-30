@@ -1,4 +1,6 @@
-﻿using LocadoraVeiculo.LocacaoModule;
+﻿using LocadoraVeiculo.Controladores.LocacaoModule;
+using LocadoraVeiculo.LocacaoModule;
+using LocadoraVeiculo.WindowsApp.Features.Locacao.Visualizacao;
 using LocadoraVeiculo.WindowsApp.Shared;
 using System.Collections.Generic;
 using System.Windows.Forms;
@@ -7,6 +9,9 @@ namespace LocadoraVeiculo.WindowsApp.Features.Locacao
 {
     public partial class TabelaLocacaoControl : UserControl, IApareciaAlteravel
     {
+
+        ControladorLocacao controlador = new ControladorLocacao();
+
         public TabelaLocacaoControl()
         {
             InitializeComponent();
@@ -58,6 +63,32 @@ namespace LocadoraVeiculo.WindowsApp.Features.Locacao
                     locacao.DataSaida.ToString("d"), locacao.DataRetorno.ToString("d"), locacao.StatusLocacao);
             }
         }
+
+        private void gridLocacao_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            int id = ObtemIdSelecionado();
+
+            if (id == 0)
+                return;
+
+            LocacaoModule.LocacaoVeiculo locacaoSelecionada = controlador.SelecionarPorId(id);
+            dynamic tela;
+
+            if (locacaoSelecionada.StatusLocacao == "Em Aberto")
+            {
+                tela = new TelaDetalhesLocacaoEmAbertoForm();
+            }
+            else
+            {
+                tela = new TelaDetalhesLocacaoConcluidaForm();
+            }
+
+            tela.Locacao = locacaoSelecionada;
+
+            if (tela.ShowDialog() == DialogResult.OK)
+                TelaPrincipalForm.Instancia.AtualizarRodape($"Locação do veículo: [{tela.Locacao.Veiculo.nome}] visualizada");
+        }
+
         public void AtualizarAparencia()
         {
             ConfigurarGridLightMode();

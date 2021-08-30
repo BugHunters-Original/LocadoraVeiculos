@@ -36,24 +36,26 @@ namespace LocadoraVeiculo.WindowsApp.Features.Locacao
             // gridLocacao
             // 
             this.gridLocacao.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.gridLocacao.Cursor = System.Windows.Forms.Cursors.Hand;
             this.gridLocacao.Dock = System.Windows.Forms.DockStyle.Fill;
             this.gridLocacao.Location = new System.Drawing.Point(0, 0);
-            this.gridLocacao.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.gridLocacao.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.gridLocacao.Name = "gridLocacao";
             this.gridLocacao.RowHeadersVisible = false;
             this.gridLocacao.RowHeadersWidth = 51;
             this.gridLocacao.RowTemplate.Height = 24;
-            this.gridLocacao.Size = new System.Drawing.Size(711, 540);
+            this.gridLocacao.Size = new System.Drawing.Size(948, 665);
             this.gridLocacao.TabIndex = 0;
+            this.gridLocacao.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.gridLocacao_MouseDoubleClick);
             // 
             // TabelaLocacaoControl
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.gridLocacao);
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "TabelaLocacaoControl";
-            this.Size = new System.Drawing.Size(711, 540);
+            this.Size = new System.Drawing.Size(948, 665);
             ((System.ComponentModel.ISupportInitialize)(this.gridLocacao)).EndInit();
             this.ResumeLayout(false);
 
