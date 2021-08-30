@@ -36,20 +36,24 @@ namespace LocadoraVeiculo.WindowsApp.Features.DescontoFeature
             // gridDesconto
             // 
             this.gridDesconto.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.gridDesconto.Dock = System.Windows.Forms.DockStyle.Fill;
             this.gridDesconto.Location = new System.Drawing.Point(0, 0);
+            this.gridDesconto.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.gridDesconto.Name = "gridDesconto";
+            this.gridDesconto.RowHeadersVisible = false;
             this.gridDesconto.RowHeadersWidth = 51;
             this.gridDesconto.RowTemplate.Height = 24;
-            this.gridDesconto.Size = new System.Drawing.Size(603, 475);
+            this.gridDesconto.Size = new System.Drawing.Size(452, 386);
             this.gridDesconto.TabIndex = 0;
             // 
             // TabelaDescontoControl
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.gridDesconto);
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "TabelaDescontoControl";
-            this.Size = new System.Drawing.Size(603, 475);
+            this.Size = new System.Drawing.Size(452, 386);
             ((System.ComponentModel.ISupportInitialize)(this.gridDesconto)).EndInit();
             this.ResumeLayout(false);
 

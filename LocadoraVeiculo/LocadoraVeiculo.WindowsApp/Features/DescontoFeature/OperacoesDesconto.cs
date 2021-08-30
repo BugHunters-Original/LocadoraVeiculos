@@ -1,5 +1,6 @@
 ﻿using LocadoraVeiculo.Controladores.DescontoModule;
 using LocadoraVeiculo.Controladores.LocacaoModule;
+using LocadoraVeiculo.Controladores.ParceiroModule;
 using LocadoraVeiculo.DescontoModule;
 using LocadoraVeiculo.WindowsApp.Shared;
 using System;
@@ -13,25 +14,35 @@ namespace LocadoraVeiculo.WindowsApp.Features.DescontoFeature
 {
     public class OperacoesDesconto : ICadastravel
     {
-        private readonly ControladorDesconto controlador = null;
-        private readonly ControladorLocacao controladorLocacao = new ControladorLocacao();
-        private readonly TabelaDescontoControl tabelaDesconto = null;
+        private readonly ControladorDesconto controladorDesconto;
+        private readonly ControladorLocacao controladorLocacao;
+        private readonly ControladorParceiro controladorParceiro;
+        private readonly TabelaDescontoControl tabelaDesconto;
 
         public OperacoesDesconto(ControladorDesconto ctrlGrupoDesconto)
         {
-            controlador = ctrlGrupoDesconto;
+            controladorParceiro = new ControladorParceiro();
+            controladorLocacao = new ControladorLocacao();
+            controladorDesconto = ctrlGrupoDesconto;
             tabelaDesconto = new TabelaDescontoControl();
         }
 
         public void InserirNovoRegistro()
         {
+            if (controladorParceiro.SelecionarTodos().Count == 0)
+            {
+                MessageBox.Show("Cadastre primeiro um Parceiro!", "Adição de Descontos",
+                    MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                return;
+
+            }
             TelaDescontoForm tela = new TelaDescontoForm();
 
             if (tela.ShowDialog() == DialogResult.OK)
             {
-                controlador.InserirNovo(tela.Desconto);
+                controladorDesconto.InserirNovo(tela.Desconto);
 
-                List<Desconto> descontos = controlador.SelecionarTodos();
+                List<Desconto> descontos = controladorDesconto.SelecionarTodos();
                 tabelaDesconto.AtualizarRegistros(descontos);
 
                 TelaPrincipalForm.Instancia.AtualizarRodape($"Cupom de desconto: [{tela.Desconto.Codigo}] inserido com sucesso");
@@ -54,7 +65,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.DescontoFeature
                 return;
             }
 
-            Desconto descontoSelecionado = controlador.SelecionarPorId(id);
+            Desconto descontoSelecionado = controladorDesconto.SelecionarPorId(id);
 
             TelaDescontoForm tela = new TelaDescontoForm();
 
@@ -62,9 +73,9 @@ namespace LocadoraVeiculo.WindowsApp.Features.DescontoFeature
 
             if (tela.ShowDialog() == DialogResult.OK)
             {
-                controlador.Editar(id, tela.Desconto);
+                controladorDesconto.Editar(id, tela.Desconto);
 
-                List<Desconto> desconto = controlador.SelecionarTodos();
+                List<Desconto> desconto = controladorDesconto.SelecionarTodos();
                 tabelaDesconto.AtualizarRegistros(desconto);
 
                 TelaPrincipalForm.Instancia.AtualizarRodape($"Grupo de Veiculos: [{tela.Desconto.Codigo}] editado com sucesso");
@@ -82,7 +93,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.DescontoFeature
                 return;
             }
 
-            Desconto descontoSelecionado = controlador.SelecionarPorId(id);
+            Desconto descontoSelecionado = controladorDesconto.SelecionarPorId(id);
 
             if (MessageBox.Show($"Tem certeza que deseja excluir o Cupom de Desconto: [{descontoSelecionado.Codigo}] ?",
                 "Exclusão de Cupom de Desconto", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK)
@@ -91,8 +102,8 @@ namespace LocadoraVeiculo.WindowsApp.Features.DescontoFeature
 
                 if (contador == 0)
                 {
-                    controlador.Excluir(id);
-                    List<Desconto> desconto = controlador.SelecionarTodos();
+                    controladorDesconto.Excluir(id);
+                    List<Desconto> desconto = controladorDesconto.SelecionarTodos();
                     tabelaDesconto.AtualizarRegistros(desconto);
                     TelaPrincipalForm.Instancia.AtualizarRodape($"Grupo de Veiculos: [{descontoSelecionado.Codigo}] removido com sucesso");
                 }
@@ -111,7 +122,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.DescontoFeature
 
         public UserControl ObterTabela()
         {
-            List<Desconto> desconto = controlador.SelecionarTodos();
+            List<Desconto> desconto = controladorDesconto.SelecionarTodos();
             tabelaDesconto.AtualizarRegistros(desconto);
 
             return tabelaDesconto;
