@@ -111,8 +111,8 @@ namespace LocadoraVeiculo.WindowsApp.Features.Locacao.Devolucao
         private double CalcularDesconto(double totalSemDesconto)
         {
             double desconto = 0;
-            if (locacao.Desconto.ValorMinimo <= Convert.ToDecimal(total) &&
-                locacao.Desconto != null && dtRetorno.Value.Date <= locacao.Desconto.Validade)
+            if (locacao.Desconto != null && locacao.Desconto.ValorMinimo <= Convert.ToDecimal(total)
+                 && dtRetorno.Value.Date <= locacao.Desconto.Validade)
             {
                 switch (locacao.Desconto.Tipo)
                 {
@@ -149,7 +149,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.Locacao.Devolucao
             if (Convert.ToInt32(txtKmInicial.Text) >= Convert.ToInt32(txtKmAtual.Text))
                 valido += "O Campo Quilometragem Atual não pode ser menor que a esperada\r\n";
 
-            if (dtRetorno.Value.Day < dtRetornoEsperada.Value.Day)
+            if (dtRetorno.Value.Date < dtRetornoEsperada.Value.Date)
                 valido += "A Data de Retorno não pode ser menor que a Data de Retorno Esperada\r\n";
 
 
