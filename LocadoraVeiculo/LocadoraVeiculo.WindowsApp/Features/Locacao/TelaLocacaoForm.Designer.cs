@@ -254,6 +254,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.Locacao
             this.txtCupom.Name = "txtCupom";
             this.txtCupom.Size = new System.Drawing.Size(399, 24);
             this.txtCupom.TabIndex = 30;
+            this.txtCupom.Leave += new System.EventHandler(this.txtCupom_Leave);
             // 
             // label2
             // 

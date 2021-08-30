@@ -1,16 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using LocadoraVeiculo.Controladores.LocacaoModule;
-using LocadoraVeiculo.Controladores.Shared;
 using LocadoraVeiculo.Controladores.VeiculoModule;
 using LocadoraVeiculo.LocacaoModule;
+using LocadoraVeiculo.VeiculoModule;
 using LocadoraVeiculo.WindowsApp.Features.DarkMode;
 using LocadoraVeiculo.WindowsApp.Features.Veiculos;
 using LocadoraVeiculo.WindowsApp.Shared;
@@ -35,14 +29,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.Dashboard
             SetColor();
         }
 
-        private void SetColor()
-        {
-            panel1.BackColor = ControladorDarkMode.corPanel;
-            panel2.BackColor = ControladorDarkMode.corPanel;
-            panelCarrosAlugados.BackColor = ControladorDarkMode.corPanel;
-        }
-
-            public void ObterTela()
+        public void ObterTela()
         {
             switch (telaAtual)
             {
@@ -57,12 +44,10 @@ namespace LocadoraVeiculo.WindowsApp.Features.Dashboard
                 default: break;
             }
         }
-
         public void ConfigurarGridLightMode()
         {
             dtDashboard.ConfigurarGridZebrado();
         }
-
         public DataGridViewColumn[] ObterColunasLocacoesPendentes()
         {
             dtDashboard.Columns.Clear();
@@ -84,7 +69,6 @@ namespace LocadoraVeiculo.WindowsApp.Features.Dashboard
 
             return colunas;
         }
-
         public DataGridViewColumn[] ObterColunasCarros()
         {
             dtDashboard.Columns.Clear();
@@ -116,17 +100,31 @@ namespace LocadoraVeiculo.WindowsApp.Features.Dashboard
 
             return colunas;
         }
-
         public int ObtemIdSelecionado()
         {
             return dtDashboard.SelecionarId<int>();
         }
-
-        private void btnAlugados_Click(object sender, EventArgs e)
+        private void SetColor()
         {
-            ObterTodosCarrosAlugados();
+            panel1.BackColor = ControladorDarkMode.corPanel;
+            panel2.BackColor = ControladorDarkMode.corPanel;
+            panelCarrosAlugados.BackColor = ControladorDarkMode.corPanel;
         }
+        public void AtualizarAparencia()
+        {
+            ConfigurarGridLightMode();
+        }
+        private void TrataLabels()
+        {
+            int quantidadeAlugados = controladorVeiculo.ReturnQuantidadeAlugados();
+            labelAlugados.Text = quantidadeAlugados.ToString();
 
+            int quantidadeDisponiveis = controladorVeiculo.ReturnQuantidadeDisponiveis();
+            labelInLoco.Text = quantidadeDisponiveis.ToString();
+
+            int quantidadePendentes = controladorLocacao.SelecionarQuantidadeLocacoesPendentes();
+            labelPendentes.Text = quantidadePendentes.ToString();
+        }
         private void ObterTodosCarrosAlugados()
         {
             telaAtual = "CarrosAlugados";
@@ -134,43 +132,10 @@ namespace LocadoraVeiculo.WindowsApp.Features.Dashboard
             dtDashboard.Columns.AddRange(ObterColunasCarros());
             labelTipoVisualizacao.Text = "CARROS ALUGADOS";
 
-            List<VeiculoModule.Veiculo> veiculos = controladorVeiculo.SelecionarTodosAlugados();
+            List<Veiculo> veiculos = controladorVeiculo.SelecionarTodosAlugados();
 
-            foreach (VeiculoModule.Veiculo veiculo in veiculos)
-            {
-                dtDashboard.Rows.Add(veiculo.Id, veiculo.nome, veiculo.cor, veiculo.marca, veiculo.ano,
-                veiculo.numero_Portas, veiculo.capacidade_Tanque, veiculo.tamanhoPortaMalas, veiculo.km_Inicial, veiculo.tipo_Combustivel,
-                veiculo.grupoVeiculo.NomeTipo);
-            }
+            AdicionarVeiculosNaTabela(veiculos);
         }
-
-        private void btnInLoco_Click(object sender, EventArgs e)
-        {
-            ObterTodosCarrosDisponiveis();
-        }
-
-        private void ObterTodosCarrosDisponiveis()
-        {
-            telaAtual = "CarrosDisponiveis";
-            dtDashboard.Rows.Clear();
-            dtDashboard.Columns.AddRange(ObterColunasCarros());
-            labelTipoVisualizacao.Text = "CARROS DISPONIVEIS";
-
-            List<VeiculoModule.Veiculo> veiculos = controladorVeiculo.SelecionarTodosDisponiveis();
-
-            foreach (VeiculoModule.Veiculo veiculo in veiculos)
-            {
-                dtDashboard.Rows.Add(veiculo.Id, veiculo.nome, veiculo.cor, veiculo.marca, veiculo.ano,
-                veiculo.numero_Portas, veiculo.capacidade_Tanque, veiculo.tamanhoPortaMalas, veiculo.km_Inicial, veiculo.tipo_Combustivel,
-                veiculo.grupoVeiculo.NomeTipo);
-            }
-        }
-
-        private void btnLocacoesPendentes_Click(object sender, EventArgs e)
-        {
-            ObterTodasLocacoesPendentes();
-        }
-
         private void ObterTodasLocacoesPendentes()
         {
             telaAtual = "LocacoesPendentes";
@@ -182,23 +147,42 @@ namespace LocadoraVeiculo.WindowsApp.Features.Dashboard
 
             foreach (LocacaoVeiculo locacao in locacoes)
             {
-                dtDashboard.Rows.Add(locacao.Id, locacao.Cliente, locacao.Condutor, locacao.Veiculo, locacao.DataSaida,
-                locacao.DataRetorno);
+                dtDashboard.Rows.Add(locacao.Id, locacao.Cliente, locacao.Condutor, locacao.Veiculo, locacao.DataSaida.ToString("d"),
+                locacao.DataRetorno.ToString("d"));
             }
         }
-
-        private void TrataLabels()
+        private void ObterTodosCarrosDisponiveis()
         {
-            int quantidadeAlugados = controladorVeiculo.ReturnQuantidadeAlugados();
-            labelAlugados.Text = quantidadeAlugados.ToString();
+            telaAtual = "CarrosDisponiveis";
+            dtDashboard.Rows.Clear();
+            dtDashboard.Columns.AddRange(ObterColunasCarros());
+            labelTipoVisualizacao.Text = "CARROS DISPONIVEIS";
 
-            int quantidadeDisponiveis = controladorVeiculo.ReturnQuantidadeDisponiveis();
-            labelInLoco.Text = quantidadeDisponiveis.ToString();
+            List<Veiculo> veiculos = controladorVeiculo.SelecionarTodosDisponiveis();
 
-            int quantidadePendentes = controladorLocacao.SelecionaPendentes();
-            labelPendentes.Text = quantidadePendentes.ToString();
+            AdicionarVeiculosNaTabela(veiculos);
         }
-
+        private void AdicionarVeiculosNaTabela(List<Veiculo> veiculos)
+        {
+            foreach (Veiculo veiculo in veiculos)
+            {
+                dtDashboard.Rows.Add(veiculo.Id, veiculo.nome, veiculo.cor, veiculo.marca, veiculo.ano,
+                veiculo.numero_Portas, veiculo.capacidade_Tanque, veiculo.tamanhoPortaMalas, veiculo.km_Inicial, veiculo.tipo_Combustivel,
+                veiculo.grupoVeiculo.NomeTipo);
+            }
+        }
+        private void btnAlugados_Click(object sender, EventArgs e)
+        {
+            ObterTodosCarrosAlugados();
+        }
+        private void btnInLoco_Click(object sender, EventArgs e)
+        {
+            ObterTodosCarrosDisponiveis();
+        }
+        private void btnLocacoesPendentes_Click(object sender, EventArgs e)
+        {
+            ObterTodasLocacoesPendentes();
+        }
         private void dtDashboard_MouseDoubleClick(object sender, MouseEventArgs e)
         {
             if (dtDashboard.Columns.Count > 6)
@@ -216,12 +200,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.Dashboard
 
                 if (tela.ShowDialog() == DialogResult.OK)
                     TelaPrincipalForm.Instancia.AtualizarRodape($"Veículo: [{tela.veiculos.nome}] visualizado");
-            }  
-        }
-
-        public void AtualizarAparencia()
-        {
-            ConfigurarGridLightMode();
+            }
         }
     }
 }
