@@ -45,7 +45,11 @@ namespace LocadoraVeiculo.WindowsApp.Features.Locacao.Visualizacao
                 dtSaida.Text = locacao.DataSaida.ToString("d");
                 dtRetorno.Text = locacao.DataRetorno.ToString("d");
                 cbTipoLocacao.Text = locacao.TipoLocacao.ToString();
-                txtCupom.Text = locacao.Desconto?.Codigo;
+
+                if (locacao.Desconto?.Codigo == null)
+                    txtCupom.Text = "SEM CUPOM CADASTRADO";
+                else
+                    txtCupom.Text = locacao.Desconto?.Codigo;
             }
         }
 
