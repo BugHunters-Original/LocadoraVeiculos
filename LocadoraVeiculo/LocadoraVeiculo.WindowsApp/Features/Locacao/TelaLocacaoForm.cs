@@ -66,7 +66,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.Locacao
                 dtSaida.Value = locacao.DataSaida;
                 dtRetorno.Value = locacao.DataRetorno;
                 cbTipoLocacao.Text = locacao.TipoLocacao.ToString();
-                txtCupom.Text = locacao.Desconto.Codigo;
+                txtCupom.Text = locacao.Desconto?.Codigo;
             }
         }
         private void SetColor()
@@ -217,7 +217,6 @@ namespace LocadoraVeiculo.WindowsApp.Features.Locacao
             if (Servicos != null)
                 foreach (var servico in Servicos)
                     listServicos.Items.Add(servico);
-
         }
 
         private void txtCupom_Leave(object sender, EventArgs e)
@@ -225,9 +224,10 @@ namespace LocadoraVeiculo.WindowsApp.Features.Locacao
             if (txtCupom.Text == "")
                 return;
             Desconto desconto = controladorDesconto.VerificarCodigoValido(txtCupom.Text);
-            if (desconto == null)
+            if (desconto == null || desconto.Validade.Date < dtRetorno.Value.Date)
             {
-                MessageBox.Show("Cupom Inválido, verifique se o código do cupom está correto e tente novamente!",
+                MessageBox.Show("Cupom Inválido, verifique se o código do cupom está correto, ou se sua" +
+                    " data do cupom está válida e tente novamente!",
                     "Devolução de Locações", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 txtCupom.Text = "";
                 txtCupom.Focus();
