@@ -234,5 +234,6 @@ namespace LocadoraVeiculo.WindowsApp.Features.Locacao
                 txtCupom.Focus();
             }
         }
+
     }
 }
