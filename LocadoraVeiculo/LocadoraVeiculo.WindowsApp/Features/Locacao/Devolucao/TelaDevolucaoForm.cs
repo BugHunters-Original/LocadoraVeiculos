@@ -1,16 +1,8 @@
 ﻿using LocadoraVeiculo.Combustivel;
-using LocadoraVeiculo.Controladores.VeiculoModule;
 using LocadoraVeiculo.LocacaoModule;
 using LocadoraVeiculo.WindowsApp.Features.DarkMode;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace LocadoraVeiculo.WindowsApp.Features.Locacao.Devolucao
@@ -28,11 +20,26 @@ namespace LocadoraVeiculo.WindowsApp.Features.Locacao.Devolucao
             SetColor();
         }
 
+
+        public LocacaoVeiculo Locacao
+        {
+            get { return locacao; }
+            set
+            {
+                locacao = value;
+                txtKmInicial.Text = locacao.Veiculo.km_Inicial.ToString();
+                dtRetornoEsperada.Value = locacao.DataRetorno;
+                txtServico.Text = "R$" + locacao.PrecoServicos.ToString();
+                precoDias = locacao.PrecoPlano;
+                txtMulta.Text = "Sem Multa";
+            }
+        }
+
         private void SetColor()
         {
-            this.header_Devolucao.BackColor = ControladorDarkMode.corHeader;
-            this.BackColor = ControladorDarkMode.corPanel;
-            this.ForeColor = ControladorDarkMode.corFonte;
+            header_Devolucao.BackColor = ControladorDarkMode.corHeader;
+            BackColor = ControladorDarkMode.corPanel;
+            ForeColor = ControladorDarkMode.corFonte;
 
             dtRetornoEsperada.BackColor = ControladorDarkMode.corFundoTxBox;
             dtRetorno.BackColor = ControladorDarkMode.corFundoTxBox;
@@ -57,21 +64,6 @@ namespace LocadoraVeiculo.WindowsApp.Features.Locacao.Devolucao
             btnNota.BackColor = ControladorDarkMode.corFundoTxBox;
             btnCancelar.BackColor = ControladorDarkMode.corFundoTxBox;
         }
-
-        public LocacaoVeiculo Locacao
-        {
-            get { return locacao; }
-            set
-            {
-                locacao = value;
-                txtKmInicial.Text = locacao.Veiculo.km_Inicial.ToString();
-                dtRetornoEsperada.Value = locacao.DataRetorno;
-                txtServico.Text = "R$" + locacao.PrecoServicos.ToString();
-                precoDias = locacao.PrecoPlano;
-                txtMulta.Text = "Sem Multa";
-            }
-        }
-
         private decimal? CalcularPrecoTipoCombustivel(decimal? combustivelGasto)
         {
             switch (locacao.Veiculo.tipo_Combustivel)
@@ -111,7 +103,6 @@ namespace LocadoraVeiculo.WindowsApp.Features.Locacao.Devolucao
             }
 
         }
-
         private decimal? CalcularKmRodado(int? totalKm)
         {
             var resto = totalKm - locacao.Veiculo.grupoVeiculo.LimitePControlado;
@@ -139,10 +130,10 @@ namespace LocadoraVeiculo.WindowsApp.Features.Locacao.Devolucao
 
             return desconto;
         }
-
         private void AtualizarTotal()
         {
-            double totalSuposto = Convert.ToDouble(locacao.PrecoServicos) + Convert.ToDouble(locacao.PrecoPlano) + Convert.ToDouble(locacao.PrecoCombustivel) * multa;
+            double totalSuposto = Convert.ToDouble(locacao.PrecoServicos) + Convert.ToDouble(locacao.PrecoPlano) +
+                                                Convert.ToDouble(locacao.PrecoCombustivel) * multa;
             total = totalSuposto - CalcularDesconto(totalSuposto);
             txtTotal.Text = total < 0 ? "R$0" : "R$" + total.ToString();
         }
@@ -167,8 +158,6 @@ namespace LocadoraVeiculo.WindowsApp.Features.Locacao.Devolucao
 
             return valido;
         }
-
-
         private void cbNivelTanque_SelectedIndexChanged(object sender, EventArgs e)
         {
             decimal? totalTanque = Convert.ToDecimal(locacao.Veiculo.capacidade_Tanque);
@@ -195,8 +184,6 @@ namespace LocadoraVeiculo.WindowsApp.Features.Locacao.Devolucao
 
             AtualizarTotal();
         }
-
-
         private void btnNota_Click(object sender, EventArgs e)
         {
             if (ValidarCampos() != "Valido")
@@ -212,8 +199,6 @@ namespace LocadoraVeiculo.WindowsApp.Features.Locacao.Devolucao
             locacao.PrecoTotal = total < 0 ? 0 : Convert.ToDecimal(total);
             locacao.Veiculo.km_Inicial = Convert.ToInt32(txtKmAtual.Text);
         }
-
-
         private void dtRetorno_ValueChanged(object sender, EventArgs e)
         {
             if (dtRetorno.Value.Date > dtRetornoEsperada.Value.Date)

@@ -119,6 +119,14 @@ namespace LocadoraVeiculo.Controladores.CondutorModule
                         TBCLIENTECNPJ AS CT
                     ON
                         CT.ID = CD.ID_CLIENTE";
+        private const string sqlSelecionarTodosCondutoresIndisponiveis =
+            @"SELECT
+                        *
+	                FROM
+                        TBLOCACAO AS L LEFT JOIN
+                        TBCLIENTECPF AS C
+                    ON
+                        L.ID_CONDUTOR = C.ID";
 
 
 
@@ -182,6 +190,10 @@ namespace LocadoraVeiculo.Controladores.CondutorModule
         {
             return Db.Get(sqlSelecionarCondutorPorId, ConverterEmCondutor, AdicionarParametro("ID", id));
         }
+        public List<ClienteCPF> SelecionarTodosIndisponíveisDisponiveis()
+        {
+            return Db.GetAll(sqlSelecionarTodosCondutoresIndisponiveis, ConverterEmCondutor);
+        }
 
         public override List<ClienteCPF> SelecionarTodos()
         {
@@ -232,5 +244,6 @@ namespace LocadoraVeiculo.Controladores.CondutorModule
 
             return condutor;
         }
+
     }
 }
