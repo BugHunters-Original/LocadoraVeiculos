@@ -32,6 +32,8 @@ namespace LocadoraVeiculo.WindowsApp.Features.DescontoFeature
             {
                 new DataGridViewTextBoxColumn { DataPropertyName = "Id", HeaderText = "Id"},
 
+                new DataGridViewTextBoxColumn { DataPropertyName = "Codigo", HeaderText = "Codigo"},
+
                 new DataGridViewTextBoxColumn { DataPropertyName = "Valor", HeaderText = "Valor"},
 
                 new DataGridViewTextBoxColumn { DataPropertyName = "Validade", HeaderText = "Validade"},
@@ -56,9 +58,9 @@ namespace LocadoraVeiculo.WindowsApp.Features.DescontoFeature
             foreach (Desconto item in descontos)
             {
                 if (item.Tipo == "Porcentagem")
-                    gridDesconto.Rows.Add(item.Id, item.Valor + " %", item.Validade.ToString("d"), item.Parceiro, item.Meio);
+                    gridDesconto.Rows.Add(item.Id, item.Codigo, item.Valor + " %", item.Validade.ToString("d"), item.Parceiro, item.Meio);
                 else
-                    gridDesconto.Rows.Add(item.Id, item.Valor, item.Validade.ToString("d"), item.Parceiro, item.Meio);
+                    gridDesconto.Rows.Add(item.Id, item.Codigo, item.Valor, item.Validade.ToString("d"), item.Parceiro, item.Meio);
             }
         }
 
