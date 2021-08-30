@@ -147,12 +147,6 @@ namespace LocadoraVeiculo.WindowsApp
 
         private void preçosCombustívelToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            ConfiguracaoCombustivelToolBox configuracao = new ConfiguracaoCombustivelToolBox();
-
-            ConfigurarToolBox(configuracao);
-
-            AtualizarRodape(configuracao.TipoCadastro);
-
             TelaCombustivelForm telaCombustivelForm = new TelaCombustivelForm();
             telaCombustivelForm.ShowDialog();
         }
@@ -248,6 +242,8 @@ namespace LocadoraVeiculo.WindowsApp
             grupoDeVeículosToolStripMenuItem.BackColor = ControladorDarkMode.corDark;
             taxasEServiçosToolStripMenuItem.BackColor = ControladorDarkMode.corDark;
             preçosCombustívelToolStripMenuItem.BackColor = ControladorDarkMode.corDark;
+            descontosToolStripMenuItem.BackColor = ControladorDarkMode.corDark;
+            parceirosToolStripMenuItem.BackColor = ControladorDarkMode.corDark;
 
             menuItemCliente.ForeColor = ControladorDarkMode.corFonte;
             menuItemFuncionario.ForeColor = ControladorDarkMode.corFonte;
@@ -256,6 +252,8 @@ namespace LocadoraVeiculo.WindowsApp
             grupoDeVeículosToolStripMenuItem.ForeColor = ControladorDarkMode.corFonte;
             taxasEServiçosToolStripMenuItem.ForeColor = ControladorDarkMode.corFonte;
             preçosCombustívelToolStripMenuItem.ForeColor = ControladorDarkMode.corFonte;
+            descontosToolStripMenuItem.ForeColor = ControladorDarkMode.corFonte;
+            parceirosToolStripMenuItem.ForeColor = ControladorDarkMode.corFonte;
 
             statusStripFooter.BackColor = ControladorDarkMode.corPanel;
         }
