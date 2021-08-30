@@ -82,10 +82,10 @@ namespace LocadoraVeiculo.WindowsApp.Features.GrupoVeiculo
             this.tabDiario.Controls.Add(this.txtValorKmRodadoPDiario);
             this.tabDiario.Controls.Add(this.label1);
             this.tabDiario.Controls.Add(this.txtValorDiarioPDiario);
-            this.tabDiario.Location = new System.Drawing.Point(4, 25);
+            this.tabDiario.Location = new System.Drawing.Point(4, 24);
             this.tabDiario.Name = "tabDiario";
             this.tabDiario.Padding = new System.Windows.Forms.Padding(3);
-            this.tabDiario.Size = new System.Drawing.Size(378, 164);
+            this.tabDiario.Size = new System.Drawing.Size(378, 165);
             this.tabDiario.TabIndex = 0;
             this.tabDiario.Text = "Plano Diário";
             this.tabDiario.UseVisualStyleBackColor = true;
@@ -94,9 +94,9 @@ namespace LocadoraVeiculo.WindowsApp.Features.GrupoVeiculo
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(35, 89);
+            this.label2.Location = new System.Drawing.Point(59, 88);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(130, 17);
+            this.label2.Size = new System.Drawing.Size(101, 15);
             this.label2.TabIndex = 3;
             this.label2.Text = "Valor KM Rodado:";
             // 
@@ -105,7 +105,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.GrupoVeiculo
             this.txtValorKmRodadoPDiario.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F);
             this.txtValorKmRodadoPDiario.Location = new System.Drawing.Point(166, 84);
             this.txtValorKmRodadoPDiario.Name = "txtValorKmRodadoPDiario";
-            this.txtValorKmRodadoPDiario.Size = new System.Drawing.Size(116, 22);
+            this.txtValorKmRodadoPDiario.Size = new System.Drawing.Size(116, 19);
             this.txtValorKmRodadoPDiario.TabIndex = 3;
             this.txtValorKmRodadoPDiario.Text = "0";
             this.txtValorKmRodadoPDiario.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox1_KeyPress);
@@ -113,9 +113,9 @@ namespace LocadoraVeiculo.WindowsApp.Features.GrupoVeiculo
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(69, 59);
+            this.label1.Location = new System.Drawing.Point(88, 58);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(92, 17);
+            this.label1.Size = new System.Drawing.Size(72, 15);
             this.label1.TabIndex = 1;
             this.label1.Text = "Valor Diária:";
             // 
@@ -124,7 +124,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.GrupoVeiculo
             this.txtValorDiarioPDiario.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F);
             this.txtValorDiarioPDiario.Location = new System.Drawing.Point(166, 54);
             this.txtValorDiarioPDiario.Name = "txtValorDiarioPDiario";
-            this.txtValorDiarioPDiario.Size = new System.Drawing.Size(116, 22);
+            this.txtValorDiarioPDiario.Size = new System.Drawing.Size(116, 19);
             this.txtValorDiarioPDiario.TabIndex = 2;
             this.txtValorDiarioPDiario.Text = "0";
             this.txtValorDiarioPDiario.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox1_KeyPress);
@@ -137,10 +137,10 @@ namespace LocadoraVeiculo.WindowsApp.Features.GrupoVeiculo
             this.tabControlado.Controls.Add(this.label3);
             this.tabControlado.Controls.Add(this.txtLimitePControlado);
             this.tabControlado.Controls.Add(this.txtValorDiarioPControlado);
-            this.tabControlado.Location = new System.Drawing.Point(4, 25);
+            this.tabControlado.Location = new System.Drawing.Point(4, 24);
             this.tabControlado.Name = "tabControlado";
             this.tabControlado.Padding = new System.Windows.Forms.Padding(3);
-            this.tabControlado.Size = new System.Drawing.Size(378, 164);
+            this.tabControlado.Size = new System.Drawing.Size(378, 165);
             this.tabControlado.TabIndex = 1;
             this.tabControlado.Text = "Plano Controlado";
             this.tabControlado.UseVisualStyleBackColor = true;
@@ -149,9 +149,9 @@ namespace LocadoraVeiculo.WindowsApp.Features.GrupoVeiculo
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(38, 75);
+            this.label8.Location = new System.Drawing.Point(59, 74);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(130, 17);
+            this.label8.Size = new System.Drawing.Size(101, 15);
             this.label8.TabIndex = 10;
             this.label8.Text = "Valor KM Rodado:";
             // 
@@ -160,25 +160,25 @@ namespace LocadoraVeiculo.WindowsApp.Features.GrupoVeiculo
             this.txtValorKmRodadoPControlado.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F);
             this.txtValorKmRodadoPControlado.Location = new System.Drawing.Point(166, 70);
             this.txtValorKmRodadoPControlado.Name = "txtValorKmRodadoPControlado";
-            this.txtValorKmRodadoPControlado.Size = new System.Drawing.Size(116, 22);
+            this.txtValorKmRodadoPControlado.Size = new System.Drawing.Size(116, 19);
             this.txtValorKmRodadoPControlado.TabIndex = 6;
             this.txtValorKmRodadoPControlado.Text = "0";
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(72, 44);
+            this.label4.Location = new System.Drawing.Point(88, 43);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(92, 17);
+            this.label4.Size = new System.Drawing.Size(72, 15);
             this.label4.TabIndex = 8;
             this.label4.Text = "Valor Diária:";
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(84, 106);
+            this.label3.Location = new System.Drawing.Point(98, 105);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(78, 17);
+            this.label3.Size = new System.Drawing.Size(62, 15);
             this.label3.TabIndex = 7;
             this.label3.Text = "Limite KM:";
             // 
@@ -187,7 +187,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.GrupoVeiculo
             this.txtLimitePControlado.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F);
             this.txtLimitePControlado.Location = new System.Drawing.Point(166, 102);
             this.txtLimitePControlado.Name = "txtLimitePControlado";
-            this.txtLimitePControlado.Size = new System.Drawing.Size(116, 22);
+            this.txtLimitePControlado.Size = new System.Drawing.Size(116, 19);
             this.txtLimitePControlado.TabIndex = 7;
             this.txtLimitePControlado.Text = "0";
             this.txtLimitePControlado.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox1_KeyPress);
@@ -197,7 +197,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.GrupoVeiculo
             this.txtValorDiarioPControlado.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F);
             this.txtValorDiarioPControlado.Location = new System.Drawing.Point(166, 39);
             this.txtValorDiarioPControlado.Name = "txtValorDiarioPControlado";
-            this.txtValorDiarioPControlado.Size = new System.Drawing.Size(116, 22);
+            this.txtValorDiarioPControlado.Size = new System.Drawing.Size(116, 19);
             this.txtValorDiarioPControlado.TabIndex = 5;
             this.txtValorDiarioPControlado.Text = "0";
             this.txtValorDiarioPControlado.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox1_KeyPress);
@@ -206,10 +206,10 @@ namespace LocadoraVeiculo.WindowsApp.Features.GrupoVeiculo
             // 
             this.tabLivre.Controls.Add(this.label5);
             this.tabLivre.Controls.Add(this.txtDiariaPLivre);
-            this.tabLivre.Location = new System.Drawing.Point(4, 25);
+            this.tabLivre.Location = new System.Drawing.Point(4, 24);
             this.tabLivre.Name = "tabLivre";
             this.tabLivre.Padding = new System.Windows.Forms.Padding(3);
-            this.tabLivre.Size = new System.Drawing.Size(378, 164);
+            this.tabLivre.Size = new System.Drawing.Size(378, 165);
             this.tabLivre.TabIndex = 2;
             this.tabLivre.Text = "Plano Livre";
             this.tabLivre.UseVisualStyleBackColor = true;
@@ -218,9 +218,9 @@ namespace LocadoraVeiculo.WindowsApp.Features.GrupoVeiculo
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(75, 75);
+            this.label5.Location = new System.Drawing.Point(88, 75);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(92, 17);
+            this.label5.Size = new System.Drawing.Size(72, 15);
             this.label5.TabIndex = 3;
             this.label5.Text = "Valor Diária:";
             // 
@@ -229,7 +229,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.GrupoVeiculo
             this.txtDiariaPLivre.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F);
             this.txtDiariaPLivre.Location = new System.Drawing.Point(166, 73);
             this.txtDiariaPLivre.Name = "txtDiariaPLivre";
-            this.txtDiariaPLivre.Size = new System.Drawing.Size(116, 22);
+            this.txtDiariaPLivre.Size = new System.Drawing.Size(116, 19);
             this.txtDiariaPLivre.TabIndex = 9;
             this.txtDiariaPLivre.Text = "0";
             this.txtDiariaPLivre.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox1_KeyPress);
@@ -238,9 +238,9 @@ namespace LocadoraVeiculo.WindowsApp.Features.GrupoVeiculo
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Lucida Sans Unicode", 8F);
-            this.label6.Location = new System.Drawing.Point(39, 106);
+            this.label6.Location = new System.Drawing.Point(64, 104);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(138, 17);
+            this.label6.Size = new System.Drawing.Size(108, 15);
             this.label6.TabIndex = 5;
             this.label6.Text = "Categoria Veicular:";
             // 
@@ -249,7 +249,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.GrupoVeiculo
             this.txtNome.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtNome.Location = new System.Drawing.Point(182, 100);
             this.txtNome.Name = "txtNome";
-            this.txtNome.Size = new System.Drawing.Size(236, 26);
+            this.txtNome.Size = new System.Drawing.Size(236, 22);
             this.txtNome.TabIndex = 0;
             // 
             // label7
@@ -258,7 +258,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.GrupoVeiculo
             this.label7.Font = new System.Drawing.Font("Lucida Sans Unicode", 8F);
             this.label7.Location = new System.Drawing.Point(152, 62);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(25, 17);
+            this.label7.Size = new System.Drawing.Size(20, 15);
             this.label7.TabIndex = 5;
             this.label7.Text = "Id:";
             // 
@@ -281,7 +281,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.GrupoVeiculo
             this.txtId.ForeColor = System.Drawing.Color.DarkSeaGreen;
             this.txtId.Location = new System.Drawing.Point(182, 56);
             this.txtId.Name = "txtId";
-            this.txtId.Size = new System.Drawing.Size(59, 28);
+            this.txtId.Size = new System.Drawing.Size(59, 24);
             this.txtId.TabIndex = 15;
             // 
             // btnCancelar
@@ -315,13 +315,13 @@ namespace LocadoraVeiculo.WindowsApp.Features.GrupoVeiculo
             this.label9.AutoSize = true;
             this.label9.Location = new System.Drawing.Point(13, 7);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(220, 17);
+            this.label9.Size = new System.Drawing.Size(173, 15);
             this.label9.TabIndex = 0;
             this.label9.Text = "Cadastro de Grupo de Veículos";
             // 
             // TelaGrupoVeiculoForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(471, 410);
             this.Controls.Add(this.header_GrupoVeiculo);

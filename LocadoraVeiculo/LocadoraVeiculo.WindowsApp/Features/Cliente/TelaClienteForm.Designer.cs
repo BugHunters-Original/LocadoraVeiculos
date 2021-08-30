@@ -73,14 +73,14 @@ namespace LocadoraVeiculo.WindowsApp.Features.Clientes
             // 
             // txtEndereco
             // 
-            this.txtEndereco.Location = new System.Drawing.Point(168, 160);
+            this.txtEndereco.Location = new System.Drawing.Point(171, 161);
             this.txtEndereco.Name = "txtEndereco";
             this.txtEndereco.Size = new System.Drawing.Size(242, 24);
             this.txtEndereco.TabIndex = 3;
             // 
             // txtNome
             // 
-            this.txtNome.Location = new System.Drawing.Point(169, 130);
+            this.txtNome.Location = new System.Drawing.Point(171, 131);
             this.txtNome.Name = "txtNome";
             this.txtNome.Size = new System.Drawing.Size(242, 24);
             this.txtNome.TabIndex = 2;
@@ -88,7 +88,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.Clientes
             // dtDataValidade
             // 
             this.dtDataValidade.Enabled = false;
-            this.dtDataValidade.Location = new System.Drawing.Point(169, 310);
+            this.dtDataValidade.Location = new System.Drawing.Point(171, 311);
             this.dtDataValidade.Name = "dtDataValidade";
             this.dtDataValidade.Size = new System.Drawing.Size(242, 24);
             this.dtDataValidade.TabIndex = 8;
@@ -96,7 +96,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.Clientes
             // cbEmpresas
             // 
             this.cbEmpresas.FormattingEnabled = true;
-            this.cbEmpresas.Location = new System.Drawing.Point(169, 370);
+            this.cbEmpresas.Location = new System.Drawing.Point(171, 370);
             this.cbEmpresas.Name = "cbEmpresas";
             this.cbEmpresas.Size = new System.Drawing.Size(242, 23);
             this.cbEmpresas.TabIndex = 10;
@@ -124,7 +124,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.Clientes
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Lucida Sans Unicode", 8F);
-            this.label4.Location = new System.Drawing.Point(132, 226);
+            this.label4.Location = new System.Drawing.Point(130, 225);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(30, 15);
             this.label4.TabIndex = 14;
@@ -134,7 +134,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.Clientes
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Lucida Sans Unicode", 8F);
-            this.label5.Location = new System.Drawing.Point(126, 256);
+            this.label5.Location = new System.Drawing.Point(125, 255);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(35, 15);
             this.label5.TabIndex = 15;
@@ -144,7 +144,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.Clientes
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Lucida Sans Unicode", 8F);
-            this.label6.Location = new System.Drawing.Point(127, 286);
+            this.label6.Location = new System.Drawing.Point(126, 285);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(34, 15);
             this.label6.TabIndex = 16;
@@ -154,7 +154,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.Clientes
             // 
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Lucida Sans Unicode", 8F);
-            this.label7.Location = new System.Drawing.Point(21, 316);
+            this.label7.Location = new System.Drawing.Point(35, 316);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(125, 15);
             this.label7.TabIndex = 17;
@@ -164,7 +164,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.Clientes
             // 
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("Lucida Sans Unicode", 8F);
-            this.label8.Location = new System.Drawing.Point(138, 346);
+            this.label8.Location = new System.Drawing.Point(135, 345);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(25, 15);
             this.label8.TabIndex = 18;
@@ -174,7 +174,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.Clientes
             // 
             this.label10.AutoSize = true;
             this.label10.Font = new System.Drawing.Font("Lucida Sans Unicode", 8F);
-            this.label10.Location = new System.Drawing.Point(97, 166);
+            this.label10.Location = new System.Drawing.Point(100, 166);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(60, 15);
             this.label10.TabIndex = 20;
@@ -184,7 +184,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.Clientes
             // 
             this.label11.AutoSize = true;
             this.label11.Font = new System.Drawing.Font("Lucida Sans Unicode", 8F);
-            this.label11.Location = new System.Drawing.Point(101, 196);
+            this.label11.Location = new System.Drawing.Point(104, 195);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(56, 15);
             this.label11.TabIndex = 21;
@@ -227,7 +227,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.Clientes
             // 
             // mskTelefone
             // 
-            this.mskTelefone.Location = new System.Drawing.Point(169, 190);
+            this.mskTelefone.Location = new System.Drawing.Point(171, 190);
             this.mskTelefone.Mask = "(00)00000-0000";
             this.mskTelefone.Name = "mskTelefone";
             this.mskTelefone.Size = new System.Drawing.Size(242, 24);
@@ -236,7 +236,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.Clientes
             // mskCpf
             // 
             this.mskCpf.Enabled = false;
-            this.mskCpf.Location = new System.Drawing.Point(169, 220);
+            this.mskCpf.Location = new System.Drawing.Point(171, 220);
             this.mskCpf.Mask = "000.000.000-00";
             this.mskCpf.Name = "mskCpf";
             this.mskCpf.Size = new System.Drawing.Size(242, 24);
@@ -245,7 +245,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.Clientes
             // mskCnpj
             // 
             this.mskCnpj.Enabled = false;
-            this.mskCnpj.Location = new System.Drawing.Point(169, 250);
+            this.mskCnpj.Location = new System.Drawing.Point(171, 250);
             this.mskCnpj.Mask = "00.000.000/0000-00";
             this.mskCnpj.Name = "mskCnpj";
             this.mskCnpj.Size = new System.Drawing.Size(242, 24);
@@ -254,7 +254,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.Clientes
             // mskRg
             // 
             this.mskRg.Enabled = false;
-            this.mskRg.Location = new System.Drawing.Point(169, 340);
+            this.mskRg.Location = new System.Drawing.Point(171, 340);
             this.mskRg.Mask = "0.000.000";
             this.mskRg.Name = "mskRg";
             this.mskRg.Size = new System.Drawing.Size(242, 24);
@@ -263,7 +263,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.Clientes
             // mskCnh
             // 
             this.mskCnh.Enabled = false;
-            this.mskCnh.Location = new System.Drawing.Point(169, 280);
+            this.mskCnh.Location = new System.Drawing.Point(171, 280);
             this.mskCnh.Mask = "00000000000";
             this.mskCnh.Name = "mskCnh";
             this.mskCnh.Size = new System.Drawing.Size(242, 24);
@@ -278,7 +278,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.Clientes
             // 
             this.rbJuridico.AutoSize = true;
             this.rbJuridico.Font = new System.Drawing.Font("Lucida Sans Unicode", 8F);
-            this.rbJuridico.Location = new System.Drawing.Point(289, 96);
+            this.rbJuridico.Location = new System.Drawing.Point(308, 96);
             this.rbJuridico.Name = "rbJuridico";
             this.rbJuridico.Size = new System.Drawing.Size(105, 19);
             this.rbJuridico.TabIndex = 1;
@@ -290,7 +290,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.Clientes
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Lucida Sans Unicode", 8F);
-            this.label2.Location = new System.Drawing.Point(41, 378);
+            this.label2.Location = new System.Drawing.Point(38, 373);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(122, 15);
             this.label2.TabIndex = 23;
@@ -300,7 +300,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.Clientes
             // 
             this.label9.AutoSize = true;
             this.label9.Font = new System.Drawing.Font("Lucida Sans Unicode", 8F);
-            this.label9.Location = new System.Drawing.Point(139, 62);
+            this.label9.Location = new System.Drawing.Point(140, 62);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(20, 15);
             this.label9.TabIndex = 24;
