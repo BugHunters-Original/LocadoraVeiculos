@@ -18,7 +18,9 @@ namespace LocadoraVeiculo.Controladores.DescontoModule
                     [TIPO],
                     [VALIDADE],                    
                     [ID_PARCEIRO],                                                           
-                    [MEIO] 
+                    [MEIO],
+                    [NOMECUPOM],
+                    [VALORMINIMO]
                 )
             VALUES
                 (
@@ -27,7 +29,9 @@ namespace LocadoraVeiculo.Controladores.DescontoModule
                     @TIPO,
                     @VALIDADE,
                     @ID_PARCEIRO,
-                    @MEIO
+                    @MEIO,
+                    @NOMECUPOM,
+                    @VALORMINIMO
                 )";
         private const string sqlEditarDesconto =
             @" UPDATE [TBDESCONTO]
@@ -37,7 +41,9 @@ namespace LocadoraVeiculo.Controladores.DescontoModule
                     [TIPO] = @TIPO,
                     [VALIDADE] = @VALIDADE, 
                     [ID_PARCEIRO] = @ID_PARCEIRO,
-                    [MEIO] = @MEIO
+                    [MEIO] = @MEIO,
+                    [NOMECUPOM] = @NOMECUPOM,
+                    [VALORMINIMO] = @VALORMINIMO
 
                 WHERE [ID] = @ID";
         private const string sqlExcluirDesconto =
@@ -45,13 +51,15 @@ namespace LocadoraVeiculo.Controladores.DescontoModule
                 WHERE [ID] = @ID";
         private const string sqlSelecionarTodosDescontos =
             @"SELECT 
-                D.[ID],       
+                    D.[ID],       
                     D.[CODIGO],       
                     D.[VALOR], 
                     D.[TIPO],
                     D.[VALIDADE],                    
                     D.[ID_PARCEIRO],                                                           
                     D.[MEIO],
+                    D.[NOMECUPOM],
+                    D.[VALORMINIMO],
                     P.[ID],
                     P.[NOME_PARCEIRO]
             FROM
@@ -68,6 +76,8 @@ namespace LocadoraVeiculo.Controladores.DescontoModule
                     D.[VALIDADE],                    
                     D.[ID_PARCEIRO],                                                           
                     D.[MEIO],
+                    D.[NOMECUPOM],
+                    D.[VALORMINIMO],
                     P.[ID],
                     P.[NOME_PARCEIRO]
             FROM
@@ -86,6 +96,8 @@ namespace LocadoraVeiculo.Controladores.DescontoModule
                     D.[VALIDADE],                    
                     D.[ID_PARCEIRO],                                                           
                     D.[MEIO],
+                    D.[NOMECUPOM],
+                    D.[VALORMINIMO],
                     P.[ID],
                     P.[NOME_PARCEIRO]
             FROM
@@ -162,18 +174,18 @@ namespace LocadoraVeiculo.Controladores.DescontoModule
             var tipo = Convert.ToString(reader["TIPO"]);
             var validade = Convert.ToDateTime(reader["VALIDADE"]);
             var meio = Convert.ToString(reader["MEIO"]);
+            var nomeCupom = Convert.ToString(reader["NOMECUPOM"]);
+            var valorMinimo = Convert.ToDecimal(reader["VALORMINIMO"]);
 
             ParceiroDesconto parceiroDesconto = null;
-
             if (reader["ID_PARCEIRO"] != DBNull.Value)
             {
                 var nome = Convert.ToString(reader["NOME_PARCEIRO"]);
                 parceiroDesconto = new ParceiroDesconto(nome);
                 parceiroDesconto.Id = Convert.ToInt32(reader["ID_PARCEIRO"]);
-
             }
 
-            Desconto desconto = new Desconto(codigo, valor, tipo, validade, parceiroDesconto, meio);
+            Desconto desconto = new Desconto(codigo, valor, tipo, validade, parceiroDesconto, meio, nomeCupom, valorMinimo);
 
             desconto.Id = Convert.ToInt32(reader["ID"]);
 
@@ -190,6 +202,8 @@ namespace LocadoraVeiculo.Controladores.DescontoModule
             parametros.Add("VALIDADE", desconto.Validade);
             parametros.Add("ID_PARCEIRO", desconto.Parceiro.Id);
             parametros.Add("MEIO", desconto.Meio);
+            parametros.Add("NOMECUPOM", desconto.Nome);
+            parametros.Add("VALORMINIMO", desconto.ValorMinimo);
 
             return parametros;
         }

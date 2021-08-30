@@ -6,7 +6,11 @@
     [Validade]    DATE         NOT NULL,
     [Id_Parceiro] INT          NOT NULL,
     [Meio]        VARCHAR (50) NOT NULL,
+    [NomeCupom]   VARCHAR (50) NULL,
+    [ValorMinimo] FLOAT (53)   NULL,
     CONSTRAINT [PK_TBDesconto] PRIMARY KEY CLUSTERED ([Id] ASC),
     CONSTRAINT [FK_TBDesconto_TBParceiros] FOREIGN KEY ([Id_Parceiro]) REFERENCES [dbo].[TBParceiros] ([Id])
 );
+
+
 

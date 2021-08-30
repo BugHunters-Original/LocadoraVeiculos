@@ -108,10 +108,11 @@ namespace LocadoraVeiculo.WindowsApp.Features.Locacao.Devolucao
             var resto = totalKm - locacao.Veiculo.grupoVeiculo.LimitePControlado;
             return resto < 0 ? 0 : resto;
         }
-        private double CalcularDesconto(double total)
+        private double CalcularDesconto(double totalSemDesconto)
         {
             double desconto = 0;
-            if (locacao.Desconto != null && dtRetorno.Value.Date <= locacao.Desconto.Validade)
+            if (locacao.Desconto.ValorMinimo <= Convert.ToDecimal(total) &&
+                locacao.Desconto != null && dtRetorno.Value.Date <= locacao.Desconto.Validade)
             {
                 switch (locacao.Desconto.Tipo)
                 {
@@ -119,7 +120,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.Locacao.Devolucao
                         desconto = Convert.ToDouble(locacao.Desconto.Valor);
                         break;
                     case "Porcentagem":
-                        desconto = total * Convert.ToDouble(locacao.Desconto.Valor / 100);
+                        desconto = totalSemDesconto * Convert.ToDouble(locacao.Desconto.Valor / 100);
                         break;
                     default: break;
                 }
@@ -134,12 +135,16 @@ namespace LocadoraVeiculo.WindowsApp.Features.Locacao.Devolucao
         {
             double totalSuposto = Convert.ToDouble(locacao.PrecoServicos) + Convert.ToDouble(locacao.PrecoPlano) +
                                                 Convert.ToDouble(locacao.PrecoCombustivel) * multa;
-            total = totalSuposto - CalcularDesconto(totalSuposto);
+            total = totalSuposto;
+            total -= CalcularDesconto(totalSuposto);
             txtTotal.Text = total < 0 ? "R$0" : "R$" + total.ToString();
         }
         private string ValidarCampos()
         {
             string valido = "";
+
+            if (txtKmAtual.Text == "")
+                return "O Campo Quilometragem Atual não pode ser nulo\r\n";
 
             if (Convert.ToInt32(txtKmInicial.Text) >= Convert.ToInt32(txtKmAtual.Text))
                 valido += "O Campo Quilometragem Atual não pode ser menor que a esperada\r\n";
@@ -147,8 +152,6 @@ namespace LocadoraVeiculo.WindowsApp.Features.Locacao.Devolucao
             if (dtRetorno.Value.Day < dtRetornoEsperada.Value.Day)
                 valido += "A Data de Retorno não pode ser menor que a Data de Retorno Esperada\r\n";
 
-            if (txtKmAtual.Text == "")
-                valido += "O Campo Quilometragem Atual não pode ser nulo\r\n";
 
             if (cbNivelTanque.Text == "")
                 valido += "O Campo Nível do Tanque não pode ser nulo\r\n";
