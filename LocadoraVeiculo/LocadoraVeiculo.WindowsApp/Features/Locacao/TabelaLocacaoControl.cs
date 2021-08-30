@@ -72,8 +72,16 @@ namespace LocadoraVeiculo.WindowsApp.Features.Locacao
                 return;
 
             LocacaoModule.LocacaoVeiculo locacaoSelecionada = controlador.SelecionarPorId(id);
+            dynamic tela;
 
-            TelaDetalhesLocacaoEmAbertoForm tela = new TelaDetalhesLocacaoEmAbertoForm();
+            if (locacaoSelecionada.StatusLocacao == "Em Aberto")
+            {
+                tela = new TelaDetalhesLocacaoEmAbertoForm();
+            }
+            else
+            {
+                tela = new TelaDetalhesLocacaoConcluidaForm();
+            }
 
             tela.Locacao = locacaoSelecionada;
 
