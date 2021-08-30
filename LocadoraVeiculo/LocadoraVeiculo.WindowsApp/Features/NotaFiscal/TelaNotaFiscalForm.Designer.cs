@@ -56,7 +56,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.NotaFiscal
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(108, 90);
+            this.label1.Location = new System.Drawing.Point(121, 87);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(47, 15);
             this.label1.TabIndex = 0;
@@ -81,7 +81,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.NotaFiscal
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(118, 60);
+            this.label2.Location = new System.Drawing.Point(129, 57);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(39, 15);
             this.label2.TabIndex = 2;
@@ -98,7 +98,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.NotaFiscal
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(61, 121);
+            this.label3.Location = new System.Drawing.Point(78, 117);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(90, 15);
             this.label3.TabIndex = 4;
@@ -115,7 +115,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.NotaFiscal
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(27, 151);
+            this.label5.Location = new System.Drawing.Point(44, 147);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(124, 15);
             this.label5.TabIndex = 8;
@@ -132,7 +132,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.NotaFiscal
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(51, 183);
+            this.label6.Location = new System.Drawing.Point(68, 179);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(100, 15);
             this.label6.TabIndex = 10;
@@ -150,7 +150,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.NotaFiscal
             // 
             this.label9.AutoSize = true;
             this.label9.Font = new System.Drawing.Font("Lucida Sans Unicode", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label9.Location = new System.Drawing.Point(91, 255);
+            this.label9.Location = new System.Drawing.Point(108, 255);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(60, 16);
             this.label9.TabIndex = 16;
@@ -194,7 +194,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.NotaFiscal
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(101, 213);
+            this.label4.Location = new System.Drawing.Point(118, 209);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(50, 15);
             this.label4.TabIndex = 22;
