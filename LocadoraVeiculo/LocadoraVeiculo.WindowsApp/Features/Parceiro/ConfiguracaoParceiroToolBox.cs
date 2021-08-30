@@ -19,7 +19,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.Parceiro
 
         public string ToolTipFiltrar => "Filtrar Parceiros";
 
-        public string ToolTipDevolver => "";
+        public string ToolTipDevolver => "Devolver Veículo";
 
         public bool EnabledFiltrar => false;
 
