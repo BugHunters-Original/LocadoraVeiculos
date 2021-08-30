@@ -82,6 +82,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.Locacao
             dtSaida.BackColor = ControladorDarkMode.corFundoTxBox;
             dtRetorno.BackColor = ControladorDarkMode.corFundoTxBox;
             cbTipoLocacao.BackColor = ControladorDarkMode.corFundoTxBox;
+            txtCupom.BackColor = ControladorDarkMode.corFundoTxBox;
 
             txtID.ForeColor = ControladorDarkMode.corFonte;
             cbCliente.ForeColor = ControladorDarkMode.corFonte;
@@ -90,6 +91,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.Locacao
             dtSaida.ForeColor = ControladorDarkMode.corFonte;
             dtRetorno.ForeColor = ControladorDarkMode.corFonte;
             cbTipoLocacao.ForeColor = ControladorDarkMode.corFonte;
+            txtCupom.ForeColor = ControladorDarkMode.corFonte;
 
             btnGravar.BackColor = ControladorDarkMode.corFundoTxBox;
             btnCancelar.BackColor = ControladorDarkMode.corFundoTxBox;
