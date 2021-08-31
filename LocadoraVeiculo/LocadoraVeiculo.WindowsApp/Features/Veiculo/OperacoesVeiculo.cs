@@ -89,7 +89,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.Veiculos
                 return;
             }
 
-            VeiculoModule.Veiculo veiculoSelecionada = controladorVeiculo.SelecionarPorId(id);
+            Veiculo veiculoSelecionada = controladorVeiculo.SelecionarPorId(id);
 
             if (MessageBox.Show($"Tem certeza que deseja excluir o Veículo: [{veiculoSelecionada.nome}] ?",
                 "Exclusão de Veículos", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK)

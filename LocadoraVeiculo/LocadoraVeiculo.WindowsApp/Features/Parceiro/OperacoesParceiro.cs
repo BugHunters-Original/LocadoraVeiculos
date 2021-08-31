@@ -64,13 +64,24 @@ namespace LocadoraVeiculo.WindowsApp.Features.Parceiro
             if (MessageBox.Show($"Tem certeza que deseja excluir o Parceiro: [{parceiroSelecionado}] ?",
                 "Exclusão de Parceiros", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK)
             {
-                controlador.Excluir(id);
+                bool excluiu = controlador.Excluir(id);
 
-                List<ParceiroDesconto> parceiros = controlador.SelecionarTodos();
+                if (excluiu)
+                {
+                    controlador.Excluir(id);
 
-                tabelaParceiro.AtualizarRegistros(parceiros);
+                    List<ParceiroDesconto> parceiros = controlador.SelecionarTodos();
 
-                TelaPrincipalForm.Instancia.AtualizarRodape($"Parceiro: [{parceiroSelecionado}] removido com sucesso");
+                    tabelaParceiro.AtualizarRegistros(parceiros);
+
+                    TelaPrincipalForm.Instancia.AtualizarRodape($"Parceiro: [{parceiroSelecionado}] removido com sucesso");
+                }
+                else
+                {
+                    MessageBox.Show("Remova primeiro os Descontos vinculados ao Parceiro e tente novamente",
+                                 "Exclusão de Veículos", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+
             }
         }
         public void InserirNovoRegistro()
