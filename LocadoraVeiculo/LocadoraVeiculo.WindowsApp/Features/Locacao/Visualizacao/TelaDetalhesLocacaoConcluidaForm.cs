@@ -56,6 +56,12 @@ namespace LocadoraVeiculo.WindowsApp.Features.Locacao.Visualizacao
                 txtGas.Text = "R$" + locacao.PrecoCombustivel.ToString();
                 txtPrecoPlano.Text = "R$" + locacao.PrecoPlano.ToString();
                 txtTotal.Text = "R$" + locacao.PrecoTotal.ToString();
+                
+                if (locacao.Veiculo.foto != null)
+                {
+                    pictureBoxImagem.Image = (Image)(new Bitmap(ConverteByteArrayParaImagem(locacao.Veiculo.foto), new Size(214, 126)));
+                    pictureBoxImagem.SizeMode = PictureBoxSizeMode.StretchImage;
+                }
             }
         }
 
@@ -68,6 +74,19 @@ namespace LocadoraVeiculo.WindowsApp.Features.Locacao.Visualizacao
                 {
                     listServicos.Items.Add(servico.TaxaLocacao);
                 }
+        }
+
+        public static Image ConverteByteArrayParaImagem(byte[] pData)
+        {
+            try
+            {
+                ImageConverter imgConverter = new ImageConverter();
+                return imgConverter.ConvertFrom(pData) as Image;
+            }
+            catch
+            {
+                return null;
+            }
         }
 
         private void SetColor()

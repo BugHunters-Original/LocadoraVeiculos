@@ -50,6 +50,12 @@ namespace LocadoraVeiculo.WindowsApp.Features.Locacao.Visualizacao
                     txtCupom.Text = "SEM CUPOM CADASTRADO";
                 else
                     txtCupom.Text = locacao.Desconto?.Codigo;
+
+                if (locacao.Veiculo.foto != null)
+                {
+                    pictureBox.Image = (Image)(new Bitmap(ConverteByteArrayParaImagem(locacao.Veiculo.foto)));
+                    pictureBox.SizeMode = PictureBoxSizeMode.StretchImage;
+                }
             }
         }
 
@@ -62,6 +68,19 @@ namespace LocadoraVeiculo.WindowsApp.Features.Locacao.Visualizacao
                 {
                     listServicos.Items.Add(servico.TaxaLocacao);
                 }
+        }
+
+        public static Image ConverteByteArrayParaImagem(byte[] pData)
+        {
+            try
+            {
+                ImageConverter imgConverter = new ImageConverter();
+                return imgConverter.ConvertFrom(pData) as Image;
+            }
+            catch
+            {
+                return null;
+            }
         }
 
         private void SetColor()
@@ -89,6 +108,8 @@ namespace LocadoraVeiculo.WindowsApp.Features.Locacao.Visualizacao
             txtCupom.ForeColor = ControladorDarkMode.corFonte;
 
             btnOK.BackColor = ControladorDarkMode.corFundoTxBox;
+            listServicos.BackColor = ControladorDarkMode.corPanel;
+            listServicos.ForeColor = ControladorDarkMode.corFonte;
         }
     }
 }
