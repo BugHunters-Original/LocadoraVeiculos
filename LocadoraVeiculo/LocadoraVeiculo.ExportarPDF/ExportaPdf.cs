@@ -5,6 +5,7 @@ using iText.Layout.Element;
 using iText.Layout.Properties;
 using LocadoraVeiculo.LocacaoModule;
 using System.Net.Mail;
+using System.Threading.Tasks;
 
 namespace LocadoraVeiculo.ExportacaoPDF
 {
@@ -49,11 +50,11 @@ namespace LocadoraVeiculo.ExportacaoPDF
                 pdfDocument.Close();
             }
 
-            EmailEnviar(locacao);
+            Task.Run(() => EmailEnviar(locacao));
         }
-
         private static void EmailEnviar(LocacaoVeiculo locacao)
         {
+
             using (SmtpClient smtp = new SmtpClient())
             {
                 using (MailMessage email = new MailMessage())
@@ -78,9 +79,9 @@ namespace LocadoraVeiculo.ExportacaoPDF
 
                     //ENVIAR
                     smtp.Send(email);
+
                 }
             }
-
         }
     }
 }
