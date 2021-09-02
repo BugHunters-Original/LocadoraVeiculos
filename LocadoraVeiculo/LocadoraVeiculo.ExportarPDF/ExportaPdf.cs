@@ -18,7 +18,7 @@ namespace LocadoraVeiculo.ExportacaoPDF
                 var pdfDocument = new PdfDocument(wPdf);
 
                 var document = new Document(pdfDocument, PageSize.A4);
-                document.Add(new Paragraph("Recibo Locação de Automóvel").SetTextAlignment(TextAlignment.CENTER).SetBold().SetFontSize(20));
+                document.Add(new Paragraph("Recibo Locação de Automóvel\nBUG HUNTERS").SetTextAlignment(TextAlignment.CENTER).SetBold().SetFontSize(20));
                 document.Add(new Paragraph("\n\n"));
                 document.Add(new Paragraph("Cliente: " + locacao.Cliente.ToString()));
                 document.Add(new Paragraph("Condutor: " + locacao.Condutor.ToString()));
