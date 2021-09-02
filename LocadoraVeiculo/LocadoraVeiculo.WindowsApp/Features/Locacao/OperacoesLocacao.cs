@@ -205,7 +205,6 @@ namespace LocadoraVeiculo.WindowsApp.Features.Locacao
 
         private void MandarPDFPeloEmail(LocacaoVeiculo locacao)
         {
-
             using (PdfWriter wPdf = new PdfWriter($@"..\..\..\Recibos\recibo{locacao.Id}.pdf", new WriterProperties().SetPdfVersion(PdfVersion.PDF_2_0)))
             {
                 var pdfDocument = new PdfDocument(wPdf);
