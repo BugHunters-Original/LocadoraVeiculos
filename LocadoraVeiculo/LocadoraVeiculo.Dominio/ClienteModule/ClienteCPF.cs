@@ -1,12 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Net.Mail;
 
 namespace LocadoraVeiculo.ClienteModule
 {
     public class ClienteCPF : Cliente, IEquatable<ClienteCPF>
     {
         public ClienteCPF(string nome, string telefone, string endereco, string CPF,
-            string RG, string CNH, DateTime dataValidade, ClienteCNPJ cliente = null)
+            string RG, string CNH, DateTime dataValidade, string email, ClienteCNPJ cliente = null)
         {
             Nome = nome;
             Endereco = endereco;
@@ -16,6 +17,7 @@ namespace LocadoraVeiculo.ClienteModule
             Cnh = CNH;
             DataValidade = dataValidade;
             Cliente = cliente;
+            Email = email;
         }
         public string Cpf { get; set; }
         public string Rg { get; set; }
@@ -33,7 +35,8 @@ namespace LocadoraVeiculo.ClienteModule
                 && Cpf == other.Cpf
                 && Cnh == other.Cnh
                 && DataValidade == other.DataValidade
-                && Cliente.Equals(other.Cliente);
+                && Cliente.Equals(other.Cliente)
+                && Email == other.Email;
         }
         public override bool Equals(object obj)
         {
@@ -64,7 +67,19 @@ namespace LocadoraVeiculo.ClienteModule
             string valido = "";
 
             if (string.IsNullOrEmpty(Nome))
-                valido += "O campo Nome está inválido";
+                valido += QuebraDeLinha(valido) + "O campo Nome está inválido";
+
+            if (string.IsNullOrEmpty(Email))
+                valido += QuebraDeLinha(valido) + "O campo Email está em branco";
+
+            try
+            {
+                MailAddress m = new MailAddress(Email);
+            }
+            catch (FormatException)
+            {
+                valido += QuebraDeLinha(valido) + "O campo Email está inválido";
+            }
 
             if (string.IsNullOrEmpty(Endereco))
                 valido += QuebraDeLinha(valido) + "O campo Endereço está inválido";

@@ -1,16 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Net.Mail;
 
 namespace LocadoraVeiculo.ClienteModule
 {
     public class ClienteCNPJ : Cliente, IEquatable<ClienteCNPJ>
     {
-        public ClienteCNPJ(string nome, string endereco, string telefone, string cnpj)
+        public ClienteCNPJ(string nome, string endereco, string telefone, string cnpj, string email)
         {
             Nome = nome;
             Endereco = endereco;
             Telefone = telefone;
             Cnpj = cnpj;
+            Email = email;
         }
 
         public string Cnpj { get; set; }
@@ -21,6 +23,18 @@ namespace LocadoraVeiculo.ClienteModule
 
             if (string.IsNullOrEmpty(Nome))
                 valido += "O campo Nome está inválido";
+
+            if (string.IsNullOrEmpty(Email))
+                valido += "O campo Email está branco";
+
+            try
+            {
+                MailAddress m = new MailAddress(Email);
+            }
+            catch (FormatException)
+            {
+                valido += QuebraDeLinha(valido) + "O campo Email está inválido";
+            }
 
             if (string.IsNullOrEmpty(Endereco))
                 valido += QuebraDeLinha(valido) + "O campo Endereço está inválido";
@@ -51,7 +65,8 @@ namespace LocadoraVeiculo.ClienteModule
                 && Nome == other.Nome
                 && Endereco == other.Endereco
                 && Telefone == other.Telefone
-                && Cnpj == other.Cnpj;
+                && Cnpj == other.Cnpj
+                && Email == other.Email;
         }
 
         public override int GetHashCode()

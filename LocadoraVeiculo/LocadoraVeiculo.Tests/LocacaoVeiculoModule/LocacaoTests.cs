@@ -25,10 +25,10 @@ namespace LocadoraVeiculo.Tests.LocacaoModule
 
         public LocacaoTests()
         {
-            cliente = new ClienteCNPJ("Gabriel Marques", "Guarujá", "(49)99803-5074", "77.637.684/0111-61");
+            cliente = new ClienteCNPJ("Gabriel Marques", "Guarujá", "(49)99803-5074", "77.637.684/0111-61", "gabas220601@gmail.com");
 
             condutor = new ClienteCPF("Pedro", "(49)12345-6789", "Coral", "011.900.119-57",
-                                        "6.187.754", "12345678910", new DateTime(2022, 06, 22), cliente);
+                                        "6.187.754", "12345678910", new DateTime(2022, 06, 22), "gabas220601@gmail.com", cliente);
             dataSaida = new DateTime(2021, 08, 19);
             dataRetorno = new DateTime(2021, 08, 19);
             dias = Convert.ToInt32((dataSaida - dataRetorno).TotalDays);
@@ -49,7 +49,7 @@ namespace LocadoraVeiculo.Tests.LocacaoModule
             //arrange
 
             LocacaoVeiculo novaLocacao = new LocacaoVeiculo(cliente, veiculo, null, condutor, dataSaida, dataRetorno,
-                                  "Plano Diário", 0, precoServicos, dias, "Em Aberto", null, grupo.ValorDiarioPDiario * dias, null);
+                                  "Plano Diário", 0, precoServicos, dias, "Em Aberto", null, grupo.ValorDiarioPDiario * dias, null, null);
 
 
             //action
@@ -68,8 +68,8 @@ namespace LocadoraVeiculo.Tests.LocacaoModule
 
             var diasInvalidos = Convert.ToInt32((dataSaida - dataRetorno).TotalDays);
 
-            LocacaoVeiculo novaLocacao = new LocacaoVeiculo(cliente, veiculo,null, condutor, dataSaidaInvalida, dataRetornoInvalida,
-                                  "Plano Diário", 0, precoServicos, diasInvalidos, "Em Aberto", null, grupo.ValorDiarioPDiario * dias, null);
+            LocacaoVeiculo novaLocacao = new LocacaoVeiculo(cliente, veiculo, null, condutor, dataSaidaInvalida, dataRetornoInvalida,
+                                  "Plano Diário", 0, precoServicos, diasInvalidos, "Em Aberto", null, grupo.ValorDiarioPDiario * dias, null, null);
 
 
             //action
@@ -84,8 +84,8 @@ namespace LocadoraVeiculo.Tests.LocacaoModule
         {
             //arrange
 
-            LocacaoVeiculo novaLocacao = new LocacaoVeiculo(cliente, veiculo,null, condutor, dataSaida, dataRetorno,
-                                  "Plano", 0, precoServicos, dias, "Em Aberto", null, grupo.ValorDiarioPDiario * dias, null);
+            LocacaoVeiculo novaLocacao = new LocacaoVeiculo(cliente, veiculo, null, condutor, dataSaida, dataRetorno,
+                                  "Plano", 0, precoServicos, dias, "Em Aberto", null, grupo.ValorDiarioPDiario * dias, null, null);
 
 
             //action
@@ -100,7 +100,7 @@ namespace LocadoraVeiculo.Tests.LocacaoModule
         {
             //arrange
             LocacaoVeiculo novaLocacao = new LocacaoVeiculo(null, veiculo, null, condutor, dataSaida, dataRetorno,
-                                   "Plano Diário", 0, precoServicos, dias, "Em Aberto", null, grupo.ValorDiarioPDiario * dias, null);
+                                   "Plano Diário", 0, precoServicos, dias, "Em Aberto", null, grupo.ValorDiarioPDiario * dias, null, null);
 
 
             //action
@@ -115,7 +115,7 @@ namespace LocadoraVeiculo.Tests.LocacaoModule
         {
             //arrange
             LocacaoVeiculo novaLocacao = new LocacaoVeiculo(cliente, veiculo, null, condutor, dataSaida, dataRetorno,
-                                   "Plano Diário", 2, precoServicos, dias, "Em Aberto", null, grupo.ValorDiarioPDiario * dias, null);
+                                   "Plano Diário", 2, precoServicos, dias, "Em Aberto", null, grupo.ValorDiarioPDiario * dias, null, null);
 
 
             //action
@@ -130,7 +130,7 @@ namespace LocadoraVeiculo.Tests.LocacaoModule
         {
             //arrange
             LocacaoVeiculo novaLocacao = new LocacaoVeiculo(cliente, veiculo, null, null, dataSaida, dataRetorno,
-                                    "Plano Diário", 0, precoServicos, dias, "Em Aberto", null, grupo.ValorDiarioPDiario * dias, null);
+                                    "Plano Diário", 0, precoServicos, dias, "Em Aberto", null, grupo.ValorDiarioPDiario * dias, null, null);
 
 
             //action

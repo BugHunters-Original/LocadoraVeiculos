@@ -56,11 +56,11 @@ namespace LocadoraVeiculo.Tests.LocacaoModule
             dataRetorno = new DateTime(2021, 08, 19);
             dias = Convert.ToInt32((dataSaida - dataRetorno).TotalDays);
 
-            cliente = new ClienteCNPJ("Gabriel Marques", "Guarujá", "(49)99803-5074", "77.637.684/0111-61");
+            cliente = new ClienteCNPJ("Gabriel Marques", "Guarujá", "(49)99803-5074", "77.637.684/0111-61", "gabas220601@gmail.com");
             controladorCliente.InserirNovo(cliente);
 
             condutor = new ClienteCPF("Pedro", "(49)12345-6789", "Coral", "011.900.119-57",
-                                        "6.187.754", "12345678910", new DateTime(2022, 06, 22), cliente);
+                                        "6.187.754", "12345678910", new DateTime(2022, 06, 22), "gabas220601@gmail.com", cliente);
             controladorCondutor.InserirNovo(condutor);
 
 
@@ -96,7 +96,7 @@ namespace LocadoraVeiculo.Tests.LocacaoModule
 
             //arrange
             var novaLocacao = new LocacaoVeiculo(cliente, veiculo, null, condutor, dataSaida, dataRetorno,
-                                  "Plano Diário", 1, precoServicos, dias, "Em Aberto", null, grupo.ValorDiarioPDiario * dias, null);
+                                  "Plano Diário", 1, precoServicos, dias, "Em Aberto", null, grupo.ValorDiarioPDiario * dias, null, null);
 
             //action
             controladorLocacao.InserirNovo(novaLocacao);
@@ -114,12 +114,12 @@ namespace LocadoraVeiculo.Tests.LocacaoModule
             //arrange                                  
 
             var novaLocacao = new LocacaoVeiculo(cliente, veiculo, null, condutor, dataSaida, dataRetorno,
-                                  "Plano Diário", 1, precoServicos, dias, "Em Aberto", null, grupo.ValorDiarioPDiario * dias, null);
+                                  "Plano Diário", 1, precoServicos, dias, "Em Aberto", null, grupo.ValorDiarioPDiario * dias, null, null);
 
             controladorLocacao.InserirNovo(novaLocacao);
 
             var novaLocacaoEditada = new LocacaoVeiculo(cliente, veiculo, null, condutor, dataSaida, dataRetorno,
-                                  "KM Controlado", 1, precoServicos, dias, "Em Aberto", null, grupo.ValorDiarioPControlado * dias, null);
+                                  "KM Controlado", 1, precoServicos, dias, "Em Aberto", null, grupo.ValorDiarioPControlado * dias, null, null);
 
             //action
             controladorLocacao.Editar(novaLocacao.Id, novaLocacaoEditada);
@@ -137,7 +137,7 @@ namespace LocadoraVeiculo.Tests.LocacaoModule
         {
             //arrange
             var novaLocacao = new LocacaoVeiculo(cliente, veiculo, null, condutor, dataSaida, dataRetorno,
-                                  "Plano Diário", 1, precoServicos, dias, "Em Aberto", null, grupo.ValorDiarioPDiario * dias, null);
+                                  "Plano Diário", 1, precoServicos, dias, "Em Aberto", null, grupo.ValorDiarioPDiario * dias, null, null);
 
             controladorLocacao.InserirNovo(novaLocacao);
 
@@ -157,7 +157,7 @@ namespace LocadoraVeiculo.Tests.LocacaoModule
         {
             //arrange
             var novaLocacao = new LocacaoVeiculo(cliente, veiculo, null, condutor, dataSaida, dataRetorno,
-                                  "Plano Diário", 1, precoServicos, dias, "Em Aberto", null, grupo.ValorDiarioPDiario * dias, null);
+                                  "Plano Diário", 1, precoServicos, dias, "Em Aberto", null, grupo.ValorDiarioPDiario * dias, null, null);
 
             controladorLocacao.InserirNovo(novaLocacao);
 
@@ -174,17 +174,17 @@ namespace LocadoraVeiculo.Tests.LocacaoModule
         {
             //arrange           
             var novaLocacao = new LocacaoVeiculo(cliente, veiculo, null, condutor, dataSaida, dataRetorno,
-                                 "Plano Diário", 1, precoServicos, dias, "Em Aberto", null, grupo.ValorDiarioPDiario * dias, null);
+                                 "Plano Diário", 1, precoServicos, dias, "Em Aberto", null, grupo.ValorDiarioPDiario * dias, null, null);
 
             controladorLocacao.InserirNovo(novaLocacao);
 
             var novaLocacao2 = new LocacaoVeiculo(cliente, veiculo, null, condutor, dataSaida, dataRetorno,
-                                 "KM Controlado", 1, precoServicos, dias, "Em Aberto", null, grupo.ValorDiarioPLivre * dias, null);
+                                 "KM Controlado", 1, precoServicos, dias, "Em Aberto", null, grupo.ValorDiarioPLivre * dias, null, null);
 
             controladorLocacao.InserirNovo(novaLocacao2);
 
             var novaLocacao3 = new LocacaoVeiculo(cliente, veiculo, null, condutor, dataSaida, dataRetorno,
-                                   "KM Livre", 1, precoServicos, dias, "Em Aberto", null, grupo.ValorDiarioPLivre * dias, null);
+                                   "KM Livre", 1, precoServicos, dias, "Em Aberto", null, grupo.ValorDiarioPLivre * dias, null, null);
 
             controladorLocacao.InserirNovo(novaLocacao3);
 
@@ -204,7 +204,7 @@ namespace LocadoraVeiculo.Tests.LocacaoModule
         {
             //arrange
             var novaLocacao = new LocacaoVeiculo(cliente, veiculo, null, condutor, dataSaida, dataRetorno,
-                                  "Plano Diário", 1, precoServicos, dias, "Em Aberto", null, grupo.ValorDiarioPDiario * dias, null);
+                                  "Plano Diário", 1, precoServicos, dias, "Em Aberto", null, grupo.ValorDiarioPDiario * dias, null, null);
 
             controladorLocacao.InserirNovo(novaLocacao);
 
@@ -222,13 +222,13 @@ namespace LocadoraVeiculo.Tests.LocacaoModule
         {
             //arrange
             var novaLocacao = new LocacaoVeiculo(cliente, veiculo, null, condutor, dataSaida, dataRetorno,
-                                  "Plano Diário", 1, precoServicos, dias, "Em Aberto", null, grupo.ValorDiarioPDiario * dias, null);
+                                  "Plano Diário", 1, precoServicos, dias, "Em Aberto", null, grupo.ValorDiarioPDiario * dias, null, null);
 
             controladorLocacao.InserirNovo(novaLocacao);
             controladorLocacao.ConcluirLocacao(novaLocacao.Id, novaLocacao);
 
             var novaLocacaoNaoConcluida = new LocacaoVeiculo(cliente, veiculo, null, condutor, dataSaida, dataRetorno,
-                                  "Plano Diário", 1, precoServicos, dias, "Em Aberto", null, grupo.ValorDiarioPDiario * dias, null);
+                                  "Plano Diário", 1, precoServicos, dias, "Em Aberto", null, grupo.ValorDiarioPDiario * dias, null, null);
 
             controladorLocacao.InserirNovo(novaLocacaoNaoConcluida);
 
@@ -248,13 +248,13 @@ namespace LocadoraVeiculo.Tests.LocacaoModule
         {
             //arrange
             var novaLocacao = new LocacaoVeiculo(cliente, veiculo, null, condutor, dataSaida, dataRetorno,
-                                  "Plano Diário", 1, precoServicos, dias, "Em Aberto", null, grupo.ValorDiarioPDiario * dias, null);
+                                  "Plano Diário", 1, precoServicos, dias, "Em Aberto", null, grupo.ValorDiarioPDiario * dias, null, null);
 
             controladorLocacao.InserirNovo(novaLocacao);
             controladorLocacao.ConcluirLocacao(novaLocacao.Id, novaLocacao);
 
             var novaLocacaoNaoConcluida = new LocacaoVeiculo(cliente, veiculo, null, condutor, dataSaida, dataRetorno,
-                                  "Plano Diário", 1, precoServicos, dias, "Em Aberto", null, grupo.ValorDiarioPDiario * dias, null);
+                                  "Plano Diário", 1, precoServicos, dias, "Em Aberto", null, grupo.ValorDiarioPDiario * dias, null, null);
 
             controladorLocacao.InserirNovo(novaLocacaoNaoConcluida);
 

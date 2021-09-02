@@ -78,6 +78,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.Clientes
                 txtNome.Text = cliente.Nome;
                 txtEndereco.Text = cliente.Endereco;
                 mskTelefone.Text = cliente.Telefone;
+                txtEmail.Text = cliente.Email;
                 rbFisico.Enabled = false;
                 rbJuridico.Enabled = false;
 
@@ -143,10 +144,11 @@ namespace LocadoraVeiculo.WindowsApp.Features.Clientes
                 string cpf = mskCpf.Text;
                 string rg = mskRg.Text;
                 string cnh = mskCnh.Text;
+                string email = txtEmail.Text;
                 DateTime dataValidade = dtDataValidade.Value;
                 ClienteCNPJ empresa = (ClienteCNPJ)cbEmpresas.SelectedItem;
 
-                cliente = new ClienteCPF(nome, telefone, endereco, cpf, rg, cnh, dataValidade, empresa);
+                cliente = new ClienteCPF(nome, telefone, endereco, cpf, rg, cnh, dataValidade, email, empresa);
 
             }
             else
@@ -155,8 +157,9 @@ namespace LocadoraVeiculo.WindowsApp.Features.Clientes
                 string endereco = txtEndereco.Text;
                 string telefone = mskTelefone.Text;
                 string cnpj = mskCnpj.Text;
+                string email = txtEmail.Text;
 
-                cliente = new ClienteCNPJ(nome, endereco, telefone, cnpj);
+                cliente = new ClienteCNPJ(nome, endereco, telefone, cnpj, email);
 
             }
             string resultadoValidacao = cliente.Validar();
