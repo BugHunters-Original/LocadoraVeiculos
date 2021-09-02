@@ -21,11 +21,8 @@ namespace LocadoraVeiculo.ClienteModule
         {
             string valido = "";
 
-            if (string.IsNullOrEmpty(Nome))
-                valido += "O campo Nome está inválido";
-
             if (string.IsNullOrEmpty(Email))
-                valido += "O campo Email está branco";
+                return "O campo Email está branco";
 
             try
             {
@@ -35,6 +32,9 @@ namespace LocadoraVeiculo.ClienteModule
             {
                 valido += QuebraDeLinha(valido) + "O campo Email está inválido";
             }
+
+            if (string.IsNullOrEmpty(Nome))
+                valido += "O campo Nome está inválido";            
 
             if (string.IsNullOrEmpty(Endereco))
                 valido += QuebraDeLinha(valido) + "O campo Endereço está inválido";
