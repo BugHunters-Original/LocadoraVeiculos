@@ -1,5 +1,6 @@
 ﻿using LocadoraVeiculo.Shared;
 using System;
+using System.Net.Mail;
 
 namespace LocadoraVeiculo.ClienteModule
 {
@@ -12,5 +13,6 @@ namespace LocadoraVeiculo.ClienteModule
         public string Nome { get; set; }
         public string Endereco { get; set; }
         public string Telefone { get; set; }
+        public string Email { get; set; }
     }
 }

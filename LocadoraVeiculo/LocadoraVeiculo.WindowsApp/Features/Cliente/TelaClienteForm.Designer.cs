@@ -59,6 +59,8 @@ namespace LocadoraVeiculo.WindowsApp.Features.Clientes
             this.label9 = new System.Windows.Forms.Label();
             this.header_Cliente = new System.Windows.Forms.Panel();
             this.label12 = new System.Windows.Forms.Label();
+            this.label13 = new System.Windows.Forms.Label();
+            this.txtEmail = new System.Windows.Forms.TextBox();
             this.header_Cliente.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -96,7 +98,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.Clientes
             // cbEmpresas
             // 
             this.cbEmpresas.FormattingEnabled = true;
-            this.cbEmpresas.Location = new System.Drawing.Point(171, 370);
+            this.cbEmpresas.Location = new System.Drawing.Point(171, 400);
             this.cbEmpresas.Name = "cbEmpresas";
             this.cbEmpresas.Size = new System.Drawing.Size(242, 23);
             this.cbEmpresas.TabIndex = 10;
@@ -206,7 +208,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.Clientes
             // 
             this.btnCancelar.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btnCancelar.Font = new System.Drawing.Font("Lucida Sans Unicode", 8F);
-            this.btnCancelar.Location = new System.Drawing.Point(324, 425);
+            this.btnCancelar.Location = new System.Drawing.Point(326, 435);
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Size = new System.Drawing.Size(87, 27);
             this.btnCancelar.TabIndex = 12;
@@ -217,7 +219,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.Clientes
             // 
             this.btnGravar.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.btnGravar.Font = new System.Drawing.Font("Lucida Sans Unicode", 8F);
-            this.btnGravar.Location = new System.Drawing.Point(230, 425);
+            this.btnGravar.Location = new System.Drawing.Point(232, 435);
             this.btnGravar.Name = "btnGravar";
             this.btnGravar.Size = new System.Drawing.Size(87, 27);
             this.btnGravar.TabIndex = 11;
@@ -290,7 +292,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.Clientes
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Lucida Sans Unicode", 8F);
-            this.label2.Location = new System.Drawing.Point(38, 373);
+            this.label2.Location = new System.Drawing.Point(38, 403);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(122, 15);
             this.label2.TabIndex = 23;
@@ -325,11 +327,30 @@ namespace LocadoraVeiculo.WindowsApp.Features.Clientes
             this.label12.TabIndex = 0;
             this.label12.Text = "Cadastro de Clientes";
             // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Font = new System.Drawing.Font("Lucida Sans Unicode", 8F);
+            this.label13.Location = new System.Drawing.Point(118, 375);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(43, 15);
+            this.label13.TabIndex = 27;
+            this.label13.Text = "E-Mail:";
+            // 
+            // txtEmail
+            // 
+            this.txtEmail.Location = new System.Drawing.Point(171, 370);
+            this.txtEmail.Name = "txtEmail";
+            this.txtEmail.Size = new System.Drawing.Size(242, 24);
+            this.txtEmail.TabIndex = 26;
+            // 
             // TelaClienteForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(465, 474);
+            this.Controls.Add(this.label13);
+            this.Controls.Add(this.txtEmail);
             this.Controls.Add(this.header_Cliente);
             this.Controls.Add(this.label9);
             this.Controls.Add(this.label2);
@@ -403,5 +424,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.Clientes
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Panel header_Cliente;
         private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.TextBox txtEmail;
     }
 }

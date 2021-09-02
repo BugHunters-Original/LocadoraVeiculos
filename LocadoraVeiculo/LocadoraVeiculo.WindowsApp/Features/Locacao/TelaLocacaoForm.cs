@@ -137,7 +137,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.Locacao
         }
         private void PreencherListaTaxa()
         {
-            List<TaxaDaLocacao> lista = controladorTaxaDaLocacao.SelecionarTodasTaxas(locacao.Id);
+            List<TaxaDaLocacao> lista = controladorTaxaDaLocacao.SelecionarTaxasDeUmaLocacao(locacao.Id);
 
             if (lista != null)
                 foreach (var servico in lista)
@@ -176,8 +176,10 @@ namespace LocadoraVeiculo.WindowsApp.Features.Locacao
 
             decimal? precoPlano = CalcularPrecoPlanoPorDias(veiculo, tipoLocacao, dias);
 
+            decimal? precoTotal = precoPlano + precoServicos;
+
             locacao = new LocacaoVeiculo(cliente, veiculo, desconto, condutor, dataSaida, dataRetornoEsperado, tipoLocacao,
-                                    tipoCliente, precoServicos, dias, "Em Aberto", null, precoPlano, null);
+                                    tipoCliente, precoServicos, dias, "Em Aberto", null, precoPlano, precoTotal, Servicos);
 
             string resultadoValidacao = locacao.Validar();
 

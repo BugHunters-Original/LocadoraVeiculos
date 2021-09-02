@@ -1,4 +1,8 @@
-﻿using LocadoraVeiculo.Controladores.CondutorModule;
+﻿using iText.Kernel.Geom;
+using iText.Kernel.Pdf;
+using iText.Layout;
+using iText.Layout.Element;
+using LocadoraVeiculo.Controladores.CondutorModule;
 using LocadoraVeiculo.Controladores.LocacaoModule;
 using LocadoraVeiculo.Controladores.TaxaDaLocacaoModule;
 using LocadoraVeiculo.Controladores.VeiculoModule;
@@ -180,13 +184,6 @@ namespace LocadoraVeiculo.WindowsApp.Features.Locacao
                             MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return;
             }
-            //if (controladorClienteCPF.SelecionarTodosIndisponíveisDisponiveis().Count != 0)
-            //{
-            //    MessageBox.Show("Nenhum Condutor disponível para Locação!", "Adição de Locações",
-            //                MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-            //    return;
-            //} TEM QUE CONFERIR ESSA QUERIE KKKKKKKKK................
-
 
             TelaLocacaoForm tela = new TelaLocacaoForm();
 
@@ -205,8 +202,63 @@ namespace LocadoraVeiculo.WindowsApp.Features.Locacao
                 tabelaLocacoes.AtualizarRegistros(servicos);
 
                 TelaPrincipalForm.Instancia.AtualizarRodape($"Locação: [{tela.Locacao}] inserida com sucesso");
+
+                MandarPDFPeloEmail(tela.Locacao);
             }
         }
+
+        private void MandarPDFPeloEmail(LocacaoVeiculo locacao)
+        {
+            var tipoPlano = locacao.TipoLocacao;
+            var precoPlano = locacao.PrecoPlano;
+            var diaSaida = locacao.DataSaida;
+            var diaRetorno = locacao.DataRetorno;
+            var precoServicos = locacao.PrecoServicos;
+            var precoTotal = locacao.PrecoTotal;
+            var cliente = locacao.Cliente;
+            var condutor = locacao.Condutor;
+            var cupom = locacao.Desconto?.Nome;
+            var veiculo = locacao.Veiculo.nome;
+            var servicos = locacao.Servicos;
+
+            using (PdfWriter wPdf = new PdfWriter(@"..\..\..\recibo.pdf", new WriterProperties().SetPdfVersion(PdfVersion.PDF_2_0)))
+            {
+                var pdfDocument = new PdfDocument(wPdf);
+
+                var document = new Document(pdfDocument, PageSize.A4);
+                document.Add(new Paragraph("Recibo Locação de Automóvel"));
+                document.Add(new Paragraph("\n\n"));
+                document.Add(new Paragraph("Cliente: " + cliente.ToString()));
+                document.Add(new Paragraph("Condutor: " + condutor.ToString()));
+                document.Add(new Paragraph("Veículo: " + veiculo.ToString()));
+                document.Add(new Paragraph("Data de Saída: " + diaSaida.ToString("d")));
+                document.Add(new Paragraph("Data de Retorno: " + diaRetorno.ToString("d")));
+                document.Add(new Paragraph("Plano Escolhido: " + tipoPlano));
+                document.Add(new Paragraph("Total Plano Escolhido: R$" + precoPlano));
+
+                if (servicos != null)
+                {
+                    document.Add(new Paragraph("Serviço(s) Contratado(s): "));
+                    foreach (var servico in servicos)
+                        document.Add(new Paragraph("-" + servico.ToString()));
+                }
+                else
+                    document.Add(new Paragraph("Serviço(s) Contratado(s): Nenhum"));
+
+                document.Add(new Paragraph("Total Servico(s) Escolhido(s): R$" + precoServicos));
+
+                string cupomNome = cupom == null ? "Nenhum" : cupom;
+                document.Add(new Paragraph("Cupom de Desconto: " + cupomNome));
+
+                document.Add(new Paragraph("\n\n"));
+                document.Add(new Paragraph("Total da Locação: R$" + precoTotal));
+
+                document.Close();
+
+                pdfDocument.Close();
+            }
+        }
+
         public UserControl ObterTabela()
         {
             List<LocacaoVeiculo> locacoes = controladorLocacao.SelecionarTodos();

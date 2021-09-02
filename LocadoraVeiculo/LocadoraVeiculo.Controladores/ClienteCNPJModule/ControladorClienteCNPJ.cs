@@ -14,14 +14,16 @@ namespace LocadoraVeiculo.Controladores.ClienteModule
 		                [NOME], 
 		                [ENDERECO], 
 		                [TELEFONE],
-                        [CNPJ] 
+                        [CNPJ],
+                        [EMAIL]
 	                ) 
 	                VALUES
 	                (
                         @NOME, 
                         @ENDERECO,
                         @TELEFONE,
-		                @CNPJ
+		                @CNPJ,
+		                @EMAIL
 	                )";
 
         private const string sqlEditarCliente =
@@ -30,7 +32,8 @@ namespace LocadoraVeiculo.Controladores.ClienteModule
                         [NOME] = @NOME,
 		                [ENDERECO] = @ENDERECO, 
 		                [TELEFONE] = @TELEFONE,
-                        [CNPJ] = @CNPJ
+                        [CNPJ] = @CNPJ,
+                        [EMAIL] = @EMAIL
                     WHERE 
                         ID = @ID";
 
@@ -47,7 +50,8 @@ namespace LocadoraVeiculo.Controladores.ClienteModule
 		                [NOME], 
 		                [ENDERECO], 
 		                [TELEFONE],
-                        [CNPJ]
+                        [CNPJ],
+                        [EMAIL]
 	                FROM
                         TBCLIENTECNPJ
                     WHERE 
@@ -59,7 +63,8 @@ namespace LocadoraVeiculo.Controladores.ClienteModule
 		                [NOME], 
 		                [ENDERECO], 
 		                [TELEFONE],
-                        [CNPJ]
+                        [CNPJ],
+                        [EMAIL]
 	                FROM
                         TBCLIENTECNPJ";
 
@@ -132,6 +137,7 @@ namespace LocadoraVeiculo.Controladores.ClienteModule
             parametros.Add("ENDERECO", cliente.Endereco);
             parametros.Add("TELEFONE", cliente.Telefone);
             parametros.Add("CNPJ", cliente.Cnpj);
+            parametros.Add("EMAIL", cliente.Email);
 
             return parametros;
         }
@@ -142,8 +148,9 @@ namespace LocadoraVeiculo.Controladores.ClienteModule
             string endereco = Convert.ToString(reader["ENDERECO"]);
             string telefone = Convert.ToString(reader["TELEFONE"]);
             string cnpj = Convert.ToString(reader["CNPJ"]);
+            string email = Convert.ToString(reader["EMAIL"]);
 
-            ClienteCNPJ cliente = new ClienteCNPJ(nome, endereco, telefone, cnpj);
+            ClienteCNPJ cliente = new ClienteCNPJ(nome, endereco, telefone, cnpj, email);
 
             cliente.Id = id;
 

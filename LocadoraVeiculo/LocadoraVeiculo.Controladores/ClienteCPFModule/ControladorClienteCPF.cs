@@ -18,7 +18,8 @@ namespace LocadoraVeiculo.Controladores.CondutorModule
 		                [RG],
                         [CNH],
                         [DATA_VALIDADE],
-                        [ID_CLIENTE]
+                        [ID_CLIENTE],
+                        [EMAILC]
 	                ) 
 	                VALUES
 	                (
@@ -29,7 +30,8 @@ namespace LocadoraVeiculo.Controladores.CondutorModule
 		                @RG,
                         @CNH,
                         @DATA_VALIDADE,
-                        @ID_CLIENTE
+                        @ID_CLIENTE,
+                        @EMAILC
 	                )";
 
         private const string sqlEditarCondutor =
@@ -42,7 +44,8 @@ namespace LocadoraVeiculo.Controladores.CondutorModule
 		                [RG] = @RG,
                         [CNH] = @CNH,
                         [DATA_VALIDADE] = @DATA_VALIDADE,
-                        [ID_CLIENTE] = @ID_CLIENTE
+                        [ID_CLIENTE] = @ID_CLIENTE,
+                        [EMAILC] = @EMAILC
                     WHERE 
                         ID = @ID";
 
@@ -64,10 +67,12 @@ namespace LocadoraVeiculo.Controladores.CondutorModule
                         CD.[CNH],
                         CD.[DATA_VALIDADE],
                         CD.[ID_CLIENTE],
+                        CD.[EMAILC],
                         CT.[NOME],
                         CT.[ENDERECO],
                         CT.[TELEFONE],
-                        CT.[CNPJ]
+                        CT.[CNPJ],
+                        CT.[EMAIL]
 	                FROM
                         TBCLIENTECPF AS CD LEFT JOIN
                         TBCLIENTECNPJ AS CT
@@ -87,10 +92,12 @@ namespace LocadoraVeiculo.Controladores.CondutorModule
                         CD.[CNH],
                         CD.[DATA_VALIDADE],
                         CD.[ID_CLIENTE],
+                        CD.[EMAILC],
                         CT.[NOME],
                         CT.[ENDERECO],
                         CT.[TELEFONE],
-                        CT.[CNPJ]
+                        CT.[CNPJ],
+                        CT.[EMAIL]
 	                FROM
                         TBCLIENTECPF AS CD LEFT JOIN
                         TBCLIENTECNPJ AS CT
@@ -110,10 +117,12 @@ namespace LocadoraVeiculo.Controladores.CondutorModule
                         CD.[CNH],
                         CD.[DATA_VALIDADE],
                         CD.[ID_CLIENTE],
+                        CD.[EMAILC],
                         CT.[NOME],
                         CT.[ENDERECO],
                         CT.[TELEFONE],
-                        CT.[CNPJ]
+                        CT.[CNPJ],
+                        CT.[EMAIL]
 	                FROM
                         TBCLIENTECPF AS CD LEFT JOIN
                         TBCLIENTECNPJ AS CT
@@ -212,33 +221,36 @@ namespace LocadoraVeiculo.Controladores.CondutorModule
             parametros.Add("CNH", condutor.Cnh);
             parametros.Add("DATA_VALIDADE", condutor.DataValidade);
             parametros.Add("ID_CLIENTE", condutor.Cliente?.Id);
+            parametros.Add("EMAILC", condutor.Email);
 
             return parametros;
         }
         private ClienteCPF ConverterEmCondutor(IDataReader reader)
         {
             int id = Convert.ToInt32(reader["ID"]);
-            string nome = Convert.ToString(reader["NOMEC"]);
-            string endereco = Convert.ToString(reader["ENDERECOC"]);
-            string telefone = Convert.ToString(reader["TELEFONEC"]);
+            string nomeC = Convert.ToString(reader["NOMEC"]);
+            string enderecoC = Convert.ToString(reader["ENDERECOC"]);
+            string telefoneC = Convert.ToString(reader["TELEFONEC"]);
             string cpf = Convert.ToString(reader["CPF"]);
             string rg = Convert.ToString(reader["RG"]);
             string cnh = Convert.ToString(reader["CNH"]);
             DateTime dataValidade = Convert.ToDateTime(reader["DATA_VALIDADE"]);
+            string emailC = Convert.ToString(reader["EMAILC"]);
 
-            var nomeC = Convert.ToString(reader["NOME"]);
-            var enderecoC = Convert.ToString(reader["ENDERECO"]);
-            var telefoneC = Convert.ToString(reader["TELEFONE"]);
+            var nome = Convert.ToString(reader["NOME"]);
+            var endereco = Convert.ToString(reader["ENDERECO"]);
+            var telefone = Convert.ToString(reader["TELEFONE"]);
             var cpf_cnpj = Convert.ToString(reader["CNPJ"]);
+            var email = Convert.ToString(reader["EMAIL"]);
 
             ClienteCNPJ cliente = null;
             if (reader["ID_CLIENTE"] != DBNull.Value)
             {
-                cliente = new ClienteCNPJ(nomeC, enderecoC, telefoneC, cpf_cnpj);
+                cliente = new ClienteCNPJ(nome, endereco, telefone, cpf_cnpj, email);
                 cliente.Id = Convert.ToInt32(reader["ID_CLIENTE"]);
             }
 
-            ClienteCPF condutor = new ClienteCPF(nome, telefone, endereco, cpf, rg, cnh, dataValidade, cliente);
+            ClienteCPF condutor = new ClienteCPF(nomeC, telefoneC, enderecoC, cpf, rg, cnh, dataValidade, emailC, cliente);
 
             condutor.Id = id;
 

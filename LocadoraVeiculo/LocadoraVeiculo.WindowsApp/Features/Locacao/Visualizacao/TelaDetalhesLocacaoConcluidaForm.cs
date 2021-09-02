@@ -61,7 +61,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.Locacao.Visualizacao
 
         private void PreencherListaTaxa()
         {
-            List<TaxaDaLocacao> lista = controladorTaxaDaLocacao.SelecionarTodasTaxas(locacao.Id);
+            List<TaxaDaLocacao> lista = controladorTaxaDaLocacao.SelecionarTaxasDeUmaLocacao(locacao.Id);
 
             if (lista != null)
                 foreach (var servico in lista)

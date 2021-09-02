@@ -1,5 +1,6 @@
 ﻿using LocadoraVeiculo.ClienteModule;
 using LocadoraVeiculo.DescontoModule;
+using LocadoraVeiculo.ServicoModule;
 using LocadoraVeiculo.Shared;
 using LocadoraVeiculo.VeiculoModule;
 using System;
@@ -11,7 +12,7 @@ namespace LocadoraVeiculo.LocacaoModule
     {
         public LocacaoVeiculo(Cliente cliente, Veiculo veiculo, Desconto desconto, ClienteCPF condutor, DateTime dataSaida,
                DateTime dataRetorno, string tipoLocacao, int tipoCliente, decimal? precoServicos, int dias,
-               string statusLocacao, decimal? precoCombustivel, decimal? precoPlano, decimal? precoTotal)
+               string statusLocacao, decimal? precoCombustivel, decimal? precoPlano, decimal? precoTotal, List<Servico> servicos)
         {
             Cliente = cliente;
             Veiculo = veiculo;
@@ -27,6 +28,7 @@ namespace LocadoraVeiculo.LocacaoModule
             PrecoCombustivel = precoCombustivel;
             PrecoPlano = precoPlano;
             PrecoTotal = precoTotal;
+            Servicos = servicos;
         }
         public Cliente Cliente { get; set; }
         public Veiculo Veiculo { get; set; }
@@ -42,6 +44,7 @@ namespace LocadoraVeiculo.LocacaoModule
         public decimal? PrecoCombustivel { get; set; }
         public decimal? PrecoPlano { get; set; }
         public decimal? PrecoTotal { get; set; }
+        public List<Servico> Servicos { get; set; }
 
         public bool Equals(LocacaoVeiculo other)
         {

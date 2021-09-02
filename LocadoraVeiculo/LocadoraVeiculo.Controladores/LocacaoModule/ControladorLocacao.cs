@@ -3,9 +3,11 @@ using LocadoraVeiculo.Controladores.ClienteModule;
 using LocadoraVeiculo.Controladores.CondutorModule;
 using LocadoraVeiculo.Controladores.DescontoModule;
 using LocadoraVeiculo.Controladores.Shared;
+using LocadoraVeiculo.Controladores.TaxaDaLocacaoModule;
 using LocadoraVeiculo.Controladores.VeiculoModule;
 using LocadoraVeiculo.DescontoModule;
 using LocadoraVeiculo.LocacaoModule;
+using LocadoraVeiculo.ServicoModule;
 using LocadoraVeiculo.VeiculoModule;
 using System;
 using System.Collections.Generic;
@@ -329,6 +331,7 @@ namespace LocadoraVeiculo.Controladores.LocacaoModule
             ControladorClienteCPF controladorCPF = new ControladorClienteCPF();
             ControladorClienteCNPJ controladorCNPJ = new ControladorClienteCNPJ();
             ControladorVeiculo controladorVeiculo = new ControladorVeiculo();
+            ControladorTaxaDaLocacao controladorTaxaDaLocacao = new ControladorTaxaDaLocacao();
 
             ClienteCPF condutor = controladorCPF.SelecionarPorId(idCondutor);
             Veiculo veiculo = controladorVeiculo.SelecionarPorId(idVeiculo);
@@ -340,10 +343,16 @@ namespace LocadoraVeiculo.Controladores.LocacaoModule
             else
                 clienteLocador = controladorCPF.SelecionarPorId(idClienteLocador);
 
+            var taxas = controladorTaxaDaLocacao.SelecionarTaxasDeUmaLocacao(id);
+
+            List<Servico> servicos = new List<Servico>();
+
+            foreach (var item in taxas)
+                servicos.Add(item.TaxaLocacao);
 
             LocacaoVeiculo locacao = new LocacaoVeiculo(clienteLocador, veiculo, desconto, condutor,
                                                     dataSaida, dataRetorno, plano, tipoCliente, precoServico,
-                                                    dias, status, precoGas, precoPlano, precoTotal);
+                                                    dias, status, precoGas, precoPlano, precoTotal, servicos);
 
             locacao.Id = id;
 
