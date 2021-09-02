@@ -2,7 +2,6 @@
 using iText.Kernel.Pdf;
 using iText.Layout;
 using iText.Layout.Element;
-using LocadoraVeiculo.Controladores.CondutorModule;
 using LocadoraVeiculo.Controladores.LocacaoModule;
 using LocadoraVeiculo.Controladores.TaxaDaLocacaoModule;
 using LocadoraVeiculo.Controladores.VeiculoModule;
@@ -11,7 +10,6 @@ using LocadoraVeiculo.TaxaDaLocacaoModule;
 using LocadoraVeiculo.WindowsApp.Features.Locacao.Devolucao;
 using LocadoraVeiculo.WindowsApp.Features.NotaFiscal;
 using LocadoraVeiculo.WindowsApp.Shared;
-using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
 
@@ -21,7 +19,6 @@ namespace LocadoraVeiculo.WindowsApp.Features.Locacao
     {
         private readonly ControladorLocacao controladorLocacao;
         private readonly ControladorVeiculo controladorVeiculo;
-        private readonly ControladorClienteCPF controladorClienteCPF;
         private readonly ControladorTaxaDaLocacao controladorTaxaDaLocacao;
         private readonly TabelaLocacaoControl tabelaLocacoes;
 
@@ -30,7 +27,6 @@ namespace LocadoraVeiculo.WindowsApp.Features.Locacao
             controladorLocacao = ctrlLocacao;
             controladorVeiculo = new ControladorVeiculo();
             controladorTaxaDaLocacao = new ControladorTaxaDaLocacao();
-            controladorClienteCPF = new ControladorClienteCPF();
             tabelaLocacoes = new TabelaLocacaoControl();
         }
 
@@ -209,49 +205,38 @@ namespace LocadoraVeiculo.WindowsApp.Features.Locacao
 
         private void MandarPDFPeloEmail(LocacaoVeiculo locacao)
         {
-            var tipoPlano = locacao.TipoLocacao;
-            var precoPlano = locacao.PrecoPlano;
-            var diaSaida = locacao.DataSaida;
-            var diaRetorno = locacao.DataRetorno;
-            var precoServicos = locacao.PrecoServicos;
-            var precoTotal = locacao.PrecoTotal;
-            var cliente = locacao.Cliente;
-            var condutor = locacao.Condutor;
-            var cupom = locacao.Desconto?.Nome;
-            var veiculo = locacao.Veiculo.nome;
-            var servicos = locacao.Servicos;
 
-            using (PdfWriter wPdf = new PdfWriter(@"..\..\..\recibo.pdf", new WriterProperties().SetPdfVersion(PdfVersion.PDF_2_0)))
+            using (PdfWriter wPdf = new PdfWriter($@"..\..\..\Recibos\recibo{locacao.Id}.pdf", new WriterProperties().SetPdfVersion(PdfVersion.PDF_2_0)))
             {
                 var pdfDocument = new PdfDocument(wPdf);
 
                 var document = new Document(pdfDocument, PageSize.A4);
                 document.Add(new Paragraph("Recibo Locação de Automóvel"));
                 document.Add(new Paragraph("\n\n"));
-                document.Add(new Paragraph("Cliente: " + cliente.ToString()));
-                document.Add(new Paragraph("Condutor: " + condutor.ToString()));
-                document.Add(new Paragraph("Veículo: " + veiculo.ToString()));
-                document.Add(new Paragraph("Data de Saída: " + diaSaida.ToString("d")));
-                document.Add(new Paragraph("Data de Retorno: " + diaRetorno.ToString("d")));
-                document.Add(new Paragraph("Plano Escolhido: " + tipoPlano));
-                document.Add(new Paragraph("Total Plano Escolhido: R$" + precoPlano));
+                document.Add(new Paragraph("Cliente: " + locacao.Cliente.ToString()));
+                document.Add(new Paragraph("Condutor: " + locacao.Condutor.ToString()));
+                document.Add(new Paragraph("Veículo: " + locacao.Veiculo.nome.ToString()));
+                document.Add(new Paragraph("Data de Saída: " + locacao.DataSaida.ToString("d")));
+                document.Add(new Paragraph("Data de Retorno: " + locacao.DataRetorno.ToString("d")));
+                document.Add(new Paragraph("Plano Escolhido: " + locacao.TipoLocacao));
+                document.Add(new Paragraph("Total Plano Escolhido: R$" + locacao.PrecoPlano));
 
-                if (servicos != null)
+                if (locacao.Servicos != null)
                 {
                     document.Add(new Paragraph("Serviço(s) Contratado(s): "));
-                    foreach (var servico in servicos)
-                        document.Add(new Paragraph("-" + servico.ToString()));
+                    foreach (var servico in locacao.Servicos)
+                        document.Add(new Paragraph("--" + servico.ToString()));
                 }
                 else
                     document.Add(new Paragraph("Serviço(s) Contratado(s): Nenhum"));
 
-                document.Add(new Paragraph("Total Servico(s) Escolhido(s): R$" + precoServicos));
+                document.Add(new Paragraph("Total Servico(s) Escolhido(s): R$" + locacao.PrecoServicos));
 
-                string cupomNome = cupom == null ? "Nenhum" : cupom;
+                string cupomNome = locacao.Desconto?.Nome == null ? "Nenhum" : locacao.Desconto?.Nome;
                 document.Add(new Paragraph("Cupom de Desconto: " + cupomNome));
 
                 document.Add(new Paragraph("\n\n"));
-                document.Add(new Paragraph("Total da Locação: R$" + precoTotal));
+                document.Add(new Paragraph("Total da Locação: R$" + locacao.PrecoTotal));
 
                 document.Close();
 
