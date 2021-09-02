@@ -1,10 +1,7 @@
-﻿using iText.Kernel.Geom;
-using iText.Kernel.Pdf;
-using iText.Layout;
-using iText.Layout.Element;
-using LocadoraVeiculo.Controladores.LocacaoModule;
+﻿using LocadoraVeiculo.Controladores.LocacaoModule;
 using LocadoraVeiculo.Controladores.TaxaDaLocacaoModule;
 using LocadoraVeiculo.Controladores.VeiculoModule;
+using LocadoraVeiculo.ExportacaoPDF;
 using LocadoraVeiculo.LocacaoModule;
 using LocadoraVeiculo.TaxaDaLocacaoModule;
 using LocadoraVeiculo.WindowsApp.Features.Locacao.Devolucao;
@@ -199,49 +196,10 @@ namespace LocadoraVeiculo.WindowsApp.Features.Locacao
 
                 TelaPrincipalForm.Instancia.AtualizarRodape($"Locação: [{tela.Locacao}] inserida com sucesso");
 
-                MandarPDFPeloEmail(tela.Locacao);
+                ExportaPdf.ExportarLocacaoEmPDF(tela.Locacao);
             }
         }
 
-        private void MandarPDFPeloEmail(LocacaoVeiculo locacao)
-        {
-            using (PdfWriter wPdf = new PdfWriter($@"..\..\..\Recibos\recibo{locacao.Id}.pdf", new WriterProperties().SetPdfVersion(PdfVersion.PDF_2_0)))
-            {
-                var pdfDocument = new PdfDocument(wPdf);
-
-                var document = new Document(pdfDocument, PageSize.A4);
-                document.Add(new Paragraph("Recibo Locação de Automóvel"));
-                document.Add(new Paragraph("\n\n"));
-                document.Add(new Paragraph("Cliente: " + locacao.Cliente.ToString()));
-                document.Add(new Paragraph("Condutor: " + locacao.Condutor.ToString()));
-                document.Add(new Paragraph("Veículo: " + locacao.Veiculo.nome.ToString()));
-                document.Add(new Paragraph("Data de Saída: " + locacao.DataSaida.ToString("d")));
-                document.Add(new Paragraph("Data de Retorno: " + locacao.DataRetorno.ToString("d")));
-                document.Add(new Paragraph("Plano Escolhido: " + locacao.TipoLocacao));
-                document.Add(new Paragraph("Total Plano Escolhido: R$" + locacao.PrecoPlano));
-
-                if (locacao.Servicos != null)
-                {
-                    document.Add(new Paragraph("Serviço(s) Contratado(s): "));
-                    foreach (var servico in locacao.Servicos)
-                        document.Add(new Paragraph("--" + servico.ToString()));
-                }
-                else
-                    document.Add(new Paragraph("Serviço(s) Contratado(s): Nenhum"));
-
-                document.Add(new Paragraph("Total Servico(s) Escolhido(s): R$" + locacao.PrecoServicos));
-
-                string cupomNome = locacao.Desconto?.Nome == null ? "Nenhum" : locacao.Desconto?.Nome;
-                document.Add(new Paragraph("Cupom de Desconto: " + cupomNome));
-
-                document.Add(new Paragraph("\n\n"));
-                document.Add(new Paragraph("Total da Locação: R$" + locacao.PrecoTotal));
-
-                document.Close();
-
-                pdfDocument.Close();
-            }
-        }
 
         public UserControl ObterTabela()
         {
