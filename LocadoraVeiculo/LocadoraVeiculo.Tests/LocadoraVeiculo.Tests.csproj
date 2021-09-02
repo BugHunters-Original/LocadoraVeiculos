@@ -52,33 +52,6 @@
     <Reference Include="FluentAssertions, Version=5.10.3.0, Culture=neutral, PublicKeyToken=33f2691a05b67b6a, processorArchitecture=MSIL">
       <HintPath>..\packages\FluentAssertions.5.10.3\lib\net47\FluentAssertions.dll</HintPath>
     </Reference>
-    <Reference Include="itext.barcodes, Version=7.1.16.0, Culture=neutral, PublicKeyToken=8354ae6d2174ddca, processorArchitecture=MSIL">
-      <HintPath>..\packages\itext7.7.1.16\lib\net45\itext.barcodes.dll</HintPath>
-    </Reference>
-    <Reference Include="itext.forms, Version=7.1.16.0, Culture=neutral, PublicKeyToken=8354ae6d2174ddca, processorArchitecture=MSIL">
-      <HintPath>..\packages\itext7.7.1.16\lib\net45\itext.forms.dll</HintPath>
-    </Reference>
-    <Reference Include="itext.io, Version=7.1.16.0, Culture=neutral, PublicKeyToken=8354ae6d2174ddca, processorArchitecture=MSIL">
-      <HintPath>..\packages\itext7.7.1.16\lib\net45\itext.io.dll</HintPath>
-    </Reference>
-    <Reference Include="itext.kernel, Version=7.1.16.0, Culture=neutral, PublicKeyToken=8354ae6d2174ddca, processorArchitecture=MSIL">
-      <HintPath>..\packages\itext7.7.1.16\lib\net45\itext.kernel.dll</HintPath>
-    </Reference>
-    <Reference Include="itext.layout, Version=7.1.16.0, Culture=neutral, PublicKeyToken=8354ae6d2174ddca, processorArchitecture=MSIL">
-      <HintPath>..\packages\itext7.7.1.16\lib\net45\itext.layout.dll</HintPath>
-    </Reference>
-    <Reference Include="itext.pdfa, Version=7.1.16.0, Culture=neutral, PublicKeyToken=8354ae6d2174ddca, processorArchitecture=MSIL">
-      <HintPath>..\packages\itext7.7.1.16\lib\net45\itext.pdfa.dll</HintPath>
-    </Reference>
-    <Reference Include="itext.sign, Version=7.1.16.0, Culture=neutral, PublicKeyToken=8354ae6d2174ddca, processorArchitecture=MSIL">
-      <HintPath>..\packages\itext7.7.1.16\lib\net45\itext.sign.dll</HintPath>
-    </Reference>
-    <Reference Include="itext.styledxmlparser, Version=7.1.16.0, Culture=neutral, PublicKeyToken=8354ae6d2174ddca, processorArchitecture=MSIL">
-      <HintPath>..\packages\itext7.7.1.16\lib\net45\itext.styledxmlparser.dll</HintPath>
-    </Reference>
-    <Reference Include="itext.svg, Version=7.1.16.0, Culture=neutral, PublicKeyToken=8354ae6d2174ddca, processorArchitecture=MSIL">
-      <HintPath>..\packages\itext7.7.1.16\lib\net45\itext.svg.dll</HintPath>
-    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="Microsoft.VisualStudio.TestPlatform.TestFramework, Version=14.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\packages\MSTest.TestFramework.2.1.2\lib\net45\Microsoft.VisualStudio.TestPlatform.TestFramework.dll</HintPath>
