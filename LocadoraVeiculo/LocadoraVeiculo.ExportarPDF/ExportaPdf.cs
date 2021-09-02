@@ -4,6 +4,7 @@ using iText.Layout;
 using iText.Layout.Element;
 using iText.Layout.Properties;
 using LocadoraVeiculo.LocacaoModule;
+using System.Net.Mail;
 
 namespace LocadoraVeiculo.ExportacaoPDF
 {
@@ -47,6 +48,39 @@ namespace LocadoraVeiculo.ExportacaoPDF
 
                 pdfDocument.Close();
             }
+
+            EmailEnviar(locacao);
+        }
+
+        private static void EmailEnviar(LocacaoVeiculo locacao)
+        {
+            using (SmtpClient smtp = new SmtpClient())
+            {
+                using (MailMessage email = new MailMessage())
+                {
+                    //SERVIDOR
+                    smtp.Host = "smtp.gmail.com";
+                    smtp.UseDefaultCredentials = false;
+                    smtp.Credentials = new System.Net.NetworkCredential("bughuntersoriginal@gmail.com", "Bughunters123");
+                    smtp.Port = 587;
+                    smtp.EnableSsl = true;
+
+                    //EMAIL
+                    email.From = new MailAddress("bughuntersoriginal@gmail.com");
+                    email.To.Add(locacao.Cliente.Email);
+
+                    email.Subject = "BeeCar";
+                    email.IsBodyHtml = false;
+                    email.Body = "Obrigado por utilizar nossos serviços, volte sempre!";
+
+
+                    email.Attachments.Add(new Attachment($@"..\..\..\Recibos\recibo{locacao.Id}.pdf"));
+
+                    //ENVIAR
+                    smtp.Send(email);
+                }
+            }
+
         }
     }
 }
