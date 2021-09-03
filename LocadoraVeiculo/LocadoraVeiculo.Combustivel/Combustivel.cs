@@ -1,4 +1,5 @@
-﻿using System;
+﻿using LocadoraVeiculo.AppConfigGeral;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace LocadoraVeiculo.Combustivel
 {
-    public static class Config
+    public static class Combustivel
     {
         private static readonly Dictionary<string, string> camposIniciais = new Dictionary<string, string>()
             {
@@ -17,7 +18,7 @@ namespace LocadoraVeiculo.Combustivel
 
         private static AppConfig appConfigControler;
 
-        static Config()
+        static Combustivel()
         {
             appConfigControler = new AppConfig(camposIniciais);
         }

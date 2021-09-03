@@ -40,9 +40,9 @@ namespace LocadoraVeiculo.WindowsApp.Features.Combustivel
         }
         public void CarregarConfiguracoes()
         {
-            txtGasolina.Text = Config.PrecoGasolina.ToString();
-            txtAlcool.Text = Config.PrecoAlcool.ToString();
-            txtDiesel.Text = Config.PrecoDiesel.ToString();
+            txtGasolina.Text = LocadoraVeiculo.Combustivel.Combustivel.PrecoGasolina.ToString();
+            txtAlcool.Text = LocadoraVeiculo.Combustivel.Combustivel.PrecoAlcool.ToString();
+            txtDiesel.Text = LocadoraVeiculo.Combustivel.Combustivel.PrecoDiesel.ToString();
         }
 
         private void btnGravar_Click(object sender, EventArgs e)
@@ -61,9 +61,9 @@ namespace LocadoraVeiculo.WindowsApp.Features.Combustivel
 
                 if (resultadoValidacao == "ESTA_VALIDO")
                 {
-                    Config.PrecoGasolina = precoGasolina;
-                    Config.PrecoDiesel = precoDiesel;
-                    Config.PrecoAlcool = precoAlcool;
+                    LocadoraVeiculo.Combustivel.Combustivel.PrecoGasolina = precoGasolina;
+                    LocadoraVeiculo.Combustivel.Combustivel.PrecoDiesel = precoDiesel;
+                    LocadoraVeiculo.Combustivel.Combustivel.PrecoAlcool = precoAlcool;
 
                     TelaPrincipalForm.Instancia.AtualizarRodape("Configurações salvadas com sucesso!");
                 }

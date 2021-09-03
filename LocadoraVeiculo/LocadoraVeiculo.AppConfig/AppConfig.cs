@@ -5,11 +5,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace LocadoraVeiculo.Combustivel
+namespace LocadoraVeiculo.AppConfigGeral
 {
     public class AppConfig
     {
-        internal AppConfig(Dictionary<string, string> camposIniciais)
+        public AppConfig(Dictionary<string, string> camposIniciais)
         {
             AdicionarCamposCasoNaoExistente(camposIniciais);
         }
