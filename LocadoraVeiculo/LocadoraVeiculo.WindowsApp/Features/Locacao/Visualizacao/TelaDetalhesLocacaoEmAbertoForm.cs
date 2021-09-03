@@ -116,7 +116,13 @@ namespace LocadoraVeiculo.WindowsApp.Features.Locacao.Visualizacao
 
         private void btnReenviar_Click(object sender, EventArgs e)
         {
-            Task.Run(() => ExportaPdf.EmailEnviar(locacao));
+            Task.Run(() => ExportarRecibo());
+        }
+
+        private void ExportarRecibo()
+        {
+            string mensagem = ExportaPdf.EmailEnviar(locacao) ? $"Recibo enviado com sucesso para o e-mail [{locacao.Cliente.Email}]!" : $"Erro ao enviar recibo para o e-mail [{locacao.Cliente.Email}]!";
+            TelaPrincipalForm.Instancia.AtualizarRodape(mensagem);
         }
     }
 }

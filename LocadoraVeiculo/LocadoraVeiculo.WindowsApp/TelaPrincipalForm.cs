@@ -250,6 +250,7 @@ namespace LocadoraVeiculo.WindowsApp
             preçosCombustívelToolStripMenuItem.BackColor = ControladorDarkMode.corDark;
             descontosToolStripMenuItem.BackColor = ControladorDarkMode.corDark;
             parceirosToolStripMenuItem.BackColor = ControladorDarkMode.corDark;
+            emailLocadoraToolStripMenuItem.BackColor = ControladorDarkMode.corDark;
 
             menuItemCliente.ForeColor = ControladorDarkMode.corFonte;
             menuItemFuncionario.ForeColor = ControladorDarkMode.corFonte;
@@ -260,6 +261,7 @@ namespace LocadoraVeiculo.WindowsApp
             preçosCombustívelToolStripMenuItem.ForeColor = ControladorDarkMode.corFonte;
             descontosToolStripMenuItem.ForeColor = ControladorDarkMode.corFonte;
             parceirosToolStripMenuItem.ForeColor = ControladorDarkMode.corFonte;
+            emailLocadoraToolStripMenuItem.ForeColor = ControladorDarkMode.corFonte;
 
             statusStripFooter.BackColor = ControladorDarkMode.corPanel;
         }

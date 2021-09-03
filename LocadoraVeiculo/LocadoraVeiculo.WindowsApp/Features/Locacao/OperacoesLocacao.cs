@@ -8,6 +8,7 @@ using LocadoraVeiculo.WindowsApp.Features.Locacao.Devolucao;
 using LocadoraVeiculo.WindowsApp.Features.NotaFiscal;
 using LocadoraVeiculo.WindowsApp.Shared;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace LocadoraVeiculo.WindowsApp.Features.Locacao
@@ -196,10 +197,16 @@ namespace LocadoraVeiculo.WindowsApp.Features.Locacao
 
                 TelaPrincipalForm.Instancia.AtualizarRodape($"Locação: [{tela.Locacao}] inserida com sucesso");
 
-                ExportaPdf.ExportarLocacaoEmPDF(tela.Locacao);
+                Task.Run(() => ExportarRecibo(tela));
+
             }
         }
 
+        private void ExportarRecibo(TelaLocacaoForm tela)
+        {
+            string mensagem = ExportaPdf.ExportarLocacaoEmPDF(tela.Locacao) ? $"Recibo enviado com sucesso para o e-mail [{tela.Locacao.Cliente.Email}]!" : $"Erro ao enviar recibo para o e-mail [{tela.Locacao.Cliente.Email}]!";
+            TelaPrincipalForm.Instancia.AtualizarRodape(mensagem);
+        }
 
         public UserControl ObterTabela()
         {

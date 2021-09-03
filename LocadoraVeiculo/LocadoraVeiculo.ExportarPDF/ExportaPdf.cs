@@ -13,7 +13,7 @@ namespace LocadoraVeiculo.ExportacaoPDF
 {
     public static class ExportaPdf
     {
-        public static void ExportarLocacaoEmPDF(LocacaoVeiculo locacao)
+        public static bool ExportarLocacaoEmPDF(LocacaoVeiculo locacao)
         {
             using (PdfWriter wPdf = new PdfWriter($@"..\..\..\Recibos\recibo{locacao.Id}.pdf", new WriterProperties().SetPdfVersion(PdfVersion.PDF_2_0)))
             {
@@ -52,9 +52,9 @@ namespace LocadoraVeiculo.ExportacaoPDF
                 pdfDocument.Close();
             }
 
-            Task.Run(() => EmailEnviar(locacao));
+            return EmailEnviar(locacao);
         }
-        public static void EmailEnviar(LocacaoVeiculo locacao)
+        public static bool EmailEnviar(LocacaoVeiculo locacao)
         {
             try
             {
@@ -82,15 +82,15 @@ namespace LocadoraVeiculo.ExportacaoPDF
 
                         //ENVIAR
                         smtp.Send(email);
-
+                        return true;
                     }
                 }
             }
             catch (System.Exception ex)
             {
-                MessageBox.Show("Erro: " + ex.Message);
+                MessageBox.Show("Erro ao enviar o E-mail: " + ex.Message);
+                return false;
             }
-
         }
     }
 }
