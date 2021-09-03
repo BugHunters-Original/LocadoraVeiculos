@@ -198,6 +198,12 @@
     <Compile Include="Features\DescontoFeature\TelaDescontoForm.Designer.cs">
       <DependentUpon>TelaDescontoForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Features\EmailLocadora\TelaEmail.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Features\EmailLocadora\TelaEmail.Designer.cs">
+      <DependentUpon>TelaEmail.cs</DependentUpon>
+    </Compile>
     <Compile Include="Features\Funcionarios\ConfiguracaoFuncionarioToolBox.cs" />
     <Compile Include="Features\Funcionarios\OperacoesFuncionario.cs" />
     <Compile Include="Features\Funcionarios\TabelaFuncionarioControl.cs">
@@ -365,6 +371,9 @@
     <EmbeddedResource Include="Features\DescontoFeature\TelaDescontoForm.resx">
       <DependentUpon>TelaDescontoForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Features\EmailLocadora\TelaEmail.resx">
+      <DependentUpon>TelaEmail.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Features\Funcionarios\TabelaFuncionarioControl.resx">
       <DependentUpon>TabelaFuncionarioControl.cs</DependentUpon>
     </EmbeddedResource>
@@ -477,6 +486,10 @@
     <ProjectReference Include="..\LocadoraVeiculo.Dominio\LocadoraVeiculo.Dominio.csproj">
       <Project>{fd32af45-ef78-416a-b054-b4189d0168b7}</Project>
       <Name>LocadoraVeiculo.Dominio</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\LocadoraVeiculo.EmailLocadora\LocadoraVeiculo.EmailLocadora.csproj">
+      <Project>{74472EC6-68DC-4B26-BE14-2425BC684B3C}</Project>
+      <Name>LocadoraVeiculo.EmailLocadora</Name>
     </ProjectReference>
     <ProjectReference Include="..\LocadoraVeiculo.ExportarPDF\LocadoraVeiculo.ExportacaoPDF.csproj">
       <Project>{053e6ef7-a237-407e-8f08-c7f0e7113f23}</Project>

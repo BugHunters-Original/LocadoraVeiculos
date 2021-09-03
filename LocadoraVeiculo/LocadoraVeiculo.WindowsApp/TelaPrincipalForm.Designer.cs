@@ -62,6 +62,7 @@ namespace LocadoraVeiculo.WindowsApp
             this.btnMinimize = new System.Windows.Forms.Button();
             this.btnMaximize = new System.Windows.Forms.Button();
             this.btnClose = new System.Windows.Forms.Button();
+            this.emailLocadoraToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolboxAcoes.SuspendLayout();
             this.menuStrip.SuspendLayout();
             this.statusStripFooter.SuspendLayout();
@@ -291,7 +292,8 @@ namespace LocadoraVeiculo.WindowsApp
             // configuraçõesToolStripMenuItem
             // 
             this.configuraçõesToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.preçosCombustívelToolStripMenuItem});
+            this.preçosCombustívelToolStripMenuItem,
+            this.emailLocadoraToolStripMenuItem});
             this.configuraçõesToolStripMenuItem.Font = new System.Drawing.Font("Lucida Sans Unicode", 9F);
             this.configuraçõesToolStripMenuItem.Name = "configuraçõesToolStripMenuItem";
             this.configuraçõesToolStripMenuItem.Padding = new System.Windows.Forms.Padding(5, 0, 15, 0);
@@ -405,6 +407,14 @@ namespace LocadoraVeiculo.WindowsApp
             this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
             this.btnClose.MouseHover += new System.EventHandler(this.btnClose_MouseHover);
             // 
+            // emailLocadoraToolStripMenuItem
+            // 
+            this.emailLocadoraToolStripMenuItem.Name = "emailLocadoraToolStripMenuItem";
+            this.emailLocadoraToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F10;
+            this.emailLocadoraToolStripMenuItem.Size = new System.Drawing.Size(204, 22);
+            this.emailLocadoraToolStripMenuItem.Text = "Email Locadora";
+            this.emailLocadoraToolStripMenuItem.Click += new System.EventHandler(this.emailLocadoraToolStripMenuItem_Click);
+            // 
             // TelaPrincipalForm
             // 
             this.AccessibleDescription = "Engloba todas as funcionalidades do programa";
@@ -471,6 +481,7 @@ namespace LocadoraVeiculo.WindowsApp
         private System.Windows.Forms.Button btnLogOut;
         private System.Windows.Forms.ToolStripMenuItem descontosToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem parceirosToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem emailLocadoraToolStripMenuItem;
     }
 }
 
