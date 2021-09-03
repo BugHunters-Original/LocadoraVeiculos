@@ -65,6 +65,7 @@ namespace LocadoraVeiculo.WindowsApp
             this.txtPesquisar = new System.Windows.Forms.TextBox();
             this.btnPesquisa = new System.Windows.Forms.Button();
             this.cbCategorias = new System.Windows.Forms.ComboBox();
+            this.emailLocadoraToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolboxAcoes.SuspendLayout();
             this.menuStrip.SuspendLayout();
             this.statusStripFooter.SuspendLayout();
@@ -294,7 +295,8 @@ namespace LocadoraVeiculo.WindowsApp
             // configuraçõesToolStripMenuItem
             // 
             this.configuraçõesToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.preçosCombustívelToolStripMenuItem});
+            this.preçosCombustívelToolStripMenuItem,
+            this.emailLocadoraToolStripMenuItem});
             this.configuraçõesToolStripMenuItem.Font = new System.Drawing.Font("Lucida Sans Unicode", 9F);
             this.configuraçõesToolStripMenuItem.Name = "configuraçõesToolStripMenuItem";
             this.configuraçõesToolStripMenuItem.Padding = new System.Windows.Forms.Padding(5, 0, 15, 0);
@@ -433,6 +435,14 @@ namespace LocadoraVeiculo.WindowsApp
             this.cbCategorias.Size = new System.Drawing.Size(100, 24);
             this.cbCategorias.TabIndex = 16;
             // 
+            // emailLocadoraToolStripMenuItem
+            // 
+            this.emailLocadoraToolStripMenuItem.Name = "emailLocadoraToolStripMenuItem";
+            this.emailLocadoraToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F10;
+            this.emailLocadoraToolStripMenuItem.Size = new System.Drawing.Size(204, 22);
+            this.emailLocadoraToolStripMenuItem.Text = "Email Locadora";
+            this.emailLocadoraToolStripMenuItem.Click += new System.EventHandler(this.emailLocadoraToolStripMenuItem_Click);
+            // 
             // TelaPrincipalForm
             // 
             this.AccessibleDescription = "Engloba todas as funcionalidades do programa";
@@ -505,6 +515,7 @@ namespace LocadoraVeiculo.WindowsApp
         public System.Windows.Forms.Button btnPesquisa;
         public System.Windows.Forms.TextBox txtPesquisar;
         public System.Windows.Forms.ComboBox cbCategorias;
+        private System.Windows.Forms.ToolStripMenuItem emailLocadoraToolStripMenuItem;
     }
 }
 

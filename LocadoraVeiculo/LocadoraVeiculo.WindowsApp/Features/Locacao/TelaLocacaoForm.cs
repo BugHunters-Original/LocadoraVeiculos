@@ -17,6 +17,7 @@ using LocadoraVeiculo.Controladores.TaxaDaLocacaoModule;
 using LocadoraVeiculo.DescontoModule;
 using LocadoraVeiculo.Controladores.DescontoModule;
 using System.Drawing;
+using LocadoraVeiculo.EmailLocadora;
 
 namespace LocadoraVeiculo.WindowsApp.Features.Locacao
 {

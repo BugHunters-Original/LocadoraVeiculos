@@ -1,4 +1,5 @@
 ﻿using LocadoraVeiculo.Controladores.TaxaDaLocacaoModule;
+using LocadoraVeiculo.ExportacaoPDF;
 using LocadoraVeiculo.LocacaoModule;
 using LocadoraVeiculo.TaxaDaLocacaoModule;
 using LocadoraVeiculo.WindowsApp.Features.DarkMode;
@@ -97,6 +98,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.Locacao.Visualizacao
             dtRetorno.BackColor = ControladorDarkMode.corFundoTxBox;
             cbTipoLocacao.BackColor = ControladorDarkMode.corFundoTxBox;
             txtCupom.BackColor = ControladorDarkMode.corFundoTxBox;
+            btnReenviar.BackColor = ControladorDarkMode.corFundoTxBox;
 
             txtID.ForeColor = ControladorDarkMode.corFonte;
             cbCliente.ForeColor = ControladorDarkMode.corFonte;
@@ -110,6 +112,11 @@ namespace LocadoraVeiculo.WindowsApp.Features.Locacao.Visualizacao
             btnOK.BackColor = ControladorDarkMode.corFundoTxBox;
             listServicos.BackColor = ControladorDarkMode.corPanel;
             listServicos.ForeColor = ControladorDarkMode.corFonte;
+        }
+
+        private void btnReenviar_Click(object sender, EventArgs e)
+        {
+            Task.Run(() => ExportaPdf.EmailEnviar(locacao));
         }
     }
 }

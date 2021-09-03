@@ -24,6 +24,7 @@ using LocadoraVeiculo.WindowsApp.Features.DescontoFeature;
 using LocadoraVeiculo.Controladores.DescontoModule;
 using LocadoraVeiculo.WindowsApp.Features.Parceiro;
 using LocadoraVeiculo.Controladores.ParceiroModule;
+using LocadoraVeiculo.WindowsApp.Features.EmailLocadora;
 using System.Collections.Generic;
 
 namespace LocadoraVeiculo.WindowsApp
@@ -158,6 +159,11 @@ namespace LocadoraVeiculo.WindowsApp
         {
             TelaCombustivelForm telaCombustivelForm = new TelaCombustivelForm();
             telaCombustivelForm.ShowDialog();
+        }
+        private void emailLocadoraToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            TelaEmail telaEmail = new TelaEmail();
+            telaEmail.ShowDialog();
         }
 
         private void parceirosToolStripMenuItem_Click(object sender, EventArgs e)

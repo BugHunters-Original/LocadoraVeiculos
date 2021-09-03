@@ -3,9 +3,11 @@ using iText.Kernel.Pdf;
 using iText.Layout;
 using iText.Layout.Element;
 using iText.Layout.Properties;
+using LocadoraVeiculo.EmailLocadora;
 using LocadoraVeiculo.LocacaoModule;
 using System.Net.Mail;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace LocadoraVeiculo.ExportacaoPDF
 {
@@ -52,36 +54,43 @@ namespace LocadoraVeiculo.ExportacaoPDF
 
             Task.Run(() => EmailEnviar(locacao));
         }
-        private static void EmailEnviar(LocacaoVeiculo locacao)
+        public static void EmailEnviar(LocacaoVeiculo locacao)
         {
-
-            using (SmtpClient smtp = new SmtpClient())
+            try
             {
-                using (MailMessage email = new MailMessage())
+                using (SmtpClient smtp = new SmtpClient())
                 {
-                    //SERVIDOR
-                    smtp.Host = "smtp.gmail.com";
-                    smtp.UseDefaultCredentials = false;
-                    smtp.Credentials = new System.Net.NetworkCredential("bughuntersoriginal@gmail.com", "Bughunters123");
-                    smtp.Port = 587;
-                    smtp.EnableSsl = true;
+                    using (MailMessage email = new MailMessage())
+                    {
+                        //SERVIDOR
+                        smtp.Host = "smtp.gmail.com";
+                        smtp.UseDefaultCredentials = false;
+                        smtp.Credentials = new System.Net.NetworkCredential(Email.EmailLocadora, Email.SenhaLocadora);
+                        smtp.Port = 587;
+                        smtp.EnableSsl = true;
 
-                    //EMAIL
-                    email.From = new MailAddress("bughuntersoriginal@gmail.com");
-                    email.To.Add(locacao.Cliente.Email);
+                        //EMAIL
+                        email.From = new MailAddress(Email.EmailLocadora);
+                        email.To.Add(locacao.Cliente.Email);
 
-                    email.Subject = "BeeCar";
-                    email.IsBodyHtml = false;
-                    email.Body = "Obrigado por utilizar nossos serviços, volte sempre!";
+                        email.Subject = "BeeCar";
+                        email.IsBodyHtml = false;
+                        email.Body = "Obrigado por utilizar nossos serviços, volte sempre!";
 
 
-                    email.Attachments.Add(new Attachment($@"..\..\..\Recibos\recibo{locacao.Id}.pdf"));
+                        email.Attachments.Add(new Attachment($@"..\..\..\Recibos\recibo{locacao.Id}.pdf"));
 
-                    //ENVIAR
-                    smtp.Send(email);
+                        //ENVIAR
+                        smtp.Send(email);
 
+                    }
                 }
             }
+            catch (System.Exception ex)
+            {
+                MessageBox.Show("Erro: " + ex.Message);
+            }
+
         }
     }
 }
