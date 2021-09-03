@@ -101,7 +101,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.Clientes
             this.cbEmpresas.Location = new System.Drawing.Point(171, 400);
             this.cbEmpresas.Name = "cbEmpresas";
             this.cbEmpresas.Size = new System.Drawing.Size(242, 23);
-            this.cbEmpresas.TabIndex = 10;
+            this.cbEmpresas.TabIndex = 11;
             // 
             // label1
             // 
@@ -211,7 +211,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.Clientes
             this.btnCancelar.Location = new System.Drawing.Point(326, 435);
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Size = new System.Drawing.Size(87, 27);
-            this.btnCancelar.TabIndex = 12;
+            this.btnCancelar.TabIndex = 13;
             this.btnCancelar.Text = "Cancelar";
             this.btnCancelar.UseVisualStyleBackColor = true;
             // 
@@ -222,7 +222,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.Clientes
             this.btnGravar.Location = new System.Drawing.Point(232, 435);
             this.btnGravar.Name = "btnGravar";
             this.btnGravar.Size = new System.Drawing.Size(87, 27);
-            this.btnGravar.TabIndex = 11;
+            this.btnGravar.TabIndex = 12;
             this.btnGravar.Text = "Gravar";
             this.btnGravar.UseVisualStyleBackColor = true;
             this.btnGravar.Click += new System.EventHandler(this.btnGravar_Click);
@@ -342,7 +342,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.Clientes
             this.txtEmail.Location = new System.Drawing.Point(171, 370);
             this.txtEmail.Name = "txtEmail";
             this.txtEmail.Size = new System.Drawing.Size(242, 24);
-            this.txtEmail.TabIndex = 26;
+            this.txtEmail.TabIndex = 10;
             // 
             // TelaClienteForm
             // 
