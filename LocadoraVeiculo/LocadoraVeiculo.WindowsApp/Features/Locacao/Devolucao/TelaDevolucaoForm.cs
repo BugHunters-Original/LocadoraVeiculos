@@ -68,9 +68,9 @@ namespace LocadoraVeiculo.WindowsApp.Features.Locacao.Devolucao
         {
             switch (locacao.Veiculo.tipo_Combustivel)
             {
-                case "Gasolina": combustivelGasto *= Convert.ToDecimal(Config.PrecoGasolina); break;
-                case "Álcool": combustivelGasto *= Convert.ToDecimal(Config.PrecoAlcool); break;
-                case "Diesel": combustivelGasto *= Convert.ToDecimal(Config.PrecoDiesel); break;
+                case "Gasolina": combustivelGasto *= Convert.ToDecimal(LocadoraVeiculo.Combustivel.Combustivel.PrecoGasolina); break;
+                case "Álcool": combustivelGasto *= Convert.ToDecimal(LocadoraVeiculo.Combustivel.Combustivel.PrecoAlcool); break;
+                case "Diesel": combustivelGasto *= Convert.ToDecimal(LocadoraVeiculo.Combustivel.Combustivel.PrecoDiesel); break;
                 default: break;
             }
 

@@ -19,7 +19,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.EmailLocadora
         {
             InitializeComponent();
             CarregarConfiguracoes();
-            SetColor(); 
+            SetColor();
         }
 
         private void SetColor()
@@ -73,11 +73,6 @@ namespace LocadoraVeiculo.WindowsApp.Features.EmailLocadora
 
         private string ValidarEmailLocadora(string email)
         {
-            //if (string.IsNullOrWhiteSpace(txtEmail.Text))
-            //    return "O campo Email está em branco";
-
-            if (string.IsNullOrEmpty(txtSenha.Text))
-                return "O campo Senha está inválido";
             try
             {
                 MailAddress m = new MailAddress(email);
@@ -86,6 +81,14 @@ namespace LocadoraVeiculo.WindowsApp.Features.EmailLocadora
             {
                 return "O campo Email está inválido";
             }
+
+            if (string.IsNullOrEmpty(txtSenha.Text))
+                return "O campo Senha está inválido";
+
+            if (!email.Contains("@gmail.com"))
+                return "Apenas Gmail é aceitado";
+
+
             return "ESTA_VALIDO";
         }
     }

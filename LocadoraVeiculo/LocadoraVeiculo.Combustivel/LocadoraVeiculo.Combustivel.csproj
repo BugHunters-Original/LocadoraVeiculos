@@ -51,12 +51,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AppConfig.cs" />
-    <Compile Include="Config.cs" />
+    <Compile Include="Combustivel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\LocadoraVeiculo.AppConfig\LocadoraVeiculo.AppConfig.csproj">
+      <Project>{300F3641-86AF-417A-9620-9DB55949BF9C}</Project>
+      <Name>LocadoraVeiculo.AppConfig</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
