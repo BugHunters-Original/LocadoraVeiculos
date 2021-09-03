@@ -131,5 +131,10 @@ namespace LocadoraVeiculo.Controladores.ParceiroModule
 
             return parceiro;
         }
+
+        public List<ParceiroDesconto> SelecionarPesquisa(string combobox, string pesquisa)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

@@ -156,5 +156,10 @@ namespace LocadoraVeiculo.Controladores.ClienteModule
 
             return cliente;
         }
+
+        public List<ClienteCNPJ> SelecionarPesquisa(string combobox, string pesquisa)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

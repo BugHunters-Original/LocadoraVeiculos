@@ -173,6 +173,12 @@ namespace LocadoraVeiculo.Controladores.DescontoModule
         {
             return Db.Exists(sqlExisteDesconto, AdicionarParametro("ID", id));
         }
+
+        public List<Desconto> SelecionarPesquisa(string combobox, string pesquisa)
+        {
+            throw new NotImplementedException();
+        }
+
         public override Desconto SelecionarPorId(int id)
         {
             return Db.Get(sqlSelecionarDescontoPorId, ConverterEmDesconto, AdicionarParametro("ID", id));

@@ -130,12 +130,19 @@ namespace LocadoraVeiculo.WindowsApp.Features.Veiculos
 
         public void PesquisarRegistro(string combobox, string pesquisa)
         {
-            throw new NotImplementedException();
+            List<VeiculoModule.Veiculo> veiculos = controladorVeiculo.SelecionarPesquisa(combobox, pesquisa);
+
+            tabelaVeiculos.AtualizarRegistros(veiculos);
         }
 
         public List<string> PreencheComboBoxDePesquisa()
         {
-            throw new NotImplementedException();
+            List<string> preencheLista = new List<string>();
+            preencheLista.Add("NOME");
+            preencheLista.Add("MARCA");
+            preencheLista.Add("TIPO_COMBUSTIVEL");
+
+            return preencheLista;
         }
     }
 }

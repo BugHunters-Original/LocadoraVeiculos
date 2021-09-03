@@ -195,6 +195,11 @@ namespace LocadoraVeiculo.Controladores.CondutorModule
             return resultadoValidacao;
         }
 
+        public List<ClienteCPF> SelecionarPesquisa(string combobox, string pesquisa)
+        {
+            throw new NotImplementedException();
+        }
+
         public override ClienteCPF SelecionarPorId(int id)
         {
             return Db.Get(sqlSelecionarCondutorPorId, ConverterEmCondutor, AdicionarParametro("ID", id));

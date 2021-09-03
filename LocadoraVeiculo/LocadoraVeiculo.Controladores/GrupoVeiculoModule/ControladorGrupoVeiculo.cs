@@ -124,6 +124,11 @@ namespace LocadoraVeiculo.Controladores.GrupoVeiculoModule
             return true;
         }
 
+        public List<GrupoVeiculo> SelecionarPesquisa(string combobox, string pesquisa)
+        {
+            throw new NotImplementedException();
+        }
+
         public override bool Existe(int id)
         {
             return Db.Exists(sqlExisteTipoGrupoVeiculo, AdicionarParametro("ID", id));

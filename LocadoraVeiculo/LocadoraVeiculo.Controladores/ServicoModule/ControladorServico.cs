@@ -129,6 +129,12 @@ namespace LocadoraVeiculo.Controladores.ServicoModule
 
             return parametros;
         }
+
+        public List<Servico> SelecionarPesquisa(string combobox, string pesquisa)
+        {
+            throw new NotImplementedException();
+        }
+
         private Servico ConverterEmServico(IDataReader reader)
         {
             int id = Convert.ToInt32(reader["ID"]);

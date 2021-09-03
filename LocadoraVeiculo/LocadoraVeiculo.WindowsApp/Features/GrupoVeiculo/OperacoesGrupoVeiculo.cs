@@ -115,12 +115,17 @@ namespace LocadoraVeiculo.WindowsApp.Features.GrupoVeiculo
 
         public void PesquisarRegistro(string combobox, string pesquisa)
         {
-            throw new NotImplementedException();
+            List<GrupoVeiculoModule.GrupoVeiculo> grupoVeiculos = controlador.SelecionarPesquisa(combobox, pesquisa);
+
+            tabelaGrupoVeiculo.AtualizarRegistros(grupoVeiculos);
         }
 
         public List<string> PreencheComboBoxDePesquisa()
         {
-            throw new NotImplementedException();
+            List<string> preencheLista = new List<string>();
+            preencheLista.Add("NOMETIPO");
+
+            return preencheLista;
         }
     }
 }

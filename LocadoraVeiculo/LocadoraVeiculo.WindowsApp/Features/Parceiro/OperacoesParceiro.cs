@@ -117,12 +117,17 @@ namespace LocadoraVeiculo.WindowsApp.Features.Parceiro
 
         public void PesquisarRegistro(string combobox, string pesquisa)
         {
-            throw new NotImplementedException();
+            List<ParceiroDesconto> parceiros = controlador.SelecionarPesquisa(combobox, pesquisa);
+
+            tabelaParceiro.AtualizarRegistros(parceiros);
         }
 
         public List<string> PreencheComboBoxDePesquisa()
         {
-            throw new NotImplementedException();
+            List<string> preencheLista = new List<string>();
+            preencheLista.Add("NOME_PARCEIRO");
+
+            return preencheLista;
         }
     }
 }

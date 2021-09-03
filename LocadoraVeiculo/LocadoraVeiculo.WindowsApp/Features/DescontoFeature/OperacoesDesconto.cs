@@ -147,12 +147,19 @@ namespace LocadoraVeiculo.WindowsApp.Features.DescontoFeature
 
         public void PesquisarRegistro(string combobox, string pesquisa)
         {
-            throw new NotImplementedException();
+            List<Desconto> descontos = controladorDesconto.SelecionarPesquisa(combobox, pesquisa);
+
+            tabelaDesconto.AtualizarRegistros(descontos);
         }
 
         public List<string> PreencheComboBoxDePesquisa()
         {
-            throw new NotImplementedException();
+            List<string> preencheLista = new List<string>();
+            preencheLista.Add("CODIGO");
+            preencheLista.Add("MEIO");
+            preencheLista.Add("NOMECUPOM");
+
+            return preencheLista;
         }
     }
 }

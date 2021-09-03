@@ -138,6 +138,11 @@ namespace LocadoraVeiculo.Controladores.VeiculoModule
             WHERE 
                 V.[ID] = @ID";
 
+        public List<Veiculo> SelecionarPesquisa(string combobox, string pesquisa)
+        {
+            throw new NotImplementedException();
+        }
+
         private const string sqlExisteVeiculo =
             @"SELECT 
                 COUNT(*) 

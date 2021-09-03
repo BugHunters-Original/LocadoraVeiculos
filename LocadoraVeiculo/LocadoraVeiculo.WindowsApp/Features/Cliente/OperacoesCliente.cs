@@ -150,12 +150,21 @@ namespace LocadoraVeiculo.WindowsApp.Features.Clientes
 
         public void PesquisarRegistro(string combobox, string pesquisa)
         {
-            throw new NotImplementedException();
+            List<ClienteCPF> clientesCPF = controladorCPF.SelecionarPesquisa(combobox, pesquisa);
+            List<ClienteCNPJ> clientesCNPJ = controladorCN.SelecionarPesquisa(combobox, pesquisa);
+
+            tabelaClientes.AtualizarRegistros(clientesCPF, clientesCNPJ);
         }
 
         public List<string> PreencheComboBoxDePesquisa()
         {
-            throw new NotImplementedException();
+            List<string> preencheLista = new List<string>();
+            preencheLista.Add("NOME");
+            preencheLista.Add("CPF-CNPJ");
+            preencheLista.Add("TELEFONE");
+            preencheLista.Add("EMAIL");
+
+            return preencheLista;
         }
     }
 }
