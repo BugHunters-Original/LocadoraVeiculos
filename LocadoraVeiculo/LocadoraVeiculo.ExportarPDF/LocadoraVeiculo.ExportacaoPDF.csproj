@@ -89,6 +89,10 @@
       <Project>{fd32af45-ef78-416a-b054-b4189d0168b7}</Project>
       <Name>LocadoraVeiculo.Dominio</Name>
     </ProjectReference>
+    <ProjectReference Include="..\LocadoraVeiculo.EmailLocadora\LocadoraVeiculo.EmailLocadora.csproj">
+      <Project>{74472EC6-68DC-4B26-BE14-2425BC684B3C}</Project>
+      <Name>LocadoraVeiculo.EmailLocadora</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -3,6 +3,7 @@ using iText.Kernel.Pdf;
 using iText.Layout;
 using iText.Layout.Element;
 using iText.Layout.Properties;
+using LocadoraVeiculo.EmailLocadora;
 using LocadoraVeiculo.LocacaoModule;
 using System.Net.Mail;
 using System.Threading.Tasks;
@@ -64,12 +65,12 @@ namespace LocadoraVeiculo.ExportacaoPDF
                         //SERVIDOR
                         smtp.Host = "smtp.gmail.com";
                         smtp.UseDefaultCredentials = false;
-                        smtp.Credentials = new System.Net.NetworkCredential("bughuntersoriginal@gmail.com", "Bughunters123");
+                        smtp.Credentials = new System.Net.NetworkCredential(Email.EmailLocadora, Email.SenhaLocadora);
                         smtp.Port = 587;
                         smtp.EnableSsl = true;
 
                         //EMAIL
-                        email.From = new MailAddress("bughuntersoriginal@gmail.com");
+                        email.From = new MailAddress(Email.EmailLocadora);
                         email.To.Add(locacao.Cliente.Email);
 
                         email.Subject = "BeeCar";
