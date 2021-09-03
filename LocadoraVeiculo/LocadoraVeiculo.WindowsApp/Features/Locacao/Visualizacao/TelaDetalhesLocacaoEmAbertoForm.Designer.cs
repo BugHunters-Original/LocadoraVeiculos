@@ -260,6 +260,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.Locacao.Visualizacao
             // 
             // btnReenviar
             // 
+            this.btnReenviar.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.btnReenviar.Location = new System.Drawing.Point(33, 341);
             this.btnReenviar.Name = "btnReenviar";
             this.btnReenviar.Size = new System.Drawing.Size(151, 51);
