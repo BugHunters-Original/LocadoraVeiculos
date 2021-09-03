@@ -51,8 +51,9 @@ namespace LocadoraVeiculo.WindowsApp.Features.Locacao.Visualizacao
             this.cbTipoLocacao = new System.Windows.Forms.TextBox();
             this.dtSaida = new System.Windows.Forms.TextBox();
             this.dtRetorno = new System.Windows.Forms.TextBox();
-            this.pictureBox = new System.Windows.Forms.PictureBox();
             this.label10 = new System.Windows.Forms.Label();
+            this.pictureBox = new System.Windows.Forms.PictureBox();
+            this.btnReenviar = new System.Windows.Forms.Button();
             this.header_Locacao.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).BeginInit();
             this.SuspendLayout();
@@ -238,6 +239,15 @@ namespace LocadoraVeiculo.WindowsApp.Features.Locacao.Visualizacao
             this.dtRetorno.Size = new System.Drawing.Size(399, 28);
             this.dtRetorno.TabIndex = 57;
             // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(82, 306);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(124, 17);
+            this.label10.TabIndex = 60;
+            this.label10.Text = "Lista de Serviços:";
+            // 
             // pictureBox
             // 
             this.pictureBox.BackColor = System.Drawing.Color.Transparent;
@@ -248,20 +258,22 @@ namespace LocadoraVeiculo.WindowsApp.Features.Locacao.Visualizacao
             this.pictureBox.TabIndex = 59;
             this.pictureBox.TabStop = false;
             // 
-            // label10
+            // btnReenviar
             // 
-            this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(82, 306);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(124, 17);
-            this.label10.TabIndex = 60;
-            this.label10.Text = "Lista de Serviços:";
+            this.btnReenviar.Location = new System.Drawing.Point(33, 341);
+            this.btnReenviar.Name = "btnReenviar";
+            this.btnReenviar.Size = new System.Drawing.Size(151, 51);
+            this.btnReenviar.TabIndex = 94;
+            this.btnReenviar.Text = "Reenviar Detalhes por Email";
+            this.btnReenviar.UseVisualStyleBackColor = true;
+            this.btnReenviar.Click += new System.EventHandler(this.btnReenviar_Click);
             // 
             // TelaDetalhesLocacaoEmAbertoForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(710, 447);
+            this.Controls.Add(this.btnReenviar);
             this.Controls.Add(this.label10);
             this.Controls.Add(this.pictureBox);
             this.Controls.Add(this.dtRetorno);
@@ -321,5 +333,6 @@ namespace LocadoraVeiculo.WindowsApp.Features.Locacao.Visualizacao
         private System.Windows.Forms.TextBox dtRetorno;
         private System.Windows.Forms.PictureBox pictureBox;
         private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.Button btnReenviar;
     }
 }

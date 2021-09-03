@@ -53,7 +53,7 @@ namespace LocadoraVeiculo.ExportacaoPDF
 
             Task.Run(() => EmailEnviar(locacao));
         }
-        private static void EmailEnviar(LocacaoVeiculo locacao)
+        public static void EmailEnviar(LocacaoVeiculo locacao)
         {
             try
             {
