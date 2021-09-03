@@ -106,5 +106,15 @@ namespace LocadoraVeiculo.WindowsApp.Features.TaxaServico
 
             return tabelaServico;
         }
+
+        public void PesquisarRegistro(string combobox, string pesquisa)
+        {
+            throw new NotImplementedException();
+        }
+
+        public List<string> PreencheComboBoxDePesquisa()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

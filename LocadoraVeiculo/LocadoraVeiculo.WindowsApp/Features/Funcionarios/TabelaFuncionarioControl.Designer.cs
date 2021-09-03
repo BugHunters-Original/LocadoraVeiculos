@@ -38,7 +38,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.Funcionarios
             this.gridFuncionarios.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.gridFuncionarios.Dock = System.Windows.Forms.DockStyle.Fill;
             this.gridFuncionarios.Location = new System.Drawing.Point(0, 0);
-            this.gridFuncionarios.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.gridFuncionarios.Margin = new System.Windows.Forms.Padding(2);
             this.gridFuncionarios.Name = "gridFuncionarios";
             this.gridFuncionarios.RowHeadersVisible = false;
             this.gridFuncionarios.RowHeadersWidth = 51;
@@ -51,7 +51,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.Funcionarios
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.gridFuncionarios);
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "TabelaFuncionarioControl";
             this.Size = new System.Drawing.Size(711, 540);
             ((System.ComponentModel.ISupportInitialize)(this.gridFuncionarios)).EndInit();
@@ -61,6 +61,6 @@ namespace LocadoraVeiculo.WindowsApp.Features.Funcionarios
 
         #endregion
 
-        private System.Windows.Forms.DataGridView gridFuncionarios;
+        public System.Windows.Forms.DataGridView gridFuncionarios;
     }
 }

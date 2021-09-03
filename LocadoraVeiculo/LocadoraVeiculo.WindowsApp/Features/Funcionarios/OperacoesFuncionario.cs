@@ -11,13 +11,14 @@ namespace LocadoraVeiculo.WindowsApp.Features.Funcionarios
     {
         private readonly ControladorFuncionario controlador = null;
         private readonly TabelaFuncionarioControl tabelaFuncionarios = null;
+        private readonly TelaPrincipalForm telaPrincipal = null;
 
 
         public OperacoesFuncionario(ControladorFuncionario ctrlLocacao)
         {
             controlador = ctrlLocacao;
             tabelaFuncionarios = new TabelaFuncionarioControl();
-
+            telaPrincipal = new TelaPrincipalForm();
         }
 
 
@@ -110,6 +111,23 @@ namespace LocadoraVeiculo.WindowsApp.Features.Funcionarios
             tabelaFuncionarios.AtualizarRegistros(funcionarios);
 
             return tabelaFuncionarios;
+        }
+
+        public void PesquisarRegistro(string combobox, string pesquisa)
+        {
+            List<Funcionario> funcionarios = controlador.SelecionarPesquisa(combobox, pesquisa);
+
+            tabelaFuncionarios.AtualizarRegistros(funcionarios);
+        }
+
+        public List<string> PreencheComboBoxDePesquisa()
+        {
+            List<string> preencheLista = new List<string>();
+            preencheLista.Add("NOME");
+            preencheLista.Add("USUARIO");
+            preencheLista.Add("CPF");
+
+            return preencheLista;
         }
     }
 }

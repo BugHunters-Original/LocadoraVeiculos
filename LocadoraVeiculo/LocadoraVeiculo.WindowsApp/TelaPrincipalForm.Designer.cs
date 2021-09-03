@@ -62,6 +62,9 @@ namespace LocadoraVeiculo.WindowsApp
             this.btnMinimize = new System.Windows.Forms.Button();
             this.btnMaximize = new System.Windows.Forms.Button();
             this.btnClose = new System.Windows.Forms.Button();
+            this.txtPesquisar = new System.Windows.Forms.TextBox();
+            this.btnPesquisa = new System.Windows.Forms.Button();
+            this.cbCategorias = new System.Windows.Forms.ComboBox();
             this.toolboxAcoes.SuspendLayout();
             this.menuStrip.SuspendLayout();
             this.statusStripFooter.SuspendLayout();
@@ -405,6 +408,31 @@ namespace LocadoraVeiculo.WindowsApp
             this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
             this.btnClose.MouseHover += new System.EventHandler(this.btnClose_MouseHover);
             // 
+            // txtPesquisar
+            // 
+            this.txtPesquisar.Location = new System.Drawing.Point(785, 63);
+            this.txtPesquisar.Name = "txtPesquisar";
+            this.txtPesquisar.Size = new System.Drawing.Size(100, 26);
+            this.txtPesquisar.TabIndex = 14;
+            // 
+            // btnPesquisa
+            // 
+            this.btnPesquisa.Location = new System.Drawing.Point(891, 63);
+            this.btnPesquisa.Name = "btnPesquisa";
+            this.btnPesquisa.Size = new System.Drawing.Size(44, 26);
+            this.btnPesquisa.TabIndex = 15;
+            this.btnPesquisa.Text = "button1";
+            this.btnPesquisa.UseVisualStyleBackColor = true;
+            this.btnPesquisa.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // cbCategorias
+            // 
+            this.cbCategorias.FormattingEnabled = true;
+            this.cbCategorias.Location = new System.Drawing.Point(679, 65);
+            this.cbCategorias.Name = "cbCategorias";
+            this.cbCategorias.Size = new System.Drawing.Size(100, 24);
+            this.cbCategorias.TabIndex = 16;
+            // 
             // TelaPrincipalForm
             // 
             this.AccessibleDescription = "Engloba todas as funcionalidades do programa";
@@ -413,6 +441,9 @@ namespace LocadoraVeiculo.WindowsApp
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ButtonFace;
             this.ClientSize = new System.Drawing.Size(992, 749);
+            this.Controls.Add(this.cbCategorias);
+            this.Controls.Add(this.btnPesquisa);
+            this.Controls.Add(this.txtPesquisar);
             this.Controls.Add(this.btnLogOut);
             this.Controls.Add(this.btnMinimize);
             this.Controls.Add(this.btnMaximize);
@@ -471,6 +502,9 @@ namespace LocadoraVeiculo.WindowsApp
         private System.Windows.Forms.Button btnLogOut;
         private System.Windows.Forms.ToolStripMenuItem descontosToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem parceirosToolStripMenuItem;
+        public System.Windows.Forms.Button btnPesquisa;
+        public System.Windows.Forms.TextBox txtPesquisar;
+        public System.Windows.Forms.ComboBox cbCategorias;
     }
 }
 

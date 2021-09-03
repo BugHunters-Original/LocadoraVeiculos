@@ -114,5 +114,15 @@ namespace LocadoraVeiculo.WindowsApp.Features.Parceiro
         {
             throw new NotImplementedException();
         }
+
+        public void PesquisarRegistro(string combobox, string pesquisa)
+        {
+            throw new NotImplementedException();
+        }
+
+        public List<string> PreencheComboBoxDePesquisa()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

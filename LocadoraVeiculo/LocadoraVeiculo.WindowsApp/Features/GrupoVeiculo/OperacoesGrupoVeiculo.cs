@@ -112,5 +112,15 @@ namespace LocadoraVeiculo.WindowsApp.Features.GrupoVeiculo
 
             return tabelaGrupoVeiculo;
         }
+
+        public void PesquisarRegistro(string combobox, string pesquisa)
+        {
+            throw new NotImplementedException();
+        }
+
+        public List<string> PreencheComboBoxDePesquisa()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

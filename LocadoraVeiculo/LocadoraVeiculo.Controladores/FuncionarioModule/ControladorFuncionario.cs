@@ -60,9 +60,23 @@ namespace LocadoraVeiculo.Controladores.FuncionarioModule
                     WHERE 
                         ID = @ID";
 
+        private const string sqlSelecionarFuncionarioPorNome =
+           @"SELECT
+                        [ID],
+		                [NOME], 
+                        [SALARIO],
+		                [CPF], 
+		                [DATA_ENTRADA],
+                        [USUARIO], 
+		                [SENHA]
+	                FROM
+                       TBFUNCIONARIO
+                    WHERE 
+                        COLUNADEPESQUISA LIKE @SEGUNDAREF+'%'";
+
         private const string sqlSelecionarTodosFuncionarios =
                     @"SELECT
-                         [ID],
+                        [ID],
 		                [NOME], 
                         [SALARIO],
 		                [CPF], 
@@ -132,6 +146,12 @@ namespace LocadoraVeiculo.Controladores.FuncionarioModule
         public override List<Funcionario> SelecionarTodos()
         {
             return Db.GetAll(sqlSelecionarTodosFuncionarios, ConverterEmFuncionario);
+        }
+
+        public List<Funcionario> SelecionarPesquisa(string coluna, string pesquisa)
+        {
+            string sql = sqlSelecionarFuncionarioPorNome.Replace("COLUNADEPESQUISA", coluna);
+            return Db.GetAll(sql, ConverterEmFuncionario, AdicionarParametro("@SEGUNDAREF", pesquisa));
         }
 
         private Funcionario ConverterEmFuncionario(IDataReader reader)

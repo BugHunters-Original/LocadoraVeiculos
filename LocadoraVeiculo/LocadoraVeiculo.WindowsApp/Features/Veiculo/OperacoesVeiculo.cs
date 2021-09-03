@@ -127,6 +127,16 @@ namespace LocadoraVeiculo.WindowsApp.Features.Veiculos
 
             return tabelaVeiculos;
         }
+
+        public void PesquisarRegistro(string combobox, string pesquisa)
+        {
+            throw new NotImplementedException();
+        }
+
+        public List<string> PreencheComboBoxDePesquisa()
+        {
+            throw new NotImplementedException();
+        }
     }
 }
 

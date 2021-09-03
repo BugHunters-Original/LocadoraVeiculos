@@ -206,8 +206,17 @@ namespace LocadoraVeiculo.WindowsApp.Features.Locacao
             List<LocacaoVeiculo> locacoes = controladorLocacao.SelecionarTodos();
 
             tabelaLocacoes.AtualizarRegistros(locacoes);
-
             return tabelaLocacoes;
+        }
+
+        public void PesquisarRegistro(string combobox, string pesquisa)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public List<string> PreencheComboBoxDePesquisa()
+        {
+            throw new System.NotImplementedException();
         }
     }
 }

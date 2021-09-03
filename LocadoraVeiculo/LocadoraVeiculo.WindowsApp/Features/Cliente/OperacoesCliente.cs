@@ -147,5 +147,15 @@ namespace LocadoraVeiculo.WindowsApp.Features.Clientes
             tabelaClientes.AtualizarRegistros(clientesCPF, clientesCNPJ);
             return tabelaClientes;
         }
+
+        public void PesquisarRegistro(string combobox, string pesquisa)
+        {
+            throw new NotImplementedException();
+        }
+
+        public List<string> PreencheComboBoxDePesquisa()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

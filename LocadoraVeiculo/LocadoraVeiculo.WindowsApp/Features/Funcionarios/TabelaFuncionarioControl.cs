@@ -53,10 +53,8 @@ namespace LocadoraVeiculo.WindowsApp.Features.Funcionarios
 
             foreach (Funcionario funcionario in funcionarios)
             {
-
                 gridFuncionarios.Rows.Add(funcionario.Id, funcionario.Nome, funcionario.Cpf_funcionario,
                     funcionario.Salario, funcionario.DataEntrada, funcionario.Usuario, funcionario.Senha);
-
 
             }
         }

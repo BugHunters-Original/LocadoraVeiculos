@@ -1,4 +1,5 @@
-﻿using System.Windows.Forms;
+﻿using System.Collections.Generic;
+using System.Windows.Forms;
 
 namespace LocadoraVeiculo.WindowsApp.Shared
 {
@@ -19,5 +20,9 @@ namespace LocadoraVeiculo.WindowsApp.Shared
         void FiltrarRegistros();
 
         void DevolverVeiculo();
+
+        void PesquisarRegistro(string combobox, string pesquisa);
+
+        List<string> PreencheComboBoxDePesquisa();
     }
 }
