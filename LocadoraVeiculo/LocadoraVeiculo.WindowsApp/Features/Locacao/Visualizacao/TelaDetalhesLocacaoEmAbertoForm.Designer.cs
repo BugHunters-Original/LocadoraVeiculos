@@ -60,7 +60,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.Locacao.Visualizacao
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(149, 267);
+            this.label2.Location = new System.Drawing.Point(144, 265);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(62, 17);
             this.label2.TabIndex = 50;
@@ -106,7 +106,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.Locacao.Visualizacao
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(88, 238);
+            this.label8.Location = new System.Drawing.Point(83, 236);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(123, 17);
             this.label8.TabIndex = 45;
@@ -115,7 +115,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.Locacao.Visualizacao
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(21, 207);
+            this.label7.Location = new System.Drawing.Point(16, 205);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(190, 17);
             this.label7.TabIndex = 44;
@@ -124,7 +124,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.Locacao.Visualizacao
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(106, 176);
+            this.label6.Location = new System.Drawing.Point(101, 174);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(105, 17);
             this.label6.TabIndex = 43;
@@ -133,7 +133,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.Locacao.Visualizacao
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(133, 145);
+            this.label5.Location = new System.Drawing.Point(128, 143);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(78, 17);
             this.label5.TabIndex = 42;
@@ -142,7 +142,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.Locacao.Visualizacao
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(149, 114);
+            this.label4.Location = new System.Drawing.Point(144, 112);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(62, 17);
             this.label4.TabIndex = 41;
@@ -151,7 +151,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.Locacao.Visualizacao
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(151, 83);
+            this.label3.Location = new System.Drawing.Point(146, 81);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(60, 17);
             this.label3.TabIndex = 40;
@@ -160,7 +160,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.Locacao.Visualizacao
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(186, 50);
+            this.label1.Location = new System.Drawing.Point(181, 48);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(25, 17);
             this.label1.TabIndex = 39;
@@ -251,7 +251,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.Locacao.Visualizacao
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(87, 306);
+            this.label10.Location = new System.Drawing.Point(82, 306);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(124, 17);
             this.label10.TabIndex = 60;
