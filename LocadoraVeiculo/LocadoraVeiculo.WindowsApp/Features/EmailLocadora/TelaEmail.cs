@@ -19,7 +19,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.EmailLocadora
         {
             InitializeComponent();
             CarregarConfiguracoes();
-            SetColor();
+            SetColor(); 
         }
 
         private void SetColor()
