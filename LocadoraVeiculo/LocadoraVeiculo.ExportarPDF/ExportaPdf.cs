@@ -1,4 +1,6 @@
-﻿using iText.Kernel.Geom;
+﻿using iText.IO.Image;
+using iText.Kernel.Colors;
+using iText.Kernel.Geom;
 using iText.Kernel.Pdf;
 using iText.Layout;
 using iText.Layout.Element;
@@ -43,7 +45,8 @@ namespace LocadoraVeiculo.ExportacaoPDF
 
                 string cupomNome = locacao.Desconto?.Nome == null ? "Nenhum" : locacao.Desconto?.Nome;
                 document.Add(new Paragraph("Cupom de Desconto: " + cupomNome));
-
+                document.Add(new Paragraph("Veículo:"));
+                document.Add(new Image(ImageDataFactory.Create(locacao.Veiculo.foto)));
                 document.Add(new Paragraph("\n\n"));
                 document.Add(new Paragraph("Total da Locação: R$" + locacao.PrecoTotal).SetBold());
 
