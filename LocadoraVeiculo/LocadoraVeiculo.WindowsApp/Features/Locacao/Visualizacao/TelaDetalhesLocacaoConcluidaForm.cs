@@ -37,7 +37,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.Locacao.Visualizacao
                 txtID.Text = locacao.Id.ToString();
                 cbCliente.Text = locacao.Cliente.Nome;
 
-                cbVeiculo.Text = locacao.Veiculo.nome;
+                cbVeiculo.Text = locacao.Veiculo.Nome;
 
                 cbCondutor.Text = locacao.Condutor.Nome;
 
@@ -58,9 +58,9 @@ namespace LocadoraVeiculo.WindowsApp.Features.Locacao.Visualizacao
                 txtPrecoPlano.Text = "R$" + locacao.PrecoPlano.ToString();
                 txtTotal.Text = "R$" + locacao.PrecoTotal.ToString();
                 
-                if (locacao.Veiculo.foto != null)
+                if (locacao.Veiculo.Foto != null)
                 {
-                    pictureBoxImagem.Image = (Image)(new Bitmap(ConverteByteArrayParaImagem(locacao.Veiculo.foto), new Size(214, 126)));
+                    pictureBoxImagem.Image = (Image)(new Bitmap(ConverteByteArrayParaImagem(locacao.Veiculo.Foto), new Size(214, 126)));
                     pictureBoxImagem.SizeMode = PictureBoxSizeMode.StretchImage;
                 }
             }

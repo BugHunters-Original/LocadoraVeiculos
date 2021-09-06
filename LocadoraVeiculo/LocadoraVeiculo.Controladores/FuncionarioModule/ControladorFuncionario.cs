@@ -179,7 +179,7 @@ namespace LocadoraVeiculo.Controladores.FuncionarioModule
 
             parametros.Add("ID", funcionario.Id);
             parametros.Add("NOME", funcionario.Nome);
-            parametros.Add("CPF", funcionario.Cpf_funcionario);
+            parametros.Add("CPF", funcionario.CpfFuncionario);
             parametros.Add("SALARIO", funcionario.Salario);
             parametros.Add("DATA_ENTRADA", funcionario.DataEntrada);
             parametros.Add("USUARIO", funcionario.Usuario);

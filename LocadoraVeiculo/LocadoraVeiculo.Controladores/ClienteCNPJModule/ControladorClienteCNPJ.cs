@@ -8,6 +8,7 @@ namespace LocadoraVeiculo.Controladores.ClienteModule
 {
     public class ControladorClienteCNPJ : Controlador<ClienteCNPJ>
     {
+        #region Queries
         private const string sqlInserirCliente =
        @"INSERT INTO TBCLIENTECNPJ 
 	                (
@@ -75,6 +76,8 @@ namespace LocadoraVeiculo.Controladores.ClienteModule
                 [TBCLIENTECNPJ]
             WHERE 
                 [ID] = @ID";
+        #endregion
+
         public override string Editar(int id, ClienteCNPJ registro)
         {
             string resultadoValidacao = registro.Validar();

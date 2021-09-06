@@ -8,21 +8,21 @@ namespace LocadoraVeiculo.VeiculoModule
 {
     public class Veiculo : EntidadeBase, IEquatable<Veiculo>
     {
-        public string nome { get; set; }
-        public string numero_Placa { get; set; }
-        public string numero_Chassi { get; set; }
-        public byte[] foto { get; set; }
-        public string cor { get; set; }
-        public string marca { get; set; }
-        public int? ano { get; set; }
-        public int? numero_Portas { get; set; }
-        public int? capacidade_Tanque { get; set; }
-        public int? capacidade_Pessoas { get; set; }
-        public char tamanhoPortaMalas { get; set; }
-        public int? km_Inicial { get; set; }
-        public string tipo_Combustivel { get; set; }
-        public int disponibilidade_Veiculo { get; set; }
-        public GrupoVeiculo grupoVeiculo { get; set; }
+        public string Nome { get; set; }
+        public string NumeroPlaca { get; set; }
+        public string NumeroChassi { get; set; }
+        public byte[] Foto { get; set; }
+        public string Cor { get; set; }
+        public string Marca { get; set; }
+        public int? Ano { get; set; }
+        public int? NumeroPortas { get; set; }
+        public int? CapacidadeTanque { get; set; }
+        public int? CapacidadePessoas { get; set; }
+        public char TamanhoPortaMalas { get; set; }
+        public int? KmInicial { get; set; }
+        public string TipoCombustivel { get; set; }
+        public int DisponibilidadeVeiculo { get; set; }
+        public GrupoVeiculo GrupoVeiculo { get; set; }
 
 
 
@@ -30,21 +30,21 @@ namespace LocadoraVeiculo.VeiculoModule
             string marca, int? ano, int? numero_Portas, int? capacidade_Tanque, int? capacidade_Pessoas, char tamanhoPortaMalas, int? km_Inicial,
             string tipo_Combustivel, int disponibilidade_Veiculo, GrupoVeiculo grupoVeiculo)
         {
-            this.nome = nome;
-            this.numero_Placa = numero_Placa;
-            this.numero_Chassi = numero_Chassi;
-            this.foto = foto;
-            this.cor = cor;
-            this.marca = marca;
-            this.ano = ano;
-            this.numero_Portas = numero_Portas;
-            this.capacidade_Tanque = capacidade_Tanque;
-            this.capacidade_Pessoas = capacidade_Pessoas;
-            this.tamanhoPortaMalas = tamanhoPortaMalas;
-            this.km_Inicial = km_Inicial;
-            this.tipo_Combustivel = tipo_Combustivel;
-            this.disponibilidade_Veiculo = disponibilidade_Veiculo;
-            this.grupoVeiculo = grupoVeiculo;
+            this.Nome = nome;
+            this.NumeroPlaca = numero_Placa;
+            this.NumeroChassi = numero_Chassi;
+            this.Foto = foto;
+            this.Cor = cor;
+            this.Marca = marca;
+            this.Ano = ano;
+            this.NumeroPortas = numero_Portas;
+            this.CapacidadeTanque = capacidade_Tanque;
+            this.CapacidadePessoas = capacidade_Pessoas;
+            this.TamanhoPortaMalas = tamanhoPortaMalas;
+            this.KmInicial = km_Inicial;
+            this.TipoCombustivel = tipo_Combustivel;
+            this.DisponibilidadeVeiculo = disponibilidade_Veiculo;
+            this.GrupoVeiculo = grupoVeiculo;
 
         }
 
@@ -52,55 +52,55 @@ namespace LocadoraVeiculo.VeiculoModule
         {
             string resultadoValidacao = "";
 
-            if (foto.Length == 0)
+            if (Foto.Length == 0)
                 resultadoValidacao = "O campo Foto é obrigatório";
 
-            if (string.IsNullOrEmpty(nome))
+            if (string.IsNullOrEmpty(Nome))
                 resultadoValidacao = "O campo Nome é obrigatório";
 
-            if (string.IsNullOrEmpty(numero_Placa))
+            if (string.IsNullOrEmpty(NumeroPlaca))
                 resultadoValidacao += QuebraDeLinha(resultadoValidacao) + "O campo Placa é obrigatório";
 
-            if (!string.IsNullOrEmpty(numero_Placa) && numero_Placa.Length != 7)
+            if (!string.IsNullOrEmpty(NumeroPlaca) && NumeroPlaca.Length != 7)
                 resultadoValidacao += QuebraDeLinha(resultadoValidacao) + "O campo Placa possui 7 dígitos";
 
-            if (tamanhoPortaMalas != 'M' && tamanhoPortaMalas != 'P' && tamanhoPortaMalas != 'G')
+            if (TamanhoPortaMalas != 'M' && TamanhoPortaMalas != 'P' && TamanhoPortaMalas != 'G')
                 resultadoValidacao += QuebraDeLinha(resultadoValidacao) + "O campo Tamanho Porta-Malas deve ser P, M ou G";
 
-            if (string.IsNullOrEmpty(numero_Chassi))
+            if (string.IsNullOrEmpty(NumeroChassi))
                 resultadoValidacao += QuebraDeLinha(resultadoValidacao) + "O campo Chassi é obrigatório";
 
-            if (!string.IsNullOrEmpty(numero_Chassi) && numero_Chassi.Length != 17)
+            if (!string.IsNullOrEmpty(NumeroChassi) && NumeroChassi.Length != 17)
                 resultadoValidacao += QuebraDeLinha(resultadoValidacao) + "O campo Chassi possui 17 dígitos";
 
-            if (string.IsNullOrEmpty(cor))
+            if (string.IsNullOrEmpty(Cor))
                 resultadoValidacao += QuebraDeLinha(resultadoValidacao) + "O campo Cor é obrigatório";
 
-            if (string.IsNullOrEmpty(marca))
+            if (string.IsNullOrEmpty(Marca))
                 resultadoValidacao += QuebraDeLinha(resultadoValidacao) + "O campo Marca é obrigatório";
 
-            if (string.IsNullOrEmpty(tipo_Combustivel))
+            if (string.IsNullOrEmpty(TipoCombustivel))
                 resultadoValidacao += QuebraDeLinha(resultadoValidacao) + "O campo Combustível é obrigatório";
 
-            if (ano == null)
+            if (Ano == null)
                 resultadoValidacao += QuebraDeLinha(resultadoValidacao) + "O campo Ano é obrigatório";
 
-            if (numero_Portas == null || numero_Portas <= 0)
+            if (NumeroPortas == null || NumeroPortas <= 0)
                 resultadoValidacao += QuebraDeLinha(resultadoValidacao) + "O campo Nº de Portas é obrigatório";
 
-            if (capacidade_Tanque == null || capacidade_Tanque <= 0)
+            if (CapacidadeTanque == null || CapacidadeTanque <= 0)
                 resultadoValidacao += QuebraDeLinha(resultadoValidacao) + "O campo Capacidade do Tanque é obrigatório";
 
-            if (capacidade_Pessoas == null || capacidade_Pessoas <= 0)
+            if (CapacidadePessoas == null || CapacidadePessoas <= 0)
                 resultadoValidacao += QuebraDeLinha(resultadoValidacao) + "O campo Capacidade de Pessoas é obrigatório";
 
-            if (km_Inicial == null || km_Inicial <= 0)
+            if (KmInicial == null || KmInicial <= 0)
                 resultadoValidacao += QuebraDeLinha(resultadoValidacao) + "O campo Quilometragem Inicial obrigatório";
 
-            if (grupoVeiculo == null)
+            if (GrupoVeiculo == null)
                 resultadoValidacao += QuebraDeLinha(resultadoValidacao) + "O campo tipo é obrigatório";
 
-            if (Convert.ToInt32(ano) > DateTime.Now.Year || Convert.ToInt32(ano) < 1900 && ano != null)
+            if (Convert.ToInt32(Ano) > DateTime.Now.Year || Convert.ToInt32(Ano) < 1900 && Ano != null)
                 resultadoValidacao += QuebraDeLinha(resultadoValidacao) + "O campo Ano não pode ser maior que o ano atual ou muito antigo";
 
             if (resultadoValidacao == "")
@@ -111,7 +111,7 @@ namespace LocadoraVeiculo.VeiculoModule
 
         public override string ToString()
         {
-            return nome;
+            return Nome;
         }
 
         public override bool Equals(object obj)
@@ -123,20 +123,20 @@ namespace LocadoraVeiculo.VeiculoModule
         {
             return other != null &&
                Id == other.Id &&
-               nome == other.nome &&
-               numero_Placa == other.numero_Placa &&
-               numero_Chassi == other.numero_Chassi &&
-               cor == other.cor &&
-               marca == other.marca &&
-               ano == other.ano &&
-               numero_Portas == other.numero_Portas &&
-               capacidade_Tanque == other.capacidade_Tanque &&
-               tamanhoPortaMalas == other.tamanhoPortaMalas &&
-               km_Inicial == other.km_Inicial &&
-               tipo_Combustivel == other.tipo_Combustivel &&
-               disponibilidade_Veiculo == other.disponibilidade_Veiculo &&
-               EqualityComparer<GrupoVeiculo>.Default.Equals(grupoVeiculo, other.grupoVeiculo) &&
-               foto.SequenceEqual(other.foto);
+               Nome == other.Nome &&
+               NumeroPlaca == other.NumeroPlaca &&
+               NumeroChassi == other.NumeroChassi &&
+               Cor == other.Cor &&
+               Marca == other.Marca &&
+               Ano == other.Ano &&
+               NumeroPortas == other.NumeroPortas &&
+               CapacidadeTanque == other.CapacidadeTanque &&
+               TamanhoPortaMalas == other.TamanhoPortaMalas &&
+               KmInicial == other.KmInicial &&
+               TipoCombustivel == other.TipoCombustivel &&
+               DisponibilidadeVeiculo == other.DisponibilidadeVeiculo &&
+               EqualityComparer<GrupoVeiculo>.Default.Equals(GrupoVeiculo, other.GrupoVeiculo) &&
+               Foto.SequenceEqual(other.Foto);
                
         }
 
@@ -144,20 +144,20 @@ namespace LocadoraVeiculo.VeiculoModule
         {
             int hashCode = -627672175;
             hashCode = hashCode * -1521134295 + Id.GetHashCode();
-            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(nome);
-            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(numero_Placa);
-            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(numero_Chassi);
-            hashCode = hashCode * -1521134295 + EqualityComparer<byte[]>.Default.GetHashCode(foto);
-            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(cor);
-            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(marca);
-            hashCode = hashCode * -1521134295 + ano.GetHashCode();
-            hashCode = hashCode * -1521134295 + numero_Portas.GetHashCode();
-            hashCode = hashCode * -1521134295 + capacidade_Tanque.GetHashCode();
-            hashCode = hashCode * -1521134295 + tamanhoPortaMalas.GetHashCode();
-            hashCode = hashCode * -1521134295 + km_Inicial.GetHashCode();
-            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(tipo_Combustivel);
-            hashCode = hashCode * -1521134295 + disponibilidade_Veiculo.GetHashCode();
-            hashCode = hashCode * -1521134295 + EqualityComparer<GrupoVeiculo>.Default.GetHashCode(grupoVeiculo);
+            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(Nome);
+            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(NumeroPlaca);
+            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(NumeroChassi);
+            hashCode = hashCode * -1521134295 + EqualityComparer<byte[]>.Default.GetHashCode(Foto);
+            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(Cor);
+            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(Marca);
+            hashCode = hashCode * -1521134295 + Ano.GetHashCode();
+            hashCode = hashCode * -1521134295 + NumeroPortas.GetHashCode();
+            hashCode = hashCode * -1521134295 + CapacidadeTanque.GetHashCode();
+            hashCode = hashCode * -1521134295 + TamanhoPortaMalas.GetHashCode();
+            hashCode = hashCode * -1521134295 + KmInicial.GetHashCode();
+            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(TipoCombustivel);
+            hashCode = hashCode * -1521134295 + DisponibilidadeVeiculo.GetHashCode();
+            hashCode = hashCode * -1521134295 + EqualityComparer<GrupoVeiculo>.Default.GetHashCode(GrupoVeiculo);
             return hashCode;
         }
 

@@ -34,8 +34,8 @@ namespace LocadoraVeiculo.ClienteModule
                 && Telefone == other.Telefone
                 && Cpf == other.Cpf
                 && Cnh == other.Cnh
+                && Cliente == other.Cliente
                 && DataValidade == other.DataValidade
-                && Cliente.Equals(other.Cliente)
                 && Email == other.Email;
         }
         public override bool Equals(object obj)

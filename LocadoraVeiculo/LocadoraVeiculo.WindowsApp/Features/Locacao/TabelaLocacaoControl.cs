@@ -86,7 +86,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.Locacao
             tela.Locacao = locacaoSelecionada;
 
             if (tela.ShowDialog() == DialogResult.OK)
-                TelaPrincipalForm.Instancia.AtualizarRodape($"Locação do veículo: [{tela.Locacao.Veiculo.nome}] visualizada");
+                TelaPrincipalForm.Instancia.AtualizarRodape($"Locação do veículo: [{tela.Locacao.Veiculo.Nome}] visualizada");
         }
 
         public void AtualizarAparencia()

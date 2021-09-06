@@ -198,7 +198,7 @@ namespace LocadoraVeiculo.Controladores.LocacaoModule
         {
             locacao.Id = id;
             locacao.StatusLocacao = "Concluída";
-            locacao.Veiculo.disponibilidade_Veiculo = 1;
+            locacao.Veiculo.DisponibilidadeVeiculo = 1;
             Db.Update(sqlEditarLocacao, ObtemParametrosLocacao(locacao));
             Db.Update(sqlMudarDisponibilidade, ObtemParametrosLocacao(locacao));
         }
@@ -285,7 +285,7 @@ namespace LocadoraVeiculo.Controladores.LocacaoModule
             parametros.Add("PRECOCOMBUSTIVEL", locacao.PrecoCombustivel);
             parametros.Add("PRECOPLANO", locacao.PrecoPlano);
             parametros.Add("PRECOTOTAL", locacao.PrecoTotal);
-            parametros.Add("DISPONIBILIDADE_VEICULO", locacao.Veiculo.disponibilidade_Veiculo);
+            parametros.Add("DISPONIBILIDADE_VEICULO", locacao.Veiculo.DisponibilidadeVeiculo);
 
             return parametros;
         }

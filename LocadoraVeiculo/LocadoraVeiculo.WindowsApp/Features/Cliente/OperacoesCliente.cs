@@ -151,7 +151,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.Clientes
         public void PesquisarRegistro(string combobox, string pesquisa)
         {
             List<ClienteCPF> clientesCPF = controladorCPF.SelecionarPesquisa(combobox, pesquisa);
-            List<ClienteCNPJ> clientesCNPJ = controladorCN.SelecionarPesquisa(combobox, pesquisa);
+            List<ClienteCNPJ> clientesCNPJ = controladorCNPJ.SelecionarPesquisa(combobox, pesquisa);
 
             tabelaClientes.AtualizarRegistros(clientesCPF, clientesCNPJ);
         }

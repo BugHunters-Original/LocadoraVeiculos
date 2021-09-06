@@ -114,9 +114,9 @@ namespace LocadoraVeiculo.Tests.VeiculoModule
 
             //assert
             veiculos.Should().HaveCount(3);
-            veiculos[0].nome.Should().Be("marea");
-            veiculos[1].nome.Should().Be("uno");
-            veiculos[2].nome.Should().Be("corsa");
+            veiculos[0].Nome.Should().Be("marea");
+            veiculos[1].Nome.Should().Be("uno");
+            veiculos[2].Nome.Should().Be("corsa");
             LimparBanco();
         }
 

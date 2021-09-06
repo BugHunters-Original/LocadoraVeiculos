@@ -27,7 +27,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.Locacao.Devolucao
             set
             {
                 locacao = value;
-                txtKmInicial.Text = locacao.Veiculo.km_Inicial.ToString();
+                txtKmInicial.Text = locacao.Veiculo.KmInicial.ToString();
                 dtRetornoEsperada.Value = locacao.DataRetorno;
                 txtServico.Text = "R$" + locacao.PrecoServicos.ToString();
                 precoDias = locacao.PrecoPlano;
@@ -66,7 +66,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.Locacao.Devolucao
         }
         private decimal? CalcularPrecoTipoCombustivel(decimal? combustivelGasto)
         {
-            switch (locacao.Veiculo.tipo_Combustivel)
+            switch (locacao.Veiculo.TipoCombustivel)
             {
                 case "Gasolina": combustivelGasto *= Convert.ToDecimal(LocadoraVeiculo.Combustivel.Combustivel.PrecoGasolina); break;
                 case "Álcool": combustivelGasto *= Convert.ToDecimal(LocadoraVeiculo.Combustivel.Combustivel.PrecoAlcool); break;
@@ -96,16 +96,16 @@ namespace LocadoraVeiculo.WindowsApp.Features.Locacao.Devolucao
             switch (locacao.TipoLocacao)
             {
                 case "Plano Diário":
-                    return totalKm * locacao.Veiculo.grupoVeiculo.ValorKmRodadoPDiario;
+                    return totalKm * locacao.Veiculo.GrupoVeiculo.ValorKmRodadoPDiario;
                 case "KM Controlado":
-                    return (CalcularKmRodado(totalKm)) * locacao.Veiculo.grupoVeiculo.ValorKmRodadoPControlado;
+                    return (CalcularKmRodado(totalKm)) * locacao.Veiculo.GrupoVeiculo.ValorKmRodadoPControlado;
                 default: return 0;
             }
 
         }
         private decimal? CalcularKmRodado(int? totalKm)
         {
-            var resto = totalKm - locacao.Veiculo.grupoVeiculo.LimitePControlado;
+            var resto = totalKm - locacao.Veiculo.GrupoVeiculo.LimitePControlado;
             return resto < 0 ? 0 : resto;
         }
         private double CalcularDesconto(double totalSemDesconto)
@@ -163,7 +163,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.Locacao.Devolucao
         }
         private void cbNivelTanque_SelectedIndexChanged(object sender, EventArgs e)
         {
-            decimal? totalTanque = Convert.ToDecimal(locacao.Veiculo.capacidade_Tanque);
+            decimal? totalTanque = Convert.ToDecimal(locacao.Veiculo.CapacidadeTanque);
 
             decimal? combustivelGasto = CalcularPrecoTanqueCombustivel(totalTanque);
 
@@ -180,7 +180,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.Locacao.Devolucao
             if (txtKmAtual.Text == "")
                 return;
 
-            var totalKm = Convert.ToInt32(txtKmAtual.Text) - locacao.Veiculo.km_Inicial;
+            var totalKm = Convert.ToInt32(txtKmAtual.Text) - locacao.Veiculo.KmInicial;
 
             locacao.PrecoPlano = precoDias;
             locacao.PrecoPlano += CalcularPrecoKmRodado(totalKm);
@@ -200,7 +200,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.Locacao.Devolucao
             }
 
             locacao.PrecoTotal = total < 0 ? 0 : Convert.ToDecimal(total);
-            locacao.Veiculo.km_Inicial = Convert.ToInt32(txtKmAtual.Text);
+            locacao.Veiculo.KmInicial = Convert.ToInt32(txtKmAtual.Text);
         }
         private void dtRetorno_ValueChanged(object sender, EventArgs e)
         {

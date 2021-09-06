@@ -62,9 +62,9 @@ namespace LocadoraVeiculo.WindowsApp.Features.EmailLocadora
             this.label8.AutoSize = true;
             this.label8.Location = new System.Drawing.Point(12, 7);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(143, 15);
+            this.label8.Size = new System.Drawing.Size(104, 15);
             this.label8.TabIndex = 0;
-            this.label8.Text = "Cadastro de Combustível";
+            this.label8.Text = "Cadastro de Email";
             // 
             // btnCancelar
             // 

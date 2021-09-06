@@ -65,7 +65,6 @@ namespace LocadoraVeiculo.WindowsApp.Features.Veiculos
             this.btnBuscarFoto = new System.Windows.Forms.Button();
             this.openFileDialogImagem = new System.Windows.Forms.OpenFileDialog();
             this.label15 = new System.Windows.Forms.Label();
-            this.txtDisponivel = new System.Windows.Forms.TextBox();
             this.bunifuElipse1 = new Bunifu.Framework.UI.BunifuElipse(this.components);
             this.header_Veiculo = new System.Windows.Forms.Panel();
             this.label16 = new System.Windows.Forms.Label();
@@ -418,16 +417,6 @@ namespace LocadoraVeiculo.WindowsApp.Features.Veiculos
             this.label15.TabIndex = 116;
             this.label15.Text = "Foto:";
             // 
-            // txtDisponivel
-            // 
-            this.txtDisponivel.Font = new System.Drawing.Font("Lucida Sans Unicode", 8F);
-            this.txtDisponivel.Location = new System.Drawing.Point(720, 77);
-            this.txtDisponivel.Name = "txtDisponivel";
-            this.txtDisponivel.Size = new System.Drawing.Size(1, 24);
-            this.txtDisponivel.TabIndex = 117;
-            this.txtDisponivel.Text = "1";
-            this.txtDisponivel.Visible = false;
-            // 
             // bunifuElipse1
             // 
             this.bunifuElipse1.ElipseRadius = 8;
@@ -458,7 +447,6 @@ namespace LocadoraVeiculo.WindowsApp.Features.Veiculos
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(774, 596);
             this.Controls.Add(this.header_Veiculo);
-            this.Controls.Add(this.txtDisponivel);
             this.Controls.Add(this.label15);
             this.Controls.Add(this.btnBuscarFoto);
             this.Controls.Add(this.txtNome);
@@ -546,7 +534,6 @@ namespace LocadoraVeiculo.WindowsApp.Features.Veiculos
         private System.Windows.Forms.Button btnBuscarFoto;
         private System.Windows.Forms.OpenFileDialog openFileDialogImagem;
         private System.Windows.Forms.Label label15;
-        private System.Windows.Forms.TextBox txtDisponivel;
         private Bunifu.Framework.UI.BunifuElipse bunifuElipse1;
         private System.Windows.Forms.Panel header_Veiculo;
         private System.Windows.Forms.Label label16;

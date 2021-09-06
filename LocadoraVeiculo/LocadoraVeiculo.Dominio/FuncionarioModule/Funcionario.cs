@@ -17,7 +17,7 @@ namespace LocadoraVeiculo.FuncionarioModule
         public string Nome { get => nome; set => nome = value; }
         public decimal? Salario { get => salario; set => salario = value; }
         public DateTime DataEntrada { get => dataEntrada; set => dataEntrada = value; }
-        public string Cpf_funcionario { get => cpf_funcionario; set => cpf_funcionario = value; }
+        public string CpfFuncionario { get => cpf_funcionario; set => cpf_funcionario = value; }
         public string Usuario { get => usuario; set => usuario = value; }
         public string Senha { get => senha; set => senha = value; }
 
@@ -26,7 +26,7 @@ namespace LocadoraVeiculo.FuncionarioModule
             this.Nome = nome;
             this.Salario = salario;
             this.DataEntrada = dataEntrada;
-            this.Cpf_funcionario = cpf_funcionario;
+            this.CpfFuncionario = cpf_funcionario;
             this.Usuario = usuario;
             this.Senha = senha;
         }
@@ -56,7 +56,7 @@ namespace LocadoraVeiculo.FuncionarioModule
             if (Salario == null)
                 resultadoValidacao += QuebraDeLinha(resultadoValidacao) + "O campo Salário está inválido";
 
-            if(Cpf_funcionario.Length != 14)
+            if(CpfFuncionario.Length != 14)
                 resultadoValidacao += QuebraDeLinha(resultadoValidacao) + "O campo CPF está inválido";
 
             if(string.IsNullOrEmpty(Usuario))
@@ -78,7 +78,7 @@ namespace LocadoraVeiculo.FuncionarioModule
             return other != null
                 && Id == other.Id
                 && Nome == other.Nome
-                && Cpf_funcionario == other.Cpf_funcionario
+                && CpfFuncionario == other.CpfFuncionario
                 && Salario == other.Salario
                 && DataEntrada == other.DataEntrada
                 && Usuario == other.Usuario
@@ -98,7 +98,7 @@ namespace LocadoraVeiculo.FuncionarioModule
             hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(Nome);
             hashCode = hashCode * -1521134295 + Salario.GetHashCode();
             hashCode = hashCode * -1521134295 + DataEntrada.GetHashCode();
-            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(Cpf_funcionario);
+            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(CpfFuncionario);
             hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(Usuario);
             hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(Senha);
             return hashCode;

@@ -8,7 +8,6 @@ using iText.Layout.Properties;
 using LocadoraVeiculo.EmailLocadora;
 using LocadoraVeiculo.LocacaoModule;
 using System.Net.Mail;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace LocadoraVeiculo.ExportacaoPDF
@@ -26,7 +25,7 @@ namespace LocadoraVeiculo.ExportacaoPDF
                 document.Add(new Paragraph("\n\n"));
                 document.Add(new Paragraph("Cliente: " + locacao.Cliente.ToString()));
                 document.Add(new Paragraph("Condutor: " + locacao.Condutor.ToString()));
-                document.Add(new Paragraph("Veículo: " + locacao.Veiculo.nome.ToString()));
+                document.Add(new Paragraph("Veículo: " + locacao.Veiculo.Nome.ToString()));
                 document.Add(new Paragraph("Data de Saída: " + locacao.DataSaida.ToString("d")));
                 document.Add(new Paragraph("Data de Retorno: " + locacao.DataRetorno.ToString("d")));
                 document.Add(new Paragraph("Plano Escolhido: " + locacao.TipoLocacao));
@@ -46,10 +45,14 @@ namespace LocadoraVeiculo.ExportacaoPDF
                 string cupomNome = locacao.Desconto?.Nome == null ? "Nenhum" : locacao.Desconto?.Nome;
                 document.Add(new Paragraph("Cupom de Desconto: " + cupomNome));
                 document.Add(new Paragraph("Veículo:"));
-                document.Add(new Image(ImageDataFactory.Create(locacao.Veiculo.foto)));
+                var img = new Image(ImageDataFactory.Create(@"..\..\..\Logo\logo.png"));
+                img.ScaleAbsolute(55, 55);
+                img.SetFixedPosition(50f, 750f);
+                document.Add(img);
+                document.Add(new Image(ImageDataFactory.Create(locacao.Veiculo.Foto)));
                 document.Add(new Paragraph("\n\n"));
-                document.Add(new Paragraph("Total da Locação: R$" + locacao.PrecoTotal).SetBold());
-
+                document.Add(new Paragraph("Total da Locação:")).SetBold().SetFontSize(30).SetTextAlignment(TextAlignment.CENTER);
+                document.Add(new Paragraph($"R${locacao.PrecoTotal}")).SetBold().SetFontSize(30).SetTextAlignment(TextAlignment.CENTER);
                 document.Close();
 
                 pdfDocument.Close();

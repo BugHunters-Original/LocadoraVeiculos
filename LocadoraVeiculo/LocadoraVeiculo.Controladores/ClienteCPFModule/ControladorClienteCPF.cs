@@ -8,6 +8,7 @@ namespace LocadoraVeiculo.Controladores.CondutorModule
 {
     public class ControladorClienteCPF : Controlador<ClienteCPF>
     {
+        #region Queries
         private const string sqlInserirCondutor =
             @"INSERT INTO TBCLIENTECPF
 	                (
@@ -128,15 +129,6 @@ namespace LocadoraVeiculo.Controladores.CondutorModule
                         TBCLIENTECNPJ AS CT
                     ON
                         CT.ID = CD.ID_CLIENTE";
-        private const string sqlSelecionarTodosCondutoresIndisponiveis =
-            @"SELECT
-                        *
-	                FROM
-                        TBLOCACAO AS L LEFT JOIN
-                        TBCLIENTECPF AS C
-                    ON
-                        L.ID_CONDUTOR = C.ID";
-
 
 
         private const string sqlExisteCondutor =
@@ -146,6 +138,8 @@ namespace LocadoraVeiculo.Controladores.CondutorModule
                 [TBCLIENTECPF]
             WHERE 
                 [ID] = @ID";
+        #endregion
+
         public override string Editar(int id, ClienteCPF registro)
         {
             string resultadoValidacao = registro.Validar();
@@ -203,10 +197,6 @@ namespace LocadoraVeiculo.Controladores.CondutorModule
         public override ClienteCPF SelecionarPorId(int id)
         {
             return Db.Get(sqlSelecionarCondutorPorId, ConverterEmCondutor, AdicionarParametro("ID", id));
-        }
-        public List<ClienteCPF> SelecionarTodosIndisponíveisDisponiveis()
-        {
-            return Db.GetAll(sqlSelecionarTodosCondutoresIndisponiveis, ConverterEmCondutor);
         }
 
         public override List<ClienteCPF> SelecionarTodos()

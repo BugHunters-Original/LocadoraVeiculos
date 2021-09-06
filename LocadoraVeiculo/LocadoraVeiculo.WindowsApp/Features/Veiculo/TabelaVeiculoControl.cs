@@ -68,13 +68,13 @@ namespace LocadoraVeiculo.WindowsApp.Features.Veiculos
             foreach (VeiculoModule.Veiculo veiculo in veiculos)
             {
                 string disponivel = "Disponível";
-                if (veiculo.disponibilidade_Veiculo == 0)
+                if (veiculo.DisponibilidadeVeiculo == 0)
                     disponivel = "Indisponível";
 
 
-                gridVeiculos.Rows.Add(veiculo.Id, veiculo.nome, veiculo.cor, veiculo.marca, veiculo.ano,
-                veiculo.km_Inicial, veiculo.tipo_Combustivel,
-                veiculo.grupoVeiculo.NomeTipo, disponivel);
+                gridVeiculos.Rows.Add(veiculo.Id, veiculo.Nome, veiculo.Cor, veiculo.Marca, veiculo.Ano,
+                veiculo.KmInicial, veiculo.TipoCombustivel,
+                veiculo.GrupoVeiculo.NomeTipo, disponivel);
             }
         }
 
@@ -92,7 +92,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.Veiculos
             tela.Veiculo = veiculoSelecionado;
 
             if (tela.ShowDialog() == DialogResult.OK)
-                TelaPrincipalForm.Instancia.AtualizarRodape($"Veículo: [{tela.veiculos.nome}] visualizado");
+                TelaPrincipalForm.Instancia.AtualizarRodape($"Veículo: [{tela.veiculos.Nome}] visualizado");
         }
 
         public void AtualizarAparencia()
