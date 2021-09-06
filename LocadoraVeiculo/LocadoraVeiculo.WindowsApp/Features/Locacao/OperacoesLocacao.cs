@@ -1,4 +1,5 @@
-﻿using LocadoraVeiculo.Controladores.LocacaoModule;
+﻿using LocadoraVeiculo.Controladores.CondutorModule;
+using LocadoraVeiculo.Controladores.LocacaoModule;
 using LocadoraVeiculo.Controladores.TaxaDaLocacaoModule;
 using LocadoraVeiculo.Controladores.VeiculoModule;
 using LocadoraVeiculo.ExportacaoPDF;
@@ -18,6 +19,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.Locacao
         private readonly ControladorLocacao controladorLocacao;
         private readonly ControladorVeiculo controladorVeiculo;
         private readonly ControladorTaxaDaLocacao controladorTaxaDaLocacao;
+        private readonly ControladorClienteCPF controladorClienteCPF;
         private readonly TabelaLocacaoControl tabelaLocacoes;
 
         public OperacoesLocacao(ControladorLocacao ctrlLocacao)
@@ -25,6 +27,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.Locacao
             controladorLocacao = ctrlLocacao;
             controladorVeiculo = new ControladorVeiculo();
             controladorTaxaDaLocacao = new ControladorTaxaDaLocacao();
+            controladorClienteCPF = new ControladorClienteCPF();
             tabelaLocacoes = new TabelaLocacaoControl();
         }
 
@@ -178,6 +181,12 @@ namespace LocadoraVeiculo.WindowsApp.Features.Locacao
                             MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return;
             }
+            if (VerificaCondutoresDisponiveis())
+            {
+                MessageBox.Show("Nenhum Condutor disponível para Locação!", "Adição de Locações",
+                    MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                return;
+            }
 
             TelaLocacaoForm tela = new TelaLocacaoForm();
 
@@ -200,6 +209,12 @@ namespace LocadoraVeiculo.WindowsApp.Features.Locacao
                 Task.Run(() => ExportarRecibo(tela));
 
             }
+        }
+
+        private bool VerificaCondutoresDisponiveis()
+        {
+            return controladorLocacao.SelecionarTodos().FindAll(x => x.StatusLocacao == "Em Aberto").Count ==
+                            controladorClienteCPF.SelecionarTodos().Count;
         }
 
         private void ExportarRecibo(TelaLocacaoForm tela)
