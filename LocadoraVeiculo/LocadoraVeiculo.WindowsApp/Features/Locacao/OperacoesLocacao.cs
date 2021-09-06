@@ -213,8 +213,14 @@ namespace LocadoraVeiculo.WindowsApp.Features.Locacao
 
         private bool VerificaCondutoresDisponiveis()
         {
-            return controladorLocacao.SelecionarTodos().FindAll(x => x.StatusLocacao == "Em Aberto").Count ==
-                            controladorClienteCPF.SelecionarTodos().Count;
+            var locacoes = controladorLocacao.SelecionarTodasLocacoesPendentes();
+
+            var clientesCPF = controladorClienteCPF.SelecionarTodos();
+
+            foreach (var item in locacoes)
+                clientesCPF.Remove(item.Condutor);
+
+            return clientesCPF.Count == 0;
         }
 
         private void ExportarRecibo(TelaLocacaoForm tela)

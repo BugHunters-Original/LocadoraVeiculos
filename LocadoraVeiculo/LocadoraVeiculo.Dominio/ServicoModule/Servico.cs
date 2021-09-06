@@ -36,7 +36,7 @@ namespace LocadoraVeiculo.ServicoModule
         public override string ToString()
         {
             string tipo = TipoCalculo == 0 ? "Diário" : "Fixo";
-            return Nome + " " + tipo + " " + "R$" + Preco;
+            return "R$" + Preco + " " + tipo + " " + Nome;
         }
 
         public bool Equals(Servico other)

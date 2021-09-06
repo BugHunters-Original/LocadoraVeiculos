@@ -17,7 +17,7 @@ using LocadoraVeiculo.Controladores.TaxaDaLocacaoModule;
 using LocadoraVeiculo.DescontoModule;
 using LocadoraVeiculo.Controladores.DescontoModule;
 using System.Drawing;
-using LocadoraVeiculo.EmailLocadora;
+using LocadoraVeiculo.Controladores.LocacaoModule;
 
 namespace LocadoraVeiculo.WindowsApp.Features.Locacao
 {
@@ -29,6 +29,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.Locacao
         private readonly ControladorVeiculo controladorVeiculo;
         private readonly ControladorTaxaDaLocacao controladorTaxaDaLocacao;
         private readonly ControladorDesconto controladorDesconto;
+        private readonly ControladorLocacao controladorLocacao;
         readonly TelaAdicionarTaxasForm telaDasTaxas;
         public List<Servico> Servicos { get; set; }
 
@@ -40,6 +41,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.Locacao
             controladorVeiculo = new ControladorVeiculo();
             controladorTaxaDaLocacao = new ControladorTaxaDaLocacao();
             controladorDesconto = new ControladorDesconto();
+            controladorLocacao = new ControladorLocacao();
             telaDasTaxas = new TelaAdicionarTaxasForm();
             InitializeComponent();
             PopularComboboxes();
@@ -102,7 +104,14 @@ namespace LocadoraVeiculo.WindowsApp.Features.Locacao
         private void PopularComboboxes()
         {
             var clientesCNPJ = controladorCNPJ.SelecionarTodos();
+
+            var locacoes = controladorLocacao.SelecionarTodasLocacoesPendentes();
+
             var clientesCPF = controladorCPF.SelecionarTodos();
+
+            foreach (var item in locacoes)
+                clientesCPF.Remove(item.Condutor);
+
             var veiculos = controladorVeiculo.SelecionarTodosDisponiveis();
 
             foreach (var clienteCPF in clientesCPF)
@@ -116,7 +125,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.Locacao
         }
         private void MudarDisponibilidadeVeiculo(Veiculo veiculo)
         {
-            veiculo.disponibilidade_Veiculo = 0;
+            veiculo.DisponibilidadeVeiculo = 0;
 
             controladorVeiculo.Editar(veiculo.Id, veiculo);
         }
@@ -125,13 +134,13 @@ namespace LocadoraVeiculo.WindowsApp.Features.Locacao
             switch (tipoLocacao)
             {
                 case "Plano Diário":
-                    return (veiculo.grupoVeiculo.ValorDiarioPDiario * dias);
+                    return (veiculo.GrupoVeiculo.ValorDiarioPDiario * dias);
 
                 case "KM Livre":
-                    return (veiculo.grupoVeiculo.ValorDiarioPLivre * dias);
+                    return (veiculo.GrupoVeiculo.ValorDiarioPLivre * dias);
 
                 case "KM Controlado":
-                    return (veiculo.grupoVeiculo.ValorDiarioPControlado * dias);
+                    return (veiculo.GrupoVeiculo.ValorDiarioPControlado * dias);
 
                 default: return 0;
             }

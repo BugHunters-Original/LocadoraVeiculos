@@ -166,9 +166,9 @@ namespace LocadoraVeiculo.WindowsApp.Features.Dashboard
         {
             foreach (Veiculo veiculo in veiculos)
             {
-                dtDashboard.Rows.Add(veiculo.Id, veiculo.nome, veiculo.cor, veiculo.marca, veiculo.ano,
-                veiculo.numero_Portas, veiculo.capacidade_Tanque, veiculo.tamanhoPortaMalas, veiculo.km_Inicial, veiculo.tipo_Combustivel,
-                veiculo.grupoVeiculo.NomeTipo);
+                dtDashboard.Rows.Add(veiculo.Id, veiculo.Nome, veiculo.Cor, veiculo.Marca, veiculo.Ano,
+                veiculo.NumeroPortas, veiculo.CapacidadeTanque, veiculo.TamanhoPortaMalas, veiculo.KmInicial, veiculo.TipoCombustivel,
+                veiculo.GrupoVeiculo.NomeTipo);
             }
         }
         private void btnAlugados_Click(object sender, EventArgs e)
@@ -199,7 +199,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.Dashboard
                 tela.Veiculo = veiculoSelecionado;
 
                 if (tela.ShowDialog() == DialogResult.OK)
-                    TelaPrincipalForm.Instancia.AtualizarRodape($"Veículo: [{tela.veiculos.nome}] visualizado");
+                    TelaPrincipalForm.Instancia.AtualizarRodape($"Veículo: [{tela.veiculos.Nome}] visualizado");
             }
         }
     }

@@ -45,7 +45,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.Veiculos
 
                 tabelaVeiculos.AtualizarRegistros(veiculos);
 
-                TelaPrincipalForm.Instancia.AtualizarRodape($"Veículo: [{tela.veiculos.nome}] inserido com sucesso");
+                TelaPrincipalForm.Instancia.AtualizarRodape($"Veículo: [{tela.veiculo.Nome}] inserido com sucesso");
             }
         }
 
@@ -74,7 +74,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.Veiculos
 
                 tabelaVeiculos.AtualizarRegistros(veiculos);
 
-                TelaPrincipalForm.Instancia.AtualizarRodape($"Veículo: [{tela.veiculos.nome}] editado com sucesso");
+                TelaPrincipalForm.Instancia.AtualizarRodape($"Veículo: [{tela.veiculo.Nome}] editado com sucesso");
             }
         }
 
@@ -91,7 +91,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.Veiculos
 
             Veiculo veiculoSelecionada = controladorVeiculo.SelecionarPorId(id);
 
-            if (MessageBox.Show($"Tem certeza que deseja excluir o Veículo: [{veiculoSelecionada.nome}] ?",
+            if (MessageBox.Show($"Tem certeza que deseja excluir o Veículo: [{veiculoSelecionada.Nome}] ?",
                 "Exclusão de Veículos", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK)
             {
                 bool excluiu = controladorVeiculo.Excluir(id);
@@ -104,7 +104,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.Veiculos
 
                     tabelaVeiculos.AtualizarRegistros(veiculos);
 
-                    TelaPrincipalForm.Instancia.AtualizarRodape($"Veículo: [{veiculoSelecionada.nome}] removido com sucesso");
+                    TelaPrincipalForm.Instancia.AtualizarRodape($"Veículo: [{veiculoSelecionada.Nome}] removido com sucesso");
                 }
                 else
                 {

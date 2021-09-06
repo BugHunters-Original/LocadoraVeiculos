@@ -224,6 +224,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.Locacao
             // cbCondutor
             // 
             this.cbCondutor.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbCondutor.Enabled = false;
             this.cbCondutor.FormattingEnabled = true;
             this.cbCondutor.Location = new System.Drawing.Point(212, 138);
             this.cbCondutor.Name = "cbCondutor";

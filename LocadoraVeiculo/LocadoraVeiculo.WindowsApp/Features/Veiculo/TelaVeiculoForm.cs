@@ -10,7 +10,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.Veiculos
 {
     public partial class TelaVeiculoForm : Form
     {
-        public Veiculo veiculos;
+        public Veiculo veiculo;
         ControladorGrupoVeiculo controladorGrupoVeiculo = new ControladorGrupoVeiculo();
 
         public TelaVeiculoForm()
@@ -68,32 +68,31 @@ namespace LocadoraVeiculo.WindowsApp.Features.Veiculos
 
         public Veiculo Veiculo
         {
-            get { return veiculos; }
+            get { return veiculo; }
 
             set
             {
-                veiculos = value;
+                veiculo = value;
 
-                txtId.Text = veiculos.Id.ToString();
-                txtNome.Text = veiculos.nome;
-                txtPlaca.Text = veiculos.numero_Placa;
-                txtChassi.Text = veiculos.numero_Chassi;
-                if (veiculos.foto != null)
+                txtId.Text = veiculo.Id.ToString();
+                txtNome.Text = veiculo.Nome;
+                txtPlaca.Text = veiculo.NumeroPlaca;
+                txtChassi.Text = veiculo.NumeroChassi;
+                if (veiculo.Foto != null)
                 {
-                    pictureBoxImagem.Image = (Image)(new Bitmap(ConverteByteArrayParaImagem(veiculos.foto), new Size(214, 126)));
+                    pictureBoxImagem.Image = (Image)(new Bitmap(ConverteByteArrayParaImagem(veiculo.Foto), new Size(214, 126)));
                     pictureBoxImagem.SizeMode = PictureBoxSizeMode.StretchImage;
                 }
-                txtCor.Text = veiculos.cor;
-                txtMarca.Text = veiculos.marca;
-                txtAno.Text = veiculos.ano.ToString();
-                txtNPortas.Text = veiculos.numero_Portas.ToString();
-                txtCapacidadeTanque.Text = veiculos.capacidade_Tanque.ToString();
-                txtCapacidadePessoas.Text = veiculos.capacidade_Pessoas.ToString();
-                cmbTamanhoPortaMalas.Text = veiculos.tamanhoPortaMalas.ToString();
-                txtKm.Text = veiculos.km_Inicial.ToString();
-                cmbTipoCombustivel.Text = veiculos.tipo_Combustivel;
-                cmbGrupo.Text = veiculos.grupoVeiculo.NomeTipo;
-                txtDisponivel.Text = veiculos.disponibilidade_Veiculo.ToString();
+                txtCor.Text = veiculo.Cor;
+                txtMarca.Text = veiculo.Marca;
+                txtAno.Text = veiculo.Ano.ToString();
+                txtNPortas.Text = veiculo.NumeroPortas.ToString();
+                txtCapacidadeTanque.Text = veiculo.CapacidadeTanque.ToString();
+                txtCapacidadePessoas.Text = veiculo.CapacidadePessoas.ToString();
+                cmbTamanhoPortaMalas.Text = veiculo.TamanhoPortaMalas.ToString();
+                txtKm.Text = veiculo.KmInicial.ToString();
+                cmbTipoCombustivel.Text = veiculo.TipoCombustivel;
+                cmbGrupo.Text = veiculo.GrupoVeiculo.NomeTipo;
             }
         }
 
@@ -131,13 +130,12 @@ namespace LocadoraVeiculo.WindowsApp.Features.Veiculos
                 TamanhoPortaMalas = Convert.ToChar(cmbTamanhoPortaMalas.Text);
             string TipoCombustivel = cmbTipoCombustivel.Text;
 
-            int disponibilidade = Convert.ToInt32(txtDisponivel.Text);
-
             GrupoVeiculoModule.GrupoVeiculo grupo = (GrupoVeiculoModule.GrupoVeiculo)cmbGrupo.SelectedItem;
 
-            veiculos = new Veiculo(nome, placa, chassi, foto, cor, marca, ano, NPortas, CapacidadeTanque, CapacidadePessoas, TamanhoPortaMalas, Km, TipoCombustivel, disponibilidade, grupo);
+            veiculo = new Veiculo(nome, placa, chassi, foto, cor, marca, ano, NPortas, CapacidadeTanque,
+                CapacidadePessoas, TamanhoPortaMalas, Km, TipoCombustivel, veiculo.DisponibilidadeVeiculo, grupo);
 
-            string resultadoValidacao = veiculos.Validar();
+            string resultadoValidacao = veiculo.Validar();
 
             if (resultadoValidacao != "ESTA_VALIDO")
             {

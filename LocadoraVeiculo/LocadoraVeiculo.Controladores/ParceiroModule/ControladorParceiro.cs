@@ -11,6 +11,7 @@ namespace LocadoraVeiculo.Controladores.ParceiroModule
 {
     public class ControladorParceiro : Controlador<ParceiroDesconto>
     {
+        #region Queries
         private const string sqlInserirParceiro =
        @"INSERT INTO TBPARCEIROS
 	                (
@@ -58,6 +59,8 @@ namespace LocadoraVeiculo.Controladores.ParceiroModule
                 [TBPARCEIROS]
             WHERE 
                 [ID] = @ID";
+        #endregion
+
         public override string Editar(int id, ParceiroDesconto registro)
         {
             string resultadoValidacao = registro.Validar();

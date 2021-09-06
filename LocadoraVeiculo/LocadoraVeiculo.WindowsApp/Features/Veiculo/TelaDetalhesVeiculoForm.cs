@@ -70,24 +70,24 @@ namespace LocadoraVeiculo.WindowsApp.Features.Veiculos
                 veiculos = value;
 
                 txtId.Text = veiculos.Id.ToString();
-                txtNome.Text = veiculos.nome;
-                txtPlaca.Text = veiculos.numero_Placa;
-                txtChassi.Text = veiculos.numero_Chassi;
-                if (veiculos.foto != null)
+                txtNome.Text = veiculos.Nome;
+                txtPlaca.Text = veiculos.NumeroPlaca;
+                txtChassi.Text = veiculos.NumeroChassi;
+                if (veiculos.Foto != null)
                 {
-                    pictureBoxImagem.Image = (Image)(new Bitmap(ConverteByteArrayParaImagem(veiculos.foto), new Size(214, 126)));
+                    pictureBoxImagem.Image = (Image)(new Bitmap(ConverteByteArrayParaImagem(veiculos.Foto), new Size(214, 126)));
                     pictureBoxImagem.SizeMode = PictureBoxSizeMode.StretchImage;
                 }
-                txtCor.Text = veiculos.cor;
-                txtMarca.Text = veiculos.marca;
-                txtAno.Text = veiculos.ano.ToString();
-                txtNPortas.Text = veiculos.numero_Portas.ToString();
-                txtCapacidadeTanque.Text = veiculos.capacidade_Tanque.ToString();
-                txtCapacidadePessoas.Text = veiculos.capacidade_Pessoas.ToString();
-                cmbTamanhoPortaMalas.Text = veiculos.tamanhoPortaMalas.ToString();
-                txtKm.Text = veiculos.km_Inicial.ToString();
-                cmbTipoCombustivel.Text = veiculos.tipo_Combustivel;
-                cmbGrupo.Text = veiculos.grupoVeiculo.NomeTipo;
+                txtCor.Text = veiculos.Cor;
+                txtMarca.Text = veiculos.Marca;
+                txtAno.Text = veiculos.Ano.ToString();
+                txtNPortas.Text = veiculos.NumeroPortas.ToString();
+                txtCapacidadeTanque.Text = veiculos.CapacidadeTanque.ToString();
+                txtCapacidadePessoas.Text = veiculos.CapacidadePessoas.ToString();
+                cmbTamanhoPortaMalas.Text = veiculos.TamanhoPortaMalas.ToString();
+                txtKm.Text = veiculos.KmInicial.ToString();
+                cmbTipoCombustivel.Text = veiculos.TipoCombustivel;
+                cmbGrupo.Text = veiculos.GrupoVeiculo.NomeTipo;
             }
         }
 

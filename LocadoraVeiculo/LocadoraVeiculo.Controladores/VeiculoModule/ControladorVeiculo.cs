@@ -253,8 +253,8 @@ namespace LocadoraVeiculo.Controladores.VeiculoModule
         }
         public void EditarDisponibilidade(Veiculo atual, Veiculo antigo)
         {
-            atual.disponibilidade_Veiculo = 0;
-            antigo.disponibilidade_Veiculo = 1;
+            atual.DisponibilidadeVeiculo = 0;
+            antigo.DisponibilidadeVeiculo = 1;
             Db.Update(sqlEditarVeiculo, ObtemParametrosVeiculo(atual));
             Db.Update(sqlEditarVeiculo, ObtemParametrosVeiculo(antigo));
         }
@@ -371,21 +371,21 @@ namespace LocadoraVeiculo.Controladores.VeiculoModule
             var parametros = new Dictionary<string, object>();
 
             parametros.Add("ID", veiculo.Id);
-            parametros.Add("NOME", veiculo.nome);
-            parametros.Add("NUMERO_PLACA", veiculo.numero_Placa);
-            parametros.Add("NUMERO_CHASSI", veiculo.numero_Chassi);
-            parametros.Add("FOTO", veiculo.foto);
-            parametros.Add("COR", veiculo.cor);
-            parametros.Add("MARCA", veiculo.marca);
-            parametros.Add("ANO", veiculo.ano);
-            parametros.Add("NUMERO_PORTAS", veiculo.numero_Portas);
-            parametros.Add("CAPACIDADE_TANQUE", veiculo.capacidade_Tanque);
-            parametros.Add("CAPACIDADE_PESSOAS", veiculo.capacidade_Pessoas);
-            parametros.Add("TAMANHO_PORTA_MALA", veiculo.tamanhoPortaMalas);
-            parametros.Add("KM_INICIAL", veiculo.km_Inicial);
-            parametros.Add("TIPO_COMBUSTIVEL", veiculo.tipo_Combustivel);
-            parametros.Add("DISPONIBILIDADE_VEICULO", veiculo.disponibilidade_Veiculo);
-            parametros.Add("ID_TIPO_VEICULO", veiculo.grupoVeiculo.Id);
+            parametros.Add("NOME", veiculo.Nome);
+            parametros.Add("NUMERO_PLACA", veiculo.NumeroPlaca);
+            parametros.Add("NUMERO_CHASSI", veiculo.NumeroChassi);
+            parametros.Add("FOTO", veiculo.Foto);
+            parametros.Add("COR", veiculo.Cor);
+            parametros.Add("MARCA", veiculo.Marca);
+            parametros.Add("ANO", veiculo.Ano);
+            parametros.Add("NUMERO_PORTAS", veiculo.NumeroPortas);
+            parametros.Add("CAPACIDADE_TANQUE", veiculo.CapacidadeTanque);
+            parametros.Add("CAPACIDADE_PESSOAS", veiculo.CapacidadePessoas);
+            parametros.Add("TAMANHO_PORTA_MALA", veiculo.TamanhoPortaMalas);
+            parametros.Add("KM_INICIAL", veiculo.KmInicial);
+            parametros.Add("TIPO_COMBUSTIVEL", veiculo.TipoCombustivel);
+            parametros.Add("DISPONIBILIDADE_VEICULO", veiculo.DisponibilidadeVeiculo);
+            parametros.Add("ID_TIPO_VEICULO", veiculo.GrupoVeiculo.Id);
 
             return parametros;
         }
