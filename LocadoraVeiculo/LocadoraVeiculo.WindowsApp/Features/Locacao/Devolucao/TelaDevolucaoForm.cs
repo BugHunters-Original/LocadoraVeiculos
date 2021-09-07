@@ -152,7 +152,6 @@ namespace LocadoraVeiculo.WindowsApp.Features.Locacao.Devolucao
             if (dtRetorno.Value.Date < dtRetornoEsperada.Value.Date)
                 valido += "A Data de Retorno não pode ser menor que a Data de Retorno Esperada\r\n";
 
-
             if (cbNivelTanque.Text == "")
                 valido += "O Campo Nível do Tanque não pode ser nulo\r\n";
 
