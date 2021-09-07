@@ -52,11 +52,13 @@ namespace LocadoraVeiculo.WindowsApp.Features.Clientes
         public void AtualizarRegistros(List<ClienteCPF> clientesCPF, List<ClienteCNPJ> clientesCNPJ)
         {
             gridClientes.Rows.Clear();
+
             foreach (var clienteCPF in clientesCPF)
             {
                 gridClientes.Rows.Add(clienteCPF.Id, clienteCPF.Nome,
                     clienteCPF.Endereco, clienteCPF.Telefone, clienteCPF.Cpf, clienteCPF.Email, clienteCPF.Cliente);
             }
+
             foreach (var clienteCNPJ in clientesCNPJ)
             {
                 gridClientes.Rows.Add(clienteCNPJ.Id, clienteCNPJ.Nome,

@@ -10,7 +10,7 @@ namespace LocadoraVeiculo.LocacaoModule
 {
     public class LocacaoVeiculo : EntidadeBase, IEquatable<LocacaoVeiculo>
     {
-        public LocacaoVeiculo(Cliente cliente, Veiculo veiculo, Desconto desconto, ClienteCPF condutor, DateTime dataSaida,
+        public LocacaoVeiculo(ClienteBase cliente, Veiculo veiculo, Desconto desconto, ClienteCPF condutor, DateTime dataSaida,
                DateTime dataRetorno, string tipoLocacao, int tipoCliente, decimal? precoServicos, int dias,
                string statusLocacao, decimal? precoCombustivel, decimal? precoPlano, decimal? precoTotal, List<Servico> servicos)
         {
@@ -30,7 +30,7 @@ namespace LocadoraVeiculo.LocacaoModule
             PrecoTotal = precoTotal;
             Servicos = servicos;
         }
-        public Cliente Cliente { get; set; }
+        public ClienteBase Cliente { get; set; }
         public Veiculo Veiculo { get; set; }
         public Desconto Desconto { get; set; }
         public ClienteCPF Condutor { get; set; }
@@ -72,7 +72,7 @@ namespace LocadoraVeiculo.LocacaoModule
         {
             int hashCode = 381890681;
             hashCode = hashCode * -1521134295 + Id.GetHashCode();
-            hashCode = hashCode * -1521134295 + EqualityComparer<Cliente>.Default.GetHashCode(Cliente);
+            hashCode = hashCode * -1521134295 + EqualityComparer<ClienteBase>.Default.GetHashCode(Cliente);
             hashCode = hashCode * -1521134295 + EqualityComparer<Veiculo>.Default.GetHashCode(Veiculo);
             hashCode = hashCode * -1521134295 + EqualityComparer<ClienteCPF>.Default.GetHashCode(Condutor);
             hashCode = hashCode * -1521134295 + DataSaida.GetHashCode();

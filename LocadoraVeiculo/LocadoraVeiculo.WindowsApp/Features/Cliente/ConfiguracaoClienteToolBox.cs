@@ -33,15 +33,9 @@ namespace LocadoraVeiculo.WindowsApp.Features.Clientes
             get { return "Devolver um Veículo"; }
         }
 
-        public bool EnabledFiltrar
-        {
-            get { return false; }
-        }
+        public bool EnabledFiltrar => true;
 
-        public bool EnabledDevolver
-        {
-            get { return false; }
-        }
+        public bool EnabledDevolver => false;
 
         public bool EnabledAdicionar => true;
 
