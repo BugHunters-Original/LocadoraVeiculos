@@ -51,8 +51,7 @@ namespace LocadoraVeiculo.ExportacaoPDF
                 document.Add(img);
                 document.Add(new Image(ImageDataFactory.Create(locacao.Veiculo.Foto)));
                 document.Add(new Paragraph("\n\n"));
-                document.Add(new Paragraph("Total da Locação:")).SetBold().SetFontSize(30).SetTextAlignment(TextAlignment.CENTER);
-                document.Add(new Paragraph($"R${locacao.PrecoTotal}")).SetBold().SetFontSize(30).SetTextAlignment(TextAlignment.CENTER);
+                document.Add(new Paragraph($"Total: R${locacao.PrecoTotal}").SetBold().SetFontSize(30).SetTextAlignment(TextAlignment.CENTER));
                 document.Close();
 
                 pdfDocument.Close();

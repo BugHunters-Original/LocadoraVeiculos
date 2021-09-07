@@ -57,19 +57,24 @@ namespace LocadoraVeiculo.WindowsApp.Features.Locacao
             {
                 locacao = value;
 
+                PreencherListaTaxa();
+
                 txtID.Text = locacao.Id.ToString();
+
                 cbCliente.Text = locacao.Cliente.ToString();
 
                 cbVeiculo.Items.Add(locacao.Veiculo);
+
                 cbVeiculo.SelectedIndex = cbVeiculo.Items.Count - 1;
 
-                cbCondutor.Items.Add(locacao.Condutor);
-                cbCondutor.SelectedIndex = 0;
+                cbCondutor.Text = locacao.Condutor.ToString();
 
-                PreencherListaTaxa();
                 dtSaida.Value = locacao.DataSaida;
+
                 dtRetorno.Value = locacao.DataRetorno;
+
                 cbTipoLocacao.Text = locacao.TipoLocacao.ToString();
+
                 txtCupom.Text = locacao.Desconto?.Codigo;
             }
         }
@@ -103,25 +108,21 @@ namespace LocadoraVeiculo.WindowsApp.Features.Locacao
         }
         private void PopularComboboxes()
         {
-            var clientesCNPJ = controladorCNPJ.SelecionarTodos();
-
             var locacoes = controladorLocacao.SelecionarTodasLocacoesPendentes();
 
             var clientesCPF = controladorCPF.SelecionarTodos();
 
-            foreach (var item in locacoes)
-                clientesCPF.Remove(item.Condutor);
+            var clientesCNPJ = controladorCNPJ.SelecionarTodos();
 
             var veiculos = controladorVeiculo.SelecionarTodosDisponiveis();
 
-            foreach (var clienteCPF in clientesCPF)
-                cbCliente.Items.Add(clienteCPF);
+            locacoes.ForEach(x => clientesCPF.Remove(x.Condutor));
 
-            foreach (var clienteCNPJ in clientesCNPJ)
-                cbCliente.Items.Add(clienteCNPJ);
+            clientesCPF.ForEach(x => cbCliente.Items.Add(x));
 
-            foreach (var veiculo in veiculos)
-                cbVeiculo.Items.Add(veiculo);
+            clientesCNPJ.ForEach(x => cbCliente.Items.Add(x));
+
+            veiculos.ForEach(x => cbVeiculo.Items.Add(x));
         }
         private void MudarDisponibilidadeVeiculo(Veiculo veiculo)
         {
@@ -150,12 +151,19 @@ namespace LocadoraVeiculo.WindowsApp.Features.Locacao
             List<TaxaDaLocacao> lista = controladorTaxaDaLocacao.SelecionarTaxasDeUmaLocacao(locacao.Id);
 
             if (lista != null)
-                foreach (var servico in lista)
-                {
-                    listServicos.Items.Add(servico.TaxaLocacao);
-                }
+                lista.ForEach(x => listServicos.Items.Add(x));
 
             telaDasTaxas.CheckBoxTaxas(lista);
+        }
+        private void PopularComboboxCondutores()
+        {
+            ClienteCNPJ cliente = (ClienteCNPJ)cbCliente.SelectedItem;
+
+            List<ClienteCPF> condutoresRelacionados = controladorCPF.SelecionarPorIdEmpresa(cliente.Id);
+
+            cbCondutor.Items.Clear();
+
+            condutoresRelacionados.ForEach(x => cbCondutor.Items.Add(x));
         }
         private void btnGravar_Click(object sender, EventArgs e)
         {
@@ -210,16 +218,11 @@ namespace LocadoraVeiculo.WindowsApp.Features.Locacao
                 cbCondutor.Enabled = false;
             else
             {
-                ClienteCNPJ cliente = (ClienteCNPJ)cbCliente.SelectedItem;
-                var id = cliente.Id;
                 cbCondutor.Enabled = true;
-
-                List<ClienteCPF> condutoresRelacionados = controladorCPF.SelecionarPorIdEmpresa(id);
-
-                foreach (var condutor in condutoresRelacionados)
-                    cbCondutor.Items.Add(condutor);
+                PopularComboboxCondutores();
             }
         }
+
         private void TelaLocacaoForm_FormClosing(object sender, FormClosingEventArgs e)
         {
             TelaPrincipalForm.Instancia.AtualizarRodape("");
@@ -231,8 +234,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.Locacao
             Servicos = telaDasTaxas.Servicos;
 
             if (Servicos != null)
-                foreach (var servico in Servicos)
-                    listServicos.Items.Add(servico);
+                Servicos.ForEach(x => listServicos.Items.Add(x));
         }
 
         private void txtCupom_Leave(object sender, EventArgs e)

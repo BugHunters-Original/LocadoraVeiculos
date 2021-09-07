@@ -132,8 +132,10 @@ namespace LocadoraVeiculo.WindowsApp.Features.Veiculos
 
             GrupoVeiculoModule.GrupoVeiculo grupo = (GrupoVeiculoModule.GrupoVeiculo)cmbGrupo.SelectedItem;
 
+            int disponibilidade = veiculo == null ? 1 : veiculo.DisponibilidadeVeiculo;
+
             veiculo = new Veiculo(nome, placa, chassi, foto, cor, marca, ano, NPortas, CapacidadeTanque,
-                CapacidadePessoas, TamanhoPortaMalas, Km, TipoCombustivel, veiculo.DisponibilidadeVeiculo, grupo);
+                CapacidadePessoas, TamanhoPortaMalas, Km, TipoCombustivel, disponibilidade, grupo);
 
             string resultadoValidacao = veiculo.Validar();
 
