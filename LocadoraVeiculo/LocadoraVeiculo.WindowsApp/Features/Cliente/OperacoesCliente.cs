@@ -30,19 +30,17 @@ namespace LocadoraVeiculo.WindowsApp.Features.Clientes
         public void EditarRegistro()
         {
             int id = tabelaClientes.ObtemIdSelecionado();
+
             string tipo = tabelaClientes.ObtemTipo();
+
             if (id == 0)
             {
                 MessageBox.Show("Selecione um Cliente para poder editar!", "Edição de Clientes",
                     MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return;
             }
-            ClienteBase clienteSelecionado;
 
-            if (tipo.Length == 14)
-                clienteSelecionado = controladorCPF.SelecionarPorId(id);
-            else
-                clienteSelecionado = controladorCNPJ.SelecionarPorId(id);
+            ClienteBase clienteSelecionado = VerificarTipoCliente(id, tipo);
 
             TelaClienteForm tela = new TelaClienteForm();
 
@@ -64,7 +62,9 @@ namespace LocadoraVeiculo.WindowsApp.Features.Clientes
         public void ExcluirRegistro()
         {
             int id = tabelaClientes.ObtemIdSelecionado();
+
             string tipo = tabelaClientes.ObtemTipo();
+
             if (id == 0)
             {
                 MessageBox.Show("Selecione um Cliente para poder excluir!", "Exclusão de Clientes",
@@ -72,11 +72,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.Clientes
                 return;
             }
 
-            ClienteBase clienteSelecionado;
-            if (tipo.Length == 14)
-                clienteSelecionado = controladorCPF.SelecionarPorId(id);
-            else
-                clienteSelecionado = controladorCNPJ.SelecionarPorId(id);
+            ClienteBase clienteSelecionado = VerificarTipoCliente(id, tipo);
 
             if (MessageBox.Show($"Tem certeza que deseja excluir o Cliente: [{clienteSelecionado}] ?",
                 "Exclusão de Clientes", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK)
@@ -108,7 +104,6 @@ namespace LocadoraVeiculo.WindowsApp.Features.Clientes
 
             }
         }
-
 
         public void FiltrarRegistros()
         {
@@ -185,6 +180,17 @@ namespace LocadoraVeiculo.WindowsApp.Features.Clientes
 
             return preencheLista;
         }
+
+        private ClienteBase VerificarTipoCliente(int id, string tipo)
+        {
+            ClienteBase clienteSelecionado;
+            if (tipo.Length == 14)
+                clienteSelecionado = controladorCPF.SelecionarPorId(id);
+            else
+                clienteSelecionado = controladorCNPJ.SelecionarPorId(id);
+            return clienteSelecionado;
+        }
+
         private void AtualizarGrid(ClienteBase clienteSelecionado)
         {
             List<ClienteCPF> clientesCPF = new List<ClienteCPF>();
