@@ -12,7 +12,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.Clientes
 {
     public partial class TelaClienteForm : Form
     {
-        private Cliente cliente;
+        private ClienteBase cliente;
         private ControladorClienteCNPJ controladorClienteCNPJ;
 
         public TelaClienteForm()
@@ -56,17 +56,17 @@ namespace LocadoraVeiculo.WindowsApp.Features.Clientes
             rbJuridico.ForeColor = ControladorDarkMode.corFonte;
         }
 
-        public TipoClienteEnum TipoCliente
+        public FiltroClienteEnum TipoCliente
         {
             get
             {
                 if (rbFisico.Checked)
-                    return TipoClienteEnum.PessoaFisica;
+                    return FiltroClienteEnum.PessoaFisica;
                 else
-                    return TipoClienteEnum.PessoaJuridica;
+                    return FiltroClienteEnum.PessoaJuridica;
             }
         }
-        public Cliente Cliente
+        public ClienteBase Cliente
         {
             get { return cliente; }
 

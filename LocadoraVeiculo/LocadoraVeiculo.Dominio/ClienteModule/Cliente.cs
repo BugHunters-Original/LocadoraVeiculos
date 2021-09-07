@@ -4,7 +4,7 @@ using System.Net.Mail;
 
 namespace LocadoraVeiculo.ClienteModule
 {
-    public class Cliente : EntidadeBase
+    public class ClienteBase : EntidadeBase
     {
         public override string Validar()
         {

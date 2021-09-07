@@ -167,7 +167,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.Locacao
         }
         private void btnGravar_Click(object sender, EventArgs e)
         {
-            Cliente cliente = (Cliente)cbCliente.SelectedItem;
+            ClienteBase cliente = (ClienteBase)cbCliente.SelectedItem;
 
             Veiculo veiculo = (Veiculo)cbVeiculo.SelectedItem;
 

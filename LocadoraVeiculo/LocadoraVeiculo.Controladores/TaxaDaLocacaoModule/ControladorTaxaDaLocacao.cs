@@ -210,7 +210,7 @@ namespace LocadoraVeiculo.Controladores.TaxaDaLocacaoModule
             ClienteCPF condutor = controladorCPF.SelecionarPorId(idCondutor);
             Veiculo veiculo = controladorVeiculo.SelecionarPorId(idVeiculo);
 
-            Cliente clienteLocador;
+            ClienteBase clienteLocador;
 
             if (tipoCliente == 1)
                 clienteLocador = controladorCNPJ.SelecionarPorId(idClienteLocador);

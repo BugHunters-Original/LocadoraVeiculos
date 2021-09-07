@@ -4,7 +4,7 @@ using System.Net.Mail;
 
 namespace LocadoraVeiculo.ClienteModule
 {
-    public class ClienteCNPJ : Cliente, IEquatable<ClienteCNPJ>
+    public class ClienteCNPJ : ClienteBase, IEquatable<ClienteCNPJ>
     {
         public ClienteCNPJ(string nome, string endereco, string telefone, string cnpj, string email)
         {
