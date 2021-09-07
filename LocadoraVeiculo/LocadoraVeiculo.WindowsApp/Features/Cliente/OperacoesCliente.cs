@@ -1,7 +1,6 @@
 ﻿using LocadoraVeiculo.ClienteModule;
 using LocadoraVeiculo.Controladores.ClienteModule;
 using LocadoraVeiculo.Controladores.CondutorModule;
-using LocadoraVeiculo.Controladores.LocacaoModule;
 using LocadoraVeiculo.WindowsApp.Features.Cliente;
 using LocadoraVeiculo.WindowsApp.Shared;
 using System;
@@ -12,9 +11,9 @@ namespace LocadoraVeiculo.WindowsApp.Features.Clientes
 {
     public class OperacoesCliente : ICadastravel
     {
-        private readonly ControladorClienteCNPJ controladorCNPJ = null;
-        private readonly ControladorClienteCPF controladorCPF = null;
-        private readonly TabelaClienteControl tabelaClientes = null;
+        private readonly ControladorClienteCNPJ controladorCNPJ;
+        private readonly ControladorClienteCPF controladorCPF;
+        private readonly TabelaClienteControl tabelaClientes;
 
         public OperacoesCliente(ControladorClienteCNPJ controladorCNPJ, ControladorClienteCPF controladorCPF)
         {
@@ -56,10 +55,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.Clientes
                 else
                     controladorCNPJ.Editar(id, (ClienteCNPJ)tela.Cliente);
 
-                List<ClienteCPF> clientesCPF = controladorCPF.SelecionarTodos();
-                List<ClienteCNPJ> clientesCNPJ = controladorCNPJ.SelecionarTodos();
-
-                tabelaClientes.AtualizarRegistros(clientesCPF, clientesCNPJ);
+                AtualizarGrid(clienteSelecionado);
 
                 TelaPrincipalForm.Instancia.AtualizarRodape($"Cliente: [{tela.Cliente}] editado com sucesso");
             }
@@ -100,10 +96,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.Clientes
 
                 if (excluiu)
                 {
-                    List<ClienteCPF> clientesCPF = controladorCPF.SelecionarTodos();
-                    List<ClienteCNPJ> clientesCNPJ = controladorCNPJ.SelecionarTodos();
-
-                    tabelaClientes.AtualizarRegistros(clientesCPF, clientesCNPJ);
+                    AtualizarGrid(clienteSelecionado);
 
                     TelaPrincipalForm.Instancia.AtualizarRodape($"Cliente: [{clienteSelecionado}] removido com sucesso");
                 }
@@ -115,6 +108,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.Clientes
 
             }
         }
+
 
         public void FiltrarRegistros()
         {
@@ -190,6 +184,18 @@ namespace LocadoraVeiculo.WindowsApp.Features.Clientes
             preencheLista.Add("EMAIL");
 
             return preencheLista;
+        }
+        private void AtualizarGrid(ClienteBase clienteSelecionado)
+        {
+            List<ClienteCPF> clientesCPF = new List<ClienteCPF>();
+            List<ClienteCNPJ> clientesCNPJ = new List<ClienteCNPJ>();
+
+            if (clienteSelecionado is ClienteCPF)
+                clientesCPF = controladorCPF.SelecionarTodos();
+            else
+                clientesCNPJ = controladorCNPJ.SelecionarTodos();
+
+            tabelaClientes.AtualizarRegistros(clientesCPF, clientesCNPJ);
         }
     }
 }
