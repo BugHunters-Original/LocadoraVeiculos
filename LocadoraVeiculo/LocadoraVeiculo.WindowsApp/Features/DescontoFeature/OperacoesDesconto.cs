@@ -64,12 +64,8 @@ namespace LocadoraVeiculo.WindowsApp.Features.DescontoFeature
         {
             int id = tabelaDesconto.ObtemIdSelecionado();
 
-            if (id == 0)
-            {
-                MessageBox.Show("Selecione um Cupom de Desconto para poder editar!", "Edição de Cupom de Desconto",
-                    MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            if (!VerificarIdSelecionado(id, "Editar", "Edição"))
                 return;
-            }
 
             Desconto descontoSelecionado = controladorDesconto.SelecionarPorId(id);
 
@@ -103,12 +99,8 @@ namespace LocadoraVeiculo.WindowsApp.Features.DescontoFeature
         {
             int id = tabelaDesconto.ObtemIdSelecionado();
 
-            if (id == 0)
-            {
-                MessageBox.Show("Selecione um Cupom de Desconto para poder excluir!", "Exclusão de Cupom de Desconto",
-                    MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            if (!VerificarIdSelecionado(id, "Excluir", "Exclusão"))
                 return;
-            }
 
             Desconto descontoSelecionado = controladorDesconto.SelecionarPorId(id);
 
@@ -160,6 +152,16 @@ namespace LocadoraVeiculo.WindowsApp.Features.DescontoFeature
             preencheLista.Add("NOMECUPOM");
 
             return preencheLista;
+        }
+        private bool VerificarIdSelecionado(int id, string acao, string onde)
+        {
+            if (id == 0)
+            {
+                MessageBox.Show($"Selecione um Desconto para poder {acao}!", $"{onde} de Descontos",
+                    MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                return false;
+            }
+            return true;
         }
     }
 }

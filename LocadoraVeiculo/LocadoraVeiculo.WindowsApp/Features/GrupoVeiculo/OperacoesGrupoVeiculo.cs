@@ -36,12 +36,8 @@ namespace LocadoraVeiculo.WindowsApp.Features.GrupoVeiculo
         {
             int id = tabelaGrupoVeiculo.ObtemIdSelecionado();
 
-            if (id == 0)
-            {
-                MessageBox.Show("Selecione um Grupo de Veiculos para poder editar!", "Edição de Grupo de Veiculos",
-                    MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            if (!VerificarIdSelecionado(id, "Editar", "Edição"))
                 return;
-            }
 
             GrupoVeiculoModule.GrupoVeiculo grupoVeiculoSelecionado = controlador.SelecionarPorId(id);
 
@@ -71,12 +67,8 @@ namespace LocadoraVeiculo.WindowsApp.Features.GrupoVeiculo
         {
             int id = tabelaGrupoVeiculo.ObtemIdSelecionado();
 
-            if (id == 0)
-            {
-                MessageBox.Show("Selecione um Grupo de Veículos para poder excluir!", "Exclusão de Grupo de Veiculos",
-                    MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            if (!VerificarIdSelecionado(id, "Excluir", "Exclusão"))
                 return;
-            }
 
             GrupoVeiculoModule.GrupoVeiculo grupoVeiculoSelecionado = controlador.SelecionarPorId(id);
 
@@ -126,6 +118,16 @@ namespace LocadoraVeiculo.WindowsApp.Features.GrupoVeiculo
             preencheLista.Add("NOMETIPO");
 
             return preencheLista;
+        }
+        private bool VerificarIdSelecionado(int id, string acao, string onde)
+        {
+            if (id == 0)
+            {
+                MessageBox.Show($"Selecione um Grupo de Veículo para poder {acao}!", $"{onde} de Grupos de Veículo",
+                    MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                return false;
+            }
+            return true;
         }
     }
 }

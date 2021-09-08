@@ -31,12 +31,8 @@ namespace LocadoraVeiculo.WindowsApp.Features.Funcionarios
         {
             int id = tabelaFuncionarios.ObtemIdSelecionado();
 
-            if (id == 0)
-            {
-                MessageBox.Show("Selecione um Funcionário para poder editar!", "Edição de Funcionário",
-                    MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            if (!VerificarIdSelecionado(id, "Editar", "Edição"))
                 return;
-            }
 
             Funcionario funcionarioSelecionado = controlador.SelecionarPorId(id);
 
@@ -61,12 +57,8 @@ namespace LocadoraVeiculo.WindowsApp.Features.Funcionarios
         {
             int id = tabelaFuncionarios.ObtemIdSelecionado();
 
-            if (id == 0)
-            {
-                MessageBox.Show("Selecione um Funcionário para poder excluir!", "Exclusão de Funcionários",
-                    MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            if (!VerificarIdSelecionado(id, "Excluir", "Exclusão"))
                 return;
-            }
 
             Funcionario funcionarioSelecionado = controlador.SelecionarPorId(id);
 
@@ -128,6 +120,16 @@ namespace LocadoraVeiculo.WindowsApp.Features.Funcionarios
             preencheLista.Add("CPF");
 
             return preencheLista;
+        }
+        private bool VerificarIdSelecionado(int id, string acao, string onde)
+        {
+            if (id == 0)
+            {
+                MessageBox.Show($"Selecione um Funcionário para poder {acao}!", $"{onde} de Funcionários",
+                    MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                return false;
+            }
+            return true;
         }
     }
 }

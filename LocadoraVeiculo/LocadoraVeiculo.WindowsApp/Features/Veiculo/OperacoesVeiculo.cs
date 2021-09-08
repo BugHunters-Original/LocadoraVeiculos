@@ -1,13 +1,8 @@
 ﻿using LocadoraVeiculo.Controladores.GrupoVeiculoModule;
-using LocadoraVeiculo.Controladores.LocacaoModule;
 using LocadoraVeiculo.Controladores.VeiculoModule;
 using LocadoraVeiculo.VeiculoModule;
 using LocadoraVeiculo.WindowsApp.Shared;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace LocadoraVeiculo.WindowsApp.Features.Veiculos
@@ -53,14 +48,10 @@ namespace LocadoraVeiculo.WindowsApp.Features.Veiculos
         {
             int id = tabelaVeiculos.ObtemIdSelecionado();
 
-            if (id == 0)
-            {
-                MessageBox.Show("Selecione um Veículo para poder editar!", "Edição de Veículos",
-                    MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            if (!VerificarIdSelecionado(id, "Editar", "Edição"))
                 return;
-            }
 
-            VeiculoModule.Veiculo veiculoSelecionado = controladorVeiculo.SelecionarPorId(id);
+            Veiculo veiculoSelecionado = controladorVeiculo.SelecionarPorId(id);
 
             TelaVeiculoForm tela = new TelaVeiculoForm();
 
@@ -70,7 +61,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.Veiculos
             {
                 controladorVeiculo.Editar(id, tela.Veiculo);
 
-                List<VeiculoModule.Veiculo> veiculos = controladorVeiculo.SelecionarTodos();
+                List<Veiculo> veiculos = controladorVeiculo.SelecionarTodos();
 
                 tabelaVeiculos.AtualizarRegistros(veiculos);
 
@@ -82,12 +73,8 @@ namespace LocadoraVeiculo.WindowsApp.Features.Veiculos
         {
             int id = tabelaVeiculos.ObtemIdSelecionado();
 
-            if (id == 0)
-            {
-                MessageBox.Show("Selecione um Veículo para poder excluir!", "Exclusão de Veículos",
-                    MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            if (!VerificarIdSelecionado(id, "Excluir", "Exclusão"))
                 return;
-            }
 
             Veiculo veiculoSelecionada = controladorVeiculo.SelecionarPorId(id);
 
@@ -100,7 +87,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.Veiculos
                 {
                     controladorVeiculo.Excluir(id);
 
-                    List<VeiculoModule.Veiculo> veiculos = controladorVeiculo.SelecionarTodos();
+                    List<Veiculo> veiculos = controladorVeiculo.SelecionarTodos();
 
                     tabelaVeiculos.AtualizarRegistros(veiculos);
 
@@ -121,7 +108,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.Veiculos
 
         public UserControl ObterTabela()
         {
-            List<VeiculoModule.Veiculo> veiculos = controladorVeiculo.SelecionarTodos();
+            List<Veiculo> veiculos = controladorVeiculo.SelecionarTodos();
 
             tabelaVeiculos.AtualizarRegistros(veiculos);
 
@@ -130,7 +117,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.Veiculos
 
         public void PesquisarRegistro(string combobox, string pesquisa)
         {
-            List<VeiculoModule.Veiculo> veiculos = controladorVeiculo.SelecionarPesquisa(combobox, pesquisa);
+            List<Veiculo> veiculos = controladorVeiculo.SelecionarPesquisa(combobox, pesquisa);
 
             tabelaVeiculos.AtualizarRegistros(veiculos);
         }
@@ -143,6 +130,16 @@ namespace LocadoraVeiculo.WindowsApp.Features.Veiculos
             preencheLista.Add("TIPO_COMBUSTIVEL");
 
             return preencheLista;
+        }
+        private bool VerificarIdSelecionado(int id, string acao, string onde)
+        {
+            if (id == 0)
+            {
+                MessageBox.Show($"Selecione um Veículo para poder {acao}!", $"{onde} de Veículos",
+                    MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                return false;
+            }
+            return true;
         }
     }
 }

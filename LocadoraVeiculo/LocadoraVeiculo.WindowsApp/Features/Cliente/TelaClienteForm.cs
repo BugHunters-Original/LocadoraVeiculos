@@ -13,7 +13,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.Clientes
     public partial class TelaClienteForm : Form
     {
         private ClienteBase cliente;
-        private ControladorClienteCNPJ controladorClienteCNPJ;
+        private readonly ControladorClienteCNPJ controladorClienteCNPJ;
 
         public TelaClienteForm()
         {
@@ -38,6 +38,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.Clientes
             dtDataValidade.BackColor = ControladorDarkMode.corFundoTxBox;
             mskRg.BackColor = ControladorDarkMode.corFundoTxBox;
             cbEmpresas.BackColor = ControladorDarkMode.corFundoTxBox;
+            txtEmail.BackColor = ControladorDarkMode.corFundoTxBox;
 
             txtID.ForeColor = ControladorDarkMode.corFonte;
             txtNome.ForeColor = ControladorDarkMode.corFonte;
@@ -49,6 +50,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.Clientes
             dtDataValidade.ForeColor = ControladorDarkMode.corFonte;
             mskRg.ForeColor = ControladorDarkMode.corFonte;
             cbEmpresas.ForeColor = ControladorDarkMode.corFonte;
+            txtEmail.ForeColor = ControladorDarkMode.corFonte;
 
             btnGravar.BackColor = ControladorDarkMode.corFundoTxBox;
             btnCancelar.BackColor = ControladorDarkMode.corFundoTxBox;

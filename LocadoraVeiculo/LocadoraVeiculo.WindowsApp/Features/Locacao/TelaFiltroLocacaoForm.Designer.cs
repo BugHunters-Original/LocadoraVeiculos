@@ -50,7 +50,6 @@ namespace LocadoraVeiculo.WindowsApp.Features.Locacao
             this.rdbDevolucoes.Name = "rdbDevolucoes";
             this.rdbDevolucoes.Size = new System.Drawing.Size(239, 21);
             this.rdbDevolucoes.TabIndex = 2;
-            this.rdbDevolucoes.TabStop = true;
             this.rdbDevolucoes.Text = "Visualizar Locações Concluídas";
             this.rdbDevolucoes.UseVisualStyleBackColor = true;
             // 
@@ -62,13 +61,13 @@ namespace LocadoraVeiculo.WindowsApp.Features.Locacao
             this.rdbChegadasPendentes.Name = "rdbChegadasPendentes";
             this.rdbChegadasPendentes.Size = new System.Drawing.Size(234, 21);
             this.rdbChegadasPendentes.TabIndex = 3;
-            this.rdbChegadasPendentes.TabStop = true;
             this.rdbChegadasPendentes.Text = "Visualizar Locações Pendentes";
             this.rdbChegadasPendentes.UseVisualStyleBackColor = true;
             // 
             // rdbTodasLocacoes
             // 
             this.rdbTodasLocacoes.AutoSize = true;
+            this.rdbTodasLocacoes.Checked = true;
             this.rdbTodasLocacoes.Font = new System.Drawing.Font("Lucida Sans Unicode", 10F);
             this.rdbTodasLocacoes.Location = new System.Drawing.Point(48, 74);
             this.rdbTodasLocacoes.Name = "rdbTodasLocacoes";
