@@ -124,6 +124,30 @@ namespace LocadoraVeiculo.Controladores.DescontoModule
                 [TBDESCONTO]
             WHERE 
                 [CODIGO] = @CODIGO";
+
+        private const string sqlSelecionarDeconto =
+        @"SELECT
+                        
+                    D.[ID],       
+                    D.[CODIGO],       
+                    D.[VALOR], 
+                    D.[TIPO],
+                    D.[VALIDADE],                    
+                    D.[ID_PARCEIRO],                                                           
+                    D.[MEIO],
+                    D.[NOMECUPOM],
+                    D.[VALORMINIMO],
+                    P.[ID],
+                    P.[NOME_PARCEIRO]
+
+	                FROM
+                    [TBDESCONTO] AS D INNER JOIN
+                    [TBPARCEIROS] AS P
+                    ON
+                D.ID_PARCEIRO = P.ID
+
+                    WHERE 
+                        D.COLUNADEPESQUISA LIKE @SEGUNDAREF+'%'";
         #endregion
 
         public Desconto VerificarCodigoValido(string codigo)
@@ -174,9 +198,10 @@ namespace LocadoraVeiculo.Controladores.DescontoModule
             return Db.Exists(sqlExisteDesconto, AdicionarParametro("ID", id));
         }
 
-        public List<Desconto> SelecionarPesquisa(string combobox, string pesquisa)
+        public List<Desconto> SelecionarPesquisa(string coluna, string pesquisa)
         {
-            throw new NotImplementedException();
+            string sql = sqlSelecionarDeconto.Replace("COLUNADEPESQUISA", coluna);
+            return Db.GetAll(sql, ConverterEmDesconto, AdicionarParametro("@SEGUNDAREF", pesquisa));
         }
 
         public override Desconto SelecionarPorId(int id)
