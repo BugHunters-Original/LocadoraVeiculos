@@ -392,13 +392,13 @@ namespace LocadoraVeiculo.WindowsApp
 
         private void PreencherComboBox()
         {
-            //cbCategorias.Items.Clear();
-            //List<string> lista = operacoes.PreencheComboBoxDePesquisa();
-            //foreach (var item in lista)
-            //{
-            //    cbCategorias.Items.Add(item);
-            //}
-            //cbCategorias.SelectedIndex = 0;
+            cbCategorias.Items.Clear();
+            List<string> lista = operacoes.PreencheComboBoxDePesquisa();
+            foreach (var item in lista)
+            {
+                cbCategorias.Items.Add(item);
+            }
+            cbCategorias.SelectedIndex = 0;
 
         }
     }
