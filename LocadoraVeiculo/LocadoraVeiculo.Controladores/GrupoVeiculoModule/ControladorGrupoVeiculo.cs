@@ -84,6 +84,22 @@ namespace LocadoraVeiculo.Controladores.GrupoVeiculoModule
                 [TBTIPOVEICULO]
             WHERE 
                 [ID] = @ID";
+
+        private const string sqlSelecionarGrupoVeiculoPesquisa =
+          @"SELECT
+                       [ID],       
+                    [NOMETIPO],       
+                    [VALOR_DIARIO_PDIARIO], 
+                    [VALOR_KMRODADO_PDIARIO],
+                    [VALOR_DIARIO_PCONTROLADO],                    
+                    [LIMITE_PCONTROLADO],                                                           
+                    [VALOR_KMRODAD_PCONTROLADO],        
+                    [VALOR_DIARIO_PLIVRE] 
+
+	                FROM
+                       [TBTIPOVEICULO]
+                    WHERE 
+                        COLUNADEPESQUISA LIKE @SEGUNDAREF+'%'";
         #endregion
 
         public override string InserirNovo(GrupoVeiculo registro)
@@ -124,9 +140,10 @@ namespace LocadoraVeiculo.Controladores.GrupoVeiculoModule
             return true;
         }
 
-        public List<GrupoVeiculo> SelecionarPesquisa(string combobox, string pesquisa)
+        public List<GrupoVeiculo> SelecionarPesquisa(string coluna, string pesquisa)
         {
-            throw new NotImplementedException();
+            string sql = sqlSelecionarGrupoVeiculoPesquisa.Replace("COLUNADEPESQUISA", coluna);
+            return Db.GetAll(sql, ConverterEmGrupoVeiculo, AdicionarParametro("@SEGUNDAREF", pesquisa));
         }
 
         public override bool Existe(int id)
@@ -176,5 +193,9 @@ namespace LocadoraVeiculo.Controladores.GrupoVeiculoModule
 
             return parametros;
         }
+
+       
+
+
     }
 }
