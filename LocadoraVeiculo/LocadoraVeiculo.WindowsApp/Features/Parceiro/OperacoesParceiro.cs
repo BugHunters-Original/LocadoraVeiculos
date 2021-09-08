@@ -24,12 +24,8 @@ namespace LocadoraVeiculo.WindowsApp.Features.Parceiro
         {
             int id = tabelaParceiro.ObtemIdSelecionado();
 
-            if (id == 0)
-            {
-                MessageBox.Show("Selecione um Parceiro para poder editar!", "Edição de Parceiros",
-                    MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            if (!VerificarIdSelecionado(id, "Editar", "Edição"))
                 return;
-            }
 
             var parceiroSelecionado = controlador.SelecionarPorId(id);
 
@@ -52,12 +48,8 @@ namespace LocadoraVeiculo.WindowsApp.Features.Parceiro
         {
             int id = tabelaParceiro.ObtemIdSelecionado();
 
-            if (id == 0)
-            {
-                MessageBox.Show("Selecione um Parceiro para poder excluir!", "Exclusão de Parceiros",
-                    MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            if (!VerificarIdSelecionado(id, "Excluir", "Exclusão"))
                 return;
-            }
 
             var parceiroSelecionado = controlador.SelecionarPorId(id);
 
@@ -128,6 +120,16 @@ namespace LocadoraVeiculo.WindowsApp.Features.Parceiro
             preencheLista.Add("NOME_PARCEIRO");
 
             return preencheLista;
+        }
+        private bool VerificarIdSelecionado(int id, string acao, string onde)
+        {
+            if (id == 0)
+            {
+                MessageBox.Show($"Selecione um Parceiro para poder {acao}!", $"{onde} de Parceiros",
+                    MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                return false;
+            }
+            return true;
         }
     }
 }

@@ -8,6 +8,7 @@ using LocadoraVeiculo.TaxaDaLocacaoModule;
 using LocadoraVeiculo.WindowsApp.Features.Locacao.Devolucao;
 using LocadoraVeiculo.WindowsApp.Features.NotaFiscal;
 using LocadoraVeiculo.WindowsApp.Shared;
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -34,12 +35,9 @@ namespace LocadoraVeiculo.WindowsApp.Features.Locacao
         public void DevolverVeiculo()
         {
             int id = tabelaLocacoes.ObtemIdSelecionado();
-            if (id == 0)
-            {
-                MessageBox.Show("Selecione uma Locação para poder devolver!", "Devolução de Locações",
-                    MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+
+            if (!VerificarIdSelecionado(id, "Devolver", "Devolução"))
                 return;
-            }
 
             var locacaoSelecionada = controladorLocacao.SelecionarPorId(id);
 
@@ -77,12 +75,8 @@ namespace LocadoraVeiculo.WindowsApp.Features.Locacao
         {
             int id = tabelaLocacoes.ObtemIdSelecionado();
 
-            if (id == 0)
-            {
-                MessageBox.Show("Selecione uma Locação para poder editar!", "Edição de Locações",
-                    MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            if (!VerificarIdSelecionado(id, "Editar", "Edição"))
                 return;
-            }
 
             var locacaoSelecionada = controladorLocacao.SelecionarPorId(id);
 
@@ -125,12 +119,8 @@ namespace LocadoraVeiculo.WindowsApp.Features.Locacao
         {
             int id = tabelaLocacoes.ObtemIdSelecionado();
 
-            if (id == 0)
-            {
-                MessageBox.Show("Selecione uma Locação para poder excluir!", "Exclusão de Locações",
-                    MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            if (!VerificarIdSelecionado(id, "Excluir", "Exclusão"))
                 return;
-            }
 
             var locacaoSelecionada = controladorLocacao.SelecionarPorId(id);
 
@@ -175,18 +165,8 @@ namespace LocadoraVeiculo.WindowsApp.Features.Locacao
         }
         public void InserirNovoRegistro()
         {
-            if (controladorVeiculo.SelecionarTodosDisponiveis().Count == 0)
-            {
-                MessageBox.Show("Nenhum Veículo disponível para Locação!", "Adição de Locações",
-                            MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            if (!VerificarPossibilidadeDeInsercao())
                 return;
-            }
-            if (VerificaCondutoresDisponiveis())
-            {
-                MessageBox.Show("Nenhum Condutor disponível para Locação!", "Adição de Locações",
-                    MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                return;
-            }
 
             TelaLocacaoForm tela = new TelaLocacaoForm();
 
@@ -211,24 +191,6 @@ namespace LocadoraVeiculo.WindowsApp.Features.Locacao
             }
         }
 
-        private bool VerificaCondutoresDisponiveis()
-        {
-            var locacoes = controladorLocacao.SelecionarTodasLocacoesPendentes();
-
-            var clientesCPF = controladorClienteCPF.SelecionarTodos();
-
-            foreach (var item in locacoes)
-                clientesCPF.Remove(item.Condutor);
-
-            return clientesCPF.Count == 0;
-        }
-
-        private void ExportarRecibo(TelaLocacaoForm tela)
-        {
-            string mensagem = ExportaPdf.ExportarLocacaoEmPDF(tela.Locacao) ? $"Recibo enviado com sucesso para o e-mail [{tela.Locacao.Cliente.Email}]!" : $"Erro ao enviar recibo para o e-mail [{tela.Locacao.Cliente.Email}]!";
-            TelaPrincipalForm.Instancia.AtualizarRodape(mensagem);
-        }
-
         public UserControl ObterTabela()
         {
             List<LocacaoVeiculo> locacoes = controladorLocacao.SelecionarTodos();
@@ -245,6 +207,50 @@ namespace LocadoraVeiculo.WindowsApp.Features.Locacao
         public List<string> PreencheComboBoxDePesquisa()
         {
             throw new System.NotImplementedException();
+        }
+        private bool VerificarPossibilidadeDeInsercao()
+        {
+            if (controladorVeiculo.SelecionarTodosDisponiveis().Count == 0)
+            {
+                MessageBox.Show("Nenhum Veículo disponível para Locação!", "Adição de Locações",
+                            MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                return false;
+            }
+            if (VerificaCondutoresDisponiveis())
+            {
+                MessageBox.Show("Nenhum Condutor disponível para Locação!", "Adição de Locações",
+                    MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                return false;
+            }
+            return true;
+        }
+
+        private bool VerificaCondutoresDisponiveis()
+        {
+            var locacoes = controladorLocacao.SelecionarTodasLocacoesPendentes();
+
+            var clientesCPF = controladorClienteCPF.SelecionarTodos();
+
+            locacoes.ForEach(x => clientesCPF.Remove(x.Condutor));
+
+            return clientesCPF.Count == 0;
+        }
+
+        private void ExportarRecibo(TelaLocacaoForm tela)
+        {
+            string mensagem = ExportaPdf.ExportarLocacaoEmPDF(tela.Locacao) ? $"Recibo enviado com sucesso para o e-mail [{tela.Locacao.Cliente.Email}]!" : $"Erro ao enviar recibo para o e-mail [{tela.Locacao.Cliente.Email}]!";
+            TelaPrincipalForm.Instancia.AtualizarRodape(mensagem);
+        }
+
+        private bool VerificarIdSelecionado(int id, string acao, string onde)
+        {
+            if (id == 0)
+            {
+                MessageBox.Show($"Selecione uma Locação para poder {acao}!", $"{onde} de Locações",
+                    MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                return false;
+            }
+            return true;
         }
     }
 }

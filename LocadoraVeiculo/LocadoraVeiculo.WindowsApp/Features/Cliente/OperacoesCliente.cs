@@ -33,12 +33,8 @@ namespace LocadoraVeiculo.WindowsApp.Features.Clientes
 
             string tipo = tabelaClientes.ObtemTipo();
 
-            if (id == 0)
-            {
-                MessageBox.Show("Selecione um Cliente para poder editar!", "Edição de Clientes",
-                    MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            if (!VerificarIdSelecionado(id, "Editar", "Edição"))
                 return;
-            }
 
             ClienteBase clienteSelecionado = VerificarTipoCliente(id, tipo);
 
@@ -65,12 +61,8 @@ namespace LocadoraVeiculo.WindowsApp.Features.Clientes
 
             string tipo = tabelaClientes.ObtemTipo();
 
-            if (id == 0)
-            {
-                MessageBox.Show("Selecione um Cliente para poder excluir!", "Exclusão de Clientes",
-                    MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            if (!VerificarIdSelecionado(id, "Excluir", "Exclusão"))
                 return;
-            }
 
             ClienteBase clienteSelecionado = VerificarTipoCliente(id, tipo);
 
@@ -202,6 +194,16 @@ namespace LocadoraVeiculo.WindowsApp.Features.Clientes
                 clientesCNPJ = controladorCNPJ.SelecionarTodos();
 
             tabelaClientes.AtualizarRegistros(clientesCPF, clientesCNPJ);
+        }
+        private bool VerificarIdSelecionado(int id, string acao, string onde)
+        {
+            if (id == 0)
+            {
+                MessageBox.Show($"Selecione um Cliente para poder {acao}!", $"{onde} de Clientes",
+                    MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                return false;
+            }
+            return true;
         }
     }
 }
