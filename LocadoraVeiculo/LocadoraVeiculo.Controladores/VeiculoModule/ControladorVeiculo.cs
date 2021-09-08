@@ -138,10 +138,7 @@ namespace LocadoraVeiculo.Controladores.VeiculoModule
             WHERE 
                 V.[ID] = @ID";
 
-        public List<Veiculo> SelecionarPesquisa(string combobox, string pesquisa)
-        {
-            throw new NotImplementedException();
-        }
+       
 
         private const string sqlExisteVeiculo =
             @"SELECT 
@@ -238,6 +235,39 @@ namespace LocadoraVeiculo.Controladores.VeiculoModule
                 TV.ID = V.ID_TIPO_VEICULO
             WHERE 
                 [DISPONIBILIDADE_VEICULO] = 1";
+
+        private const string sqlSelecionarVeiculoPesquisa =
+           @"SELECT 
+                V.[ID],       
+                V.[NOME],
+                V.[NUMERO_PLACA],
+                V.[NUMERO_CHASSI],             
+                V.[FOTO],                    
+                V.[COR],                                
+                V.[MARCA],
+                V.[ANO],
+                V.[NUMERO_PORTAS],
+                V.[CAPACIDADE_TANQUE],
+                V.[CAPACIDADE_PESSOAS],
+                V.[TAMANHO_PORTA_MALA],
+                V.[KM_INICIAL],
+                V.[TIPO_COMBUSTIVEL],
+                V.[ID_TIPO_VEICULO],
+                V.[DISPONIBILIDADE_VEICULO],
+                TV.[NOMETIPO],       
+                TV.[VALOR_DIARIO_PDIARIO], 
+                TV.[VALOR_KMRODADO_PDIARIO],
+                TV.[VALOR_DIARIO_PCONTROLADO],                    
+                TV.[LIMITE_PCONTROLADO],                                                           
+                TV.[VALOR_KMRODAD_PCONTROLADO],        
+                TV.[VALOR_DIARIO_PLIVRE]
+            FROM
+                [TBVEICULOS] AS V INNER JOIN
+                [TBTIPOVEICULO] AS TV
+            ON
+                TV.ID = V.ID_TIPO_VEICULO
+                    WHERE 
+                        COLUNADEPESQUISA LIKE @SEGUNDAREF+'%'";
         #endregion
 
         public override string InserirNovo(Veiculo registro)
@@ -259,6 +289,11 @@ namespace LocadoraVeiculo.Controladores.VeiculoModule
             Db.Update(sqlEditarVeiculo, ObtemParametrosVeiculo(antigo));
         }
 
+        public List<Veiculo> SelecionarPesquisa(string coluna, string pesquisa)
+        {
+            string sql = sqlSelecionarVeiculoPesquisa.Replace("COLUNADEPESQUISA", coluna);
+            return Db.GetAll(sql, ConverterEmVeiculo, AdicionarParametro("@SEGUNDAREF", pesquisa));
+        }
         public override string Editar(int id, Veiculo registro)
         {
             string resultadoValidacao = registro.Validar();
@@ -389,5 +424,7 @@ namespace LocadoraVeiculo.Controladores.VeiculoModule
 
             return parametros;
         }
+
+      
     }
 }
