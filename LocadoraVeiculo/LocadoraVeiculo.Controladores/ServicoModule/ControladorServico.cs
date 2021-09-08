@@ -66,6 +66,18 @@ namespace LocadoraVeiculo.Controladores.ServicoModule
                 [TBTAXASSERVICOS]
             WHERE 
                 [ID] = @ID";
+
+        private const string sqlSelecionarTaxaServico =
+         @"SELECT
+                        
+                        [ID],
+		                [NOME_TAXA], 
+		                [PRECO_TAXA], 
+		                [TIPO_CALCULO]
+	                FROM
+                       TBTAXASSERVICOS
+                    WHERE 
+                        COLUNADEPESQUISA LIKE @SEGUNDAREF+'%'";
         #endregion
 
         public override string Editar(int id, Servico registro)
@@ -133,9 +145,10 @@ namespace LocadoraVeiculo.Controladores.ServicoModule
             return parametros;
         }
 
-        public List<Servico> SelecionarPesquisa(string combobox, string pesquisa)
+        public List<Servico> SelecionarPesquisa(string coluna, string pesquisa)
         {
-            throw new NotImplementedException();
+            string sql = sqlSelecionarTaxaServico.Replace("COLUNADEPESQUISA", coluna);
+            return Db.GetAll(sql, ConverterEmServico, AdicionarParametro("@SEGUNDAREF", pesquisa));
         }
 
         private Servico ConverterEmServico(IDataReader reader)
