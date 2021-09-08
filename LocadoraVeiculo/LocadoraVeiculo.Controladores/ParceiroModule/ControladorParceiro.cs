@@ -59,6 +59,15 @@ namespace LocadoraVeiculo.Controladores.ParceiroModule
                 [TBPARCEIROS]
             WHERE 
                 [ID] = @ID";
+
+        private const string sqlSelecionarParceiro =
+         @"SELECT
+                        [ID],
+		                [NOME_PARCEIRO]
+	                FROM
+                       TBPARCEIROS
+                    WHERE 
+                        COLUNADEPESQUISA LIKE @SEGUNDAREF+'%'";
         #endregion
 
         public override string Editar(int id, ParceiroDesconto registro)
@@ -135,9 +144,10 @@ namespace LocadoraVeiculo.Controladores.ParceiroModule
             return parceiro;
         }
 
-        public List<ParceiroDesconto> SelecionarPesquisa(string combobox, string pesquisa)
+        public List<ParceiroDesconto> SelecionarPesquisa(string coluna, string pesquisa)
         {
-            throw new NotImplementedException();
+            string sql = sqlSelecionarParceiro.Replace("COLUNADEPESQUISA", coluna);
+            return Db.GetAll(sql, ConverterEmParceiro, AdicionarParametro("@SEGUNDAREF", pesquisa));
         }
     }
 }
