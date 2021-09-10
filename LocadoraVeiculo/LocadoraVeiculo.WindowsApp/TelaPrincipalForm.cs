@@ -1,31 +1,29 @@
-﻿using LocadoraVeiculo.Controladores.ClienteModule;
-using LocadoraVeiculo.Controladores.CondutorModule;
-using LocadoraVeiculo.Controladores.FuncionarioModule;
-using LocadoraVeiculo.Controladores.GrupoVeiculoModule;
-using LocadoraVeiculo.Controladores.LocacaoModule;
-using LocadoraVeiculo.Controladores.VeiculoModule;
-using LocadoraVeiculo.WindowsApp.Features.Clientes;
-using LocadoraVeiculo.WindowsApp.Features.GrupoVeiculo;
-using LocadoraVeiculo.WindowsApp.Features.Funcionarios;
-using LocadoraVeiculo.WindowsApp.Features.Locacao;
-using LocadoraVeiculo.WindowsApp.Features.Veiculos;
-using LocadoraVeiculo.WindowsApp.Shared;
+﻿using LocadoraVeiculo.WindowsApp.Shared;
 using System;
 using System.Windows.Forms;
-using LocadoraVeiculo.WindowsApp.Features.TaxaServico;
-using LocadoraVeiculo.Controladores.ServicoModule;
-using LocadoraVeiculo.WindowsApp.Features.Combustivel;
-using LocadoraVeiculo.WindowsApp.Features.Dashboard;
-using LocadoraVeiculo.WindowsApp.Features.DarkMode;
-using System.Drawing;
-using LocadoraVeiculo.WindowsApp.Features.Login;
 using System.Threading;
 using LocadoraVeiculo.WindowsApp.Features.DescontoFeature;
-using LocadoraVeiculo.Controladores.DescontoModule;
-using LocadoraVeiculo.WindowsApp.Features.Parceiro;
-using LocadoraVeiculo.Controladores.ParceiroModule;
-using LocadoraVeiculo.WindowsApp.Features.EmailLocadora;
-using System.Collections.Generic;
+using LocadoraVeiculo.WindowsApp.Features.DashboardFeature;
+using LocadoraVeiculo.WindowsApp.Features.LocacaoFeature;
+using LocadoraDeVeiculos.Controladores.LocacoModule;
+using LocadoraVeiculo.WindowsApp.Features.ClienteFeature;
+using LocadoraDeVeiculos.Controladores.ClienteCNPJModule;
+using LocadoraDeVeiculos.Controladores.ClienteCPFModule;
+using LocadoraVeiculo.WindowsApp.Features.VeiculoFeature;
+using LocadoraDeVeiculos.Controladores.VeiculoModule;
+using LocadoraVeiculo.WindowsApp.Features.FuncionarioFeature;
+using LocadoraDeVeiculos.Controladores.FuncionarioModule;
+using LocadoraVeiculo.WindowsApp.Features.GrupoVeiculoFeature;
+using LocadoraDeVeiculos.Controladores.GrupoVeiculoModule;
+using LocadoraVeiculo.WindowsApp.Features.TaxaServicoFeature;
+using LocadoraDeVeiculos.Controladores.ServicoModule;
+using LocadoraDeVeiculos.Controladores.DescontoModule;
+using LocadoraVeiculo.WindowsApp.Features.CombustivelFeature;
+using LocadoraVeiculo.WindowsApp.Features.EmailLocadoraFeature;
+using LocadoraVeiculo.WindowsApp.Features.ParceiroFeature;
+using LocadoraDeVeiculos.Controladores.ParceiroModule;
+using LocadoraVeiculo.WindowsApp.Features.DarkModeFeature;
+using LocadoraVeiculo.WindowsApp.Features.LoginFeature;
 
 namespace LocadoraVeiculo.WindowsApp
 {
@@ -207,7 +205,7 @@ namespace LocadoraVeiculo.WindowsApp
 
         private void btnModo_Click(object sender, EventArgs e)
         {
-            ControladorDarkMode.TrocarModo();
+            DarkMode.TrocarModo();
             SetColor();
             if (operacoes != null)
             {
@@ -221,59 +219,59 @@ namespace LocadoraVeiculo.WindowsApp
 
         private void SetColor()
         {
-            this.BackColor = ControladorDarkMode.corFundo;
-            this.ForeColor = ControladorDarkMode.corFonte;
+            this.BackColor = DarkMode.corFundo;
+            this.ForeColor = DarkMode.corFonte;
 
-            btnAdicionar.Image = ControladorDarkMode.imgAdd;
-            btnEditar.Image = ControladorDarkMode.imgEditar;
-            btnExcluir.Image = ControladorDarkMode.imgExcluir;
-            btnFiltrar.Image = ControladorDarkMode.imgFiltro;
-            btnDevolver.Image = ControladorDarkMode.imgDevolver;
+            btnAdicionar.Image = DarkMode.imgAdd;
+            btnEditar.Image = DarkMode.imgEditar;
+            btnExcluir.Image = DarkMode.imgExcluir;
+            btnFiltrar.Image = DarkMode.imgFiltro;
+            btnDevolver.Image = DarkMode.imgDevolver;
 
-            menuToolStripMenuItem.ForeColor = ControladorDarkMode.corFonte;
-            menuToolStripMenuItem.BackColor = ControladorDarkMode.corTabela;
-            menuStrip.BackColor = ControladorDarkMode.corTabela;
-            cadastrosToolStripMenuItem.BackColor = ControladorDarkMode.corTabela;
-            configuraçõesToolStripMenuItem.BackColor = ControladorDarkMode.corTabela;
+            menuToolStripMenuItem.ForeColor = DarkMode.corFonte;
+            menuToolStripMenuItem.BackColor = DarkMode.corTabela;
+            menuStrip.BackColor = DarkMode.corTabela;
+            cadastrosToolStripMenuItem.BackColor = DarkMode.corTabela;
+            configuraçõesToolStripMenuItem.BackColor = DarkMode.corTabela;
 
-            cadastrosToolStripMenuItem.ForeColor = ControladorDarkMode.corFonte;
-            configuraçõesToolStripMenuItem.ForeColor = ControladorDarkMode.corFonte;
+            cadastrosToolStripMenuItem.ForeColor = DarkMode.corFonte;
+            configuraçõesToolStripMenuItem.ForeColor = DarkMode.corFonte;
 
-            btnClose.Image = ControladorDarkMode.imgClose;
-            btnMaximize.Image = ControladorDarkMode.imgMax;
-            btnMinimize.Image = ControladorDarkMode.imgMin;
-            btnLogOut.Image = ControladorDarkMode.imgLogOut;
-            btnClose.BackColor = ControladorDarkMode.corTabela;
-            btnMaximize.BackColor = ControladorDarkMode.corTabela;
-            btnMinimize.BackColor = ControladorDarkMode.corTabela;
-            btnLogOut.BackColor = ControladorDarkMode.corTabela;
+            btnClose.Image = DarkMode.imgClose;
+            btnMaximize.Image = DarkMode.imgMax;
+            btnMinimize.Image = DarkMode.imgMin;
+            btnLogOut.Image = DarkMode.imgLogOut;
+            btnClose.BackColor = DarkMode.corTabela;
+            btnMaximize.BackColor = DarkMode.corTabela;
+            btnMinimize.BackColor = DarkMode.corTabela;
+            btnLogOut.BackColor = DarkMode.corTabela;
 
-            toolboxAcoes.BackColor = ControladorDarkMode.corPanel;
-            btnModo.Image = ControladorDarkMode.imgModo;
+            toolboxAcoes.BackColor = DarkMode.corPanel;
+            btnModo.Image = DarkMode.imgModo;
 
-            menuItemCliente.BackColor = ControladorDarkMode.corDark;
-            menuItemFuncionario.BackColor = ControladorDarkMode.corDark;
-            menuItemLocacao.BackColor = ControladorDarkMode.corDark;
-            menuItemVeiculo.BackColor = ControladorDarkMode.corDark;
-            grupoDeVeículosToolStripMenuItem.BackColor = ControladorDarkMode.corDark;
-            taxasEServiçosToolStripMenuItem.BackColor = ControladorDarkMode.corDark;
-            preçosCombustívelToolStripMenuItem.BackColor = ControladorDarkMode.corDark;
-            descontosToolStripMenuItem.BackColor = ControladorDarkMode.corDark;
-            parceirosToolStripMenuItem.BackColor = ControladorDarkMode.corDark;
-            emailLocadoraToolStripMenuItem.BackColor = ControladorDarkMode.corDark;
+            menuItemCliente.BackColor = DarkMode.corDark;
+            menuItemFuncionario.BackColor = DarkMode.corDark;
+            menuItemLocacao.BackColor = DarkMode.corDark;
+            menuItemVeiculo.BackColor = DarkMode.corDark;
+            grupoDeVeículosToolStripMenuItem.BackColor = DarkMode.corDark;
+            taxasEServiçosToolStripMenuItem.BackColor = DarkMode.corDark;
+            preçosCombustívelToolStripMenuItem.BackColor = DarkMode.corDark;
+            descontosToolStripMenuItem.BackColor = DarkMode.corDark;
+            parceirosToolStripMenuItem.BackColor = DarkMode.corDark;
+            emailLocadoraToolStripMenuItem.BackColor = DarkMode.corDark;
 
-            menuItemCliente.ForeColor = ControladorDarkMode.corFonte;
-            menuItemFuncionario.ForeColor = ControladorDarkMode.corFonte;
-            menuItemLocacao.ForeColor = ControladorDarkMode.corFonte;
-            menuItemVeiculo.ForeColor = ControladorDarkMode.corFonte;
-            grupoDeVeículosToolStripMenuItem.ForeColor = ControladorDarkMode.corFonte;
-            taxasEServiçosToolStripMenuItem.ForeColor = ControladorDarkMode.corFonte;
-            preçosCombustívelToolStripMenuItem.ForeColor = ControladorDarkMode.corFonte;
-            descontosToolStripMenuItem.ForeColor = ControladorDarkMode.corFonte;
-            parceirosToolStripMenuItem.ForeColor = ControladorDarkMode.corFonte;
-            emailLocadoraToolStripMenuItem.ForeColor = ControladorDarkMode.corFonte;
+            menuItemCliente.ForeColor = DarkMode.corFonte;
+            menuItemFuncionario.ForeColor = DarkMode.corFonte;
+            menuItemLocacao.ForeColor = DarkMode.corFonte;
+            menuItemVeiculo.ForeColor = DarkMode.corFonte;
+            grupoDeVeículosToolStripMenuItem.ForeColor = DarkMode.corFonte;
+            taxasEServiçosToolStripMenuItem.ForeColor = DarkMode.corFonte;
+            preçosCombustívelToolStripMenuItem.ForeColor = DarkMode.corFonte;
+            descontosToolStripMenuItem.ForeColor = DarkMode.corFonte;
+            parceirosToolStripMenuItem.ForeColor = DarkMode.corFonte;
+            emailLocadoraToolStripMenuItem.ForeColor = DarkMode.corFonte;
 
-            statusStripFooter.BackColor = ControladorDarkMode.corPanel;
+            statusStripFooter.BackColor = DarkMode.corPanel;
         }
 
         private void ConfigurarPainelRegistros()
@@ -392,13 +390,13 @@ namespace LocadoraVeiculo.WindowsApp
 
         private void PreencherComboBox()
         {
-            cbCategorias.Items.Clear();
-            List<string> lista = operacoes.PreencheComboBoxDePesquisa();
-            foreach (var item in lista)
-            {
-                cbCategorias.Items.Add(item);
-            }
-            cbCategorias.SelectedIndex = 0;
+            //cbCategorias.Items.Clear();
+            //List<string> lista = operacoes.PreencheComboBoxDePesquisa();
+            //foreach (var item in lista)
+            //{
+            //    cbCategorias.Items.Add(item);
+            //}
+            //cbCategorias.SelectedIndex = 0;
 
         }
     }

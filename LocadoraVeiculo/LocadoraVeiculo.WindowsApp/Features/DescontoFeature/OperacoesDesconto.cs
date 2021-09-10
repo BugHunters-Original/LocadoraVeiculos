@@ -1,7 +1,7 @@
-﻿using LocadoraVeiculo.Controladores.DescontoModule;
-using LocadoraVeiculo.Controladores.LocacaoModule;
-using LocadoraVeiculo.Controladores.ParceiroModule;
-using LocadoraVeiculo.DescontoModule;
+﻿using LocadoraDeVeiculos.Controladores.DescontoModule;
+using LocadoraDeVeiculos.Controladores.LocacoModule;
+using LocadoraDeVeiculos.Controladores.ParceiroModule;
+using LocadoraDeVeiculos.Dominio.DescontoModule;
 using LocadoraVeiculo.WindowsApp.Shared;
 using System;
 using System.Collections.Generic;

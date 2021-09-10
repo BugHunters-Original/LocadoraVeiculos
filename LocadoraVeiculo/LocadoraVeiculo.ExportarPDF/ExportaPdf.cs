@@ -16,7 +16,7 @@ namespace LocadoraVeiculo.ExportacaoPDF
     {
         public static bool ExportarLocacaoEmPDF(LocacaoVeiculo locacao)
         {
-            using (PdfWriter wPdf = new PdfWriter($@"..\..\..\Recibos\recibo{locacao.Id}.pdf", new WriterProperties().SetPdfVersion(PdfVersion.PDF_2_0)))
+            using (PdfWriter wPdf = new PdfWriter($@"..\..\..\..\Recibos\recibo{locacao.Id}.pdf", new WriterProperties().SetPdfVersion(PdfVersion.PDF_2_0)))
             {
                 var pdfDocument = new PdfDocument(wPdf);
 
@@ -45,7 +45,7 @@ namespace LocadoraVeiculo.ExportacaoPDF
                 string cupomNome = locacao.Desconto?.Nome == null ? "Nenhum" : locacao.Desconto?.Nome;
                 document.Add(new Paragraph("Cupom de Desconto: " + cupomNome));
                 document.Add(new Paragraph("Veículo:"));
-                var img = new Image(ImageDataFactory.Create(@"..\..\..\Logo\logo.png"));
+                var img = new Image(ImageDataFactory.Create(@"..\..\..\..\Logo\logo.png"));
                 img.ScaleAbsolute(55, 55);
                 img.SetFixedPosition(50f, 750f);
                 document.Add(img);
@@ -83,7 +83,7 @@ namespace LocadoraVeiculo.ExportacaoPDF
                         email.Body = "Obrigado por utilizar nossos serviços, volte sempre!";
 
 
-                        email.Attachments.Add(new Attachment($@"..\..\..\Recibos\recibo{locacao.Id}.pdf"));
+                        email.Attachments.Add(new Attachment($@"..\..\..\..\Recibos\recibo{locacao.Id}.pdf"));
 
                         //ENVIAR
                         smtp.Send(email);
