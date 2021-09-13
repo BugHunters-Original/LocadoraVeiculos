@@ -50,7 +50,9 @@
     <None Include="Resources\minimize-1779402-1512859 %281%29.png" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="appsettings.json" />
+    <Content Include="appsettings.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Resources\maximize-button_white.png" />
   </ItemGroup>
   <ItemGroup>
