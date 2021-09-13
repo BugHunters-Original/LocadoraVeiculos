@@ -1,5 +1,5 @@
 ﻿using FluentAssertions;
-using LocadoraVeiculo.ParceiroModule;
+using LocadoraDeVeiculos.Dominio.ParceiroModule;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace LocadoraVeiculo.Tests.ParceiroModule
@@ -10,7 +10,7 @@ namespace LocadoraVeiculo.Tests.ParceiroModule
         [TestMethod]
         public void DeveValidar_Parceiro()
         {
-            ParceiroDesconto parceiro = new ParceiroDesconto("Luisa S");
+            Parceiro parceiro = new Parceiro("Luisa S");
 
             //action
             var resultadoValidacao = parceiro.Validar();
@@ -22,7 +22,7 @@ namespace LocadoraVeiculo.Tests.ParceiroModule
         [TestMethod]
         public void DeveValidar_Nome()
         {
-            ParceiroDesconto parceiro = new ParceiroDesconto("");
+            Parceiro parceiro = new Parceiro("");
 
             //action
             var resultadoValidacao = parceiro.Validar();

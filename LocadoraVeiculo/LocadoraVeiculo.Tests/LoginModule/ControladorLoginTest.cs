@@ -1,14 +1,10 @@
 ﻿using FluentAssertions;
-using LocadoraVeiculo.Controladores.FuncionarioModule;
-using LocadoraVeiculo.Controladores.LoginModule;
-using LocadoraVeiculo.Controladores.Shared;
-using LocadoraVeiculo.FuncionarioModule;
+using LocadoraDeVeiculos.Controladores.FuncionarioModule;
+using LocadoraDeVeiculos.Controladores.LoginModule;
+using LocadoraDeVeiculos.Controladores.Shared;
+using LocadoraDeVeiculos.Dominio.FuncionarioModule;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace LocadoraVeiculo.Tests.LoginModule
 {

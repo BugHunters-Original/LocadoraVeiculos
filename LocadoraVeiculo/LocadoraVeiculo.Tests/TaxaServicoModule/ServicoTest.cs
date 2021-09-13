@@ -1,5 +1,5 @@
 ﻿using FluentAssertions;
-using LocadoraVeiculo.ServicoModule;
+using LocadoraDeVeiculos.Dominio.ServicoModule;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 

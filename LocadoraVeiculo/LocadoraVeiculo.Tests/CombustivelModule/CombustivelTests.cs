@@ -1,7 +1,6 @@
 ﻿using FluentAssertions;
-using LocadoraVeiculo.CombustivelModule;
+using LocadoraDeVeiculos.Dominio.CombustivelModule;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System;
 
 namespace LocadoraVeiculo.Tests.CombustivelModule
 {

@@ -1,9 +1,8 @@
 ﻿using FluentAssertions;
-using LocadoraVeiculo.Controladores.ServicoModule;
-using LocadoraVeiculo.Controladores.Shared;
-using LocadoraVeiculo.ServicoModule;
+using LocadoraDeVeiculos.Controladores.ServicoModule;
+using LocadoraDeVeiculos.Controladores.Shared;
+using LocadoraDeVeiculos.Dominio.ServicoModule;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System;
 
 namespace LocadoraVeiculo.Tests.TaxaServicoModule
 {

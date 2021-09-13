@@ -1,7 +1,7 @@
 ﻿using FluentAssertions;
-using LocadoraVeiculo.Controladores.ParceiroModule;
-using LocadoraVeiculo.Controladores.Shared;
-using LocadoraVeiculo.ParceiroModule;
+using LocadoraDeVeiculos.Controladores.ParceiroModule;
+using LocadoraDeVeiculos.Controladores.Shared;
+using LocadoraDeVeiculos.Dominio.ParceiroModule;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace LocadoraVeiculo.Tests.ParceiroModule
@@ -27,7 +27,7 @@ namespace LocadoraVeiculo.Tests.ParceiroModule
         public void DeveInserir_Parceiro()
         {
             //arrange
-            var novoParceiro = new ParceiroDesconto("Andrey");
+            var novoParceiro = new Parceiro("Andrey");
 
             //action
             controlador.InserirNovo(novoParceiro);
@@ -42,17 +42,17 @@ namespace LocadoraVeiculo.Tests.ParceiroModule
         public void DeveAtualizar_Parceiro()
         {
             //arrange
-            var novoParceiro = new ParceiroDesconto("Luisa F");
+            var novoParceiro = new Parceiro("Luisa F");
 
             controlador.InserirNovo(novoParceiro);
 
-            var novoParceiroEditado = new ParceiroDesconto("Luisa S");
+            var novoParceiroEditado = new Parceiro("Luisa S");
 
             //action
             controlador.Editar(novoParceiro.Id, novoParceiroEditado);
 
             //assert
-            ParceiroDesconto parceiroAtualizado = controlador.SelecionarPorId(novoParceiro.Id);
+            Parceiro parceiroAtualizado = controlador.SelecionarPorId(novoParceiro.Id);
             parceiroAtualizado.Should().Be(novoParceiroEditado);
             LimparBancos();
         }
@@ -61,14 +61,14 @@ namespace LocadoraVeiculo.Tests.ParceiroModule
         public void DeveExcluir_Parceiro()
         {         
             //arrange
-            var novoParceiro = new ParceiroDesconto("Luisa F");
+            var novoParceiro = new Parceiro("Luisa F");
             controlador.InserirNovo(novoParceiro);
 
             //action            
             controlador.Excluir(novoParceiro.Id);
 
             //assert
-            ParceiroDesconto parceiroEncontrado = controlador.SelecionarPorId(novoParceiro.Id);
+            Parceiro parceiroEncontrado = controlador.SelecionarPorId(novoParceiro.Id);
             parceiroEncontrado.Should().BeNull();
             LimparBancos();
         }
@@ -77,11 +77,11 @@ namespace LocadoraVeiculo.Tests.ParceiroModule
         public void DeveSelecionar_Parceiro_PorId()
         {
             //arrange
-            var novoParceiro = new ParceiroDesconto("Gabriel");
+            var novoParceiro = new Parceiro("Gabriel");
             controlador.InserirNovo(novoParceiro);
 
             //action
-            ParceiroDesconto parceiroEncontrado = controlador.SelecionarPorId(novoParceiro.Id);
+            Parceiro parceiroEncontrado = controlador.SelecionarPorId(novoParceiro.Id);
 
             //assert
             parceiroEncontrado.Should().NotBeNull();
@@ -91,13 +91,13 @@ namespace LocadoraVeiculo.Tests.ParceiroModule
         public void DeveSelecionar_Todos()
         {
             //arrange
-            var parceiro1 = new ParceiroDesconto("Gabriel");
+            var parceiro1 = new Parceiro("Gabriel");
             controlador.InserirNovo(parceiro1);
 
-            var parceiro2 = new ParceiroDesconto("Arthur");
+            var parceiro2 = new Parceiro("Arthur");
             controlador.InserirNovo(parceiro2);
 
-            var parceiro3 = new ParceiroDesconto("Andrey");
+            var parceiro3 = new Parceiro("Andrey");
             controlador.InserirNovo(parceiro3);
 
             //action

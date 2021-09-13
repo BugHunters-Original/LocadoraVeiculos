@@ -7,6 +7,11 @@
     <ImportWindowsDesktopTargets>true</ImportWindowsDesktopTargets>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Remove="Libraries\**" />
+    <EmbeddedResource Remove="Libraries\**" />
+    <None Remove="Libraries\**" />
+  </ItemGroup>
+  <ItemGroup>
     <Compile Update="Features\ClienteFeature\TabelaClienteControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -34,9 +39,6 @@
     <Compile Update="Features\VeiculoFeature\TabelaVeiculoControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Libraries\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\lupa %281%29.png" />

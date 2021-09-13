@@ -1,9 +1,11 @@
-﻿using System;
+﻿using Microsoft.Extensions.Configuration;
+using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
 using System.Data.Common;
 using System.Data.SqlClient;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -21,15 +23,26 @@ namespace LocadoraDeVeiculos.Controladores.Shared
 
         static Db()
         {
+            var config = InitConfiguration();
+
+            bancoDeDados = config["bancoDeDados"];
+
+            connectionString = config.GetSection("ConnectionStrings").GetSection("SqlServer").Value;
+
+            nomeProvider = config.GetSection("SQLProvider").Value;
+
             DbProviderFactories.RegisterFactory("System.Data.SqlClient", SqlClientFactory.Instance);
 
-            bancoDeDados = ConfigurationManager.AppSettings["bancoDeDados"];
-
-            connectionString = ConfigurationManager.ConnectionStrings[bancoDeDados].ConnectionString;
-
-            nomeProvider = ConfigurationManager.ConnectionStrings[bancoDeDados].ProviderName;
-
             fabricaProvedor = DbProviderFactories.GetFactory(nomeProvider);
+        }
+
+        public static IConfiguration InitConfiguration()
+        {
+            var config = new ConfigurationBuilder()
+                .AddJsonFile("appsettings.json")
+                .SetBasePath(Directory.GetCurrentDirectory())
+                .Build();
+            return config;
         }
 
         public static int Insert(string sql, Dictionary<string, object> parameters)

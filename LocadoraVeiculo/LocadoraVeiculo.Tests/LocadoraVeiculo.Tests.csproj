@@ -7,7 +7,6 @@
     <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
   </PropertyGroup>
   <ItemGroup>
-    <ProjectReference Include="..\LocadoraVeiculo.Database.SQLite\LocadoraVeiculo.Database.SQLite.csproj" />
     <ProjectReference Include="..\LocadoraVeiculo.WindowsApp\LocadoraVeiculo.WindowsApp.csproj" />
   </ItemGroup>
   <ItemGroup>
