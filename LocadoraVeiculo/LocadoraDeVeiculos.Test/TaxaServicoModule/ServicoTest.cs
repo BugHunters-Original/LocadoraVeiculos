@@ -3,7 +3,7 @@ using LocadoraDeVeiculos.Dominio.ServicoModule;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 
-namespace LocadoraVeiculo.Tests.TaxaServicoModule
+namespace LocadoraDeVeiculos.Test.TaxaServicoModule
 {
     [TestClass]
     public class ServicoTest

@@ -1,9 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Net.Mail;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace LocadoraDeVeiculos.Dominio.ClienteModule
 {
@@ -74,13 +70,7 @@ namespace LocadoraDeVeiculos.Dominio.ClienteModule
 
         public override int GetHashCode()
         {
-            int hashCode = -103464265;
-            hashCode = hashCode * -1521134295 + Id.GetHashCode();
-            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(Nome);
-            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(Endereco);
-            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(Telefone);
-            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(Cnpj);
-            return hashCode;
+            return HashCode.Combine(Id, Nome, Endereco, Telefone, Email, Cnpj);
         }
     }
 }
