@@ -25,6 +25,7 @@ namespace LocadoraDeVeiculos.Test.ParceiroModule
 
         private static void LimparBancos()
         {
+            Db.Update("DELETE FROM [TBDESCONTO]");
             Db.Update("DELETE FROM [TBPARCEIROS]");
 
         }
