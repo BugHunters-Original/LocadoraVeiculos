@@ -1,6 +1,0 @@
-D:\Repositorios\LocadoraVeiculo\LocadoraVeiculo\LocadoraVeiculo.AppConfig\bin\Debug\LocadoraVeiculo.AppConfig.dll
-D:\Repositorios\LocadoraVeiculo\LocadoraVeiculo\LocadoraVeiculo.AppConfig\bin\Debug\LocadoraVeiculo.AppConfig.pdb
-D:\Repositorios\LocadoraVeiculo\LocadoraVeiculo\LocadoraVeiculo.AppConfig\obj\Debug\LocadoraVeiculo.AppConfig.csproj.AssemblyReference.cache
-D:\Repositorios\LocadoraVeiculo\LocadoraVeiculo\LocadoraVeiculo.AppConfig\obj\Debug\LocadoraVeiculo.AppConfig.csproj.CoreCompileInputs.cache
-D:\Repositorios\LocadoraVeiculo\LocadoraVeiculo\LocadoraVeiculo.AppConfig\obj\Debug\LocadoraVeiculo.AppConfig.dll
-D:\Repositorios\LocadoraVeiculo\LocadoraVeiculo\LocadoraVeiculo.AppConfig\obj\Debug\LocadoraVeiculo.AppConfig.pdb
