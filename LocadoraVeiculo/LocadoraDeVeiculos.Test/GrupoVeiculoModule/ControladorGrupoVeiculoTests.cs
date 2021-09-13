@@ -4,7 +4,7 @@ using LocadoraDeVeiculos.Controladores.Shared;
 using LocadoraDeVeiculos.Dominio.GrupoVeiculoModule;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace LocadoraDeVeiculos.Tests.GrupoVeiculoModule
+namespace LocadoraDeVeiculos.Test.GrupoVeiculoModule
 {
     [TestClass]
     public class ControladorGrupoVeiculoTests

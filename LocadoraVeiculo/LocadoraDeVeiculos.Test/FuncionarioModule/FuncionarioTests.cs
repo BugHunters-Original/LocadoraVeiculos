@@ -3,7 +3,7 @@ using LocadoraDeVeiculos.Dominio.FuncionarioModule;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 
-namespace LocadoraDeVeiculos.Tests.FuncionarioModule
+namespace LocadoraDeVeiculos.Test.FuncionarioModule
 {
     [TestClass]
     public class FuncionarioTests

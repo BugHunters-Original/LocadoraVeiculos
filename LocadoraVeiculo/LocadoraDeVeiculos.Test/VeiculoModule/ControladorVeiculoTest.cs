@@ -6,7 +6,7 @@ using LocadoraDeVeiculos.Dominio.GrupoVeiculoModule;
 using LocadoraDeVeiculos.Dominio.VeiculoModule;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace LocadoraDeVeiculos.Tests.VeiculoModule
+namespace LocadoraDeVeiculos.Test.VeiculoModule
 {
     [TestClass]
     public class ControladorVeiculoTest

@@ -7,7 +7,7 @@ using LocadoraDeVeiculos.Dominio.ParceiroModule;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 
-namespace LocadoraDeVeiculos.Tests.DescontoModule
+namespace LocadoraDeVeiculos.Test.DescontoModule
 {
     [TestClass]
     public class ControladorDescontoTest
