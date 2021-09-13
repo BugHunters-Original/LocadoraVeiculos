@@ -2,7 +2,7 @@
 using LocadoraDeVeiculos.Dominio.GrupoVeiculoModule;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace LocadoraVeiculo.Tests.GrupoVeiculoModule
+namespace LocadoraDeVeiculos.Tests.GrupoVeiculoModule
 {
     [TestClass]
     public class GrupoVeiculoTests

@@ -1,9 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Net.Mail;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace LocadoraDeVeiculos.Dominio.ClienteModule
 {
@@ -31,13 +27,13 @@ namespace LocadoraDeVeiculos.Dominio.ClienteModule
         public bool Equals(ClienteCPF other)
         {
             return other != null
+                && Cliente.Equals(other.Cliente)
                 && Id == other.Id
                 && Nome == other.Nome
                 && Endereco == other.Endereco
                 && Telefone == other.Telefone
                 && Cpf == other.Cpf
                 && Cnh == other.Cnh
-                && Cliente == other.Cliente
                 && DataValidade == other.DataValidade
                 && Email == other.Email;
         }
@@ -48,18 +44,20 @@ namespace LocadoraDeVeiculos.Dominio.ClienteModule
 
         public override int GetHashCode()
         {
-            int hashCode = 1775420395;
-            hashCode = hashCode * -1521134295 + Id.GetHashCode();
-            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(Nome);
-            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(Endereco);
-            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(Telefone);
-            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(Cpf);
-            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(Rg);
-            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(Cnh);
-            hashCode = hashCode * -1521134295 + DataValidade.GetHashCode();
-            hashCode = hashCode * -1521134295 + EqualityComparer<ClienteCNPJ>.Default.GetHashCode(Cliente);
-            return hashCode;
+            HashCode hash = new HashCode();
+            hash.Add(Id);
+            hash.Add(Nome);
+            hash.Add(Endereco);
+            hash.Add(Telefone);
+            hash.Add(Email);
+            hash.Add(Cpf);
+            hash.Add(Rg);
+            hash.Add(Cnh);
+            hash.Add(DataValidade);
+            hash.Add(Cliente);
+            return hash.ToHashCode();
         }
+
         public override string ToString()
         {
             return Nome;

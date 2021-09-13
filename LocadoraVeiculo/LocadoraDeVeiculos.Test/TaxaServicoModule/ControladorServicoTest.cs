@@ -4,7 +4,7 @@ using LocadoraDeVeiculos.Controladores.Shared;
 using LocadoraDeVeiculos.Dominio.ServicoModule;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace LocadoraVeiculo.Tests.TaxaServicoModule
+namespace LocadoraDeVeiculos.Tests.TaxaServicoModule
 {
     [TestClass]
     public class ControladorServicoTest
