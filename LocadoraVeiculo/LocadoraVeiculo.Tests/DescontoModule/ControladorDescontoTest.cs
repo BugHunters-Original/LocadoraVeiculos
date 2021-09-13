@@ -1,9 +1,9 @@
 ﻿using FluentAssertions;
-using LocadoraVeiculo.Controladores.DescontoModule;
-using LocadoraVeiculo.Controladores.ParceiroModule;
-using LocadoraVeiculo.Controladores.Shared;
-using LocadoraVeiculo.DescontoModule;
-using LocadoraVeiculo.ParceiroModule;
+using LocadoraDeVeiculos.Controladores.DescontoModule;
+using LocadoraDeVeiculos.Controladores.ParceiroModule;
+using LocadoraDeVeiculos.Controladores.Shared;
+using LocadoraDeVeiculos.Dominio.DescontoModule;
+using LocadoraDeVeiculos.Dominio.ParceiroModule;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Collections.Generic;
@@ -18,7 +18,7 @@ namespace LocadoraVeiculo.Tests.DescontoModule
     {
         ControladorDesconto controlador = null;
         ControladorParceiro controladorParceiro = null;
-        ParceiroDesconto parceiro;
+        Parceiro parceiro;
 
         public ControladorDescontoTest()
         {
@@ -26,7 +26,7 @@ namespace LocadoraVeiculo.Tests.DescontoModule
             controladorParceiro = new ControladorParceiro();
             LimparBancos();
 
-            parceiro = new ParceiroDesconto("Arthur");
+            parceiro = new Parceiro("Arthur");
             controladorParceiro.InserirNovo(parceiro);
         }
 

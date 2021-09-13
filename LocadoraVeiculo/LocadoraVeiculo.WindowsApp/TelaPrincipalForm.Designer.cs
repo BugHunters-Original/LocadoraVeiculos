@@ -57,7 +57,6 @@ namespace LocadoraVeiculo.WindowsApp
             this.statusStripFooter = new System.Windows.Forms.StatusStrip();
             this.labelRodape = new System.Windows.Forms.ToolStripStatusLabel();
             this.panelRegistros = new System.Windows.Forms.Panel();
-            this.bunifuElipse1 = new Bunifu.Framework.UI.BunifuElipse(this.components);
             this.btnLogOut = new System.Windows.Forms.Button();
             this.btnMinimize = new System.Windows.Forms.Button();
             this.btnMaximize = new System.Windows.Forms.Button();
@@ -341,11 +340,6 @@ namespace LocadoraVeiculo.WindowsApp
             this.panelRegistros.Size = new System.Drawing.Size(948, 665);
             this.panelRegistros.TabIndex = 5;
             // 
-            // bunifuElipse1
-            // 
-            this.bunifuElipse1.ElipseRadius = 8;
-            this.bunifuElipse1.TargetControl = this;
-            // 
             // btnLogOut
             // 
             this.btnLogOut.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
@@ -505,7 +499,6 @@ namespace LocadoraVeiculo.WindowsApp
         private System.Windows.Forms.ToolStripMenuItem configuraçõesToolStripMenuItem;
         private System.Windows.Forms.ToolStripButton btnDevolver;
         private System.Windows.Forms.Button btnClose;
-        private Bunifu.Framework.UI.BunifuElipse bunifuElipse1;
         private System.Windows.Forms.ToolStripButton btnModo;
         private System.Windows.Forms.Button btnMinimize;
         private System.Windows.Forms.Button btnMaximize;

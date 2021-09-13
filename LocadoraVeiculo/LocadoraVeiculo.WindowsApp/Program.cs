@@ -1,5 +1,5 @@
-﻿using LocadoraVeiculo.WindowsApp.Features.DarkMode;
-using LocadoraVeiculo.WindowsApp.Features.Login;
+﻿using LocadoraVeiculo.WindowsApp.Features.DarkModeFeature;
+using LocadoraVeiculo.WindowsApp.Features.LoginFeature;
 using System;
 using System.Windows.Forms;
 
@@ -15,7 +15,7 @@ namespace LocadoraVeiculo.WindowsApp
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            ControladorDarkMode.TrocarModo();
+            DarkMode.TrocarModo();
             Application.Run(new TelaLoginForm());
         }
     }

@@ -1,15 +1,10 @@
 ﻿using FluentAssertions;
-using LocadoraVeiculo.Controladores.GrupoVeiculoModule;
-using LocadoraVeiculo.Controladores.Shared;
-using LocadoraVeiculo.Controladores.VeiculoModule;
-using LocadoraVeiculo.GrupoVeiculoModule;
-using LocadoraVeiculo.VeiculoModule;
+using LocadoraDeVeiculos.Controladores.GrupoVeiculoModule;
+using LocadoraDeVeiculos.Controladores.Shared;
+using LocadoraDeVeiculos.Controladores.VeiculoModule;
+using LocadoraDeVeiculos.Dominio.GrupoVeiculoModule;
+using LocadoraDeVeiculos.Dominio.VeiculoModule;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace LocadoraVeiculo.Tests.VeiculoModule
 {

@@ -1,22 +1,18 @@
 ﻿using FluentAssertions;
-using LocadoraVeiculo.DescontoModule;
-using LocadoraVeiculo.ParceiroModule;
+using LocadoraDeVeiculos.Dominio.DescontoModule;
+using LocadoraDeVeiculos.Dominio.ParceiroModule;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace LocadoraVeiculo.Tests.DescontoModule
 {
     [TestClass]
     public class DescontoTests
     {
-        ParceiroDesconto parceiro;
+        Parceiro parceiro;
         public DescontoTests()
         {
-            parceiro = new ParceiroDesconto("Arthur");
+            parceiro = new Parceiro("Arthur");
         }
 
         [TestMethod]

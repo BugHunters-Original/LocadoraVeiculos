@@ -4,6 +4,7 @@ using System.Configuration;
 using System.Data;
 //using System.Data.SQLite;
 using System.Data.Common;
+using System.Data.SqlClient;
 
 namespace LocadoraVeiculo.Controladores.Shared
 {
@@ -18,6 +19,8 @@ namespace LocadoraVeiculo.Controladores.Shared
 
         static Db()
         {
+            DbProviderFactories.RegisterFactory("System.Data.SqlClient", SqlClientFactory.Instance);
+
             bancoDeDados = ConfigurationManager.AppSettings["bancoDeDados"];
 
             connectionString = ConfigurationManager.ConnectionStrings[bancoDeDados].ConnectionString;

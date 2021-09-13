@@ -1,4 +1,4 @@
-﻿using LocadoraVeiculo.WindowsApp.Features.DarkMode;
+﻿using LocadoraVeiculo.WindowsApp.Features.DarkModeFeature;
 using System;
 using System.Drawing;
 using System.Windows.Forms;
@@ -16,7 +16,7 @@ namespace LocadoraVeiculo.WindowsApp.Shared
             grid.EnableHeadersVisualStyles = false;
 
 
-            if (ControladorDarkMode.ligado)
+            if (DarkMode.ligado)
                 ConfigurarZebradoModoClaro(grid, font);
             else
                 ConfigurarZebradoModoEscuro(grid, font);

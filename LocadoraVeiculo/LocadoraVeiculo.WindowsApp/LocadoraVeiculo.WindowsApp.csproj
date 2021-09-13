@@ -1,560 +1,47 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{2B434C44-A704-4EFD-9FBC-55CC8F0022B0}</ProjectGuid>
+    <TargetFramework>net5.0-windows</TargetFramework>
     <OutputType>WinExe</OutputType>
-    <RootNamespace>LocadoraVeiculo.WindowsApp</RootNamespace>
-    <AssemblyName>LocadoraVeiculo.WindowsApp</AssemblyName>
-    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
-    <FileAlignment>512</FileAlignment>
-    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
-    <Deterministic>true</Deterministic>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
-    <DebugSymbols>true</DebugSymbols>
-    <DebugType>full</DebugType>
-    <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
-    <DebugType>pdbonly</DebugType>
-    <Optimize>true</Optimize>
-    <OutputPath>bin\Release\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
+    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+    <UseWindowsForms>true</UseWindowsForms>
+    <ImportWindowsDesktopTargets>true</ImportWindowsDesktopTargets>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="BouncyCastle.Crypto, Version=1.8.9.0, Culture=neutral, PublicKeyToken=0e99375e54769942, processorArchitecture=MSIL">
-      <HintPath>..\packages\Portable.BouncyCastle.1.8.9\lib\net40\BouncyCastle.Crypto.dll</HintPath>
-    </Reference>
-    <Reference Include="Bunifu.Licensing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=f89b4760ba7dcb6b, processorArchitecture=MSIL">
-      <HintPath>..\packages\Bunifu.UI.WinForms.5.0.9\lib\net40\Bunifu.Licensing.dll</HintPath>
-    </Reference>
-    <Reference Include="Bunifu.UI.WinForms.1.5.3, Version=1.5.3.0, Culture=neutral, PublicKeyToken=e8e24ccd28363fe9, processorArchitecture=MSIL">
-      <HintPath>..\packages\Bunifu.UI.WinForms.5.0.9\lib\net40\Bunifu.UI.WinForms.1.5.3.dll</HintPath>
-    </Reference>
-    <Reference Include="Bunifu.UI.WinForms.BunifuButton, Version=5.0.9.0, Culture=neutral, PublicKeyToken=e8e24ccd28363fe9, processorArchitecture=MSIL">
-      <HintPath>..\packages\Bunifu.UI.WinForms.5.0.9\lib\net40\Bunifu.UI.WinForms.BunifuButton.dll</HintPath>
-    </Reference>
-    <Reference Include="Bunifu.UI.WinForms.BunifuCheckBox, Version=5.0.9.0, Culture=neutral, PublicKeyToken=e8e24ccd28363fe9, processorArchitecture=MSIL">
-      <HintPath>..\packages\Bunifu.UI.WinForms.5.0.9\lib\net40\Bunifu.UI.WinForms.BunifuCheckBox.dll</HintPath>
-    </Reference>
-    <Reference Include="Bunifu.UI.WinForms.BunifuCircleProgress, Version=5.0.9.0, Culture=neutral, PublicKeyToken=e8e24ccd28363fe9, processorArchitecture=MSIL">
-      <HintPath>..\packages\Bunifu.UI.WinForms.5.0.9\lib\net40\Bunifu.UI.WinForms.BunifuCircleProgress.dll</HintPath>
-    </Reference>
-    <Reference Include="Bunifu.UI.WinForms.BunifuColorTransition, Version=5.0.9.0, Culture=neutral, PublicKeyToken=e8e24ccd28363fe9, processorArchitecture=MSIL">
-      <HintPath>..\packages\Bunifu.UI.WinForms.5.0.9\lib\net40\Bunifu.UI.WinForms.BunifuColorTransition.dll</HintPath>
-    </Reference>
-    <Reference Include="Bunifu.UI.WinForms.BunifuDataGridView, Version=5.0.9.0, Culture=neutral, PublicKeyToken=e8e24ccd28363fe9, processorArchitecture=MSIL">
-      <HintPath>..\packages\Bunifu.UI.WinForms.5.0.9\lib\net40\Bunifu.UI.WinForms.BunifuDataGridView.dll</HintPath>
-    </Reference>
-    <Reference Include="Bunifu.UI.WinForms.BunifuDatePicker, Version=5.0.9.0, Culture=neutral, PublicKeyToken=e8e24ccd28363fe9, processorArchitecture=MSIL">
-      <HintPath>..\packages\Bunifu.UI.WinForms.5.0.9\lib\net40\Bunifu.UI.WinForms.BunifuDatePicker.dll</HintPath>
-    </Reference>
-    <Reference Include="Bunifu.UI.WinForms.BunifuDropdown, Version=5.0.9.0, Culture=neutral, PublicKeyToken=e8e24ccd28363fe9, processorArchitecture=MSIL">
-      <HintPath>..\packages\Bunifu.UI.WinForms.5.0.9\lib\net40\Bunifu.UI.WinForms.BunifuDropdown.dll</HintPath>
-    </Reference>
-    <Reference Include="Bunifu.UI.WinForms.BunifuFormDock, Version=5.0.9.0, Culture=neutral, PublicKeyToken=e8e24ccd28363fe9, processorArchitecture=MSIL">
-      <HintPath>..\packages\Bunifu.UI.WinForms.5.0.9\lib\net40\Bunifu.UI.WinForms.BunifuFormDock.dll</HintPath>
-    </Reference>
-    <Reference Include="Bunifu.UI.WinForms.BunifuGauge, Version=5.0.9.0, Culture=neutral, PublicKeyToken=e8e24ccd28363fe9, processorArchitecture=MSIL">
-      <HintPath>..\packages\Bunifu.UI.WinForms.5.0.9\lib\net40\Bunifu.UI.WinForms.BunifuGauge.dll</HintPath>
-    </Reference>
-    <Reference Include="Bunifu.UI.WinForms.BunifuGradientPanel, Version=5.0.9.0, Culture=neutral, PublicKeyToken=e8e24ccd28363fe9, processorArchitecture=MSIL">
-      <HintPath>..\packages\Bunifu.UI.WinForms.5.0.9\lib\net40\Bunifu.UI.WinForms.BunifuGradientPanel.dll</HintPath>
-    </Reference>
-    <Reference Include="Bunifu.UI.WinForms.BunifuGroupBox, Version=5.0.9.0, Culture=neutral, PublicKeyToken=e8e24ccd28363fe9, processorArchitecture=MSIL">
-      <HintPath>..\packages\Bunifu.UI.WinForms.5.0.9\lib\net40\Bunifu.UI.WinForms.BunifuGroupBox.dll</HintPath>
-    </Reference>
-    <Reference Include="Bunifu.UI.WinForms.BunifuImageButton, Version=5.0.9.0, Culture=neutral, PublicKeyToken=e8e24ccd28363fe9, processorArchitecture=MSIL">
-      <HintPath>..\packages\Bunifu.UI.WinForms.5.0.9\lib\net40\Bunifu.UI.WinForms.BunifuImageButton.dll</HintPath>
-    </Reference>
-    <Reference Include="Bunifu.UI.WinForms.BunifuLabel, Version=5.0.9.0, Culture=neutral, PublicKeyToken=e8e24ccd28363fe9, processorArchitecture=MSIL">
-      <HintPath>..\packages\Bunifu.UI.WinForms.5.0.9\lib\net40\Bunifu.UI.WinForms.BunifuLabel.dll</HintPath>
-    </Reference>
-    <Reference Include="Bunifu.UI.WinForms.BunifuPages, Version=5.0.9.0, Culture=neutral, PublicKeyToken=e8e24ccd28363fe9, processorArchitecture=MSIL">
-      <HintPath>..\packages\Bunifu.UI.WinForms.5.0.9\lib\net40\Bunifu.UI.WinForms.BunifuPages.dll</HintPath>
-    </Reference>
-    <Reference Include="Bunifu.UI.WinForms.BunifuPanel, Version=5.0.9.0, Culture=neutral, PublicKeyToken=e8e24ccd28363fe9, processorArchitecture=MSIL">
-      <HintPath>..\packages\Bunifu.UI.WinForms.5.0.9\lib\net40\Bunifu.UI.WinForms.BunifuPanel.dll</HintPath>
-    </Reference>
-    <Reference Include="Bunifu.UI.WinForms.BunifuPictureBox, Version=5.0.9.0, Culture=neutral, PublicKeyToken=e8e24ccd28363fe9, processorArchitecture=MSIL">
-      <HintPath>..\packages\Bunifu.UI.WinForms.5.0.9\lib\net40\Bunifu.UI.WinForms.BunifuPictureBox.dll</HintPath>
-    </Reference>
-    <Reference Include="Bunifu.UI.WinForms.BunifuProgressBar, Version=5.0.9.0, Culture=neutral, PublicKeyToken=e8e24ccd28363fe9, processorArchitecture=MSIL">
-      <HintPath>..\packages\Bunifu.UI.WinForms.5.0.9\lib\net40\Bunifu.UI.WinForms.BunifuProgressBar.dll</HintPath>
-    </Reference>
-    <Reference Include="Bunifu.UI.WinForms.BunifuRadioButton, Version=5.0.9.0, Culture=neutral, PublicKeyToken=e8e24ccd28363fe9, processorArchitecture=MSIL">
-      <HintPath>..\packages\Bunifu.UI.WinForms.5.0.9\lib\net40\Bunifu.UI.WinForms.BunifuRadioButton.dll</HintPath>
-    </Reference>
-    <Reference Include="Bunifu.UI.WinForms.BunifuRating, Version=5.0.9.0, Culture=neutral, PublicKeyToken=e8e24ccd28363fe9, processorArchitecture=MSIL">
-      <HintPath>..\packages\Bunifu.UI.WinForms.5.0.9\lib\net40\Bunifu.UI.WinForms.BunifuRating.dll</HintPath>
-    </Reference>
-    <Reference Include="Bunifu.UI.WinForms.BunifuScrollBar, Version=5.0.9.0, Culture=neutral, PublicKeyToken=e8e24ccd28363fe9, processorArchitecture=MSIL">
-      <HintPath>..\packages\Bunifu.UI.WinForms.5.0.9\lib\net40\Bunifu.UI.WinForms.BunifuScrollBar.dll</HintPath>
-    </Reference>
-    <Reference Include="Bunifu.UI.WinForms.BunifuSeparator, Version=5.0.9.0, Culture=neutral, PublicKeyToken=e8e24ccd28363fe9, processorArchitecture=MSIL">
-      <HintPath>..\packages\Bunifu.UI.WinForms.5.0.9\lib\net40\Bunifu.UI.WinForms.BunifuSeparator.dll</HintPath>
-    </Reference>
-    <Reference Include="Bunifu.UI.WinForms.BunifuShadowPanel, Version=5.0.9.0, Culture=neutral, PublicKeyToken=e8e24ccd28363fe9, processorArchitecture=MSIL">
-      <HintPath>..\packages\Bunifu.UI.WinForms.5.0.9\lib\net40\Bunifu.UI.WinForms.BunifuShadowPanel.dll</HintPath>
-    </Reference>
-    <Reference Include="Bunifu.UI.WinForms.BunifuShapes, Version=5.0.9.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Bunifu.UI.WinForms.5.0.9\lib\net40\Bunifu.UI.WinForms.BunifuShapes.dll</HintPath>
-    </Reference>
-    <Reference Include="Bunifu.UI.WinForms.BunifuSlider, Version=5.0.9.0, Culture=neutral, PublicKeyToken=e8e24ccd28363fe9, processorArchitecture=MSIL">
-      <HintPath>..\packages\Bunifu.UI.WinForms.5.0.9\lib\net40\Bunifu.UI.WinForms.BunifuSlider.dll</HintPath>
-    </Reference>
-    <Reference Include="Bunifu.UI.WinForms.BunifuSnackbar, Version=5.0.9.0, Culture=neutral, PublicKeyToken=e8e24ccd28363fe9, processorArchitecture=MSIL">
-      <HintPath>..\packages\Bunifu.UI.WinForms.5.0.9\lib\net40\Bunifu.UI.WinForms.BunifuSnackbar.dll</HintPath>
-    </Reference>
-    <Reference Include="Bunifu.UI.WinForms.BunifuTextBox, Version=5.0.9.0, Culture=neutral, PublicKeyToken=e8e24ccd28363fe9, processorArchitecture=MSIL">
-      <HintPath>..\packages\Bunifu.UI.WinForms.5.0.9\lib\net40\Bunifu.UI.WinForms.BunifuTextBox.dll</HintPath>
-    </Reference>
-    <Reference Include="Bunifu.UI.WinForms.BunifuToggleSwitch, Version=5.0.9.0, Culture=neutral, PublicKeyToken=e8e24ccd28363fe9, processorArchitecture=MSIL">
-      <HintPath>..\packages\Bunifu.UI.WinForms.5.0.9\lib\net40\Bunifu.UI.WinForms.BunifuToggleSwitch.dll</HintPath>
-    </Reference>
-    <Reference Include="Bunifu.UI.WinForms.BunifuToolTip, Version=5.0.9.0, Culture=neutral, PublicKeyToken=e8e24ccd28363fe9, processorArchitecture=MSIL">
-      <HintPath>..\packages\Bunifu.UI.WinForms.5.0.9\lib\net40\Bunifu.UI.WinForms.BunifuToolTip.dll</HintPath>
-    </Reference>
-    <Reference Include="Bunifu.UI.WinForms.BunifuTransition, Version=5.0.9.0, Culture=neutral, PublicKeyToken=e8e24ccd28363fe9, processorArchitecture=MSIL">
-      <HintPath>..\packages\Bunifu.UI.WinForms.5.0.9\lib\net40\Bunifu.UI.WinForms.BunifuTransition.dll</HintPath>
-    </Reference>
-    <Reference Include="Bunifu.UI.WinForms.BunifuUserControl, Version=5.0.9.0, Culture=neutral, PublicKeyToken=e8e24ccd28363fe9, processorArchitecture=MSIL">
-      <HintPath>..\packages\Bunifu.UI.WinForms.5.0.9\lib\net40\Bunifu.UI.WinForms.BunifuUserControl.dll</HintPath>
-    </Reference>
-    <Reference Include="Bunifu.UI.WinForms.Deprecated, Version=5.0.9.0, Culture=neutral, PublicKeyToken=e8e24ccd28363fe9, processorArchitecture=MSIL">
-      <HintPath>..\packages\Bunifu.UI.WinForms.5.0.9\lib\net40\Bunifu.UI.WinForms.Deprecated.dll</HintPath>
-    </Reference>
-    <Reference Include="Common.Logging, Version=3.4.1.0, Culture=neutral, PublicKeyToken=af08829b84f0328e, processorArchitecture=MSIL">
-      <HintPath>..\packages\Common.Logging.3.4.1\lib\net40\Common.Logging.dll</HintPath>
-    </Reference>
-    <Reference Include="Common.Logging.Core, Version=3.4.1.0, Culture=neutral, PublicKeyToken=af08829b84f0328e, processorArchitecture=MSIL">
-      <HintPath>..\packages\Common.Logging.Core.3.4.1\lib\net40\Common.Logging.Core.dll</HintPath>
-    </Reference>
-    <Reference Include="System" />
-    <Reference Include="System.Core" />
-    <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="Microsoft.CSharp" />
-    <Reference Include="System.Data" />
-    <Reference Include="System.Deployment" />
-    <Reference Include="System.Drawing" />
-    <Reference Include="System.Net.Http" />
-    <Reference Include="System.Windows.Forms" />
-    <Reference Include="System.Xml" />
+    <Compile Remove="Libraries\**" />
+    <EmbeddedResource Remove="Libraries\**" />
+    <None Remove="Libraries\**" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Features\Cliente\ConfiguracaoClienteToolBox.cs" />
-    <Compile Include="Features\Cliente\OperacoesCliente.cs" />
-    <Compile Include="Features\Cliente\TabelaClienteControl.cs">
+    <Compile Update="Features\ClienteFeature\TabelaClienteControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Features\Cliente\TabelaClienteControl.Designer.cs">
-      <DependentUpon>TabelaClienteControl.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Features\Cliente\TelaClienteForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Features\Cliente\TelaClienteForm.Designer.cs">
-      <DependentUpon>TelaClienteForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Features\Cliente\TelaFiltroClienteForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Features\Cliente\TelaFiltroClienteForm.Designer.cs">
-      <DependentUpon>TelaFiltroClienteForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Features\Cliente\FiltroClienteEnum.cs" />
-    <Compile Include="Features\Combustivel\TelaCombustivelForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Features\Combustivel\TelaCombustivelForm.Designer.cs">
-      <DependentUpon>TelaCombustivelForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Features\DarkMode\ControladorDarkMode.cs" />
-    <Compile Include="Features\Dashboard\ConfiguracaoDashboardToolBox.cs" />
-    <Compile Include="Features\Dashboard\DashboardControl.cs">
+    <Compile Update="Features\DashboardFeature\DashboardControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Features\Dashboard\DashboardControl.Designer.cs">
-      <DependentUpon>DashboardControl.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Features\Dashboard\OperacoesDashboard.cs" />
-    <Compile Include="Features\DescontoFeature\ConfiguracaoDescontoToolBox.cs" />
-    <Compile Include="Features\DescontoFeature\OperacoesDesconto.cs" />
-    <Compile Include="Features\DescontoFeature\TabelaDescontoControl.cs">
+    <Compile Update="Features\DescontoFeature\TabelaDescontoControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Features\DescontoFeature\TabelaDescontoControl.Designer.cs">
-      <DependentUpon>TabelaDescontoControl.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Features\DescontoFeature\TelaDescontoForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Features\DescontoFeature\TelaDescontoForm.Designer.cs">
-      <DependentUpon>TelaDescontoForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Features\EmailLocadora\TelaEmail.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Features\EmailLocadora\TelaEmail.Designer.cs">
-      <DependentUpon>TelaEmail.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Features\Funcionarios\ConfiguracaoFuncionarioToolBox.cs" />
-    <Compile Include="Features\Funcionarios\OperacoesFuncionario.cs" />
-    <Compile Include="Features\Funcionarios\TabelaFuncionarioControl.cs">
+    <Compile Update="Features\FuncionarioFeature\TabelaFuncionarioControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Features\Funcionarios\TabelaFuncionarioControl.Designer.cs">
-      <DependentUpon>TabelaFuncionarioControl.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Features\Funcionarios\TelaFuncionarioForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Features\Funcionarios\TelaFuncionarioForm.Designer.cs">
-      <DependentUpon>TelaFuncionarioForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Features\GrupoVeiculo\ConfiguracaoGrupoVeiculoToolBox.cs" />
-    <Compile Include="Features\GrupoVeiculo\OperacoesGrupoVeiculo.cs" />
-    <Compile Include="Features\GrupoVeiculo\TabelaGrupoVeiculoControl.cs">
+    <Compile Update="Features\GrupoVeiculoFeature\TabelaGrupoVeiculoControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Features\GrupoVeiculo\TabelaGrupoVeiculoControl.Designer.cs">
-      <DependentUpon>TabelaGrupoVeiculoControl.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Features\GrupoVeiculo\TelaGrupoVeiculoForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Features\GrupoVeiculo\TelaGrupoVeiculoForm.Designer.cs">
-      <DependentUpon>TelaGrupoVeiculoForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Features\Locacao\ConfiguracaoLocacaoToolBox.cs" />
-    <Compile Include="Features\Locacao\FiltroLocacaoEnum.cs" />
-    <Compile Include="Features\Locacao\OperacoesLocacao.cs" />
-    <Compile Include="Features\Locacao\TabelaLocacaoControl.cs">
+    <Compile Update="Features\LocacaoFeature\TabelaLocacaoControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Features\Locacao\TabelaLocacaoControl.Designer.cs">
-      <DependentUpon>TabelaLocacaoControl.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Features\Locacao\TaxasServicos\TelaAdicionarTaxasForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Features\Locacao\TaxasServicos\TelaAdicionarTaxasForm.Designer.cs">
-      <DependentUpon>TelaAdicionarTaxasForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Features\Locacao\Devolucao\TelaDevolucaoForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Features\Locacao\Devolucao\TelaDevolucaoForm.Designer.cs">
-      <DependentUpon>TelaDevolucaoForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Features\Locacao\TelaFiltroLocacaoForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Features\Locacao\TelaFiltroLocacaoForm.Designer.cs">
-      <DependentUpon>TelaFiltroLocacaoForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Features\Locacao\TelaLocacaoForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Features\Locacao\TelaLocacaoForm.Designer.cs">
-      <DependentUpon>TelaLocacaoForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Features\Locacao\Visualizacao\TelaDetalhesLocacaoConcluidaForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Features\Locacao\Visualizacao\TelaDetalhesLocacaoConcluidaForm.Designer.cs">
-      <DependentUpon>TelaDetalhesLocacaoConcluidaForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Features\Locacao\Visualizacao\TelaDetalhesLocacaoEmAbertoForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Features\Locacao\Visualizacao\TelaDetalhesLocacaoEmAbertoForm.Designer.cs">
-      <DependentUpon>TelaDetalhesLocacaoEmAbertoForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Features\Login\TelaLoginForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Features\Login\TelaLoginForm.Designer.cs">
-      <DependentUpon>TelaLoginForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Features\NotaFiscal\TelaNotaFiscalForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Features\NotaFiscal\TelaNotaFiscalForm.Designer.cs">
-      <DependentUpon>TelaNotaFiscalForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Features\Parceiro\ConfiguracaoParceiroToolBox.cs" />
-    <Compile Include="Features\Parceiro\OperacoesParceiro.cs" />
-    <Compile Include="Features\Parceiro\TabelaParceiroControl.cs">
+    <Compile Update="Features\ParceiroFeature\TabelaParceiroControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Features\Parceiro\TabelaParceiroControl.Designer.cs">
-      <DependentUpon>TabelaParceiroControl.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Features\Parceiro\TelaParceiroForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Features\Parceiro\TelaParceiroForm.Designer.cs">
-      <DependentUpon>TelaParceiroForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Features\TaxaServico\ConfiguracaoTaxaServicoToolBox.cs" />
-    <Compile Include="Features\TaxaServico\OperacoesTaxaServico.cs" />
-    <Compile Include="Features\TaxaServico\TabelaTaxaServicoControl.cs">
+    <Compile Update="Features\TaxaServicoFeature\TabelaTaxaServicoControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Features\TaxaServico\TabelaTaxaServicoControl.Designer.cs">
-      <DependentUpon>TabelaTaxaServicoControl.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Features\TaxaServico\TelaTaxaServicoForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Features\TaxaServico\TelaTaxaServicoForm.Designer.cs">
-      <DependentUpon>TelaTaxaServicoForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Features\Veiculo\ConfiguracaoVeiculoToolBox.cs" />
-    <Compile Include="Features\Veiculo\OperacoesVeiculo.cs" />
-    <Compile Include="Features\Veiculo\TabelaVeiculoControl.cs">
+    <Compile Update="Features\VeiculoFeature\TabelaVeiculoControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Features\Veiculo\TabelaVeiculoControl.Designer.cs">
-      <DependentUpon>TabelaVeiculoControl.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Features\Veiculo\TelaDetalhesVeiculoForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Features\Veiculo\TelaDetalhesVeiculoForm.Designer.cs">
-      <DependentUpon>TelaDetalhesVeiculoForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Features\Veiculo\TelaVeiculoForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Features\Veiculo\TelaVeiculoForm.Designer.cs">
-      <DependentUpon>TelaVeiculoForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Properties\Resources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Resources.resx</DependentUpon>
-    </Compile>
-    <Compile Include="TelaPrincipalForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="TelaPrincipalForm.Designer.cs">
-      <DependentUpon>TelaPrincipalForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Program.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Shared\DataGridViewExtensions.cs" />
-    <Compile Include="Shared\ICadastravel.cs" />
-    <Compile Include="Shared\IConfiguracaoToolBox.cs" />
-    <EmbeddedResource Include="Features\Cliente\TabelaClienteControl.resx">
-      <DependentUpon>TabelaClienteControl.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Features\Cliente\TelaClienteForm.resx">
-      <DependentUpon>TelaClienteForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Features\Cliente\TelaFiltroClienteForm.resx">
-      <DependentUpon>TelaFiltroClienteForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Features\Combustivel\TelaCombustivelForm.resx">
-      <DependentUpon>TelaCombustivelForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Features\Dashboard\DashboardControl.resx">
-      <DependentUpon>DashboardControl.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Features\DescontoFeature\TabelaDescontoControl.resx">
-      <DependentUpon>TabelaDescontoControl.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Features\DescontoFeature\TelaDescontoForm.resx">
-      <DependentUpon>TelaDescontoForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Features\EmailLocadora\TelaEmail.resx">
-      <DependentUpon>TelaEmail.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Features\Funcionarios\TabelaFuncionarioControl.resx">
-      <DependentUpon>TabelaFuncionarioControl.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Features\Funcionarios\TelaFuncionarioForm.resx">
-      <DependentUpon>TelaFuncionarioForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Features\GrupoVeiculo\TabelaGrupoVeiculoControl.resx">
-      <DependentUpon>TabelaGrupoVeiculoControl.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Features\Locacao\TabelaLocacaoControl.resx">
-      <DependentUpon>TabelaLocacaoControl.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Features\Locacao\TaxasServicos\TelaAdicionarTaxasForm.resx">
-      <DependentUpon>TelaAdicionarTaxasForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Features\Locacao\Devolucao\TelaDevolucaoForm.resx">
-      <DependentUpon>TelaDevolucaoForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Features\Locacao\TelaFiltroLocacaoForm.resx">
-      <DependentUpon>TelaFiltroLocacaoForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Features\Locacao\TelaLocacaoForm.resx">
-      <DependentUpon>TelaLocacaoForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Features\Locacao\Visualizacao\TelaDetalhesLocacaoConcluidaForm.resx">
-      <DependentUpon>TelaDetalhesLocacaoConcluidaForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Features\Locacao\Visualizacao\TelaDetalhesLocacaoEmAbertoForm.resx">
-      <DependentUpon>TelaDetalhesLocacaoEmAbertoForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Features\Login\TelaLoginForm.resx">
-      <DependentUpon>TelaLoginForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Features\NotaFiscal\TelaNotaFiscalForm.resx">
-      <DependentUpon>TelaNotaFiscalForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Features\Parceiro\TabelaParceiroControl.resx">
-      <DependentUpon>TabelaParceiroControl.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Features\Parceiro\TelaParceiroForm.resx">
-      <DependentUpon>TelaParceiroForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Features\TaxaServico\TabelaTaxaServicoControl.resx">
-      <DependentUpon>TabelaTaxaServicoControl.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Features\TaxaServico\TelaTaxaServicoForm.resx">
-      <DependentUpon>TelaTaxaServicoForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Features\Veiculo\TabelaVeiculoControl.resx">
-      <DependentUpon>TabelaVeiculoControl.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Features\GrupoVeiculo\TelaGrupoVeiculoForm.resx">
-      <DependentUpon>TelaGrupoVeiculoForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Features\Veiculo\TelaDetalhesVeiculoForm.resx">
-      <DependentUpon>TelaDetalhesVeiculoForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Features\Veiculo\TelaVeiculoForm.resx">
-      <DependentUpon>TelaVeiculoForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="TelaPrincipalForm.resx">
-      <DependentUpon>TelaPrincipalForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Properties\Resources.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <SubType>Designer</SubType>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-    <None Include="packages.config" />
-    <None Include="Properties\Settings.settings">
-      <Generator>SettingsSingleFileGenerator</Generator>
-      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
-    </None>
-    <Compile Include="Properties\Settings.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DependentUpon>Settings.settings</DependentUpon>
-      <DesignTimeSharedInput>True</DesignTimeSharedInput>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="App.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Libraries\" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\outline_add_circle_outline_black_24dp.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\outline_mode_edit_black_24dp.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\outline_delete_black_24dp.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\outline_filter_alt_black_24dp.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\devolver.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\LocadoraVeiculo.Combustivel\LocadoraVeiculo.Combustivel.csproj">
-      <Project>{7f8b8912-71da-4008-a961-f85e30a6bf97}</Project>
-      <Name>LocadoraVeiculo.Combustivel</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\LocadoraVeiculo.Controladores\LocadoraVeiculo.Controladores.csproj">
-      <Project>{3be78018-27c1-4f5d-8891-b57b6b1a3e4d}</Project>
-      <Name>LocadoraVeiculo.Controladores</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\LocadoraVeiculo.Dominio\LocadoraVeiculo.Dominio.csproj">
-      <Project>{fd32af45-ef78-416a-b054-b4189d0168b7}</Project>
-      <Name>LocadoraVeiculo.Dominio</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\LocadoraVeiculo.EmailLocadora\LocadoraVeiculo.EmailLocadora.csproj">
-      <Project>{74472EC6-68DC-4B26-BE14-2425BC684B3C}</Project>
-      <Name>LocadoraVeiculo.EmailLocadora</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\LocadoraVeiculo.ExportarPDF\LocadoraVeiculo.ExportacaoPDF.csproj">
-      <Project>{053e6ef7-a237-407e-8f08-c7f0e7113f23}</Project>
-      <Name>LocadoraVeiculo.ExportacaoPDF</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\bordaCircular.jpg" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\carRented.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\carRented1.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\carRented3.png" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\lupa %281%29.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\close.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\close_dark.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\darkMode.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\whiteMode.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\2565014.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\293801-200.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\carRented2.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\outline_add_circle_outline_white_24dp.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\devolver_white.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\outline_delete_white_24dp.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\outline_filter_alt_white_24dp.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\outline_mode_edit_white_24dp.png" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\maximize-button %281%29.png" />
@@ -563,13 +50,25 @@
     <None Include="Resources\minimize-1779402-1512859 %281%29.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\logOut.png" />
-    <None Include="Resources\logOut_dark.png" />
+    <Content Include="appsettings.json" />
     <Content Include="Resources\maximize-button_white.png" />
-    <None Include="Resources\minimize-white.png" />
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Connected Services\" />
   </ItemGroup>
-  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <ItemGroup>
+    <PackageReference Include="Common.Logging" Version="3.4.1" />
+    <PackageReference Include="Microsoft.CSharp" Version="4.7.0" />
+    <PackageReference Include="Portable.BouncyCastle" Version="1.8.9" />
+    <PackageReference Include="Microsoft.DotNet.UpgradeAssistant.Extensions.Default.Analyzers" Version="0.3.242703">
+      <PrivateAssets>all</PrivateAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.Windows.Compatibility" Version="5.0.2" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\LocadoraDeVeiculos.Combustivel\LocadoraDeVeiculos.Combustivel.csproj" />
+    <ProjectReference Include="..\LocadoraDeVeiculos.Controladores\LocadoraDeVeiculos.Controladores.csproj" />
+    <ProjectReference Include="..\LocadoraDeVeiculos.EmailLocadora\LocadoraDeVeiculos.EmailLocadora.csproj" />
+    <ProjectReference Include="..\LocadoraDeVeiculos.ExportacaoPDF\LocadoraDeVeiculos.ExportacaoPDF.csproj" />
+  </ItemGroup>
 </Project>

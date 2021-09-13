@@ -1,0 +1,9 @@
+D:\Repositorios\LocadoraVeiculo\LocadoraVeiculo\LocadoraVeiculo.EmailLocadora\bin\Debug\LocadoraVeiculo.EmailLocadora.dll
+D:\Repositorios\LocadoraVeiculo\LocadoraVeiculo\LocadoraVeiculo.EmailLocadora\bin\Debug\LocadoraVeiculo.EmailLocadora.pdb
+D:\Repositorios\LocadoraVeiculo\LocadoraVeiculo\LocadoraVeiculo.EmailLocadora\obj\Debug\LocadoraVeiculo.EmailLocadora.csproj.AssemblyReference.cache
+D:\Repositorios\LocadoraVeiculo\LocadoraVeiculo\LocadoraVeiculo.EmailLocadora\obj\Debug\LocadoraVeiculo.EmailLocadora.csproj.CoreCompileInputs.cache
+D:\Repositorios\LocadoraVeiculo\LocadoraVeiculo\LocadoraVeiculo.EmailLocadora\obj\Debug\LocadoraVeiculo.EmailLocadora.dll
+D:\Repositorios\LocadoraVeiculo\LocadoraVeiculo\LocadoraVeiculo.EmailLocadora\obj\Debug\LocadoraVeiculo.EmailLocadora.pdb
+D:\Repositorios\LocadoraVeiculo\LocadoraVeiculo\LocadoraVeiculo.EmailLocadora\bin\Debug\LocadoraVeiculo.AppConfig.dll
+D:\Repositorios\LocadoraVeiculo\LocadoraVeiculo\LocadoraVeiculo.EmailLocadora\bin\Debug\LocadoraVeiculo.AppConfig.pdb
+D:\Repositorios\LocadoraVeiculo\LocadoraVeiculo\LocadoraVeiculo.EmailLocadora\obj\Debug\LocadoraVeiculo.EmailLocadora.csproj.CopyComplete

@@ -1,17 +1,11 @@
-﻿using LocadoraVeiculo.Controladores.DescontoModule;
-using LocadoraVeiculo.Controladores.ParceiroModule;
-using LocadoraVeiculo.DescontoModule;
-using LocadoraVeiculo.ParceiroModule;
-using LocadoraVeiculo.WindowsApp.Features.DarkMode;
+﻿using LocadoraDeVeiculos.Controladores.DescontoModule;
+using LocadoraDeVeiculos.Controladores.ParceiroModule;
+using LocadoraDeVeiculos.Dominio.DescontoModule;
+using LocadoraDeVeiculos.Dominio.ParceiroModule;
+using LocadoraVeiculo.WindowsApp.Features.DarkModeFeature;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace LocadoraVeiculo.WindowsApp.Features.DescontoFeature
@@ -32,25 +26,25 @@ namespace LocadoraVeiculo.WindowsApp.Features.DescontoFeature
 
         private void SetColor()
         {
-            this.header_GrupoVeiculo.BackColor = ControladorDarkMode.corHeader;
-            this.BackColor = ControladorDarkMode.corPanel;
-            this.ForeColor = ControladorDarkMode.corFonte;
+            this.header_GrupoVeiculo.BackColor = DarkMode.corHeader;
+            this.BackColor = DarkMode.corPanel;
+            this.ForeColor = DarkMode.corFonte;
             txtId.BackColor = Color.DarkSeaGreen;
-            txtCodigo.BackColor = ControladorDarkMode.corFundoTxBox;
-            txtValor.BackColor = ControladorDarkMode.corFundoTxBox;
-            txtMeio.BackColor = ControladorDarkMode.corFundoTxBox;
-            cbParceiros.BackColor = ControladorDarkMode.corFundoTxBox;
-            dtValidade.BackColor = ControladorDarkMode.corFundoTxBox;
+            txtCodigo.BackColor = DarkMode.corFundoTxBox;
+            txtValor.BackColor = DarkMode.corFundoTxBox;
+            txtMeio.BackColor = DarkMode.corFundoTxBox;
+            cbParceiros.BackColor = DarkMode.corFundoTxBox;
+            dtValidade.BackColor = DarkMode.corFundoTxBox;
 
-            txtId.ForeColor = ControladorDarkMode.corFonte;
-            txtCodigo.ForeColor = ControladorDarkMode.corFonte;
-            txtValor.ForeColor = ControladorDarkMode.corFonte;
-            txtMeio.ForeColor = ControladorDarkMode.corFonte;
-            cbParceiros.ForeColor = ControladorDarkMode.corFonte;
-            dtValidade.ForeColor = ControladorDarkMode.corFonte;
+            txtId.ForeColor = DarkMode.corFonte;
+            txtCodigo.ForeColor = DarkMode.corFonte;
+            txtValor.ForeColor = DarkMode.corFonte;
+            txtMeio.ForeColor = DarkMode.corFonte;
+            cbParceiros.ForeColor = DarkMode.corFonte;
+            dtValidade.ForeColor = DarkMode.corFonte;
 
-            btnGravar.BackColor = ControladorDarkMode.corFundoTxBox;
-            btnCancelar.BackColor = ControladorDarkMode.corFundoTxBox;
+            btnGravar.BackColor = DarkMode.corFundoTxBox;
+            btnCancelar.BackColor = DarkMode.corFundoTxBox;
         }
 
         public Desconto Desconto
@@ -86,7 +80,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.DescontoFeature
 
             var dataValidade = Convert.ToDateTime(dtValidade.Value);
 
-            ParceiroDesconto parceiro = (ParceiroDesconto)cbParceiros.SelectedItem;
+            Parceiro parceiro = (Parceiro)cbParceiros.SelectedItem;
 
             var meio = txtMeio.Text;
 
@@ -96,7 +90,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.DescontoFeature
 
             desconto = new Desconto(codigo, valor, tipo, dataValidade, parceiro, meio, nome, valorMinimo);
 
-            string resultadoValidacao = desconto.Validar();       
+            string resultadoValidacao = desconto.Validar();
 
             if (resultadoValidacao != "ESTA_VALIDO")
             {

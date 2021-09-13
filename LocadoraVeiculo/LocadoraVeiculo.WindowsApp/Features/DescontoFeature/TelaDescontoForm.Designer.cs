@@ -30,7 +30,6 @@ namespace LocadoraVeiculo.WindowsApp.Features.DescontoFeature
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            this.bunifuElipse1 = new Bunifu.Framework.UI.BunifuElipse(this.components);
             this.header_GrupoVeiculo = new System.Windows.Forms.Panel();
             this.label9 = new System.Windows.Forms.Label();
             this.txtId = new System.Windows.Forms.TextBox();
@@ -56,11 +55,6 @@ namespace LocadoraVeiculo.WindowsApp.Features.DescontoFeature
             this.txtValorMinimo = new System.Windows.Forms.MaskedTextBox();
             this.header_GrupoVeiculo.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // bunifuElipse1
-            // 
-            this.bunifuElipse1.ElipseRadius = 5;
-            this.bunifuElipse1.TargetControl = this;
             // 
             // header_GrupoVeiculo
             // 
@@ -323,7 +317,6 @@ namespace LocadoraVeiculo.WindowsApp.Features.DescontoFeature
 
         #endregion
 
-        private Bunifu.Framework.UI.BunifuElipse bunifuElipse1;
         private System.Windows.Forms.Panel header_GrupoVeiculo;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.TextBox txtId;
