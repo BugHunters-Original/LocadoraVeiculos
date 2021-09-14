@@ -1,10 +1,6 @@
 ﻿using LocadoraDeVeiculos.Dominio.ParceiroModule;
-using System;
 using log4net;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace LocadoraDeVeiculos.Aplicacao.ParceiroModule
 {
@@ -19,7 +15,7 @@ namespace LocadoraDeVeiculos.Aplicacao.ParceiroModule
             this.logger = logger;
         }
 
-        public string RegistrarNovoParceiro(Parceiro parceiro)
+        public void RegistrarNovoParceiro(Parceiro parceiro)
         {
             string resultadoValidacaoDominio = parceiro.Validar();
 
@@ -32,12 +28,10 @@ namespace LocadoraDeVeiculos.Aplicacao.ParceiroModule
                 logger.Debug($"Parceiro {parceiro} registrado com sucesso!");
             }
 
-            return resultadoValidacaoDominio;
         }
         public List<Parceiro> SelecionarTodosParceiros()
         {
             return parceiroRepository.SelecionarTodos();
         }
     }
-
 }

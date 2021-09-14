@@ -37,25 +37,27 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "2.4 Infra", "2.4 Infra", "{
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "2.5 Banco de Dados", "2.5 Banco de Dados", "{C21B3842-ABDA-4AC0-8521-35CDE94D9250}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LocadoraDeVeiculos.Aplicacao", "LocadoraDeVeiculos.Aplicacao\LocadoraDeVeiculos.Aplicacao.csproj", "{89D9A99C-7CC6-4D26-8D26-0AC82F6563BC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LocadoraDeVeiculos.Aplicacao", "LocadoraDeVeiculos.Aplicacao\LocadoraDeVeiculos.Aplicacao.csproj", "{89D9A99C-7CC6-4D26-8D26-0AC82F6563BC}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "4.1 DAO", "4.1 DAO", "{5EFBD6C4-58E7-44EE-83BF-D451C4F159EF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LocadoraDeVeiculos.Infra.ORM", "LocadoraDeVeiculos.Infra.ORM\LocadoraDeVeiculos.Infra.ORM.csproj", "{562C1B67-BFEC-4A60-87BB-24D5E3BBDC38}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LocadoraDeVeiculos.Infra.ORM", "LocadoraDeVeiculos.Infra.ORM\LocadoraDeVeiculos.Infra.ORM.csproj", "{562C1B67-BFEC-4A60-87BB-24D5E3BBDC38}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LocadoraDeVeiculos.Infra.SQL", "LocadoraDeVeiculos.Infra.SQL\LocadoraDeVeiculos.Infra.SQL.csproj", "{4868AAA5-D411-4D98-9BDD-5BDD24278665}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LocadoraDeVeiculos.Infra.SQL", "LocadoraDeVeiculos.Infra.SQL\LocadoraDeVeiculos.Infra.SQL.csproj", "{4868AAA5-D411-4D98-9BDD-5BDD24278665}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "4.2 External Services", "4.2 External Services", "{3A8E2F2B-131A-452D-9F19-AE0DCFB89086}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LocadoraDeVeiculos.Infra.InternetServices", "LocadoraDeVeiculos.Infra.InternetServices\LocadoraDeVeiculos.Infra.InternetServices.csproj", "{CF3F53FD-2C78-4EBC-9F2C-F009F1688D5C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LocadoraDeVeiculos.Infra.InternetServices", "LocadoraDeVeiculos.Infra.InternetServices\LocadoraDeVeiculos.Infra.InternetServices.csproj", "{CF3F53FD-2C78-4EBC-9F2C-F009F1688D5C}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "4.3 PDF", "4.3 PDF", "{45A72FA2-2DF3-4B27-BB29-B5DABC6466A3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LocadoraDeVeiculos.Infra.PDF", "LocadoraDeVeiculos.Infra.PDF\LocadoraDeVeiculos.Infra.PDF.csproj", "{5A85A38F-4A40-4B15-8B0F-63D0CC6322A7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LocadoraDeVeiculos.Infra.PDF", "LocadoraDeVeiculos.Infra.PDF\LocadoraDeVeiculos.Infra.PDF.csproj", "{5A85A38F-4A40-4B15-8B0F-63D0CC6322A7}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "4.4 Extension Methods", "4.4 Extension Methods", "{FFB21922-BBC8-497E-BDCE-F2F69E42645B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LocadoraDeVeiculos.Infra.ExtensionMethods", "LocadoraDeVeiculos.Infra.ExtensionMethods\LocadoraDeVeiculos.Infra.ExtensionMethods.csproj", "{A95ED246-8A5A-40C6-93DC-1A59A01E021A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LocadoraDeVeiculos.Infra.ExtensionMethods", "LocadoraDeVeiculos.Infra.ExtensionMethods\LocadoraDeVeiculos.Infra.ExtensionMethods.csproj", "{A95ED246-8A5A-40C6-93DC-1A59A01E021A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LocadoraDeVeiculos.ConsoleApp", "LocadoraDeVeiculos.ConsoleApp\LocadoraDeVeiculos.ConsoleApp.csproj", "{B7F4D82F-933C-443E-8A5C-2852B7C24FFF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -125,6 +127,10 @@ Global
 		{A95ED246-8A5A-40C6-93DC-1A59A01E021A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A95ED246-8A5A-40C6-93DC-1A59A01E021A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A95ED246-8A5A-40C6-93DC-1A59A01E021A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B7F4D82F-933C-443E-8A5C-2852B7C24FFF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B7F4D82F-933C-443E-8A5C-2852B7C24FFF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B7F4D82F-933C-443E-8A5C-2852B7C24FFF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B7F4D82F-933C-443E-8A5C-2852B7C24FFF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -154,6 +160,7 @@ Global
 		{5A85A38F-4A40-4B15-8B0F-63D0CC6322A7} = {45A72FA2-2DF3-4B27-BB29-B5DABC6466A3}
 		{FFB21922-BBC8-497E-BDCE-F2F69E42645B} = {32D36574-C253-4348-AE04-0B066837BCBD}
 		{A95ED246-8A5A-40C6-93DC-1A59A01E021A} = {FFB21922-BBC8-497E-BDCE-F2F69E42645B}
+		{B7F4D82F-933C-443E-8A5C-2852B7C24FFF} = {4F45AB4D-E3C0-4762-9CEB-C6167D6991B4}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {CA30BD87-78E1-4FAA-B316-69D35BF837BC}

@@ -12,12 +12,10 @@ namespace LocadoraDeVeiculos.Dominio.ParceiroModule
         void InserirParceiro(Parceiro parceiro);
         void EditarParceiro(int id, Parceiro parceiro);
         bool ExcluirParceiro(int id);
+        bool Existe(int id);
         Parceiro SelecionarPorId(int id);
         List<Parceiro> SelecionarTodos();
-        bool Existe(int id);
         List<Parceiro> SelecionarPesquisa(string coluna, string pesquisa);
-        Parceiro ConverterEmParceiro(IDataReader reader);
-        Dictionary<string, object> AdicionarParametro(string campo, object valor);
 
     }
 }

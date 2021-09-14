@@ -90,22 +90,9 @@ namespace LocadoraDeVeiculos.Infra.SQL.ParceiroModule
 
             return true;
         }
-        private Dictionary<string, object> ObtemParametrosParceiro(Parceiro parceiro)
-        {
-            var parametros = new Dictionary<string, object>();
-
-            parametros.Add("ID", parceiro.Id);
-            parametros.Add("NOME_PARCEIRO", parceiro.Nome);
-
-            return parametros;
-        }
         public bool Existe(int id)
         {
             return Db.Exists(sqlExisteParceiro, AdicionarParametro("ID", id));
-        }
-        public Dictionary<string, object> AdicionarParametro(string campo, object valor)
-        {
-            return new Dictionary<string, object>() { { campo, valor } };
         }
 
         public Parceiro SelecionarPorId(int id)
@@ -116,7 +103,13 @@ namespace LocadoraDeVeiculos.Infra.SQL.ParceiroModule
         {
             return Db.GetAll(sqlSelecionarTodosParceiros, ConverterEmParceiro);
         }
-        public Parceiro ConverterEmParceiro(IDataReader reader)
+        public List<Parceiro> SelecionarPesquisa(string coluna, string pesquisa)
+        {
+            string sql = sqlSelecionarParceiro.Replace("COLUNADEPESQUISA", coluna);
+            return Db.GetAll(sql, ConverterEmParceiro, AdicionarParametro("@SEGUNDAREF", pesquisa));
+        }
+
+        private Parceiro ConverterEmParceiro(IDataReader reader)
         {
             int id = Convert.ToInt32(reader["ID"]);
             string nome = Convert.ToString(reader["NOME_PARCEIRO"]);
@@ -127,10 +120,19 @@ namespace LocadoraDeVeiculos.Infra.SQL.ParceiroModule
 
             return parceiro;
         }
-        public List<Parceiro> SelecionarPesquisa(string coluna, string pesquisa)
+        private Dictionary<string, object> ObtemParametrosParceiro(Parceiro parceiro)
         {
-            string sql = sqlSelecionarParceiro.Replace("COLUNADEPESQUISA", coluna);
-            return Db.GetAll(sql, ConverterEmParceiro, AdicionarParametro("@SEGUNDAREF", pesquisa));
+            var parametros = new Dictionary<string, object>();
+
+            parametros.Add("ID", parceiro.Id);
+            parametros.Add("NOME_PARCEIRO", parceiro.Nome);
+
+            return parametros;
         }
+        private Dictionary<string, object> AdicionarParametro(string campo, object valor)
+        {
+            return new Dictionary<string, object>() { { campo, valor } };
+        }
+
     }
 }
