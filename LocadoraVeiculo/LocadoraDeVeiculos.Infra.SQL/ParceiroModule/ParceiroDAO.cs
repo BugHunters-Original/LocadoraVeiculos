@@ -4,9 +4,9 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 
-namespace LocadoraDeVeiculos.Controladores.ParceiroModule
+namespace LocadoraDeVeiculos.Infra.SQL.ParceiroModule
 {
-    public class ControladorParceiro : Controlador<Parceiro>
+    public class ParceiroDAO : IParceiroRepository
     {
         #region Queries
         private const string sqlInserirParceiro =
@@ -67,20 +67,17 @@ namespace LocadoraDeVeiculos.Controladores.ParceiroModule
                         COLUNADEPESQUISA LIKE @SEGUNDAREF+'%'";
         #endregion
 
-        public override string Editar(int id, Parceiro registro)
+        public void InserirParceiro(Parceiro parceiro)
         {
-            string resultadoValidacao = registro.Validar();
-
-            if (resultadoValidacao == "ESTA_VALIDO")
-            {
-                registro.Id = id;
-                Db.Update(sqlEditarParceiro, ObtemParametrosParceiro(registro));
-            }
-
-            return resultadoValidacao;
+            parceiro.Id = Db.Insert(sqlInserirParceiro, ObtemParametrosParceiro(parceiro));
+        }
+        public void EditarParceiro(int id, Parceiro parceiro)
+        {
+            parceiro.Id = id;
+            Db.Update(sqlEditarParceiro, ObtemParametrosParceiro(parceiro));
         }
 
-        public override bool Excluir(int id)
+        public bool ExcluirParceiro(int id)
         {
             try
             {
@@ -93,33 +90,6 @@ namespace LocadoraDeVeiculos.Controladores.ParceiroModule
 
             return true;
         }
-
-        public override bool Existe(int id)
-        {
-            return Db.Exists(sqlExisteParceiro, AdicionarParametro("ID", id));
-        }
-
-        public override string InserirNovo(Parceiro registro)
-        {
-            string resultadoValidacao = registro.Validar();
-
-            if (resultadoValidacao == "ESTA_VALIDO")
-            {
-                registro.Id = Db.Insert(sqlInserirParceiro, ObtemParametrosParceiro(registro));
-            }
-
-            return resultadoValidacao;
-        }
-
-        public override Parceiro SelecionarPorId(int id)
-        {
-            return Db.Get(sqlSelecionarParceiroPorId, ConverterEmParceiro, AdicionarParametro("ID", id));
-        }
-
-        public override List<Parceiro> SelecionarTodos()
-        {
-            return Db.GetAll(sqlSelecionarTodosParceiros, ConverterEmParceiro);
-        }
         private Dictionary<string, object> ObtemParametrosParceiro(Parceiro parceiro)
         {
             var parametros = new Dictionary<string, object>();
@@ -129,7 +99,24 @@ namespace LocadoraDeVeiculos.Controladores.ParceiroModule
 
             return parametros;
         }
-        private Parceiro ConverterEmParceiro(IDataReader reader)
+        public bool Existe(int id)
+        {
+            return Db.Exists(sqlExisteParceiro, AdicionarParametro("ID", id));
+        }
+        public Dictionary<string, object> AdicionarParametro(string campo, object valor)
+        {
+            return new Dictionary<string, object>() { { campo, valor } };
+        }
+
+        public Parceiro SelecionarPorId(int id)
+        {
+            return Db.Get(sqlSelecionarParceiroPorId, ConverterEmParceiro, AdicionarParametro("ID", id));
+        }
+        public List<Parceiro> SelecionarTodos()
+        {
+            return Db.GetAll(sqlSelecionarTodosParceiros, ConverterEmParceiro);
+        }
+        public Parceiro ConverterEmParceiro(IDataReader reader)
         {
             int id = Convert.ToInt32(reader["ID"]);
             string nome = Convert.ToString(reader["NOME_PARCEIRO"]);
@@ -140,7 +127,6 @@ namespace LocadoraDeVeiculos.Controladores.ParceiroModule
 
             return parceiro;
         }
-
         public List<Parceiro> SelecionarPesquisa(string coluna, string pesquisa)
         {
             string sql = sqlSelecionarParceiro.Replace("COLUNADEPESQUISA", coluna);

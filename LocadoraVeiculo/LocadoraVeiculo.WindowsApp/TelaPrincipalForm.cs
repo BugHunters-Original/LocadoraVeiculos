@@ -24,6 +24,9 @@ using LocadoraVeiculo.WindowsApp.Features.ParceiroFeature;
 using LocadoraDeVeiculos.Controladores.ParceiroModule;
 using LocadoraVeiculo.WindowsApp.Features.DarkModeFeature;
 using LocadoraVeiculo.WindowsApp.Features.LoginFeature;
+using LocadoraDeVeiculos.Aplicacao.ParceiroModule;
+using LocadoraDeVeiculos.Infra.SQL.ParceiroModule;
+using log4net;
 
 namespace LocadoraVeiculo.WindowsApp
 {
@@ -172,7 +175,10 @@ namespace LocadoraVeiculo.WindowsApp
 
             AtualizarRodape(configuracao.TipoCadastro);
 
-            operacoes = new OperacoesParceiro(new ControladorParceiro());
+            var repository = new ParceiroDAO();
+
+            operacoes = new OperacoesParceiro(new ControladorParceiro(),
+                new ParceiroAppService(repository, LogManager.GetLogger("Parceiro")));
 
             ConfigurarPainelRegistros();
             PreencherComboBox();
