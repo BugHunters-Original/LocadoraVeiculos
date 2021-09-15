@@ -15,5 +15,7 @@ namespace LocadoraDeVeiculos.Dominio.DescontoModule
         Desconto SelecionarPorId(int id);
         List<Desconto> SelecionarTodos();
         List<Desconto> SelecionarPesquisa(string coluna, string pesquisa);
+        bool VerificarCodigoExistente(string codigo);
+        Desconto VerificarCodigoValido(string codigo);
     }
 }

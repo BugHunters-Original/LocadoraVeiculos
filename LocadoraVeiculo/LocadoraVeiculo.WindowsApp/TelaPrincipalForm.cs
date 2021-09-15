@@ -30,8 +30,15 @@ using LocadoraDeVeiculos.Infra.SQL.ClienteCPFModule;
 using LocadoraDeVeiculos.Dominio.ClienteModule;
 using LocadoraDeVeiculos.Aplicacao.ClienteCNPJModule;
 using LocadoraDeVeiculos.Aplicacao.ClienteCPFModule;
+
 using LocadoraDeVeiculos.Infra.SQL.GrupoVeiculoModule;
 using LocadoraDeVeiculos.Aplicacao.GrupoVeiculoModule;
+
+using LocadoraDeVeiculos.Aplicacao.FuncionarioModule;
+using LocadoraDeVeiculos.Infra.SQL.FuncionarioModule;
+using LocadoraDeVeiculos.Aplicacao.DescontoModule;
+using LocadoraDeVeiculos.Infra.SQL.DescontoModule;
+
 
 namespace LocadoraVeiculo.WindowsApp
 {
@@ -114,7 +121,10 @@ namespace LocadoraVeiculo.WindowsApp
 
             AtualizarRodape(configuracao.TipoCadastro);
 
-            operacoes = new OperacoesFuncionario(new ControladorFuncionario());
+            var funcionarioRepository = new FuncionarioDAO();
+            
+            operacoes = new OperacoesFuncionario(new FuncionarioAppService(funcionarioRepository,
+                LogManager.GetLogger("Funcionário")));
 
             ConfigurarPainelRegistros();
 
@@ -168,7 +178,10 @@ namespace LocadoraVeiculo.WindowsApp
 
             AtualizarRodape(configuracao.TipoCadastro);
 
-            operacoes = new OperacoesDesconto(new ControladorDesconto());
+            var descontoRepository = new DescontoDAO();
+            var parceiroRepository = new ParceiroDAO();
+            operacoes = new OperacoesDesconto(new DescontoAppService(descontoRepository, LogManager.GetLogger("Desconto")),
+                new ParceiroAppService(parceiroRepository, LogManager.GetLogger("Parceiro")));
 
             ConfigurarPainelRegistros();
 
@@ -196,8 +209,7 @@ namespace LocadoraVeiculo.WindowsApp
 
             var repository = new ParceiroDAO();
 
-            operacoes = new OperacoesParceiro(new ControladorParceiro(),
-                new ParceiroAppService(repository, LogManager.GetLogger("Parceiro")));
+            operacoes = new OperacoesParceiro(new ParceiroAppService(repository, LogManager.GetLogger("Parceiro")));
 
             ConfigurarPainelRegistros();
 

@@ -33,7 +33,7 @@ namespace LocadoraDeVeiculos.Aplicacao.DescontoModule
             }
         }
 
-        public void EditarDesconto(Desconto desconto)
+        public void EditarDesconto(int id, Desconto desconto)
         {
             string resultadoValidacaoDominio = desconto.Validar();
 
@@ -41,7 +41,7 @@ namespace LocadoraDeVeiculos.Aplicacao.DescontoModule
             {
                 logger.Debug($"Editando cupom de desconto {desconto.Nome}...");
 
-                descontoRepository.EditarDesconto(desconto.Id, desconto);
+                descontoRepository.EditarDesconto(id, desconto);
 
                 logger.Debug($"Cupom de desconto {desconto.Nome} Editando com sucesso!");
             }
@@ -65,6 +65,11 @@ namespace LocadoraDeVeiculos.Aplicacao.DescontoModule
         public List<Desconto> SelecionarTodosDescontos()
         {
             return descontoRepository.SelecionarTodos();
+        }
+
+        public bool VerificarCodigoExistente(string codigo)
+        {
+            return descontoRepository.VerificarCodigoExistente(codigo);
         }
     }
 }
