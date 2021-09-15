@@ -4,9 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace LocadoraDeVeiculos.Aplicacao.LocacaoModule
+namespace LocadoraDeVeiculos.Dominio.LocacaoModule
 {
-    class Class1
+    public interface IPDF
     {
+        public void MontarPDF(Locacao locacao);
     }
 }

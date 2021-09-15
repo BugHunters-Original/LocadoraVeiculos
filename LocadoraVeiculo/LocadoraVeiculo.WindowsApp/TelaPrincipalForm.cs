@@ -34,6 +34,10 @@ using LocadoraDeVeiculos.Aplicacao.FuncionarioModule;
 using LocadoraDeVeiculos.Infra.SQL.FuncionarioModule;
 using LocadoraDeVeiculos.Aplicacao.DescontoModule;
 using LocadoraDeVeiculos.Infra.SQL.DescontoModule;
+using LocadoraDeVeiculos.Aplicacao.LocacaoModule;
+using LocadoraDeVeiculos.Infra.SQL.LocacaoModule;
+using LocadoraDeVeiculos.Infra.InternetServices;
+using LocadoraDeVeiculos.Infra.PDF;
 
 namespace LocadoraVeiculo.WindowsApp
 {
@@ -66,7 +70,15 @@ namespace LocadoraVeiculo.WindowsApp
 
             AtualizarRodape(configuracao.TipoCadastro);
 
-            operacoes = new OperacoesLocacao(new ControladorLocacao());
+            var email = new EnviaEmail();
+            var pdf = new MontaPdf();
+            var locacaoRepository = new LocacaoDAO();
+            var locacaoService = new LocacaoAppService(locacaoRepository, LogManager.GetLogger("Locação"),
+                                                        email, pdf);
+            var cpfRepository = new ClienteCPFDAO();
+            var cpfService = new ClienteCPFAppService(cpfRepository, LogManager.GetLogger("Cliente"));
+
+            operacoes = new OperacoesLocacao(locacaoService, cpfService);
 
             ConfigurarPainelRegistros();
 
