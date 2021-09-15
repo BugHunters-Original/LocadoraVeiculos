@@ -33,7 +33,7 @@
     <Compile Update="Features\ParceiroFeature\TabelaParceiroControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Update="Features\TaxaServicoFeature\TabelaTaxaServicoControl.cs">
+    <Compile Update="Features\ServicoFeature\TabelaTaxaServicoControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Update="Features\VeiculoFeature\TabelaVeiculoControl.cs">

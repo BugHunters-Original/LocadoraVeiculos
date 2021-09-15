@@ -1,7 +1,14 @@
 ﻿using LocadoraDeVeiculos.Controladores.Shared;
+using LocadoraDeVeiculos.Dominio.ClienteModule;
+using LocadoraDeVeiculos.Dominio.ClienteModule.ClienteCPFModule;
 using LocadoraDeVeiculos.Dominio.DescontoModule;
+using LocadoraDeVeiculos.Dominio.LocacaoModule;
 using LocadoraDeVeiculos.Dominio.ServicoModule;
 using LocadoraDeVeiculos.Dominio.TaxaDaLocacaoModule;
+using LocadoraDeVeiculos.Dominio.VeiculoModule;
+using LocadoraDeVeiculos.Infra.SQL.ClienteCNPJModule;
+using LocadoraDeVeiculos.Infra.SQL.ClienteCPFModule;
+using LocadoraDeVeiculos.Infra.SQL.DescontoModule;
 using LocadoraDeVeiculos.Infra.SQL.TaxaServicoModule.ServicoModule;
 using System;
 using System.Collections.Generic;
@@ -12,7 +19,7 @@ using System.Threading.Tasks;
 
 namespace LocadoraDeVeiculos.Infra.SQL.TaxaServicoModule.TaxaDaLocacaoModule
 {
-    public class TaxaServicoDAO : ITaxaServicoRepository
+    public class TaxaDaLocacaoDAO : ITaxaRepository
     {
         #region Queries
         private const string sqlInserirTaxaLocacao =
@@ -81,18 +88,18 @@ namespace LocadoraDeVeiculos.Infra.SQL.TaxaServicoModule.TaxaDaLocacaoModule
                         ID_LOCACAO = @ID_LOCACAO";
         #endregion
 
-        public void InserirTaxaServico(TaxaDaLocacao registro)
+        public void InserirTaxa(TaxaDaLocacao registro)
         {
             registro.Id = Db.Insert(sqlInserirTaxaLocacao, ObtemParametrosTaxaLocacao(registro));
         }
 
-        public void EditarTaxaServico(int id, TaxaDaLocacao registro)
+        public void EditarTaxa(int id, TaxaDaLocacao registro)
         {
                 registro.Id = id;
                 Db.Update(sqlEditarTaxaLocacao, ObtemParametrosTaxaLocacao(registro));
         }
 
-        public bool ExcluirTaxaServico(int id)
+        public bool ExcluirTaxa(int id)
         {
             try
             {
@@ -157,7 +164,7 @@ namespace LocadoraDeVeiculos.Infra.SQL.TaxaServicoModule.TaxaDaLocacaoModule
             Desconto desconto = null;
             if (reader["ID_DESCONTO"] != DBNull.Value)
             {
-                ControladorDesconto controladorDesconto = new ControladorDesconto();
+                var controladorDesconto = new DescontoDAO();
                 int idDesconto = Convert.ToInt32(reader["ID_DESCONTO"]);
                 desconto = controladorDesconto.SelecionarPorId(idDesconto);
             }
@@ -185,8 +192,8 @@ namespace LocadoraDeVeiculos.Infra.SQL.TaxaServicoModule.TaxaDaLocacaoModule
             if (reader["PRECOSERVICOS"] != DBNull.Value)
                 precoServico = Convert.ToDecimal(reader["PRECOSERVICOS"]);
 
-            ControladorClienteCPF controladorCPF = new ControladorClienteCPF();
-            ControladorClienteCNPJ controladorCNPJ = new ControladorClienteCNPJ();
+            var controladorCPF = new ClienteCPFDAO();
+            var controladorCNPJ = new ClienteCNPJDAO();
             ControladorVeiculo controladorVeiculo = new ControladorVeiculo();
 
             ClienteCPF condutor = controladorCPF.SelecionarPorId(idCondutor);

@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 
 namespace LocadoraDeVeiculos.Dominio.TaxaDaLocacaoModule
 {
-    public interface ITaxaServicoRepository
+    public interface ITaxaRepository
     {
-        void InserirTaxaServico(TaxaDaLocacao parceiro);
-        void EditarTaxaServico(int id, TaxaDaLocacao parceiro);
-        bool ExcluirTaxaServico(int id);
+        void InserirTaxa(TaxaDaLocacao parceiro);
+        void EditarTaxa(int id, TaxaDaLocacao parceiro);
+        bool ExcluirTaxa(int id);
         bool Existe(int id);
         TaxaDaLocacao SelecionarPorId(int id);
         List<TaxaDaLocacao> SelecionarTodos();
