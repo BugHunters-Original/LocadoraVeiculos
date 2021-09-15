@@ -51,7 +51,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.GrupoVeiculoFeature
             btnCancelar.BackColor = DarkMode.corFundoTxBox;
         }
 
-        public GrupoVeiculo GrupoContato
+        public GrupoVeiculo GrupoVeiculo
         {
             get { return grupoVeiculo; }
 
