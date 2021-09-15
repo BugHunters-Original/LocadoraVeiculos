@@ -1,15 +1,10 @@
 ﻿using LocadoraDeVeiculos.Aplicacao.DescontoModule;
 using LocadoraDeVeiculos.Aplicacao.ParceiroModule;
-using LocadoraDeVeiculos.Controladores.DescontoModule;
 using LocadoraDeVeiculos.Controladores.LocacoModule;
-using LocadoraDeVeiculos.Controladores.ParceiroModule;
 using LocadoraDeVeiculos.Dominio.DescontoModule;
 using LocadoraVeiculo.WindowsApp.Shared;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace LocadoraVeiculo.WindowsApp.Features.DescontoFeature
@@ -21,7 +16,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.DescontoFeature
         private readonly ControladorLocacao controladorLocacao;
         private readonly TabelaDescontoControl tabelaDesconto;
 
-        public OperacoesDesconto(ControladorDesconto ctrlGrupoDesconto, DescontoAppService descontoService, ParceiroAppService parceiroService)
+        public OperacoesDesconto(DescontoAppService descontoService, ParceiroAppService parceiroService)
         {
             controladorLocacao = new ControladorLocacao();
             this.descontoService = descontoService;

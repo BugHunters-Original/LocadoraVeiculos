@@ -172,7 +172,7 @@ namespace LocadoraVeiculo.WindowsApp
 
             var descontoRepository = new DescontoDAO();
             var parceiroRepository = new ParceiroDAO();
-            operacoes = new OperacoesDesconto(new ControladorDesconto(), new DescontoAppService(descontoRepository, LogManager.GetLogger("Desconto")),
+            operacoes = new OperacoesDesconto(new DescontoAppService(descontoRepository, LogManager.GetLogger("Desconto")),
                 new ParceiroAppService(parceiroRepository, LogManager.GetLogger("Parceiro")));
 
             ConfigurarPainelRegistros();
