@@ -117,6 +117,7 @@ namespace LocadoraVeiculo.WindowsApp
             AtualizarRodape(configuracao.TipoCadastro);
 
             var funcionarioRepository = new FuncionarioDAO();
+            
             operacoes = new OperacoesFuncionario(new FuncionarioAppService(funcionarioRepository,
                 LogManager.GetLogger("Funcionário")));
 
@@ -200,8 +201,7 @@ namespace LocadoraVeiculo.WindowsApp
 
             var repository = new ParceiroDAO();
 
-            operacoes = new OperacoesParceiro(new ControladorParceiro(),
-                new ParceiroAppService(repository, LogManager.GetLogger("Parceiro")));
+            operacoes = new OperacoesParceiro(new ParceiroAppService(repository, LogManager.GetLogger("Parceiro")));
 
             ConfigurarPainelRegistros();
 

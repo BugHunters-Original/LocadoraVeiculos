@@ -14,7 +14,6 @@ namespace LocadoraVeiculo.WindowsApp.Features.FuncionarioFeature
         private readonly TabelaFuncionarioControl tabelaFuncionarios = null;
         private readonly TelaPrincipalForm telaPrincipal = null;
 
-
         public OperacoesFuncionario(FuncionarioAppService funcionarioService)
         {
             this.funcionarioService = funcionarioService;

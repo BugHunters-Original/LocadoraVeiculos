@@ -10,12 +10,10 @@ namespace LocadoraVeiculo.WindowsApp.Features.ParceiroFeature
 {
     public class OperacoesParceiro : ICadastravel
     {
-        private readonly ControladorParceiro controlador;
         private readonly TabelaParceiroControl tabelaParceiro;
         private readonly ParceiroAppService parceiroService;
-        public OperacoesParceiro(ControladorParceiro controlador, ParceiroAppService parceiroService)
+        public OperacoesParceiro(ParceiroAppService parceiroService)
         {
-            this.controlador = controlador;
             this.parceiroService = parceiroService;
             tabelaParceiro = new TabelaParceiroControl();
         }
@@ -27,7 +25,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.ParceiroFeature
             if (!VerificarIdSelecionado(id, "Editar", "Edição"))
                 return;
 
-            var parceiroSelecionado = controlador.SelecionarPorId(id);
+            var parceiroSelecionado = parceiroService.SelecionarPorId(id);
 
             TelaParceiroForm tela = new TelaParceiroForm();
 
@@ -35,9 +33,9 @@ namespace LocadoraVeiculo.WindowsApp.Features.ParceiroFeature
 
             if (tela.ShowDialog() == DialogResult.OK)
             {
-                controlador.Editar(id, tela.Parceiro);
+                parceiroService.EditarParceiro(id, tela.Parceiro);
 
-                List<Parceiro> locacaoes = controlador.SelecionarTodos();
+                List<Parceiro> locacaoes = parceiroService.SelecionarTodosParceiros();
 
                 tabelaParceiro.AtualizarRegistros(locacaoes);
 
@@ -51,28 +49,18 @@ namespace LocadoraVeiculo.WindowsApp.Features.ParceiroFeature
             if (!VerificarIdSelecionado(id, "Excluir", "Exclusão"))
                 return;
 
-            var parceiroSelecionado = controlador.SelecionarPorId(id);
+            Parceiro parceiroSelecionado = parceiroService.SelecionarPorId(id);
 
-            if (MessageBox.Show($"Tem certeza que deseja excluir o Parceiro: [{parceiroSelecionado}] ?",
-                "Exclusão de Parceiros", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK)
+            if (MessageBox.Show($"Tem certeza que deseja excluir o Funcionário: [{parceiroSelecionado.Nome}] ?",
+                "Exclusão de Funcionários", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK)
             {
-                bool excluiu = controlador.Excluir(id);
+                parceiroService.ExcluirParceiro(id);
 
-                if (excluiu)
-                {
-                    controlador.Excluir(id);
+                List<Parceiro> parceiros = parceiroService.SelecionarTodosParceiros();
 
-                    List<Parceiro> parceiros = controlador.SelecionarTodos();
+                tabelaParceiro.AtualizarRegistros(parceiros);
 
-                    tabelaParceiro.AtualizarRegistros(parceiros);
-
-                    TelaPrincipalForm.Instancia.AtualizarRodape($"Parceiro: [{parceiroSelecionado}] removido com sucesso");
-                }
-                else
-                {
-                    MessageBox.Show("Remova primeiro os Descontos vinculados ao Parceiro e tente novamente",
-                                 "Exclusão de Veículos", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
+                TelaPrincipalForm.Instancia.AtualizarRodape($"Parceiro: [{parceiroSelecionado.Nome}] removido com sucesso");
             }
         }
         public void InserirNovoRegistro()
@@ -109,7 +97,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.ParceiroFeature
 
         public void PesquisarRegistro(string combobox, string pesquisa)
         {
-            List<Parceiro> parceiros = controlador.SelecionarPesquisa(combobox, pesquisa);
+            List<Parceiro> parceiros = parceiroService.SelecionarPesquisa(combobox, pesquisa);
 
             tabelaParceiro.AtualizarRegistros(parceiros);
         }
