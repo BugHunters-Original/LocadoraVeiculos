@@ -92,7 +92,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.DescontoFeature
 
                 }
 
-                descontoService.EditarDesconto(tela.Desconto);
+                descontoService.EditarDesconto(id, tela.Desconto);
 
                 List<Desconto> desconto = descontoService.SelecionarTodosDescontos();
                 tabelaDesconto.AtualizarRegistros(desconto);
