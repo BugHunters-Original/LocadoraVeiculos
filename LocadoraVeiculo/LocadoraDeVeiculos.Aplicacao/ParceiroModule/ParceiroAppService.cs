@@ -27,8 +27,37 @@ namespace LocadoraDeVeiculos.Aplicacao.ParceiroModule
 
                 logger.Debug($"Parceiro {parceiro} registrado com sucesso!");
             }
-
         }
+
+        public void EditarParceiro(int id, Parceiro funcionario)
+        {
+            string resultadoValidacaoDominio = funcionario.Validar();
+
+            if (resultadoValidacaoDominio == "ESTA_VALIDO")
+            {
+                logger.Debug($"Editando funcionário {funcionario.Nome}...");
+
+                parceiroRepository.EditarParceiro(id, funcionario);
+
+                logger.Debug($"Funcionário {funcionario.Nome} Editando com sucesso!");
+            }
+        }
+
+        public bool ExcluirParceiro(int id)
+        {
+            return parceiroRepository.ExcluirParceiro(id);
+        }
+
+        public List<Parceiro> SelecionarPesquisa(string comboBox, string pesquisa)
+        {
+            return parceiroRepository.SelecionarPesquisa(comboBox, pesquisa);
+        }
+
+        public Parceiro SelecionarPorId(int id)
+        {
+            return parceiroRepository.SelecionarPorId(id);
+        }
+
         public List<Parceiro> SelecionarTodosParceiros()
         {
             return parceiroRepository.SelecionarTodos();

@@ -16,6 +16,5 @@ namespace LocadoraDeVeiculos.Dominio.ParceiroModule
         Parceiro SelecionarPorId(int id);
         List<Parceiro> SelecionarTodos();
         List<Parceiro> SelecionarPesquisa(string coluna, string pesquisa);
-
     }
 }
