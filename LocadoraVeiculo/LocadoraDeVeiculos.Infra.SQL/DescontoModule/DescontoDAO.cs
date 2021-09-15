@@ -155,22 +155,13 @@ namespace LocadoraDeVeiculos.Infra.SQL.DescontoModule
 
         public void InserirDesconto(Desconto desconto)
         {
-            string resultadoValidacao = desconto.Validar();   
-            if (resultadoValidacao == "ESTA_VALIDO")
-            {
                 desconto.Id = Db.Insert(sqlInserirDesconto, ObtemParametrosDesconto(desconto));
-            }
         }
 
         public void EditarDesconto(int id, Desconto desconto)
         {
-            string resultadoValidacao = desconto.Validar();
-
-            if (resultadoValidacao == "ESTA_VALIDO")
-            {
                 desconto.Id = id;
                 Db.Update(sqlEditarDesconto, ObtemParametrosDesconto(desconto));
-            }
         }
 
         public bool ExcluirDesconto(int id)
