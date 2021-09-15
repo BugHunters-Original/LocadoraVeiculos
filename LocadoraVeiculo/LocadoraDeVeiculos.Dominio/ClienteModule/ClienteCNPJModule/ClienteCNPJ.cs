@@ -1,11 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Net.Mail;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace LocadoraDeVeiculos.Dominio.ClienteModule
+namespace LocadoraDeVeiculos.Dominio.ClienteModule.ClienteCNPJModule
 {
     public class ClienteCNPJ : ClienteBase, IEquatable<ClienteCNPJ>
     {
@@ -42,10 +38,10 @@ namespace LocadoraDeVeiculos.Dominio.ClienteModule
             if (string.IsNullOrEmpty(Endereco))
                 valido += QuebraDeLinha(valido) + "O campo Endereço está inválido";
 
-            if (string.IsNullOrEmpty(Telefone) || Telefone.Length != 14)
+            if (Telefone.Length != 14)
                 valido += QuebraDeLinha(valido) + "O campo Telefone está inválido";
 
-            if (string.IsNullOrEmpty(Cnpj) || Cnpj.Length != 18)
+            if (Cnpj.Length != 18)
                 valido += QuebraDeLinha(valido) + "O campo CNPJ está inválido";
 
             if (valido == "")
@@ -74,13 +70,7 @@ namespace LocadoraDeVeiculos.Dominio.ClienteModule
 
         public override int GetHashCode()
         {
-            int hashCode = -103464265;
-            hashCode = hashCode * -1521134295 + Id.GetHashCode();
-            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(Nome);
-            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(Endereco);
-            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(Telefone);
-            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(Cnpj);
-            return hashCode;
+            return HashCode.Combine(Id, Nome, Endereco, Telefone, Email, Cnpj);
         }
     }
 }

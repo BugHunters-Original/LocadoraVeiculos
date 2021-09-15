@@ -1,4 +1,5 @@
-﻿using LocadoraDeVeiculos.Controladores.ParceiroModule;
+﻿using LocadoraDeVeiculos.Aplicacao.ParceiroModule;
+using LocadoraDeVeiculos.Controladores.ParceiroModule;
 using LocadoraDeVeiculos.Dominio.ParceiroModule;
 using LocadoraVeiculo.WindowsApp.Shared;
 using System;
@@ -9,11 +10,13 @@ namespace LocadoraVeiculo.WindowsApp.Features.ParceiroFeature
 {
     public class OperacoesParceiro : ICadastravel
     {
-        private readonly ControladorParceiro controlador = null;
-        private readonly TabelaParceiroControl tabelaParceiro = null;
-        public OperacoesParceiro(ControladorParceiro controlador)
+        private readonly ControladorParceiro controlador;
+        private readonly TabelaParceiroControl tabelaParceiro;
+        private readonly ParceiroAppService parceiroService;
+        public OperacoesParceiro(ControladorParceiro controlador, ParceiroAppService parceiroService)
         {
             this.controlador = controlador;
+            this.parceiroService = parceiroService;
             tabelaParceiro = new TabelaParceiroControl();
         }
 
@@ -70,7 +73,6 @@ namespace LocadoraVeiculo.WindowsApp.Features.ParceiroFeature
                     MessageBox.Show("Remova primeiro os Descontos vinculados ao Parceiro e tente novamente",
                                  "Exclusão de Veículos", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
-
             }
         }
         public void InserirNovoRegistro()
@@ -79,9 +81,10 @@ namespace LocadoraVeiculo.WindowsApp.Features.ParceiroFeature
 
             if (tela.ShowDialog() == DialogResult.OK)
             {
-                controlador.InserirNovo(tela.Parceiro);
+                parceiroService.RegistrarNovoParceiro(tela.Parceiro);
 
-                List<Parceiro> parceiros = controlador.SelecionarTodos();
+                List<Parceiro> parceiros = parceiroService.SelecionarTodosParceiros();
+
                 tabelaParceiro.AtualizarRegistros(parceiros);
 
                 TelaPrincipalForm.Instancia.AtualizarRodape($"Parceiro: [{tela.Parceiro}] inserido com sucesso");
@@ -89,7 +92,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.ParceiroFeature
         }
         public UserControl ObterTabela()
         {
-            List<Parceiro> parceiros = controlador.SelecionarTodos();
+            List<Parceiro> parceiros = parceiroService.SelecionarTodosParceiros();
 
             tabelaParceiro.AtualizarRegistros(parceiros);
 

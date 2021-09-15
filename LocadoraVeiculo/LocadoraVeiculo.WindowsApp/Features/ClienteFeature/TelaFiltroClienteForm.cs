@@ -1,4 +1,5 @@
-﻿using LocadoraVeiculo.WindowsApp.Features.DarkModeFeature;
+﻿using LocadoraDeVeiculos.Dominio.ClienteModule;
+using LocadoraVeiculo.WindowsApp.Features.DarkModeFeature;
 using System.Windows.Forms;
 
 namespace LocadoraVeiculo.WindowsApp.Features.ClienteFeature

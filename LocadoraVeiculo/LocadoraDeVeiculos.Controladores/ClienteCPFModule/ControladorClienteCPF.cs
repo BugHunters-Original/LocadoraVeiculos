@@ -1,5 +1,7 @@
 ﻿using LocadoraDeVeiculos.Controladores.Shared;
 using LocadoraDeVeiculos.Dominio.ClienteModule;
+using LocadoraDeVeiculos.Dominio.ClienteModule.ClienteCNPJModule;
+using LocadoraDeVeiculos.Dominio.ClienteModule.ClienteCPFModule;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -206,6 +208,7 @@ namespace LocadoraDeVeiculos.Controladores.ClienteCPFModule
         {
             return Db.GetAll(sqlSelecionarTodosCondutores, ConverterEmCondutor);
         }
+
         private Dictionary<string, object> ObtemParametrosCondutor(ClienteCPF condutor)
         {
             var parametros = new Dictionary<string, object>();
@@ -223,6 +226,7 @@ namespace LocadoraDeVeiculos.Controladores.ClienteCPFModule
 
             return parametros;
         }
+
         private ClienteCPF ConverterEmCondutor(IDataReader reader)
         {
             int id = Convert.ToInt32(reader["ID"]);

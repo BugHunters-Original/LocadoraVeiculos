@@ -1,5 +1,6 @@
 ﻿using LocadoraDeVeiculos.Controladores.Shared;
 using LocadoraDeVeiculos.Dominio.ClienteModule;
+using LocadoraDeVeiculos.Dominio.ClienteModule.ClienteCNPJModule;
 using System;
 using System.Collections.Generic;
 using System.Data;

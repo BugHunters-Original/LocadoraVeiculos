@@ -5,7 +5,7 @@ using System.Windows.Forms;
 
 namespace LocadoraVeiculo.WindowsApp.Features.GrupoVeiculoFeature
 {
-    public partial class TabelaGrupoVeiculoControl : UserControl, IApareciaAlteravel
+    public partial class TabelaGrupoVeiculoControl : UserControl, IAparenciaAlteravel
     {
         public TabelaGrupoVeiculoControl()
         {
