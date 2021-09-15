@@ -1,5 +1,6 @@
 ﻿using FluentAssertions;
-using LocadoraDeVeiculos.Dominio.ClienteModule;
+using LocadoraDeVeiculos.Dominio.ClienteModule.ClienteCNPJModule;
+using LocadoraDeVeiculos.Dominio.ClienteModule.ClienteCPFModule;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 
