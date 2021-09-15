@@ -1,5 +1,7 @@
-﻿using LocadoraDeVeiculos.Controladores.ServicoModule;
+﻿using LocadoraDeVeiculos.Aplicacao.ServicoModule;
+using LocadoraDeVeiculos.Controladores.ServicoModule;
 using LocadoraDeVeiculos.Dominio.ServicoModule;
+using LocadoraDeVeiculos.Dominio.TaxaDaLocacaoModule;
 using LocadoraVeiculo.WindowsApp.Shared;
 using System;
 using System.Collections.Generic;
@@ -7,14 +9,14 @@ using System.Windows.Forms;
 
 namespace LocadoraVeiculo.WindowsApp.Features.TaxaServicoFeature
 {
-    public class OperacoesTaxaServico : ICadastravel
+    public class OperacoesServico : ICadastravel
     {
-        private readonly ControladorServico controlador = null;
+        private readonly ServicoAppService ServicoService;
         private readonly TabelaTaxaServicoControl tabelaServico = null;
 
-        public OperacoesTaxaServico(ControladorServico controlador)
+        public OperacoesServico(ServicoAppService taxaServicoService)
         {
-            this.controlador = controlador;
+            this.ServicoService = taxaServicoService;
             tabelaServico = new TabelaTaxaServicoControl();
         }
         public void DevolverVeiculo()
@@ -29,7 +31,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.TaxaServicoFeature
             if (!VerificarIdSelecionado(id, "Editar", "Edição"))
                 return;
 
-            var servicoSelecionado = controlador.SelecionarPorId(id);
+            var servicoSelecionado = ServicoService.SelecionarPorId(id);
 
             TelaTaxaServicoForm tela = new TelaTaxaServicoForm();
 
@@ -37,9 +39,9 @@ namespace LocadoraVeiculo.WindowsApp.Features.TaxaServicoFeature
 
             if (tela.ShowDialog() == DialogResult.OK)
             {
-                controlador.Editar(id, tela.Servico);
+                ServicoService.EditarServico(id, tela.Servico);
 
-                List<Servico> servicos = controlador.SelecionarTodos();
+                List<Servico> servicos = ServicoService.SelecionarTodosServicos();
 
                 tabelaServico.AtualizarRegistros(servicos);
 
@@ -54,14 +56,14 @@ namespace LocadoraVeiculo.WindowsApp.Features.TaxaServicoFeature
             if (!VerificarIdSelecionado(id, "Excluir", "Exclusão"))
                 return;
 
-            var servicoSelecionado = controlador.SelecionarPorId(id);
+            var servicoSelecionado = ServicoService.SelecionarPorId(id);
 
             if (MessageBox.Show($"Tem certeza que deseja excluir o Serviço: [{servicoSelecionado}] ?",
                 "Exclusão de Serviços", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK)
             {
-                controlador.Excluir(id);
+                ServicoService.ExcluirServico(id);
 
-                List<Servico> servicos = controlador.SelecionarTodos();
+                List<Servico> servicos = ServicoService.SelecionarTodosServicos();
 
                 tabelaServico.AtualizarRegistros(servicos);
 
@@ -80,9 +82,10 @@ namespace LocadoraVeiculo.WindowsApp.Features.TaxaServicoFeature
 
             if (tela.ShowDialog() == DialogResult.OK)
             {
-                controlador.InserirNovo(tela.Servico);
+                ServicoService.InserirServico(tela.Servico);
 
-                List<Servico> servicos = controlador.SelecionarTodos();
+                List<Servico> servicos = ServicoService.SelecionarTodosServicos();
+
                 tabelaServico.AtualizarRegistros(servicos);
 
                 TelaPrincipalForm.Instancia.AtualizarRodape($"Serviço: [{tela.Servico.Nome}] inserido com sucesso");
@@ -91,7 +94,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.TaxaServicoFeature
 
         public UserControl ObterTabela()
         {
-            List<Servico> servicos = controlador.SelecionarTodos();
+            List<Servico> servicos = ServicoService.SelecionarTodosServicos();
             tabelaServico.AtualizarRegistros(servicos);
 
             return tabelaServico;
@@ -99,7 +102,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.TaxaServicoFeature
 
         public void PesquisarRegistro(string combobox, string pesquisa)
         {
-            List<Servico> servicos = controlador.SelecionarPesquisa(combobox, pesquisa);
+            List<Servico> servicos = ServicoService.SelecionarPesquisa(combobox, pesquisa);
 
             tabelaServico.AtualizarRegistros(servicos);
         }
@@ -111,6 +114,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.TaxaServicoFeature
 
             return preencheLista;
         }
+
         private bool VerificarIdSelecionado(int id, string acao, string onde)
         {
             if (id == 0)

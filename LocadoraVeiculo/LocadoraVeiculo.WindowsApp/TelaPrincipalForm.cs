@@ -38,7 +38,8 @@ using LocadoraDeVeiculos.Aplicacao.FuncionarioModule;
 using LocadoraDeVeiculos.Infra.SQL.FuncionarioModule;
 using LocadoraDeVeiculos.Aplicacao.DescontoModule;
 using LocadoraDeVeiculos.Infra.SQL.DescontoModule;
-
+using LocadoraDeVeiculos.Aplicacao.ServicoModule;
+using LocadoraDeVeiculos.Infra.SQL.TaxaServicoModule.ServicoModule;
 
 namespace LocadoraVeiculo.WindowsApp
 {
@@ -163,7 +164,9 @@ namespace LocadoraVeiculo.WindowsApp
 
             AtualizarRodape(configuracao.TipoCadastro);
 
-            operacoes = new OperacoesTaxaServico(new ControladorServico());
+            var repository = new ServicoDAO();
+
+            operacoes = new OperacoesServico(new ServicoAppService(repository, LogManager.GetLogger("Serviço")));
 
             ConfigurarPainelRegistros();
 

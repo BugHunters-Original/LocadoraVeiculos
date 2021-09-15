@@ -42,7 +42,7 @@ namespace LocadoraDeVeiculos.Aplicacao.FuncionarioModule
 
                 funcionarioRepository.EditarFuncionario(id, funcionario);
 
-                logger.Debug($"Funcionário {funcionario.Nome} Editando com sucesso!");
+                logger.Debug($"Funcionário {funcionario.Nome} Editado com sucesso!");
             }
         }
 
