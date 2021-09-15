@@ -10,13 +10,13 @@ namespace LocadoraVeiculo.WindowsApp.Features.GrupoVeiculoFeature
 {
     public class OperacoesGrupoVeiculo : ICadastravel
     {
-        private readonly ControladorGrupoVeiculo controlador = null;
+       
         private readonly TabelaGrupoVeiculoControl tabelaGrupoVeiculo = null;
         private readonly GrupoVeiculoAppService grupoVeiculoService;
 
-        public OperacoesGrupoVeiculo(ControladorGrupoVeiculo ctrlGrupoVeiculo, GrupoVeiculoAppService grupoVeiculoService)
+        public OperacoesGrupoVeiculo(GrupoVeiculoAppService grupoVeiculoService)
         {
-            controlador = ctrlGrupoVeiculo;
+            
             this.grupoVeiculoService = grupoVeiculoService;
             tabelaGrupoVeiculo = new TabelaGrupoVeiculoControl();
         }
@@ -64,8 +64,6 @@ namespace LocadoraVeiculo.WindowsApp.Features.GrupoVeiculoFeature
         {
             throw new NotImplementedException();
         }
-
-
 
         public void ExcluirRegistro()
         {
