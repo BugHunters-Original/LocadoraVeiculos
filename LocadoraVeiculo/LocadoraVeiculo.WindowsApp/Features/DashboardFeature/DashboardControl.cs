@@ -11,7 +11,7 @@ using LocadoraVeiculo.WindowsApp.Features.VeiculoFeature;
 
 namespace LocadoraVeiculo.WindowsApp.Features.DashboardFeature
 {
-    public partial class DashboardControl : UserControl, IApareciaAlteravel
+    public partial class DashboardControl : UserControl, IAparenciaAlteravel
     {
         ControladorVeiculo controladorVeiculo;
         ControladorLocacao controladorLocacao;

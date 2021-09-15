@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Net.Mail;
 
-namespace LocadoraDeVeiculos.Dominio.ClienteModule
+namespace LocadoraDeVeiculos.Dominio.ClienteModule.ClienteCNPJModule
 {
     public class ClienteCNPJ : ClienteBase, IEquatable<ClienteCNPJ>
     {
@@ -38,10 +38,10 @@ namespace LocadoraDeVeiculos.Dominio.ClienteModule
             if (string.IsNullOrEmpty(Endereco))
                 valido += QuebraDeLinha(valido) + "O campo Endereço está inválido";
 
-            if (string.IsNullOrEmpty(Telefone) || Telefone.Length != 14)
+            if (Telefone.Length != 14)
                 valido += QuebraDeLinha(valido) + "O campo Telefone está inválido";
 
-            if (string.IsNullOrEmpty(Cnpj) || Cnpj.Length != 18)
+            if (Cnpj.Length != 18)
                 valido += QuebraDeLinha(valido) + "O campo CNPJ está inválido";
 
             if (valido == "")

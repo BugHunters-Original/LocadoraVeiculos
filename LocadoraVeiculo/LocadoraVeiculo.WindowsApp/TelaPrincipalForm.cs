@@ -1,32 +1,35 @@
-﻿using LocadoraVeiculo.WindowsApp.Shared;
-using System;
+﻿using System;
 using System.Windows.Forms;
 using System.Threading;
+using LocadoraVeiculo.WindowsApp.Shared;
 using LocadoraVeiculo.WindowsApp.Features.DescontoFeature;
 using LocadoraVeiculo.WindowsApp.Features.DashboardFeature;
 using LocadoraVeiculo.WindowsApp.Features.LocacaoFeature;
-using LocadoraDeVeiculos.Controladores.LocacoModule;
 using LocadoraVeiculo.WindowsApp.Features.ClienteFeature;
-using LocadoraDeVeiculos.Controladores.ClienteCNPJModule;
-using LocadoraDeVeiculos.Controladores.ClienteCPFModule;
 using LocadoraVeiculo.WindowsApp.Features.VeiculoFeature;
-using LocadoraDeVeiculos.Controladores.VeiculoModule;
 using LocadoraVeiculo.WindowsApp.Features.FuncionarioFeature;
-using LocadoraDeVeiculos.Controladores.FuncionarioModule;
 using LocadoraVeiculo.WindowsApp.Features.GrupoVeiculoFeature;
-using LocadoraDeVeiculos.Controladores.GrupoVeiculoModule;
 using LocadoraVeiculo.WindowsApp.Features.TaxaServicoFeature;
-using LocadoraDeVeiculos.Controladores.ServicoModule;
-using LocadoraDeVeiculos.Controladores.DescontoModule;
 using LocadoraVeiculo.WindowsApp.Features.CombustivelFeature;
 using LocadoraVeiculo.WindowsApp.Features.EmailLocadoraFeature;
 using LocadoraVeiculo.WindowsApp.Features.ParceiroFeature;
-using LocadoraDeVeiculos.Controladores.ParceiroModule;
 using LocadoraVeiculo.WindowsApp.Features.DarkModeFeature;
 using LocadoraVeiculo.WindowsApp.Features.LoginFeature;
+using LocadoraDeVeiculos.Controladores.VeiculoModule;
+using LocadoraDeVeiculos.Controladores.FuncionarioModule;
+using LocadoraDeVeiculos.Controladores.LocacoModule;
+using LocadoraDeVeiculos.Controladores.GrupoVeiculoModule;
+using LocadoraDeVeiculos.Controladores.ServicoModule;
+using LocadoraDeVeiculos.Controladores.DescontoModule;
+using LocadoraDeVeiculos.Controladores.ParceiroModule;
 using LocadoraDeVeiculos.Aplicacao.ParceiroModule;
 using LocadoraDeVeiculos.Infra.SQL.ParceiroModule;
 using log4net;
+using LocadoraDeVeiculos.Infra.SQL.ClienteCNPJModule;
+using LocadoraDeVeiculos.Infra.SQL.ClienteCPFModule;
+using LocadoraDeVeiculos.Dominio.ClienteModule;
+using LocadoraDeVeiculos.Aplicacao.ClienteCNPJModule;
+using LocadoraDeVeiculos.Aplicacao.ClienteCPFModule;
 
 namespace LocadoraVeiculo.WindowsApp
 {
@@ -62,6 +65,7 @@ namespace LocadoraVeiculo.WindowsApp
             operacoes = new OperacoesLocacao(new ControladorLocacao());
 
             ConfigurarPainelRegistros();
+
             PreencherComboBox();
         }
 
@@ -73,9 +77,15 @@ namespace LocadoraVeiculo.WindowsApp
 
             AtualizarRodape(configuracao.TipoCadastro);
 
-            operacoes = new OperacoesCliente(new ControladorClienteCNPJ(), new ControladorClienteCPF());
+            var cnpjRepository = new ClienteCNPJDAO();
+            var cnpjService = new ClienteCNPJAppService(cnpjRepository, LogManager.GetLogger("Cliente"));
+            var cpfRepository = new ClienteCPFDAO();
+            var cpfService = new ClienteCPFAppService(cpfRepository, LogManager.GetLogger("Cliente"));
+
+            operacoes = new OperacoesCliente(cnpjService, cpfService, new FiltroCliente(cnpjRepository, cpfRepository));
 
             ConfigurarPainelRegistros();
+
             PreencherComboBox();
         }
 
@@ -90,6 +100,7 @@ namespace LocadoraVeiculo.WindowsApp
             operacoes = new OperacoesVeiculo(new ControladorVeiculo());
 
             ConfigurarPainelRegistros();
+
             PreencherComboBox();
         }
 
@@ -125,6 +136,7 @@ namespace LocadoraVeiculo.WindowsApp
             operacoes = new OperacoesGrupoVeiculo(new ControladorGrupoVeiculo());
 
             ConfigurarPainelRegistros();
+
             PreencherComboBox();
         }
 
@@ -139,6 +151,7 @@ namespace LocadoraVeiculo.WindowsApp
             operacoes = new OperacoesTaxaServico(new ControladorServico());
 
             ConfigurarPainelRegistros();
+
             PreencherComboBox();
         }
 
@@ -153,6 +166,7 @@ namespace LocadoraVeiculo.WindowsApp
             operacoes = new OperacoesDesconto(new ControladorDesconto());
 
             ConfigurarPainelRegistros();
+
             PreencherComboBox();
         }
 
@@ -181,6 +195,7 @@ namespace LocadoraVeiculo.WindowsApp
                 new ParceiroAppService(repository, LogManager.GetLogger("Parceiro")));
 
             ConfigurarPainelRegistros();
+
             PreencherComboBox();
         }
 
@@ -215,7 +230,7 @@ namespace LocadoraVeiculo.WindowsApp
             SetColor();
             if (operacoes != null)
             {
-                IApareciaAlteravel tabela = (IApareciaAlteravel)operacoes.ObterTabela();
+                IAparenciaAlteravel tabela = (IAparenciaAlteravel)operacoes.ObterTabela();
 
                 tabela.AtualizarAparencia();
             }

@@ -1,5 +1,4 @@
 ﻿using LocadoraDeVeiculos.Controladores.Shared;
-using LocadoraDeVeiculos.Dominio.ClienteModule;
 using LocadoraDeVeiculos.Dominio.ClienteModule.ClienteCNPJModule;
 using System;
 using System.Collections.Generic;
@@ -8,9 +7,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace LocadoraDeVeiculos.Controladores.ClienteCNPJModule
+namespace LocadoraDeVeiculos.Infra.SQL.ClienteCNPJModule
 {
-    public class ControladorClienteCNPJ : Controlador<ClienteCNPJ>
+    public class ClienteCNPJDAO : IClienteCNPJRepository
     {
         #region Queries
         private const string sqlInserirCliente =
@@ -82,20 +81,13 @@ namespace LocadoraDeVeiculos.Controladores.ClienteCNPJModule
                 [ID] = @ID";
         #endregion
 
-        public override string Editar(int id, ClienteCNPJ registro)
+        public void EditarClienteCNPJ(int id, ClienteCNPJ registro)
         {
-            string resultadoValidacao = registro.Validar();
-
-            if (resultadoValidacao == "ESTA_VALIDO")
-            {
-                registro.Id = id;
-                Db.Update(sqlEditarCliente, ObtemParametrosCliente(registro));
-            }
-
-            return resultadoValidacao;
+            registro.Id = id;
+            Db.Update(sqlEditarCliente, ObtemParametrosCliente(registro));
         }
 
-        public override bool Excluir(int id)
+        public bool ExcluirClienteCNPJ(int id)
         {
             try
             {
@@ -109,45 +101,31 @@ namespace LocadoraDeVeiculos.Controladores.ClienteCNPJModule
             return true;
         }
 
-        public override bool Existe(int id)
+        public bool Existe(int id)
         {
             return Db.Exists(sqlExisteCliente, AdicionarParametro("ID", id));
         }
 
-        public override string InserirNovo(ClienteCNPJ registro)
+        public void InserirClienteCNPJ(ClienteCNPJ registro)
         {
-            string resultadoValidacao = registro.Validar();
-
-            if (resultadoValidacao == "ESTA_VALIDO")
-            {
-                registro.Id = Db.Insert(sqlInserirCliente, ObtemParametrosCliente(registro));
-            }
-
-            return resultadoValidacao;
+            registro.Id = Db.Insert(sqlInserirCliente, ObtemParametrosCliente(registro));
         }
 
-        public override ClienteCNPJ SelecionarPorId(int id)
+        public ClienteCNPJ SelecionarPorId(int id)
         {
             return Db.Get(sqlSelecionarClientePorId, ConverterEmCliente, AdicionarParametro("ID", id));
         }
 
-        public override List<ClienteCNPJ> SelecionarTodos()
+        public List<ClienteCNPJ> SelecionarTodos()
         {
             return Db.GetAll(sqlSelecionarTodosClientes, ConverterEmCliente);
         }
-        private Dictionary<string, object> ObtemParametrosCliente(ClienteCNPJ cliente)
+
+        public List<ClienteCNPJ> SelecionarPesquisa(string combobox, string pesquisa)
         {
-            var parametros = new Dictionary<string, object>();
-
-            parametros.Add("ID", cliente.Id);
-            parametros.Add("NOME", cliente.Nome);
-            parametros.Add("ENDERECO", cliente.Endereco);
-            parametros.Add("TELEFONE", cliente.Telefone);
-            parametros.Add("CNPJ", cliente.Cnpj);
-            parametros.Add("EMAIL", cliente.Email);
-
-            return parametros;
+            throw new NotImplementedException();
         }
+
         private ClienteCNPJ ConverterEmCliente(IDataReader reader)
         {
             int id = Convert.ToInt32(reader["ID"]);
@@ -164,9 +142,24 @@ namespace LocadoraDeVeiculos.Controladores.ClienteCNPJModule
             return cliente;
         }
 
-        public List<ClienteCNPJ> SelecionarPesquisa(string combobox, string pesquisa)
+        private Dictionary<string, object> ObtemParametrosCliente(ClienteCNPJ cliente)
         {
-            throw new NotImplementedException();
+            var parametros = new Dictionary<string, object>();
+
+            parametros.Add("ID", cliente.Id);
+            parametros.Add("NOME", cliente.Nome);
+            parametros.Add("ENDERECO", cliente.Endereco);
+            parametros.Add("TELEFONE", cliente.Telefone);
+            parametros.Add("CNPJ", cliente.Cnpj);
+            parametros.Add("EMAIL", cliente.Email);
+
+            return parametros;
         }
+
+        private Dictionary<string, object> AdicionarParametro(string campo, object valor)
+        {
+            return new Dictionary<string, object>() { { campo, valor } };
+        }
+
     }
 }

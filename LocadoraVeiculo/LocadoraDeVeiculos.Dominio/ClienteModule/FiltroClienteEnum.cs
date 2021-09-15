@@ -1,4 +1,4 @@
-﻿namespace LocadoraVeiculo.WindowsApp.Features.ClienteFeature
+﻿namespace LocadoraDeVeiculos.Dominio.ClienteModule
 {
     public enum FiltroClienteEnum
     {

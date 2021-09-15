@@ -1,4 +1,6 @@
 ﻿using LocadoraDeVeiculos.Dominio.ClienteModule;
+using LocadoraDeVeiculos.Dominio.ClienteModule.ClienteCNPJModule;
+using LocadoraDeVeiculos.Dominio.ClienteModule.ClienteCPFModule;
 using LocadoraVeiculo.WindowsApp.Shared;
 using System;
 using System.Collections.Generic;
@@ -7,7 +9,7 @@ using System.Windows.Forms;
 
 namespace LocadoraVeiculo.WindowsApp.Features.ClienteFeature
 {
-    public partial class TabelaClienteControl : UserControl, IApareciaAlteravel
+    public partial class TabelaClienteControl : UserControl, IAparenciaAlteravel
     {
         public TabelaClienteControl()
         {
@@ -49,21 +51,29 @@ namespace LocadoraVeiculo.WindowsApp.Features.ClienteFeature
             return gridClientes.SelecionarId<int>();
         }
 
-        public void AtualizarRegistros(List<ClienteCPF> clientesCPF, List<ClienteCNPJ> clientesCNPJ)
+        public void AtualizarRegistros(IEnumerable<ClienteBase> clientes)
         {
             gridClientes.Rows.Clear();
 
-            foreach (var clienteCPF in clientesCPF)
+            foreach (var cliente in clientes)
             {
-                gridClientes.Rows.Add(clienteCPF.Id, clienteCPF.Nome,
-                    clienteCPF.Endereco, clienteCPF.Telefone, clienteCPF.Cpf, clienteCPF.Email, clienteCPF.Cliente);
+                if (cliente is ClienteCPF)
+                {
+                    var clienteCPF = (ClienteCPF)cliente;
+                    gridClientes.Rows.Add(clienteCPF.Id, clienteCPF.Nome,
+                       clienteCPF.Endereco, clienteCPF.Telefone, clienteCPF.Cpf,
+                       clienteCPF.Email, clienteCPF.Cliente);
+                }
+                else
+                {
+                    var clienteCNPJ = (ClienteCNPJ)cliente;
+                    gridClientes.Rows.Add(clienteCNPJ.Id, clienteCNPJ.Nome,
+                       clienteCNPJ.Endereco, clienteCNPJ.Telefone, clienteCNPJ.Cnpj,
+                       clienteCNPJ.Email);
+                }
+
             }
 
-            foreach (var clienteCNPJ in clientesCNPJ)
-            {
-                gridClientes.Rows.Add(clienteCNPJ.Id, clienteCNPJ.Nome,
-                    clienteCNPJ.Endereco, clienteCNPJ.Telefone, clienteCNPJ.Cnpj, clienteCNPJ.Email);
-            }
         }
 
         public string ObtemTipo()
