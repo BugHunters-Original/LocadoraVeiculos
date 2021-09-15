@@ -1,5 +1,5 @@
-﻿using LocadoraDeVeiculos.Controladores.GrupoVeiculoModule;
-using LocadoraDeVeiculos.Aplicacao.GrupoVeiculoModule;
+﻿using LocadoraDeVeiculos.Aplicacao.GrupoVeiculoModule;
+using LocadoraDeVeiculos.Controladores.GrupoVeiculoModule;
 using LocadoraDeVeiculos.Dominio.GrupoVeiculoModule;
 using LocadoraVeiculo.WindowsApp.Shared;
 using System;
@@ -10,13 +10,11 @@ namespace LocadoraVeiculo.WindowsApp.Features.GrupoVeiculoFeature
 {
     public class OperacoesGrupoVeiculo : ICadastravel
     {
-       
+        GrupoVeiculoAppService grupoVeiculoService;
         private readonly TabelaGrupoVeiculoControl tabelaGrupoVeiculo = null;
-        private readonly GrupoVeiculoAppService grupoVeiculoService;
 
         public OperacoesGrupoVeiculo(GrupoVeiculoAppService grupoVeiculoService)
         {
-            
             this.grupoVeiculoService = grupoVeiculoService;
             tabelaGrupoVeiculo = new TabelaGrupoVeiculoControl();
         }
@@ -29,7 +27,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.GrupoVeiculoFeature
             {
                 grupoVeiculoService.RegistrarNovoGrupoVeiculo(tela.GrupoVeiculo);
 
-                List<GrupoVeiculo> grupoVeiculos = controlador.SelecionarTodos();
+                List<GrupoVeiculo> grupoVeiculos = grupoVeiculoService.SelecionarTodosGruposVeiculos();
                 tabelaGrupoVeiculo.AtualizarRegistros(grupoVeiculos);
 
                 TelaPrincipalForm.Instancia.AtualizarRodape($"Grupo de Veiculos: [{tela.GrupoVeiculo.NomeTipo}] inserido com sucesso");
@@ -47,7 +45,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.GrupoVeiculoFeature
 
             TelaGrupoVeiculoForm tela = new TelaGrupoVeiculoForm();
 
-            tela.GrupoVeiculo= grupoVeiculoSelecionado;
+            tela.GrupoVeiculo = grupoVeiculoSelecionado;
 
             if (tela.ShowDialog() == DialogResult.OK)
             {
@@ -65,6 +63,8 @@ namespace LocadoraVeiculo.WindowsApp.Features.GrupoVeiculoFeature
             throw new NotImplementedException();
         }
 
+
+
         public void ExcluirRegistro()
         {
             int id = tabelaGrupoVeiculo.ObtemIdSelecionado();
@@ -81,7 +81,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.GrupoVeiculoFeature
 
                 if (excluiu)
                 {
-                    List<GrupoVeiculo> grupoVeiculos = controlador.SelecionarTodos();
+                    List<GrupoVeiculo> grupoVeiculos = grupoVeiculoService.SelecionarTodosGruposVeiculos();
                     tabelaGrupoVeiculo.AtualizarRegistros(grupoVeiculos);
 
                     TelaPrincipalForm.Instancia.AtualizarRodape($"Grupo de Veiculos: [{grupoVeiculoSelecionado.NomeTipo}] removido com sucesso");
