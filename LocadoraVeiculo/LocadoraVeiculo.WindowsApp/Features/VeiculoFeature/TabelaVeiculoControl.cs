@@ -6,7 +6,7 @@ using System.Windows.Forms;
 
 namespace LocadoraVeiculo.WindowsApp.Features.VeiculoFeature
 {
-    public partial class TabelaVeiculoControl : UserControl, IApareciaAlteravel
+    public partial class TabelaVeiculoControl : UserControl, IAparenciaAlteravel
     {
         ControladorVeiculo controlador = new ControladorVeiculo();
 

@@ -32,6 +32,7 @@ namespace LocadoraDeVeiculos.Aplicacao.ClienteCPFModule
                 logger.Debug($"Cliente Cliente CPF {clienteCPF} registrado com sucesso!");
             }
         }
+
         public void EditarClienteCPF(int id, ClienteCPF clienteCPF)
         {
             string resultadoValidacaoDominio = clienteCPF.Validar();
@@ -45,10 +46,22 @@ namespace LocadoraDeVeiculos.Aplicacao.ClienteCPFModule
                 logger.Debug($"Cliente CPF {clienteCPF} editado com sucesso!");
             }
         }
+
+        public bool ExcluirClienteCPF(int id)
+        {
+            return clienteCPFRepository.ExcluirClienteCPF(id);
+        }
+
+        public List<ClienteCPF> SelecionarPorIdEmpresa(int id)
+        {
+            return clienteCPFRepository.SelecionarPorIdEmpresa(id);
+        }
+
         public ClienteCPF SelecionarClienteCPFPorId(int id)
         {
             return clienteCPFRepository.SelecionarPorId(id);
         }
+
         public List<ClienteCPF> SelecionarTodosClientesCPF()
         {
             return clienteCPFRepository.SelecionarTodos();

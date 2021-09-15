@@ -19,6 +19,7 @@ namespace LocadoraDeVeiculos.Aplicacao.ClienteCNPJModule
             clienteCNPJRepository = clienteCNPJRepo;
             this.logger = logger;
         }
+
         public void RegistrarNovoClienteCNPJ(ClienteCNPJ clienteCNPJ)
         {
             string resultadoValidacaoDominio = clienteCNPJ.Validar();
@@ -32,6 +33,7 @@ namespace LocadoraDeVeiculos.Aplicacao.ClienteCNPJModule
                 logger.Debug($"Cliente CNPJ {clienteCNPJ} registrado com sucesso!");
             }
         }
+
         public void EditarClienteCNPJ(int id, ClienteCNPJ clienteCNPJ)
         {
             string resultadoValidacaoDominio = clienteCNPJ.Validar();
@@ -45,6 +47,12 @@ namespace LocadoraDeVeiculos.Aplicacao.ClienteCNPJModule
                 logger.Debug($"Cliente CNPJ {clienteCNPJ} editado com sucesso!");
             }
         }
+
+        public bool ExcluirClienteCNPJ(int id)
+        {
+            return clienteCNPJRepository.ExcluirClienteCNPJ(id);
+        }
+
         public ClienteCNPJ SelecionarClienteCNPJPorId(int id)
         {
             return clienteCNPJRepository.SelecionarPorId(id);

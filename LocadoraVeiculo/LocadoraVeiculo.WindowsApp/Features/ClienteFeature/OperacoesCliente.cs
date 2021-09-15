@@ -1,11 +1,8 @@
 ﻿using LocadoraDeVeiculos.Aplicacao.ClienteCNPJModule;
 using LocadoraDeVeiculos.Aplicacao.ClienteCPFModule;
-using LocadoraDeVeiculos.Controladores.ClienteCNPJModule;
-using LocadoraDeVeiculos.Controladores.ClienteCPFModule;
 using LocadoraDeVeiculos.Dominio.ClienteModule;
 using LocadoraDeVeiculos.Dominio.ClienteModule.ClienteCNPJModule;
 using LocadoraDeVeiculos.Dominio.ClienteModule.ClienteCPFModule;
-using LocadoraVeiculo.WindowsApp.Features.ClienteFeature;
 using LocadoraVeiculo.WindowsApp.Shared;
 using System;
 using System.Collections.Generic;
@@ -18,15 +15,14 @@ namespace LocadoraVeiculo.WindowsApp.Features.ClienteFeature
     {
         private readonly ClienteCNPJAppService CNPJService;
         private readonly ClienteCPFAppService CPFService;
-        private readonly IFiltroCliente filtroCliente;
         private readonly TabelaClienteControl tabelaClientes;
-
+        private readonly FiltroCliente filtroCliente;
         public OperacoesCliente(ClienteCNPJAppService CNPJService, ClienteCPFAppService CPFService,
-            IFiltroCliente filtroCliente)
+            FiltroCliente filtroCliente)
         {
+            this.filtroCliente = filtroCliente;
             this.CNPJService = CNPJService;
             this.CPFService = CPFService;
-            this.filtroCliente = filtroCliente;
             tabelaClientes = new TabelaClienteControl();
         }
 
@@ -79,7 +75,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.ClienteFeature
             {
                 if (clienteSelecionado is ClienteCNPJ)
                 {
-                    List<ClienteCPF> condutores = CNPJService.SelecionarPorIdEmpresa(clienteSelecionado.Id);
+                    List<ClienteCPF> condutores = CPFService.SelecionarPorIdEmpresa(clienteSelecionado.Id);
                     if (condutores.Count != 0)
                     {
                         MessageBox.Show("Remova primeiro os Condutores vinculados à Empresa e tente novamente",
@@ -88,7 +84,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.ClienteFeature
                     }
                 }
 
-                bool excluiu = clienteSelecionado is ClienteCPF ? CPFService.Excluir(id) : controladorCNPJ.Excluir(id);
+                bool excluiu = clienteSelecionado is ClienteCPF ? CPFService.ExcluirClienteCPF(id) : CNPJService.ExcluirClienteCNPJ(id);
 
                 if (excluiu)
                 {
@@ -107,14 +103,14 @@ namespace LocadoraVeiculo.WindowsApp.Features.ClienteFeature
 
         public void FiltrarRegistros()
         {
-            //TelaFiltroClienteForm telaFiltro = new TelaFiltroClienteForm();
+            TelaFiltroClienteForm telafiltro = new TelaFiltroClienteForm();
 
-            //if (telaFiltro.ShowDialog() == DialogResult.OK)
-            //{
-            //    var a = filtroCliente.FiltrarClientes(telaFiltro.TipoFiltro, CPFService, CNPJService).ToList();
+            if (telafiltro.ShowDialog() == DialogResult.OK)
+            {
+                var clientes = filtroCliente.FiltrarClientes(telafiltro.TipoFiltro).ToList();
 
-            //    tabelaClientes.AtualizarRegistros(a);
-            //}
+                tabelaClientes.AtualizarRegistros(clientes);
+            }
         }
 
         public void InserirNovoRegistro()
@@ -123,6 +119,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.ClienteFeature
             if (tela.ShowDialog() == DialogResult.OK)
             {
                 IEnumerable<ClienteBase> clientes = new List<ClienteBase>();
+
                 if (tela.TipoCliente == FiltroClienteEnum.PessoaFisica)
                 {
                     CPFService.RegistrarNovoClienteCPF((ClienteCPF)tela.Cliente);
@@ -145,13 +142,16 @@ namespace LocadoraVeiculo.WindowsApp.Features.ClienteFeature
             List<ClienteCPF> clientesCPF = CPFService.SelecionarTodosClientesCPF();
 
             tabelaClientes.AtualizarRegistros(clientesCPF);
+
             return tabelaClientes;
         }
 
         public void PesquisarRegistro(string combobox, string pesquisa)
         {
             IEnumerable<ClienteBase> clientes = new List<ClienteBase>();
+
             //clientes.Concat(controladorCPF.SelecionarPesquisa(combobox, pesquisa));
+
             //clientes.Concat(controladorCNPJ.SelecionarPesquisa(combobox, pesquisa));
 
             tabelaClientes.AtualizarRegistros(clientes);
@@ -160,6 +160,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.ClienteFeature
         public List<string> PreencheComboBoxDePesquisa()
         {
             List<string> preencheLista = new List<string>();
+
             preencheLista.Add("NOME");
             preencheLista.Add("CPF-CNPJ");
             preencheLista.Add("TELEFONE");
@@ -170,22 +171,12 @@ namespace LocadoraVeiculo.WindowsApp.Features.ClienteFeature
 
         private ClienteBase VerificarTipoCliente(int id, string tipo)
         {
-            ClienteBase clienteSelecionado;
-            if (tipo.Length == 14)
-                clienteSelecionado = CPFService.SelecionarClienteCPFPorId(id);
-            else
-                clienteSelecionado = CNPJService.SelecionarClienteCNPJPorId(id);
-            return clienteSelecionado;
+            return tipo.Length == 14 ? CPFService.SelecionarClienteCPFPorId(id) : CNPJService.SelecionarClienteCNPJPorId(id);
         }
 
         private void AtualizarGrid(ClienteBase clienteSelecionado)
         {
-            IEnumerable<ClienteBase> clientes = new List<ClienteBase>();
-
-            if (clienteSelecionado is ClienteCPF)
-                clientes = CPFService.SelecionarTodosClientesCPF();
-            else
-                clientes = CNPJService.SelecionarTodosClientesCNPJ();
+            IEnumerable<ClienteBase> clientes = clienteSelecionado is ClienteCPF ? CPFService.SelecionarTodosClientesCPF() : CNPJService.SelecionarTodosClientesCNPJ();
 
             tabelaClientes.AtualizarRegistros(clientes);
         }

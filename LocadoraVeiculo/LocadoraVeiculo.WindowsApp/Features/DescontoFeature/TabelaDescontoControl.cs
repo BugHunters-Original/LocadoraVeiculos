@@ -5,7 +5,7 @@ using System.Windows.Forms;
 
 namespace LocadoraVeiculo.WindowsApp.Features.DescontoFeature
 {
-    public partial class TabelaDescontoControl : UserControl, IApareciaAlteravel
+    public partial class TabelaDescontoControl : UserControl, IAparenciaAlteravel
     {
         public TabelaDescontoControl()
         {

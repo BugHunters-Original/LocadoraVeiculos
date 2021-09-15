@@ -10,7 +10,6 @@ namespace LocadoraDeVeiculos.Dominio.ClienteModule
 {
     public interface IFiltroCliente
     {
-        IEnumerable<ClienteBase> FiltrarClientes(FiltroClienteEnum tipoFiltro,
-            IClienteCPFRepository clienteCPFRepo, IClienteCNPJRepository clienteCNPJRepo);
+        IEnumerable<ClienteBase> FiltrarClientes(FiltroClienteEnum tipoFiltro);
     }
 }

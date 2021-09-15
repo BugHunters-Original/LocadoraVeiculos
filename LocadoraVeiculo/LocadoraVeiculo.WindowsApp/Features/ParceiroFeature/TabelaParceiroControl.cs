@@ -5,7 +5,7 @@ using System.Windows.Forms;
 
 namespace LocadoraVeiculo.WindowsApp.Features.ParceiroFeature
 {
-    public partial class TabelaParceiroControl : UserControl, IApareciaAlteravel
+    public partial class TabelaParceiroControl : UserControl, IAparenciaAlteravel
     {
         public TabelaParceiroControl()
         {

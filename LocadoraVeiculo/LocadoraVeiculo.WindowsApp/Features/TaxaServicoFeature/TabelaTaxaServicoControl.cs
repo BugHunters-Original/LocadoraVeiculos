@@ -5,7 +5,7 @@ using System.Windows.Forms;
 
 namespace LocadoraVeiculo.WindowsApp.Features.TaxaServicoFeature
 {
-    public partial class TabelaTaxaServicoControl : UserControl, IApareciaAlteravel
+    public partial class TabelaTaxaServicoControl : UserControl, IAparenciaAlteravel
     {
         public TabelaTaxaServicoControl()
         {

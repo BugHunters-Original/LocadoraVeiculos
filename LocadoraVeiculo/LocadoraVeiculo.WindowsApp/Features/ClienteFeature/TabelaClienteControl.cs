@@ -9,7 +9,7 @@ using System.Windows.Forms;
 
 namespace LocadoraVeiculo.WindowsApp.Features.ClienteFeature
 {
-    public partial class TabelaClienteControl : UserControl, IApareciaAlteravel
+    public partial class TabelaClienteControl : UserControl, IAparenciaAlteravel
     {
         public TabelaClienteControl()
         {
@@ -55,23 +55,22 @@ namespace LocadoraVeiculo.WindowsApp.Features.ClienteFeature
         {
             gridClientes.Rows.Clear();
 
-
             foreach (var cliente in clientes)
             {
-                var cpfCnpj = "";
-                var empresa = "";
-                dynamic clienteCerto = cliente;
-                if (clienteCerto is ClienteCPF)
+                if (cliente is ClienteCPF)
                 {
-                    cpfCnpj = clienteCerto.Cpf;
-                    empresa = clienteCerto.Cliente.ToString();
+                    var clienteCPF = (ClienteCPF)cliente;
+                    gridClientes.Rows.Add(clienteCPF.Id, clienteCPF.Nome,
+                       clienteCPF.Endereco, clienteCPF.Telefone, clienteCPF.Cpf,
+                       clienteCPF.Email, clienteCPF.Cliente);
                 }
                 else
-                    cpfCnpj = clienteCerto.Cnpj;
-
-                gridClientes.Rows.Add(clienteCerto.Id, clienteCerto.Nome,
-                       clienteCerto.Endereco, clienteCerto.Telefone, cpfCnpj,
-                       clienteCerto.Email, empresa);
+                {
+                    var clienteCNPJ = (ClienteCNPJ)cliente;
+                    gridClientes.Rows.Add(clienteCNPJ.Id, clienteCNPJ.Nome,
+                       clienteCNPJ.Endereco, clienteCNPJ.Telefone, clienteCNPJ.Cnpj,
+                       clienteCNPJ.Email);
+                }
 
             }
 

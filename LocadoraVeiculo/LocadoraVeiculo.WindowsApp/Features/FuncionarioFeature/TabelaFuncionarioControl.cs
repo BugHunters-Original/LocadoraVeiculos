@@ -6,7 +6,7 @@ using System.Windows.Forms;
 
 namespace LocadoraVeiculo.WindowsApp.Features.FuncionarioFeature
 {
-    public partial class TabelaFuncionarioControl : UserControl, IApareciaAlteravel
+    public partial class TabelaFuncionarioControl : UserControl, IAparenciaAlteravel
     {
         public TabelaFuncionarioControl()
         {

@@ -3,7 +3,7 @@ using System.Windows.Forms;
 
 namespace LocadoraVeiculo.WindowsApp.Shared
 {
-    public interface IApareciaAlteravel
+    public interface IAparenciaAlteravel
     {
         void AtualizarAparencia();
     }
