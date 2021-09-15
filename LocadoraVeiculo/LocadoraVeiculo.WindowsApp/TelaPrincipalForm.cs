@@ -30,6 +30,10 @@ using LocadoraDeVeiculos.Infra.SQL.ClienteCPFModule;
 using LocadoraDeVeiculos.Dominio.ClienteModule;
 using LocadoraDeVeiculos.Aplicacao.ClienteCNPJModule;
 using LocadoraDeVeiculos.Aplicacao.ClienteCPFModule;
+using LocadoraDeVeiculos.Aplicacao.FuncionarioModule;
+using LocadoraDeVeiculos.Infra.SQL.FuncionarioModule;
+using LocadoraDeVeiculos.Aplicacao.DescontoModule;
+using LocadoraDeVeiculos.Infra.SQL.DescontoModule;
 
 namespace LocadoraVeiculo.WindowsApp
 {
@@ -112,7 +116,9 @@ namespace LocadoraVeiculo.WindowsApp
 
             AtualizarRodape(configuracao.TipoCadastro);
 
-            operacoes = new OperacoesFuncionario(new ControladorFuncionario());
+            var funcionarioRepository = new FuncionarioDAO();
+            operacoes = new OperacoesFuncionario(new FuncionarioAppService(funcionarioRepository,
+                LogManager.GetLogger("Funcionário")));
 
             ConfigurarPainelRegistros();
 
@@ -163,7 +169,10 @@ namespace LocadoraVeiculo.WindowsApp
 
             AtualizarRodape(configuracao.TipoCadastro);
 
-            operacoes = new OperacoesDesconto(new ControladorDesconto());
+            var descontoRepository = new DescontoDAO();
+            var parceiroRepository = new ParceiroDAO();
+            operacoes = new OperacoesDesconto(new ControladorDesconto(), new DescontoAppService(descontoRepository, LogManager.GetLogger("Desconto")),
+                new ParceiroAppService(parceiroRepository, LogManager.GetLogger("Parceiro")));
 
             ConfigurarPainelRegistros();
 
