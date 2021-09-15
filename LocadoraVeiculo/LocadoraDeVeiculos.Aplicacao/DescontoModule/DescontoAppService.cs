@@ -66,5 +66,10 @@ namespace LocadoraDeVeiculos.Aplicacao.DescontoModule
         {
             return descontoRepository.SelecionarTodos();
         }
+
+        public bool VerificarCodigoExistente(string codigo)
+        {
+            return descontoRepository.VerificarCodigoExistente(codigo);
+        }
     }
 }

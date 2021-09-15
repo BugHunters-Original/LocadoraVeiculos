@@ -97,23 +97,13 @@ namespace LocadoraDeVeiculos.Infra.SQL.FuncionarioModule
 
         public void InserirFuncionario(Funcionario funcionario)
         {
-            string resultadoValidacao = funcionario.Validar();
-
-            if (resultadoValidacao == "ESTA_VALIDO")
-            {
                 funcionario.Id = Db.Insert(sqlInserirFuncionario, ObtemParametrosFuncionario(funcionario));
-            }
         }
 
         public void EditarFuncionario(int id, Funcionario funcionario)
-        {
-            string resultadoValidacao = funcionario.Validar();
-
-            if (resultadoValidacao == "ESTA_VALIDO")
-            {
+        {   
                 funcionario.Id = id;
-                Db.Update(sqlEditarFuncionario, ObtemParametrosFuncionario(funcionario));
-            }
+                Db.Update(sqlEditarFuncionario, ObtemParametrosFuncionario(funcionario));       
         }
 
         public bool ExcluirFuncionario(int id)

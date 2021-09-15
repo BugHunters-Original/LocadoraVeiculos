@@ -16,18 +16,14 @@ namespace LocadoraVeiculo.WindowsApp.Features.DescontoFeature
 {
     public class OperacoesDesconto : ICadastravel
     {
-        private readonly ControladorDesconto controladorDesconto;
         private readonly DescontoAppService descontoService;
         private readonly ParceiroAppService parceiroService;
         private readonly ControladorLocacao controladorLocacao;
-        private readonly ControladorParceiro controladorParceiro;
         private readonly TabelaDescontoControl tabelaDesconto;
 
         public OperacoesDesconto(ControladorDesconto ctrlGrupoDesconto, DescontoAppService descontoService, ParceiroAppService parceiroService)
         {
-            controladorParceiro = new ControladorParceiro();
             controladorLocacao = new ControladorLocacao();
-            controladorDesconto = ctrlGrupoDesconto;
             this.descontoService = descontoService;
             this.parceiroService = parceiroService;
             tabelaDesconto = new TabelaDescontoControl();
@@ -46,7 +42,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.DescontoFeature
 
             if (tela.ShowDialog() == DialogResult.OK)
             {
-                if (controladorDesconto.VerificarCodigoExistente(tela.Desconto.Codigo))
+                if (descontoService.VerificarCodigoExistente(tela.Desconto.Codigo))
                 {
                     MessageBox.Show("Código já utilizado, escolha outro para prosseguir!", "Adição de Cupom de Desconto",
                                      MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
@@ -83,7 +79,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.DescontoFeature
             {
                 if (tela.Desconto.Codigo != descontoSelecionado.Codigo)
                 {
-                    if (controladorDesconto.VerificarCodigoExistente(tela.Desconto.Codigo))
+                    if (descontoService.VerificarCodigoExistente(tela.Desconto.Codigo))
                     {
                         MessageBox.Show("Código já utilizado, escolha outro para prosseguir!", "Adição de Cupom de Desconto",
                                          MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
@@ -108,7 +104,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.DescontoFeature
             if (!VerificarIdSelecionado(id, "Excluir", "Exclusão"))
                 return;
 
-            Desconto descontoSelecionado = controladorDesconto.SelecionarPorId(id);
+            Desconto descontoSelecionado = descontoService.SelecionarPorId(id);
 
             if (MessageBox.Show($"Tem certeza que deseja excluir o Cupom de Desconto: [{descontoSelecionado}] ?",
                 "Exclusão de Cupom de Desconto", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK)
