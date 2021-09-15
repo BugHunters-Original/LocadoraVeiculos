@@ -27,8 +27,19 @@ namespace LocadoraDeVeiculos.Dominio.ClienteModule.ClienteCPFModule
 
         public bool Equals(ClienteCPF other)
         {
+            if(other?.Cliente == null)
+                return other != null
+                && Id == other.Id
+                && Nome == other.Nome
+                && Endereco == other.Endereco
+                && Telefone == other.Telefone
+                && Cpf == other.Cpf
+                && Cnh == other.Cnh
+                && DataValidade == other.DataValidade
+                && Email == other.Email;
+
             return other != null
-                && Cliente.Equals(other.Cliente)
+                && Cliente.Equals(other?.Cliente)
                 && Id == other.Id
                 && Nome == other.Nome
                 && Endereco == other.Endereco

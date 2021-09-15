@@ -74,6 +74,8 @@
     <ProjectReference Include="..\LocadoraDeVeiculos.Controladores\LocadoraDeVeiculos.Controladores.csproj" />
     <ProjectReference Include="..\LocadoraDeVeiculos.EmailLocadora\LocadoraDeVeiculos.EmailLocadora.csproj" />
     <ProjectReference Include="..\LocadoraDeVeiculos.ExportacaoPDF\LocadoraDeVeiculos.ExportacaoPDF.csproj" />
+    <ProjectReference Include="..\LocadoraDeVeiculos.Infra.InternetServices\LocadoraDeVeiculos.Infra.InternetServices.csproj" />
+    <ProjectReference Include="..\LocadoraDeVeiculos.Infra.PDF\LocadoraDeVeiculos.Infra.PDF.csproj" />
     <ProjectReference Include="..\LocadoraDeVeiculos.Infra.SQL\LocadoraDeVeiculos.Infra.SQL.csproj" />
   </ItemGroup>
 </Project>
