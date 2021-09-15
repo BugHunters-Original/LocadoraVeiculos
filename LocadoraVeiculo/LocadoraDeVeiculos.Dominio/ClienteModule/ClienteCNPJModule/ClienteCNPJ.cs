@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Net.Mail;
 
-namespace LocadoraDeVeiculos.Dominio.ClienteModule
+namespace LocadoraDeVeiculos.Dominio.ClienteModule.ClienteCNPJModule
 {
     public class ClienteCNPJ : ClienteBase, IEquatable<ClienteCNPJ>
     {

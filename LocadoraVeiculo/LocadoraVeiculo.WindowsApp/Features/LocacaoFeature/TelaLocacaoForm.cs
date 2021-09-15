@@ -18,6 +18,8 @@ using LocadoraDeVeiculos.Dominio.VeiculoModule;
 using LocadoraDeVeiculos.Dominio.TaxaDaLocacaoModule;
 using LocadoraDeVeiculos.Dominio.ClienteModule;
 using LocadoraDeVeiculos.Dominio.DescontoModule;
+using LocadoraDeVeiculos.Dominio.ClienteModule.ClienteCNPJModule;
+using LocadoraDeVeiculos.Dominio.ClienteModule.ClienteCPFModule;
 
 namespace LocadoraVeiculo.WindowsApp.Features.LocacaoFeature
 {

@@ -1,7 +1,8 @@
-﻿using System;
+﻿using LocadoraDeVeiculos.Dominio.ClienteModule.ClienteCNPJModule;
+using System;
 using System.Net.Mail;
 
-namespace LocadoraDeVeiculos.Dominio.ClienteModule
+namespace LocadoraDeVeiculos.Dominio.ClienteModule.ClienteCPFModule
 {
     public class ClienteCPF : ClienteBase, IEquatable<ClienteCPF>
     {

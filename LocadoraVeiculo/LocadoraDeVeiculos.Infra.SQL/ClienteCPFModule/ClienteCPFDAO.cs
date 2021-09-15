@@ -9,9 +9,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace LocadoraDeVeiculos.Controladores.ClienteCPFModule
+namespace LocadoraDeVeiculos.Infra.SQL.ClienteCPFModule
 {
-    public class ControladorClienteCPF : Controlador<ClienteCPF>
+    public class ClienteCPFDAO : IClienteCPFRepository
     {
         #region Queries
         private const string sqlInserirCondutor =
@@ -144,21 +144,18 @@ namespace LocadoraDeVeiculos.Controladores.ClienteCPFModule
             WHERE 
                 [ID] = @ID";
         #endregion
-
-        public override string Editar(int id, ClienteCPF registro)
+        public void InserirClienteCPF(ClienteCPF cliente)
         {
-            string resultadoValidacao = registro.Validar();
-
-            if (resultadoValidacao == "ESTA_VALIDO")
-            {
-                registro.Id = id;
-                Db.Update(sqlEditarCondutor, ObtemParametrosCondutor(registro));
-            }
-
-            return resultadoValidacao;
+            cliente.Id = Db.Insert(sqlInserirCondutor, ObtemParametrosCondutor(cliente));
         }
 
-        public override bool Excluir(int id)
+        public void EditarClienteCPF(int id, ClienteCPF cliente)
+        {
+            cliente.Id = id;
+            Db.Update(sqlEditarCondutor, ObtemParametrosCondutor(cliente));
+        }
+
+        public bool ExcluirClienteCPF(int id)
         {
             try
             {
@@ -172,41 +169,29 @@ namespace LocadoraDeVeiculos.Controladores.ClienteCPFModule
             return true;
         }
 
-        public List<ClienteCPF> SelecionarPorIdEmpresa(int id)
-        {
-            return Db.GetAll(sqlSelecionarCondutorPorIdEmpresa, ConverterEmCondutor, AdicionarParametro("ID", id));
-        }
-
-        public override bool Existe(int id)
+        public bool Existe(int id)
         {
             return Db.Exists(sqlExisteCondutor, AdicionarParametro("ID", id));
         }
 
-        public override string InserirNovo(ClienteCPF registro)
-        {
-            string resultadoValidacao = registro.Validar();
-
-            if (resultadoValidacao == "ESTA_VALIDO")
-            {
-                registro.Id = Db.Insert(sqlInserirCondutor, ObtemParametrosCondutor(registro));
-            }
-
-            return resultadoValidacao;
-        }
-
-        public List<ClienteCPF> SelecionarPesquisa(string combobox, string pesquisa)
+        public List<ClienteCPF> SelecionarPesquisa(string coluna, string pesquisa)
         {
             throw new NotImplementedException();
         }
 
-        public override ClienteCPF SelecionarPorId(int id)
+        public ClienteCPF SelecionarPorId(int id)
         {
             return Db.Get(sqlSelecionarCondutorPorId, ConverterEmCondutor, AdicionarParametro("ID", id));
         }
 
-        public override List<ClienteCPF> SelecionarTodos()
+        public List<ClienteCPF> SelecionarTodos()
         {
             return Db.GetAll(sqlSelecionarTodosCondutores, ConverterEmCondutor);
+        }
+
+        public List<ClienteCPF> SelecionarPorIdEmpresa(int id)
+        {
+            return Db.GetAll(sqlSelecionarCondutorPorIdEmpresa, ConverterEmCondutor, AdicionarParametro("ID", id));
         }
 
         private Dictionary<string, object> ObtemParametrosCondutor(ClienteCPF condutor)
@@ -259,5 +244,9 @@ namespace LocadoraDeVeiculos.Controladores.ClienteCPFModule
             return condutor;
         }
 
+        private Dictionary<string, object> AdicionarParametro(string campo, object valor)
+        {
+            return new Dictionary<string, object>() { { campo, valor } };
+        }
     }
 }

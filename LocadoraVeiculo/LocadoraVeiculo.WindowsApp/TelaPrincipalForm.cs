@@ -27,6 +27,11 @@ using LocadoraVeiculo.WindowsApp.Features.LoginFeature;
 using LocadoraDeVeiculos.Aplicacao.ParceiroModule;
 using LocadoraDeVeiculos.Infra.SQL.ParceiroModule;
 using log4net;
+using LocadoraDeVeiculos.Infra.SQL.ClienteCNPJModule;
+using LocadoraDeVeiculos.Infra.SQL.ClienteCPFModule;
+using LocadoraDeVeiculos.Dominio.ClienteModule;
+using LocadoraDeVeiculos.Aplicacao.ClienteCNPJModule;
+using LocadoraDeVeiculos.Aplicacao.ClienteCPFModule;
 
 namespace LocadoraVeiculo.WindowsApp
 {
@@ -73,7 +78,11 @@ namespace LocadoraVeiculo.WindowsApp
 
             AtualizarRodape(configuracao.TipoCadastro);
 
-            operacoes = new OperacoesCliente(new ControladorClienteCNPJ(), new ControladorClienteCPF());
+
+            var cnpj = new ClienteCNPJAppService(new ClienteCNPJDAO(), LogManager.GetLogger("Cliente"));
+            var cpf = new ClienteCPFAppService(new ClienteCPFDAO(), LogManager.GetLogger("Cliente"));
+
+            operacoes = new OperacoesCliente(cnpj, cpf, new FiltroCliente());
 
             ConfigurarPainelRegistros();
             PreencherComboBox();

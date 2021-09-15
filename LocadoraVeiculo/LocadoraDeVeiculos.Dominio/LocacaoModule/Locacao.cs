@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using LocadoraDeVeiculos.Dominio.ServicoModule;
+using LocadoraDeVeiculos.Dominio.ClienteModule.ClienteCPFModule;
 
 namespace LocadoraDeVeiculos.Dominio.LocacaoModule
 {
