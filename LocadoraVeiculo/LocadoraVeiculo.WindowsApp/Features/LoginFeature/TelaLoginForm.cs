@@ -1,4 +1,4 @@
-﻿using LocadoraDeVeiculos.Controladores.LoginModule;
+﻿using LocadoraDeVeiculos.Infra.SQL.LoginModule;
 using LocadoraVeiculo.WindowsApp.Features.DarkModeFeature;
 using System;
 using System.Drawing;
@@ -10,7 +10,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.LoginFeature
     public partial class TelaLoginForm : Form
     {
         Thread th;
-        ControladorLogin controlador = new ControladorLogin();
+        LoginDAO loginService = new LoginDAO();
 
         public TelaLoginForm()
         {
@@ -37,7 +37,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.LoginFeature
             string usuario = txtUsuario.Text;
             string senha = txtSenha.Text;
 
-            string resultValidacao = controlador.ValidarLogin(usuario, senha);
+            string resultValidacao = loginService.ValidarLogin(usuario, senha);
 
             if (resultValidacao == "valido")
             {
