@@ -20,7 +20,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.DashboardFeature
             }
             base.Dispose(disposing);
         }
-
+         
         #region Component Designer generated code
 
         /// <summary> 

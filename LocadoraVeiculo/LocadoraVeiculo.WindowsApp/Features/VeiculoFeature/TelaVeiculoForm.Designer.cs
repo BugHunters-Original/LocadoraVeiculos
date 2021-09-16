@@ -17,7 +17,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.VeiculoFeature
             if (disposing && (components != null))
             {
                 components.Dispose();
-            }
+            } 
             base.Dispose(disposing);
         }
 

@@ -253,7 +253,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.NotaFiscalFeature
 
         #endregion
 
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label1; 
         private System.Windows.Forms.TextBox txtCliente;
         private System.Windows.Forms.TextBox txtPlano;
         private System.Windows.Forms.Label label2;

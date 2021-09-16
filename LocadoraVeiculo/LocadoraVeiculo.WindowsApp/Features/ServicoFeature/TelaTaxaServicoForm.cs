@@ -19,7 +19,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.TaxaServicoFeature
         private void SetColor()
         {
             this.header_TaxaServico.BackColor = DarkMode.corHeader;
-            this.BackColor = DarkMode.corPanel;
+            this.BackColor = DarkMode.corPanel; 
             this.ForeColor = DarkMode.corFonte;
             txtID.BackColor = Color.DarkSeaGreen;
             txtNome.BackColor = DarkMode.corFundoTxBox;

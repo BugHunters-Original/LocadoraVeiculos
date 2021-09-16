@@ -19,7 +19,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.DashboardFeature
 
         public DashboardControl()
         {
-            controladorVeiculo = new ControladorVeiculo();
+            controladorVeiculo = new ControladorVeiculo(); 
             controladorLocacao = new ControladorLocacao();
             InitializeComponent();
             TrataLabels();

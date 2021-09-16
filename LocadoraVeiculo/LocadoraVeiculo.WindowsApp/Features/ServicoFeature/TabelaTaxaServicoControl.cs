@@ -17,7 +17,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.TaxaServicoFeature
 
         public void ConfigurarGridLightMode()
         {
-            dgTaxas.ConfigurarGridZebrado();
+            dgTaxas.ConfigurarGridZebrado(); 
         }
 
         public DataGridViewColumn[] ObterColunas()

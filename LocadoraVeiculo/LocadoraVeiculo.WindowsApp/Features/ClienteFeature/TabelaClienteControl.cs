@@ -16,7 +16,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.ClienteFeature
             InitializeComponent();
             ConfigurarGridLightMode();
             gridClientes.ConfigurarGridSomenteLeitura();
-            gridClientes.Columns.AddRange(ObterColunas());
+            gridClientes.Columns.AddRange(ObterColunas()); 
         }
 
         public void ConfigurarGridLightMode()

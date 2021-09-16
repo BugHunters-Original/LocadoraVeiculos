@@ -17,7 +17,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.DescontoFeature
 
         public void ConfigurarGridLightMode()
         {
-            gridDesconto.ConfigurarGridZebrado();
+            gridDesconto.ConfigurarGridZebrado(); 
         }
         public DataGridViewColumn[] ObterColunas()
         {

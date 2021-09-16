@@ -21,7 +21,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.GrupoVeiculoFeature
         {
             this.header_GrupoVeiculo.BackColor = DarkMode.corHeader;
             this.BackColor = DarkMode.corPanel;
-            this.ForeColor = DarkMode.corFonte;
+            this.ForeColor = DarkMode.corFonte; 
             txtId.BackColor = Color.DarkSeaGreen;
             txtNome.BackColor = DarkMode.corFundoTxBox;
             txtDiariaPLivre.BackColor = DarkMode.corFundoTxBox;

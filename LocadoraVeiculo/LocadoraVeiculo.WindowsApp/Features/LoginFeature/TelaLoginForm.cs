@@ -22,7 +22,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.LoginFeature
         {
             this.BackColor = DarkMode.corFundo;
             this.ForeColor = DarkMode.corFonte;
-            btnLogar.BackColor = DarkMode.corFundoTxBox;
+            btnLogar.BackColor = DarkMode.corFundoTxBox; 
             Footer.BackColor = DarkMode.corPanel;
             txtUsuario.BackColor = DarkMode.corFundoTxBox;
             txtSenha.BackColor = DarkMode.corFundoTxBox;

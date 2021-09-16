@@ -1,4 +1,4 @@
-﻿
+﻿ 
 namespace LocadoraVeiculo.WindowsApp.Features.LoginFeature
 {
     partial class TelaLoginForm
