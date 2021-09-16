@@ -15,7 +15,6 @@ using LocadoraVeiculo.WindowsApp.Features.EmailLocadoraFeature;
 using LocadoraVeiculo.WindowsApp.Features.ParceiroFeature;
 using LocadoraVeiculo.WindowsApp.Features.DarkModeFeature;
 using LocadoraVeiculo.WindowsApp.Features.LoginFeature;
-using LocadoraDeVeiculos.Controladores.VeiculoModule;
 using LocadoraDeVeiculos.Aplicacao.ParceiroModule;
 using LocadoraDeVeiculos.Infra.SQL.ParceiroModule;
 using log4net;
@@ -44,9 +43,28 @@ namespace LocadoraVeiculo.WindowsApp
     public partial class TelaPrincipalForm : Form
     {
         public static ClienteCNPJDAO cnpjRepository = new();
-        public static ClienteCNPJAppService cnpjService = new(cnpjRepository, LogManager.GetLogger("Cliente"));
         public static ClienteCPFDAO cpfRepository = new();
+        public static GrupoVeiculoDAO grupoVeiculoRepository = new();
+        public static LocacaoDAO locacaoRepository = new();
+        public static VeiculoDAO veiculoRepository = new();
+        public static FuncionarioDAO funcionarioRepository = new();
+        public static ServicoDAO servicoRepository = new();
+        public static DescontoDAO descontoRepository = new();
+        public static ParceiroDAO parceiroRepository = new();
+
+        public static ClienteCNPJAppService cnpjService = new(cnpjRepository, LogManager.GetLogger("Cliente"));
         public static ClienteCPFAppService cpfService = new(cpfRepository, LogManager.GetLogger("Cliente"));
+        public static GrupoVeiculoAppService grupoVeiculoService = new(grupoVeiculoRepository, LogManager.GetLogger("Grupo Veículo"));
+        public static LocacaoAppService locacaoService = new(locacaoRepository, LogManager.GetLogger("Locação"), email, pdf);
+        public static VeiculoAppService veiculoService = new(veiculoRepository, LogManager.GetLogger("Veículo"));
+        public static FuncionarioAppService funcionarioService = new(funcionarioRepository, LogManager.GetLogger("Funcionário"));
+        public static ServicoAppService servicoService = new(servicoRepository, LogManager.GetLogger("Funcionário"));
+        public static DescontoAppService descontoService = new(descontoRepository, LogManager.GetLogger("Desconto"));
+        public static ParceiroAppService parceiroService = new(parceiroRepository, LogManager.GetLogger("Parceiro"));
+
+        public static EnviaEmail email = new();
+        public static MontaPdf pdf = new();
+
         public static TelaPrincipalForm Instancia;
         public static DashboardControl dash;
         private ICadastravel operacoes;
@@ -73,14 +91,6 @@ namespace LocadoraVeiculo.WindowsApp
             ConfigurarToolBox(configuracao);
 
             AtualizarRodape(configuracao.TipoCadastro);
-
-            var email = new EnviaEmail();
-            var pdf = new MontaPdf();
-            var locacaoRepository = new LocacaoDAO();
-            var locacaoService = new LocacaoAppService(locacaoRepository, LogManager.GetLogger("Locação"),
-                                                        email, pdf);
-            var cpfRepository = new ClienteCPFDAO();
-            var cpfService = new ClienteCPFAppService(cpfRepository, LogManager.GetLogger("Cliente"));
 
             operacoes = new OperacoesLocacao(locacaoService, cpfService);
 
@@ -112,13 +122,6 @@ namespace LocadoraVeiculo.WindowsApp
 
             AtualizarRodape(configuracao.TipoCadastro);
 
-            var grupoVeiculoRepository = new GrupoVeiculoDAO();
-
-            var grupoVeiculoService = new GrupoVeiculoAppService(grupoVeiculoRepository, LogManager.GetLogger("Grupo Veículo"));
-
-            var veiculoRepository = new VeiculoDAO();
-            var veiculoService = new VeiculoAppService(veiculoRepository, LogManager.GetLogger("Veículo"));
-
             operacoes = new OperacoesVeiculo(veiculoService, grupoVeiculoService);
 
             ConfigurarPainelRegistros();
@@ -134,20 +137,26 @@ namespace LocadoraVeiculo.WindowsApp
 
             AtualizarRodape(configuracao.TipoCadastro);
 
-            var funcionarioRepository = new FuncionarioDAO();
-
-            operacoes = new OperacoesFuncionario(new FuncionarioAppService(funcionarioRepository,
-                LogManager.GetLogger("Funcionário")));
+            operacoes = new OperacoesFuncionario(funcionarioService);
 
             ConfigurarPainelRegistros();
 
             PreencherComboBox();
         }
 
-        private void menuToolStripMenuItem_Click(object sender, EventArgs e)
+        private void parceirosToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            operacoes = null;
-            BotaoHome();
+            ConfiguracaoParceiroToolBox configuracao = new ConfiguracaoParceiroToolBox();
+
+            ConfigurarToolBox(configuracao);
+
+            AtualizarRodape(configuracao.TipoCadastro);
+
+            operacoes = new OperacoesParceiro(parceiroService);
+
+            ConfigurarPainelRegistros();
+
+            PreencherComboBox();
         }
 
         private void grupoDeVeículosToolStripMenuItem_Click(object sender, EventArgs e)
@@ -157,9 +166,6 @@ namespace LocadoraVeiculo.WindowsApp
             ConfigurarToolBox(configuracao);
 
             AtualizarRodape(configuracao.TipoCadastro);
-
-            var grupoVeiculoRepository = new GrupoVeiculoDAO();
-            var grupoVeiculoService = new GrupoVeiculoAppService(grupoVeiculoRepository, LogManager.GetLogger("Grupo Veículo"));
 
             operacoes = new OperacoesGrupoVeiculo(grupoVeiculoService);
 
@@ -176,9 +182,7 @@ namespace LocadoraVeiculo.WindowsApp
 
             AtualizarRodape(configuracao.TipoCadastro);
 
-            var repository = new ServicoDAO();
-
-            operacoes = new OperacoesServico(new ServicoAppService(repository, LogManager.GetLogger("Serviço")));
+            operacoes = new OperacoesServico(servicoService);
 
             ConfigurarPainelRegistros();
 
@@ -193,14 +197,7 @@ namespace LocadoraVeiculo.WindowsApp
 
             AtualizarRodape(configuracao.TipoCadastro);
 
-            var descontoRepository = new DescontoDAO();
-            var parceiroRepository = new ParceiroDAO();
-            var locacaoRepository = new LocacaoDAO();
-            var email = new EnviaEmail();
-            var pdf = new MontaPdf();
-
-            operacoes = new OperacoesDesconto(new DescontoAppService(descontoRepository, LogManager.GetLogger("Desconto")),
-                new ParceiroAppService(parceiroRepository, LogManager.GetLogger("Parceiro")), new LocacaoAppService(locacaoRepository, LogManager.GetLogger("Locação"), email, pdf));
+            operacoes = new OperacoesDesconto(descontoService, parceiroService, locacaoService);
 
             ConfigurarPainelRegistros();
 
@@ -212,27 +209,17 @@ namespace LocadoraVeiculo.WindowsApp
             TelaCombustivelForm telaCombustivelForm = new TelaCombustivelForm();
             telaCombustivelForm.ShowDialog();
         }
+
         private void emailLocadoraToolStripMenuItem_Click(object sender, EventArgs e)
         {
             TelaEmail telaEmail = new TelaEmail();
             telaEmail.ShowDialog();
         }
 
-        private void parceirosToolStripMenuItem_Click(object sender, EventArgs e)
+        private void menuToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            ConfiguracaoParceiroToolBox configuracao = new ConfiguracaoParceiroToolBox();
-
-            ConfigurarToolBox(configuracao);
-
-            AtualizarRodape(configuracao.TipoCadastro);
-
-            var repository = new ParceiroDAO();
-
-            operacoes = new OperacoesParceiro(new ParceiroAppService(repository, LogManager.GetLogger("Parceiro")));
-
-            ConfigurarPainelRegistros();
-
-            PreencherComboBox();
+            operacoes = null;
+            BotaoHome();
         }
 
         private void btnAdicionar_Click(object sender, EventArgs e)
