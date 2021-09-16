@@ -46,6 +46,8 @@ using LocadoraDeVeiculos.Aplicacao.LocacaoModule;
 using LocadoraDeVeiculos.Infra.SQL.LocacaoModule;
 using LocadoraDeVeiculos.Infra.InternetServices;
 using LocadoraDeVeiculos.Infra.PDF;
+using LocadoraDeVeiculos.Infra.SQL.VeiculoModule;
+using LocadoraDeVeiculos.Aplicacao.VeiculoModule;
 
 namespace LocadoraVeiculo.WindowsApp
 {
@@ -121,7 +123,14 @@ namespace LocadoraVeiculo.WindowsApp
 
             AtualizarRodape(configuracao.TipoCadastro);
 
-            operacoes = new OperacoesVeiculo(new ControladorVeiculo());
+            var grupoVeiculoRepository = new GrupoVeiculoDAO();
+
+            var grupoVeiculoService = new GrupoVeiculoAppService(grupoVeiculoRepository, LogManager.GetLogger("Grupo Veículo"));
+
+            var veiculoRepository = new VeiculoDAO();
+            var veiculoService = new VeiculoAppService(veiculoRepository, LogManager.GetLogger("Veículo"));
+
+            operacoes = new OperacoesVeiculo(veiculoService, grupoVeiculoService);
 
             ConfigurarPainelRegistros();
 
