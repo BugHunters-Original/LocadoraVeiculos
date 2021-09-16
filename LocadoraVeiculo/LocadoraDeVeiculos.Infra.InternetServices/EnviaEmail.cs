@@ -1,5 +1,5 @@
 ﻿using LocadoraDeVeiculos.Dominio.LocacaoModule;
-using LocadoraDeVeiculos.EmailLocadora;
+using LocadoraDeVeiculos.Infra.EmailLocadora;
 using System;
 using System.Collections.Generic;
 using System.Linq;

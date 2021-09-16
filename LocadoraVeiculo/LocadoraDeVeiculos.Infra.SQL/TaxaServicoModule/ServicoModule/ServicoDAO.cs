@@ -1,5 +1,5 @@
-﻿using LocadoraDeVeiculos.Controladores.Shared;
-using LocadoraDeVeiculos.Dominio.ServicoModule;
+﻿using LocadoraDeVeiculos.Dominio.ServicoModule;
+using LocadoraDeVeiculos.Infra.Shared;
 using System;
 using System.Collections.Generic;
 using System.Data;
