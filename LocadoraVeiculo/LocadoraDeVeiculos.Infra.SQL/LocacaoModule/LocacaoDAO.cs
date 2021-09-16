@@ -1,15 +1,10 @@
-﻿using LocadoraDeVeiculos.Controladores.ClienteCNPJModule;
-using LocadoraDeVeiculos.Controladores.ClienteCPFModule;
-using LocadoraDeVeiculos.Controladores.DescontoModule;
-using LocadoraDeVeiculos.Controladores.Shared;
-using LocadoraDeVeiculos.Controladores.TaxaDaLocacaoModule;
-using LocadoraDeVeiculos.Controladores.VeiculoModule;
-using LocadoraDeVeiculos.Dominio.ClienteModule;
+﻿using LocadoraDeVeiculos.Dominio.ClienteModule;
 using LocadoraDeVeiculos.Dominio.ClienteModule.ClienteCPFModule;
 using LocadoraDeVeiculos.Dominio.DescontoModule;
 using LocadoraDeVeiculos.Dominio.LocacaoModule;
 using LocadoraDeVeiculos.Dominio.ServicoModule;
 using LocadoraDeVeiculos.Dominio.VeiculoModule;
+using LocadoraDeVeiculos.Infra.Shared;
 using System;
 using System.Collections.Generic;
 using System.Data;
