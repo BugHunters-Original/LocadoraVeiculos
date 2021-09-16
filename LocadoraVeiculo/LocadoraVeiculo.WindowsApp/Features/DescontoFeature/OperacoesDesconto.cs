@@ -1,4 +1,5 @@
 ﻿using LocadoraDeVeiculos.Aplicacao.DescontoModule;
+using LocadoraDeVeiculos.Aplicacao.LocacaoModule;
 using LocadoraDeVeiculos.Aplicacao.ParceiroModule;
 using LocadoraDeVeiculos.Controladores.LocacoModule;
 using LocadoraDeVeiculos.Dominio.DescontoModule;
@@ -13,14 +14,15 @@ namespace LocadoraVeiculo.WindowsApp.Features.DescontoFeature
     {
         private readonly DescontoAppService descontoService;
         private readonly ParceiroAppService parceiroService;
+        private readonly LocacaoAppService locacaoService;
         private readonly ControladorLocacao controladorLocacao;
         private readonly TabelaDescontoControl tabelaDesconto;
 
-        public OperacoesDesconto(DescontoAppService descontoService, ParceiroAppService parceiroService)
+        public OperacoesDesconto(DescontoAppService descontoService, ParceiroAppService parceiroService, LocacaoAppService locacaoService)
         {
-            controladorLocacao = new ControladorLocacao();
             this.descontoService = descontoService;
             this.parceiroService = parceiroService;
+            this.locacaoService = locacaoService;
             tabelaDesconto = new TabelaDescontoControl();
         }
 
@@ -104,7 +106,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.DescontoFeature
             if (MessageBox.Show($"Tem certeza que deseja excluir o Cupom de Desconto: [{descontoSelecionado}] ?",
                 "Exclusão de Cupom de Desconto", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK)
             {
-                int contador = controladorLocacao.SelecionarLocacoesComCupons(descontoSelecionado.Codigo);
+                int contador = locacaoService.SelecionarLocacoesComCupons(descontoSelecionado.Codigo);
 
                 if (contador == 0)
                 {

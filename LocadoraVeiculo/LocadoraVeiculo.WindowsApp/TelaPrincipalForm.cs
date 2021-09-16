@@ -206,8 +206,12 @@ namespace LocadoraVeiculo.WindowsApp
 
             var descontoRepository = new DescontoDAO();
             var parceiroRepository = new ParceiroDAO();
+            var locacaoRepository = new LocacaoDAO();
+            var email = new EnviaEmail();
+            var pdf = new MontaPdf();
+
             operacoes = new OperacoesDesconto(new DescontoAppService(descontoRepository, LogManager.GetLogger("Desconto")),
-                new ParceiroAppService(parceiroRepository, LogManager.GetLogger("Parceiro")));
+                new ParceiroAppService(parceiroRepository, LogManager.GetLogger("Parceiro")), new LocacaoAppService(locacaoRepository, LogManager.GetLogger("Locação"), email, pdf));
 
             ConfigurarPainelRegistros();
 
