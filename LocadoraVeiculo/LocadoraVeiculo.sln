@@ -51,13 +51,13 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LocadoraDeVeiculos.Infra.In
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "4.3 PDF", "4.3 PDF", "{45A72FA2-2DF3-4B27-BB29-B5DABC6466A3}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LocadoraDeVeiculos.Infra.PDF", "LocadoraDeVeiculos.Infra.PDF\LocadoraDeVeiculos.Infra.PDF.csproj", "{5A85A38F-4A40-4B15-8B0F-63D0CC6322A7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LocadoraDeVeiculos.Infra.PDFLocacao", "LocadoraDeVeiculos.Infra.PDF\LocadoraDeVeiculos.Infra.PDFLocacao.csproj", "{5A85A38F-4A40-4B15-8B0F-63D0CC6322A7}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "4.4 Extension Methods", "4.4 Extension Methods", "{FFB21922-BBC8-497E-BDCE-F2F69E42645B}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LocadoraDeVeiculos.Infra.ExtensionMethods", "LocadoraDeVeiculos.Infra.ExtensionMethods\LocadoraDeVeiculos.Infra.ExtensionMethods.csproj", "{A95ED246-8A5A-40C6-93DC-1A59A01E021A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LocadoraDeVeiculos.ConsoleApp", "LocadoraDeVeiculos.ConsoleApp\LocadoraDeVeiculos.ConsoleApp.csproj", "{B7F4D82F-933C-443E-8A5C-2852B7C24FFF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LocadoraDeVeiculos.ConsoleApp", "LocadoraDeVeiculos.ConsoleApp\LocadoraDeVeiculos.ConsoleApp.csproj", "{B7F4D82F-933C-443E-8A5C-2852B7C24FFF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
