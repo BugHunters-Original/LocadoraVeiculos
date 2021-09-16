@@ -27,7 +27,7 @@ namespace LocadoraDeVeiculos.Aplicacao.ClienteCPFModule
             {
                 logger.Debug($"Registrando Cliente CPF {clienteCPF}...");
 
-                clienteCPFRepository.InserirClienteCPF(clienteCPF);
+                clienteCPFRepository.Inserir(clienteCPF);
 
                 logger.Debug($"Cliente Cliente CPF {clienteCPF} registrado com sucesso!");
             }
@@ -41,7 +41,7 @@ namespace LocadoraDeVeiculos.Aplicacao.ClienteCPFModule
             {
                 logger.Debug($"Editando Cliente CPF {clienteCPF}...");
 
-                clienteCPFRepository.EditarClienteCPF(id, clienteCPF);
+                clienteCPFRepository.Editar(id, clienteCPF);
 
                 logger.Debug($"Cliente CPF {clienteCPF} editado com sucesso!");
             }
@@ -49,7 +49,7 @@ namespace LocadoraDeVeiculos.Aplicacao.ClienteCPFModule
 
         public bool ExcluirClienteCPF(int id)
         {
-            return clienteCPFRepository.ExcluirClienteCPF(id);
+            return clienteCPFRepository.Excluir(id);
         }
 
         public List<ClienteCPF> SelecionarPorIdEmpresa(int id)

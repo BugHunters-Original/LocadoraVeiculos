@@ -16,12 +16,6 @@ using LocadoraVeiculo.WindowsApp.Features.ParceiroFeature;
 using LocadoraVeiculo.WindowsApp.Features.DarkModeFeature;
 using LocadoraVeiculo.WindowsApp.Features.LoginFeature;
 using LocadoraDeVeiculos.Controladores.VeiculoModule;
-using LocadoraDeVeiculos.Controladores.FuncionarioModule;
-using LocadoraDeVeiculos.Controladores.LocacoModule;
-
-using LocadoraDeVeiculos.Controladores.ServicoModule;
-using LocadoraDeVeiculos.Controladores.DescontoModule;
-using LocadoraDeVeiculos.Controladores.ParceiroModule;
 using LocadoraDeVeiculos.Aplicacao.ParceiroModule;
 using LocadoraDeVeiculos.Infra.SQL.ParceiroModule;
 using log4net;
@@ -30,18 +24,14 @@ using LocadoraDeVeiculos.Infra.SQL.ClienteCPFModule;
 using LocadoraDeVeiculos.Dominio.ClienteModule;
 using LocadoraDeVeiculos.Aplicacao.ClienteCNPJModule;
 using LocadoraDeVeiculos.Aplicacao.ClienteCPFModule;
-
 using LocadoraDeVeiculos.Infra.SQL.GrupoVeiculoModule;
 using LocadoraDeVeiculos.Aplicacao.GrupoVeiculoModule;
-
 using LocadoraDeVeiculos.Aplicacao.FuncionarioModule;
 using LocadoraDeVeiculos.Infra.SQL.FuncionarioModule;
 using LocadoraDeVeiculos.Aplicacao.DescontoModule;
 using LocadoraDeVeiculos.Infra.SQL.DescontoModule;
-
 using LocadoraDeVeiculos.Aplicacao.ServicoModule;
 using LocadoraDeVeiculos.Infra.SQL.TaxaServicoModule.ServicoModule;
-
 using LocadoraDeVeiculos.Aplicacao.LocacaoModule;
 using LocadoraDeVeiculos.Infra.SQL.LocacaoModule;
 using LocadoraDeVeiculos.Infra.InternetServices;
@@ -53,9 +43,13 @@ namespace LocadoraVeiculo.WindowsApp
 {
     public partial class TelaPrincipalForm : Form
     {
-        private ICadastravel operacoes;
+        public static ClienteCNPJDAO cnpjRepository = new();
+        public static ClienteCNPJAppService cnpjService = new(cnpjRepository, LogManager.GetLogger("Cliente"));
+        public static ClienteCPFDAO cpfRepository = new();
+        public static ClienteCPFAppService cpfService = new(cpfRepository, LogManager.GetLogger("Cliente"));
         public static TelaPrincipalForm Instancia;
         public static DashboardControl dash;
+        private ICadastravel operacoes;
         Thread th;
 
         public TelaPrincipalForm()
@@ -103,11 +97,6 @@ namespace LocadoraVeiculo.WindowsApp
 
             AtualizarRodape(configuracao.TipoCadastro);
 
-            var cnpjRepository = new ClienteCNPJDAO();
-            var cnpjService = new ClienteCNPJAppService(cnpjRepository, LogManager.GetLogger("Cliente"));
-            var cpfRepository = new ClienteCPFDAO();
-            var cpfService = new ClienteCPFAppService(cpfRepository, LogManager.GetLogger("Cliente"));
-
             operacoes = new OperacoesCliente(cnpjService, cpfService, new FiltroCliente(cnpjRepository, cpfRepository));
 
             ConfigurarPainelRegistros();
@@ -146,7 +135,7 @@ namespace LocadoraVeiculo.WindowsApp
             AtualizarRodape(configuracao.TipoCadastro);
 
             var funcionarioRepository = new FuncionarioDAO();
-            
+
             operacoes = new OperacoesFuncionario(new FuncionarioAppService(funcionarioRepository,
                 LogManager.GetLogger("Funcionário")));
 
@@ -171,7 +160,7 @@ namespace LocadoraVeiculo.WindowsApp
 
             var grupoVeiculoRepository = new GrupoVeiculoDAO();
             var grupoVeiculoService = new GrupoVeiculoAppService(grupoVeiculoRepository, LogManager.GetLogger("Grupo Veículo"));
-            
+
             operacoes = new OperacoesGrupoVeiculo(grupoVeiculoService);
 
             ConfigurarPainelRegistros();

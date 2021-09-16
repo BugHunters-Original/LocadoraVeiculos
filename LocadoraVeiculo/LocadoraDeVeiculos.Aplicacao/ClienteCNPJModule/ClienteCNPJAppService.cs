@@ -28,7 +28,7 @@ namespace LocadoraDeVeiculos.Aplicacao.ClienteCNPJModule
             {
                 logger.Debug($"Registrando Cliente CNPJ {clienteCNPJ}...");
 
-                clienteCNPJRepository.InserirClienteCNPJ(clienteCNPJ);
+                clienteCNPJRepository.Inserir(clienteCNPJ);
 
                 logger.Debug($"Cliente CNPJ {clienteCNPJ} registrado com sucesso!");
             }
@@ -42,7 +42,7 @@ namespace LocadoraDeVeiculos.Aplicacao.ClienteCNPJModule
             {
                 logger.Debug($"Editando Cliente CNPJ {clienteCNPJ}...");
 
-                clienteCNPJRepository.EditarClienteCNPJ(id, clienteCNPJ);
+                clienteCNPJRepository.Editar(id, clienteCNPJ);
 
                 logger.Debug($"Cliente CNPJ {clienteCNPJ} editado com sucesso!");
             }
@@ -50,7 +50,7 @@ namespace LocadoraDeVeiculos.Aplicacao.ClienteCNPJModule
 
         public bool ExcluirClienteCNPJ(int id)
         {
-            return clienteCNPJRepository.ExcluirClienteCNPJ(id);
+            return clienteCNPJRepository.Excluir(id);
         }
 
         public ClienteCNPJ SelecionarClienteCNPJPorId(int id)
