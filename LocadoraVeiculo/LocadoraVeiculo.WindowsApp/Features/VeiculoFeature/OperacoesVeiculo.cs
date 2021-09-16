@@ -1,5 +1,5 @@
-﻿using LocadoraDeVeiculos.Controladores.GrupoVeiculoModule;
-using LocadoraDeVeiculos.Controladores.VeiculoModule;
+﻿using LocadoraDeVeiculos.Aplicacao.GrupoVeiculoModule;
+using LocadoraDeVeiculos.Aplicacao.VeiculoModule;
 using LocadoraDeVeiculos.Dominio.VeiculoModule;
 using LocadoraVeiculo.WindowsApp.Shared;
 using System.Collections.Generic;
@@ -9,20 +9,20 @@ namespace LocadoraVeiculo.WindowsApp.Features.VeiculoFeature
 {
     public class OperacoesVeiculo : ICadastravel
     {
-        private readonly ControladorVeiculo controladorVeiculo;
-        private readonly ControladorGrupoVeiculo controladorGrupoVeiculo;
+        private readonly VeiculoAppService veiculoService;
+        private readonly GrupoVeiculoAppService grupoVeiculoService;
         private readonly TabelaVeiculoControl tabelaVeiculos;
 
-        public OperacoesVeiculo(ControladorVeiculo ctrlVeiculo)
+        public OperacoesVeiculo(VeiculoAppService veiculoService, GrupoVeiculoAppService grupoVeiculoService)
         {
-            controladorVeiculo = ctrlVeiculo;
-            controladorGrupoVeiculo = new ControladorGrupoVeiculo();
+            this.veiculoService = veiculoService;
+            this.grupoVeiculoService = grupoVeiculoService;
             tabelaVeiculos = new TabelaVeiculoControl();
         }
 
         public void InserirNovoRegistro()
         {
-            if (controladorGrupoVeiculo.SelecionarTodos().Count == 0)
+            if (grupoVeiculoService.SelecionarTodosGruposVeiculos().Count == 0)
             {
                 MessageBox.Show("Cadastre primeiro um Grupo de Veículos!", "Adição de Veículos",
                                  MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
@@ -34,9 +34,9 @@ namespace LocadoraVeiculo.WindowsApp.Features.VeiculoFeature
 
             if (tela.ShowDialog() == DialogResult.OK)
             {
-                controladorVeiculo.InserirNovo(tela.Veiculo);
+                veiculoService.RegistrarNovoVeiculo(tela.Veiculo);
 
-                List<Veiculo> veiculos = controladorVeiculo.SelecionarTodos();
+                List<Veiculo> veiculos = veiculoService.SelecionarTodosVeiculos();
 
                 tabelaVeiculos.AtualizarRegistros(veiculos);
 
@@ -51,7 +51,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.VeiculoFeature
             if (!VerificarIdSelecionado(id, "Editar", "Edição"))
                 return;
 
-            Veiculo veiculoSelecionado = controladorVeiculo.SelecionarPorId(id);
+            Veiculo veiculoSelecionado = veiculoService.SelecionarVeiculoPorId(id);
 
             TelaVeiculoForm tela = new TelaVeiculoForm();
 
@@ -59,9 +59,9 @@ namespace LocadoraVeiculo.WindowsApp.Features.VeiculoFeature
 
             if (tela.ShowDialog() == DialogResult.OK)
             {
-                controladorVeiculo.Editar(id, tela.Veiculo);
+                veiculoService.EditarVeiculo(id, tela.Veiculo);
 
-                List<Veiculo> veiculos = controladorVeiculo.SelecionarTodos();
+                List<Veiculo> veiculos = veiculoService.SelecionarTodosVeiculos();
 
                 tabelaVeiculos.AtualizarRegistros(veiculos);
 
@@ -76,18 +76,18 @@ namespace LocadoraVeiculo.WindowsApp.Features.VeiculoFeature
             if (!VerificarIdSelecionado(id, "Excluir", "Exclusão"))
                 return;
 
-            Veiculo veiculoSelecionada = controladorVeiculo.SelecionarPorId(id);
+            Veiculo veiculoSelecionada = veiculoService.SelecionarVeiculoPorId(id);
 
             if (MessageBox.Show($"Tem certeza que deseja excluir o Veículo: [{veiculoSelecionada.Nome}] ?",
                 "Exclusão de Veículos", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK)
             {
-                bool excluiu = controladorVeiculo.Excluir(id);
+                bool excluiu = veiculoService.ExcluirVeiculo(id);
 
                 if (excluiu)
                 {
-                    controladorVeiculo.Excluir(id);
+                    veiculoService.ExcluirVeiculo(id);
 
-                    List<Veiculo> veiculos = controladorVeiculo.SelecionarTodos();
+                    List<Veiculo> veiculos = veiculoService.SelecionarTodosVeiculos();
 
                     tabelaVeiculos.AtualizarRegistros(veiculos);
 
@@ -108,7 +108,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.VeiculoFeature
 
         public UserControl ObterTabela()
         {
-            List<Veiculo> veiculos = controladorVeiculo.SelecionarTodos();
+            List<Veiculo> veiculos = veiculoService.SelecionarTodosVeiculos();
 
             tabelaVeiculos.AtualizarRegistros(veiculos);
 
@@ -117,7 +117,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.VeiculoFeature
 
         public void PesquisarRegistro(string combobox, string pesquisa)
         {
-            List<Veiculo> veiculos = controladorVeiculo.SelecionarPesquisa(combobox, pesquisa);
+            List<Veiculo> veiculos = veiculoService.SelecionarPesquisa(combobox, pesquisa);
 
             tabelaVeiculos.AtualizarRegistros(veiculos);
         }
