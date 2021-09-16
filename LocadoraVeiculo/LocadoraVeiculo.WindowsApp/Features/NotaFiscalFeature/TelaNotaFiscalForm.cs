@@ -12,7 +12,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.NotaFiscalFeature
         private ControladorVeiculo controladorVeiculo;
         public TelaNotaFiscalForm()
         {
-            controladorVeiculo = new ControladorVeiculo();
+            controladorVeiculo = new ControladorVeiculo(); 
             InitializeComponent();
             SetColor();
         }

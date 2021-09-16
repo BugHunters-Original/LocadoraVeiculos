@@ -19,7 +19,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.DescontoFeature
         {
             controladorParceiro = new ControladorParceiro();
             controladorDesconto = new ControladorDesconto();
-            InitializeComponent();
+            InitializeComponent(); 
             SetColor();
             CarregarParceiros();
         }

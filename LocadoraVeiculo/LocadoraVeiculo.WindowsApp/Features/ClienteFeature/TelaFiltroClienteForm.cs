@@ -14,7 +14,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.ClienteFeature
         private void SetColor()
         {
             this.header_FiltroLocacao.BackColor = DarkMode.corHeader;
-            this.BackColor = DarkMode.corPanel;
+            this.BackColor = DarkMode.corPanel; 
             this.ForeColor = DarkMode.corFonte;
 
             btnGravar.BackColor = DarkMode.corFundoTxBox;

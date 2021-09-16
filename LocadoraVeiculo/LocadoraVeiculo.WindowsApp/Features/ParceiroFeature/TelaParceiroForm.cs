@@ -20,7 +20,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.ParceiroFeature
         {
             this.header_parceiro.BackColor = DarkMode.corHeader;
             this.BackColor = DarkMode.corPanel;
-            this.ForeColor = DarkMode.corFonte;
+            this.ForeColor = DarkMode.corFonte; 
             txtID.BackColor = Color.DarkSeaGreen;
             txtNome.BackColor = DarkMode.corFundoTxBox;
 

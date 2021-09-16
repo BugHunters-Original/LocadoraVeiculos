@@ -25,7 +25,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.FuncionarioFeature
             this.BackColor = DarkMode.corPanel;
             this.ForeColor = DarkMode.corFonte;
             text_IdFuncionario.BackColor = Color.DarkSeaGreen;
-            text_NomeFuncionario.BackColor = DarkMode.corFundoTxBox;
+            text_NomeFuncionario.BackColor = DarkMode.corFundoTxBox; 
             text_salarioFuncionario.BackColor = DarkMode.corFundoTxBox;
             text_SenhaFuncionario.BackColor = DarkMode.corFundoTxBox;
             text_UsuarioFuncionario.BackColor = DarkMode.corFundoTxBox;

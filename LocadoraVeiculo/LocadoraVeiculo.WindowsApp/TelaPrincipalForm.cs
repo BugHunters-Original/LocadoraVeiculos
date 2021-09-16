@@ -36,7 +36,7 @@ using LocadoraDeVeiculos.Aplicacao.LocacaoModule;
 using LocadoraDeVeiculos.Infra.SQL.LocacaoModule;
 using LocadoraDeVeiculos.Infra.InternetServices;
 using LocadoraDeVeiculos.Infra.PDFLocacao;
-using LocadoraDeVeiculos.Infra.SQL.VeiculoModule;
+using LocadoraDeVeiculos.Infra.SQL.VeiculoModule; 
 using LocadoraDeVeiculos.Aplicacao.VeiculoModule;
 
 namespace LocadoraVeiculo.WindowsApp

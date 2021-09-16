@@ -371,7 +371,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.GrupoVeiculoFeature
         private System.Windows.Forms.Button btnGravar;
         private System.Windows.Forms.TextBox txtId;
         private System.Windows.Forms.Button btnCancelar;
-        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Label label8; 
         private System.Windows.Forms.TextBox txtValorKmRodadoPControlado;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Panel header_GrupoVeiculo;

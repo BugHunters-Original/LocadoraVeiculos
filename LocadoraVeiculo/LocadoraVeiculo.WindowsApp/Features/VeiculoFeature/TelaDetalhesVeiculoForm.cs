@@ -17,7 +17,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.VeiculoFeature
         }
 
         private void SetColor()
-        {
+        { 
             this.header_DetalheVeiculo.BackColor = DarkMode.corHeader;
             this.BackColor = DarkMode.corFundo;
             this.ForeColor = DarkMode.corFonte;

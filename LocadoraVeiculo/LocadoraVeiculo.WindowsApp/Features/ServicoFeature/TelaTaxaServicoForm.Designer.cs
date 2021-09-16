@@ -20,7 +20,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.TaxaServicoFeature
             }
             base.Dispose(disposing);
         }
-
+         
         #region Windows Form Designer generated code
 
         /// <summary>

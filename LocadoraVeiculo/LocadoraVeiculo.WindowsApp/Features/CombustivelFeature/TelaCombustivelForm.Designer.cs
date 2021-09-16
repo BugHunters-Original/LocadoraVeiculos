@@ -239,7 +239,7 @@
         private System.Windows.Forms.TextBox txtGasolina;
         private System.Windows.Forms.TabPage tabPageAlcool;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TextBox txtAlcool;
+        private System.Windows.Forms.TextBox txtAlcool; 
         private System.Windows.Forms.TabPage tabPageDiesel;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox txtDiesel;

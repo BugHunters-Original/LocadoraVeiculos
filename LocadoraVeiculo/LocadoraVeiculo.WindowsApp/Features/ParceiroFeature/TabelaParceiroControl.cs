@@ -14,7 +14,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.ParceiroFeature
             dgvParceiros.ConfigurarGridSomenteLeitura();
             dgvParceiros.Columns.AddRange(ObterColunas());
         }
-        public void ConfigurarGridLightMode()
+        public void ConfigurarGridLightMode() 
         {
             dgvParceiros.ConfigurarGridZebrado();
         }

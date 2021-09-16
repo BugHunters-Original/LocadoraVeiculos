@@ -19,7 +19,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.FuncionarioFeature
                 components.Dispose();
             }
             base.Dispose(disposing);
-        }
+        } 
 
         #region Windows Form Designer generated code
 

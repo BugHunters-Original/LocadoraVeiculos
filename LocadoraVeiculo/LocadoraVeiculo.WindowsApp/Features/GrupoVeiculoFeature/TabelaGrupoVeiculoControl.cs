@@ -14,7 +14,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.GrupoVeiculoFeature
             gridGrupoVeiculo.ConfigurarGridSomenteLeitura();
             gridGrupoVeiculo.Columns.AddRange(ObterColunas());
         }
-
+         
         public void ConfigurarGridLightMode()
         {
             gridGrupoVeiculo.ConfigurarGridZebrado();

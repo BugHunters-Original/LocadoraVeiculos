@@ -20,7 +20,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.ClienteFeature
         {
             controladorClienteCNPJ = new ControladorClienteCNPJ();
             InitializeComponent();
-            PopularCombobox();
+            PopularCombobox(); 
             SetColor();
         }
 
