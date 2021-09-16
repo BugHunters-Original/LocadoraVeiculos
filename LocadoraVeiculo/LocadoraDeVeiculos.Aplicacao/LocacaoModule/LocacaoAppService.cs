@@ -1,10 +1,6 @@
 ﻿using LocadoraDeVeiculos.Dominio.LocacaoModule;
 using log4net;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace LocadoraDeVeiculos.Aplicacao.LocacaoModule
 {
@@ -30,7 +26,7 @@ namespace LocadoraDeVeiculos.Aplicacao.LocacaoModule
             {
                 logger.Debug($"Registrando Locação {locacao}...");
 
-                locacaoRepo.InserirLocacao(locacao);
+                locacaoRepo.Inserir(locacao);
 
                 logger.Debug($"Locação {locacao} registrado com sucesso!");
 
@@ -58,7 +54,7 @@ namespace LocadoraDeVeiculos.Aplicacao.LocacaoModule
             {
                 logger.Debug($"Editando Locação {locacao}...");
 
-                locacaoRepo.EditarLocacao(id, locacao);
+                locacaoRepo.Editar(id, locacao);
 
                 logger.Debug($"Locação {locacao} editada com sucesso!");
             }
@@ -66,15 +62,15 @@ namespace LocadoraDeVeiculos.Aplicacao.LocacaoModule
 
         public bool ExcluirLocacao(int id)
         {
-            return locacaoRepo.ExcluirLocacao(id);
+            return locacaoRepo.Excluir(id);
         }
         public List<Locacao> SelecionarTodasLocacoes()
         {
-            return locacaoRepo.SelecionarTodasLocacoes();
+            return locacaoRepo.SelecionarTodos();
         }
         public Locacao SelecionarLocacaoPorId(int id)
         {
-            return locacaoRepo.SelecionarLocacaoPorId(id);
+            return locacaoRepo.SelecionarPorId(id);
         }
         public List<Locacao> SelecionarTodasLocacoesConcluidas()
         {
