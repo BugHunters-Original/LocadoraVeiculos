@@ -1,12 +1,12 @@
-﻿using LocadoraDeVeiculos.Controladores.Shared;
+﻿
 using LocadoraDeVeiculos.Dominio.GrupoVeiculoModule;
 using LocadoraDeVeiculos.Dominio.VeiculoModule;
+using LocadoraDeVeiculos.Infra.Shared;
 using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
 
 namespace LocadoraDeVeiculos.Infra.SQL.VeiculoModule
 {
