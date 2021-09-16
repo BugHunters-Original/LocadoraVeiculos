@@ -1,8 +1,9 @@
-﻿using LocadoraDeVeiculos.Controladores.DescontoModule;
-using LocadoraDeVeiculos.Controladores.ParceiroModule;
+﻿using LocadoraDeVeiculos.Aplicacao.ParceiroModule;
 using LocadoraDeVeiculos.Dominio.DescontoModule;
 using LocadoraDeVeiculos.Dominio.ParceiroModule;
+using LocadoraDeVeiculos.Infra.SQL.ParceiroModule;
 using LocadoraVeiculo.WindowsApp.Features.DarkModeFeature;
+using log4net;
 using System;
 using System.Drawing;
 using System.IO;
@@ -13,13 +14,14 @@ namespace LocadoraVeiculo.WindowsApp.Features.DescontoFeature
     public partial class TelaDescontoForm : Form
     {
         private Desconto desconto;
-        ControladorParceiro controladorParceiro;
-        ControladorDesconto controladorDesconto;
+        ParceiroAppService parceiroService;
+
+        ParceiroDAO parceiroRepository = new ParceiroDAO();
+
         public TelaDescontoForm()
         {
-            controladorParceiro = new ControladorParceiro();
-            controladorDesconto = new ControladorDesconto();
-            InitializeComponent(); 
+            parceiroService = new ParceiroAppService(parceiroRepository, LogManager.GetLogger("Parceiro"));
+            InitializeComponent();
             SetColor();
             CarregarParceiros();
         }
@@ -109,7 +111,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.DescontoFeature
 
         private void CarregarParceiros()
         {
-            cbParceiros.DataSource = controladorParceiro.SelecionarTodos();
+            cbParceiros.DataSource = parceiroService.SelecionarTodosParceiros();
         }
     }
 }

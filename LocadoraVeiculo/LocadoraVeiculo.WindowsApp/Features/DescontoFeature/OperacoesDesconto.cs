@@ -1,7 +1,6 @@
 ﻿using LocadoraDeVeiculos.Aplicacao.DescontoModule;
 using LocadoraDeVeiculos.Aplicacao.LocacaoModule;
 using LocadoraDeVeiculos.Aplicacao.ParceiroModule;
-using LocadoraDeVeiculos.Controladores.LocacoModule;
 using LocadoraDeVeiculos.Dominio.DescontoModule;
 using LocadoraVeiculo.WindowsApp.Shared;
 using System;
@@ -15,7 +14,6 @@ namespace LocadoraVeiculo.WindowsApp.Features.DescontoFeature
         private readonly DescontoAppService descontoService;
         private readonly ParceiroAppService parceiroService;
         private readonly LocacaoAppService locacaoService;
-        private readonly ControladorLocacao controladorLocacao;
         private readonly TabelaDescontoControl tabelaDesconto;
 
         public OperacoesDesconto(DescontoAppService descontoService, ParceiroAppService parceiroService, LocacaoAppService locacaoService)
