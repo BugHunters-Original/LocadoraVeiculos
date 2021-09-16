@@ -1,11 +1,8 @@
-﻿using LocadoraDeVeiculos.AppConfigGeral;
+﻿using LocadoraDeVeiculos.Infra.JsonConfigGeral;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace LocadoraDeVeiculos.EmailLocadora
+namespace LocadoraDeVeiculos.Infra.EmailLocadora
 {
     public static class Email
     {
@@ -15,11 +12,11 @@ namespace LocadoraDeVeiculos.EmailLocadora
                 {"senha", "senha"}
             };
 
-        private static AppConfig appConfigControler;
+        private static JsonConfig appConfigControler;
 
         static Email()
         {
-            appConfigControler = new AppConfig(camposIniciais);
+            appConfigControler = new JsonConfig(camposIniciais);
         }
 
         public static string EmailLocadora

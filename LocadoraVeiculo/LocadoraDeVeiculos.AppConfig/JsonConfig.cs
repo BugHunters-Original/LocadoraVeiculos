@@ -1,12 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Configuration;
 
-namespace LocadoraDeVeiculos.AppConfigGeral
+namespace LocadoraDeVeiculos.Infra.JsonConfigGeral
 {
-    public class AppConfig
+    public class JsonConfig
     {
-        public AppConfig(Dictionary<string, string> camposIniciais)
+        public JsonConfig(Dictionary<string, string> camposIniciais)
         {
             AdicionarCamposCasoNaoExistente(camposIniciais);
         }

@@ -1,8 +1,8 @@
-﻿using LocadoraDeVeiculos.AppConfigGeral;
+﻿using LocadoraDeVeiculos.Infra.JsonConfigGeral;
 using System;
 using System.Collections.Generic;
 
-namespace LocadoraDeVeiculos.Combustiveis
+namespace LocadoraDeVeiculos.Infra.Combustivel
 {
     public static class PrecoCombustivel
     {
@@ -13,11 +13,11 @@ namespace LocadoraDeVeiculos.Combustiveis
                 {"precoAlcool", "0" },
             };
 
-        private static AppConfig appConfigControler;
+        private static JsonConfig appConfigControler;
 
         static PrecoCombustivel()
         {
-            appConfigControler = new AppConfig(camposIniciais);
+            appConfigControler = new JsonConfig(camposIniciais);
         }
 
         public static double PrecoGasolina
