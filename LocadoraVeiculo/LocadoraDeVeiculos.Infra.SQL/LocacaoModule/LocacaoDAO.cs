@@ -194,7 +194,7 @@ namespace LocadoraDeVeiculos.Infra.SQL.LocacaoModule
                     WHERE 
                         [CODIGO] = @CUPOM";
         #endregion
-        public void InserirLocacao(Locacao registro)
+        public void Inserir(Locacao registro)
         {
             registro.Id = Db.Insert(sqlInserirLocacao, ObtemParametrosLocacao(registro));
         }
@@ -218,12 +218,12 @@ namespace LocadoraDeVeiculos.Infra.SQL.LocacaoModule
         {
             return Db.GetAll(sqlLocacoesPendentes, ConverterEmLocacao).Count;
         }
-        public void EditarLocacao(int id, Locacao registro)
+        public void Editar(int id, Locacao registro)
         {
             registro.Id = id;
             Db.Update(sqlEditarLocacao, ObtemParametrosLocacao(registro));
         }
-        public bool ExcluirLocacao(int id)
+        public bool Excluir(int id)
         {
             try
             {
@@ -240,17 +240,21 @@ namespace LocadoraDeVeiculos.Infra.SQL.LocacaoModule
         {
             return Db.Exists(sqlExisteLocacao, AdicionarParametro("ID", id));
         }
-        public Locacao SelecionarLocacaoPorId(int id)
+        public Locacao SelecionarPorId(int id)
         {
             return Db.Get(sqlSelecionarLocacaoPorId, ConverterEmLocacao, AdicionarParametro("ID", id));
         }
-        public List<Locacao> SelecionarTodasLocacoes()
+        public List<Locacao> SelecionarTodos()
         {
             return Db.GetAll(sqlSelecionarTodasLocacoes, ConverterEmLocacao);
         }
         public int SelecionarLocacoesComCupons(string cupom)
         {
             return Db.GetAll(sqlSelecionarLocacoesComCupons, ConverterEmLocacao, AdicionarParametro("CUPOM", cupom)).Count;
+        }
+        public List<Locacao> SelecionarPesquisa(string combobox, string pesquisa)
+        {
+            throw new NotImplementedException();
         }
         private Dictionary<string, object> ObtemParametrosLocacao(Locacao locacao)
         {
@@ -348,5 +352,6 @@ namespace LocadoraDeVeiculos.Infra.SQL.LocacaoModule
         {
             return new Dictionary<string, object>() { { campo, valor } };
         }
+
     }
 }

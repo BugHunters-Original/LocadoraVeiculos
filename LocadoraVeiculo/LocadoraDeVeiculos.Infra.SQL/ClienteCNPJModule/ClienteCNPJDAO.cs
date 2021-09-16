@@ -81,13 +81,13 @@ namespace LocadoraDeVeiculos.Infra.SQL.ClienteCNPJModule
                 [ID] = @ID";
         #endregion
 
-        public void EditarClienteCNPJ(int id, ClienteCNPJ registro)
+        public void Editar(int id, ClienteCNPJ registro)
         {
             registro.Id = id;
             Db.Update(sqlEditarCliente, ObtemParametrosCliente(registro));
         }
 
-        public bool ExcluirClienteCNPJ(int id)
+        public bool Excluir(int id)
         {
             try
             {
@@ -106,7 +106,7 @@ namespace LocadoraDeVeiculos.Infra.SQL.ClienteCNPJModule
             return Db.Exists(sqlExisteCliente, AdicionarParametro("ID", id));
         }
 
-        public void InserirClienteCNPJ(ClienteCNPJ registro)
+        public void Inserir(ClienteCNPJ registro)
         {
             registro.Id = Db.Insert(sqlInserirCliente, ObtemParametrosCliente(registro));
         }

@@ -144,18 +144,18 @@ namespace LocadoraDeVeiculos.Infra.SQL.ClienteCPFModule
             WHERE 
                 [ID] = @ID";
         #endregion
-        public void InserirClienteCPF(ClienteCPF cliente)
+        public void Inserir(ClienteCPF cliente)
         {
             cliente.Id = Db.Insert(sqlInserirCondutor, ObtemParametrosCondutor(cliente));
         }
 
-        public void EditarClienteCPF(int id, ClienteCPF cliente)
+        public void Editar(int id, ClienteCPF cliente)
         {
             cliente.Id = id;
             Db.Update(sqlEditarCondutor, ObtemParametrosCondutor(cliente));
         }
 
-        public bool ExcluirClienteCPF(int id)
+        public bool Excluir(int id)
         {
             try
             {

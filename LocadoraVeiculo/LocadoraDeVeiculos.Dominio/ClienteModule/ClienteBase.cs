@@ -13,6 +13,10 @@ namespace LocadoraDeVeiculos.Dominio.ClienteModule
         {
             throw new NotImplementedException();
         }
+        public override string ToString()
+        {
+            return Nome;
+        }
         public string Nome { get; set; }
         public string Endereco { get; set; }
         public string Telefone { get; set; }
