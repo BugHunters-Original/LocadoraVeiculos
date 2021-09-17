@@ -17,7 +17,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.TaxaServicoFeature
 
         public void ConfigurarGridLightMode()
         {
-            dgTaxas.ConfigurarGridZebrado(); 
+            dgTaxas.ConfigurarGridZebrado();
         }
 
         public DataGridViewColumn[] ObterColunas()
@@ -46,9 +46,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.TaxaServicoFeature
 
             foreach (Servico servico in servicos)
             {
-                string tipo = "Diário";
-                if (servico.TipoCalculo == 1)
-                    tipo = "Fixo";
+                string tipo = servico.TipoCalculo == 1 ? "Fixo" : "Diário";
                 dgTaxas.Rows.Add(servico.Id, servico.Nome, servico.Preco, tipo);
             }
         }

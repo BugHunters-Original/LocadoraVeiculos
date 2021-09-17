@@ -24,7 +24,7 @@ namespace LocadoraDeVeiculos.Aplicacao.VeiculoModule
             {
                 logger.Debug($"Registrando Veículo {veiculo}...");
 
-                veiculoRepository.InserirVeiculo(veiculo);
+                veiculoRepository.Inserir(veiculo);
 
                 logger.Debug($"Veículo {veiculo} registrado com sucesso!");
             }
@@ -38,7 +38,7 @@ namespace LocadoraDeVeiculos.Aplicacao.VeiculoModule
             {
                 logger.Debug($"Editando veículo {veiculo}...");
 
-                veiculoRepository.EditarVeiculo(id, veiculo);
+                veiculoRepository.Editar(id, veiculo);
 
                 logger.Debug($"Veículo {veiculo} editado com sucesso!");
             }
@@ -46,7 +46,7 @@ namespace LocadoraDeVeiculos.Aplicacao.VeiculoModule
 
         public bool ExcluirVeiculo(int id)
         {
-            return veiculoRepository.ExcluirVeiculo(id);
+            return veiculoRepository.Excluir(id);
         }
 
         public Veiculo SelecionarVeiculoPorId(int id)

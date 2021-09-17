@@ -1,6 +1,7 @@
 ﻿using System;
-using System.Windows.Forms;
+using log4net;
 using System.Threading;
+using System.Windows.Forms;
 using LocadoraVeiculo.WindowsApp.Shared;
 using LocadoraVeiculo.WindowsApp.Features.DescontoFeature;
 using LocadoraVeiculo.WindowsApp.Features.DashboardFeature;
@@ -17,7 +18,6 @@ using LocadoraVeiculo.WindowsApp.Features.DarkModeFeature;
 using LocadoraVeiculo.WindowsApp.Features.LoginFeature;
 using LocadoraDeVeiculos.Aplicacao.ParceiroModule;
 using LocadoraDeVeiculos.Infra.SQL.ParceiroModule;
-using log4net;
 using LocadoraDeVeiculos.Infra.SQL.ClienteCNPJModule;
 using LocadoraDeVeiculos.Infra.SQL.ClienteCPFModule;
 using LocadoraDeVeiculos.Dominio.ClienteModule;
@@ -55,7 +55,7 @@ namespace LocadoraVeiculo.WindowsApp
         public static DescontoDAO descontoRepository = new();
         public static ParceiroDAO parceiroRepository = new();
         public static TaxaDaLocacaoDAO taxaRepository = new();
-        public static LocacaoDAO locacaoRepository = new(descontoRepository, cpfRepository, cnpjRepository, veiculoRepository, taxaRepository);
+        public static LocacaoDAO locacaoRepository = new();
 
         public static ClienteCNPJAppService cnpjService = new(cnpjRepository, LogManager.GetLogger("Cliente"));
         public static ClienteCPFAppService cpfService = new(cpfRepository, LogManager.GetLogger("Cliente"));
@@ -94,7 +94,7 @@ namespace LocadoraVeiculo.WindowsApp
 
             AtualizarRodape(configuracao.TipoCadastro);
 
-            operacoes = new OperacoesLocacao(locacaoService, cpfService, veiculoService);
+            operacoes = new OperacoesLocacao(locacaoService, cpfService, veiculoService, cnpjService, descontoService);
 
             ConfigurarPainelRegistros();
 

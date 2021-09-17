@@ -15,7 +15,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.LocacaoFeature
     public partial class TabelaLocacaoControl : UserControl, IAparenciaAlteravel
     {
 
-        LocacaoDAO locacaoDAO = new(new DescontoDAO(), new ClienteCPFDAO(), new ClienteCNPJDAO(), new VeiculoDAO(), new TaxaDaLocacaoDAO());
+        LocacaoDAO locacaoDAO = new();
 
         public TabelaLocacaoControl()
         {

@@ -1,5 +1,4 @@
-﻿
-using LocadoraDeVeiculos.Dominio.FuncionarioModule;
+﻿using LocadoraDeVeiculos.Dominio.FuncionarioModule;
 using LocadoraVeiculo.WindowsApp.Features.DarkModeFeature;
 using System;
 using System.Drawing;
@@ -25,7 +24,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.FuncionarioFeature
             this.BackColor = DarkMode.corPanel;
             this.ForeColor = DarkMode.corFonte;
             text_IdFuncionario.BackColor = Color.DarkSeaGreen;
-            text_NomeFuncionario.BackColor = DarkMode.corFundoTxBox; 
+            text_NomeFuncionario.BackColor = DarkMode.corFundoTxBox;
             text_salarioFuncionario.BackColor = DarkMode.corFundoTxBox;
             text_SenhaFuncionario.BackColor = DarkMode.corFundoTxBox;
             text_UsuarioFuncionario.BackColor = DarkMode.corFundoTxBox;
@@ -81,9 +80,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.FuncionarioFeature
 
             DateTime dataEntrada = date_EntradaFuncionario.Value;
 
-
             funcionario = new Funcionario(nome, salario, dataEntrada, cpf, usuario, senha);
-
 
             string resultadoValidacao = funcionario.Validar();
 

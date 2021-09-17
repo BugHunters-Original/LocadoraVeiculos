@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
 namespace LocadoraDeVeiculos.Dominio.Shared
 {
@@ -15,6 +11,7 @@ namespace LocadoraDeVeiculos.Dominio.Shared
         public bool Excluir(int id);
 
         public bool Existe(int id);
+
         public T SelecionarPorId(int id);
 
         public List<T> SelecionarTodos();

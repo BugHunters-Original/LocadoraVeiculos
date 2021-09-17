@@ -104,6 +104,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.ParceiroFeature
         public List<string> PreencheComboBoxDePesquisa()
         {
             List<string> preencheLista = new List<string>();
+
             preencheLista.Add("NOME_PARCEIRO");
 
             return preencheLista;

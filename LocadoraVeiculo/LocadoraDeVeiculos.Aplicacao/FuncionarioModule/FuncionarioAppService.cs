@@ -1,10 +1,6 @@
 ﻿using LocadoraDeVeiculos.Dominio.FuncionarioModule;
 using log4net;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace LocadoraDeVeiculos.Aplicacao.FuncionarioModule
 {
@@ -27,7 +23,7 @@ namespace LocadoraDeVeiculos.Aplicacao.FuncionarioModule
             {
                 logger.Debug($"Registrando funcionário {funcionario.Nome}...");
 
-                funcionarioRepository.InserirFuncionario(funcionario);
+                funcionarioRepository.Inserir(funcionario);
 
                 logger.Debug($"Funcionário {funcionario.Nome} registrado com sucesso!");
             }
@@ -40,7 +36,7 @@ namespace LocadoraDeVeiculos.Aplicacao.FuncionarioModule
             {
                 logger.Debug($"Editando funcionário {funcionario.Nome}...");
 
-                funcionarioRepository.EditarFuncionario(id, funcionario);
+                funcionarioRepository.Editar(id, funcionario);
 
                 logger.Debug($"Funcionário {funcionario.Nome} Editado com sucesso!");
             }
@@ -48,7 +44,7 @@ namespace LocadoraDeVeiculos.Aplicacao.FuncionarioModule
 
         public bool ExcluirFuncionario(int id)
         {
-            return funcionarioRepository.ExcluirFuncionario(id);
+            return funcionarioRepository.Excluir(id);
         }
 
         public List<Funcionario> SelecionarPesquisa(string comboBox, string pesquisa)

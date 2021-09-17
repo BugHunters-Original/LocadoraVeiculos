@@ -23,7 +23,7 @@ namespace LocadoraDeVeiculos.Aplicacao.ParceiroModule
             {
                 logger.Debug($"Registrando parceiro {parceiro}...");
 
-                parceiroRepository.InserirParceiro(parceiro);
+                parceiroRepository.Inserir(parceiro);
 
                 logger.Debug($"Parceiro {parceiro} registrado com sucesso!");
             }
@@ -37,7 +37,7 @@ namespace LocadoraDeVeiculos.Aplicacao.ParceiroModule
             {
                 logger.Debug($"Editando funcionário {funcionario.Nome}...");
 
-                parceiroRepository.EditarParceiro(id, funcionario);
+                parceiroRepository.Editar(id, funcionario);
 
                 logger.Debug($"Funcionário {funcionario.Nome} Editando com sucesso!");
             }
@@ -45,7 +45,7 @@ namespace LocadoraDeVeiculos.Aplicacao.ParceiroModule
 
         public bool ExcluirParceiro(int id)
         {
-            return parceiroRepository.ExcluirParceiro(id);
+            return parceiroRepository.Excluir(id);
         }
 
         public List<Parceiro> SelecionarPesquisa(string comboBox, string pesquisa)

@@ -67,17 +67,17 @@ namespace LocadoraDeVeiculos.Infra.SQL.ParceiroModule
                         COLUNADEPESQUISA LIKE @SEGUNDAREF+'%'";
         #endregion
 
-        public void InserirParceiro(Parceiro parceiro)
+        public void Inserir(Parceiro parceiro)
         {
             parceiro.Id = Db.Insert(sqlInserirParceiro, ObtemParametrosParceiro(parceiro));
         }
-        public void EditarParceiro(int id, Parceiro parceiro)
+        public void Editar(int id, Parceiro parceiro)
         {
             parceiro.Id = id;
             Db.Update(sqlEditarParceiro, ObtemParametrosParceiro(parceiro));
         }
 
-        public bool ExcluirParceiro(int id)
+        public bool Excluir(int id)
         {
             try
             {

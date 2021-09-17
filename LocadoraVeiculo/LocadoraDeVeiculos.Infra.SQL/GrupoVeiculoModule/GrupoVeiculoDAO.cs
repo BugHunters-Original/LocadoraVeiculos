@@ -7,7 +7,7 @@ using LocadoraDeVeiculos.Infra.Shared;
 
 namespace LocadoraDeVeiculos.Infra.SQL.GrupoVeiculoModule
 {
-    public class GrupoVeiculoDAO: IGrupoVeiculoRepository
+    public class GrupoVeiculoDAO : IGrupoVeiculoRepository
     {
 
         #region Queries
@@ -102,9 +102,9 @@ namespace LocadoraDeVeiculos.Infra.SQL.GrupoVeiculoModule
                     WHERE 
                         COLUNADEPESQUISA LIKE @SEGUNDAREF+'%'";
         #endregion
-              
 
-        public bool ExcluirGrupoVeiculo(int id)
+
+        public bool Excluir(int id)
         {
             try
             {
@@ -139,20 +139,21 @@ namespace LocadoraDeVeiculos.Infra.SQL.GrupoVeiculoModule
             return Db.GetAll(sqlSelecionarTodosTipoGrupoVeiculo, ConverterEmGrupoVeiculo);
         }
 
-        public void InserirGrupoVeiculo(GrupoVeiculo grupoVeiculo){       
-           
+        public void Inserir(GrupoVeiculo grupoVeiculo)
+        {
 
-          grupoVeiculo.Id = Db.Insert(sqlInserirTipoGrupoVeiculo, ObtemParametrosTipoGrupoVeiculo(grupoVeiculo));
-            
-           
+
+            grupoVeiculo.Id = Db.Insert(sqlInserirTipoGrupoVeiculo, ObtemParametrosTipoGrupoVeiculo(grupoVeiculo));
+
+
         }
 
-        public void EditarGrupoVeiculo(int id, GrupoVeiculo grupoVeiculo)
+        public void Editar(int id, GrupoVeiculo grupoVeiculo)
         {
 
             grupoVeiculo.Id = id;
             Db.Update(sqlEditarTipoGrupoVeiculo, ObtemParametrosTipoGrupoVeiculo(grupoVeiculo));
-            
+
         }
 
         private GrupoVeiculo ConverterEmGrupoVeiculo(IDataReader reader)

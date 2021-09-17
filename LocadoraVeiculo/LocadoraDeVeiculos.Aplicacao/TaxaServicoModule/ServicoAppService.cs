@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 namespace LocadoraDeVeiculos.Aplicacao.ServicoModule
 {
     public class ServicoAppService
-    { 
+    {
         private readonly IServicoRepository taxaServicoRepository;
         private readonly ILog logger;
 
@@ -27,7 +27,7 @@ namespace LocadoraDeVeiculos.Aplicacao.ServicoModule
             {
                 logger.Debug($"Registrando Serviço {registro.Nome}...");
 
-                taxaServicoRepository.InserirServico(registro);
+                taxaServicoRepository.Inserir(registro);
 
                 logger.Debug($"Serviço {registro.Nome} registrado com sucesso!");
             }
@@ -41,15 +41,15 @@ namespace LocadoraDeVeiculos.Aplicacao.ServicoModule
             {
                 logger.Debug($"Editando Serviço {registro.Nome}...");
 
-                taxaServicoRepository.EditarServico(id, registro);
-                
+                taxaServicoRepository.Editar(id, registro);
+
                 logger.Debug($"Serviço {registro.Nome} Editado com sucesso!");
             }
         }
 
         public bool ExcluirServico(int id)
         {
-            return taxaServicoRepository.ExcluirServico(id);
+            return taxaServicoRepository.Excluir(id);
         }
 
         public List<Servico> SelecionarPesquisa(string comboBox, string pesquisa)

@@ -95,18 +95,18 @@ namespace LocadoraDeVeiculos.Infra.SQL.FuncionarioModule
                 [ID] = @ID";
         #endregion
 
-        public void InserirFuncionario(Funcionario funcionario)
+        public void Inserir(Funcionario funcionario)
         {
-                funcionario.Id = Db.Insert(sqlInserirFuncionario, ObtemParametrosFuncionario(funcionario));
+            funcionario.Id = Db.Insert(sqlInserirFuncionario, ObtemParametrosFuncionario(funcionario));
         }
 
-        public void EditarFuncionario(int id, Funcionario funcionario)
-        {   
-                funcionario.Id = id;
-                Db.Update(sqlEditarFuncionario, ObtemParametrosFuncionario(funcionario));       
+        public void Editar(int id, Funcionario funcionario)
+        {
+            funcionario.Id = id;
+            Db.Update(sqlEditarFuncionario, ObtemParametrosFuncionario(funcionario));
         }
 
-        public bool ExcluirFuncionario(int id)
+        public bool Excluir(int id)
         {
             try
             {

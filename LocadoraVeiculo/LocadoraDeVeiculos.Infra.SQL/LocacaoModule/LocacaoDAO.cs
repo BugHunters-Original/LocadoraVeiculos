@@ -199,14 +199,13 @@ namespace LocadoraDeVeiculos.Infra.SQL.LocacaoModule
                     WHERE 
                         [CODIGO] = @CUPOM";
         #endregion
-        public LocacaoDAO(DescontoDAO descontoDAO, ClienteCPFDAO clienteCPFDAO, ClienteCNPJDAO clienteCNPJDAO,
-                         VeiculoDAO veiculoDAO, TaxaDaLocacaoDAO taxaDaLocacaoDAO)
+        public LocacaoDAO()
         {
-            this.descontoDAO = descontoDAO;
-            this.clienteCPFDAO = clienteCPFDAO;
-            this.clienteCNPJDAO = clienteCNPJDAO;
-            this.veiculoDAO = veiculoDAO;
-            this.taxaDaLocacaoDAO = taxaDaLocacaoDAO;
+            descontoDAO = new();
+            clienteCPFDAO = new();
+            clienteCNPJDAO = new();
+            veiculoDAO = new();
+            taxaDaLocacaoDAO = new();
         }
         public void Inserir(Locacao registro)
         {
