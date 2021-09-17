@@ -43,6 +43,9 @@ namespace LocadoraVeiculo.WindowsApp
 {
     public partial class TelaPrincipalForm : Form
     {
+        public static EnviaEmail email = new();
+        public static MontaPdf pdf = new();
+
         public static ClienteCNPJDAO cnpjRepository = new();
         public static ClienteCPFDAO cpfRepository = new();
         public static GrupoVeiculoDAO grupoVeiculoRepository = new();
@@ -63,9 +66,6 @@ namespace LocadoraVeiculo.WindowsApp
         public static ServicoAppService servicoService = new(servicoRepository, LogManager.GetLogger("Funcionário"));
         public static DescontoAppService descontoService = new(descontoRepository, LogManager.GetLogger("Desconto"));
         public static ParceiroAppService parceiroService = new(parceiroRepository, LogManager.GetLogger("Parceiro"));
-
-        public static EnviaEmail email = new();
-        public static MontaPdf pdf = new();
 
         public static TelaPrincipalForm Instancia;
         public static DashboardControl dash;
@@ -94,7 +94,7 @@ namespace LocadoraVeiculo.WindowsApp
 
             AtualizarRodape(configuracao.TipoCadastro);
 
-            operacoes = new OperacoesLocacao(locacaoService, cpfService);
+            operacoes = new OperacoesLocacao(locacaoService, cpfService, veiculoService);
 
             ConfigurarPainelRegistros();
 

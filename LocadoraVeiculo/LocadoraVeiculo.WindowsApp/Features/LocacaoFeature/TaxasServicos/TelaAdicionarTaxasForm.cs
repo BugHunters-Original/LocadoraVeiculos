@@ -1,6 +1,6 @@
-﻿using LocadoraDeVeiculos.Controladores.ServicoModule;
-using LocadoraDeVeiculos.Dominio.ServicoModule;
+﻿using LocadoraDeVeiculos.Dominio.ServicoModule;
 using LocadoraDeVeiculos.Dominio.TaxaDaLocacaoModule;
+using LocadoraDeVeiculos.Infra.SQL.TaxaServicoModule.ServicoModule;
 using LocadoraVeiculo.WindowsApp.Features.DarkModeFeature;
 using System;
 using System.Collections.Generic;
@@ -11,7 +11,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.LocacaoFeature.TaxasServicos
 {
     public partial class TelaAdicionarTaxasForm : Form
     {
-        private ControladorServico controladorServico;
+        private ServicoDAO servicoDAO;
         private List<Servico> servicosTaxas;
         public List<Servico> Servicos
         {
@@ -20,7 +20,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.LocacaoFeature.TaxasServicos
 
         public TelaAdicionarTaxasForm()
         {
-            controladorServico = new ControladorServico();
+            servicoDAO = new ServicoDAO();
             InitializeComponent();
 
             PopularBox();
@@ -43,7 +43,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.LocacaoFeature.TaxasServicos
 
         public void CheckBoxTaxas(List<TaxaDaLocacao> lista)
         {
-            List<Servico> servicos = controladorServico.SelecionarTodos();
+            List<Servico> servicos = servicoDAO.SelecionarTodos();
 
             foreach (var item in servicos)
             {
@@ -59,7 +59,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.LocacaoFeature.TaxasServicos
 
         private void PopularBox()
         {
-            List<Servico> servicos = controladorServico.SelecionarTodos();
+            List<Servico> servicos = servicoDAO.SelecionarTodos();
             servicos.ForEach(x => cBoxTaxas.Items.Add(x));
         }
 

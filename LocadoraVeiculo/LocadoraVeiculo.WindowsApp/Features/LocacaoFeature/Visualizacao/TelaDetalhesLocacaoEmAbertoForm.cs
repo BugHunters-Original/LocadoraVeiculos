@@ -1,7 +1,7 @@
-﻿using LocadoraDeVeiculos.Controladores.TaxaDaLocacaoModule;
-using LocadoraDeVeiculos.Dominio.LocacaoModule;
+﻿using LocadoraDeVeiculos.Dominio.LocacaoModule;
 using LocadoraDeVeiculos.Dominio.TaxaDaLocacaoModule;
-using LocadoraDeVeiculos.ExportacaoPDF;
+using LocadoraDeVeiculos.Infra.InternetServices;
+using LocadoraDeVeiculos.Infra.SQL.TaxaServicoModule.TaxaDaLocacaoModule;
 using LocadoraVeiculo.WindowsApp.Features.DarkModeFeature;
 using System;
 using System.Collections.Generic;
@@ -14,11 +14,11 @@ namespace LocadoraVeiculo.WindowsApp.Features.LocacaoFeature.Visualizacao
     public partial class TelaDetalhesLocacaoEmAbertoForm : Form
     {
         private Locacao locacao;
-        private readonly ControladorTaxaDaLocacao controladorTaxaDaLocacao;
+        private readonly TaxaDaLocacaoDAO taxaDaLocacaoDAO;
 
         public TelaDetalhesLocacaoEmAbertoForm()
         {
-            controladorTaxaDaLocacao = new ControladorTaxaDaLocacao();
+            taxaDaLocacaoDAO = new TaxaDaLocacaoDAO();
             InitializeComponent();
             SetColor();
         }
@@ -58,7 +58,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.LocacaoFeature.Visualizacao
 
         private void PreencherListaTaxa()
         {
-            List<TaxaDaLocacao> lista = controladorTaxaDaLocacao.SelecionarTaxasDeUmaLocacao(locacao.Id);
+            List<TaxaDaLocacao> lista = taxaDaLocacaoDAO.SelecionarTaxasDeUmaLocacao(locacao.Id);
 
             if (lista != null)
                 foreach (var servico in lista)
@@ -117,7 +117,8 @@ namespace LocadoraVeiculo.WindowsApp.Features.LocacaoFeature.Visualizacao
 
         private void ExportarRecibo()
         {
-            string mensagem = ExportaPdf.EmailEnviar(locacao) ? $"Recibo enviado com sucesso para o e-mail [{locacao.Cliente.Email}]!" : $"Erro ao enviar recibo para o e-mail [{locacao.Cliente.Email}]!";
+            EnviaEmail email = new EnviaEmail();
+            string mensagem = email.EnviarEmail(locacao) ? $"Recibo enviado com sucesso para o e-mail [{locacao.Cliente.Email}]!" : $"Erro ao enviar recibo para o e-mail [{locacao.Cliente.Email}]!";
             TelaPrincipalForm.Instancia.AtualizarRodape(mensagem);
         }
     }

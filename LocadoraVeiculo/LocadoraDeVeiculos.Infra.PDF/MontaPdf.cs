@@ -1,20 +1,16 @@
 ﻿using iText.IO.Image;
-using iText.Kernel.Colors;
 using iText.Kernel.Geom;
 using iText.Kernel.Pdf;
 using iText.Layout;
 using iText.Layout.Element;
 using iText.Layout.Properties;
-using LocadoraVeiculo.EmailLocadora;
-using LocadoraVeiculo.LocacaoModule;
-using System.Net.Mail;
-using System.Windows.Forms;
+using LocadoraDeVeiculos.Dominio.LocacaoModule;
 
-namespace LocadoraVeiculo.ExportacaoPDF
+namespace LocadoraDeVeiculos.Infra.PDFLocacao
 {
-    public static class ExportaPdf
+    public class MontaPdf : IPDF
     {
-        public static bool ExportarLocacaoEmPDF(LocacaoVeiculo locacao)
+        public void MontarPDF(Locacao locacao)
         {
             using (PdfWriter wPdf = new PdfWriter($@"..\..\..\..\Recibos\recibo{locacao.Id}.pdf", new WriterProperties().SetPdfVersion(PdfVersion.PDF_2_0)))
             {
@@ -55,46 +51,6 @@ namespace LocadoraVeiculo.ExportacaoPDF
                 document.Close();
 
                 pdfDocument.Close();
-            }
-
-            return EmailEnviar(locacao);
-        }
-        public static bool EmailEnviar(LocacaoVeiculo locacao)
-        {
-            try
-            {
-                using (SmtpClient smtp = new SmtpClient())
-                {
-                    using (MailMessage email = new MailMessage())
-                    {
-                        //SERVIDOR
-                        smtp.Host = "smtp.gmail.com";
-                        smtp.UseDefaultCredentials = false;
-                        smtp.Credentials = new System.Net.NetworkCredential(Email.EmailLocadora, Email.SenhaLocadora);
-                        smtp.Port = 587;
-                        smtp.EnableSsl = true;
-
-                        //EMAIL
-                        email.From = new MailAddress(Email.EmailLocadora);
-                        email.To.Add(locacao.Cliente.Email);
-
-                        email.Subject = "BeeCar";
-                        email.IsBodyHtml = false;
-                        email.Body = "Obrigado por utilizar nossos serviços, volte sempre!";
-
-
-                        email.Attachments.Add(new Attachment($@"..\..\..\..\Recibos\recibo{locacao.Id}.pdf"));
-
-                        //ENVIAR
-                        smtp.Send(email);
-                        return true;
-                    }
-                }
-            }
-            catch (System.Exception ex)
-            {
-                MessageBox.Show("Erro ao enviar o E-mail: " + ex.Message);
-                return false;
             }
         }
     }

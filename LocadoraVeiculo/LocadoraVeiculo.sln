@@ -47,7 +47,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LocadoraDeVeiculos.Infra.In
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "4.3 PDF", "4.3 PDF", "{45A72FA2-2DF3-4B27-BB29-B5DABC6466A3}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LocadoraDeVeiculos.Infra.PDFLocacao", "LocadoraDeVeiculos.Infra.PDF\LocadoraDeVeiculos.Infra.PDFLocacao.csproj", "{5A85A38F-4A40-4B15-8B0F-63D0CC6322A7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LocadoraDeVeiculos.Infra.ReciboPDF", "LocadoraDeVeiculos.Infra.PDF\LocadoraDeVeiculos.Infra.ReciboPDF.csproj", "{5A85A38F-4A40-4B15-8B0F-63D0CC6322A7}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "4.4 Extension Methods", "4.4 Extension Methods", "{FFB21922-BBC8-497E-BDCE-F2F69E42645B}"
 EndProject
@@ -59,7 +59,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "4.5 Config Methods", "4.5 C
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Shared", "Shared", "{B89FC8CC-5B78-4B1A-8E78-22B7E9BDAE1D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LocadoraDeVeiculos.Infra.Shared", "LocadoraDeVeiculos.Infra.Shared\LocadoraDeVeiculos.Infra.Shared.csproj", "{E775AD2C-0760-4D44-8ECB-70602E2AD9B5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LocadoraDeVeiculos.Infra.Shared", "LocadoraDeVeiculos.Infra.Shared\LocadoraDeVeiculos.Infra.Shared.csproj", "{E775AD2C-0760-4D44-8ECB-70602E2AD9B5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
