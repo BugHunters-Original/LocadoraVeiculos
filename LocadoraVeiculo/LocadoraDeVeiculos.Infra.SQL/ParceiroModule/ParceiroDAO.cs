@@ -1,5 +1,4 @@
-﻿
-using LocadoraDeVeiculos.Dominio.ParceiroModule;
+﻿using LocadoraDeVeiculos.Dominio.ParceiroModule;
 using LocadoraDeVeiculos.Infra.Shared;
 using System;
 using System.Collections.Generic;

@@ -1,7 +1,10 @@
-﻿using LocadoraDeVeiculos.Controladores.GrupoVeiculoModule;
+﻿
+using LocadoraDeVeiculos.Aplicacao.GrupoVeiculoModule;
 using LocadoraDeVeiculos.Dominio.GrupoVeiculoModule;
 using LocadoraDeVeiculos.Dominio.VeiculoModule;
+using LocadoraDeVeiculos.Infra.SQL.GrupoVeiculoModule;
 using LocadoraVeiculo.WindowsApp.Features.DarkModeFeature;
+using log4net;
 using System;
 using System.Drawing;
 using System.IO;
@@ -12,10 +15,14 @@ namespace LocadoraVeiculo.WindowsApp.Features.VeiculoFeature
     public partial class TelaVeiculoForm : Form
     {
         public Veiculo veiculo;
-        ControladorGrupoVeiculo controladorGrupoVeiculo = new ControladorGrupoVeiculo();
+        GrupoVeiculoAppService grupoService;
+        IGrupoVeiculoRepository grupoRepository;
+        
 
         public TelaVeiculoForm()
         {
+            grupoRepository = new GrupoVeiculoDAO();
+            grupoService = new(grupoRepository, LogManager.GetLogger("Grupo Veículo"));
             InitializeComponent();
             SetColor();
             CarregarGrupos();
@@ -64,7 +71,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.VeiculoFeature
 
         private void CarregarGrupos()
         {
-            cmbGrupo.DataSource = controladorGrupoVeiculo.SelecionarTodos();
+            cmbGrupo.DataSource = grupoService.SelecionarTodosGruposVeiculos();
         }
 
         public Veiculo Veiculo

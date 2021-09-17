@@ -1,5 +1,4 @@
 ﻿using LocadoraDeVeiculos.Aplicacao.ServicoModule;
-using LocadoraDeVeiculos.Controladores.ServicoModule;
 using LocadoraDeVeiculos.Dominio.ServicoModule;
 using LocadoraDeVeiculos.Dominio.TaxaDaLocacaoModule;
 using LocadoraVeiculo.WindowsApp.Shared;

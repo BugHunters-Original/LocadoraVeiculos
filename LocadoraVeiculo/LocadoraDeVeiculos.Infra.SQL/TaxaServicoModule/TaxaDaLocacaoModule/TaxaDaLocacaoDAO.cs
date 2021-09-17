@@ -10,6 +10,7 @@ using LocadoraDeVeiculos.Infra.SQL.ClienteCNPJModule;
 using LocadoraDeVeiculos.Infra.SQL.ClienteCPFModule;
 using LocadoraDeVeiculos.Infra.SQL.DescontoModule;
 using LocadoraDeVeiculos.Infra.SQL.TaxaServicoModule.ServicoModule;
+using LocadoraDeVeiculos.Infra.SQL.VeiculoModule;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -191,7 +192,7 @@ namespace LocadoraDeVeiculos.Infra.SQL.TaxaServicoModule.TaxaDaLocacaoModule
 
             var controladorCPF = new ClienteCPFDAO();
             var controladorCNPJ = new ClienteCNPJDAO();
-            ControladorVeiculo controladorVeiculo = new ControladorVeiculo();
+            VeiculoDAO controladorVeiculo = new();
 
             ClienteCPF condutor = controladorCPF.SelecionarPorId(idCondutor);
             Veiculo veiculo = controladorVeiculo.SelecionarPorId(idVeiculo);
