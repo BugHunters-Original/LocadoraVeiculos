@@ -23,6 +23,11 @@ namespace LocadoraDeVeiculos.Dominio.DescontoModule
             ValorMinimo = valorMinimo;
         }
 
+        public Desconto()
+        {
+
+        }
+
         public string Nome { get; set; }
         public string Codigo { get; set; }
         public decimal Valor { get; set; }

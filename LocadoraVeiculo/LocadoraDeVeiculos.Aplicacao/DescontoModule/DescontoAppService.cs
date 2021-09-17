@@ -15,6 +15,7 @@ namespace LocadoraDeVeiculos.Aplicacao.DescontoModule
             this.logger = logger;
         }
 
+
         public void RegistrarNovoDesconto(Desconto desconto)
         {
             string resultadoValidacaoDominio = desconto.Validar();

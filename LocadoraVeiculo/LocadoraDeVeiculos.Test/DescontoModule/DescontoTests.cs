@@ -1,7 +1,11 @@
 ﻿using FluentAssertions;
+using LocadoraDeVeiculos.Aplicacao.DescontoModule;
+using LocadoraDeVeiculos.Aplicacao.ParceiroModule;
 using LocadoraDeVeiculos.Dominio.DescontoModule;
 using LocadoraDeVeiculos.Dominio.ParceiroModule;
+using log4net;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Moq;
 using System;
 
 namespace LocadoraDeVeiculos.Test.DescontoModule
@@ -9,6 +13,7 @@ namespace LocadoraDeVeiculos.Test.DescontoModule
     [TestClass]
     public class DescontoTests
     {
+        ILog log;
         Parceiro parceiro;
         public DescontoTests()
         {
@@ -167,6 +172,28 @@ namespace LocadoraDeVeiculos.Test.DescontoModule
 
             //assert
             resultadoValidacao.Should().Be("O campo Nome está inválido");
+        }
+
+        [TestMethod]
+        public void DeveValidar_Desconto000000000()
+        {
+            //arrange
+            Mock<Desconto> descontoMock = new Mock<Desconto>();
+
+            descontoMock.Setup(x => x.Validar()).Returns("ESTA_VALIDO");
+
+            Desconto desconto = descontoMock.Object;
+
+            Mock<IDescontoRepository> mock = new Mock<IDescontoRepository>();
+
+            //action
+            DescontoAppService sut = new DescontoAppService(mock.Object, log);
+
+            sut.RegistrarNovoDesconto(desconto);
+
+
+            //assert
+            mock.Verify(x => x.InserirDesconto(It.IsAny<Desconto>()));
         }
     }
 }
