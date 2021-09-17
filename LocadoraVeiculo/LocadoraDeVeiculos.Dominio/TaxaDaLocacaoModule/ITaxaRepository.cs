@@ -15,5 +15,6 @@ namespace LocadoraDeVeiculos.Dominio.TaxaDaLocacaoModule
         TaxaDaLocacao SelecionarPorId(int id);
         List<TaxaDaLocacao> SelecionarTodos();
         List<TaxaDaLocacao> SelecionarPesquisa(string coluna, string pesquisa);
+        List<TaxaDaLocacao> SelecionarTaxasDeUmaLocacao(int id);
     }
 }

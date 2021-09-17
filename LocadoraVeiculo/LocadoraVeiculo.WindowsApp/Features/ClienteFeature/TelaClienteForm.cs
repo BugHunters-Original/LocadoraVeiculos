@@ -1,7 +1,7 @@
-﻿using LocadoraDeVeiculos.Controladores.ClienteCNPJModule;
-using LocadoraDeVeiculos.Dominio.ClienteModule;
+﻿using LocadoraDeVeiculos.Dominio.ClienteModule;
 using LocadoraDeVeiculos.Dominio.ClienteModule.ClienteCNPJModule;
 using LocadoraDeVeiculos.Dominio.ClienteModule.ClienteCPFModule;
+using LocadoraDeVeiculos.Infra.SQL.ClienteCNPJModule;
 using LocadoraVeiculo.WindowsApp.Features.DarkModeFeature;
 using System;
 using System.Collections.Generic;
@@ -14,13 +14,12 @@ namespace LocadoraVeiculo.WindowsApp.Features.ClienteFeature
     public partial class TelaClienteForm : Form
     {
         private ClienteBase cliente;
-        private readonly ControladorClienteCNPJ controladorClienteCNPJ;
-
+        private ClienteCNPJDAO clienteCNPJDAO;
         public TelaClienteForm()
         {
-            controladorClienteCNPJ = new ControladorClienteCNPJ();
+            clienteCNPJDAO = new();
             InitializeComponent();
-            PopularCombobox(); 
+            PopularCombobox();
             SetColor();
         }
 
@@ -109,12 +108,9 @@ namespace LocadoraVeiculo.WindowsApp.Features.ClienteFeature
 
         private void PopularCombobox()
         {
-            List<ClienteCNPJ> empresas = controladorClienteCNPJ.SelecionarTodos();
+            List<ClienteCNPJ> empresas = clienteCNPJDAO.SelecionarTodos();
 
-            foreach (ClienteCNPJ empresa in empresas)
-            {
-                cbEmpresas.Items.Add(empresa);
-            }
+            empresas.ForEach(x => cbEmpresas.Items.Add(x));
         }
 
         private void rbFisico_CheckedChanged(object sender, EventArgs e)
@@ -139,15 +135,16 @@ namespace LocadoraVeiculo.WindowsApp.Features.ClienteFeature
 
         private void btnGravar_Click(object sender, EventArgs e)
         {
+            string nome = txtNome.Text;
+            string endereco = txtEndereco.Text;
+            string telefone = mskTelefone.Text;
+            string email = txtEmail.Text;
+
             if (rbFisico.Checked)
             {
-                string nome = txtNome.Text;
-                string endereco = txtEndereco.Text;
-                string telefone = mskTelefone.Text;
                 string cpf = mskCpf.Text;
                 string rg = mskRg.Text;
                 string cnh = mskCnh.Text;
-                string email = txtEmail.Text;
                 DateTime dataValidade = dtDataValidade.Value;
                 ClienteCNPJ empresa = (ClienteCNPJ)cbEmpresas.SelectedItem;
 
@@ -156,11 +153,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.ClienteFeature
             }
             else
             {
-                string nome = txtNome.Text;
-                string endereco = txtEndereco.Text;
-                string telefone = mskTelefone.Text;
                 string cnpj = mskCnpj.Text;
-                string email = txtEmail.Text;
 
                 cliente = new ClienteCNPJ(nome, endereco, telefone, cnpj, email);
 

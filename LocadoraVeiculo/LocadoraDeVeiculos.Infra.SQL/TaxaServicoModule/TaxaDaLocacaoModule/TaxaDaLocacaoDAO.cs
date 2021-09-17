@@ -14,9 +14,6 @@ using LocadoraDeVeiculos.Infra.SQL.VeiculoModule;
 using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace LocadoraDeVeiculos.Infra.SQL.TaxaServicoModule.TaxaDaLocacaoModule
 {
@@ -96,8 +93,8 @@ namespace LocadoraDeVeiculos.Infra.SQL.TaxaServicoModule.TaxaDaLocacaoModule
 
         public void EditarTaxa(int id, TaxaDaLocacao registro)
         {
-                registro.Id = id;
-                Db.Update(sqlEditarTaxaLocacao, ObtemParametrosTaxaLocacao(registro));
+            registro.Id = id;
+            Db.Update(sqlEditarTaxaLocacao, ObtemParametrosTaxaLocacao(registro));
         }
 
         public bool ExcluirTaxa(int id)

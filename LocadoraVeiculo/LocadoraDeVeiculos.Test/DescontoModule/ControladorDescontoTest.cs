@@ -1,9 +1,7 @@
 ﻿using FluentAssertions;
-using LocadoraDeVeiculos.Controladores.DescontoModule;
-using LocadoraDeVeiculos.Controladores.ParceiroModule;
-using LocadoraDeVeiculos.Controladores.Shared;
 using LocadoraDeVeiculos.Dominio.DescontoModule;
 using LocadoraDeVeiculos.Dominio.ParceiroModule;
+using LocadoraDeVeiculos.Infra.Shared;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 

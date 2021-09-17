@@ -1,5 +1,10 @@
-﻿using LocadoraDeVeiculos.Controladores.LocacoModule;
-using LocadoraDeVeiculos.Dominio.LocacaoModule;
+﻿using LocadoraDeVeiculos.Dominio.LocacaoModule;
+using LocadoraDeVeiculos.Infra.SQL.ClienteCNPJModule;
+using LocadoraDeVeiculos.Infra.SQL.ClienteCPFModule;
+using LocadoraDeVeiculos.Infra.SQL.DescontoModule;
+using LocadoraDeVeiculos.Infra.SQL.LocacaoModule;
+using LocadoraDeVeiculos.Infra.SQL.TaxaServicoModule.TaxaDaLocacaoModule;
+using LocadoraDeVeiculos.Infra.SQL.VeiculoModule;
 using LocadoraVeiculo.WindowsApp.Features.LocacaoFeature.Visualizacao;
 using LocadoraVeiculo.WindowsApp.Shared;
 using System.Collections.Generic;
@@ -10,7 +15,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.LocacaoFeature
     public partial class TabelaLocacaoControl : UserControl, IAparenciaAlteravel
     {
 
-        ControladorLocacao controlador = new ControladorLocacao();
+        LocacaoDAO locacaoDAO = new(new DescontoDAO(), new ClienteCPFDAO(), new ClienteCNPJDAO(), new VeiculoDAO(), new TaxaDaLocacaoDAO());
 
         public TabelaLocacaoControl()
         {
@@ -71,17 +76,13 @@ namespace LocadoraVeiculo.WindowsApp.Features.LocacaoFeature
             if (id == 0)
                 return;
 
-            Locacao locacaoSelecionada = controlador.SelecionarPorId(id);
+            Locacao locacaoSelecionada = locacaoDAO.SelecionarPorId(id);
             dynamic tela;
 
             if (locacaoSelecionada.StatusLocacao == "Em Aberto")
-            {
                 tela = new TelaDetalhesLocacaoEmAbertoForm();
-            }
             else
-            {
                 tela = new TelaDetalhesLocacaoConcluidaForm();
-            }
 
             tela.Locacao = locacaoSelecionada;
 

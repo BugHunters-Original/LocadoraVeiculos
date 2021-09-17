@@ -1,9 +1,9 @@
 ﻿using LocadoraDeVeiculos.Aplicacao.ClienteCPFModule;
 using LocadoraDeVeiculos.Aplicacao.LocacaoModule;
-using LocadoraDeVeiculos.Controladores.TaxaDaLocacaoModule;
-using LocadoraDeVeiculos.Controladores.VeiculoModule;
+using LocadoraDeVeiculos.Aplicacao.VeiculoModule;
 using LocadoraDeVeiculos.Dominio.LocacaoModule;
 using LocadoraDeVeiculos.Dominio.TaxaDaLocacaoModule;
+using LocadoraDeVeiculos.Infra.SQL.TaxaServicoModule.TaxaDaLocacaoModule;
 using LocadoraVeiculo.WindowsApp.Features.LocacaoFeature.Devolucao;
 using LocadoraVeiculo.WindowsApp.Features.NotaFiscalFeature;
 using LocadoraVeiculo.WindowsApp.Shared;
@@ -16,16 +16,17 @@ namespace LocadoraVeiculo.WindowsApp.Features.LocacaoFeature
     {
         private readonly LocacaoAppService locacaoService;
         private readonly ClienteCPFAppService cpfService;
-        private readonly ControladorVeiculo controladorVeiculo;
-        private readonly ControladorTaxaDaLocacao controladorTaxaDaLocacao;
+        private readonly VeiculoAppService veiculoService;
+        private readonly TaxaDaLocacaoDAO taxaLocacaoService;
         private readonly TabelaLocacaoControl tabelaLocacoes;
 
-        public OperacoesLocacao(LocacaoAppService locacaoService, ClienteCPFAppService cpfService)
+        public OperacoesLocacao(LocacaoAppService locacaoService, ClienteCPFAppService cpfService,
+                                VeiculoAppService veiculoService)
         {
             this.locacaoService = locacaoService;
             this.cpfService = cpfService;
-            controladorVeiculo = new ControladorVeiculo();
-            controladorTaxaDaLocacao = new ControladorTaxaDaLocacao();
+            this.veiculoService = veiculoService;
+            taxaLocacaoService = new TaxaDaLocacaoDAO();
             tabelaLocacoes = new TabelaLocacaoControl();
         }
 
@@ -91,18 +92,18 @@ namespace LocadoraVeiculo.WindowsApp.Features.LocacaoFeature
             if (tela.ShowDialog() == DialogResult.OK)
             {
                 if (tela.Locacao.Veiculo != locacaoSelecionada.Veiculo)
-                    controladorVeiculo.EditarDisponibilidade(tela.Locacao.Veiculo, locacaoSelecionada.Veiculo);
+                    veiculoService.EditarDisponibilidadeVeiculo(tela.Locacao.Veiculo, locacaoSelecionada.Veiculo);
 
                 locacaoService.EditarLocacao(id, tela.Locacao);
 
-                controladorTaxaDaLocacao.Excluir(locacaoSelecionada.Id);
+                taxaLocacaoService.ExcluirTaxa(locacaoSelecionada.Id);
 
                 if (tela.Servicos != null)
                 {
                     foreach (var item in tela.Servicos)
                     {
                         TaxaDaLocacao taxaDaLocacao = new TaxaDaLocacao(item, tela.Locacao);
-                        controladorTaxaDaLocacao.InserirNovo(taxaDaLocacao);
+                        taxaLocacaoService.InserirTaxa(taxaDaLocacao);
                     }
                 }
 
@@ -127,7 +128,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.LocacaoFeature
             {
                 locacaoService.ConcluirLocacao(locacaoSelecionada.Id, locacaoSelecionada);
 
-                controladorTaxaDaLocacao.Excluir(locacaoSelecionada.Id);
+                taxaLocacaoService.ExcluirTaxa(locacaoSelecionada.Id);
 
                 locacaoService.ExcluirLocacao(id);
 
@@ -176,7 +177,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.LocacaoFeature
 
                 if (tela.Servicos != null)
                     foreach (var item in tela.Servicos)
-                        controladorTaxaDaLocacao.InserirNovo(new TaxaDaLocacao(item, tela.Locacao));
+                        taxaLocacaoService.InserirTaxa(new TaxaDaLocacao(item, tela.Locacao));
 
                 List<Locacao> locacaoes = locacaoService.SelecionarTodasLocacoes();
 
@@ -206,7 +207,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.LocacaoFeature
         }
         private bool VerificarPossibilidadeDeInsercao()
         {
-            if (controladorVeiculo.SelecionarTodosDisponiveis().Count == 0)
+            if (veiculoService.SelecionarTodosDisponiveis().Count == 0)
             {
                 MessageBox.Show("Nenhum Veículo disponível para Locação!", "Adição de Locações",
                             MessageBoxButtons.OK, MessageBoxIcon.Exclamation);

@@ -4,46 +4,46 @@ using System.IO;
 using System.Linq;
 using System.Windows.Forms;
 using System.Drawing;
-using LocadoraDeVeiculos.Dominio.LocacaoModule;
-using LocadoraDeVeiculos.Controladores.ClienteCPFModule;
-using LocadoraDeVeiculos.Controladores.ClienteCNPJModule;
-using LocadoraDeVeiculos.Controladores.VeiculoModule;
-using LocadoraDeVeiculos.Controladores.TaxaDaLocacaoModule;
-using LocadoraDeVeiculos.Controladores.DescontoModule;
-using LocadoraDeVeiculos.Controladores.LocacoModule;
-using LocadoraVeiculo.WindowsApp.Features.LocacaoFeature.TaxasServicos;
-using LocadoraDeVeiculos.Dominio.ServicoModule;
 using LocadoraVeiculo.WindowsApp.Features.DarkModeFeature;
+using LocadoraVeiculo.WindowsApp.Features.LocacaoFeature.TaxasServicos;
+using LocadoraDeVeiculos.Dominio.LocacaoModule;
+using LocadoraDeVeiculos.Dominio.ServicoModule;
 using LocadoraDeVeiculos.Dominio.VeiculoModule;
 using LocadoraDeVeiculos.Dominio.TaxaDaLocacaoModule;
 using LocadoraDeVeiculos.Dominio.ClienteModule;
 using LocadoraDeVeiculos.Dominio.DescontoModule;
 using LocadoraDeVeiculos.Dominio.ClienteModule.ClienteCNPJModule;
 using LocadoraDeVeiculos.Dominio.ClienteModule.ClienteCPFModule;
+using LocadoraDeVeiculos.Infra.SQL.ClienteCPFModule;
+using LocadoraDeVeiculos.Infra.SQL.ClienteCNPJModule;
+using LocadoraDeVeiculos.Infra.SQL.VeiculoModule;
+using LocadoraDeVeiculos.Infra.SQL.TaxaServicoModule.TaxaDaLocacaoModule;
+using LocadoraDeVeiculos.Infra.SQL.DescontoModule;
+using LocadoraDeVeiculos.Infra.SQL.LocacaoModule;
 
 namespace LocadoraVeiculo.WindowsApp.Features.LocacaoFeature
 {
     public partial class TelaLocacaoForm : Form
     {
         private Locacao locacao;
-        private readonly ControladorClienteCPF controladorCPF;
-        private readonly ControladorClienteCNPJ controladorCNPJ;
-        private readonly ControladorVeiculo controladorVeiculo;
-        private readonly ControladorTaxaDaLocacao controladorTaxaDaLocacao;
-        private readonly ControladorDesconto controladorDesconto;
-        private readonly ControladorLocacao controladorLocacao;
+        private readonly ClienteCPFDAO clienteCPFDAO;
+        private readonly ClienteCNPJDAO clienteCNPJDAO;
+        private readonly VeiculoDAO veiculoDAO;
+        private readonly TaxaDaLocacaoDAO taxaDaLocacaoDAO;
+        private readonly DescontoDAO descontoDAO;
+        private readonly LocacaoDAO locacaoDAO;
         readonly TelaAdicionarTaxasForm telaDasTaxas;
         public List<Servico> Servicos { get; set; }
 
 
         public TelaLocacaoForm()
         {
-            controladorCPF = new ControladorClienteCPF();
-            controladorCNPJ = new ControladorClienteCNPJ();
-            controladorVeiculo = new ControladorVeiculo();
-            controladorTaxaDaLocacao = new ControladorTaxaDaLocacao();
-            controladorDesconto = new ControladorDesconto();
-            controladorLocacao = new ControladorLocacao();
+            clienteCPFDAO = new();
+            clienteCNPJDAO = new();
+            veiculoDAO = new();
+            taxaDaLocacaoDAO = new();
+            descontoDAO = new();
+            locacaoDAO = new(descontoDAO, clienteCPFDAO, clienteCNPJDAO, veiculoDAO, taxaDaLocacaoDAO);
             telaDasTaxas = new TelaAdicionarTaxasForm();
             InitializeComponent();
             PopularComboboxes();
@@ -110,13 +110,13 @@ namespace LocadoraVeiculo.WindowsApp.Features.LocacaoFeature
         }
         private void PopularComboboxes()
         {
-            var locacoes = controladorLocacao.SelecionarTodasLocacoesPendentes();
+            var locacoes = locacaoDAO.SelecionarTodasLocacoesPendentes();
 
-            var clientesCPF = controladorCPF.SelecionarTodos();
+            var clientesCPF = clienteCPFDAO.SelecionarTodos();
 
-            var clientesCNPJ = controladorCNPJ.SelecionarTodos();
+            var clientesCNPJ = clienteCNPJDAO.SelecionarTodos();
 
-            var veiculos = controladorVeiculo.SelecionarTodosDisponiveis();
+            var veiculos = veiculoDAO.SelecionarTodosDisponiveis();
 
             locacoes.ForEach(x => clientesCPF.Remove(x.Condutor));
 
@@ -130,7 +130,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.LocacaoFeature
         {
             veiculo.DisponibilidadeVeiculo = 0;
 
-            controladorVeiculo.Editar(veiculo.Id, veiculo);
+            veiculoDAO.EditarVeiculo(veiculo.Id, veiculo);
         }
         private static decimal? CalcularPrecoPlanoPorDias(Veiculo veiculo, string tipoLocacao, int dias)
         {
@@ -150,7 +150,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.LocacaoFeature
         }
         private void PreencherListaTaxa()
         {
-            List<TaxaDaLocacao> lista = controladorTaxaDaLocacao.SelecionarTaxasDeUmaLocacao(locacao.Id);
+            List<TaxaDaLocacao> lista = taxaDaLocacaoDAO.SelecionarTaxasDeUmaLocacao(locacao.Id);
 
             if (lista != null)
                 lista.ForEach(x => listServicos.Items.Add(x));
@@ -161,7 +161,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.LocacaoFeature
         {
             ClienteCNPJ cliente = (ClienteCNPJ)cbCliente.SelectedItem;
 
-            List<ClienteCPF> condutoresRelacionados = controladorCPF.SelecionarPorIdEmpresa(cliente.Id);
+            List<ClienteCPF> condutoresRelacionados = clienteCPFDAO.SelecionarPorIdEmpresa(cliente.Id);
 
             cbCondutor.Items.Clear();
 
@@ -173,7 +173,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.LocacaoFeature
 
             Veiculo veiculo = (Veiculo)cbVeiculo.SelectedItem;
 
-            Desconto desconto = txtCupom.Text != "" ? controladorDesconto.VerificarCodigoValido(txtCupom.Text) : null;
+            Desconto desconto = txtCupom.Text != "" ? descontoDAO.VerificarCodigoValido(txtCupom.Text) : null;
 
             int tipoCliente = cbCliente.SelectedItem is ClienteCPF ? 0 : 1;
 
@@ -243,7 +243,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.LocacaoFeature
         {
             if (txtCupom.Text == "")
                 return;
-            Desconto desconto = controladorDesconto.VerificarCodigoValido(txtCupom.Text);
+            Desconto desconto = descontoDAO.VerificarCodigoValido(txtCupom.Text);
             if (desconto == null || desconto.Validade.Date < dtRetorno.Value.Date)
             {
                 MessageBox.Show("Cupom Inválido, verifique se o código do cupom está correto, ou se sua" +
