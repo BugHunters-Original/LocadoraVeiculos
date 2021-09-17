@@ -5,6 +5,11 @@ using LocadoraDeVeiculos.Dominio.LocacaoModule;
 using LocadoraDeVeiculos.Dominio.ServicoModule;
 using LocadoraDeVeiculos.Dominio.VeiculoModule;
 using LocadoraDeVeiculos.Infra.Shared;
+using LocadoraDeVeiculos.Infra.SQL.ClienteCNPJModule;
+using LocadoraDeVeiculos.Infra.SQL.ClienteCPFModule;
+using LocadoraDeVeiculos.Infra.SQL.DescontoModule;
+using LocadoraDeVeiculos.Infra.SQL.TaxaServicoModule.TaxaDaLocacaoModule;
+using LocadoraDeVeiculos.Infra.SQL.VeiculoModule;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -13,6 +18,11 @@ namespace LocadoraDeVeiculos.Infra.SQL.LocacaoModule
 {
     public class LocacaoDAO : ILocacaoRepository
     {
+        private readonly DescontoDAO descontoDAO;
+        private readonly ClienteCPFDAO clienteCPFDAO;
+        private readonly ClienteCNPJDAO clienteCNPJDAO;
+        private readonly VeiculoDAO veiculoDAO;
+        private readonly TaxaDaLocacaoDAO taxaDaLocacaoDAO;
         #region Queries
         private const string sqlInserirLocacao =
             @"INSERT INTO TBLOCACAO
@@ -189,6 +199,15 @@ namespace LocadoraDeVeiculos.Infra.SQL.LocacaoModule
                     WHERE 
                         [CODIGO] = @CUPOM";
         #endregion
+        public LocacaoDAO(DescontoDAO descontoDAO, ClienteCPFDAO clienteCPFDAO, ClienteCNPJDAO clienteCNPJDAO,
+                         VeiculoDAO veiculoDAO, TaxaDaLocacaoDAO taxaDaLocacaoDAO)
+        {
+            this.descontoDAO = descontoDAO;
+            this.clienteCPFDAO = clienteCPFDAO;
+            this.clienteCNPJDAO = clienteCNPJDAO;
+            this.veiculoDAO = veiculoDAO;
+            this.taxaDaLocacaoDAO = taxaDaLocacaoDAO;
+        }
         public void Inserir(Locacao registro)
         {
             registro.Id = Db.Insert(sqlInserirLocacao, ObtemParametrosLocacao(registro));
@@ -285,9 +304,8 @@ namespace LocadoraDeVeiculos.Infra.SQL.LocacaoModule
             Desconto desconto = null;
             if (reader["ID_DESCONTO"] != DBNull.Value)
             {
-                ControladorDesconto controladorDesconto = new ControladorDesconto();
                 int idDesconto = Convert.ToInt32(reader["ID_DESCONTO"]);
-                desconto = controladorDesconto.SelecionarPorId(idDesconto);
+                desconto = descontoDAO.SelecionarPorId(idDesconto);
             }
 
             DateTime dataSaida = Convert.ToDateTime(reader["DATA_SAIDA"]);
@@ -313,31 +331,27 @@ namespace LocadoraDeVeiculos.Infra.SQL.LocacaoModule
             if (reader["PRECOSERVICOS"] != DBNull.Value)
                 precoServico = Convert.ToDecimal(reader["PRECOSERVICOS"]);
 
-            ControladorClienteCPF controladorCPF = new ControladorClienteCPF();
-            ControladorClienteCNPJ controladorCNPJ = new ControladorClienteCNPJ();
-            ControladorVeiculo controladorVeiculo = new ControladorVeiculo();
-            ControladorTaxaDaLocacao controladorTaxaDaLocacao = new ControladorTaxaDaLocacao();
 
-            ClienteCPF condutor = controladorCPF.SelecionarPorId(idCondutor);
-            Veiculo veiculo = controladorVeiculo.SelecionarPorId(idVeiculo);
+            ClienteCPF condutor = clienteCPFDAO.SelecionarPorId(idCondutor);
+
+            Veiculo veiculo = veiculoDAO.SelecionarPorId(idVeiculo);
 
             ClienteBase clienteLocador;
 
             if (tipoCliente == 1)
-                clienteLocador = controladorCNPJ.SelecionarPorId(idClienteLocador);
+                clienteLocador = clienteCNPJDAO.SelecionarPorId(idClienteLocador);
             else
-                clienteLocador = controladorCPF.SelecionarPorId(idClienteLocador);
+                clienteLocador = clienteCPFDAO.SelecionarPorId(idClienteLocador);
 
-            var taxas = controladorTaxaDaLocacao.SelecionarTaxasDeUmaLocacao(id);
+            var taxas = taxaDaLocacaoDAO.SelecionarTaxasDeUmaLocacao(id);
 
             List<Servico> servicos = new List<Servico>();
 
             foreach (var item in taxas)
                 servicos.Add(item.TaxaLocacao);
 
-            Locacao locacao = new Locacao(clienteLocador, veiculo, desconto, condutor,
-                                                    dataSaida, dataRetorno, plano, tipoCliente, precoServico,
-                                                    dias, status, precoGas, precoPlano, precoTotal, servicos);
+            Locacao locacao = new Locacao(clienteLocador, veiculo, desconto, condutor, dataSaida, dataRetorno, plano,
+                                          tipoCliente, precoServico, dias, status, precoGas, precoPlano, precoTotal, servicos);
 
             locacao.Id = id;
 

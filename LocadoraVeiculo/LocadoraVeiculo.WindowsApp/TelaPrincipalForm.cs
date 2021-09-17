@@ -35,8 +35,9 @@ using LocadoraDeVeiculos.Aplicacao.LocacaoModule;
 using LocadoraDeVeiculos.Infra.SQL.LocacaoModule;
 using LocadoraDeVeiculos.Infra.InternetServices;
 using LocadoraDeVeiculos.Infra.PDFLocacao;
-using LocadoraDeVeiculos.Infra.SQL.VeiculoModule; 
+using LocadoraDeVeiculos.Infra.SQL.VeiculoModule;
 using LocadoraDeVeiculos.Aplicacao.VeiculoModule;
+using LocadoraDeVeiculos.Infra.SQL.TaxaServicoModule.TaxaDaLocacaoModule;
 
 namespace LocadoraVeiculo.WindowsApp
 {
@@ -45,12 +46,13 @@ namespace LocadoraVeiculo.WindowsApp
         public static ClienteCNPJDAO cnpjRepository = new();
         public static ClienteCPFDAO cpfRepository = new();
         public static GrupoVeiculoDAO grupoVeiculoRepository = new();
-        public static LocacaoDAO locacaoRepository = new();
         public static VeiculoDAO veiculoRepository = new();
         public static FuncionarioDAO funcionarioRepository = new();
         public static ServicoDAO servicoRepository = new();
         public static DescontoDAO descontoRepository = new();
         public static ParceiroDAO parceiroRepository = new();
+        public static TaxaDaLocacaoDAO taxaRepository = new();
+        public static LocacaoDAO locacaoRepository = new(descontoRepository, cpfRepository, cnpjRepository, veiculoRepository, taxaRepository);
 
         public static ClienteCNPJAppService cnpjService = new(cnpjRepository, LogManager.GetLogger("Cliente"));
         public static ClienteCPFAppService cpfService = new(cpfRepository, LogManager.GetLogger("Cliente"));

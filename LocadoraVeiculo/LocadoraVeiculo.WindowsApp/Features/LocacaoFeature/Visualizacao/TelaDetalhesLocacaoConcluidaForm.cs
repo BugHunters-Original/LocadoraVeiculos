@@ -1,7 +1,6 @@
-﻿using LocadoraDeVeiculos.Controladores.TaxaDaLocacaoModule;
-using LocadoraDeVeiculos.Dominio.LocacaoModule;
+﻿using LocadoraDeVeiculos.Dominio.LocacaoModule;
 using LocadoraDeVeiculos.Dominio.TaxaDaLocacaoModule;
-using LocadoraDeVeiculos.ExportacaoPDF;
+using LocadoraDeVeiculos.Infra.SQL.TaxaServicoModule.TaxaDaLocacaoModule;
 using LocadoraVeiculo.WindowsApp.Features.DarkModeFeature;
 using System;
 using System.Collections.Generic;
@@ -14,11 +13,11 @@ namespace LocadoraVeiculo.WindowsApp.Features.LocacaoFeature.Visualizacao
     public partial class TelaDetalhesLocacaoConcluidaForm : Form
     {
         private Locacao locacao;
-        private readonly ControladorTaxaDaLocacao controladorTaxaDaLocacao;
+        private readonly TaxaDaLocacaoDAO TaxaDaLocacaoDAO;
 
         public TelaDetalhesLocacaoConcluidaForm()
         {
-            controladorTaxaDaLocacao = new ControladorTaxaDaLocacao();
+            TaxaDaLocacaoDAO = new TaxaDaLocacaoDAO();
             InitializeComponent();
             SetColor();
         }
@@ -64,7 +63,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.LocacaoFeature.Visualizacao
 
         private void PreencherListaTaxa()
         {
-            List<TaxaDaLocacao> lista = controladorTaxaDaLocacao.SelecionarTaxasDeUmaLocacao(locacao.Id);
+            List<TaxaDaLocacao> lista = TaxaDaLocacaoDAO.SelecionarTaxasDeUmaLocacao(locacao.Id);
 
             if (lista != null)
                 foreach (var servico in lista)

@@ -1,11 +1,6 @@
 ﻿using LocadoraDeVeiculos.Dominio.LocacaoModule;
-using LocadoraDeVeiculos.EmailLocadora;
-using System;
-using System.Collections.Generic;
-using System.Linq;
+using LocadoraDeVeiculos.Infra.EmailLocadora;
 using System.Net.Mail;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace LocadoraDeVeiculos.Infra.InternetServices
 {
