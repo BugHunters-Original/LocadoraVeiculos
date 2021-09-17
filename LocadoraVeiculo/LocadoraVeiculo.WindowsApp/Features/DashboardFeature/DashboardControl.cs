@@ -1,26 +1,32 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
-using LocadoraDeVeiculos.Controladores.LocacoModule;
-using LocadoraDeVeiculos.Controladores.VeiculoModule;
 using LocadoraDeVeiculos.Dominio.VeiculoModule;
 using LocadoraDeVeiculos.Dominio.LocacaoModule;
 using LocadoraVeiculo.WindowsApp.Features.DarkModeFeature;
 using LocadoraVeiculo.WindowsApp.Shared;
 using LocadoraVeiculo.WindowsApp.Features.VeiculoFeature;
+using LocadoraDeVeiculos.Infra.SQL.VeiculoModule;
+using LocadoraDeVeiculos.Infra.SQL.LocacaoModule;
+using LocadoraDeVeiculos.Infra.SQL.ClienteCPFModule;
+using LocadoraDeVeiculos.Infra.SQL.ClienteCNPJModule;
+using LocadoraDeVeiculos.Infra.SQL.TaxaServicoModule.TaxaDaLocacaoModule;
+using LocadoraDeVeiculos.Infra.SQL.DescontoModule;
+using LocadoraVeiculo.WindowsApp.Features.LocacaoFeature.TaxasServicos;
 
 namespace LocadoraVeiculo.WindowsApp.Features.DashboardFeature
 {
     public partial class DashboardControl : UserControl, IAparenciaAlteravel
     {
-        ControladorVeiculo controladorVeiculo;
-        ControladorLocacao controladorLocacao;
+        private readonly VeiculoDAO veiculoDAO;
+        private readonly LocacaoDAO locacaoDAO;
+
         private static string telaAtual = "";
 
         public DashboardControl()
         {
-            controladorVeiculo = new ControladorVeiculo(); 
-            controladorLocacao = new ControladorLocacao();
+            veiculoDAO = new VeiculoDAO();
+            locacaoDAO = new LocacaoDAO(new DescontoDAO(), new ClienteCPFDAO(), new ClienteCNPJDAO(), new VeiculoDAO(), new TaxaDaLocacaoDAO());
             InitializeComponent();
             TrataLabels();
             ConfigurarGridLightMode();
@@ -116,13 +122,13 @@ namespace LocadoraVeiculo.WindowsApp.Features.DashboardFeature
         }
         private void TrataLabels()
         {
-            int quantidadeAlugados = controladorVeiculo.ReturnQuantidadeAlugados();
+            int quantidadeAlugados = veiculoDAO.ReturnQuantidadeAlugados();
             labelAlugados.Text = quantidadeAlugados.ToString();
 
-            int quantidadeDisponiveis = controladorVeiculo.ReturnQuantidadeDisponiveis();
+            int quantidadeDisponiveis = veiculoDAO.ReturnQuantidadeDisponiveis();
             labelInLoco.Text = quantidadeDisponiveis.ToString();
 
-            int quantidadePendentes = controladorLocacao.SelecionarQuantidadeLocacoesPendentes();
+            int quantidadePendentes = locacaoDAO.SelecionarQuantidadeLocacoesPendentes();
             labelPendentes.Text = quantidadePendentes.ToString();
         }
         private void ObterTodosCarrosAlugados()
@@ -132,7 +138,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.DashboardFeature
             dtDashboard.Columns.AddRange(ObterColunasCarros());
             labelTipoVisualizacao.Text = "CARROS ALUGADOS";
 
-            List<Veiculo> veiculos = controladorVeiculo.SelecionarTodosAlugados();
+            List<Veiculo> veiculos = veiculoDAO.SelecionarTodosAlugados();
 
             AdicionarVeiculosNaTabela(veiculos);
         }
@@ -143,7 +149,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.DashboardFeature
             dtDashboard.Columns.AddRange(ObterColunasLocacoesPendentes());
             labelTipoVisualizacao.Text = "LOCAÇÕES PENDENTES";
 
-            List<Locacao> locacoes = controladorLocacao.SelecionarTodasLocacoesPendentes();
+            List<Locacao> locacoes = locacaoDAO.SelecionarTodasLocacoesPendentes();
 
             foreach (Locacao locacao in locacoes)
             {
@@ -158,7 +164,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.DashboardFeature
             dtDashboard.Columns.AddRange(ObterColunasCarros());
             labelTipoVisualizacao.Text = "CARROS DISPONIVEIS";
 
-            List<Veiculo> veiculos = controladorVeiculo.SelecionarTodosDisponiveis();
+            List<Veiculo> veiculos = veiculoDAO.SelecionarTodosDisponiveis();
 
             AdicionarVeiculosNaTabela(veiculos);
         }
@@ -192,7 +198,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.DashboardFeature
                 if (id == 0)
                     return;
 
-                Veiculo veiculoSelecionado = controladorVeiculo.SelecionarPorId(id);
+                Veiculo veiculoSelecionado = veiculoDAO.SelecionarPorId(id);
 
                 TelaDetalhesVeiculoForm tela = new TelaDetalhesVeiculoForm();
 

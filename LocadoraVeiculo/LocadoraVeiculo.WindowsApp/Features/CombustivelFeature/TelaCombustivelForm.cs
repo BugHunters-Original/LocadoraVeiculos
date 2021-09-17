@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Windows.Forms;
-using LocadoraDeVeiculos.Combustiveis;
 using LocadoraDeVeiculos.Dominio.CombustivelModule;
+using LocadoraDeVeiculos.Infra.Combustivel;
 using LocadoraVeiculo.WindowsApp.Features.DarkModeFeature;
 
 namespace LocadoraVeiculo.WindowsApp.Features.CombustivelFeature
@@ -18,7 +18,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.CombustivelFeature
         private void SetColor()
         {
             this.header_Combustivel.BackColor = DarkMode.corHeader;
-            this.BackColor = DarkMode.corPanel; 
+            this.BackColor = DarkMode.corPanel;
             this.ForeColor = DarkMode.corFonte;
             txtGasolina.BackColor = DarkMode.corFundoTxBox;
             txtDiesel.BackColor = DarkMode.corFundoTxBox;

@@ -1,5 +1,5 @@
-﻿using LocadoraDeVeiculos.Controladores.VeiculoModule;
-using LocadoraDeVeiculos.Dominio.VeiculoModule;
+﻿using LocadoraDeVeiculos.Dominio.VeiculoModule;
+using LocadoraDeVeiculos.Infra.SQL.VeiculoModule;
 using LocadoraVeiculo.WindowsApp.Shared;
 using System.Collections.Generic;
 using System.Windows.Forms;
@@ -8,7 +8,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.VeiculoFeature
 {
     public partial class TabelaVeiculoControl : UserControl, IAparenciaAlteravel
     {
-        ControladorVeiculo controlador = new ControladorVeiculo();
+        VeiculoDAO controlador = new();
 
         public TabelaVeiculoControl()
         {

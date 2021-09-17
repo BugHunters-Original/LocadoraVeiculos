@@ -1,5 +1,4 @@
 ﻿using LocadoraDeVeiculos.Aplicacao.FuncionarioModule;
-using LocadoraDeVeiculos.Controladores.FuncionarioModule;
 using LocadoraDeVeiculos.Dominio.FuncionarioModule;
 using LocadoraVeiculo.WindowsApp.Shared;
 using System;
@@ -12,7 +11,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.FuncionarioFeature
     {
         private readonly FuncionarioAppService funcionarioService;
         private readonly TabelaFuncionarioControl tabelaFuncionarios = null;
-        private readonly TelaPrincipalForm telaPrincipal = null;
+        private readonly TelaPrincipalForm telaPrincipal;
 
         public OperacoesFuncionario(FuncionarioAppService funcionarioService)
         {

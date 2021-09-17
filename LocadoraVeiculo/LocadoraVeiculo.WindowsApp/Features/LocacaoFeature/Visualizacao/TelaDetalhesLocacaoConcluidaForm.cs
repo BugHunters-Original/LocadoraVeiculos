@@ -1,5 +1,8 @@
 ﻿using LocadoraDeVeiculos.Dominio.LocacaoModule;
 using LocadoraDeVeiculos.Dominio.TaxaDaLocacaoModule;
+using LocadoraDeVeiculos.Infra.EmailLocadora;
+using LocadoraDeVeiculos.Infra.InternetServices;
+using LocadoraDeVeiculos.Infra.PDFLocacao;
 using LocadoraDeVeiculos.Infra.SQL.TaxaServicoModule.TaxaDaLocacaoModule;
 using LocadoraVeiculo.WindowsApp.Features.DarkModeFeature;
 using System;
@@ -134,7 +137,8 @@ namespace LocadoraVeiculo.WindowsApp.Features.LocacaoFeature.Visualizacao
 
         private void ExportarRecibo()
         {
-            string mensagem = ExportaPdf.EmailEnviar(locacao) ? $"Recibo enviado com sucesso para o e-mail [{locacao.Cliente.Email}]!" : $"Erro ao enviar recibo para o e-mail [{locacao.Cliente.Email}]!";
+            EnviaEmail email = new EnviaEmail();
+            string mensagem = email.EnviarEmail(locacao) ? $"Recibo enviado com sucesso para o e-mail [{locacao.Cliente.Email}]!" : $"Erro ao enviar recibo para o e-mail [{locacao.Cliente.Email}]!";
             TelaPrincipalForm.Instancia.AtualizarRodape(mensagem);
         }
     }

@@ -1,6 +1,5 @@
-﻿
-using LocadoraDeVeiculos.Combustiveis;
-using LocadoraDeVeiculos.Dominio.LocacaoModule;
+﻿using LocadoraDeVeiculos.Dominio.LocacaoModule;
+using LocadoraDeVeiculos.Infra.Combustivel;
 using LocadoraVeiculo.WindowsApp.Features.DarkModeFeature;
 using System;
 using System.IO;

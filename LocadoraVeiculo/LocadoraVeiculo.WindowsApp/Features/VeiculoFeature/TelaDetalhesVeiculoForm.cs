@@ -1,5 +1,4 @@
-﻿using LocadoraDeVeiculos.Controladores.GrupoVeiculoModule;
-using LocadoraDeVeiculos.Dominio.VeiculoModule;
+﻿using LocadoraDeVeiculos.Dominio.VeiculoModule;
 using LocadoraVeiculo.WindowsApp.Features.DarkModeFeature;
 using System.Drawing;
 using System.Windows.Forms;
@@ -17,7 +16,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.VeiculoFeature
         }
 
         private void SetColor()
-        { 
+        {
             this.header_DetalheVeiculo.BackColor = DarkMode.corHeader;
             this.BackColor = DarkMode.corFundo;
             this.ForeColor = DarkMode.corFonte;

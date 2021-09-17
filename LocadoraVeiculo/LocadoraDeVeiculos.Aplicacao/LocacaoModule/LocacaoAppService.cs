@@ -1,6 +1,7 @@
 ﻿using LocadoraDeVeiculos.Dominio.LocacaoModule;
 using log4net;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace LocadoraDeVeiculos.Aplicacao.LocacaoModule
 {
@@ -34,12 +35,7 @@ namespace LocadoraDeVeiculos.Aplicacao.LocacaoModule
 
                 logger.Debug($"PDF da Locação {locacao.Id} registrado com sucesso!");
 
-                var enviouOEmail = email.EnviarEmail(locacao);
-
-                if (enviouOEmail)
-                    logger.Debug($"E-Mail enviado para {locacao.Cliente.Email} com sucesso!");
-                else
-                    logger.Debug($"Erro ao enviar E-Mail para {locacao.Cliente.Email}!");
+                Task.Run(() => EnviarEmail(locacao));
             }
         }
         public void ConcluirLocacao(int id, Locacao locacao)
@@ -87,6 +83,15 @@ namespace LocadoraDeVeiculos.Aplicacao.LocacaoModule
         public int SelecionarLocacoesComCupons(string cupom)
         {
             return locacaoRepo.SelecionarLocacoesComCupons(cupom);
+        }
+        private void EnviarEmail(Locacao locacao)
+        {
+            var enviouOEmail = email.EnviarEmail(locacao);
+
+            if (enviouOEmail)
+                logger.Debug($"E-Mail enviado para {locacao.Cliente.Email} com sucesso!");
+            else
+                logger.Debug($"Erro ao enviar E-Mail para {locacao.Cliente.Email}!");
         }
     }
 }
