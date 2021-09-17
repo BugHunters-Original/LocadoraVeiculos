@@ -1,19 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using LocadoraDeVeiculos.Dominio.Shared;
 
 namespace LocadoraDeVeiculos.Dominio.ServicoModule
 {
-    public interface IServicoRepository
+    public interface IServicoRepository : IBaseRepository<Servico>
     {
-        void InserirServico(Servico funcionario);
-        void EditarServico(int id, Servico servico);
-        bool ExcluirServico(int id);
-        bool Existe(int id);
-        Servico SelecionarPorId(int id);
-        List<Servico> SelecionarTodos();
-        List<Servico> SelecionarPesquisa(string coluna, string pesquisa);
     }
 }

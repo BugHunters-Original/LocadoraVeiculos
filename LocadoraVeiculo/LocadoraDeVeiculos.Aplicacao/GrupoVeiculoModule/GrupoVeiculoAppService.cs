@@ -24,14 +24,15 @@ namespace LocadoraDeVeiculos.Aplicacao.GrupoVeiculoModule
             {
                 logger.Debug($"Registrando grupo veículo {grupoVeiculo}...");
 
-                grupoVeiculoRepository.InserirGrupoVeiculo(grupoVeiculo);
+                grupoVeiculoRepository.Inserir(grupoVeiculo);
 
                 logger.Debug($"Grupo Veículo {grupoVeiculo} registrado com sucesso!");
             }
 
         }
 
-        public void EditarNovoGrupoVeiculo(int id, GrupoVeiculo grupoVeiculo) {
+        public void EditarNovoGrupoVeiculo(int id, GrupoVeiculo grupoVeiculo)
+        {
 
             string resultadoValidacaoDominio = grupoVeiculo.Validar();
 
@@ -39,7 +40,7 @@ namespace LocadoraDeVeiculos.Aplicacao.GrupoVeiculoModule
             {
                 logger.Debug($"Editando funcionário {grupoVeiculo.NomeTipo}...");
 
-                grupoVeiculoRepository.EditarGrupoVeiculo(id, grupoVeiculo);
+                grupoVeiculoRepository.Editar(id, grupoVeiculo);
 
                 logger.Debug($"Grupo Veículo {grupoVeiculo.NomeTipo} editando com sucesso!");
             }
@@ -47,7 +48,7 @@ namespace LocadoraDeVeiculos.Aplicacao.GrupoVeiculoModule
 
         public bool ExcluirGrupoVeiculo(int id)
         {
-            return grupoVeiculoRepository.ExcluirGrupoVeiculo(id);
+            return grupoVeiculoRepository.Excluir(id);
         }
 
         public List<GrupoVeiculo> SelecionarPesquisa(string comboBox, string pesquisa)

@@ -9,8 +9,8 @@ namespace LocadoraVeiculo.WindowsApp.Features.GrupoVeiculoFeature
 {
     public class OperacoesGrupoVeiculo : ICadastravel
     {
-        GrupoVeiculoAppService grupoVeiculoService;
-        private readonly TabelaGrupoVeiculoControl tabelaGrupoVeiculo = null;
+        private readonly GrupoVeiculoAppService grupoVeiculoService;
+        private readonly TabelaGrupoVeiculoControl tabelaGrupoVeiculo;
 
         public OperacoesGrupoVeiculo(GrupoVeiculoAppService grupoVeiculoService)
         {
@@ -27,6 +27,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.GrupoVeiculoFeature
                 grupoVeiculoService.RegistrarNovoGrupoVeiculo(tela.GrupoVeiculo);
 
                 List<GrupoVeiculo> grupoVeiculos = grupoVeiculoService.SelecionarTodosGruposVeiculos();
+
                 tabelaGrupoVeiculo.AtualizarRegistros(grupoVeiculos);
 
                 TelaPrincipalForm.Instancia.AtualizarRodape($"Grupo de Veiculos: [{tela.GrupoVeiculo.NomeTipo}] inserido com sucesso");

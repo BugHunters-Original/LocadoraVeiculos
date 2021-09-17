@@ -23,7 +23,7 @@ namespace LocadoraDeVeiculos.Aplicacao.DescontoModule
             {
                 logger.Debug($"Registrando cupom de desconto {desconto.Nome}...");
 
-                descontoRepository.InserirDesconto(desconto);
+                descontoRepository.Inserir(desconto);
 
                 logger.Debug($"Cupom de desconto {desconto.Nome} registrado com sucesso!");
             }
@@ -37,7 +37,7 @@ namespace LocadoraDeVeiculos.Aplicacao.DescontoModule
             {
                 logger.Debug($"Editando cupom de desconto {desconto.Nome}...");
 
-                descontoRepository.EditarDesconto(id, desconto);
+                descontoRepository.Editar(id, desconto);
 
                 logger.Debug($"Cupom de desconto {desconto.Nome} Editando com sucesso!");
             }
@@ -50,7 +50,7 @@ namespace LocadoraDeVeiculos.Aplicacao.DescontoModule
 
         public bool ExcluirDesconto(int id)
         {
-            return descontoRepository.ExcluirDesconto(id);
+            return descontoRepository.Excluir(id);
         }
 
         public Desconto SelecionarPorId(int id)
@@ -66,6 +66,10 @@ namespace LocadoraDeVeiculos.Aplicacao.DescontoModule
         public bool VerificarCodigoExistente(string codigo)
         {
             return descontoRepository.VerificarCodigoExistente(codigo);
+        }
+        public Desconto VerificarCodigoValido(string codigo)
+        {
+            return descontoRepository.VerificarCodigoValido(codigo);
         }
     }
 }

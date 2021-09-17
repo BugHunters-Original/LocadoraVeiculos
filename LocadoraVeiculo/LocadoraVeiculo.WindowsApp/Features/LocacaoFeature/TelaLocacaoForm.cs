@@ -14,36 +14,38 @@ using LocadoraDeVeiculos.Dominio.ClienteModule;
 using LocadoraDeVeiculos.Dominio.DescontoModule;
 using LocadoraDeVeiculos.Dominio.ClienteModule.ClienteCNPJModule;
 using LocadoraDeVeiculos.Dominio.ClienteModule.ClienteCPFModule;
-using LocadoraDeVeiculos.Infra.SQL.ClienteCPFModule;
-using LocadoraDeVeiculos.Infra.SQL.ClienteCNPJModule;
-using LocadoraDeVeiculos.Infra.SQL.VeiculoModule;
 using LocadoraDeVeiculos.Infra.SQL.TaxaServicoModule.TaxaDaLocacaoModule;
-using LocadoraDeVeiculos.Infra.SQL.DescontoModule;
-using LocadoraDeVeiculos.Infra.SQL.LocacaoModule;
+using LocadoraDeVeiculos.Aplicacao.ClienteCPFModule;
+using LocadoraDeVeiculos.Aplicacao.VeiculoModule;
+using LocadoraDeVeiculos.Aplicacao.ClienteCNPJModule;
+using LocadoraDeVeiculos.Aplicacao.DescontoModule;
+using LocadoraDeVeiculos.Aplicacao.LocacaoModule;
 
 namespace LocadoraVeiculo.WindowsApp.Features.LocacaoFeature
 {
     public partial class TelaLocacaoForm : Form
     {
         private Locacao locacao;
-        private readonly ClienteCPFDAO clienteCPFDAO;
-        private readonly ClienteCNPJDAO clienteCNPJDAO;
-        private readonly VeiculoDAO veiculoDAO;
+        private readonly ClienteCPFAppService cpfService;
+        private readonly ClienteCNPJAppService cnpjService;
+        private readonly VeiculoAppService veiculoService;
+        private readonly DescontoAppService descontoService;
+        private readonly LocacaoAppService locacaoService;
         private readonly TaxaDaLocacaoDAO taxaDaLocacaoDAO;
-        private readonly DescontoDAO descontoDAO;
-        private readonly LocacaoDAO locacaoDAO;
         readonly TelaAdicionarTaxasForm telaDasTaxas;
         public List<Servico> Servicos { get; set; }
 
 
-        public TelaLocacaoForm()
+        public TelaLocacaoForm(ClienteCPFAppService cpfService, VeiculoAppService veiculoService,
+                               ClienteCNPJAppService cnpjService, DescontoAppService descontoService,
+                               LocacaoAppService locacaoService)
         {
-            clienteCPFDAO = new();
-            clienteCNPJDAO = new();
-            veiculoDAO = new();
+            this.cpfService = cpfService;
+            this.cnpjService = cnpjService;
+            this.veiculoService = veiculoService;
+            this.descontoService = descontoService;
+            this.locacaoService = locacaoService;
             taxaDaLocacaoDAO = new();
-            descontoDAO = new();
-            locacaoDAO = new(descontoDAO, clienteCPFDAO, clienteCNPJDAO, veiculoDAO, taxaDaLocacaoDAO);
             telaDasTaxas = new TelaAdicionarTaxasForm();
             InitializeComponent();
             PopularComboboxes();
@@ -110,13 +112,13 @@ namespace LocadoraVeiculo.WindowsApp.Features.LocacaoFeature
         }
         private void PopularComboboxes()
         {
-            var locacoes = locacaoDAO.SelecionarTodasLocacoesPendentes();
+            var locacoes = locacaoService.SelecionarTodasLocacoesPendentes();
 
-            var clientesCPF = clienteCPFDAO.SelecionarTodos();
+            var clientesCPF = cpfService.SelecionarTodosClientesCPF();
 
-            var clientesCNPJ = clienteCNPJDAO.SelecionarTodos();
+            var clientesCNPJ = cnpjService.SelecionarTodosClientesCNPJ();
 
-            var veiculos = veiculoDAO.SelecionarTodosDisponiveis();
+            var veiculos = veiculoService.SelecionarTodosDisponiveis();
 
             locacoes.ForEach(x => clientesCPF.Remove(x.Condutor));
 
@@ -130,7 +132,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.LocacaoFeature
         {
             veiculo.DisponibilidadeVeiculo = 0;
 
-            veiculoDAO.EditarVeiculo(veiculo.Id, veiculo);
+            veiculoService.EditarVeiculo(veiculo.Id, veiculo);
         }
         private static decimal? CalcularPrecoPlanoPorDias(Veiculo veiculo, string tipoLocacao, int dias)
         {
@@ -161,7 +163,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.LocacaoFeature
         {
             ClienteCNPJ cliente = (ClienteCNPJ)cbCliente.SelectedItem;
 
-            List<ClienteCPF> condutoresRelacionados = clienteCPFDAO.SelecionarPorIdEmpresa(cliente.Id);
+            List<ClienteCPF> condutoresRelacionados = cpfService.SelecionarPorIdEmpresa(cliente.Id);
 
             cbCondutor.Items.Clear();
 
@@ -173,7 +175,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.LocacaoFeature
 
             Veiculo veiculo = (Veiculo)cbVeiculo.SelectedItem;
 
-            Desconto desconto = txtCupom.Text != "" ? descontoDAO.VerificarCodigoValido(txtCupom.Text) : null;
+            Desconto desconto = txtCupom.Text != "" ? descontoService.VerificarCodigoValido(txtCupom.Text) : null;
 
             int tipoCliente = cbCliente.SelectedItem is ClienteCPF ? 0 : 1;
 
@@ -243,7 +245,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.LocacaoFeature
         {
             if (txtCupom.Text == "")
                 return;
-            Desconto desconto = descontoDAO.VerificarCodigoValido(txtCupom.Text);
+            Desconto desconto = descontoService.VerificarCodigoValido(txtCupom.Text);
             if (desconto == null || desconto.Validade.Date < dtRetorno.Value.Date)
             {
                 MessageBox.Show("Cupom Inválido, verifique se o código do cupom está correto, ou se sua" +

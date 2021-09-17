@@ -26,7 +26,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.DashboardFeature
         public DashboardControl()
         {
             veiculoDAO = new VeiculoDAO();
-            locacaoDAO = new LocacaoDAO(new DescontoDAO(), new ClienteCPFDAO(), new ClienteCNPJDAO(), new VeiculoDAO(), new TaxaDaLocacaoDAO());
+            locacaoDAO = new LocacaoDAO();
             InitializeComponent();
             TrataLabels();
             ConfigurarGridLightMode();

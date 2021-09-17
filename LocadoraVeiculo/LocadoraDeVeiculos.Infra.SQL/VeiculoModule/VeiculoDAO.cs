@@ -1,11 +1,9 @@
-﻿
-using LocadoraDeVeiculos.Dominio.GrupoVeiculoModule;
+﻿using LocadoraDeVeiculos.Dominio.GrupoVeiculoModule;
 using LocadoraDeVeiculos.Dominio.VeiculoModule;
 using LocadoraDeVeiculos.Infra.Shared;
 using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Linq;
 
 
 namespace LocadoraDeVeiculos.Infra.SQL.VeiculoModule
@@ -274,13 +272,13 @@ namespace LocadoraDeVeiculos.Infra.SQL.VeiculoModule
                         COLUNADEPESQUISA LIKE @SEGUNDAREF+'%'";
         #endregion
 
-        public void EditarVeiculo(int id, Veiculo veiculo)
+        public void Editar(int id, Veiculo veiculo)
         {
             veiculo.Id = id;
             Db.Update(sqlEditarVeiculo, ObtemParametrosVeiculo(veiculo));
         }
 
-        public bool ExcluirVeiculo(int id)
+        public bool Excluir(int id)
         {
             try
             {
@@ -299,7 +297,7 @@ namespace LocadoraDeVeiculos.Infra.SQL.VeiculoModule
             return Db.Exists(sqlExisteVeiculo, AdicionarParametro("ID", id));
         }
 
-        public void InserirVeiculo(Veiculo veiculo)
+        public void Inserir(Veiculo veiculo)
         {
             veiculo.Id = Db.Insert(sqlInserirVeiculo, ObtemParametrosVeiculo(veiculo));
         }

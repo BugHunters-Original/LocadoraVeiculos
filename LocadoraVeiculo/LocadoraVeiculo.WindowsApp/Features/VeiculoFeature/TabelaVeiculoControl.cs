@@ -1,5 +1,5 @@
-﻿using LocadoraDeVeiculos.Dominio.VeiculoModule;
-using LocadoraDeVeiculos.Infra.SQL.VeiculoModule;
+﻿using LocadoraDeVeiculos.Aplicacao.VeiculoModule;
+using LocadoraDeVeiculos.Dominio.VeiculoModule;
 using LocadoraVeiculo.WindowsApp.Shared;
 using System.Collections.Generic;
 using System.Windows.Forms;
@@ -8,14 +8,14 @@ namespace LocadoraVeiculo.WindowsApp.Features.VeiculoFeature
 {
     public partial class TabelaVeiculoControl : UserControl, IAparenciaAlteravel
     {
-        VeiculoDAO controlador = new();
-
-        public TabelaVeiculoControl()
+        VeiculoAppService veiculoService;
+        public TabelaVeiculoControl(VeiculoAppService veiculoService)
         {
             InitializeComponent();
             ConfigurarGridLightMode();
             gridVeiculos.ConfigurarGridSomenteLeitura();
             gridVeiculos.Columns.AddRange(ObterColunas());
+            this.veiculoService = veiculoService;
         }
 
         public void ConfigurarGridLightMode()
@@ -78,7 +78,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.VeiculoFeature
             if (id == 0)
                 return;
 
-            Veiculo veiculoSelecionado = controlador.SelecionarPorId(id);
+            Veiculo veiculoSelecionado = veiculoService.SelecionarVeiculoPorId(id);
 
             TelaDetalhesVeiculoForm tela = new TelaDetalhesVeiculoForm();
 

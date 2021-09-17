@@ -42,7 +42,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.ClienteFeature
 
             ClienteBase clienteSelecionado = VerificarTipoCliente(id, tipo);
 
-            TelaClienteForm tela = new TelaClienteForm();
+            TelaClienteForm tela = new TelaClienteForm(CNPJService);
 
             tela.Cliente = clienteSelecionado;
 
@@ -115,7 +115,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.ClienteFeature
 
         public void InserirNovoRegistro()
         {
-            TelaClienteForm tela = new TelaClienteForm();
+            TelaClienteForm tela = new TelaClienteForm(CNPJService);
             if (tela.ShowDialog() == DialogResult.OK)
             {
                 IEnumerable<ClienteBase> clientes = new List<ClienteBase>();

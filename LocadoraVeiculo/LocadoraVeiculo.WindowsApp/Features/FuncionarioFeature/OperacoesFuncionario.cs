@@ -10,14 +10,12 @@ namespace LocadoraVeiculo.WindowsApp.Features.FuncionarioFeature
     public class OperacoesFuncionario : ICadastravel
     {
         private readonly FuncionarioAppService funcionarioService;
-        private readonly TabelaFuncionarioControl tabelaFuncionarios = null;
-        private readonly TelaPrincipalForm telaPrincipal;
+        private readonly TabelaFuncionarioControl tabelaFuncionarios;
 
         public OperacoesFuncionario(FuncionarioAppService funcionarioService)
         {
             this.funcionarioService = funcionarioService;
             tabelaFuncionarios = new TabelaFuncionarioControl();
-            telaPrincipal = new TelaPrincipalForm();
         }
 
 
@@ -36,7 +34,6 @@ namespace LocadoraVeiculo.WindowsApp.Features.FuncionarioFeature
             Funcionario funcionarioSelecionado = funcionarioService.SelecionarPorId(id);
 
             TelaFuncionarioForm tela = new TelaFuncionarioForm();
-
 
             tela.Funcionario = funcionarioSelecionado;
 

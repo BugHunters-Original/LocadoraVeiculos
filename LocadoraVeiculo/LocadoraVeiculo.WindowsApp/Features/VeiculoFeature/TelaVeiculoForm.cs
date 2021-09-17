@@ -1,10 +1,7 @@
-﻿
-using LocadoraDeVeiculos.Aplicacao.GrupoVeiculoModule;
+﻿using LocadoraDeVeiculos.Aplicacao.GrupoVeiculoModule;
 using LocadoraDeVeiculos.Dominio.GrupoVeiculoModule;
 using LocadoraDeVeiculos.Dominio.VeiculoModule;
-using LocadoraDeVeiculos.Infra.SQL.GrupoVeiculoModule;
 using LocadoraVeiculo.WindowsApp.Features.DarkModeFeature;
-using log4net;
 using System;
 using System.Drawing;
 using System.IO;
@@ -16,13 +13,10 @@ namespace LocadoraVeiculo.WindowsApp.Features.VeiculoFeature
     {
         public Veiculo veiculo;
         GrupoVeiculoAppService grupoService;
-        IGrupoVeiculoRepository grupoRepository;
-        
 
-        public TelaVeiculoForm()
+        public TelaVeiculoForm(GrupoVeiculoAppService grupoService)
         {
-            grupoRepository = new GrupoVeiculoDAO();
-            grupoService = new(grupoRepository, LogManager.GetLogger("Grupo Veículo"));
+            this.grupoService = grupoService;
             InitializeComponent();
             SetColor();
             CarregarGrupos();
@@ -31,7 +25,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.VeiculoFeature
         private void SetColor()
         {
             this.header_Veiculo.BackColor = DarkMode.corHeader;
-            this.BackColor = DarkMode.corPanel; 
+            this.BackColor = DarkMode.corPanel;
             this.ForeColor = DarkMode.corFonte;
             txtId.BackColor = Color.DarkSeaGreen;
             txtNome.BackColor = DarkMode.corFundoTxBox;

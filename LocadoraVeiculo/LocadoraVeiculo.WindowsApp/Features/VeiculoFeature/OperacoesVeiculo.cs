@@ -17,7 +17,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.VeiculoFeature
         {
             this.veiculoService = veiculoService;
             this.grupoVeiculoService = grupoVeiculoService;
-            tabelaVeiculos = new TabelaVeiculoControl();
+            tabelaVeiculos = new TabelaVeiculoControl(veiculoService);
         }
 
         public void InserirNovoRegistro()
@@ -30,7 +30,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.VeiculoFeature
 
             }
 
-            TelaVeiculoForm tela = new TelaVeiculoForm();
+            TelaVeiculoForm tela = new TelaVeiculoForm(grupoVeiculoService);
 
             if (tela.ShowDialog() == DialogResult.OK)
             {
@@ -53,7 +53,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.VeiculoFeature
 
             Veiculo veiculoSelecionado = veiculoService.SelecionarVeiculoPorId(id);
 
-            TelaVeiculoForm tela = new TelaVeiculoForm();
+            TelaVeiculoForm tela = new TelaVeiculoForm(grupoVeiculoService);
 
             tela.Veiculo = veiculoSelecionado;
 

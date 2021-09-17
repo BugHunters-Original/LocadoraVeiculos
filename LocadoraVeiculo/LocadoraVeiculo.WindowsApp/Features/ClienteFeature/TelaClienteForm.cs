@@ -1,7 +1,7 @@
-﻿using LocadoraDeVeiculos.Dominio.ClienteModule;
+﻿using LocadoraDeVeiculos.Aplicacao.ClienteCNPJModule;
+using LocadoraDeVeiculos.Dominio.ClienteModule;
 using LocadoraDeVeiculos.Dominio.ClienteModule.ClienteCNPJModule;
 using LocadoraDeVeiculos.Dominio.ClienteModule.ClienteCPFModule;
-using LocadoraDeVeiculos.Infra.SQL.ClienteCNPJModule;
 using LocadoraVeiculo.WindowsApp.Features.DarkModeFeature;
 using System;
 using System.Collections.Generic;
@@ -14,10 +14,10 @@ namespace LocadoraVeiculo.WindowsApp.Features.ClienteFeature
     public partial class TelaClienteForm : Form
     {
         private ClienteBase cliente;
-        private ClienteCNPJDAO clienteCNPJDAO;
-        public TelaClienteForm()
+        private ClienteCNPJAppService CNPJService;
+        public TelaClienteForm(ClienteCNPJAppService CNPJService)
         {
-            clienteCNPJDAO = new();
+            this.CNPJService = CNPJService;
             InitializeComponent();
             PopularCombobox();
             SetColor();
@@ -108,7 +108,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.ClienteFeature
 
         private void PopularCombobox()
         {
-            List<ClienteCNPJ> empresas = clienteCNPJDAO.SelecionarTodos();
+            List<ClienteCNPJ> empresas = CNPJService.SelecionarTodosClientesCNPJ();
 
             empresas.ForEach(x => cbEmpresas.Items.Add(x));
         }

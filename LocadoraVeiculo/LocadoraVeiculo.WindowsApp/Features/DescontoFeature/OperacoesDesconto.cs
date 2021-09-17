@@ -33,7 +33,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.DescontoFeature
                 return;
 
             }
-            TelaDescontoForm tela = new TelaDescontoForm();
+            TelaDescontoForm tela = new TelaDescontoForm(parceiroService);
 
             if (tela.ShowDialog() == DialogResult.OK)
             {
@@ -66,7 +66,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.DescontoFeature
 
             Desconto descontoSelecionado = descontoService.SelecionarPorId(id);
 
-            TelaDescontoForm tela = new TelaDescontoForm();
+            TelaDescontoForm tela = new TelaDescontoForm(parceiroService);
 
             tela.Desconto = descontoSelecionado;
 

@@ -4,9 +4,6 @@ using LocadoraDeVeiculos.Infra.Shared;
 using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace LocadoraDeVeiculos.Infra.SQL.DescontoModule
 {
@@ -110,9 +107,6 @@ namespace LocadoraDeVeiculos.Infra.SQL.DescontoModule
                 D.ID_PARCEIRO = P.ID
             WHERE 
                 D.[CODIGO] = @CODIGO";
-
-
-
         private const string sqlExisteDesconto =
             @"SELECT 
                 COUNT(*) 
@@ -129,7 +123,7 @@ namespace LocadoraDeVeiculos.Infra.SQL.DescontoModule
                 [CODIGO] = @CODIGO";
 
         private const string sqlSelecionarDeconto =
-        @"SELECT
+            @"SELECT
                         
                     D.[ID],       
                     D.[CODIGO],       
@@ -153,18 +147,18 @@ namespace LocadoraDeVeiculos.Infra.SQL.DescontoModule
                         D.COLUNADEPESQUISA LIKE @SEGUNDAREF+'%'";
         #endregion
 
-        public void InserirDesconto(Desconto desconto)
+        public void Inserir(Desconto desconto)
         {
-                desconto.Id = Db.Insert(sqlInserirDesconto, ObtemParametrosDesconto(desconto));
+            desconto.Id = Db.Insert(sqlInserirDesconto, ObtemParametrosDesconto(desconto));
         }
 
-        public void EditarDesconto(int id, Desconto desconto)
+        public void Editar(int id, Desconto desconto)
         {
-                desconto.Id = id;
-                Db.Update(sqlEditarDesconto, ObtemParametrosDesconto(desconto));
+            desconto.Id = id;
+            Db.Update(sqlEditarDesconto, ObtemParametrosDesconto(desconto));
         }
 
-        public bool ExcluirDesconto(int id)
+        public bool Excluir(int id)
         {
             try
             {
@@ -178,6 +172,11 @@ namespace LocadoraDeVeiculos.Infra.SQL.DescontoModule
             return true;
         }
 
+        public bool Existe(int id)
+        {
+            return Db.Exists(sqlExisteDesconto, AdicionarParametro("ID", id));
+        }
+
         public Desconto VerificarCodigoValido(string codigo)
         {
             return Db.Get(sqlSelecionarDescontoPorCodigo, ConverterEmDesconto, AdicionarParametro("CODIGO", codigo));
@@ -186,11 +185,6 @@ namespace LocadoraDeVeiculos.Infra.SQL.DescontoModule
         public bool VerificarCodigoExistente(string codigo)
         {
             return Db.Exists(sqlExisteCodigo, AdicionarParametro("CODIGO", codigo));
-        }
-
-        public bool Existe(int id)
-        {
-            return Db.Exists(sqlExisteDesconto, AdicionarParametro("ID", id));
         }
 
         public List<Desconto> SelecionarPesquisa(string coluna, string pesquisa)

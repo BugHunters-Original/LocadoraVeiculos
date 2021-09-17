@@ -3,9 +3,6 @@ using LocadoraDeVeiculos.Infra.Shared;
 using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace LocadoraDeVeiculos.Infra.SQL.TaxaServicoModule.ServicoModule
 {
@@ -83,18 +80,18 @@ namespace LocadoraDeVeiculos.Infra.SQL.TaxaServicoModule.ServicoModule
                         COLUNADEPESQUISA LIKE @SEGUNDAREF+'%'";
         #endregion
 
-        public void InserirServico(Servico registro)
+        public void Inserir(Servico registro)
         {
             registro.Id = Db.Insert(sqlInserirServico, ObtemParametrosServico(registro));
         }
 
-        public void EditarServico(int id, Servico registro)
+        public void Editar(int id, Servico registro)
         {
             registro.Id = id;
             Db.Update(sqlEditarServico, ObtemParametrosServico(registro));
         }
 
-        public bool ExcluirServico(int id)
+        public bool Excluir(int id)
         {
             try
             {

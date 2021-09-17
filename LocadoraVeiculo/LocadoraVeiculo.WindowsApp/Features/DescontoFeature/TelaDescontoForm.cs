@@ -1,9 +1,7 @@
 ﻿using LocadoraDeVeiculos.Aplicacao.ParceiroModule;
 using LocadoraDeVeiculos.Dominio.DescontoModule;
 using LocadoraDeVeiculos.Dominio.ParceiroModule;
-using LocadoraDeVeiculos.Infra.SQL.ParceiroModule;
 using LocadoraVeiculo.WindowsApp.Features.DarkModeFeature;
-using log4net;
 using System;
 using System.Drawing;
 using System.IO;
@@ -14,13 +12,11 @@ namespace LocadoraVeiculo.WindowsApp.Features.DescontoFeature
     public partial class TelaDescontoForm : Form
     {
         private Desconto desconto;
-        ParceiroAppService parceiroService;
+        private ParceiroAppService parceiroService;
 
-        ParceiroDAO parceiroRepository = new ParceiroDAO();
-
-        public TelaDescontoForm()
+        public TelaDescontoForm(ParceiroAppService parceiroService)
         {
-            parceiroService = new ParceiroAppService(parceiroRepository, LogManager.GetLogger("Parceiro"));
+            this.parceiroService = parceiroService;
             InitializeComponent();
             SetColor();
             CarregarParceiros();
