@@ -1,5 +1,6 @@
 ﻿using FluentAssertions;
 using LocadoraDeVeiculos.Dominio.FuncionarioModule;
+using LocadoraDeVeiculos.Infra.Shared;
 using LocadoraDeVeiculos.Infra.SQL.FuncionarioModule;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
