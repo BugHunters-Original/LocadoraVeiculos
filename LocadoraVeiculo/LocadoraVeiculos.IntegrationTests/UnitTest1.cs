@@ -33,7 +33,7 @@ namespace LocadoraVeiculos.IntegrationTests
 
 
             //assert
-            mock.Verify(x => x.InserirDesconto(desconto));
+            mock.Verify(x => x.Inserir(desconto));
         }
 
         [TestMethod]
@@ -55,7 +55,7 @@ namespace LocadoraVeiculos.IntegrationTests
 
 
             //assert
-            mock.Verify(x => x.InserirParceiro(parceiro));
+            mock.Verify(x => x.Inserir(parceiro));
         }
     }
 }

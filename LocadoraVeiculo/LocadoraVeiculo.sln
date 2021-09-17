@@ -61,7 +61,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Shared", "Shared", "{B89FC8
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LocadoraDeVeiculos.Infra.Shared", "LocadoraDeVeiculos.Infra.Shared\LocadoraDeVeiculos.Infra.Shared.csproj", "{E775AD2C-0760-4D44-8ECB-70602E2AD9B5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LocadoraVeiculos.IntegrationTests", "LocadoraVeiculos.IntegrationTests\LocadoraVeiculos.IntegrationTests.csproj", "{B74B7B52-52E8-4D5E-A2AE-C6A1C94A2DF6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LocadoraVeiculos.IntegrationTests", "LocadoraVeiculos.IntegrationTests\LocadoraVeiculos.IntegrationTests.csproj", "{B74B7B52-52E8-4D5E-A2AE-C6A1C94A2DF6}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "3.1 UnitTests", "3.1 UnitTests", "{6610424C-E7A0-43BB-9468-AE97C76D7540}"
 EndProject
@@ -69,11 +69,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "3.2 IntegrationTests", "3.2
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "3.3 AppServiceTests", "3.3 AppServiceTests", "{6D2ED27B-E6F7-4DE7-87A6-92E9AA1088D9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LocadoraDeVeiculos.UnitTests", "LocadoraDeVeiculos.UnitTests\LocadoraDeVeiculos.UnitTests.csproj", "{0651A897-F3B6-4B8A-A2EF-9C5F56EDE456}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LocadoraDeVeiculos.UnitTests", "LocadoraDeVeiculos.UnitTests\LocadoraDeVeiculos.UnitTests.csproj", "{0651A897-F3B6-4B8A-A2EF-9C5F56EDE456}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LocadoraDeVeiculos.IntegrationTests", "LocadoraDeVeiculos.IntegrationTests\LocadoraDeVeiculos.IntegrationTests.csproj", "{3AD4B569-4308-4CE6-A088-28ED0D6F7B4B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LocadoraDeVeiculos.IntegrationTests", "LocadoraDeVeiculos.IntegrationTests\LocadoraDeVeiculos.IntegrationTests.csproj", "{3AD4B569-4308-4CE6-A088-28ED0D6F7B4B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LocadoraDeVeiculos.AppServiceTests", "LocadoraDeVeiculos.AppServiceTests\LocadoraDeVeiculos.AppServiceTests.csproj", "{670352FB-0F13-4D91-806E-97A607D97687}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LocadoraDeVeiculos.AppServiceTests", "LocadoraDeVeiculos.AppServiceTests\LocadoraDeVeiculos.AppServiceTests.csproj", "{670352FB-0F13-4D91-806E-97A607D97687}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
