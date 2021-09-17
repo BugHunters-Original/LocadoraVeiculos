@@ -8,7 +8,7 @@ using LocadoraDeVeiculos.Dominio.VeiculoModule;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 
-namespace LocadoraDeVeiculos.Test.LocacaoVeiculoModule
+namespace LocadoraDeVeiculos.Test.LocacaoModule
 {
     [TestClass]
     public class LocacaoTests
