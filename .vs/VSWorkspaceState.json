@@ -1,7 +1,9 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\LocadoraVeiculo",
+    "\\LocadoraVeiculo\\LocadoraVeiculo.WindowsApp"
   ],
-  "SelectedNode": "\\LocadoraVeiculo.sln",
+  "SelectedNode": "\\LocadoraVeiculo\\LocadoraVeiculo.WindowsApp\\appsettings.json",
   "PreviewInSolutionExplorer": false
 }

@@ -13,6 +13,12 @@ namespace LocadoraDeVeiculos.Dominio.ParceiroModule
         {
             Nome = nome;
         }
+
+        public Parceiro()
+        {
+
+        }
+
         public string Nome { get; set; }
         public override string Validar()
         {
