@@ -15,6 +15,11 @@ namespace LocadoraDeVeiculos.Dominio.ServicoModule
             Preco = preco;
             TipoCalculo = tipoCalculo;
         }
+        public Servico()
+        {
+
+        }
+
         public string Nome { get; set; }
         public decimal? Preco { get; set; }
         public int TipoCalculo { get; set; }
