@@ -29,17 +29,17 @@ namespace LocadoraDeVeiculos.Aplicacao.ParceiroModule
             }
         }
 
-        public void EditarParceiro(int id, Parceiro funcionario)
+        public void EditarParceiro(int id, Parceiro parceiro)
         {
-            string resultadoValidacaoDominio = funcionario.Validar();
+            string resultadoValidacaoDominio = parceiro.Validar();
 
             if (resultadoValidacaoDominio == "ESTA_VALIDO")
             {
-                logger.Debug($"Editando funcionário {funcionario.Nome}...");
+                logger.Debug($"Editando funcionário {parceiro.Nome}...");
 
-                parceiroRepository.Editar(id, funcionario);
+                parceiroRepository.Editar(id, parceiro);
 
-                logger.Debug($"Funcionário {funcionario.Nome} Editando com sucesso!");
+                logger.Debug($"Funcionário {parceiro.Nome} Editando com sucesso!");
             }
         }
 
