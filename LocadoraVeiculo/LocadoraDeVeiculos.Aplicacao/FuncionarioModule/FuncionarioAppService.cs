@@ -15,7 +15,7 @@ namespace LocadoraDeVeiculos.Aplicacao.FuncionarioModule
             this.logger = logger;
         }
 
-        public void RegistrarNovoFuncionario(Funcionario funcionario)
+        public bool RegistrarNovoFuncionario(Funcionario funcionario)
         {
             string resultadoValidacaoDominio = funcionario.Validar();
 
@@ -26,9 +26,13 @@ namespace LocadoraDeVeiculos.Aplicacao.FuncionarioModule
                 funcionarioRepository.Inserir(funcionario);
 
                 logger.Debug($"Funcionário {funcionario.Nome} registrado com sucesso!");
+
+                return true;
             }
+
+            return false;
         }
-        public void EditarFuncionario(int id, Funcionario funcionario)
+        public bool EditarFuncionario(int id, Funcionario funcionario)
         {
             string resultadoValidacaoDominio = funcionario.Validar();
 
@@ -39,7 +43,11 @@ namespace LocadoraDeVeiculos.Aplicacao.FuncionarioModule
                 funcionarioRepository.Editar(id, funcionario);
 
                 logger.Debug($"Funcionário {funcionario.Nome} Editado com sucesso!");
+
+                return true;
             }
+
+            return false;
         }
 
         public bool ExcluirFuncionario(int id)

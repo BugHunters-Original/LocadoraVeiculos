@@ -16,7 +16,7 @@ namespace LocadoraDeVeiculos.Aplicacao.DescontoModule
         }
 
 
-        public void RegistrarNovoDesconto(Desconto desconto)
+        public bool RegistrarNovoDesconto(Desconto desconto)
         {
             string resultadoValidacaoDominio = desconto.Validar();
 
@@ -27,10 +27,14 @@ namespace LocadoraDeVeiculos.Aplicacao.DescontoModule
                 descontoRepository.Inserir(desconto);
 
                 logger.Debug($"Cupom de desconto {desconto.Nome} registrado com sucesso!");
+
+                return true;
             }
+
+            return false;
         }
 
-        public void EditarDesconto(int id, Desconto desconto)
+        public bool EditarDesconto(int id, Desconto desconto)
         {
             string resultadoValidacaoDominio = desconto.Validar();
 
@@ -41,7 +45,11 @@ namespace LocadoraDeVeiculos.Aplicacao.DescontoModule
                 descontoRepository.Editar(id, desconto);
 
                 logger.Debug($"Cupom de desconto {desconto.Nome} Editando com sucesso!");
+
+                return true;
             }
+
+            return false;
         }
 
         public List<Desconto> SelecionarPesquisa(string comboBox, string pesquisa)
