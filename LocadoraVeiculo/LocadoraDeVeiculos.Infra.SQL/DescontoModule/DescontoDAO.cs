@@ -20,7 +20,8 @@ namespace LocadoraDeVeiculos.Infra.SQL.DescontoModule
                     [ID_PARCEIRO],                                                           
                     [MEIO],
                     [NOMECUPOM],
-                    [VALORMINIMO]
+                    [VALORMINIMO],
+                    [USOS]
                 )
             VALUES
                 (
@@ -31,7 +32,8 @@ namespace LocadoraDeVeiculos.Infra.SQL.DescontoModule
                     @ID_PARCEIRO,
                     @MEIO,
                     @NOMECUPOM,
-                    @VALORMINIMO
+                    @VALORMINIMO,
+                    @USOS
                 )";
         private const string sqlEditarDesconto =
             @" UPDATE [TBDESCONTO]
@@ -43,7 +45,8 @@ namespace LocadoraDeVeiculos.Infra.SQL.DescontoModule
                     [ID_PARCEIRO] = @ID_PARCEIRO,
                     [MEIO] = @MEIO,
                     [NOMECUPOM] = @NOMECUPOM,
-                    [VALORMINIMO] = @VALORMINIMO
+                    [VALORMINIMO] = @VALORMINIMO,
+                    [USOS] = @USOS
 
                 WHERE [ID] = @ID";
         private const string sqlExcluirDesconto =
@@ -60,6 +63,7 @@ namespace LocadoraDeVeiculos.Infra.SQL.DescontoModule
                     D.[MEIO],
                     D.[NOMECUPOM],
                     D.[VALORMINIMO],
+                    D.[USOS],
                     P.[ID],
                     P.[NOME_PARCEIRO]
             FROM
@@ -78,6 +82,7 @@ namespace LocadoraDeVeiculos.Infra.SQL.DescontoModule
                     D.[MEIO],
                     D.[NOMECUPOM],
                     D.[VALORMINIMO],
+                    D.[USOS],
                     P.[ID],
                     P.[NOME_PARCEIRO]
             FROM
@@ -98,6 +103,7 @@ namespace LocadoraDeVeiculos.Infra.SQL.DescontoModule
                     D.[MEIO],
                     D.[NOMECUPOM],
                     D.[VALORMINIMO],
+                    D.[USOS],
                     P.[ID],
                     P.[NOME_PARCEIRO]
             FROM
@@ -134,6 +140,7 @@ namespace LocadoraDeVeiculos.Infra.SQL.DescontoModule
                     D.[MEIO],
                     D.[NOMECUPOM],
                     D.[VALORMINIMO],
+                    D.[USOS],
                     P.[ID],
                     P.[NOME_PARCEIRO]
 
@@ -212,6 +219,7 @@ namespace LocadoraDeVeiculos.Infra.SQL.DescontoModule
             var meio = Convert.ToString(reader["MEIO"]);
             var nomeCupom = Convert.ToString(reader["NOMECUPOM"]);
             var valorMinimo = Convert.ToDecimal(reader["VALORMINIMO"]);
+            var usos = Convert.ToInt32(reader["USOS"]);
 
             Parceiro parceiroDesconto = null;
             if (reader["ID_PARCEIRO"] != DBNull.Value)
@@ -221,7 +229,7 @@ namespace LocadoraDeVeiculos.Infra.SQL.DescontoModule
                 parceiroDesconto.Id = Convert.ToInt32(reader["ID_PARCEIRO"]);
             }
 
-            Desconto desconto = new Desconto(codigo, valor, tipo, validade, parceiroDesconto, meio, nomeCupom, valorMinimo);
+            Desconto desconto = new Desconto(codigo, valor, tipo, validade, parceiroDesconto, meio, nomeCupom, valorMinimo, usos);
 
             desconto.Id = Convert.ToInt32(reader["ID"]);
 
@@ -241,6 +249,7 @@ namespace LocadoraDeVeiculos.Infra.SQL.DescontoModule
             parametros.Add("MEIO", desconto.Meio);
             parametros.Add("NOMECUPOM", desconto.Nome);
             parametros.Add("VALORMINIMO", desconto.ValorMinimo);
+            parametros.Add("USOS", desconto.Usos);
 
             return parametros;
         }

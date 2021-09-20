@@ -76,6 +76,14 @@ namespace LocadoraDeVeiculos.Infra.SQL.ClienteCNPJModule
                 [TBCLIENTECNPJ]
             WHERE 
                 [ID] = @ID";
+
+        private const string sqlExisteCNPJ =
+            @"SELECT 
+                COUNT(*) 
+            FROM 
+                [TBCLIENTECNPJ]
+            WHERE 
+                [CNPJ] = @CNPJ";
         #endregion
 
         public void Editar(int id, ClienteCNPJ registro)
@@ -101,6 +109,10 @@ namespace LocadoraDeVeiculos.Infra.SQL.ClienteCNPJModule
         public bool Existe(int id)
         {
             return Db.Exists(sqlExisteCliente, AdicionarParametro("ID", id));
+        }
+        public bool ExisteCNPJ(string cnpj)
+        {
+            return Db.Exists(sqlExisteCNPJ, AdicionarParametro("CNPJ", cnpj));
         }
 
         public void Inserir(ClienteCNPJ registro)

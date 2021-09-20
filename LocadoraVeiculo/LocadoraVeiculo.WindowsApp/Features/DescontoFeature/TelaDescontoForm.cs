@@ -86,7 +86,9 @@ namespace LocadoraVeiculo.WindowsApp.Features.DescontoFeature
 
             var valorMinimo = txtValorMinimo.Text == "" ? 0 : Convert.ToDecimal(txtValorMinimo.Text);
 
-            desconto = new Desconto(codigo, valor, tipo, dataValidade, parceiro, meio, nome, valorMinimo);
+            var uso = desconto?.Usos;
+
+            desconto = new Desconto(codigo, valor, tipo, dataValidade, parceiro, meio, nome, valorMinimo, uso ?? 0);
 
             string resultadoValidacao = desconto.Validar();
 

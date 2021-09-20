@@ -20,10 +20,10 @@ namespace LocadoraVeiculo.WindowsApp.Features.LocacaoFeature.TaxasServicos
 
         public TelaAdicionarTaxasForm()
         {
+            servicoDAO = new();
             InitializeComponent();
             PopularBox();
             SetColor();
-            servicoDAO = new();
         }
 
         private void SetColor()

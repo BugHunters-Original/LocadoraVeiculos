@@ -11,7 +11,7 @@ namespace LocadoraDeVeiculos.Dominio.DescontoModule
     public class Desconto : EntidadeBase, IEquatable<Desconto>
     {
         public Desconto(string codigo, decimal valor, string tipo, DateTime validade,
-            Parceiro parceiro, string meio, string nome, decimal valorMinimo)
+            Parceiro parceiro, string meio, string nome, decimal valorMinimo, int usos)
         {
             Nome = nome;
             Codigo = codigo;
@@ -21,6 +21,7 @@ namespace LocadoraDeVeiculos.Dominio.DescontoModule
             Parceiro = parceiro;
             Meio = meio;
             ValorMinimo = valorMinimo;
+            Usos = usos;
         }
 
         public Desconto()
@@ -36,6 +37,7 @@ namespace LocadoraDeVeiculos.Dominio.DescontoModule
         public DateTime Validade { get; set; }
         public Parceiro Parceiro { get; set; }
         public string Meio { get; set; }
+        public int Usos { get; set; }
         public override string ToString()
         {
             return Nome;
