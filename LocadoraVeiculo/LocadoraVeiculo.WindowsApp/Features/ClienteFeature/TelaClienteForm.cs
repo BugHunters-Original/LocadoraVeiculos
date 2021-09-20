@@ -1,13 +1,13 @@
-﻿using LocadoraDeVeiculos.Aplicacao.ClienteCNPJModule;
-using LocadoraDeVeiculos.Dominio.ClienteModule;
-using LocadoraDeVeiculos.Dominio.ClienteModule.ClienteCNPJModule;
+﻿using LocadoraDeVeiculos.Dominio.ClienteModule.ClienteCNPJModule;
 using LocadoraDeVeiculos.Dominio.ClienteModule.ClienteCPFModule;
 using LocadoraVeiculo.WindowsApp.Features.DarkModeFeature;
-using System;
+using LocadoraDeVeiculos.Aplicacao.ClienteCNPJModule;
+using LocadoraDeVeiculos.Dominio.ClienteModule;
 using System.Collections.Generic;
+using System.Windows.Forms;
 using System.Drawing;
 using System.IO;
-using System.Windows.Forms;
+using System;
 
 namespace LocadoraVeiculo.WindowsApp.Features.ClienteFeature
 {

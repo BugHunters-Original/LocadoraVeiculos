@@ -1,6 +1,5 @@
 ﻿using LocadoraDeVeiculos.Dominio.ClienteModule.ClienteCPFModule;
 using log4net;
-using System;
 using System.Collections.Generic;
 
 namespace LocadoraDeVeiculos.Aplicacao.ClienteCPFModule

@@ -1,5 +1,5 @@
 ﻿
-namespace LocadoraVeiculo.WindowsApp.Features.LocacaoFeature.Devolucao
+namespace LocadoraVeiculo.WindowsApp.Features.LocacaoFeature.DevolucaoLocacao
 {
     partial class TelaDevolucaoForm
     {
@@ -29,7 +29,6 @@ namespace LocadoraVeiculo.WindowsApp.Features.LocacaoFeature.Devolucao
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(TelaDevolucaoForm));
             this.dtRetorno = new System.Windows.Forms.DateTimePicker();
             this.label1 = new System.Windows.Forms.Label();
@@ -81,6 +80,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.LocacaoFeature.Devolucao
             this.txtKmAtual.Name = "txtKmAtual";
             this.txtKmAtual.Size = new System.Drawing.Size(325, 24);
             this.txtKmAtual.TabIndex = 3;
+            this.txtKmAtual.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtKmAtual_KeyPress);
             this.txtKmAtual.Leave += new System.EventHandler(this.txtKmAtual_Leave);
             // 
             // label2
@@ -307,7 +307,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.LocacaoFeature.Devolucao
             this.Controls.Add(this.txtKmAtual);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.dtRetorno);
-            this.Font = new System.Drawing.Font("Lucida Sans Unicode", 8F);
+            this.Font = new System.Drawing.Font("Lucida Sans Unicode", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;

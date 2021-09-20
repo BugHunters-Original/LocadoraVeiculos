@@ -200,8 +200,10 @@ namespace LocadoraVeiculo.WindowsApp.Features.LocacaoFeature
 
             decimal? precoTotal = precoPlano + precoServicos;
 
+            var status = locacao?.StatusLocacao;
+
             locacao = new Locacao(cliente, veiculo, desconto, condutor, dataSaida, dataRetornoEsperado, tipoLocacao,
-                                    tipoCliente, precoServicos, dias, "Em Aberto", null, precoPlano, precoTotal, Servicos);
+                                    tipoCliente, precoServicos, dias, status ?? "Em Aberto", null, precoPlano, precoTotal, Servicos);
 
             string resultadoValidacao = locacao.Validar();
 
