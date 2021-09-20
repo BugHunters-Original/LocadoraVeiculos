@@ -5,7 +5,7 @@ using System;
 using System.IO;
 using System.Windows.Forms;
 
-namespace LocadoraVeiculo.WindowsApp.Features.LocacaoFeature.Devolucao
+namespace LocadoraVeiculo.WindowsApp.Features.LocacaoFeature.DevolucaoLocacao
 {
     public partial class TelaDevolucaoForm : Form
     {
@@ -64,18 +64,18 @@ namespace LocadoraVeiculo.WindowsApp.Features.LocacaoFeature.Devolucao
             btnNota.BackColor = DarkMode.corFundoTxBox;
             btnCancelar.BackColor = DarkMode.corFundoTxBox;
         }
-        private decimal? CalcularPrecoTipoCombustivel(decimal? combustivelGasto)
+
+        private decimal? CalcularPrecoTipoCombustivel()
         {
             switch (locacao.Veiculo.TipoCombustivel)
             {
-                case "Gasolina": combustivelGasto *= Convert.ToDecimal(PrecoCombustivel.PrecoGasolina); break;
-                case "Álcool": combustivelGasto *= Convert.ToDecimal(PrecoCombustivel.PrecoAlcool); break;
-                case "Diesel": combustivelGasto *= Convert.ToDecimal(PrecoCombustivel.PrecoDiesel); break;
-                default: break;
+                case "Gasolina": return Convert.ToDecimal(PrecoCombustivel.PrecoGasolina);
+                case "Álcool": return Convert.ToDecimal(PrecoCombustivel.PrecoAlcool);
+                case "Diesel": return Convert.ToDecimal(PrecoCombustivel.PrecoDiesel);
+                default: return 0;
             }
-
-            return combustivelGasto;
         }
+
         private decimal? CalcularPrecoTanqueCombustivel(decimal? totalTanque)
         {
             switch (cbNivelTanque.SelectedItem.ToString())
@@ -91,23 +91,23 @@ namespace LocadoraVeiculo.WindowsApp.Features.LocacaoFeature.Devolucao
             }
 
         }
+
         private decimal? CalcularPrecoKmRodado(int? totalKm)
         {
             switch (locacao.TipoLocacao)
             {
-                case "Plano Diário":
-                    return totalKm * locacao.Veiculo.GrupoVeiculo.ValorKmRodadoPDiario;
-                case "KM Controlado":
-                    return (CalcularKmRodado(totalKm)) * locacao.Veiculo.GrupoVeiculo.ValorKmRodadoPControlado;
+                case "Plano Diário": return totalKm * locacao.Veiculo.GrupoVeiculo.ValorKmRodadoPDiario;
+                case "KM Controlado": return (CalcularKmRodado(totalKm)) * locacao.Veiculo.GrupoVeiculo.ValorKmRodadoPControlado;
                 default: return 0;
             }
-
         }
+
         private decimal? CalcularKmRodado(int? totalKm)
         {
             var resto = totalKm - locacao.Veiculo.GrupoVeiculo.LimitePControlado;
             return resto < 0 ? 0 : resto;
         }
+
         private double CalcularDesconto(double totalSemDesconto)
         {
             double desconto = 0;
@@ -116,12 +116,8 @@ namespace LocadoraVeiculo.WindowsApp.Features.LocacaoFeature.Devolucao
             {
                 switch (locacao.Desconto.Tipo)
                 {
-                    case "Inteiro":
-                        desconto = Convert.ToDouble(locacao.Desconto.Valor);
-                        break;
-                    case "Porcentagem":
-                        desconto = totalSemDesconto * Convert.ToDouble(locacao.Desconto.Valor / 100);
-                        break;
+                    case "Inteiro": desconto = Convert.ToDouble(locacao.Desconto.Valor); break;
+                    case "Porcentagem": desconto = totalSemDesconto * Convert.ToDouble(locacao.Desconto.Valor / 100); break;
                     default: break;
                 }
                 txtCupom.Text = $"R${desconto}";
@@ -131,6 +127,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.LocacaoFeature.Devolucao
 
             return desconto;
         }
+
         private void AtualizarTotal()
         {
             double totalSuposto = Convert.ToDouble(locacao.PrecoServicos) + Convert.ToDouble(locacao.PrecoPlano) +
@@ -139,26 +136,32 @@ namespace LocadoraVeiculo.WindowsApp.Features.LocacaoFeature.Devolucao
             total -= CalcularDesconto(totalSuposto);
             txtTotal.Text = total < 0 ? "R$0" : "R$" + total.ToString();
         }
-        private string ValidarCampos()
+
+        private void FinalizarDevolucao()
         {
-            string valido = "";
+            var kmatual = txtKmAtual.Text;
+            var kmInicial = txtKmInicial.Text;
+            var dataRetorno = dtRetorno.Value;
+            var dataEsperada = dtRetornoEsperada.Value;
+            var nivelTanque = cbNivelTanque.Text;
 
-            if (txtKmAtual.Text == "")
-                return "O Campo Quilometragem Atual não pode ser nulo\r\n";
+            Devolucao devolucao = new(kmatual, kmInicial, dataRetorno, dataEsperada, nivelTanque);
 
-            if (Convert.ToInt32(txtKmInicial.Text) >= Convert.ToInt32(txtKmAtual.Text))
-                valido += "O Campo Quilometragem Atual não pode ser menor que a esperada\r\n";
+            string resultadoValidacao = devolucao.Validar();
 
-            if (dtRetorno.Value.Date < dtRetornoEsperada.Value.Date)
-                valido += "A Data de Retorno não pode ser menor que a Data de Retorno Esperada\r\n";
+            if (resultadoValidacao != "ESTA_VALIDO")
+            {
+                DialogResult = DialogResult.None;
 
-            if (cbNivelTanque.Text == "")
-                valido += "O Campo Nível do Tanque não pode ser nulo\r\n";
+                string primeiroErro = new StringReader(resultadoValidacao).ReadLine();
 
-            if (valido == "")
-                return "Valido";
+                TelaPrincipalForm.Instancia.AtualizarRodape(primeiroErro);
+                return;
+            }
 
-            return valido;
+            locacao.PrecoTotal = total < 0 ? 0 : Convert.ToDecimal(total);
+
+            locacao.Veiculo.KmInicial = Convert.ToInt32(txtKmAtual.Text);
         }
         private void cbNivelTanque_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -166,7 +169,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.LocacaoFeature.Devolucao
 
             decimal? combustivelGasto = CalcularPrecoTanqueCombustivel(totalTanque);
 
-            combustivelGasto = CalcularPrecoTipoCombustivel(combustivelGasto);
+            combustivelGasto *= CalcularPrecoTipoCombustivel();
 
             locacao.PrecoCombustivel = combustivelGasto;
 
@@ -174,6 +177,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.LocacaoFeature.Devolucao
 
             AtualizarTotal();
         }
+
         private void txtKmAtual_Leave(object sender, EventArgs e)
         {
             if (txtKmAtual.Text == "")
@@ -182,25 +186,17 @@ namespace LocadoraVeiculo.WindowsApp.Features.LocacaoFeature.Devolucao
             var totalKm = Convert.ToInt32(txtKmAtual.Text) - locacao.Veiculo.KmInicial;
 
             locacao.PrecoPlano = precoDias;
+
             locacao.PrecoPlano += CalcularPrecoKmRodado(totalKm);
 
             AtualizarTotal();
         }
+
         private void btnNota_Click(object sender, EventArgs e)
         {
-            if (ValidarCampos() != "Valido")
-            {
-                DialogResult = DialogResult.None;
-
-                string primeiroErro = new StringReader(ValidarCampos()).ReadLine();
-
-                TelaPrincipalForm.Instancia.AtualizarRodape(primeiroErro);
-                return;
-            }
-
-            locacao.PrecoTotal = total < 0 ? 0 : Convert.ToDecimal(total);
-            locacao.Veiculo.KmInicial = Convert.ToInt32(txtKmAtual.Text);
+            FinalizarDevolucao();
         }
+
         private void dtRetorno_ValueChanged(object sender, EventArgs e)
         {
             if (dtRetorno.Value.Date > dtRetornoEsperada.Value.Date)
@@ -216,5 +212,18 @@ namespace LocadoraVeiculo.WindowsApp.Features.LocacaoFeature.Devolucao
             AtualizarTotal();
         }
 
+        private void txtKmAtual_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) &&
+            (e.KeyChar != ','))
+            {
+                e.Handled = true;
+            }
+
+            if ((e.KeyChar == ',') && ((sender as TextBox).Text.IndexOf(',') > -1))
+            {
+                e.Handled = true;
+            }
+        }
     }
 }

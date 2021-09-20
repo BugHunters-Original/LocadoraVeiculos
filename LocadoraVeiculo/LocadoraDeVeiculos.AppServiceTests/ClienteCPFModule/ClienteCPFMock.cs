@@ -34,6 +34,8 @@ namespace LocadoraDeVeiculos.AppServiceTests.ClienteCPFModule
 
             Mock<IClienteCPFRepository> clienteMock = new();
 
+            clienteMock.Setup(x => x.ExisteCPF("011.900.119.56")).Returns(true);
+
             ClienteCPFAppService clienteCPFService = new(clienteMock.Object, LogManager.GetLogger("Cliente CPF"));
 
             var inseriu = clienteCPFService.RegistrarNovoClienteCPF(cliente);

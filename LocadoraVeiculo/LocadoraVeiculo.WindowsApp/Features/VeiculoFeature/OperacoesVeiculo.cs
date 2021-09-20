@@ -27,7 +27,6 @@ namespace LocadoraVeiculo.WindowsApp.Features.VeiculoFeature
                 MessageBox.Show("Cadastre primeiro um Grupo de Veículos!", "Adição de Veículos",
                                  MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return;
-
             }
 
             TelaVeiculoForm tela = new TelaVeiculoForm(grupoVeiculoService);
