@@ -17,27 +17,27 @@ using LocadoraVeiculo.WindowsApp.Features.ParceiroFeature;
 using LocadoraVeiculo.WindowsApp.Features.DarkModeFeature;
 using LocadoraVeiculo.WindowsApp.Features.LoginFeature;
 using LocadoraDeVeiculos.Aplicacao.ParceiroModule;
+using LocadoraDeVeiculos.Aplicacao.VeiculoModule;
+using LocadoraDeVeiculos.Aplicacao.ClienteCNPJModule;
+using LocadoraDeVeiculos.Aplicacao.ClienteCPFModule;
+using LocadoraDeVeiculos.Aplicacao.GrupoVeiculoModule;
+using LocadoraDeVeiculos.Aplicacao.FuncionarioModule;
+using LocadoraDeVeiculos.Aplicacao.DescontoModule;
+using LocadoraDeVeiculos.Aplicacao.ServicoModule;
+using LocadoraDeVeiculos.Aplicacao.LocacaoModule;
+using LocadoraDeVeiculos.Dominio.ClienteModule;
 using LocadoraDeVeiculos.Infra.SQL.ParceiroModule;
 using LocadoraDeVeiculos.Infra.SQL.ClienteCNPJModule;
 using LocadoraDeVeiculos.Infra.SQL.ClienteCPFModule;
-using LocadoraDeVeiculos.Dominio.ClienteModule;
-using LocadoraDeVeiculos.Aplicacao.ClienteCNPJModule;
-using LocadoraDeVeiculos.Aplicacao.ClienteCPFModule;
 using LocadoraDeVeiculos.Infra.SQL.GrupoVeiculoModule;
-using LocadoraDeVeiculos.Aplicacao.GrupoVeiculoModule;
-using LocadoraDeVeiculos.Aplicacao.FuncionarioModule;
 using LocadoraDeVeiculos.Infra.SQL.FuncionarioModule;
-using LocadoraDeVeiculos.Aplicacao.DescontoModule;
 using LocadoraDeVeiculos.Infra.SQL.DescontoModule;
-using LocadoraDeVeiculos.Aplicacao.ServicoModule;
 using LocadoraDeVeiculos.Infra.SQL.TaxaServicoModule.ServicoModule;
-using LocadoraDeVeiculos.Aplicacao.LocacaoModule;
 using LocadoraDeVeiculos.Infra.SQL.LocacaoModule;
-using LocadoraDeVeiculos.Infra.InternetServices;
-using LocadoraDeVeiculos.Infra.PDFLocacao;
 using LocadoraDeVeiculos.Infra.SQL.VeiculoModule;
-using LocadoraDeVeiculos.Aplicacao.VeiculoModule;
 using LocadoraDeVeiculos.Infra.SQL.TaxaServicoModule.TaxaDaLocacaoModule;
+using LocadoraDeVeiculos.Infra.PDFLocacao;
+using LocadoraDeVeiculos.Infra.InternetServices;
 
 namespace LocadoraVeiculo.WindowsApp
 {
@@ -60,7 +60,7 @@ namespace LocadoraVeiculo.WindowsApp
         public static ClienteCNPJAppService cnpjService = new(cnpjRepository, LogManager.GetLogger("Cliente"));
         public static ClienteCPFAppService cpfService = new(cpfRepository, LogManager.GetLogger("Cliente"));
         public static GrupoVeiculoAppService grupoVeiculoService = new(grupoVeiculoRepository, LogManager.GetLogger("Grupo Veículo"));
-        public static LocacaoAppService locacaoService = new(locacaoRepository, LogManager.GetLogger("Locação"), email, pdf);
+        public static LocacaoAppService locacaoService = new(locacaoRepository, LogManager.GetLogger("Locação"), email, pdf, descontoRepository);
         public static VeiculoAppService veiculoService = new(veiculoRepository, LogManager.GetLogger("Veículo"));
         public static FuncionarioAppService funcionarioService = new(funcionarioRepository, LogManager.GetLogger("Funcionário"));
         public static ServicoAppService servicoService = new(servicoRepository, LogManager.GetLogger("Funcionário"));

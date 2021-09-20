@@ -44,7 +44,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.ClienteFeature
                 }
                 else
                 {
-                    MessageBox.Show("Não foi possível editar, tente novamente",
+                    MessageBox.Show("Não foi possível inserir, tente novamente",
                             "Edição de Clientes", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }

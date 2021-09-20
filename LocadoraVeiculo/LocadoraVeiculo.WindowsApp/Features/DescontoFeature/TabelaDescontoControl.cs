@@ -17,7 +17,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.DescontoFeature
 
         public void ConfigurarGridLightMode()
         {
-            gridDesconto.ConfigurarGridZebrado(); 
+            gridDesconto.ConfigurarGridZebrado();
         }
         public DataGridViewColumn[] ObterColunas()
         {
@@ -38,6 +38,8 @@ namespace LocadoraVeiculo.WindowsApp.Features.DescontoFeature
                 new DataGridViewTextBoxColumn { DataPropertyName = "Parceiro", HeaderText = "Parceiro"},
 
                 new DataGridViewTextBoxColumn {DataPropertyName = "Meio", HeaderText = "Meio de Comunicação"},
+
+                new DataGridViewTextBoxColumn {DataPropertyName = "Usos", HeaderText = "Usos"},
             };
 
             return colunas;
@@ -54,9 +56,9 @@ namespace LocadoraVeiculo.WindowsApp.Features.DescontoFeature
 
             foreach (Desconto item in descontos)
             {
-                string porcentagem = item.Tipo == "Porcentagem" ? " %" : "";
+                string porcentagem = item.Tipo == "Porcentagem" ? "%" : "";
                 gridDesconto.Rows.Add(item.Id, item.Nome, item.Codigo, item.Valor + porcentagem,
-                   "R$" + item.ValorMinimo, item.Validade.ToString("d"), item.Parceiro, item.Meio);
+                   "R$" + item.ValorMinimo, item.Validade.ToString("d"), item.Parceiro, item.Meio, item.Usos);
 
             }
         }

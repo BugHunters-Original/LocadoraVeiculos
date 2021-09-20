@@ -1,4 +1,5 @@
-﻿using LocadoraDeVeiculos.Dominio.LocacaoModule;
+﻿using LocadoraDeVeiculos.Dominio.DescontoModule;
+using LocadoraDeVeiculos.Dominio.LocacaoModule;
 using log4net;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -8,13 +9,15 @@ namespace LocadoraDeVeiculos.Aplicacao.LocacaoModule
     public class LocacaoAppService
     {
         private readonly ILocacaoRepository locacaoRepo;
+        private readonly IDescontoRepository descontoRepo;
         private readonly ILog logger;
         private readonly IEmail email;
         private readonly IPDF pdf;
         public LocacaoAppService(ILocacaoRepository locacaoRepo, ILog logger,
-                                IEmail email, IPDF pdf)
+                                IEmail email, IPDF pdf, IDescontoRepository descontoRepo)
         {
             this.locacaoRepo = locacaoRepo;
+            this.descontoRepo = descontoRepo;
             this.logger = logger;
             this.email = email;
             this.pdf = pdf;
@@ -26,6 +29,10 @@ namespace LocadoraDeVeiculos.Aplicacao.LocacaoModule
             if (resultadoValidacaoDominio == "ESTA_VALIDO")
             {
                 logger.Debug($"Registrando Locação {locacao}...");
+
+                locacao.Desconto.Usos++;
+
+                descontoRepo.Editar(locacao.Desconto.Id, locacao.Desconto);
 
                 locacaoRepo.Inserir(locacao);
 

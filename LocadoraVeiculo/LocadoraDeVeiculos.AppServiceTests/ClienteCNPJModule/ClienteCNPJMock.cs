@@ -74,5 +74,4 @@ namespace LocadoraDeVeiculos.AppServiceTests.ClienteCNPJModule
             editou.Should().BeFalse();
         }
     }
-
 }
