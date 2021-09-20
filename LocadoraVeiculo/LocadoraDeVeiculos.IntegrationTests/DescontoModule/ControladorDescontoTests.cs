@@ -37,7 +37,7 @@ namespace LocadoraDeVeiculos.Test.DescontoModule
         public void DeveInserir_Desconto()
         {
             //arrange
-            var desconto = new Desconto("dinheiro", 50, "Porcentagem", new DateTime(2030, 10, 10), parceiro, "YouTube", "dimdim", 50);
+            var desconto = new Desconto("dinheiro", 50, "Porcentagem", new DateTime(2030, 10, 10), parceiro, "YouTube", "dimdim", 50, 1);
 
             //action
             descontoDAO.Inserir(desconto);
@@ -52,9 +52,9 @@ namespace LocadoraDeVeiculos.Test.DescontoModule
         public void DeveAtualizar_Desconto()
         {
             //arrange
-            var desconto = new Desconto("dinheiro", 50, "Porcentagem", new DateTime(2030, 10, 10), parceiro, "YouTube", "dimdim", 50);
+            var desconto = new Desconto("dinheiro", 50, "Porcentagem", new DateTime(2030, 10, 10), parceiro, "YouTube", "dimdim", 50, 1);
             descontoDAO.Inserir(desconto);
-            var descontoEditado = new Desconto("xuxu", 100, "Porcentagem", new DateTime(2030, 11, 11), parceiro, "Radio", "dimdim", 50);
+            var descontoEditado = new Desconto("xuxu", 100, "Porcentagem", new DateTime(2030, 11, 11), parceiro, "Radio", "dimdim", 50, 2);
 
             //action
             descontoDAO.Editar(desconto.Id, descontoEditado);
@@ -69,7 +69,7 @@ namespace LocadoraDeVeiculos.Test.DescontoModule
         public void DeveExcluir_Desconto()
         {
             //arrange            
-            var desconto = new Desconto("dinheiro", 50, "Porcentagem", new DateTime(2030, 10, 10), parceiro, "YouTube", "dimdim", 50);
+            var desconto = new Desconto("dinheiro", 50, "Porcentagem", new DateTime(2030, 10, 10), parceiro, "YouTube", "dimdim", 50, 1);
             descontoDAO.Inserir(desconto);
 
             //action            
@@ -85,7 +85,7 @@ namespace LocadoraDeVeiculos.Test.DescontoModule
         public void DeveSelecionar_Veiculo_PorId()
         {
             //arrange
-            var desconto = new Desconto("dinheiro", 50, "Porcentagem", new DateTime(2030, 10, 10), parceiro, "YouTube", "dimdim", 50);
+            var desconto = new Desconto("dinheiro", 50, "Porcentagem", new DateTime(2030, 10, 10), parceiro, "YouTube", "dimdim", 50, 1);
             descontoDAO.Inserir(desconto);
 
             //action
@@ -100,13 +100,13 @@ namespace LocadoraDeVeiculos.Test.DescontoModule
         public void DeveSelecionar_Todos()
         {
             //arrange
-            var d1 = new Desconto("dinheiro", 50, "Porcentagem", new DateTime(2030, 10, 10), parceiro, "YouTube", "dimdim", 50);
+            var d1 = new Desconto("dinheiro", 50, "Porcentagem", new DateTime(2030, 10, 10), parceiro, "YouTube", "dimdim", 50, 1);
             descontoDAO.Inserir(d1);
 
-            var d2 = new Desconto("xuxu", 50, "Porcentagem", new DateTime(2030, 10, 10), parceiro, "YouTube", "dimdim", 50);
+            var d2 = new Desconto("xuxu", 50, "Porcentagem", new DateTime(2030, 10, 10), parceiro, "YouTube", "dimdim", 50, 1);
             descontoDAO.Inserir(d2);
 
-            var d3 = new Desconto("leilao", 50, "Porcentagem", new DateTime(2030, 10, 10), parceiro, "YouTube", "dimdim", 50);
+            var d3 = new Desconto("leilao", 50, "Porcentagem", new DateTime(2030, 10, 10), parceiro, "YouTube", "dimdim", 50, 1);
             descontoDAO.Inserir(d3);
 
             //action
