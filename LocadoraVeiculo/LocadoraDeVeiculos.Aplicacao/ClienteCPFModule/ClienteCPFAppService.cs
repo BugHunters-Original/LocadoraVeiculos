@@ -1,5 +1,6 @@
 ﻿using LocadoraDeVeiculos.Dominio.ClienteModule.ClienteCPFModule;
 using log4net;
+using System;
 using System.Collections.Generic;
 
 namespace LocadoraDeVeiculos.Aplicacao.ClienteCPFModule
@@ -14,32 +15,35 @@ namespace LocadoraDeVeiculos.Aplicacao.ClienteCPFModule
             clienteCPFRepository = clienteRepo;
             this.logger = logger;
         }
-        public void RegistrarNovoClienteCPF(ClienteCPF clienteCPF)
-        {
-            string resultadoValidacaoDominio = clienteCPF.Validar();
 
-            if (resultadoValidacaoDominio == "ESTA_VALIDO")
+        public bool RegistrarNovoClienteCPF(ClienteCPF clienteCPF)
+        {
+            if (EstaValido(clienteCPF))
             {
                 logger.Debug($"Registrando Cliente CPF {clienteCPF}...");
 
                 clienteCPFRepository.Inserir(clienteCPF);
 
                 logger.Debug($"Cliente Cliente CPF {clienteCPF} registrado com sucesso!");
+
+                return true;
             }
+            return false;
         }
 
-        public void EditarClienteCPF(int id, ClienteCPF clienteCPF)
+        public bool EditarClienteCPF(int id, ClienteCPF clienteCPF)
         {
-            string resultadoValidacaoDominio = clienteCPF.Validar();
-
-            if (resultadoValidacaoDominio == "ESTA_VALIDO")
+            if (EstaValido(clienteCPF))
             {
                 logger.Debug($"Editando Cliente CPF {clienteCPF}...");
 
                 clienteCPFRepository.Editar(id, clienteCPF);
 
                 logger.Debug($"Cliente CPF {clienteCPF} editado com sucesso!");
+
+                return true;
             }
+            return false;
         }
 
         public bool ExcluirClienteCPF(int id)
@@ -60,6 +64,10 @@ namespace LocadoraDeVeiculos.Aplicacao.ClienteCPFModule
         public List<ClienteCPF> SelecionarTodosClientesCPF()
         {
             return clienteCPFRepository.SelecionarTodos();
+        }
+        private bool EstaValido(ClienteCPF clienteCPF)
+        {
+            return clienteCPF.Validar() == "ESTA_VALIDO" && !clienteCPFRepository.ExisteCPF(clienteCPF.Cpf);
         }
     }
 }

@@ -1,11 +1,6 @@
-﻿using LocadoraDeVeiculos.Dominio.ClienteModule;
-using LocadoraDeVeiculos.Dominio.ClienteModule.ClienteCNPJModule;
+﻿using LocadoraDeVeiculos.Dominio.ClienteModule.ClienteCNPJModule;
 using log4net;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace LocadoraDeVeiculos.Aplicacao.ClienteCNPJModule
 {
@@ -20,33 +15,36 @@ namespace LocadoraDeVeiculos.Aplicacao.ClienteCNPJModule
             this.logger = logger;
         }
 
-        public void RegistrarNovoClienteCNPJ(ClienteCNPJ clienteCNPJ)
+        public bool RegistrarNovoClienteCNPJ(ClienteCNPJ clienteCNPJ)
         {
-            string resultadoValidacaoDominio = clienteCNPJ.Validar();
-
-            if (resultadoValidacaoDominio == "ESTA_VALIDO")
+            if (EstaValido(clienteCNPJ))
             {
                 logger.Debug($"Registrando Cliente CNPJ {clienteCNPJ}...");
 
                 clienteCNPJRepository.Inserir(clienteCNPJ);
 
                 logger.Debug($"Cliente CNPJ {clienteCNPJ} registrado com sucesso!");
+
+                return true;
             }
+            return false;
         }
 
-        public void EditarClienteCNPJ(int id, ClienteCNPJ clienteCNPJ)
+        public bool EditarClienteCNPJ(int id, ClienteCNPJ clienteCNPJ)
         {
-            string resultadoValidacaoDominio = clienteCNPJ.Validar();
-
-            if (resultadoValidacaoDominio == "ESTA_VALIDO")
+            if (EstaValido(clienteCNPJ))
             {
                 logger.Debug($"Editando Cliente CNPJ {clienteCNPJ}...");
 
                 clienteCNPJRepository.Editar(id, clienteCNPJ);
 
                 logger.Debug($"Cliente CNPJ {clienteCNPJ} editado com sucesso!");
+
+                return true;
             }
+            return false;
         }
+
 
         public bool ExcluirClienteCNPJ(int id)
         {
@@ -61,6 +59,10 @@ namespace LocadoraDeVeiculos.Aplicacao.ClienteCNPJModule
         public List<ClienteCNPJ> SelecionarTodosClientesCNPJ()
         {
             return clienteCNPJRepository.SelecionarTodos();
+        }
+        private bool EstaValido(ClienteCNPJ clienteCNPJ)
+        {
+            return clienteCNPJ.Validar() == "ESTA_VALIDO" && !clienteCNPJRepository.ExisteCNPJ(clienteCNPJ.Cnpj);
         }
     }
 }

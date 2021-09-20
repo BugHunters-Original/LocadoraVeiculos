@@ -139,6 +139,13 @@ namespace LocadoraDeVeiculos.Infra.SQL.ClienteCPFModule
                 [TBCLIENTECPF]
             WHERE 
                 [ID] = @ID";
+        private const string sqlExisteCPF =
+            @"SELECT 
+                COUNT(*) 
+            FROM 
+                [TBCLIENTECPF]
+            WHERE 
+                [CPF] = @CPF";
         #endregion
         public void Inserir(ClienteCPF cliente)
         {
@@ -168,6 +175,10 @@ namespace LocadoraDeVeiculos.Infra.SQL.ClienteCPFModule
         public bool Existe(int id)
         {
             return Db.Exists(sqlExisteCondutor, AdicionarParametro("ID", id));
+        }
+        public bool ExisteCPF(string cpf)
+        {
+            return Db.Exists(sqlExisteCPF, AdicionarParametro("CPF", cpf));
         }
 
         public List<ClienteCPF> SelecionarPesquisa(string coluna, string pesquisa)
