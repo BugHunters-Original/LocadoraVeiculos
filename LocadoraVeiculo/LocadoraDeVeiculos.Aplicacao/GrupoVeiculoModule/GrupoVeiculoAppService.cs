@@ -1,10 +1,20 @@
 ﻿using LocadoraDeVeiculos.Dominio.GrupoVeiculoModule;
 using log4net;
+using System;
 using System.Collections.Generic;
 
 
 namespace LocadoraDeVeiculos.Aplicacao.GrupoVeiculoModule
 {
+    public class ResultadoOperacao
+    {
+        public bool sucesso;
+        public string mensagem;
+
+
+
+    }
+
     public class GrupoVeiculoAppService
     {
         private readonly IGrupoVeiculoRepository grupoVeiculoRepository;
@@ -46,9 +56,17 @@ namespace LocadoraDeVeiculos.Aplicacao.GrupoVeiculoModule
             }
         }
 
-        public bool ExcluirGrupoVeiculo(int id)
+        public ResultadoOperacao ExcluirGrupoVeiculo(GrupoVeiculo grupoVeiculoSelecionado)
         {
-            return grupoVeiculoRepository.Excluir(id);
+            ResultadoOperacao resultadoOperacao = new();
+            resultadoOperacao.sucesso = grupoVeiculoRepository.Excluir(grupoVeiculoSelecionado.Id);            
+
+            if (resultadoOperacao.sucesso)
+                resultadoOperacao.mensagem = $"Grupo de Veiculos: [{grupoVeiculoSelecionado.NomeTipo}] removido com sucesso";
+            else
+                resultadoOperacao.mensagem = "Erro ao tentar excluir um grupo de veículos. Verifique se esse registro nao tem um veículo relacionado a ele";
+            
+            return resultadoOperacao;
         }
 
         public List<GrupoVeiculo> SelecionarPesquisa(string comboBox, string pesquisa)

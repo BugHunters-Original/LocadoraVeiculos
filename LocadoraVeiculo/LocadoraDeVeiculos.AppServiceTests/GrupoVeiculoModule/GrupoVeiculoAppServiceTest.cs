@@ -1,20 +1,52 @@
 ﻿
 using LocadoraDeVeiculos.Aplicacao.GrupoVeiculoModule;
 using LocadoraDeVeiculos.Dominio.GrupoVeiculoModule;
+using LocadoraDeVeiculos.Dominio.VeiculoModule;
 using log4net;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using FluentAssertions;
 
 namespace LocadoraDeVeiculos.AppServiceTests.GrupoVeiculoModule
 {
+    //Testar: se existir um veicuo associado ao grupo, ele nao pode ser excluído
     [TestClass]
     public class GrupoVeiculoAppServiceTest
     {
+        [TestMethod]
+        public void Deve_Chamar_Excluir()
+            {
+            GrupoVeiculo  grupoVeiculo = new("SUV", 40m, 5m, 50m, 30m, 40m, 10m);
+            
+            Mock<IGrupoVeiculoRepository> grupoVeiculoMock = new();
+            grupoVeiculoMock.Setup(x => x.Excluir(grupoVeiculo.Id)).Returns(true);
+
+                      
+            GrupoVeiculoAppService grupoVeiculoService = new(grupoVeiculoMock.Object, LogManager.GetLogger("Grupo Veículo"));
+
+            var resultado = grupoVeiculoService.ExcluirGrupoVeiculo(grupoVeiculo);
+            resultado.sucesso.Should().BeTrue();
+            
+
+        }
+
+       
+        public void Deve_Chamar_Mensagem()
+        {
+            GrupoVeiculo grupoVeiculo = new("SUV", 40m, 5m, 50m, 30m, 40m, 10m);
+
+            Mock<IGrupoVeiculoRepository> grupoVeiculoMock = new();
+            grupoVeiculoMock.Setup(x => x.Excluir(grupoVeiculo.Id)).Returns(false);
+
+
+            GrupoVeiculoAppService grupoVeiculoService = new(grupoVeiculoMock.Object, LogManager.GetLogger("Grupo Veículo"));
+
+            var resultado = grupoVeiculoService.ExcluirGrupoVeiculo(grupoVeiculo);
+            resultado.sucesso.Should().BeFalse();
+            resultado.mensagem.Should().Be("Erro ao tentar excluir um grupo de veículos. Verifique se esse registro nao tem um veículo relacionado a ele");
+
+        }
+
         [TestMethod]
         public void Deve_chamar_inserir()
         {
@@ -31,6 +63,22 @@ namespace LocadoraDeVeiculos.AppServiceTests.GrupoVeiculoModule
         }
 
         [TestMethod]
+        public void Não_Deve_inserir()        {           
+
+            Mock<GrupoVeiculo> grupoVeiculo = new("Econômico", 40m, 5m, 50m, 30m, 40m, 10m);
+
+            Mock<IGrupoVeiculoRepository> grupoVeiculoMock = new();
+
+            grupoVeiculo.Setup(x => x.Validar()).Returns("O campo Categoria é obrigatório");
+
+            GrupoVeiculoAppService grupoVeiculoService = new(grupoVeiculoMock.Object, LogManager.GetLogger("Grupo Veículo"));
+
+            grupoVeiculoService.RegistrarNovoGrupoVeiculo(grupoVeiculo.Object);
+
+            grupoVeiculoMock.Verify(x => x.Inserir(grupoVeiculo.Object), Times.Never);
+        }
+
+        [TestMethod]
         public void Deve_chamar_editar()
         {
             GrupoVeiculo grupoVeiculo = new GrupoVeiculo("Econômico", 40, 5, 50, 30, 40, 10);
@@ -43,6 +91,23 @@ namespace LocadoraDeVeiculos.AppServiceTests.GrupoVeiculoModule
             grupoVeiculoService.EditarNovoGrupoVeiculo(grupoVeiculo.Id, grupoVeiculoEditado);
 
             grupoVeiculoMock.Verify(x => x.Editar(grupoVeiculo.Id, grupoVeiculoEditado));
+        }
+
+        [TestMethod]
+        public void Nao_Deve_editar()
+        {
+            Mock<GrupoVeiculo> grupoVeiculo = new("Econômico", 40m, 5m, 50m, 30m, 40m, 10m);
+            Mock<GrupoVeiculo> grupoVeiculoEditado = new("Econômico", 40m, 5m, 50m, 30m, 40m, 10m);
+
+            Mock<IGrupoVeiculoRepository> grupoVeiculoMock = new();
+
+            grupoVeiculoEditado.Setup(x => x.Validar()).Returns("O campo Categoria é obrigatório");
+
+            GrupoVeiculoAppService grupoVeiculoService = new(grupoVeiculoMock.Object, LogManager.GetLogger("Grupo Veículo"));
+
+            grupoVeiculoService.EditarNovoGrupoVeiculo(grupoVeiculo.Object.Id, grupoVeiculoEditado.Object);              
+
+            grupoVeiculoMock.Verify(x => x.Editar(grupoVeiculo.Object.Id, grupoVeiculoEditado.Object), Times.Never);
         }
     }
 }
