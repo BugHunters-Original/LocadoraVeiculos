@@ -60,7 +60,7 @@ namespace LocadoraVeiculo.WindowsApp
         public static ClienteCNPJAppService cnpjService = new(cnpjRepository, LogManager.GetLogger("Cliente"));
         public static ClienteCPFAppService cpfService = new(cpfRepository, LogManager.GetLogger("Cliente"));
         public static GrupoVeiculoAppService grupoVeiculoService = new(grupoVeiculoRepository, LogManager.GetLogger("Grupo Veículo"));
-        public static LocacaoAppService locacaoService = new(locacaoRepository, LogManager.GetLogger("Locação"), email, pdf, descontoRepository);
+        public static LocacaoAppService locacaoService = new(locacaoRepository, LogManager.GetLogger("Locação"), email, pdf, descontoRepository, veiculoRepository);
         public static VeiculoAppService veiculoService = new(veiculoRepository, LogManager.GetLogger("Veículo"));
         public static FuncionarioAppService funcionarioService = new(funcionarioRepository, LogManager.GetLogger("Funcionário"));
         public static ServicoAppService servicoService = new(servicoRepository, LogManager.GetLogger("Funcionário"));

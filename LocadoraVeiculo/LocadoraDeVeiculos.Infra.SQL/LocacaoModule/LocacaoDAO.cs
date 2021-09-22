@@ -79,12 +79,6 @@ namespace LocadoraDeVeiculos.Infra.SQL.LocacaoModule
                     WHERE 
                         ID = @ID";
 
-        private const string sqlMudarDisponibilidade =
-            @"UPDATE TBVEICULOS
-                    SET
-                        [DISPONIBILIDADE_VEICULO] = @DISPONIBILIDADE_VEICULO
-                    WHERE 
-                        ID = @ID_VEICULO";
         private const string sqlExcluirLocacao =
             @"DELETE 
 	                FROM
@@ -215,9 +209,7 @@ namespace LocadoraDeVeiculos.Infra.SQL.LocacaoModule
         {
             locacao.Id = id;
             locacao.StatusLocacao = "Concluída";
-            locacao.Veiculo.DisponibilidadeVeiculo = 1;
             Db.Update(sqlEditarLocacao, ObtemParametrosLocacao(locacao));
-            Db.Update(sqlMudarDisponibilidade, ObtemParametrosLocacao(locacao));
         }
         public List<Locacao> SelecionarTodasLocacoesConcluidas()
         {

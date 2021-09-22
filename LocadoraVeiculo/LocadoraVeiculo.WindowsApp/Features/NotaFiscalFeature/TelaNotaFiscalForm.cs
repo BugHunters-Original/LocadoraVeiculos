@@ -1,7 +1,6 @@
 ﻿using LocadoraDeVeiculos.Aplicacao.VeiculoModule;
 using LocadoraDeVeiculos.Dominio.LocacaoModule;
 using LocadoraVeiculo.WindowsApp.Features.DarkModeFeature;
-using System;
 using System.Windows.Forms;
 
 namespace LocadoraVeiculo.WindowsApp.Features.NotaFiscalFeature
@@ -9,10 +8,8 @@ namespace LocadoraVeiculo.WindowsApp.Features.NotaFiscalFeature
     public partial class TelaNotaFiscalForm : Form
     {
         private Locacao locacao;
-        private VeiculoAppService veiculoService;
-        public TelaNotaFiscalForm(VeiculoAppService veiculoService)
+        public TelaNotaFiscalForm()
         {
-            this.veiculoService = veiculoService;
             InitializeComponent();
             SetColor();
         }
@@ -56,9 +53,5 @@ namespace LocadoraVeiculo.WindowsApp.Features.NotaFiscalFeature
             }
         }
 
-        private void bt_ConcluirLocacao_Click(object sender, EventArgs e)
-        {
-            veiculoService.EditarVeiculo(locacao.Veiculo.Id, locacao.Veiculo);
-        }
     }
 }

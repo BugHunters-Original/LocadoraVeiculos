@@ -3,6 +3,7 @@ using LocadoraDeVeiculos.Dominio.LocacaoModule;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using log4net;
+using LocadoraDeVeiculos.Dominio.VeiculoModule;
 
 namespace LocadoraDeVeiculos.Aplicacao.LocacaoModule
 {
@@ -10,12 +11,15 @@ namespace LocadoraDeVeiculos.Aplicacao.LocacaoModule
     {
         private readonly ILocacaoRepository locacaoRepo;
         private readonly IDescontoRepository descontoRepo;
+        private readonly IVeiculoRepository veiculoRepo;
         private readonly ILog logger;
         private readonly IEmail email;
         private readonly IPDF pdf;
         public LocacaoAppService(ILocacaoRepository locacaoRepo, ILog logger,
-                                 IEmail email, IPDF pdf, IDescontoRepository descontoRepo)
+                                 IEmail email, IPDF pdf, IDescontoRepository descontoRepo,
+                                 IVeiculoRepository veiculoRepo)
         {
+            this.veiculoRepo = veiculoRepo;
             this.locacaoRepo = locacaoRepo;
             this.descontoRepo = descontoRepo;
             this.logger = logger;
@@ -51,6 +55,10 @@ namespace LocadoraDeVeiculos.Aplicacao.LocacaoModule
         public void ConcluirLocacao(int id, Locacao locacao)
         {
             locacaoRepo.ConcluirLocacao(id, locacao);
+
+            veiculoRepo.DevolverVeiculo(locacao.Veiculo);
+
+            veiculoRepo.AtualizarQuilometragem(locacao.Veiculo);
         }
         public void EditarLocacao(int id, Locacao locacao)
         {

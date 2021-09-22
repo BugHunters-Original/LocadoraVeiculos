@@ -77,6 +77,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.LocacaoFeature
                 return;
 
             Locacao locacaoSelecionada = locacaoDAO.SelecionarPorId(id);
+
             dynamic tela;
 
             if (locacaoSelecionada.StatusLocacao == "Em Aberto")
