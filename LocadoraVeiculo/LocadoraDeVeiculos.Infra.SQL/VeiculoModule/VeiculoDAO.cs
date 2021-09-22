@@ -270,6 +270,11 @@ namespace LocadoraDeVeiculos.Infra.SQL.VeiculoModule
                 TV.ID = V.ID_TIPO_VEICULO
                     WHERE 
                         COLUNADEPESQUISA LIKE @SEGUNDAREF+'%'";
+
+        private const string sqlMudarDisponibilidade =
+           @"UPDATE TBVEICULOS
+                    SET
+                        [DISPONIBILIDADE_VEICULO] = @DISPONIBILIDADE_VEICULO";
         #endregion
 
         public void Editar(int id, Veiculo veiculo)
@@ -316,10 +321,20 @@ namespace LocadoraDeVeiculos.Infra.SQL.VeiculoModule
             Db.Update(sqlEditarVeiculo, ObtemParametrosVeiculo(antigo));
         }
 
+        public void DevolverVeiculo(Veiculo veiculo)
+        {
+            veiculo.DisponibilidadeVeiculo = 1;
+            Db.Update(sqlMudarDisponibilidade, ObtemParametrosVeiculo(veiculo));
+        }
+
+        public void AtualizarQuilometragem(Veiculo veiculo)
+        {
+            Db.Update(sqlEditarVeiculo, ObtemParametrosVeiculo(veiculo));
+        }
+
         public Veiculo SelecionarPorId(int id)
         {
             return Db.Get(sqlSelecionarVeiculoPorId, ConverterEmVeiculo, AdicionarParametro("ID", id));
-
         }
 
         public List<Veiculo> SelecionarTodos()

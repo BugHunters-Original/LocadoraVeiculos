@@ -174,7 +174,6 @@ namespace LocadoraVeiculo.WindowsApp.Features.NotaFiscalFeature
             this.bt_ConcluirLocacao.TabIndex = 0;
             this.bt_ConcluirLocacao.Text = "Gravar";
             this.bt_ConcluirLocacao.UseVisualStyleBackColor = true;
-            this.bt_ConcluirLocacao.Click += new System.EventHandler(this.bt_ConcluirLocacao_Click);
             // 
             // txtCaução
             // 
