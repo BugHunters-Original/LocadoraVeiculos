@@ -38,11 +38,13 @@ using LocadoraDeVeiculos.Infra.SQL.VeiculoModule;
 using LocadoraDeVeiculos.Infra.SQL.TaxaServicoModule.TaxaDaLocacaoModule;
 using LocadoraDeVeiculos.Infra.PDFLocacao;
 using LocadoraDeVeiculos.Infra.InternetServices;
+using LocadoraDeVeiculos.Infra.Log;
 
 namespace LocadoraVeiculo.WindowsApp
 {
     public partial class TelaPrincipalForm : Form
     {
+        public static Log log = new();
         public static EnviaEmail email = new();
         public static MontaPdf pdf = new();
 

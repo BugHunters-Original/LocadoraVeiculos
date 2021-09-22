@@ -12,6 +12,7 @@
 *.sqlite
 slnx.sqlite
 /Recibos
+/Log
 
 # User-specific files (MonoDevelop/Xamarin Studio)
 *.userprefs
@@ -88,7 +89,6 @@ StyleCopReport.xml
 *.tmp
 *.tmp_proj
 *_wpftmp.csproj
-*.log
 *.vspscc
 *.vssscc
 .builds
