@@ -75,6 +75,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LocadoraDeVeiculos.Integrat
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LocadoraDeVeiculos.AppServiceTests", "LocadoraDeVeiculos.AppServiceTests\LocadoraDeVeiculos.AppServiceTests.csproj", "{670352FB-0F13-4D91-806E-97A607D97687}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "4.6 LOG", "4.6 LOG", "{4682F715-8591-49C5-AE0A-A1A9D32B66C2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LocadoraDeVeiculos.Infra.Log", "LocadoraDeVeiculos.Infra.Log\LocadoraDeVeiculos.Infra.Log.csproj", "{9AB18C8A-F789-48A6-B960-73E80A829042}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -159,6 +163,10 @@ Global
 		{670352FB-0F13-4D91-806E-97A607D97687}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{670352FB-0F13-4D91-806E-97A607D97687}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{670352FB-0F13-4D91-806E-97A607D97687}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9AB18C8A-F789-48A6-B960-73E80A829042}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9AB18C8A-F789-48A6-B960-73E80A829042}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9AB18C8A-F789-48A6-B960-73E80A829042}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9AB18C8A-F789-48A6-B960-73E80A829042}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -197,6 +205,8 @@ Global
 		{0651A897-F3B6-4B8A-A2EF-9C5F56EDE456} = {6610424C-E7A0-43BB-9468-AE97C76D7540}
 		{3AD4B569-4308-4CE6-A088-28ED0D6F7B4B} = {DED4C29D-A404-44E3-9CC5-A004BFD418E8}
 		{670352FB-0F13-4D91-806E-97A607D97687} = {6D2ED27B-E6F7-4DE7-87A6-92E9AA1088D9}
+		{4682F715-8591-49C5-AE0A-A1A9D32B66C2} = {32D36574-C253-4348-AE04-0B066837BCBD}
+		{9AB18C8A-F789-48A6-B960-73E80A829042} = {4682F715-8591-49C5-AE0A-A1A9D32B66C2}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {CA30BD87-78E1-4FAA-B316-69D35BF837BC}
