@@ -4,6 +4,9 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using log4net;
 using LocadoraDeVeiculos.Dominio.VeiculoModule;
+using System.IO;
+using log4net.Config;
+using System.Reflection;
 
 namespace LocadoraDeVeiculos.Aplicacao.LocacaoModule
 {
@@ -25,6 +28,7 @@ namespace LocadoraDeVeiculos.Aplicacao.LocacaoModule
             this.logger = logger;
             this.email = email;
             this.pdf = pdf;
+
         }
         public void RegistrarNovaLocacao(Locacao locacao)
         {
@@ -32,7 +36,7 @@ namespace LocadoraDeVeiculos.Aplicacao.LocacaoModule
 
             if (resultadoValidacaoDominio == "ESTA_VALIDO")
             {
-                logger.Debug($"Registrando Locação {locacao}...");
+                logger.Info($"Registrando Locação {locacao}...");
 
                 if (locacao.Desconto != null)
                 {
