@@ -4,9 +4,6 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using log4net;
 using LocadoraDeVeiculos.Dominio.VeiculoModule;
-using System.IO;
-using log4net.Config;
-using System.Reflection;
 
 namespace LocadoraDeVeiculos.Aplicacao.LocacaoModule
 {
@@ -36,7 +33,7 @@ namespace LocadoraDeVeiculos.Aplicacao.LocacaoModule
 
             if (resultadoValidacaoDominio == "ESTA_VALIDO")
             {
-                logger.Info($"Registrando Locação {locacao}...");
+                logger.Debug($"Registrando Locação {locacao}...");
 
                 if (locacao.Desconto != null)
                 {
@@ -59,6 +56,8 @@ namespace LocadoraDeVeiculos.Aplicacao.LocacaoModule
         public void ConcluirLocacao(int id, Locacao locacao)
         {
             locacaoRepo.ConcluirLocacao(id, locacao);
+
+            logger.Debug($"Locação {locacao} concluída com sucesso!");
 
             veiculoRepo.DevolverVeiculo(locacao.Veiculo);
 
@@ -113,7 +112,7 @@ namespace LocadoraDeVeiculos.Aplicacao.LocacaoModule
             if (enviouOEmail)
                 logger.Debug($"E-Mail enviado para {locacao.Cliente.Email} com sucesso!");
             else
-                logger.Debug($"Erro ao enviar E-Mail para {locacao.Cliente.Email}!");
+                logger.Error($"Erro ao enviar E-Mail para {locacao.Cliente.Email}!");
         }
     }
 }
