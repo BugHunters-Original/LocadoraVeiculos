@@ -15,7 +15,7 @@ namespace LocadoraDeVeiculos.AppServiceTests.ClienteCPFModule
         public void Deve_chamar_inserir()
         {
             ClienteCPF cliente = new("Gabriel", "(49)99803-5074", "Guarujá", "011.900.119.56", "123456789",
-                                     "12345678912", new DateTime(2021, 09, 22), "gabas220601@gmail.com");
+                                     "12345678912", new DateTime(2099, 09, 22), "gabas220601@gmail.com");
 
             Mock<IClienteCPFRepository> clienteMock = new();
 
@@ -48,7 +48,9 @@ namespace LocadoraDeVeiculos.AppServiceTests.ClienteCPFModule
         public void Deve_chamar_editar()
         {
             ClienteCPF cliente = new("Gabriel", "(49)99803-5074", "Guarujá", "011.900.119.56", "123456789",
-                                     "12345678912", new DateTime(2021, 09, 22), "gabas220601@gmail.com");
+                                     "12345678912", new DateTime(2099, 09, 22), "gabas220601@gmail.com");
+
+
 
             Mock<IClienteCPFRepository> clienteMock = new();
 

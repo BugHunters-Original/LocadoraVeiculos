@@ -23,8 +23,8 @@ namespace LocadoraDeVeiculos.IntegrationTests.VeiculoModule
         {
             grupoVeiculoDAO = new GrupoVeiculoDAO();
             veiculoDAO = new VeiculoDAO();
-            Db.Update("DELETE FROM [TBVEICULOS]");
             Db.Update("DELETE FROM [TBTIPOVEICULO]");
+            Db.Update("DELETE FROM [TBVEICULOS]");
 
             grupo = new GrupoVeiculo("Econômico", 10, 10, 10, 10, 10, 10);
             grupoVeiculoDAO.Inserir(grupo);
