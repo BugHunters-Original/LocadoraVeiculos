@@ -72,12 +72,23 @@ namespace LocadoraDeVeiculos.Aplicacao.DescontoModule
 
         public Desconto SelecionarPorId(int id)
         {
-            return descontoRepository.SelecionarPorId(id);
+            Desconto desconto =  descontoRepository.SelecionarPorId(id);
+
+            logger.Debug($"Selecionando desconto ID: {id}, NOME: {desconto.Nome}.");
+
+            return desconto;
         }
 
         public List<Desconto> SelecionarTodosDescontos()
         {
-            return descontoRepository.SelecionarTodos();
+            List<Desconto> desconto = descontoRepository.SelecionarTodos();
+
+            if(desconto.Count == 0)
+                logger.Debug($"Não há descontos cadastrados");
+            else
+                logger.Debug($"Selecionando todos os {desconto.Count} descontos.");
+
+            return desconto;
         }
 
         public bool VerificarCodigoExistente(string codigo)

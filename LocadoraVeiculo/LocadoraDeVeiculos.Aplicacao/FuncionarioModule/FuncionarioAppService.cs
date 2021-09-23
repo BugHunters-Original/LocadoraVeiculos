@@ -70,12 +70,23 @@ namespace LocadoraDeVeiculos.Aplicacao.FuncionarioModule
 
         public Funcionario SelecionarPorId(int id)
         {
-            return funcionarioRepository.SelecionarPorId(id);
+            Funcionario funcionario =  funcionarioRepository.SelecionarPorId(id);
+
+            logger.Debug($"Selecionando funcionário ID: {id}, NOME: {funcionario.Nome}.");
+
+            return funcionario;
         }
 
         public List<Funcionario> SelecionarTodosFuncionarios()
         {
-            return funcionarioRepository.SelecionarTodos();
+            List<Funcionario>  funcionario = funcionarioRepository.SelecionarTodos();
+
+            if (funcionario.Count == 0)
+                logger.Debug($"Não há funcionários cadastrados");
+            else
+                logger.Debug($"Selecionando todos os {funcionario.Count} funcionários.");
+
+            return funcionario;
         }
     }
 }
