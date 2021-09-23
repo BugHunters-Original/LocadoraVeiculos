@@ -59,7 +59,15 @@ namespace LocadoraDeVeiculos.Aplicacao.DescontoModule
 
         public bool ExcluirDesconto(int id)
         {
-            return descontoRepository.Excluir(id);
+            var desconto = descontoRepository.SelecionarPorId(id);
+            var excluiu = descontoRepository.Excluir(id);
+
+            if (excluiu)
+                logger.Debug($"Excluiu Cupom de desconto {desconto.Codigo} com ID {desconto.Id}!");
+            else
+                logger.Error($"Não excluiu Cupom de desconto {desconto.Codigo} com ID {desconto.Id}!");
+
+            return excluiu;
         }
 
         public Desconto SelecionarPorId(int id)

@@ -48,7 +48,15 @@ namespace LocadoraDeVeiculos.Aplicacao.ClienteCNPJModule
 
         public bool ExcluirClienteCNPJ(int id)
         {
-            return clienteCNPJRepository.Excluir(id);
+            var cliente = clienteCNPJRepository.SelecionarPorId(id);
+            var excluiu = clienteCNPJRepository.Excluir(id);
+
+            if (excluiu)
+                logger.Debug($"Excluiu Cliente CNPJ {cliente.Nome} com ID {cliente.Id}!");
+            else
+                logger.Error($"Não excluiu Cliente CNPJ {cliente.Nome} com ID {cliente.Id}!");
+
+            return excluiu;
         }
 
         public ClienteCNPJ SelecionarClienteCNPJPorId(int id)

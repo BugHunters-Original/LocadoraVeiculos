@@ -52,7 +52,15 @@ namespace LocadoraDeVeiculos.Aplicacao.FuncionarioModule
 
         public bool ExcluirFuncionario(int id)
         {
-            return funcionarioRepository.Excluir(id);
+            var funcionario = funcionarioRepository.SelecionarPorId(id);
+            var excluiu = funcionarioRepository.Excluir(id);
+
+            if (excluiu)
+                logger.Debug($"Excluiu Funcionário {funcionario.Nome} com ID {funcionario.Id}!");
+            else
+                logger.Error($"Não excluiu Funcionário {funcionario.Nome} com ID {funcionario.Id}!");
+
+            return excluiu;
         }
 
         public List<Funcionario> SelecionarPesquisa(string comboBox, string pesquisa)

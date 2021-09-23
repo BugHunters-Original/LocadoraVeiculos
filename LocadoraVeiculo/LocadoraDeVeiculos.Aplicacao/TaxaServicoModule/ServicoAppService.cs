@@ -49,7 +49,15 @@ namespace LocadoraDeVeiculos.Aplicacao.ServicoModule
 
         public bool ExcluirServico(int id)
         {
-            return taxaServicoRepository.Excluir(id);
+            var servico = taxaServicoRepository.SelecionarPorId(id);
+            var excluiu = taxaServicoRepository.Excluir(id);
+
+            if (excluiu)
+                logger.Debug($"Excluiu Serviço {servico.Nome} com ID {servico.Id}!");
+            else
+                logger.Error($"Não excluiu Serviço {servico.Nome} com ID {servico.Id}!");
+
+            return excluiu;
         }
 
         public List<Servico> SelecionarPesquisa(string comboBox, string pesquisa)
