@@ -62,6 +62,7 @@ namespace LocadoraDeVeiculos.AppServiceTests.VeiculoModule
             });
             //actions
             VeiculoAppService veiculoAppService = new VeiculoAppService(veiculoDAOMock.Object, LogManager.GetLogger("Veiculo"));
+            
             veiculoAppService.EditarVeiculo(1, veiculo);
 
             //assert
