@@ -35,17 +35,25 @@ namespace LocadoraDeVeiculos.Aplicacao.ParceiroModule
 
             if (resultadoValidacaoDominio == "ESTA_VALIDO")
             {
-                logger.Debug($"Editando funcionário {parceiro.Nome}...");
+                logger.Debug($"Editando parceiro {parceiro.Nome}...");
 
                 parceiroRepository.Editar(id, parceiro);
 
-                logger.Debug($"Funcionário {parceiro.Nome} Editando com sucesso!");
+                logger.Debug($"Parceiro {parceiro.Nome} Editando com sucesso!");
             }
         }
 
         public bool ExcluirParceiro(int id)
         {
-            return parceiroRepository.Excluir(id);
+            Parceiro parceiro = parceiroRepository.SelecionarPorId(id);
+            var excluiu = parceiroRepository.Excluir(id);
+
+            if (excluiu)
+                logger.Debug($"Excluiu Parceiro {parceiro.Nome} com ID {parceiro.Id}!");
+            else
+                logger.Error($"Não excluiu Parceiro {parceiro.Nome} com ID {parceiro.Id}!");
+
+            return excluiu;
         }
 
         public List<Parceiro> SelecionarPesquisa(string comboBox, string pesquisa)

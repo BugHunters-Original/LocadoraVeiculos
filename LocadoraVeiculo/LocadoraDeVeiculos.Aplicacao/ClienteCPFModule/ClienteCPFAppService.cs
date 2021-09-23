@@ -47,7 +47,15 @@ namespace LocadoraDeVeiculos.Aplicacao.ClienteCPFModule
 
         public bool ExcluirClienteCPF(int id)
         {
-            return clienteCPFRepository.Excluir(id);
+            var cliente = clienteCPFRepository.SelecionarPorId(id);
+            var excluiu = clienteCPFRepository.Excluir(id);
+
+            if (excluiu)
+                logger.Debug($"Excluiu Cliente CPF {cliente.Nome} com ID {cliente.Id}!");
+            else
+                logger.Error($"Não excluiu Cliente CPF {cliente.Nome} com ID {cliente.Id}!");
+
+            return excluiu;
         }
 
         public List<ClienteCPF> SelecionarPorIdEmpresa(int id)

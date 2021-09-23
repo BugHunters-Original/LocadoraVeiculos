@@ -46,7 +46,15 @@ namespace LocadoraDeVeiculos.Aplicacao.VeiculoModule
 
         public bool ExcluirVeiculo(int id)
         {
-            return veiculoRepository.Excluir(id);
+            var veiculo = veiculoRepository.SelecionarPorId(id);
+            var excluiu = veiculoRepository.Excluir(id);
+
+            if (excluiu)
+                logger.Debug($"Excluiu Veículo {veiculo.Nome} com ID {veiculo.Id}!");
+            else
+                logger.Error($"Não excluiu Veículo {veiculo.Nome} com ID {veiculo.Id}!");
+
+            return excluiu;
         }
 
         public Veiculo SelecionarVeiculoPorId(int id)

@@ -62,10 +62,16 @@ namespace LocadoraDeVeiculos.Aplicacao.GrupoVeiculoModule
             resultadoOperacao.sucesso = grupoVeiculoRepository.Excluir(grupoVeiculoSelecionado.Id);            
 
             if (resultadoOperacao.sucesso)
+            {
                 resultadoOperacao.mensagem = $"Grupo de Veiculos: [{grupoVeiculoSelecionado.NomeTipo}] removido com sucesso";
+                logger.Debug($"Excluiu Grupo Veículo {grupoVeiculoSelecionado.NomeTipo} com ID {grupoVeiculoSelecionado.Id}!");
+            }
             else
+            {
                 resultadoOperacao.mensagem = "Erro ao tentar excluir um grupo de veículos. Verifique se esse registro nao tem um veículo relacionado a ele";
-            
+                logger.Error($"Não excluiu Grupo Veículo {grupoVeiculoSelecionado.NomeTipo} com ID {grupoVeiculoSelecionado.Id}!");
+            }
+
             return resultadoOperacao;
         }
 

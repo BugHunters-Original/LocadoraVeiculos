@@ -79,7 +79,15 @@ namespace LocadoraDeVeiculos.Aplicacao.LocacaoModule
 
         public bool ExcluirLocacao(int id)
         {
-            return locacaoRepo.Excluir(id);
+            var locacao = locacaoRepo.SelecionarPorId(id);
+            var excluiu = locacaoRepo.Excluir(id);
+
+            if (excluiu)
+                logger.Debug($"Excluiu Locação do Cliente {locacao.Cliente} com ID {locacao.Id}!");
+            else
+                logger.Error($"Não excluiu Locação do Cliente {locacao.Cliente} com ID {locacao.Id}!");
+
+            return excluiu;
         }
         public List<Locacao> SelecionarTodasLocacoes()
         {
