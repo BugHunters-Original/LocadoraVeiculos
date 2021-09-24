@@ -137,29 +137,28 @@ namespace LocadoraDeVeiculos.Dominio.VeiculoModule
                DisponibilidadeVeiculo == other.DisponibilidadeVeiculo &&
                EqualityComparer<GrupoVeiculo>.Default.Equals(GrupoVeiculo, other.GrupoVeiculo) &&
                Foto.SequenceEqual(other.Foto);
-
         }
 
         public override int GetHashCode()
         {
-            int hashCode = -627672175;
-            hashCode = hashCode * -1521134295 + Id.GetHashCode();
-            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(Nome);
-            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(NumeroPlaca);
-            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(NumeroChassi);
-            hashCode = hashCode * -1521134295 + EqualityComparer<byte[]>.Default.GetHashCode(Foto);
-            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(Cor);
-            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(Marca);
-            hashCode = hashCode * -1521134295 + Ano.GetHashCode();
-            hashCode = hashCode * -1521134295 + NumeroPortas.GetHashCode();
-            hashCode = hashCode * -1521134295 + CapacidadeTanque.GetHashCode();
-            hashCode = hashCode * -1521134295 + TamanhoPortaMalas.GetHashCode();
-            hashCode = hashCode * -1521134295 + KmInicial.GetHashCode();
-            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(TipoCombustivel);
-            hashCode = hashCode * -1521134295 + DisponibilidadeVeiculo.GetHashCode();
-            hashCode = hashCode * -1521134295 + EqualityComparer<GrupoVeiculo>.Default.GetHashCode(GrupoVeiculo);
-            return hashCode;
+            HashCode hash = new HashCode();
+            hash.Add(Id);
+            hash.Add(Nome);
+            hash.Add(NumeroPlaca);
+            hash.Add(NumeroChassi);
+            hash.Add(Foto);
+            hash.Add(Cor);
+            hash.Add(Marca);
+            hash.Add(Ano);
+            hash.Add(NumeroPortas);
+            hash.Add(CapacidadeTanque);
+            hash.Add(CapacidadePessoas);
+            hash.Add(TamanhoPortaMalas);
+            hash.Add(KmInicial);
+            hash.Add(TipoCombustivel);
+            hash.Add(DisponibilidadeVeiculo);
+            hash.Add(GrupoVeiculo);
+            return hash.ToHashCode();
         }
-
     }
 }

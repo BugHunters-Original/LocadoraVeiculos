@@ -33,13 +33,17 @@ namespace LocadoraVeiculo.WindowsApp.Features.DescontoFeature
             txtMeio.BackColor = DarkMode.corFundoTxBox;
             cbParceiros.BackColor = DarkMode.corFundoTxBox;
             dtValidade.BackColor = DarkMode.corFundoTxBox;
+            txtNome.BackColor = DarkMode.corFundoTxBox;
+            txtValorMinimo.BackColor = DarkMode.corFundoTxBox;
 
             txtId.ForeColor = DarkMode.corFonte;
+            txtNome.ForeColor = DarkMode.corFonte;
             txtCodigo.ForeColor = DarkMode.corFonte;
             txtValor.ForeColor = DarkMode.corFonte;
             txtMeio.ForeColor = DarkMode.corFonte;
             cbParceiros.ForeColor = DarkMode.corFonte;
             dtValidade.ForeColor = DarkMode.corFonte;
+            txtValorMinimo.ForeColor = DarkMode.corFonte;
 
             btnGravar.BackColor = DarkMode.corFundoTxBox;
             btnCancelar.BackColor = DarkMode.corFundoTxBox;
