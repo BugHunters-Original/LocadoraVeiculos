@@ -51,7 +51,7 @@ namespace LocadoraVeiculo.WindowsApp
 
         public static ClienteCNPJDAO cnpjRepository = new();
         public static ClienteCPFDAO cpfRepository = new();
-        public static GrupoVeiculoDAO grupoVeiculoRepository = new();
+        public static GrupoVeiculoDAO grupoVeiculoRepository = new(LogManager.GetLogger("Grupo Veículo"));
         public static VeiculoDAO veiculoRepository = new();
         public static FuncionarioDAO funcionarioRepository = new();
         public static ServicoDAO servicoRepository = new();

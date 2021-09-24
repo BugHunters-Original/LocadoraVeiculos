@@ -1,5 +1,6 @@
 ﻿using LocadoraDeVeiculos.Dominio.FuncionarioModule;
 using LocadoraDeVeiculos.Infra.Shared;
+using log4net;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -95,6 +96,8 @@ namespace LocadoraDeVeiculos.Infra.SQL.FuncionarioModule
                 [ID] = @ID";
         #endregion
 
+        private readonly ILog logger;
+
         public void Inserir(Funcionario funcionario)
         {
             funcionario.Id = Db.Insert(sqlInserirFuncionario, ObtemParametrosFuncionario(funcionario));
@@ -111,9 +114,13 @@ namespace LocadoraDeVeiculos.Infra.SQL.FuncionarioModule
             try
             {
                 Db.Delete(sqlExcluirFuncionario, AdicionarParametro("ID", id));
+
+                logger.Debug($"Excluiu Funcionário com sucesso!");
             }
-            catch (Exception)
+            catch (Exception exception)
             {
+                logger.Error($"Erro ao excluir Funcionário!", exception);
+
                 return false;
             }
 
