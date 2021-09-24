@@ -44,6 +44,7 @@ namespace LocadoraVeiculo.WindowsApp
 {
     public partial class TelaPrincipalForm : Form
     {
+        private readonly ILog logger;
         public static Log log = new();
         public static EnviaEmail email = new();
         public static MontaPdf pdf = new();
@@ -74,8 +75,9 @@ namespace LocadoraVeiculo.WindowsApp
         private ICadastravel operacoes;
         Thread th;
 
-        public TelaPrincipalForm()
+        public TelaPrincipalForm(ILog logger)
         {
+            this.logger = logger;
             InitializeComponent();
             Instancia = this;
             ConfigurarPainelDashBoard();
@@ -254,6 +256,7 @@ namespace LocadoraVeiculo.WindowsApp
         private void btnModo_Click(object sender, EventArgs e)
         {
             DarkMode.TrocarModo();
+            logger.Info("Troca de modo de exibição");
             SetColor();
             if (operacoes != null)
             {
@@ -376,7 +379,7 @@ namespace LocadoraVeiculo.WindowsApp
 
         private void ChamarTelaLogin(object obj)
         {
-            Application.Run(new TelaLoginForm());
+            Application.Run(new TelaLoginForm(LogManager.GetLogger("TelaLogin")));
         }
 
         private void btnClose_Click(object sender, EventArgs e)
