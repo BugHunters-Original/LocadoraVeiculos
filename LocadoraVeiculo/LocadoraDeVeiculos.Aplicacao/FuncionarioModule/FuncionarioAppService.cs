@@ -62,6 +62,8 @@ namespace LocadoraDeVeiculos.Aplicacao.FuncionarioModule
 
         public bool ExcluirFuncionario(int id)
         {
+            logger.Debug($"Excluindo o funcionário ID: {id}.");
+
             var funcionario = funcionarioRepository.SelecionarPorId(id);
             var excluiu = funcionarioRepository.Excluir(id);
 
@@ -80,6 +82,8 @@ namespace LocadoraDeVeiculos.Aplicacao.FuncionarioModule
 
         public Funcionario SelecionarPorId(int id)
         {
+            logger.Debug($"Selecionando o funcionário ID: {id}.");
+
             Funcionario funcionario =  funcionarioRepository.SelecionarPorId(id);
 
             if (funcionario == null)
