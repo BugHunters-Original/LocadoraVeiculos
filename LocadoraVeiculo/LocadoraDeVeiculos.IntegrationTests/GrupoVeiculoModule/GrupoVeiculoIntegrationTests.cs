@@ -21,8 +21,8 @@ namespace LocadoraDeVeiculos.IntegrationTests.GrupoVeiculoModule
         private static void LimparBancos()
         {
             Db.Update("DELETE FROM [TBLOCACAO]");
-            Db.Update("DELETE FROM [TBVEICULOS]");
             Db.Update("DELETE FROM [TBTIPOVEICULO]");
+            Db.Update("DELETE FROM [TBVEICULOS]");
         }
 
         [TestMethod]
