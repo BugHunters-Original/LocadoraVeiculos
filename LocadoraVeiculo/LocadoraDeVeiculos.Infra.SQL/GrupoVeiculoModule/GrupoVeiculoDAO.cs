@@ -4,6 +4,7 @@ using System.Data;
 
 using LocadoraDeVeiculos.Dominio.GrupoVeiculoModule;
 using LocadoraDeVeiculos.Infra.Shared;
+using log4net;
 
 namespace LocadoraDeVeiculos.Infra.SQL.GrupoVeiculoModule
 {
@@ -103,15 +104,25 @@ namespace LocadoraDeVeiculos.Infra.SQL.GrupoVeiculoModule
                         COLUNADEPESQUISA LIKE @SEGUNDAREF+'%'";
         #endregion
 
+        private ILog logger;
 
+        public GrupoVeiculoDAO(ILog log)
+        {
+            logger = log;
+        }
+        
         public bool Excluir(int id)
         {
             try
             {
                 Db.Delete(sqlExcluirTipoGrupoVeiculo, AdicionarParametro("ID", id));
+
+                logger.Debug($"Excluiu Grupo de Veículo com sucesso!");
             }
-            catch (Exception)
+            catch (Exception ex)
             {
+                logger.Error($"Erro ao excluir Grupo de Veículo!");
+
                 return false;
             }
 
@@ -141,19 +152,31 @@ namespace LocadoraDeVeiculos.Infra.SQL.GrupoVeiculoModule
 
         public void Inserir(GrupoVeiculo grupoVeiculo)
         {
+            try
+            {
+                grupoVeiculo.Id = Db.Insert(sqlInserirTipoGrupoVeiculo, ObtemParametrosTipoGrupoVeiculo(grupoVeiculo));
 
-
-            grupoVeiculo.Id = Db.Insert(sqlInserirTipoGrupoVeiculo, ObtemParametrosTipoGrupoVeiculo(grupoVeiculo));
-
-
+                logger.Debug($"Inseriu o Grupo de Veículo {grupoVeiculo.NomeTipo} com sucesso!");
+            }
+            catch (Exception ex)
+            {
+                logger.Error($"Não foi possível inserir o Grupo de Veículo {grupoVeiculo.NomeTipo}!", ex);
+            }
         }
 
         public void Editar(int id, GrupoVeiculo grupoVeiculo)
         {
+            try
+            {
+                grupoVeiculo.Id = id;
+                Db.Update(sqlEditarTipoGrupoVeiculo, ObtemParametrosTipoGrupoVeiculo(grupoVeiculo));
 
-            grupoVeiculo.Id = id;
-            Db.Update(sqlEditarTipoGrupoVeiculo, ObtemParametrosTipoGrupoVeiculo(grupoVeiculo));
-
+                logger.Debug($"Editou o Grupo de Veículo {grupoVeiculo.NomeTipo} com sucesso!");
+            }
+            catch (Exception ex)
+            {
+                logger.Error($"Não foi possível editar o Grupo de Veículo {grupoVeiculo.NomeTipo}!", ex);
+            }
         }
 
         private GrupoVeiculo ConverterEmGrupoVeiculo(IDataReader reader)
