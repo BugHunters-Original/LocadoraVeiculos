@@ -1,9 +1,8 @@
-﻿using LocadoraDeVeiculos.Aplicacao.VeiculoModule;
-using LocadoraDeVeiculos.Dominio.LocacaoModule;
+﻿using LocadoraDeVeiculos.Dominio.LocacaoModule;
 using LocadoraVeiculo.WindowsApp.Features.DarkModeFeature;
 using System.Windows.Forms;
 
-namespace LocadoraVeiculo.WindowsApp.Features.NotaFiscalFeature
+namespace LocadoraVeiculo.WindowsApp.Features.LocacaoFeature.NotaFiscal
 {
     public partial class TelaNotaFiscalForm : Form
     {

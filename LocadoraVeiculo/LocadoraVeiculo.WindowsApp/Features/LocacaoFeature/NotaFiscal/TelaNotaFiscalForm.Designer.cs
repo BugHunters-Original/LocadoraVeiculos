@@ -1,5 +1,5 @@
 ﻿
-namespace LocadoraVeiculo.WindowsApp.Features.NotaFiscalFeature
+namespace LocadoraVeiculo.WindowsApp.Features.LocacaoFeature.NotaFiscal
 {
     partial class TelaNotaFiscalForm
     {

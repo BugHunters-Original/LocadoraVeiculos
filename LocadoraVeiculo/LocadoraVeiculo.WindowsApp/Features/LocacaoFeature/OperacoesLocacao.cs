@@ -7,7 +7,7 @@ using LocadoraDeVeiculos.Dominio.LocacaoModule;
 using LocadoraDeVeiculos.Dominio.TaxaDaLocacaoModule;
 using LocadoraDeVeiculos.Infra.SQL.TaxaServicoModule.TaxaDaLocacaoModule;
 using LocadoraVeiculo.WindowsApp.Features.LocacaoFeature.DevolucaoLocacao;
-using LocadoraVeiculo.WindowsApp.Features.NotaFiscalFeature;
+using LocadoraVeiculo.WindowsApp.Features.LocacaoFeature.NotaFiscal;
 using LocadoraVeiculo.WindowsApp.Shared;
 using System.Collections.Generic;
 using System.Windows.Forms;

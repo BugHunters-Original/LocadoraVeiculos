@@ -79,38 +79,46 @@ namespace LocadoraDeVeiculos.Aplicacao.LocacaoModule
 
         public bool ExcluirLocacao(int id)
         {
-            var locacao = locacaoRepo.SelecionarPorId(id);
             var excluiu = locacaoRepo.Excluir(id);
 
             if (excluiu)
-                logger.Debug($"Excluiu Locação do Cliente {locacao.Cliente} com ID {locacao.Id}!");
+                logger.Debug($"Excluiu Locação ID: {id}!");
             else
-                logger.Error($"Não excluiu Locação do Cliente {locacao.Cliente} com ID {locacao.Id}!");
+                logger.Error($"Não excluiu Locação ID: {id}!");
 
             return excluiu;
         }
         public List<Locacao> SelecionarTodasLocacoes()
         {
+            logger.Debug($"Selecionando todas Locações!");
             return locacaoRepo.SelecionarTodos();
         }
         public Locacao SelecionarLocacaoPorId(int id)
         {
-            return locacaoRepo.SelecionarPorId(id);
+            Locacao locacao = locacaoRepo.SelecionarPorId(id);
+
+            logger.Debug($"Selecionando Locação ID: {id} Nome: {locacao}!");
+
+            return locacao;
         }
         public List<Locacao> SelecionarTodasLocacoesConcluidas()
         {
+            logger.Debug($"Selecionando todas Locações Concluídas!");
             return locacaoRepo.SelecionarTodasLocacoesConcluidas();
         }
         public List<Locacao> SelecionarTodasLocacoesPendentes()
         {
+            logger.Debug($"Selecionando todas Locações Pendentes!");
             return locacaoRepo.SelecionarTodasLocacoesPendentes();
         }
         public int SelecionarQuantidadeLocacoesPendentes()
         {
+            logger.Debug($"Selecionando quantidade de Locações Pendentes!");
             return locacaoRepo.SelecionarQuantidadeLocacoesPendentes();
         }
         public int SelecionarLocacoesComCupons(string cupom)
         {
+            logger.Debug($"Selecionando todas Locações com Cupom: {cupom}!");
             return locacaoRepo.SelecionarLocacoesComCupons(cupom);
         }
         private void EnviarEmail(Locacao locacao)

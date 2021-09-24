@@ -49,7 +49,6 @@ namespace LocadoraVeiculo.WindowsApp.Features.LocacaoFeature
             telaDasTaxas = new TelaAdicionarTaxasForm();
             InitializeComponent();
             PopularComboboxes();
-
             SetColor();
         }
 
@@ -65,13 +64,13 @@ namespace LocadoraVeiculo.WindowsApp.Features.LocacaoFeature
 
                 txtID.Text = locacao.Id.ToString();
 
-                cbCliente.Text = locacao.Cliente.ToString();
+                cbCliente.SelectedItem = locacao.Cliente;
 
                 cbVeiculo.Items.Add(locacao.Veiculo);
 
                 cbVeiculo.SelectedIndex = cbVeiculo.Items.Count - 1;
 
-                cbCondutor.Text = locacao.Condutor.ToString();
+                cbCondutor.SelectedItem = locacao.Condutor;
 
                 dtSaida.Value = locacao.DataSaida;
 
@@ -155,7 +154,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.LocacaoFeature
             List<TaxaDaLocacao> lista = taxaDaLocacaoDAO.SelecionarTaxasDeUmaLocacao(locacao.Id);
 
             if (lista != null)
-                lista.ForEach(x => listServicos.Items.Add(x));
+                lista.ForEach(x => listServicos.Items.Add(x.TaxaLocacao));
 
             telaDasTaxas.CheckBoxTaxas(lista);
         }

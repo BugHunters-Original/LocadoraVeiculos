@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(TelaLocacaoForm));
             this.cbCliente = new System.Windows.Forms.ComboBox();
             this.dtSaida = new System.Windows.Forms.DateTimePicker();
@@ -48,10 +47,10 @@
             this.header_Locacao = new System.Windows.Forms.Panel();
             this.label9 = new System.Windows.Forms.Label();
             this.cbCondutor = new System.Windows.Forms.ComboBox();
-            this.cbVeiculo = new System.Windows.Forms.ComboBox();
             this.listServicos = new System.Windows.Forms.ListBox();
             this.txtCupom = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
+            this.cbVeiculo = new System.Windows.Forms.ComboBox();
             this.header_Locacao.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -224,15 +223,6 @@
             this.cbCondutor.Size = new System.Drawing.Size(399, 23);
             this.cbCondutor.TabIndex = 2;
             // 
-            // cbVeiculo
-            // 
-            this.cbVeiculo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbVeiculo.FormattingEnabled = true;
-            this.cbVeiculo.Location = new System.Drawing.Point(212, 109);
-            this.cbVeiculo.Name = "cbVeiculo";
-            this.cbVeiculo.Size = new System.Drawing.Size(399, 23);
-            this.cbVeiculo.TabIndex = 28;
-            // 
             // listServicos
             // 
             this.listServicos.FormattingEnabled = true;
@@ -259,15 +249,24 @@
             this.label2.TabIndex = 31;
             this.label2.Text = "Cupom:";
             // 
+            // cbVeiculo
+            // 
+            this.cbVeiculo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbVeiculo.FormattingEnabled = true;
+            this.cbVeiculo.Location = new System.Drawing.Point(212, 109);
+            this.cbVeiculo.Name = "cbVeiculo";
+            this.cbVeiculo.Size = new System.Drawing.Size(399, 23);
+            this.cbVeiculo.TabIndex = 32;
+            // 
             // TelaLocacaoForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(710, 451);
+            this.Controls.Add(this.cbVeiculo);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.txtCupom);
             this.Controls.Add(this.listServicos);
-            this.Controls.Add(this.cbVeiculo);
             this.Controls.Add(this.cbCondutor);
             this.Controls.Add(this.header_Locacao);
             this.Controls.Add(this.cbTipoLocacao);
@@ -285,7 +284,7 @@
             this.Controls.Add(this.dtRetorno);
             this.Controls.Add(this.dtSaida);
             this.Controls.Add(this.cbCliente);
-            this.Font = new System.Drawing.Font("Lucida Sans Unicode", 8F);
+            this.Font = new System.Drawing.Font("Lucida Sans Unicode", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
@@ -322,9 +321,9 @@
         private System.Windows.Forms.Panel header_Locacao;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.ComboBox cbCondutor;
-        private System.Windows.Forms.ComboBox cbVeiculo;
         private System.Windows.Forms.ListBox listServicos;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox txtCupom;
+        private System.Windows.Forms.ComboBox cbVeiculo;
     }
 }
