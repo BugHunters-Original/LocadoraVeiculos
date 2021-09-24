@@ -1,5 +1,6 @@
 ﻿using LocadoraVeiculo.WindowsApp.Features.DarkModeFeature;
 using LocadoraVeiculo.WindowsApp.Features.LoginFeature;
+using log4net;
 using System;
 using System.Windows.Forms;
 
@@ -16,7 +17,7 @@ namespace LocadoraVeiculo.WindowsApp
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             DarkMode.TrocarModo();
-            Application.Run(new TelaLoginForm());
+            Application.Run(new TelaLoginForm(LogManager.GetLogger("TelaLogin")));
         }
     }
 }

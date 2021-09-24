@@ -1,5 +1,6 @@
 ﻿using LocadoraDeVeiculos.Infra.SQL.LoginModule;
 using LocadoraVeiculo.WindowsApp.Features.DarkModeFeature;
+using log4net;
 using System;
 using System.Drawing;
 using System.Threading;
@@ -11,9 +12,10 @@ namespace LocadoraVeiculo.WindowsApp.Features.LoginFeature
     {
         Thread th;
         LoginDAO loginService = new LoginDAO();
-
-        public TelaLoginForm()
+        private readonly ILog logger; 
+        public TelaLoginForm(ILog logger)
         {
+            this.logger = logger;
             InitializeComponent();
             SetColor();
         }
@@ -57,11 +59,12 @@ namespace LocadoraVeiculo.WindowsApp.Features.LoginFeature
 
         private void ChamarTelaPrincipal(object obj)
         {
-            Application.Run(new TelaPrincipalForm());
+            Application.Run(new TelaPrincipalForm(LogManager.GetLogger("TelaPrincipal")));
         }
 
         private void btnModo_Click_1(object sender, EventArgs e)
         {
+            logger.Info("Troca de modo de exibição");
             DarkMode.TrocarModo();
             SetColor();
         }
