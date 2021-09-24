@@ -74,7 +74,10 @@ namespace LocadoraDeVeiculos.Aplicacao.DescontoModule
         {
             Desconto desconto =  descontoRepository.SelecionarPorId(id);
 
-            logger.Debug($"Selecionando desconto ID: {id}, NOME: {desconto.Nome}.");
+            if (desconto == null)
+                logger.Warn($"Não foi possível encontrar o desconto com ID: {id}");
+            else
+                logger.Debug($"Selecionando desconto ID: {id}, NOME: {desconto.Nome}.");
 
             return desconto;
         }
@@ -84,7 +87,7 @@ namespace LocadoraDeVeiculos.Aplicacao.DescontoModule
             List<Desconto> desconto = descontoRepository.SelecionarTodos();
 
             if(desconto.Count == 0)
-                logger.Debug($"Não há descontos cadastrados");
+                logger.Warn($"Não há descontos cadastrados");
             else
                 logger.Debug($"Selecionando todos os {desconto.Count} descontos.");
 
