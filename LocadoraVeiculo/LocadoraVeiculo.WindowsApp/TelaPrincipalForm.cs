@@ -50,7 +50,7 @@ namespace LocadoraVeiculo.WindowsApp
 
         public static ClienteCNPJDAO cnpjRepository = new();
         public static ClienteCPFDAO cpfRepository = new();
-        public static GrupoVeiculoDAO grupoVeiculoRepository = new(LogManager.GetLogger("Grupo Veículo"));
+        public static GrupoVeiculoDAO grupoVeiculoRepository = new(logger);
         public static VeiculoDAO veiculoRepository = new();
         public static FuncionarioDAO funcionarioRepository = new();
         public static ServicoDAO servicoRepository = new();
@@ -74,9 +74,9 @@ namespace LocadoraVeiculo.WindowsApp
         private ICadastravel operacoes;
         Thread th;
 
-        public TelaPrincipalForm(ILog logger)
+        public TelaPrincipalForm(Logger logger)
         {
-            this.logger = logger;
+            logger = logger;
             InitializeComponent();
             Instancia = this;
             ConfigurarPainelDashBoard();
@@ -255,7 +255,7 @@ namespace LocadoraVeiculo.WindowsApp
         private void btnModo_Click(object sender, EventArgs e)
         {
             DarkMode.TrocarModo();
-            logger.Info("Troca de modo de exibição");
+            logger.Information("Troca de modo de exibição");
             SetColor();
             if (operacoes != null)
             {
@@ -378,7 +378,7 @@ namespace LocadoraVeiculo.WindowsApp
 
         private void ChamarTelaLogin(object obj)
         {
-            Application.Run(new TelaLoginForm(LogManager.GetLogger("TelaLogin")));
+            Application.Run(new TelaLoginForm(logger));
         }
 
         private void btnClose_Click(object sender, EventArgs e)

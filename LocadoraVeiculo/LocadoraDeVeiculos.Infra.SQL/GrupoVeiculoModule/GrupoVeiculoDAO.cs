@@ -1,10 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
-
 using LocadoraDeVeiculos.Dominio.GrupoVeiculoModule;
 using LocadoraDeVeiculos.Infra.Shared;
-using log4net;
+using Serilog.Core;
 
 namespace LocadoraDeVeiculos.Infra.SQL.GrupoVeiculoModule
 {
@@ -104,9 +103,9 @@ namespace LocadoraDeVeiculos.Infra.SQL.GrupoVeiculoModule
                         COLUNADEPESQUISA LIKE @SEGUNDAREF+'%'";
         #endregion
 
-        private ILog logger;
+        private Logger logger;
 
-        public GrupoVeiculoDAO(ILog log)
+        public GrupoVeiculoDAO(Logger log)
         {
             logger = log;
         }

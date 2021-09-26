@@ -87,7 +87,7 @@ namespace LocadoraDeVeiculos.Aplicacao.FuncionarioModule
             Funcionario funcionario =  funcionarioRepository.SelecionarPorId(id);
 
             if (funcionario == null)
-                logger.Warn($"Não foi possível encontrar o funcionário com ID: {id}");
+                logger.Warning($"Não foi possível encontrar o funcionário com ID: {id}");
             else
                 logger.Debug($"Selecionando funcionário ID: {id}, NOME: {funcionario.Nome}.");
 
@@ -101,7 +101,7 @@ namespace LocadoraDeVeiculos.Aplicacao.FuncionarioModule
             List<Funcionario>  funcionario = funcionarioRepository.SelecionarTodos();
 
             if (funcionario.Count == 0)
-                logger.Warn($"Não há funcionários cadastrados");
+                logger.Warning($"Não há funcionários cadastrados");
             else
                 logger.Debug($"Selecionou os {funcionario.Count} Funcionários existentes.");
 

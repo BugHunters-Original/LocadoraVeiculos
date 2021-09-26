@@ -1,6 +1,6 @@
 ﻿using LocadoraDeVeiculos.Dominio.FuncionarioModule;
 using LocadoraDeVeiculos.Infra.Shared;
-using log4net;
+using Serilog.Core;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -96,7 +96,7 @@ namespace LocadoraDeVeiculos.Infra.SQL.FuncionarioModule
                 [ID] = @ID";
         #endregion
 
-        private readonly ILog logger;
+        private readonly Logger logger;
 
         public void Inserir(Funcionario funcionario)
         {
