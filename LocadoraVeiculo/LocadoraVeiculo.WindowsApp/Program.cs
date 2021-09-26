@@ -17,7 +17,7 @@ namespace LocadoraVeiculo.WindowsApp
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             DarkMode.TrocarModo();
-            Application.Run(new TelaLoginForm());
+            Application.Run(new TelaLoginForm(LogManager.GetLogger("TelaLogin")));
         }
     }
 }

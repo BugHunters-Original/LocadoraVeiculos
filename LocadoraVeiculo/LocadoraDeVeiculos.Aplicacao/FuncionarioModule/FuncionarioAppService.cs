@@ -19,39 +19,51 @@ namespace LocadoraDeVeiculos.Aplicacao.FuncionarioModule
         {
             string resultadoValidacaoDominio = funcionario.Validar();
 
-            if (resultadoValidacaoDominio == "ESTA_VALIDO")
-            {
-                logger.Debug($"Registrando funcionário {funcionario.Nome}...");
+            logger.Debug($"Registrando funcionário {funcionario.Nome}...");
 
+            if (resultadoValidacaoDominio == "ESTA_VALIDO")
+            {           
                 funcionarioRepository.Inserir(funcionario);
 
                 logger.Debug($"Funcionário {funcionario.Nome} registrado com sucesso!");
 
                 return true;
             }
+            else
+            {
+                logger.Error($"Não foi possível registrar o Funcionário: {funcionario.Nome}.");
 
-            return false;
+                return false;
+            }
+
+           
         }
         public bool EditarFuncionario(int id, Funcionario funcionario)
         {
             string resultadoValidacaoDominio = funcionario.Validar();
 
+            logger.Debug($"Editando funcionário {funcionario.Nome}...");
+
             if (resultadoValidacaoDominio == "ESTA_VALIDO")
             {
-                logger.Debug($"Editando funcionário {funcionario.Nome}...");
-
                 funcionarioRepository.Editar(id, funcionario);
 
                 logger.Debug($"Funcionário {funcionario.Nome} Editado com sucesso!");
 
                 return true;
             }
+            else
+            {
+                logger.Error($"Não foi possível editar o Funcionário: {funcionario.Nome}.");
 
-            return false;
+                return false;
+            }    
         }
 
         public bool ExcluirFuncionario(int id)
         {
+            logger.Debug($"Excluindo o funcionário ID: {id}.");
+
             var funcionario = funcionarioRepository.SelecionarPorId(id);
             var excluiu = funcionarioRepository.Excluir(id);
 
@@ -70,21 +82,28 @@ namespace LocadoraDeVeiculos.Aplicacao.FuncionarioModule
 
         public Funcionario SelecionarPorId(int id)
         {
+            logger.Debug($"Selecionando o funcionário ID: {id}.");
+
             Funcionario funcionario =  funcionarioRepository.SelecionarPorId(id);
 
-            logger.Debug($"Selecionando funcionário ID: {id}, NOME: {funcionario.Nome}.");
+            if (funcionario == null)
+                logger.Warn($"Não foi possível encontrar o funcionário com ID: {id}");
+            else
+                logger.Debug($"Selecionando funcionário ID: {id}, NOME: {funcionario.Nome}.");
 
             return funcionario;
         }
 
         public List<Funcionario> SelecionarTodosFuncionarios()
         {
+            logger.Debug($"Selecionando todos os Funcionários.");
+
             List<Funcionario>  funcionario = funcionarioRepository.SelecionarTodos();
 
             if (funcionario.Count == 0)
-                logger.Debug($"Não há funcionários cadastrados");
+                logger.Warn($"Não há funcionários cadastrados");
             else
-                logger.Debug($"Selecionando todos os {funcionario.Count} funcionários.");
+                logger.Debug($"Selecionou os {funcionario.Count} Funcionários existentes.");
 
             return funcionario;
         }
