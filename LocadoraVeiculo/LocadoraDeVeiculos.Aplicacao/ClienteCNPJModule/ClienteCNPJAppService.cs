@@ -1,5 +1,5 @@
 ﻿using LocadoraDeVeiculos.Dominio.ClienteModule.ClienteCNPJModule;
-using log4net;
+using Serilog.Core;
 using System.Collections.Generic;
 
 namespace LocadoraDeVeiculos.Aplicacao.ClienteCNPJModule
@@ -7,9 +7,9 @@ namespace LocadoraDeVeiculos.Aplicacao.ClienteCNPJModule
     public class ClienteCNPJAppService
     {
         private readonly IClienteCNPJRepository clienteCNPJRepository;
-        private readonly ILog logger;
+        private readonly Logger logger;
 
-        public ClienteCNPJAppService(IClienteCNPJRepository clienteCNPJRepo, ILog logger)
+        public ClienteCNPJAppService(IClienteCNPJRepository clienteCNPJRepo, Logger logger)
         {
             clienteCNPJRepository = clienteCNPJRepo;
             this.logger = logger;

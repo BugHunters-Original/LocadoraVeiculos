@@ -1,5 +1,5 @@
 ﻿using LocadoraDeVeiculos.Dominio.FuncionarioModule;
-using log4net;
+using Serilog.Core;
 using System.Collections.Generic;
 
 namespace LocadoraDeVeiculos.Aplicacao.FuncionarioModule
@@ -7,9 +7,9 @@ namespace LocadoraDeVeiculos.Aplicacao.FuncionarioModule
     public class FuncionarioAppService
     {
         private readonly IFuncionarioRepository funcionarioRepository;
-        private readonly ILog logger;
+        private readonly Logger logger;
 
-        public FuncionarioAppService(IFuncionarioRepository funcionarioRepo, ILog logger)
+        public FuncionarioAppService(IFuncionarioRepository funcionarioRepo, Logger logger)
         {
             funcionarioRepository = funcionarioRepo;
             this.logger = logger;

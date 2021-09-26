@@ -1,19 +1,15 @@
 ﻿using LocadoraDeVeiculos.Dominio.ServicoModule;
-using log4net;
-using System;
+using Serilog.Core;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace LocadoraDeVeiculos.Aplicacao.ServicoModule
 {
     public class ServicoAppService
     {
         private readonly IServicoRepository taxaServicoRepository;
-        private readonly ILog logger;
+        private readonly Logger logger;
 
-        public ServicoAppService(IServicoRepository taxaServicoRepo, ILog logger)
+        public ServicoAppService(IServicoRepository taxaServicoRepo, Logger logger)
         {
             taxaServicoRepository = taxaServicoRepo;
             this.logger = logger;

@@ -1,13 +1,13 @@
 ﻿using LocadoraDeVeiculos.Dominio.LocacaoModule;
 using LocadoraDeVeiculos.Infra.EmailLocadora;
+using Serilog.Core;
 using System.Net.Mail;
-using log4net;
 
 namespace LocadoraDeVeiculos.Infra.InternetServices
 {
     public class EnviaEmail : IEmail
     {
-        public bool EnviarEmail(Locacao locacao, ILog logger)
+        public bool EnviarEmail(Locacao locacao, Logger logger)
         {
             try
             {

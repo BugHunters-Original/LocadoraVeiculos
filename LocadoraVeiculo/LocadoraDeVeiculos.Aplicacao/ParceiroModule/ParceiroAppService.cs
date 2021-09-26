@@ -1,5 +1,5 @@
 ﻿using LocadoraDeVeiculos.Dominio.ParceiroModule;
-using log4net;
+using Serilog.Core;
 using System.Collections.Generic;
 
 namespace LocadoraDeVeiculos.Aplicacao.ParceiroModule
@@ -7,9 +7,9 @@ namespace LocadoraDeVeiculos.Aplicacao.ParceiroModule
     public class ParceiroAppService
     {
         private readonly IParceiroRepository parceiroRepository;
-        private readonly ILog logger;
+        private readonly Logger logger;
 
-        public ParceiroAppService(IParceiroRepository parceiroRepo, ILog logger)
+        public ParceiroAppService(IParceiroRepository parceiroRepo, Logger logger)
         {
             parceiroRepository = parceiroRepo;
             this.logger = logger;
@@ -21,7 +21,7 @@ namespace LocadoraDeVeiculos.Aplicacao.ParceiroModule
 
             if (resultadoValidacaoDominio == "ESTA_VALIDO")
             {
-                logger.Debug($"Registrando parceiro {parceiro}...");
+                logger.Information($"Registrando parceiro {parceiro}...");
 
                 parceiroRepository.Inserir(parceiro);
 

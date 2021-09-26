@@ -1,13 +1,9 @@
 ﻿using LocadoraDeVeiculos.Aplicacao.ParceiroModule;
 using LocadoraDeVeiculos.Dominio.ParceiroModule;
-using log4net;
+using LocadoraDeVeiculos.Infra.Log;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Serilog.Core;
 
 namespace LocadoraDeVeiculos.AppServiceTests.ParceiroModule
 {
@@ -17,12 +13,11 @@ namespace LocadoraDeVeiculos.AppServiceTests.ParceiroModule
         Mock<IParceiroRepository> parceiroDAOMock = new();
         Mock<Parceiro> parceiroMock = new();
 
-        //public ParceiroAppServiceTest(Mock<IParceiroRepository> repo, Mock<Parceiro> parceiroMock)
-        //{
-        //    parceiroDAOMock = repo;
-        //    this.parceiroMock = parceiroMock;
-
-        //}
+        Logger logger;
+        public ParceiroAppServiceTest()
+        {
+            logger = LogManager.IniciarLog();
+        }
 
         [TestMethod]
         public void Deve_Chamar_Inserir()
@@ -36,7 +31,7 @@ namespace LocadoraDeVeiculos.AppServiceTests.ParceiroModule
             });
 
             //actions
-            ParceiroAppService parceiroAppService = new ParceiroAppService(parceiroDAOMock.Object, LogManager.GetLogger("Parceiro"));
+            ParceiroAppService parceiroAppService = new ParceiroAppService(parceiroDAOMock.Object, logger);
             parceiroAppService.RegistrarNovoParceiro(novoParceiro);
 
             //assert
@@ -56,7 +51,7 @@ namespace LocadoraDeVeiculos.AppServiceTests.ParceiroModule
             });
 
             //actions
-            ParceiroAppService parceiroAppService = new ParceiroAppService(parceiroDAOMock.Object, LogManager.GetLogger("Parceiro"));
+            ParceiroAppService parceiroAppService = new ParceiroAppService(parceiroDAOMock.Object, logger);
             parceiroAppService.EditarParceiro(1 , novoParceiro);
 
             //assert

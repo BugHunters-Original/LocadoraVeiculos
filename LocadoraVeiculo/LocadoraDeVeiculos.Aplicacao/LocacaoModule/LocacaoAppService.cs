@@ -2,8 +2,8 @@
 using LocadoraDeVeiculos.Dominio.LocacaoModule;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using log4net;
 using LocadoraDeVeiculos.Dominio.VeiculoModule;
+using Serilog.Core;
 
 namespace LocadoraDeVeiculos.Aplicacao.LocacaoModule
 {
@@ -12,10 +12,10 @@ namespace LocadoraDeVeiculos.Aplicacao.LocacaoModule
         private readonly ILocacaoRepository locacaoRepo;
         private readonly IDescontoRepository descontoRepo;
         private readonly IVeiculoRepository veiculoRepo;
-        private readonly ILog logger;
+        private readonly Logger logger;
         private readonly IEmail email;
         private readonly IPDF pdf;
-        public LocacaoAppService(ILocacaoRepository locacaoRepo, ILog logger,
+        public LocacaoAppService(ILocacaoRepository locacaoRepo, Logger logger,
                                  IEmail email, IPDF pdf, IDescontoRepository descontoRepo,
                                  IVeiculoRepository veiculoRepo)
         {

@@ -2,9 +2,10 @@
 using LocadoraDeVeiculos.Dominio.DescontoModule;
 using LocadoraDeVeiculos.Dominio.LocacaoModule;
 using LocadoraDeVeiculos.Dominio.VeiculoModule;
-using log4net;
+using LocadoraDeVeiculos.Infra.Log;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
+using Serilog.Core;
 
 namespace LocadoraDeVeiculos.AppServiceTests.LocacaoModule
 {
@@ -18,6 +19,7 @@ namespace LocadoraDeVeiculos.AppServiceTests.LocacaoModule
         Mock<IDescontoRepository> descontoRepo;
         Mock<ILocacaoRepository> locacaoRepo;
         LocacaoAppService locacaoService;
+        Logger logger;
         public LocacaoMock()
         {
             locacaoObj = new();
@@ -32,7 +34,9 @@ namespace LocadoraDeVeiculos.AppServiceTests.LocacaoModule
 
             locacaoRepo = new();
 
-            locacaoService = new(locacaoRepo.Object, LogManager.GetLogger("Locacao"), emailRepo.Object,
+            logger = LogManager.IniciarLog();
+
+            locacaoService = new(locacaoRepo.Object, logger, emailRepo.Object,
                                  pdfRepo.Object, descontoRepo.Object, veiculoRepo.Object);
         }
 
@@ -43,7 +47,7 @@ namespace LocadoraDeVeiculos.AppServiceTests.LocacaoModule
 
             pdfRepo.Setup(x => x.MontarPDF(locacaoObj.Object));
 
-            emailRepo.Setup(x => x.EnviarEmail(locacaoObj.Object, LogManager.GetLogger("Locacao")));
+            emailRepo.Setup(x => x.EnviarEmail(locacaoObj.Object, logger));
 
             locacaoService.RegistrarNovaLocacao(locacaoObj.Object);
 
@@ -56,7 +60,7 @@ namespace LocadoraDeVeiculos.AppServiceTests.LocacaoModule
 
             pdfRepo.Setup(x => x.MontarPDF(locacaoObj.Object));
 
-            emailRepo.Setup(x => x.EnviarEmail(locacaoObj.Object, LogManager.GetLogger("Locacao")));
+            emailRepo.Setup(x => x.EnviarEmail(locacaoObj.Object, logger));
 
             locacaoService.RegistrarNovaLocacao(locacaoObj.Object);
 
@@ -71,7 +75,7 @@ namespace LocadoraDeVeiculos.AppServiceTests.LocacaoModule
 
             locacaoService.RegistrarNovaLocacao(locacaoObj.Object);
 
-            emailRepo.Verify(x => x.EnviarEmail(locacaoObj.Object, LogManager.GetLogger("Locacao")), Times.Never);
+            emailRepo.Verify(x => x.EnviarEmail(locacaoObj.Object, logger), Times.Never);
         }
         [TestMethod]
         public void Não_deve_montar_pdf()
