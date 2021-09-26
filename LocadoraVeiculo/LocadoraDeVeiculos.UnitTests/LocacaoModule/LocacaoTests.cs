@@ -1,4 +1,5 @@
 ﻿using FluentAssertions;
+using LocadoraDeVeiculos.DataBuildersTest;
 using LocadoraDeVeiculos.Dominio.ClienteModule.ClienteCNPJModule;
 using LocadoraDeVeiculos.Dominio.ClienteModule.ClienteCPFModule;
 using LocadoraDeVeiculos.Dominio.GrupoVeiculoModule;
@@ -31,13 +32,16 @@ namespace LocadoraDeVeiculos.Test.LocacaoModule
             condutor = new ClienteCPF("Pedro", "(49)12345-6789", "Coral", "011.900.119-57",
                                         "6.187.754", "12345678910", new DateTime(2022, 06, 22), "gabas220601@gmail.com", cliente);
             dataSaida = new DateTime(2021, 08, 19);
+
             dataRetorno = new DateTime(2021, 08, 19);
+
             dias = Convert.ToInt32((dataSaida - dataRetorno).TotalDays);
 
             imagem = new byte[] { 0x20, 0x20, 0x20, 0x20 };
-            grupo = new GrupoVeiculo("Econômico", 10, 10, 10, 10, 10, 10);
-            veiculo = new Veiculo("Carro", "AAA8888", "12345678912345678", imagem, "vermelho", "Ford", 2009, 9, 200, 1, 'M', 90, "Álcool", 1, grupo);
 
+            grupo = new GrupoVeiculo("Econômico", 10, 10, 10, 10, 10, 10);
+
+            veiculo = new Veiculo("Carro", "AAA8888", "12345678912345678", imagem, "vermelho", "Ford", 2009, 9, 200, 1, 'M', 90, "Álcool", 1, grupo);
 
             servico = new Servico("Seguro", 2500, 0);
 
@@ -48,10 +52,8 @@ namespace LocadoraDeVeiculos.Test.LocacaoModule
         public void DeveValidar_Locacao()
         {
             //arrange
-
             Locacao novaLocacao = new Locacao(cliente, veiculo, null, condutor, dataSaida, dataRetorno,
                                   "Plano Diário", 0, precoServicos, dias, "Em Aberto", null, grupo.ValorDiarioPDiario * dias, null, null);
-
 
             //action
             var resultadoValidacao = novaLocacao.Validar();
