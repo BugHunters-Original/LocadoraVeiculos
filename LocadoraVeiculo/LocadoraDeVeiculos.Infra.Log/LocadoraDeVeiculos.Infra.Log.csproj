@@ -5,20 +5,14 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="log4net" Version="2.0.12" />
+    <PackageReference Include="Serilog" Version="2.10.0" />
+    <PackageReference Include="Serilog.Sinks.Seq" Version="5.0.1" />
     <PackageReference Include="Microsoft.Extensions.Configuration" Version="5.0.0" />
-    <PackageReference Include="Seq.Client.Log4Net" Version="3.0.0" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\LocadoraDeVeiculos.EmailLocadora\LocadoraDeVeiculos.Infra.EmailLocadora.csproj" />
     <ProjectReference Include="..\LocadoraDeVeiculos.Infra.Shared\LocadoraDeVeiculos.Infra.Shared.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <None Update="log4net.config">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
   </ItemGroup>
 
 </Project>

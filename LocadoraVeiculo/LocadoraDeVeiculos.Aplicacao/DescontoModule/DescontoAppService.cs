@@ -1,5 +1,5 @@
 ﻿using LocadoraDeVeiculos.Dominio.DescontoModule;
-using log4net;
+using Serilog.Core;
 using System.Collections.Generic;
 
 namespace LocadoraDeVeiculos.Aplicacao.DescontoModule
@@ -7,9 +7,9 @@ namespace LocadoraDeVeiculos.Aplicacao.DescontoModule
     public class DescontoAppService
     {
         private readonly IDescontoRepository descontoRepository;
-        private readonly ILog logger;
+        private readonly Logger logger;
 
-        public DescontoAppService(IDescontoRepository descontoRepo, ILog logger)
+        public DescontoAppService(IDescontoRepository descontoRepo, Logger logger)
         {
             descontoRepository = descontoRepo;
             this.logger = logger;

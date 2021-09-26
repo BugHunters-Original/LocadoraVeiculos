@@ -34,6 +34,10 @@ namespace LocadoraDeVeiculos.Dominio.LocacaoModule
             PrecoTotal = precoTotal;
             Servicos = servicos;
         }
+        public Locacao()
+        {
+
+        }
         public ClienteBase Cliente { get; set; }
         public Veiculo Veiculo { get; set; }
         public Desconto Desconto { get; set; }

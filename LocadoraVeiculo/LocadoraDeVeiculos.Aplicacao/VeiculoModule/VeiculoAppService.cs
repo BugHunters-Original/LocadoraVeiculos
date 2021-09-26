@@ -1,5 +1,5 @@
 ﻿using LocadoraDeVeiculos.Dominio.VeiculoModule;
-using log4net;
+using Serilog.Core;
 using System.Collections.Generic;
 
 
@@ -8,9 +8,9 @@ namespace LocadoraDeVeiculos.Aplicacao.VeiculoModule
     public class VeiculoAppService
     {
         private readonly IVeiculoRepository veiculoRepository;
-        private readonly ILog logger;
+        private readonly Logger logger;
 
-        public VeiculoAppService(IVeiculoRepository veiculoRepository, ILog logger)
+        public VeiculoAppService(IVeiculoRepository veiculoRepository, Logger logger)
         {
             this.veiculoRepository = veiculoRepository;
             this.logger = logger;

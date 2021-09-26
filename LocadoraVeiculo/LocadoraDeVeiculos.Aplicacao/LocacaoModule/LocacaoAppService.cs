@@ -2,8 +2,8 @@
 using LocadoraDeVeiculos.Dominio.LocacaoModule;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using log4net;
 using LocadoraDeVeiculos.Dominio.VeiculoModule;
+using Serilog.Core;
 
 namespace LocadoraDeVeiculos.Aplicacao.LocacaoModule
 {
@@ -12,10 +12,10 @@ namespace LocadoraDeVeiculos.Aplicacao.LocacaoModule
         private readonly ILocacaoRepository locacaoRepo;
         private readonly IDescontoRepository descontoRepo;
         private readonly IVeiculoRepository veiculoRepo;
-        private readonly ILog logger;
+        private readonly Logger logger;
         private readonly IEmail email;
         private readonly IPDF pdf;
-        public LocacaoAppService(ILocacaoRepository locacaoRepo, ILog logger,
+        public LocacaoAppService(ILocacaoRepository locacaoRepo, Logger logger,
                                  IEmail email, IPDF pdf, IDescontoRepository descontoRepo,
                                  IVeiculoRepository veiculoRepo)
         {
@@ -25,7 +25,6 @@ namespace LocadoraDeVeiculos.Aplicacao.LocacaoModule
             this.logger = logger;
             this.email = email;
             this.pdf = pdf;
-
         }
         public void RegistrarNovaLocacao(Locacao locacao)
         {
@@ -50,7 +49,7 @@ namespace LocadoraDeVeiculos.Aplicacao.LocacaoModule
 
                 logger.Debug($"PDF da Locação {locacao.Id} registrado com sucesso!");
 
-                Task.Run(() => EnviarEmail(locacao));
+                Task.Run(() => email.EnviarEmail(locacao, logger));
             }
         }
         public void ConcluirLocacao(int id, Locacao locacao)
@@ -121,14 +120,6 @@ namespace LocadoraDeVeiculos.Aplicacao.LocacaoModule
             logger.Debug($"Selecionando todas Locações com Cupom: {cupom}!");
             return locacaoRepo.SelecionarLocacoesComCupons(cupom);
         }
-        private void EnviarEmail(Locacao locacao)
-        {
-            var enviouOEmail = email.EnviarEmail(locacao);
 
-            if (enviouOEmail)
-                logger.Debug($"E-Mail enviado para {locacao.Cliente.Email} com sucesso!");
-            else
-                logger.Error($"Erro ao enviar E-Mail para {locacao.Cliente.Email}!");
-        }
     }
 }

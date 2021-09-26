@@ -1,5 +1,4 @@
 ﻿using System;
-using log4net;
 using System.Threading;
 using System.Windows.Forms;
 using LocadoraVeiculo.WindowsApp.Shared;
@@ -39,13 +38,13 @@ using LocadoraDeVeiculos.Infra.SQL.TaxaServicoModule.TaxaDaLocacaoModule;
 using LocadoraDeVeiculos.Infra.PDFLocacao;
 using LocadoraDeVeiculos.Infra.InternetServices;
 using LocadoraDeVeiculos.Infra.Log;
+using Serilog.Core;
 
 namespace LocadoraVeiculo.WindowsApp
 {
     public partial class TelaPrincipalForm : Form
     {
-        private readonly ILog logger;
-        public static Log log = new();
+        public static Logger logger = LogManager.IniciarLog();
         public static EnviaEmail email = new();
         public static MontaPdf pdf = new();
 
@@ -60,15 +59,15 @@ namespace LocadoraVeiculo.WindowsApp
         public static TaxaDaLocacaoDAO taxaRepository = new();
         public static LocacaoDAO locacaoRepository = new();
 
-        public static ClienteCNPJAppService cnpjService = new(cnpjRepository, LogManager.GetLogger("Cliente"));
-        public static ClienteCPFAppService cpfService = new(cpfRepository, LogManager.GetLogger("Cliente"));
-        public static GrupoVeiculoAppService grupoVeiculoService = new(grupoVeiculoRepository, LogManager.GetLogger("Grupo Veículo"));
-        public static LocacaoAppService locacaoService = new(locacaoRepository, LogManager.GetLogger("Locação"), email, pdf, descontoRepository, veiculoRepository);
-        public static VeiculoAppService veiculoService = new(veiculoRepository, LogManager.GetLogger("Veículo"));
-        public static FuncionarioAppService funcionarioService = new(funcionarioRepository, LogManager.GetLogger("Funcionário"));
-        public static ServicoAppService servicoService = new(servicoRepository, LogManager.GetLogger("Funcionário"));
-        public static DescontoAppService descontoService = new(descontoRepository, LogManager.GetLogger("Desconto"));
-        public static ParceiroAppService parceiroService = new(parceiroRepository, LogManager.GetLogger("Parceiro"));
+        public static ClienteCNPJAppService cnpjService = new(cnpjRepository, logger);
+        public static ClienteCPFAppService cpfService = new(cpfRepository, logger);
+        public static GrupoVeiculoAppService grupoVeiculoService = new(grupoVeiculoRepository, logger);
+        public static LocacaoAppService locacaoService = new(locacaoRepository, logger, email, pdf, descontoRepository, veiculoRepository);
+        public static VeiculoAppService veiculoService = new(veiculoRepository, logger);
+        public static FuncionarioAppService funcionarioService = new(funcionarioRepository, logger);
+        public static ServicoAppService servicoService = new(servicoRepository, logger);
+        public static DescontoAppService descontoService = new(descontoRepository, logger);
+        public static ParceiroAppService parceiroService = new(parceiroRepository, logger);
 
         public static TelaPrincipalForm Instancia;
         public static DashboardControl dash;

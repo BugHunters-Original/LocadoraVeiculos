@@ -1,5 +1,5 @@
 ﻿using LocadoraDeVeiculos.Dominio.ClienteModule.ClienteCPFModule;
-using log4net;
+using Serilog.Core;
 using System.Collections.Generic;
 
 namespace LocadoraDeVeiculos.Aplicacao.ClienteCPFModule
@@ -7,9 +7,9 @@ namespace LocadoraDeVeiculos.Aplicacao.ClienteCPFModule
     public class ClienteCPFAppService
     {
         private readonly IClienteCPFRepository clienteCPFRepository;
-        private readonly ILog logger;
+        private readonly Logger logger;
 
-        public ClienteCPFAppService(IClienteCPFRepository clienteRepo, ILog logger)
+        public ClienteCPFAppService(IClienteCPFRepository clienteRepo, Logger logger)
         {
             clienteCPFRepository = clienteRepo;
             this.logger = logger;

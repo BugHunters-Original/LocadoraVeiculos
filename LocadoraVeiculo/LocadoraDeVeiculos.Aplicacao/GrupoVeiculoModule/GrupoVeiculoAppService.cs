@@ -1,6 +1,5 @@
 ﻿using LocadoraDeVeiculos.Dominio.GrupoVeiculoModule;
-using log4net;
-using System;
+using Serilog.Core;
 using System.Collections.Generic;
 
 
@@ -10,17 +9,14 @@ namespace LocadoraDeVeiculos.Aplicacao.GrupoVeiculoModule
     {
         public bool sucesso;
         public string mensagem;
-
-
-
     }
 
     public class GrupoVeiculoAppService
     {
         private readonly IGrupoVeiculoRepository grupoVeiculoRepository;
-        private readonly ILog logger;
+        private readonly Logger logger;
 
-        public GrupoVeiculoAppService(IGrupoVeiculoRepository grupoVeiculoRepository, ILog logger)
+        public GrupoVeiculoAppService(IGrupoVeiculoRepository grupoVeiculoRepository, Logger logger)
         {
             this.grupoVeiculoRepository = grupoVeiculoRepository;
             this.logger = logger;

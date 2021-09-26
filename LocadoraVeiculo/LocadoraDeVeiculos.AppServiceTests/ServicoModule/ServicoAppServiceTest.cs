@@ -1,13 +1,9 @@
 ﻿using LocadoraDeVeiculos.Aplicacao.ServicoModule;
 using LocadoraDeVeiculos.Dominio.ServicoModule;
-using log4net;
+using LocadoraDeVeiculos.Infra.Log;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Serilog.Core;
 
 namespace LocadoraDeVeiculos.AppServiceTests.ServicoModule
 {
@@ -16,7 +12,11 @@ namespace LocadoraDeVeiculos.AppServiceTests.ServicoModule
     {
         Mock<IServicoRepository> servicoDAOMock = new();
         Mock<Servico> servicoMock = new();
-
+        Logger logger;
+        public ServicoAppServiceTest()
+        {
+            logger = LogManager.IniciarLog();
+        }
         [TestMethod]
         public void Deve_Chamar_Inserir()
         {
@@ -29,7 +29,7 @@ namespace LocadoraDeVeiculos.AppServiceTests.ServicoModule
             });
 
             //actions
-            ServicoAppService servicoAppService = new ServicoAppService(servicoDAOMock.Object, LogManager.GetLogger("Servico"));
+            ServicoAppService servicoAppService = new ServicoAppService(servicoDAOMock.Object, logger);
             servicoAppService.InserirServico(novoServico);
 
             //assert
@@ -49,7 +49,7 @@ namespace LocadoraDeVeiculos.AppServiceTests.ServicoModule
             });
 
             //actions
-            ServicoAppService ServicoAppService = new ServicoAppService(servicoDAOMock.Object, LogManager.GetLogger("Servico"));
+            ServicoAppService ServicoAppService = new ServicoAppService(servicoDAOMock.Object, logger);
             ServicoAppService.EditarServico(1, novoServico);
 
             //assert

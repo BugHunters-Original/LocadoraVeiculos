@@ -1,15 +1,21 @@
 ﻿using FluentAssertions;
 using LocadoraDeVeiculos.Aplicacao.FuncionarioModule;
 using LocadoraDeVeiculos.Dominio.FuncionarioModule;
-using log4net;
+using LocadoraDeVeiculos.Infra.Log;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
+using Serilog.Core;
 
 namespace LocadoraDeVeiculos.AppServiceTests.FuncionarioModule
 {
     [TestClass]
     public class FuncionarioMock
     {
+        Logger logger;
+        public FuncionarioMock()
+        {
+            logger = LogManager.IniciarLog();
+        }
         [TestMethod]
         public void Deve_chamar_inserir()
         {
@@ -19,7 +25,7 @@ namespace LocadoraDeVeiculos.AppServiceTests.FuncionarioModule
 
             funcionario.Setup(x => x.Validar()).Returns("ESTA_VALIDO");
 
-            FuncionarioAppService funcionarioService = new(funcionarioMock.Object, LogManager.GetLogger("Funcionario"));
+            FuncionarioAppService funcionarioService = new(funcionarioMock.Object, logger);
 
             funcionarioService.RegistrarNovoFuncionario(funcionario.Object);
 
@@ -35,7 +41,7 @@ namespace LocadoraDeVeiculos.AppServiceTests.FuncionarioModule
 
             funcionario.Setup(x => x.Validar()).Returns("O campo Senha possui menos de sete dígitos");
 
-            FuncionarioAppService funcionarioService = new(funcionarioMock.Object, LogManager.GetLogger("Funcionario"));
+            FuncionarioAppService funcionarioService = new(funcionarioMock.Object, logger);
 
             var inseriu = funcionarioService.RegistrarNovoFuncionario(funcionario.Object);
 
@@ -51,7 +57,7 @@ namespace LocadoraDeVeiculos.AppServiceTests.FuncionarioModule
 
             funcionario.Setup(x => x.Validar()).Returns("ESTA_VALIDO");
 
-            FuncionarioAppService funcionarioService = new(funcionarioMock.Object, LogManager.GetLogger("Funcionario"));
+            FuncionarioAppService funcionarioService = new(funcionarioMock.Object, logger);
 
             funcionarioService.EditarFuncionario(funcionario.Object.Id, funcionario.Object);
 
@@ -67,7 +73,7 @@ namespace LocadoraDeVeiculos.AppServiceTests.FuncionarioModule
 
             funcionario.Setup(x => x.Validar()).Returns("O campo Senha possui menos de sete dígitos");
 
-            FuncionarioAppService funcionarioService = new(funcionarioMock.Object, LogManager.GetLogger("Funcionario"));
+            FuncionarioAppService funcionarioService = new(funcionarioMock.Object, logger);
 
             var inseriu = funcionarioService.EditarFuncionario(funcionario.Object.Id, funcionario.Object);
 
