@@ -25,7 +25,6 @@ namespace LocadoraDeVeiculos.Aplicacao.LocacaoModule
             this.logger = logger;
             this.email = email;
             this.pdf = pdf;
-
         }
         public void RegistrarNovaLocacao(Locacao locacao)
         {
@@ -50,7 +49,7 @@ namespace LocadoraDeVeiculos.Aplicacao.LocacaoModule
 
                 logger.Debug($"PDF da Locação {locacao.Id} registrado com sucesso!");
 
-                Task.Run(() => EnviarEmail(locacao));
+                Task.Run(() => email.EnviarEmail(locacao, logger));
             }
         }
         public void ConcluirLocacao(int id, Locacao locacao)
@@ -121,14 +120,6 @@ namespace LocadoraDeVeiculos.Aplicacao.LocacaoModule
             logger.Debug($"Selecionando todas Locações com Cupom: {cupom}!");
             return locacaoRepo.SelecionarLocacoesComCupons(cupom);
         }
-        private void EnviarEmail(Locacao locacao)
-        {
-            var enviouOEmail = email.EnviarEmail(locacao);
 
-            if (enviouOEmail)
-                logger.Debug($"E-Mail enviado para {locacao.Cliente.Email} com sucesso!");
-            else
-                logger.Error($"Erro ao enviar E-Mail para {locacao.Cliente.Email}!");
-        }
     }
 }
