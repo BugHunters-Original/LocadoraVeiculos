@@ -27,7 +27,7 @@ namespace LocadoraDeVeiculos.Aplicacao.GrupoVeiculoModule
         {
             string resultadoValidacaoDominio = grupoVeiculo.Validar();
 
-            logger.Debug($"REGISTRANDO GRUPO VEÍCULO {grupoVeiculo}...");
+            logger.Debug("REGISTRANDO GRUPO DE VEÍCULOS {grupoVeiculoNome} | {DataEHora} ", grupoVeiculo.NomeTipo, DateTime.Now.ToString());
 
             if (resultadoValidacaoDominio == "ESTA_VALIDO")            {
                
