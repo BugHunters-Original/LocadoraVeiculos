@@ -1,5 +1,6 @@
 ﻿using LocadoraDeVeiculos.Dominio.ParceiroModule;
 using LocadoraDeVeiculos.Infra.Shared;
+using Serilog.Core;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -67,14 +68,39 @@ namespace LocadoraDeVeiculos.Infra.SQL.ParceiroModule
                         COLUNADEPESQUISA LIKE @SEGUNDAREF+'%'";
         #endregion
 
+        private readonly Logger logger;
+
+        public ParceiroDAO(Logger log)
+        {
+            logger = log;
+        }
+
         public void Inserir(Parceiro parceiro)
         {
-            parceiro.Id = Db.Insert(sqlInserirParceiro, ObtemParametrosParceiro(parceiro));
+            try
+            {
+                parceiro.Id = Db.Insert(sqlInserirParceiro, ObtemParametrosParceiro(parceiro));
+
+                logger.Information("SUCESSO AO INSERIR PARCEIRO ID: {Id} | DATA: {DataEHora}", parceiro.Id, DateTime.Now.ToString());
+            }
+            catch (Exception ex)
+            {
+                logger.Error("ERRO AO INSERIR PARCEIRO ID: {Id} | DATA: {DataEHora} | FEATURE:{Feature} | CAMADA: {Camada} | SQL: {Query}", parceiro.Id, DateTime.Now.ToString(), this.ToString(), "Repository", ex.Message);
+            }
         }
         public void Editar(int id, Parceiro parceiro)
         {
-            parceiro.Id = id;
-            Db.Update(sqlEditarParceiro, ObtemParametrosParceiro(parceiro));
+            try
+            {
+                parceiro.Id = id;
+                Db.Update(sqlEditarParceiro, ObtemParametrosParceiro(parceiro));
+
+                logger.Information("SUCESSO AO EDITAR PARCEIRO ID: {Id} | DATA: {DataEHora}", parceiro.Id, DateTime.Now.ToString());
+            }
+            catch (Exception ex)
+            {
+                logger.Error("ERRO AO EDITAR PARCEIRO ID: {Id} | DATA: {DataEHora} | FEATURE:{Feature} | CAMADA: {Camada} | SQL: {Query}", parceiro.Id, DateTime.Now.ToString(), this.ToString(), "Repository", ex.Message);
+            }
         }
 
         public bool Excluir(int id)
@@ -82,9 +108,13 @@ namespace LocadoraDeVeiculos.Infra.SQL.ParceiroModule
             try
             {
                 Db.Delete(sqlExcluirParceiro, AdicionarParametro("ID", id));
+
+                logger.Information("SUCESSO AO REMOVER PARCEIRO ID: {Id} | DATA: {DataEHora}", id, DateTime.Now.ToString());
             }
-            catch (Exception)
+            catch (Exception ex)
             {
+                logger.Error("ERRO AO REMOVER PARCEIRO ID: {Id} | DATA: {DataEHora} | FEATURE:{Feature} | CAMADA: {Camada} | SQL: {Query}", id, DateTime.Now.ToString(), this.ToString(), "Repository", ex.Message);
+
                 return false;
             }
 
@@ -97,16 +127,66 @@ namespace LocadoraDeVeiculos.Infra.SQL.ParceiroModule
 
         public Parceiro SelecionarPorId(int id)
         {
-            return Db.Get(sqlSelecionarParceiroPorId, ConverterEmParceiro, AdicionarParametro("ID", id));
+            try
+            {
+                Parceiro parceiro = Db.Get(sqlSelecionarParceiroPorId, ConverterEmParceiro, AdicionarParametro("ID", id));
+
+                if (parceiro != null)
+                    logger.Debug("SUCESSO AO SELECIONAR PARCEIRO ID: {Id} | DATA: {DataEHora}", parceiro.Id, DateTime.Now.ToString());
+                else
+                    logger.Information("NÃO FOI POSSÍVEL SELECIONAR PARCEIRO ID: {Id} | DATA: {DataEHora}", parceiro.Id, DateTime.Now.ToString());
+
+                return parceiro;
+
+            }
+            catch (Exception ex)
+            {
+                logger.Error("NÃO FOI POSSÍVEL SE COMUNICAR COM O BANCO DE DADOS PARA SELECIONAR PARCEIRO ID: {Id} | DATA: {DataEHora} | FEATURE:{Feature} | CAMADA: {Camada} | SQL: {Query}", id, DateTime.Now.ToString(), this.ToString(), "Repository", ex.Message);
+
+                return null;
+            }
         }
         public List<Parceiro> SelecionarTodos()
         {
-            return Db.GetAll(sqlSelecionarTodosParceiros, ConverterEmParceiro);
+            try
+            {
+                List<Parceiro> parceiro = Db.GetAll(sqlSelecionarTodosParceiros, ConverterEmParceiro);
+
+                if (parceiro != null)
+                    logger.Debug("SUCESSO AO SELECIONAR TODOS OS PARCEIROS | DATA: {DataEHora}", DateTime.Now.ToString());
+                else
+                    logger.Information("NÃO FOI POSSÍVEL SELECIONAR TODOS OS PARCEIROS | DATA: {DataEHora}", DateTime.Now.ToString());
+
+                return parceiro;
+            }
+            catch (Exception ex)
+            {
+                logger.Error("NÃO FOI POSSÍVEL SE COMUNICAR COM O BANCO DE DADOS PARA SELECIONAR TODOS OS PARCEIROS | DATA: {DataEHora} | FEATURE:{Feature} | CAMADA: {Camada} | SQL: {Query}", DateTime.Now.ToString(), this.ToString(), "Repository", ex.Message);
+
+                return null;
+            }
         }
         public List<Parceiro> SelecionarPesquisa(string coluna, string pesquisa)
         {
-            string sql = sqlSelecionarParceiro.Replace("COLUNADEPESQUISA", coluna);
-            return Db.GetAll(sql, ConverterEmParceiro, AdicionarParametro("@SEGUNDAREF", pesquisa));
+            try
+            {
+                string sql = sqlSelecionarParceiro.Replace("COLUNADEPESQUISA", coluna);
+                List<Parceiro> parceiro = Db.GetAll(sql, ConverterEmParceiro, AdicionarParametro("@SEGUNDAREF", pesquisa));
+
+                if (parceiro != null)
+                    logger.Debug("SUCESSO AO SELECIONAR PARCEIRO COM A PESQUISA: {Pesquisa} | DATA: {DataEHora}", pesquisa, DateTime.Now.ToString());
+                else
+                    logger.Information("NÃO FOI POSSÍVEL SELECIONAR PARCEIRO COM A PESQUISA: {Pesquisa} | DATA: {DataEHora}", pesquisa, DateTime.Now.ToString());
+
+                return parceiro;
+
+            }
+            catch (Exception ex)
+            {
+                logger.Error("NÃO FOI POSSÍVEL SE COMUNICAR COM O BANCO DE DADOS PARA SELECIONAR PARCEIRO | DATA: {DataEHora} | FEATURE:{Feature} | CAMADA: {Camada} | SQL: {Query}", DateTime.Now.ToString(), this.ToString(), "Repository", ex.Message);
+
+                return null;
+            }
         }
 
         private Parceiro ConverterEmParceiro(IDataReader reader)
