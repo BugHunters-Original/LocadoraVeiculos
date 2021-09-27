@@ -10,6 +10,7 @@ using LocadoraDeVeiculos.Infra.SQL.ClienteCPFModule;
 using LocadoraDeVeiculos.Infra.SQL.DescontoModule;
 using LocadoraDeVeiculos.Infra.SQL.TaxaServicoModule.TaxaDaLocacaoModule;
 using LocadoraDeVeiculos.Infra.SQL.VeiculoModule;
+using Serilog.Core;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -23,6 +24,13 @@ namespace LocadoraDeVeiculos.Infra.SQL.LocacaoModule
         private readonly ClienteCNPJDAO clienteCNPJDAO;
         private readonly VeiculoDAO veiculoDAO;
         private readonly TaxaDaLocacaoDAO taxaDaLocacaoDAO;
+        private readonly Logger logger;
+
+        public LocacaoDAO(Logger log)
+        {
+            logger = log;
+        }
+
         #region Queries
         private const string sqlInserirLocacao =
             @"INSERT INTO TBLOCACAO
@@ -195,11 +203,11 @@ namespace LocadoraDeVeiculos.Infra.SQL.LocacaoModule
         #endregion
         public LocacaoDAO()
         {
-            descontoDAO = new();
+            descontoDAO = new(logger);
             clienteCPFDAO = new();
             clienteCNPJDAO = new();
             veiculoDAO = new();
-            taxaDaLocacaoDAO = new();
+            taxaDaLocacaoDAO = new(logger);
         }
         public void Inserir(Locacao registro)
         {

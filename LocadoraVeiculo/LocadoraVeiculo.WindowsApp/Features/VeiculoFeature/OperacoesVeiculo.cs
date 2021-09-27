@@ -83,9 +83,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.VeiculoFeature
                 bool excluiu = veiculoService.ExcluirVeiculo(id);
 
                 if (excluiu)
-                {
-                    veiculoService.ExcluirVeiculo(id);
-
+                {               
                     List<Veiculo> veiculos = veiculoService.SelecionarTodosVeiculos();
 
                     tabelaVeiculos.AtualizarRegistros(veiculos);

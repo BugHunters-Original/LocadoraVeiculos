@@ -20,6 +20,7 @@ using LocadoraDeVeiculos.Aplicacao.VeiculoModule;
 using LocadoraDeVeiculos.Aplicacao.ClienteCNPJModule;
 using LocadoraDeVeiculos.Aplicacao.DescontoModule;
 using LocadoraDeVeiculos.Aplicacao.LocacaoModule;
+using Serilog.Core;
 
 namespace LocadoraVeiculo.WindowsApp.Features.LocacaoFeature
 {
@@ -33,6 +34,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.LocacaoFeature
         private readonly LocacaoAppService locacaoService;
         private readonly TaxaDaLocacaoDAO taxaDaLocacaoDAO;
         readonly TelaAdicionarTaxasForm telaDasTaxas;
+        private readonly Logger logger;
         public List<Servico> Servicos { get; set; }
 
 
@@ -45,7 +47,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.LocacaoFeature
             this.veiculoService = veiculoService;
             this.descontoService = descontoService;
             this.locacaoService = locacaoService;
-            taxaDaLocacaoDAO = new();
+            taxaDaLocacaoDAO = new(logger);
             telaDasTaxas = new TelaAdicionarTaxasForm();
             InitializeComponent();
             PopularComboboxes();

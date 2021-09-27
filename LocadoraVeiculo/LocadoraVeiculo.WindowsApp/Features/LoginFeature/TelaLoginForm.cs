@@ -11,14 +11,17 @@ namespace LocadoraVeiculo.WindowsApp.Features.LoginFeature
     public partial class TelaLoginForm : Form
     {
         Thread th;
-        LoginDAO loginService = new LoginDAO();
-        private readonly Logger logger; 
+        private readonly Logger logger;
+        LoginDAO loginService; 
+
         public TelaLoginForm(Logger logger)
         {
             this.logger = logger;
             InitializeComponent();
             SetColor();
+            loginService = new LoginDAO(logger);
         }
+
 
         private void SetColor()
         {
