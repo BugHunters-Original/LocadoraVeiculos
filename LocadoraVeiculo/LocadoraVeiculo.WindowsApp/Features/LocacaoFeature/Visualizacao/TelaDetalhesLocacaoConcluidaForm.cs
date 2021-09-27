@@ -4,7 +4,6 @@ using LocadoraDeVeiculos.Infra.InternetServices;
 using LocadoraDeVeiculos.Infra.Log;
 using LocadoraDeVeiculos.Infra.SQL.TaxaServicoModule.TaxaDaLocacaoModule;
 using LocadoraVeiculo.WindowsApp.Features.DarkModeFeature;
-using Serilog.Core;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
@@ -17,11 +16,10 @@ namespace LocadoraVeiculo.WindowsApp.Features.LocacaoFeature.Visualizacao
     {
         private Locacao locacao;
         private readonly TaxaDaLocacaoDAO TaxaDaLocacaoDAO;
-        private Logger logger;
 
         public TelaDetalhesLocacaoConcluidaForm()
         {
-            TaxaDaLocacaoDAO = new TaxaDaLocacaoDAO(logger);
+            TaxaDaLocacaoDAO = new TaxaDaLocacaoDAO(LogManager.IniciarLog());
             InitializeComponent();
             SetColor();
         }

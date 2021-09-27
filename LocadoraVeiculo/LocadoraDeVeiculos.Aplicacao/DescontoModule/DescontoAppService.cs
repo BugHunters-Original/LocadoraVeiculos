@@ -64,9 +64,7 @@ namespace LocadoraDeVeiculos.Aplicacao.DescontoModule
         }
 
         public bool ExcluirDesconto(int id)
-        {
-           
-
+        {        
             logger.Debug("REMOVENDO CUPOM DE DESCONTO {Id} | {DataEHora}", id, DateTime.Now.ToString());
 
             var desconto = descontoRepository.SelecionarPorId(id);

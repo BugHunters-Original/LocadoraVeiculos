@@ -8,11 +8,7 @@ using LocadoraVeiculo.WindowsApp.Shared;
 using LocadoraVeiculo.WindowsApp.Features.VeiculoFeature;
 using LocadoraDeVeiculos.Infra.SQL.VeiculoModule;
 using LocadoraDeVeiculos.Infra.SQL.LocacaoModule;
-using LocadoraDeVeiculos.Infra.SQL.ClienteCPFModule;
-using LocadoraDeVeiculos.Infra.SQL.ClienteCNPJModule;
-using LocadoraDeVeiculos.Infra.SQL.TaxaServicoModule.TaxaDaLocacaoModule;
-using LocadoraDeVeiculos.Infra.SQL.DescontoModule;
-using LocadoraVeiculo.WindowsApp.Features.LocacaoFeature.TaxasServicos;
+using Serilog.Core;
 
 namespace LocadoraVeiculo.WindowsApp.Features.DashboardFeature
 {
@@ -23,10 +19,10 @@ namespace LocadoraVeiculo.WindowsApp.Features.DashboardFeature
 
         private static string telaAtual = "";
 
-        public DashboardControl()
+        public DashboardControl(Logger logger)
         {
-            veiculoDAO = new VeiculoDAO();
-            locacaoDAO = new LocacaoDAO();
+            veiculoDAO = new VeiculoDAO(logger);
+            locacaoDAO = new LocacaoDAO(logger);
             InitializeComponent();
             TrataLabels();
             ConfigurarGridLightMode();

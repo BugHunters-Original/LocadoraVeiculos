@@ -1,5 +1,6 @@
 ﻿using LocadoraDeVeiculos.Dominio.ServicoModule;
 using LocadoraDeVeiculos.Dominio.TaxaDaLocacaoModule;
+using LocadoraDeVeiculos.Infra.Log;
 using LocadoraDeVeiculos.Infra.SQL.TaxaServicoModule.ServicoModule;
 using LocadoraVeiculo.WindowsApp.Features.DarkModeFeature;
 using System;
@@ -20,7 +21,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.LocacaoFeature.TaxasServicos
 
         public TelaAdicionarTaxasForm()
         {
-            servicoDAO = new();
+            servicoDAO = new(LogManager.IniciarLog());
             InitializeComponent();
             PopularBox();
             SetColor();

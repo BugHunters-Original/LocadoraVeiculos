@@ -204,46 +204,129 @@ namespace LocadoraDeVeiculos.Infra.SQL.LocacaoModule
         public LocacaoDAO()
         {
             descontoDAO = new(logger);
-            clienteCPFDAO = new();
-            clienteCNPJDAO = new();
-            veiculoDAO = new();
+            clienteCPFDAO = new(logger);
+            clienteCNPJDAO = new(logger);
+            veiculoDAO = new(logger);
             taxaDaLocacaoDAO = new(logger);
         }
         public void Inserir(Locacao registro)
         {
-            registro.Id = Db.Insert(sqlInserirLocacao, ObtemParametrosLocacao(registro));
+            try
+            {
+                registro.Id = Db.Insert(sqlInserirLocacao, ObtemParametrosLocacao(registro));
+
+                logger.Information("SUCESSO AO INSERIR LOCAÇÃO ID: {Id} | DATA: {DataEHora}", registro.Id, DateTime.Now.ToString());
+            }
+            catch (Exception ex)
+            {
+                logger.Error("ERRO AO INSERIR LOCAÇÃO ID: {Id} | DATA: {DataEHora} | FEATURE:{Feature} | CAMADA: {Camada} | SQL: {Query}", registro.Id, DateTime.Now.ToString(), this.ToString(), "Repository", ex.Message);
+            }
         }
         public void ConcluirLocacao(int id, Locacao locacao)
         {
-            locacao.Id = id;
-            locacao.StatusLocacao = "Concluída";
-            Db.Update(sqlEditarLocacao, ObtemParametrosLocacao(locacao));
+            try
+            {
+                locacao.Id = id;
+
+                locacao.StatusLocacao = "Concluída";
+
+                Db.Update(sqlEditarLocacao, ObtemParametrosLocacao(locacao));
+
+                logger.Information("SUCESSO AO CONCLUIR LOCAÇÃO ID: {Id} | DATA: {DataEHora}", locacao.Id, DateTime.Now.ToString());
+            }
+            catch (Exception ex)
+            {
+                logger.Error("ERRO AO CONCLUIR LOCAÇÃO ID: {Id} | DATA: {DataEHora} | FEATURE:{Feature} | CAMADA: {Camada} | SQL: {Query}", locacao.Id, DateTime.Now.ToString(), this.ToString(), "Repository", ex.Message);
+            }
         }
         public List<Locacao> SelecionarTodasLocacoesConcluidas()
         {
-            return Db.GetAll(sqlSelecionarLocacoesConcluidas, ConverterEmLocacao);
+            try
+            {
+                List<Locacao> locacoes = Db.GetAll(sqlSelecionarLocacoesConcluidas, ConverterEmLocacao);
+
+                if (locacoes != null)
+                    logger.Debug("SUCESSO AO SELECIONAR TODAS AS LOCAÇÕES CONCLUÍDAS | DATA: {DataEHora}", DateTime.Now.ToString());
+                else
+                    logger.Information("NÃO FOI POSSÍVEL SELECIONAR TODAS AS LOCAÇÕES CONCLUÍDAS | DATA: {DataEHora}", DateTime.Now.ToString());
+
+                return locacoes;
+            }
+            catch (Exception ex)
+            {
+                logger.Error("NÃO FOI POSSÍVEL SE COMUNICAR COM O BANCO DE DADOS PARA SELECIONAR TODAS AS LOCAÇÕES CONCLUÍDAS | DATA: {DataEHora} | FEATURE:{Feature} | CAMADA: {Camada} | SQL: {Query}", DateTime.Now.ToString(), this.ToString(), "Repository", ex.Message);
+
+                return null;
+            }
         }
         public List<Locacao> SelecionarTodasLocacoesPendentes()
         {
-            return Db.GetAll(sqlSelecionarLocacoesPendentes, ConverterEmLocacao);
+            try
+            {
+                List<Locacao> locacoes = Db.GetAll(sqlSelecionarLocacoesPendentes, ConverterEmLocacao);
+
+                if (locacoes != null)
+                    logger.Debug("SUCESSO AO SELECIONAR TODAS AS LOCAÇÕES PENDENTES | DATA: {DataEHora}", DateTime.Now.ToString());
+                else
+                    logger.Information("NÃO FOI POSSÍVEL SELECIONAR TODAS AS LOCAÇÕES PENDENTES | DATA: {DataEHora}", DateTime.Now.ToString());
+
+                return locacoes;
+            }
+            catch (Exception ex)
+            {
+                logger.Error("NÃO FOI POSSÍVEL SE COMUNICAR COM O BANCO DE DADOS PARA SELECIONAR TODAS AS LOCAÇÕES PENDENTES | DATA: {DataEHora} | FEATURE:{Feature} | CAMADA: {Camada} | SQL: {Query}", DateTime.Now.ToString(), this.ToString(), "Repository", ex.Message);
+
+                return null;
+            }
         }
         public int SelecionarQuantidadeLocacoesPendentes()
         {
-            return Db.GetAll(sqlLocacoesPendentes, ConverterEmLocacao).Count;
+            try
+            {
+                int qtdLocacoesPendentes = Db.GetAll(sqlLocacoesPendentes, ConverterEmLocacao).Count;
+
+                if (qtdLocacoesPendentes == 0)
+                    logger.Debug("SUCESSO AO SELECIONAR A QUANTIDADE DE LOCAÇÕES PENDENTES | DATA: {DataEHora}", DateTime.Now.ToString());
+                else
+                    logger.Information("NÃO FOI POSSÍVEL SELECIONAR A QUANTIDADE DE LOCAÇÕES PENDENTES | DATA: {DataEHora}", DateTime.Now.ToString());
+
+                return qtdLocacoesPendentes;
+            
+            }
+            catch (Exception ex)
+            {
+                logger.Error("NÃO FOI POSSÍVEL SE COMUNICAR COM O BANCO DE DADOS PARA SELECIONAR A QUANTIDADE DE LOCACOES PENDENTES | DATA: {DataEHora} | FEATURE:{Feature} | CAMADA: {Camada} | SQL: {Query}", DateTime.Now.ToString(), this.ToString(), "Repository", ex.Message);
+
+                return 0;
+            }
         }
         public void Editar(int id, Locacao registro)
         {
-            registro.Id = id;
-            Db.Update(sqlEditarLocacao, ObtemParametrosLocacao(registro));
+            try
+            {
+                registro.Id = id;
+                Db.Update(sqlEditarLocacao, ObtemParametrosLocacao(registro));
+
+                logger.Information("SUCESSO AO EDITAR LOCAÇÃO ID: {Id} | DATA: {DataEHora}", registro.Id, DateTime.Now.ToString());
+            }
+            catch (Exception ex)
+            {
+                logger.Error("ERRO AO EDITAR LOCAÇÃO ID: {Id} | DATA: {DataEHora} | FEATURE:{Feature} | CAMADA: {Camada} | SQL: {Query}", registro.Id, DateTime.Now.ToString(), this.ToString(), "Repository", ex.Message);
+            }
+
         }
         public bool Excluir(int id)
         {
             try
             {
                 Db.Delete(sqlExcluirLocacao, AdicionarParametro("ID", id));
+
+                logger.Information("SUCESSO AO REMOVER LOCAÇÃO ID: {Id} | DATA: {DataEHora}", id, DateTime.Now.ToString());
             }
-            catch (Exception)
+            catch (Exception ex)
             {
+                logger.Error("ERRO AO REMOVER LOCAÇÃO ID: {Id} | DATA: {DataEHora} | FEATURE:{Feature} | CAMADA: {Camada} | SQL: {Query}", id, DateTime.Now.ToString(), this.ToString(), "Repository", ex.Message);
+
                 return false;
             }
 
@@ -255,15 +338,64 @@ namespace LocadoraDeVeiculos.Infra.SQL.LocacaoModule
         }
         public Locacao SelecionarPorId(int id)
         {
-            return Db.Get(sqlSelecionarLocacaoPorId, ConverterEmLocacao, AdicionarParametro("ID", id));
+            try
+            {
+                Locacao locacao = Db.Get(sqlSelecionarLocacaoPorId, ConverterEmLocacao, AdicionarParametro("ID", id));
+
+                if (locacao != null)
+                    logger.Debug("SUCESSO AO SELECIONAR LOCAÇÃO ID: {Id} | DATA: {DataEHora}", locacao.Id, DateTime.Now.ToString());
+                else
+                    logger.Information("NÃO FOI POSSÍVEL SELECIONAR LOCAÇÃO ID: {Id} | DATA: {DataEHora}", locacao.Id, DateTime.Now.ToString());
+
+                return locacao;
+            }
+            catch (Exception ex)
+            {
+                logger.Error("NÃO FOI POSSÍVEL SE COMUNICAR COM O BANCO DE DADOS PARA SELECIONAR LOCAÇÃO ID: {Id} | DATA: {DataEHora} | FEATURE:{Feature} | CAMADA: {Camada} | SQL: {Query}", id, DateTime.Now.ToString(), this.ToString(), "Repository", ex.Message);
+
+                return null;
+            }
         }
         public List<Locacao> SelecionarTodos()
         {
-            return Db.GetAll(sqlSelecionarTodasLocacoes, ConverterEmLocacao);
+            try
+            {
+                List<Locacao> locacoes = Db.GetAll(sqlSelecionarTodasLocacoes, ConverterEmLocacao);
+
+                if (locacoes != null)
+                    logger.Debug("SUCESSO AO SELECIONAR TODAS AS LOCAÇÕES | DATA: {DataEHora}", DateTime.Now.ToString());
+                else
+                    logger.Information("NÃO FOI POSSÍVEL SELECIONAR TODAS AS LOCAÇÕES | DATA: {DataEHora}", DateTime.Now.ToString());
+
+                return locacoes;
+            }
+            catch (Exception ex)
+            {
+                logger.Error("NÃO FOI POSSÍVEL SE COMUNICAR COM O BANCO DE DADOS PARA SELECIONAR TODAS AS LOCAÇÕES | DATA: {DataEHora} | FEATURE:{Feature} | CAMADA: {Camada} | SQL: {Query}", DateTime.Now.ToString(), this.ToString(), "Repository", ex.Message);
+
+                return null;
+            }
         }
         public int SelecionarLocacoesComCupons(string cupom)
         {
-            return Db.GetAll(sqlSelecionarLocacoesComCupons, ConverterEmLocacao, AdicionarParametro("CUPOM", cupom)).Count;
+            try
+            {
+                int qtdLocacoesComCupom = Db.GetAll(sqlSelecionarLocacoesComCupons, ConverterEmLocacao, AdicionarParametro("CUPOM", cupom)).Count;
+
+                if (qtdLocacoesComCupom == 0)
+                    logger.Debug("SUCESSO AO SELECIONAR A QUANTIDADE DE LOCAÇÕES COM CUPOM | DATA: {DataEHora}", DateTime.Now.ToString());
+                else
+                    logger.Information("NÃO FOI POSSÍVEL SELECIONAR A QUANTIDADE DE LOCAÇÕES COM CUPOM | DATA: {DataEHora}", DateTime.Now.ToString());
+
+                return qtdLocacoesComCupom;
+
+            }
+            catch (Exception ex)
+            {
+                logger.Error("NÃO FOI POSSÍVEL SE COMUNICAR COM O BANCO DE DADOS PARA SELECIONAR A QUANTIDADE DE LOCAÇÕES COM CUPOM | DATA: {DataEHora} | FEATURE:{Feature} | CAMADA: {Camada} | SQL: {Query}", DateTime.Now.ToString(), this.ToString(), "Repository", ex.Message);
+
+                return 0;
+            }
         }
         public List<Locacao> SelecionarPesquisa(string combobox, string pesquisa)
         {
