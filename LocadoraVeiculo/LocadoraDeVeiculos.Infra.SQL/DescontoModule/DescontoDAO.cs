@@ -221,7 +221,7 @@ namespace LocadoraDeVeiculos.Infra.SQL.DescontoModule
                 Desconto desconto = Db.Get(sqlSelecionarDescontoPorCodigo, ConverterEmDesconto, AdicionarParametro("CODIGO", codigo));
 
                 if (desconto != null)
-                    logger.Debug("SUCESSO AO SELECIONAR DESCONTO | DATA: {DataEHora}", desconto.Id, DateTime.Now.ToString());
+                    logger.Debug("SUCESSO AO SELECIONAR DESCONTO ID: {Id} | DATA: {DataEHora}", desconto.Id, DateTime.Now.ToString());
                 else
                     logger.Information("NÃO FOI POSSÍVEL SELECIONAR DESCONTO ID: {Id} | DATA: {DataEHora}", desconto.Id, DateTime.Now.ToString());
 
