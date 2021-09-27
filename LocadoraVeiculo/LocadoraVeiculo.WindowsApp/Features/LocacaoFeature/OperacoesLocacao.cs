@@ -9,6 +9,7 @@ using LocadoraDeVeiculos.Infra.SQL.TaxaServicoModule.TaxaDaLocacaoModule;
 using LocadoraVeiculo.WindowsApp.Features.LocacaoFeature.DevolucaoLocacao;
 using LocadoraVeiculo.WindowsApp.Features.LocacaoFeature.NotaFiscal;
 using LocadoraVeiculo.WindowsApp.Shared;
+using Serilog.Core;
 using System.Collections.Generic;
 using System.Windows.Forms;
 
@@ -23,6 +24,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.LocacaoFeature
         private readonly VeiculoAppService veiculoService;
         private readonly TaxaDaLocacaoDAO taxaLocacaoService;
         private readonly TabelaLocacaoControl tabelaLocacoes;
+        private readonly Logger logger;
 
         public OperacoesLocacao(LocacaoAppService locacaoService, ClienteCPFAppService cpfService,
                                 VeiculoAppService veiculoService, ClienteCNPJAppService cnpjService,
@@ -33,7 +35,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.LocacaoFeature
             this.cnpjService = cnpjService;
             this.descontoService = descontoService;
             this.veiculoService = veiculoService;
-            taxaLocacaoService = new TaxaDaLocacaoDAO();
+            taxaLocacaoService = new TaxaDaLocacaoDAO(logger);
             tabelaLocacoes = new TabelaLocacaoControl();
         }
 

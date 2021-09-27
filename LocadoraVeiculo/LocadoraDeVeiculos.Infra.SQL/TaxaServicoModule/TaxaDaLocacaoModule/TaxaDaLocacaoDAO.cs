@@ -11,6 +11,7 @@ using LocadoraDeVeiculos.Infra.SQL.ClienteCPFModule;
 using LocadoraDeVeiculos.Infra.SQL.DescontoModule;
 using LocadoraDeVeiculos.Infra.SQL.TaxaServicoModule.ServicoModule;
 using LocadoraDeVeiculos.Infra.SQL.VeiculoModule;
+using Serilog.Core;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -85,6 +86,13 @@ namespace LocadoraDeVeiculos.Infra.SQL.TaxaServicoModule.TaxaDaLocacaoModule
                     WHERE 
                         ID_LOCACAO = @ID_LOCACAO";
         #endregion
+
+        private readonly Logger logger;
+
+        public TaxaDaLocacaoDAO(Logger log)
+        {
+            logger = log;
+        }
 
         public void InserirTaxa(TaxaDaLocacao registro)
         {
@@ -162,7 +170,7 @@ namespace LocadoraDeVeiculos.Infra.SQL.TaxaServicoModule.TaxaDaLocacaoModule
             Desconto desconto = null;
             if (reader["ID_DESCONTO"] != DBNull.Value)
             {
-                var controladorDesconto = new DescontoDAO();
+                var controladorDesconto = new DescontoDAO(logger);
                 int idDesconto = Convert.ToInt32(reader["ID_DESCONTO"]);
                 desconto = controladorDesconto.SelecionarPorId(idDesconto);
             }

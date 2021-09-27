@@ -17,10 +17,11 @@ namespace LocadoraVeiculo.WindowsApp.Features.LocacaoFeature.Visualizacao
     {
         private Locacao locacao;
         private readonly TaxaDaLocacaoDAO TaxaDaLocacaoDAO;
+        private Logger logger;
 
         public TelaDetalhesLocacaoConcluidaForm()
         {
-            TaxaDaLocacaoDAO = new TaxaDaLocacaoDAO();
+            TaxaDaLocacaoDAO = new TaxaDaLocacaoDAO(logger);
             InitializeComponent();
             SetColor();
         }

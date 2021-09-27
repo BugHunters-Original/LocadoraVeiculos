@@ -157,6 +157,11 @@ namespace LocadoraDeVeiculos.Infra.SQL.DescontoModule
 
         private readonly Logger logger;
 
+        public DescontoDAO(Logger log)
+        {
+            logger = log;
+        }
+
         public void Inserir(Desconto desconto)
         {
             try
@@ -211,12 +216,42 @@ namespace LocadoraDeVeiculos.Infra.SQL.DescontoModule
 
         public Desconto VerificarCodigoValido(string codigo)
         {
-            return Db.Get(sqlSelecionarDescontoPorCodigo, ConverterEmDesconto, AdicionarParametro("CODIGO", codigo));
+            try
+            {
+                Desconto desconto = Db.Get(sqlSelecionarDescontoPorCodigo, ConverterEmDesconto, AdicionarParametro("CODIGO", codigo));
+
+                if (desconto != null)
+                    logger.Debug("SUCESSO AO SELECIONAR DESCONTO | DATA: {DataEHora}", desconto.Id, DateTime.Now.ToString());
+                else
+                    logger.Information("NÃO FOI POSSÍVEL SELECIONAR DESCONTO ID: {Id} | DATA: {DataEHora}", desconto.Id, DateTime.Now.ToString());
+
+                return desconto;
+
+            }
+            catch (Exception ex)
+            {
+                logger.Error("NÃO FOI POSSÍVEL SE COMUNICAR COM O BANCO DE DADOS PARA SELECIONAR DESCONTO | DATA: {DataEHora} | FEATURE:{Feature} | CAMADA: {Camada} | SQL: {Query}", DateTime.Now.ToString(), this.ToString(), "Repository", ex.Message);
+
+                return null;
+            }
         }
 
         public bool VerificarCodigoExistente(string codigo)
         {
-            return Db.Exists(sqlExisteCodigo, AdicionarParametro("CODIGO", codigo));
+           return  Db.Exists(sqlExisteCodigo, AdicionarParametro("CODIGO", codigo));
+
+            //try
+            //{
+            //   return  Db.Exists(sqlExisteCodigo, AdicionarParametro("CODIGO", codigo));
+
+            //    logger.Information("SUCESSO AO REMOVER DESCONTO ID: {Id} | DATA: {DataEHora}", id, DateTime.Now.ToString());
+            //}
+            //catch (Exception)
+            //{
+            //    logger.Error("ERRO AO REMOVER DESCONTO ID: {Id} | DATA: {DataEHora} | FEATURE:{Feature} | CAMADA: {Camada} | SQL: {Query}", id, DateTime.Now.ToString(), this.ToString(), "Repository", ex.Message);
+
+            //    return false;
+            //}
         }
 
         public List<Desconto> SelecionarPesquisa(string coluna, string pesquisa)

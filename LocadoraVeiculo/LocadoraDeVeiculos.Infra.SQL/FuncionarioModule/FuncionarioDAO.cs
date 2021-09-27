@@ -98,6 +98,11 @@ namespace LocadoraDeVeiculos.Infra.SQL.FuncionarioModule
 
         private readonly Logger logger;
 
+        public FuncionarioDAO(Logger log)
+        {
+            logger = log;
+        }
+
         public void Inserir(Funcionario funcionario)
         {
             try

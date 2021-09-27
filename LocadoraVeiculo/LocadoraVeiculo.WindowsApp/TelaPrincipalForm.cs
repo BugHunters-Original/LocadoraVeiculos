@@ -52,11 +52,11 @@ namespace LocadoraVeiculo.WindowsApp
         public static ClienteCPFDAO cpfRepository = new();
         public static GrupoVeiculoDAO grupoVeiculoRepository = new(logger);
         public static VeiculoDAO veiculoRepository = new();
-        public static FuncionarioDAO funcionarioRepository = new();
+        public static FuncionarioDAO funcionarioRepository = new(logger);
         public static ServicoDAO servicoRepository = new();
-        public static DescontoDAO descontoRepository = new();
+        public static DescontoDAO descontoRepository = new(logger);
         public static ParceiroDAO parceiroRepository = new();
-        public static TaxaDaLocacaoDAO taxaRepository = new();
+        public static TaxaDaLocacaoDAO taxaRepository = new(logger);
         public static LocacaoDAO locacaoRepository = new();
 
         public static ClienteCNPJAppService cnpjService = new(cnpjRepository, logger);
