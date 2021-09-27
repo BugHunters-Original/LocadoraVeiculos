@@ -1,5 +1,6 @@
 ﻿using LocadoraDeVeiculos.Dominio.GrupoVeiculoModule;
 using Serilog.Core;
+using System;
 using System.Collections.Generic;
 
 
@@ -26,14 +27,22 @@ namespace LocadoraDeVeiculos.Aplicacao.GrupoVeiculoModule
         {
             string resultadoValidacaoDominio = grupoVeiculo.Validar();
 
-            if (resultadoValidacaoDominio == "ESTA_VALIDO")
-            {
-                logger.Debug($"Registrando grupo veículo {grupoVeiculo}...");
+            logger.Debug($"REGISTRANDO GRUPO VEÍCULO {grupoVeiculo}...");
+
+            if (resultadoValidacaoDominio == "ESTA_VALIDO")            {
+               
 
                 grupoVeiculoRepository.Inserir(grupoVeiculo);
 
-                logger.Debug($"Grupo Veículo {grupoVeiculo} registrado com sucesso!");
+                logger.Debug("GRUPO DE VEÍCULO {grupoVeiculoNome} REGISTRADO COM SUCESSO | {DataEHora}", grupoVeiculo.NomeTipo, DateTime.Now.ToString());
+
+               
             }
+
+            else            
+                logger.Error("NÃO FOI POSSÍVEL REGISTRAR GRUPO VEÍCULO {grupoVeiculoNome} | {DataEHora}", grupoVeiculo.NomeTipo, DateTime.Now.ToString());
+
+            
 
         }
 
@@ -42,14 +51,23 @@ namespace LocadoraDeVeiculos.Aplicacao.GrupoVeiculoModule
 
             string resultadoValidacaoDominio = grupoVeiculo.Validar();
 
+            logger.Debug("EDITANDO GRUPO VEÍCULO {grupoVeiculoNome} | {DataEHora} ", grupoVeiculo.NomeTipo, DateTime.Now.ToString());
+
             if (resultadoValidacaoDominio == "ESTA_VALIDO")
-            {
-                logger.Debug($"Editando funcionário {grupoVeiculo.NomeTipo}...");
+            {               
 
                 grupoVeiculoRepository.Editar(id, grupoVeiculo);
 
-                logger.Debug($"Grupo Veículo {grupoVeiculo.NomeTipo} editando com sucesso!");
+                logger.Debug("GRUPO VEÍCULO {grupoVeiculoNome} EDITADO COM SUCESSO | {DataEHora}", grupoVeiculo.NomeTipo, DateTime.Now.ToString());
+
+                
             }
+
+            else            
+                logger.Error("NÃO FOI POSSÍVEL EDITAR GRUPO VEÍCULO {grupoVeiculoNome} | {DataEHora}", grupoVeiculo.NomeTipo, DateTime.Now.ToString());
+
+               
+            
         }
 
         public ResultadoOperacao ExcluirGrupoVeiculo(GrupoVeiculo grupoVeiculoSelecionado)
@@ -73,17 +91,46 @@ namespace LocadoraDeVeiculos.Aplicacao.GrupoVeiculoModule
 
         public List<GrupoVeiculo> SelecionarPesquisa(string comboBox, string pesquisa)
         {
-            return grupoVeiculoRepository.SelecionarPesquisa(comboBox, pesquisa);
+            logger.Debug("SELECIONADO GRUPOS DE VEÍCULOS DE ACORDO COM A PESQUISA {Pesquisa} | {DataEHora}", pesquisa, DateTime.Now.ToString());
+
+            List<GrupoVeiculo> grupos =  grupoVeiculoRepository.SelecionarPesquisa(comboBox, pesquisa);
+
+            if (grupos.Count == 0)
+                logger.Information("NÃO HÁ GRUPOS DE VEÍCULOS CADASTRADOS DE ACORDO COM A PESQUISA {Pesquisa} | {DataEHora}", pesquisa, DateTime.Now.ToString());
+            else
+                logger.Debug("A SELEÇÃO TROUXE {Quantidade} GRUPO(S) DE VEÍCULO(S) EXISTENTE(S) DE ACORDO COM A PESQUISA {Pesquisa} | {DataEHora}", grupos.Count, pesquisa, DateTime.Now.ToString());
+
+            return grupos;
+
         }
 
         public GrupoVeiculo SelecionarPorId(int id)
         {
-            return grupoVeiculoRepository.SelecionarPorId(id);
+            logger.Debug("SELECIONANDO O CUPOM DE DESCONTO ID: {Id} | {DataEHora}", id, DateTime.Now.ToString());
+
+            GrupoVeiculo grupoVeiculo = grupoVeiculoRepository.SelecionarPorId(id);
+
+            if (grupoVeiculo == null)
+                logger.Information("NÃO FOI POSSÍVEL ENCONTRAR O GRUPO DE VEÍCULO ID {Id} | {DataEHora}", grupoVeiculo.Id, DateTime.Now.ToString());
+            else
+                logger.Debug("GRUPO DE VEÍCULO ID {Id} SELECIONADO COM SUCESSO | {DataEHora}", grupoVeiculo.Id, DateTime.Now.ToString());
+
+            return grupoVeiculo;
+           
         }
 
         public List<GrupoVeiculo> SelecionarTodosGruposVeiculos()
         {
-            return grupoVeiculoRepository.SelecionarTodos();
+            logger.Debug("SELECIONANDO TODOS OS GRUPOS VEÍCULOS | {DataEHora}", DateTime.Now.ToString());
+
+            List<GrupoVeiculo> grupoVeiculos = grupoVeiculoRepository.SelecionarTodos();
+
+            if (grupoVeiculos.Count == 0)
+                logger.Information("NÃO HÁ GRUPOS DE VEÍCULOS CADASTRADOS | {DataEHora}", DateTime.Now.ToString());
+            else
+                logger.Debug("A SELEÇÃO TROUXE {Quantidade} GRUPO(S) DE VEÍCULO(S) EXISTENTE(S) | {DataEHora}", grupoVeiculos.Count, DateTime.Now.ToString());
+
+            return grupoVeiculos;
         }
     }
 }
