@@ -8,8 +8,8 @@ namespace LocadoraDeVeiculos.Infra.EmailLocadora
     {
         private static readonly Dictionary<string, string> camposIniciais = new Dictionary<string, string>()
             {
-                {"email", "email"},
-                {"senha", "senha"}
+                {"email", "bughuntersoriginal@gmail.com"},
+                {"senha", "Bughunters123"}
             };
 
         private static JsonConfig appConfigControler;
