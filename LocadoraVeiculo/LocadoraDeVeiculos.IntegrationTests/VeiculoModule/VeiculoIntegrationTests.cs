@@ -1,11 +1,12 @@
 ﻿using FluentAssertions;
 using LocadoraDeVeiculos.Dominio.GrupoVeiculoModule;
 using LocadoraDeVeiculos.Dominio.VeiculoModule;
+using LocadoraDeVeiculos.Infra.Log;
 using LocadoraDeVeiculos.Infra.Shared;
 using LocadoraDeVeiculos.Infra.SQL.GrupoVeiculoModule;
 using LocadoraDeVeiculos.Infra.SQL.VeiculoModule;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-
+using Serilog.Core;
 
 namespace LocadoraDeVeiculos.IntegrationTests.VeiculoModule
 {
@@ -15,13 +16,14 @@ namespace LocadoraDeVeiculos.IntegrationTests.VeiculoModule
         GrupoVeiculoDAO grupoVeiculoDAO;
         VeiculoDAO veiculoDAO;
         GrupoVeiculo grupo;
-
+        Logger logger;
 
         byte[] imagem;
 
         public VeiculoIntegrationTests()
         {
-            grupoVeiculoDAO = new GrupoVeiculoDAO();
+            logger = LogManager.IniciarLog();
+            grupoVeiculoDAO = new GrupoVeiculoDAO(logger);
             veiculoDAO = new VeiculoDAO();
             Db.Update("DELETE FROM [TBTIPOVEICULO]");
             Db.Update("DELETE FROM [TBVEICULOS]");
