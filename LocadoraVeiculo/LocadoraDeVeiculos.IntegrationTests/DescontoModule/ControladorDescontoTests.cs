@@ -1,10 +1,12 @@
 ﻿using FluentAssertions;
 using LocadoraDeVeiculos.Dominio.DescontoModule;
 using LocadoraDeVeiculos.Dominio.ParceiroModule;
+using LocadoraDeVeiculos.Infra.Log;
 using LocadoraDeVeiculos.Infra.Shared;
 using LocadoraDeVeiculos.Infra.SQL.DescontoModule;
 using LocadoraDeVeiculos.Infra.SQL.ParceiroModule;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Serilog.Core;
 using System;
 
 namespace LocadoraDeVeiculos.Test.DescontoModule
@@ -15,11 +17,14 @@ namespace LocadoraDeVeiculos.Test.DescontoModule
         DescontoDAO descontoDAO = null;
         ParceiroDAO parceiroDAO = null;
 
+        Logger logger;
+
         Parceiro parceiro;
 
         public ControladorDescontoTest()
         {
-            descontoDAO = new DescontoDAO();
+            logger = LogManager.IniciarLog();
+            descontoDAO = new DescontoDAO(logger);
             parceiroDAO = new ParceiroDAO();
             LimparBancos();
 

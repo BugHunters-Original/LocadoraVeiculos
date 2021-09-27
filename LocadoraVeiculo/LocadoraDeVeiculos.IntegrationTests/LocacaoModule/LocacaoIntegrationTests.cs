@@ -5,6 +5,7 @@ using LocadoraDeVeiculos.Dominio.GrupoVeiculoModule;
 using LocadoraDeVeiculos.Dominio.LocacaoModule;
 using LocadoraDeVeiculos.Dominio.ServicoModule;
 using LocadoraDeVeiculos.Dominio.VeiculoModule;
+using LocadoraDeVeiculos.Infra.Log;
 using LocadoraDeVeiculos.Infra.Shared;
 using LocadoraDeVeiculos.Infra.SQL.ClienteCNPJModule;
 using LocadoraDeVeiculos.Infra.SQL.ClienteCPFModule;
@@ -13,6 +14,7 @@ using LocadoraDeVeiculos.Infra.SQL.LocacaoModule;
 using LocadoraDeVeiculos.Infra.SQL.TaxaServicoModule.ServicoModule;
 using LocadoraDeVeiculos.Infra.SQL.VeiculoModule;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Serilog.Core;
 using System;
 
 namespace LocadoraDeVeiculos.Test.LocacaoModule
@@ -39,13 +41,15 @@ namespace LocadoraDeVeiculos.Test.LocacaoModule
         DateTime dataSaida, dataRetorno;
         int dias;
 
+        Logger logger;
+
         public LocacaoIntegrationTests()
         {
-
+            logger = LogManager.IniciarLog();
             controladorVeiculo = new VeiculoDAO();
             controladorCliente = new ClienteCNPJDAO();
             controladorCondutor = new ClienteCPFDAO();
-            controladorGrupo = new GrupoVeiculoDAO();
+            controladorGrupo = new GrupoVeiculoDAO(logger);
             controladorServico = new ServicoDAO();
             controladorLocacao = new LocacaoDAO();
 
