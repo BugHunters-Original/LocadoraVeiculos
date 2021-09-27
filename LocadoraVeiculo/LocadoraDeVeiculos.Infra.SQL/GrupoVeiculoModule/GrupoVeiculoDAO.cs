@@ -116,11 +116,11 @@ namespace LocadoraDeVeiculos.Infra.SQL.GrupoVeiculoModule
             {
                 Db.Delete(sqlExcluirTipoGrupoVeiculo, AdicionarParametro("ID", id));
 
-                logger.Debug($"Excluiu Grupo de Veículo com sucesso!");
+                logger.Information("SUCESSO AO REMOVER GRUPO DE VEÍCULO ID: {Id} | DATA: {DataEHora}", id, DateTime.Now.ToString());
             }
             catch (Exception ex)
             {
-                logger.Error($"Erro ao excluir Grupo de Veículo!");
+                logger.Error("ERRO AO REMOVER GRUPO DE VEÍCULO ID: {Id} | DATA: {DataEHora} | FEATURE:{Feature} | CAMADA: {Camada} | SQL: {Query}", id,  DateTime.Now.ToString(), this.ToString(), "Repository", ex.Message);
 
                 return false;
             }
@@ -130,8 +130,25 @@ namespace LocadoraDeVeiculos.Infra.SQL.GrupoVeiculoModule
 
         public List<GrupoVeiculo> SelecionarPesquisa(string coluna, string pesquisa)
         {
-            string sql = sqlSelecionarGrupoVeiculoPesquisa.Replace("COLUNADEPESQUISA", coluna);
-            return Db.GetAll(sql, ConverterEmGrupoVeiculo, AdicionarParametro("@SEGUNDAREF", pesquisa));
+            try
+            {
+                string sql = sqlSelecionarGrupoVeiculoPesquisa.Replace("COLUNADEPESQUISA", coluna);
+                List<GrupoVeiculo> grupoVeiculo = Db.GetAll(sql, ConverterEmGrupoVeiculo, AdicionarParametro("@SEGUNDAREF", pesquisa));
+
+                if (grupoVeiculo != null)
+                    logger.Debug("SUCESSO AO SELECIONAR GRUPO DE VEÍCULO COM A PESQUISA: {Pesquisa} | DATA: {DataEHora}", pesquisa, DateTime.Now.ToString());
+                else
+                    logger.Information("NÃO FOI POSSÍVEL SELECIONAR GRUPO DE VEÍCULO COM A PESQUISA: {Pesquisa} | DATA: {DataEHora}", pesquisa, DateTime.Now.ToString());
+
+                return grupoVeiculo;
+
+            }
+            catch (Exception ex)
+            {
+                logger.Error("NÃO FOI POSSÍVEL SE COMUNICAR COM O BANCO DE DADOS PARA SELECIONAR GRUPO DE VEÍCULO ID: {Id} | DATA: {DataEHora} | FEATURE:{Feature} | CAMADA: {Camada} | SQL: {Query}", id, DateTime.Now.ToString(), this.ToString(), "Repository", ex.Message);
+
+                return null;
+            }
         }
 
         public bool Existe(int id)
@@ -141,12 +158,46 @@ namespace LocadoraDeVeiculos.Infra.SQL.GrupoVeiculoModule
 
         public GrupoVeiculo SelecionarPorId(int id)
         {
-            return Db.Get(sqlSelecionarTipoGrupoVeiculoPorId, ConverterEmGrupoVeiculo, AdicionarParametro("ID", id));
+            try
+            {
+                GrupoVeiculo grupoVeiculo = Db.Get(sqlSelecionarTipoGrupoVeiculoPorId, ConverterEmGrupoVeiculo, AdicionarParametro("ID", id));
+
+                if (grupoVeiculo != null)
+                    logger.Debug("SUCESSO AO SELECIONAR GRUPO DE VEÍCULO ID: {Id} | DATA: {DataEHora}", grupoVeiculo.Id, DateTime.Now.ToString());
+                else
+                    logger.Information("NÃO FOI POSSÍVEL SELECIONAR GRUPO DE VEÍCULO ID: {Id} | DATA: {DataEHora}", grupoVeiculo.Id, DateTime.Now.ToString());
+
+                return grupoVeiculo;
+         
+            }
+            catch (Exception ex)
+            {
+                logger.Error("NÃO FOI POSSÍVEL SE COMUNICAR COM O BANCO DE DADOS PARA SELECIONAR GRUPO DE VEÍCULO ID: {Id} | DATA: {DataEHora} | FEATURE:{Feature} | CAMADA: {Camada} | SQL: {Query}", id, DateTime.Now.ToString(), this.ToString(), "Repository", ex.Message);
+
+                return null;
+            }
         }
 
         public List<GrupoVeiculo> SelecionarTodos()
         {
-            return Db.GetAll(sqlSelecionarTodosTipoGrupoVeiculo, ConverterEmGrupoVeiculo);
+            try
+            {
+                List<GrupoVeiculo> grupoVeiculo = Db.GetAll(sqlSelecionarTodosTipoGrupoVeiculo, ConverterEmGrupoVeiculo);
+
+                if (grupoVeiculo != null)
+                    logger.Debug("SUCESSO AO SELECIONAR TODOS OS GRUPOS DE VEÍCULOS | DATA: {DataEHora}", DateTime.Now.ToString());
+                else
+                    logger.Information("NÃO FOI POSSÍVEL SELECIONAR TODOS OS GRUPOS DE VEÍCULOS | DATA: {DataEHora}", DateTime.Now.ToString());
+
+                return grupoVeiculo;
+            }
+            catch (Exception ex)
+            {
+                logger.Error("NÃO FOI POSSÍVEL SE COMUNICAR COM O BANCO DE DADOS PARA SELECIONAR TODOS OS GRUPOS DE VEÍCULOS | DATA: {DataEHora} | FEATURE:{Feature} | CAMADA: {Camada} | SQL: {Query}", DateTime.Now.ToString(), this.ToString(), "Repository", ex.Message);
+
+                return null;
+            }
+            
         }
 
         public void Inserir(GrupoVeiculo grupoVeiculo)
@@ -155,11 +206,11 @@ namespace LocadoraDeVeiculos.Infra.SQL.GrupoVeiculoModule
             {
                 grupoVeiculo.Id = Db.Insert(sqlInserirTipoGrupoVeiculo, ObtemParametrosTipoGrupoVeiculo(grupoVeiculo));
 
-                logger.Debug($"Inseriu o Grupo de Veículo {grupoVeiculo.NomeTipo} com sucesso!");
+                logger.Information("SUCESSO AO INSERIR GRUPO DE VEÍCULO ID: {Id} | DATA: {DataEHora}", grupoVeiculo.Id, DateTime.Now.ToString());
             }
             catch (Exception ex)
             {
-                logger.Error($"Não foi possível inserir o Grupo de Veículo {grupoVeiculo.NomeTipo}!", ex);
+                logger.Error("ERRO AO INSERIR GRUPO DE VEÍCULO ID: {Id} | DATA: {DataEHora} | FEATURE:{Feature} | CAMADA: {Camada} | SQL: {Query}", grupoVeiculo.Id, DateTime.Now.ToString(), this.ToString(), "Repository", ex.Message);
             }
         }
 
@@ -170,11 +221,11 @@ namespace LocadoraDeVeiculos.Infra.SQL.GrupoVeiculoModule
                 grupoVeiculo.Id = id;
                 Db.Update(sqlEditarTipoGrupoVeiculo, ObtemParametrosTipoGrupoVeiculo(grupoVeiculo));
 
-                logger.Debug($"Editou o Grupo de Veículo {grupoVeiculo.NomeTipo} com sucesso!");
+                logger.Information("SUCESSO AO EDITAR GRUPO DE VEÍCULO ID: {Id} | DATA: {DataEHora}", grupoVeiculo.Id, DateTime.Now.ToString());
             }
             catch (Exception ex)
             {
-                logger.Error($"Não foi possível editar o Grupo de Veículo {grupoVeiculo.NomeTipo}!", ex);
+                logger.Error("ERRO AO EDITAR GRUPO DE VEÍCULO ID: {Id} | DATA: {DataEHora} | FEATURE:{Feature} | CAMADA: {Camada} | SQL: {Query}", grupoVeiculo.Id, DateTime.Now.ToString(), this.ToString(), "Repository", ex.Message);
             }
         }
 
