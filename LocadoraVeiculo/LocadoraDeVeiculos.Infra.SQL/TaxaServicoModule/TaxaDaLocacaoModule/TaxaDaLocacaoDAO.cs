@@ -96,13 +96,31 @@ namespace LocadoraDeVeiculos.Infra.SQL.TaxaServicoModule.TaxaDaLocacaoModule
 
         public void InserirTaxa(TaxaDaLocacao registro)
         {
-            registro.Id = Db.Insert(sqlInserirTaxaLocacao, ObtemParametrosTaxaLocacao(registro));
+            try
+            {
+                registro.Id = Db.Insert(sqlInserirTaxaLocacao, ObtemParametrosTaxaLocacao(registro));
+
+                logger.Information("SUCESSO AO INSERIR TAXA ID: {Id} | DATA: {DataEHora}", registro.Id, DateTime.Now.ToString());
+            }
+            catch (Exception ex)
+            {
+                logger.Error("ERRO AO INSERIR TAXA ID: {Id} | DATA: {DataEHora} | FEATURE:{Feature} | CAMADA: {Camada} | SQL: {Query}", registro.Id, DateTime.Now.ToString(), this.ToString(), "Repository", ex.Message);
+            }
         }
 
         public void EditarTaxa(int id, TaxaDaLocacao registro)
         {
-            registro.Id = id;
-            Db.Update(sqlEditarTaxaLocacao, ObtemParametrosTaxaLocacao(registro));
+            try
+            {
+                registro.Id = id;
+                Db.Update(sqlEditarTaxaLocacao, ObtemParametrosTaxaLocacao(registro));
+
+                logger.Information("SUCESSO AO EDITAR TAXA ID: {Id} | DATA: {DataEHora}", registro.Id, DateTime.Now.ToString());
+            }
+            catch (Exception ex)
+            {
+                logger.Error("ERRO AO EDITAR TAXA ID: {Id} | DATA: {DataEHora} | FEATURE:{Feature} | CAMADA: {Camada} | SQL: {Query}", registro.Id, DateTime.Now.ToString(), this.ToString(), "Repository", ex.Message);
+            }
         }
 
         public bool ExcluirTaxa(int id)
@@ -110,9 +128,13 @@ namespace LocadoraDeVeiculos.Infra.SQL.TaxaServicoModule.TaxaDaLocacaoModule
             try
             {
                 Db.Delete(sqlExcluirTaxaLocacao, AdicionarParametro("ID_LOCACAO", id));
+
+                logger.Information("SUCESSO AO REMOVER TAXA ID: {Id} | DATA: {DataEHora}", id, DateTime.Now.ToString());
             }
-            catch (Exception)
+            catch (Exception ex)
             {
+                logger.Error("ERRO AO REMOVER TAXA ID: {Id} | DATA: {DataEHora} | FEATURE:{Feature} | CAMADA: {Camada} | SQL: {Query}", id, DateTime.Now.ToString(), this.ToString(), "Repository", ex.Message);
+
                 return false;
             }
 
@@ -126,17 +148,66 @@ namespace LocadoraDeVeiculos.Infra.SQL.TaxaServicoModule.TaxaDaLocacaoModule
 
         public TaxaDaLocacao SelecionarPorId(int id)
         {
-            return Db.Get(sqlSelecionarTaxaLocacaoPorId, ConverterEmTaxaLocacao, AdicionarParametro("ID", id));
+            try
+            {
+                TaxaDaLocacao taxa = Db.Get(sqlSelecionarTaxaLocacaoPorId, ConverterEmTaxaLocacao, AdicionarParametro("ID", id));
+
+                if (taxa != null)
+                    logger.Debug("SUCESSO AO SELECIONAR TAXA ID: {Id} | DATA: {DataEHora}", taxa.Id, DateTime.Now.ToString());
+                else
+                    logger.Information("NÃO FOI POSSÍVEL SELECIONAR TAXA ID: {Id} | DATA: {DataEHora}", taxa.Id, DateTime.Now.ToString());
+
+                return taxa;
+
+            }
+            catch (Exception ex)
+            {
+                logger.Error("NÃO FOI POSSÍVEL SE COMUNICAR COM O BANCO DE DADOS PARA SELECIONAR TAXA ID: {Id} | DATA: {DataEHora} | FEATURE:{Feature} | CAMADA: {Camada} | SQL: {Query}", id, DateTime.Now.ToString(), this.ToString(), "Repository", ex.Message);
+
+                return null;
+            }
         }
 
         public List<TaxaDaLocacao> SelecionarTodos()
         {
-            return Db.GetAll(sqlSelecionarTaxaLocacaoEspecifica, ConverterEmTaxaLocacao);
+            try
+            {
+                List<TaxaDaLocacao> taxa = Db.GetAll(sqlSelecionarTaxaLocacaoEspecifica, ConverterEmTaxaLocacao);
+
+                if (taxa != null)
+                    logger.Debug("SUCESSO AO SELECIONAR TODAS AS TAXAS | DATA: {DataEHora}", DateTime.Now.ToString());
+                else
+                    logger.Information("NÃO FOI POSSÍVEL SELECIONAR TODAS AS TAXAS | DATA: {DataEHora}", DateTime.Now.ToString());
+
+                return taxa;
+            }
+            catch (Exception ex)
+            {
+                logger.Error("NÃO FOI POSSÍVEL SE COMUNICAR COM O BANCO DE DADOS PARA SELECIONAR TODAS AS TAXAS | DATA: {DataEHora} | FEATURE:{Feature} | CAMADA: {Camada} | SQL: {Query}", DateTime.Now.ToString(), this.ToString(), "Repository", ex.Message);
+
+                return null;
+            }
         }
 
         public List<TaxaDaLocacao> SelecionarTaxasDeUmaLocacao(int id)
         {
-            return Db.GetAll(sqlSelecionarTaxaLocacaoPorId, ConverterEmTaxaLocacao, AdicionarParametro("ID_LOCACAOTAXA", id));
+            try
+            {
+                List<TaxaDaLocacao> taxa = Db.GetAll(sqlSelecionarTaxaLocacaoPorId, ConverterEmTaxaLocacao, AdicionarParametro("ID_LOCACAOTAXA", id));
+
+                if (taxa != null)
+                    logger.Debug("SUCESSO AO SELECIONAR TODAS AS TAXAS DE UMA LOCAÇÃO | DATA: {DataEHora}", DateTime.Now.ToString());
+                else
+                    logger.Information("NÃO FOI POSSÍVEL SELECIONAR TODAS AS TAXAS DE UMA LOCAÇÃO | DATA: {DataEHora}", DateTime.Now.ToString());
+
+                return taxa;
+            }
+            catch (Exception ex)
+            {
+                logger.Error("NÃO FOI POSSÍVEL SE COMUNICAR COM O BANCO DE DADOS PARA SELECIONAR TODAS AS TAXAS DE UMA LOCAÇÃO | DATA: {DataEHora} | FEATURE:{Feature} | CAMADA: {Camada} | SQL: {Query}", DateTime.Now.ToString(), this.ToString(), "Repository", ex.Message);
+
+                return null;
+            }
         }
 
         public List<TaxaDaLocacao> SelecionarPesquisa(string coluna, string pesquisa)
@@ -159,7 +230,7 @@ namespace LocadoraDeVeiculos.Infra.SQL.TaxaServicoModule.TaxaDaLocacaoModule
         {
             int id_taxa = Convert.ToInt32(reader["ID_TAXA"]);
 
-            var controladorServico = new ServicoDAO();
+            var controladorServico = new ServicoDAO(logger);
             Servico servico = controladorServico.SelecionarPorId(id_taxa);
 
             int tipoCliente = Convert.ToInt32(reader["TIPOCLIENTE"]);
@@ -198,8 +269,8 @@ namespace LocadoraDeVeiculos.Infra.SQL.TaxaServicoModule.TaxaDaLocacaoModule
             if (reader["PRECOSERVICOS"] != DBNull.Value)
                 precoServico = Convert.ToDecimal(reader["PRECOSERVICOS"]);
 
-            var controladorCPF = new ClienteCPFDAO();
-            var controladorCNPJ = new ClienteCNPJDAO();
+            var controladorCPF = new ClienteCPFDAO(logger);
+            var controladorCNPJ = new ClienteCNPJDAO(logger);
             VeiculoDAO controladorVeiculo = new();
 
             ClienteCPF condutor = controladorCPF.SelecionarPorId(idCondutor);
