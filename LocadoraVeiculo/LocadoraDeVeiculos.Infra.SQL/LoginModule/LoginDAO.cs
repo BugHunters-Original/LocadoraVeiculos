@@ -14,6 +14,13 @@ namespace LocadoraDeVeiculos.Infra.SQL.LoginModule
         FuncionarioDAO funcionarioService = new FuncionarioDAO(logger);
         public string ValidarLogin(string usuario, string senha)
         {
+            ValidarChaves(usuario, senha);
+
+            return "valido";
+        }
+
+        private string ValidarChaves(string usuario, string senha)
+        {
             if (usuario == "admin" && senha == "admin")
                 return "valido";
 

@@ -1,5 +1,6 @@
 ﻿using LocadoraDeVeiculos.Dominio.ServicoModule;
 using LocadoraDeVeiculos.Infra.Shared;
+using Serilog.Core;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -80,15 +81,40 @@ namespace LocadoraDeVeiculos.Infra.SQL.TaxaServicoModule.ServicoModule
                         COLUNADEPESQUISA LIKE @SEGUNDAREF+'%'";
         #endregion
 
+        private readonly Logger logger;
+
+        public ServicoDAO(Logger log)
+        {
+            logger = log;
+        }
+
         public void Inserir(Servico registro)
         {
-            registro.Id = Db.Insert(sqlInserirServico, ObtemParametrosServico(registro));
+            try
+            {
+                registro.Id = Db.Insert(sqlInserirServico, ObtemParametrosServico(registro));
+
+                logger.Information("SUCESSO AO INSERIR SERVIÇO ID: {Id} | DATA: {DataEHora}", registro.Id, DateTime.Now.ToString());
+            }
+            catch (Exception ex)
+            {
+                logger.Error("ERRO AO INSERIR SERVIÇO ID: {Id} | DATA: {DataEHora} | FEATURE:{Feature} | CAMADA: {Camada} | SQL: {Query}", registro.Id, DateTime.Now.ToString(), this.ToString(), "Repository", ex.Message);
+            }
         }
 
         public void Editar(int id, Servico registro)
         {
-            registro.Id = id;
-            Db.Update(sqlEditarServico, ObtemParametrosServico(registro));
+            try
+            {
+                registro.Id = id;
+                Db.Update(sqlEditarServico, ObtemParametrosServico(registro));
+
+                logger.Information("SUCESSO AO EDITAR SERVIÇO ID: {Id} | DATA: {DataEHora}", registro.Id, DateTime.Now.ToString());
+            }
+            catch (Exception ex)
+            {
+                logger.Error("ERRO AO EDITAR SERVIÇO ID: {Id} | DATA: {DataEHora} | FEATURE:{Feature} | CAMADA: {Camada} | SQL: {Query}", registro.Id, DateTime.Now.ToString(), this.ToString(), "Repository", ex.Message);
+            }
         }
 
         public bool Excluir(int id)
@@ -96,9 +122,13 @@ namespace LocadoraDeVeiculos.Infra.SQL.TaxaServicoModule.ServicoModule
             try
             {
                 Db.Delete(sqlExcluirServico, AdicionarParametro("ID", id));
+
+                logger.Information("SUCESSO AO REMOVER SERVIÇO ID: {Id} | DATA: {DataEHora}", id, DateTime.Now.ToString());
             }
-            catch (Exception)
+            catch (Exception ex)
             {
+                logger.Error("ERRO AO REMOVER SERVIÇO ID: {Id} | DATA: {DataEHora} | FEATURE:{Feature} | CAMADA: {Camada} | SQL: {Query}", id, DateTime.Now.ToString(), this.ToString(), "Repository", ex.Message);
+
                 return false;
             }
 
@@ -112,12 +142,45 @@ namespace LocadoraDeVeiculos.Infra.SQL.TaxaServicoModule.ServicoModule
 
         public Servico SelecionarPorId(int id)
         {
-            return Db.Get(sqlSelecionarServicoPorId, ConverterEmServico, AdicionarParametro("ID", id));
+            try
+            {
+                Servico servico = Db.Get(sqlSelecionarServicoPorId, ConverterEmServico, AdicionarParametro("ID", id));
+
+                if (servico != null)
+                    logger.Debug("SUCESSO AO SELECIONAR SERVIÇO ID: {Id} | DATA: {DataEHora}", servico.Id, DateTime.Now.ToString());
+                else
+                    logger.Information("NÃO FOI POSSÍVEL SELECIONAR SERVIÇO ID: {Id} | DATA: {DataEHora}", servico.Id, DateTime.Now.ToString());
+
+                return servico;
+
+            }
+            catch (Exception ex)
+            {
+                logger.Error("NÃO FOI POSSÍVEL SE COMUNICAR COM O BANCO DE DADOS PARA SELECIONAR SERVIÇO ID: {Id} | DATA: {DataEHora} | FEATURE:{Feature} | CAMADA: {Camada} | SQL: {Query}", id, DateTime.Now.ToString(), this.ToString(), "Repository", ex.Message);
+
+                return null;
+            }
         }
 
         public List<Servico> SelecionarTodos()
         {
-            return Db.GetAll(sqlSelecionarTodosServicos, ConverterEmServico);
+            try
+            {
+                List<Servico> servico = Db.GetAll(sqlSelecionarTodosServicos, ConverterEmServico);
+
+                if (servico != null)
+                    logger.Debug("SUCESSO AO SELECIONAR TODOS OS SERVIÇOS | DATA: {DataEHora}", DateTime.Now.ToString());
+                else
+                    logger.Information("NÃO FOI POSSÍVEL SELECIONAR TODOS OS SERVIÇOS | DATA: {DataEHora}", DateTime.Now.ToString());
+
+                return servico;
+            }
+            catch (Exception ex)
+            {
+                logger.Error("NÃO FOI POSSÍVEL SE COMUNICAR COM O BANCO DE DADOS PARA SELECIONAR TODOS OS SERVIÇOS | DATA: {DataEHora} | FEATURE:{Feature} | CAMADA: {Camada} | SQL: {Query}", DateTime.Now.ToString(), this.ToString(), "Repository", ex.Message);
+
+                return null;
+            }
         }
         private Dictionary<string, object> ObtemParametrosServico(Servico servico)
         {
@@ -133,8 +196,25 @@ namespace LocadoraDeVeiculos.Infra.SQL.TaxaServicoModule.ServicoModule
 
         public List<Servico> SelecionarPesquisa(string coluna, string pesquisa)
         {
-            string sql = sqlSelecionarTaxaServico.Replace("COLUNADEPESQUISA", coluna);
-            return Db.GetAll(sql, ConverterEmServico, AdicionarParametro("@SEGUNDAREF", pesquisa));
+            try
+            {
+                string sql = sqlSelecionarTaxaServico.Replace("COLUNADEPESQUISA", coluna);
+                List<Servico> servico = Db.GetAll(sql, ConverterEmServico, AdicionarParametro("@SEGUNDAREF", pesquisa));
+
+                if (servico != null)
+                    logger.Debug("SUCESSO AO SELECIONAR SERVIÇO COM A PESQUISA: {Pesquisa} | DATA: {DataEHora}", pesquisa, DateTime.Now.ToString());
+                else
+                    logger.Information("NÃO FOI POSSÍVEL SELECIONAR SERVIÇO COM A PESQUISA: {Pesquisa} | DATA: {DataEHora}", pesquisa, DateTime.Now.ToString());
+
+                return servico;
+
+            }
+            catch (Exception ex)
+            {
+                logger.Error("NÃO FOI POSSÍVEL SE COMUNICAR COM O BANCO DE DADOS PARA SELECIONAR SERVIÇO | DATA: {DataEHora} | FEATURE:{Feature} | CAMADA: {Camada} | SQL: {Query}", DateTime.Now.ToString(), this.ToString(), "Repository", ex.Message);
+
+                return null;
+            }
         }
 
         private Servico ConverterEmServico(IDataReader reader)
