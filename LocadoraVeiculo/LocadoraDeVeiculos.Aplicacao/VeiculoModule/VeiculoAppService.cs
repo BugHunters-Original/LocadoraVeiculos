@@ -65,7 +65,7 @@ namespace LocadoraDeVeiculos.Aplicacao.VeiculoModule
             var excluiu = veiculoRepository.Excluir(id);
 
             if (excluiu)
-                logger.Debug("EÍCULO {Id} REMOVIDO COM SUCESSO | {DataEHora}", veiculo.Id, DateTime.Now.ToString());
+                logger.Debug("VEÍCULO {Id} REMOVIDO COM SUCESSO | {DataEHora}", veiculo.Id, DateTime.Now.ToString());
             else
                 logger.Error("NÃO FOI POSSÍVEL REMOVER GRUPO VEÍCULO {Id} | {DataEHora}.", veiculo.Id, DateTime.Now.ToString());
 

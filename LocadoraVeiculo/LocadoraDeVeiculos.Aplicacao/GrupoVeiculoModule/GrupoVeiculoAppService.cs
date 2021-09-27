@@ -6,11 +6,7 @@ using System.Collections.Generic;
 
 namespace LocadoraDeVeiculos.Aplicacao.GrupoVeiculoModule
 {
-    public class ResultadoOperacao
-    {
-        public bool sucesso;
-        public string mensagem;
-    }
+    
 
     public class GrupoVeiculoAppService
     {
@@ -70,23 +66,20 @@ namespace LocadoraDeVeiculos.Aplicacao.GrupoVeiculoModule
             
         }
 
-        public ResultadoOperacao ExcluirGrupoVeiculo(GrupoVeiculo grupoVeiculoSelecionado)
+        public bool ExcluirGrupoVeiculo(int id)
         {
-            ResultadoOperacao resultadoOperacao = new();
-            resultadoOperacao.sucesso = grupoVeiculoRepository.Excluir(grupoVeiculoSelecionado.Id);            
+            logger.Debug("REMOVENDO GRUPO VEÍCULO{Id} | {DataEHora}", id, DateTime.Now.ToString());
 
-            if (resultadoOperacao.sucesso)
-            {
-                resultadoOperacao.mensagem = $"Grupo de Veiculos: [{grupoVeiculoSelecionado.NomeTipo}] removido com sucesso";
-                logger.Debug($"Excluiu Grupo Veículo {grupoVeiculoSelecionado.NomeTipo} com ID {grupoVeiculoSelecionado.Id}!");
-            }
+           
+            var excluiu = grupoVeiculoRepository.Excluir(id);
+
+            if (excluiu)
+                logger.Debug("GRUPO DE VEÍCULOS {Id} REMOVIDO COM SUCESSO | {DataEHora}", id, DateTime.Now.ToString());
             else
-            {
-                resultadoOperacao.mensagem = "Erro ao tentar excluir um grupo de veículos. Verifique se esse registro nao tem um veículo relacionado a ele";
-                logger.Error($"Não excluiu Grupo Veículo {grupoVeiculoSelecionado.NomeTipo} com ID {grupoVeiculoSelecionado.Id}!");
-            }
+                logger.Error("NÃO FOI POSSÍVEL REMOVER CUPOM DE DESCONTO {Id} | {DataEHora}.", id, DateTime.Now.ToString());
 
-            return resultadoOperacao;
+            return excluiu;
+
         }
 
         public List<GrupoVeiculo> SelecionarPesquisa(string comboBox, string pesquisa)
