@@ -28,28 +28,14 @@ namespace LocadoraDeVeiculos.AppServiceTests.GrupoVeiculoModule
 
             GrupoVeiculoAppService grupoVeiculoService = new(grupoVeiculoMock.Object, logger);
 
-            var resultado = grupoVeiculoService.ExcluirGrupoVeiculo(grupoVeiculo);
-            resultado.sucesso.Should().BeTrue();
+            var resultado = grupoVeiculoService.ExcluirGrupoVeiculo(grupoVeiculo.Id);
+            resultado.Should().BeTrue();
 
 
         }
 
 
-        public void Deve_Chamar_Mensagem()
-        {
-            GrupoVeiculo grupoVeiculo = new("SUV", 40m, 5m, 50m, 30m, 40m, 10m);
-
-            Mock<IGrupoVeiculoRepository> grupoVeiculoMock = new();
-            grupoVeiculoMock.Setup(x => x.Excluir(grupoVeiculo.Id)).Returns(false);
-
-
-            GrupoVeiculoAppService grupoVeiculoService = new(grupoVeiculoMock.Object, logger);
-
-            var resultado = grupoVeiculoService.ExcluirGrupoVeiculo(grupoVeiculo);
-            resultado.sucesso.Should().BeFalse();
-            resultado.mensagem.Should().Be("Erro ao tentar excluir um grupo de veículos. Verifique se esse registro nao tem um veículo relacionado a ele");
-
-        }
+    
 
         [TestMethod]
         public void Deve_chamar_inserir()
