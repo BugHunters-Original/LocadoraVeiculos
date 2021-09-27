@@ -100,13 +100,31 @@ namespace LocadoraDeVeiculos.Infra.SQL.FuncionarioModule
 
         public void Inserir(Funcionario funcionario)
         {
-            funcionario.Id = Db.Insert(sqlInserirFuncionario, ObtemParametrosFuncionario(funcionario));
+            try
+            {
+                funcionario.Id = Db.Insert(sqlInserirFuncionario, ObtemParametrosFuncionario(funcionario));
+
+                logger.Information("SUCESSO AO INSERIR FUNCIONÁRIO ID: {Id} | DATA: {DataEHora}", funcionario.Id, DateTime.Now.ToString());
+            }
+            catch (Exception ex)
+            {
+                logger.Error("ERRO AO INSERIR FUNCIONÁRIO ID: {Id} | DATA: {DataEHora} | FEATURE:{Feature} | CAMADA: {Camada} | SQL: {Query}", funcionario.Id, DateTime.Now.ToString(), this.ToString(), "Repository", ex.Message);
+            }
         }
 
         public void Editar(int id, Funcionario funcionario)
         {
-            funcionario.Id = id;
-            Db.Update(sqlEditarFuncionario, ObtemParametrosFuncionario(funcionario));
+            try
+            {
+                funcionario.Id = id;
+                Db.Update(sqlEditarFuncionario, ObtemParametrosFuncionario(funcionario));
+
+                logger.Information("SUCESSO AO EDITAR FUNCIONÁRIO ID: {Id} | DATA: {DataEHora}", funcionario.Id, DateTime.Now.ToString());
+            }
+            catch (Exception ex)
+            {
+                logger.Error("ERRO AO EDITAR FUNCIONÁRIO ID: {Id} | DATA: {DataEHora} | FEATURE:{Feature} | CAMADA: {Camada} | SQL: {Query}", funcionario.Id, DateTime.Now.ToString(), this.ToString(), "Repository", ex.Message);
+            }
         }
 
         public bool Excluir(int id)
@@ -115,11 +133,11 @@ namespace LocadoraDeVeiculos.Infra.SQL.FuncionarioModule
             {
                 Db.Delete(sqlExcluirFuncionario, AdicionarParametro("ID", id));
 
-                logger.Debug($"Excluiu Funcionário com sucesso!");
+                logger.Information("SUCESSO AO REMOVER FUNCIONÁRIO ID: {Id} | DATA: {DataEHora}", id, DateTime.Now.ToString());
             }
-            catch (Exception exception)
+            catch (Exception ex)
             {
-                logger.Error($"Erro ao excluir Funcionário!", exception);
+                logger.Error("ERRO AO REMOVER FUNCIONÁRIO ID: {Id} | DATA: {DataEHora} | FEATURE:{Feature} | CAMADA: {Camada} | SQL: {Query}", id, DateTime.Now.ToString(), this.ToString(), "Repository", ex.Message);
 
                 return false;
             }
@@ -133,18 +151,68 @@ namespace LocadoraDeVeiculos.Infra.SQL.FuncionarioModule
 
         public Funcionario SelecionarPorId(int id)
         {
-            return Db.Get(sqlSelecionarFuncionarioPorId, ConverterEmFuncionario, AdicionarParametro("ID", id));
+            try
+            {
+                Funcionario funcionario = Db.Get(sqlSelecionarFuncionarioPorId, ConverterEmFuncionario, AdicionarParametro("ID", id));
+
+                if (funcionario != null)
+                    logger.Debug("SUCESSO AO SELECIONAR FUNCIONÁRIO ID: {Id} | DATA: {DataEHora}", funcionario.Id, DateTime.Now.ToString());
+                else
+                    logger.Information("NÃO FOI POSSÍVEL SELECIONAR FUNCIONÁRIO ID: {Id} | DATA: {DataEHora}", funcionario.Id, DateTime.Now.ToString());
+
+                return funcionario;
+
+            }
+            catch (Exception ex)
+            {
+                logger.Error("NÃO FOI POSSÍVEL SE COMUNICAR COM O BANCO DE DADOS PARA SELECIONAR FUNCIONÁRIO ID: {Id} | DATA: {DataEHora} | FEATURE:{Feature} | CAMADA: {Camada} | SQL: {Query}", id, DateTime.Now.ToString(), this.ToString(), "Repository", ex.Message);
+
+                return null;
+            }
         }
 
         public List<Funcionario> SelecionarTodos()
         {
-            return Db.GetAll(sqlSelecionarTodosFuncionarios, ConverterEmFuncionario);
+            try
+            {
+                List<Funcionario> funcionarios = Db.GetAll(sqlSelecionarTodosFuncionarios, ConverterEmFuncionario);
+
+                if (funcionarios != null)
+                    logger.Debug("SUCESSO AO SELECIONAR TODOS OS FUNCIONÁRIOS | DATA: {DataEHora}", DateTime.Now.ToString());
+                else
+                    logger.Information("NÃO FOI POSSÍVEL SELECIONAR TODOS OS FUNCIONÁRIOS | DATA: {DataEHora}", DateTime.Now.ToString());
+
+                return funcionarios;
+            }
+            catch (Exception ex)
+            {
+                logger.Error("NÃO FOI POSSÍVEL SE COMUNICAR COM O BANCO DE DADOS PARA SELECIONAR TODOS OS FUNCIONÁRIOS | DATA: {DataEHora} | FEATURE:{Feature} | CAMADA: {Camada} | SQL: {Query}", DateTime.Now.ToString(), this.ToString(), "Repository", ex.Message);
+
+                return null;
+            }
         }
 
         public List<Funcionario> SelecionarPesquisa(string coluna, string pesquisa)
-        {
-            string sql = sqlSelecionarFuncionarioPorNome.Replace("COLUNADEPESQUISA", coluna);
-            return Db.GetAll(sql, ConverterEmFuncionario, AdicionarParametro("@SEGUNDAREF", pesquisa));
+        {  
+            try
+            {
+                string sql = sqlSelecionarFuncionarioPorNome.Replace("COLUNADEPESQUISA", coluna);
+                List<Funcionario> funcionarios = Db.GetAll(sql, ConverterEmFuncionario, AdicionarParametro("@SEGUNDAREF", pesquisa));
+
+                if (funcionarios != null)
+                    logger.Debug("SUCESSO AO SELECIONAR FUNCIONARIO COM A PESQUISA: {Pesquisa} | DATA: {DataEHora}", pesquisa, DateTime.Now.ToString());
+                else
+                    logger.Information("NÃO FOI POSSÍVEL SELECIONAR FUNCIONARIO COM A PESQUISA: {Pesquisa} | DATA: {DataEHora}", pesquisa, DateTime.Now.ToString());
+
+                return funcionarios;
+
+            }
+            catch (Exception ex)
+            {
+                logger.Error("NÃO FOI POSSÍVEL SE COMUNICAR COM O BANCO DE DADOS PARA SELECIONAR FUNCIONARIO | DATA: {DataEHora} | FEATURE:{Feature} | CAMADA: {Camada} | SQL: {Query}", DateTime.Now.ToString(), this.ToString(), "Repository", ex.Message);
+
+                return null;
+            }
         }
 
         private Funcionario ConverterEmFuncionario(IDataReader reader)
