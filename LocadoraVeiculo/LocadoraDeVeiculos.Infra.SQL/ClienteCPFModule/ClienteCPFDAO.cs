@@ -1,6 +1,7 @@
 ﻿using LocadoraDeVeiculos.Dominio.ClienteModule.ClienteCNPJModule;
 using LocadoraDeVeiculos.Dominio.ClienteModule.ClienteCPFModule;
 using LocadoraDeVeiculos.Infra.Shared;
+using Serilog.Core;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -147,15 +148,39 @@ namespace LocadoraDeVeiculos.Infra.SQL.ClienteCPFModule
             WHERE 
                 [CPF] = @CPF";
         #endregion
+
+        private Logger logger;
+        public ClienteCPFDAO(Logger logger)
+        {
+            this.logger = logger;
+        }
         public void Inserir(ClienteCPF cliente)
         {
-            cliente.Id = Db.Insert(sqlInserirCondutor, ObtemParametrosCondutor(cliente));
+            try
+            {
+                cliente.Id = Db.Insert(sqlInserirCondutor, ObtemParametrosCondutor(cliente));
+
+                logger.Information("SUCESSO AO INSERIR CLIENTE CPF ID: {Id} | DATA: {DataEHora}", cliente.Id, DateTime.Now.ToString());
+            }
+            catch (Exception ex)
+            {
+                logger.Error("ERRO AO INSERIR CLIENTE CPF ID: {Id} | DATA: {DataEHora} | FEATURE:{Feature} | CAMADA: {Camada} | SQL: {Query}", cliente.Id, DateTime.Now.ToString(), this.ToString(), "Repository", ex.Message);
+            }
         }
 
         public void Editar(int id, ClienteCPF cliente)
         {
-            cliente.Id = id;
-            Db.Update(sqlEditarCondutor, ObtemParametrosCondutor(cliente));
+            try
+            {
+                cliente.Id = id;
+                Db.Update(sqlEditarCondutor, ObtemParametrosCondutor(cliente));
+
+                logger.Information("SUCESSO AO EDITAR CLIENTE CPF ID: {Id} | DATA: {DataEHora}", cliente.Id, DateTime.Now.ToString());
+            }
+            catch (Exception ex)
+            {
+                logger.Error("ERRO AO EDITAR CLIENTE CPF ID: {Id} | DATA: {DataEHora} | FEATURE:{Feature} | CAMADA: {Camada} | SQL: {Query}", cliente.Id, DateTime.Now.ToString(), this.ToString(), "Repository", ex.Message);
+            }
         }
 
         public bool Excluir(int id)
@@ -163,9 +188,13 @@ namespace LocadoraDeVeiculos.Infra.SQL.ClienteCPFModule
             try
             {
                 Db.Delete(sqlExcluirCondutor, AdicionarParametro("ID", id));
+
+                logger.Information("SUCESSO AO REMOVER CLIENTE CPF ID: {Id} | DATA: {DataEHora}", id, DateTime.Now.ToString());
             }
-            catch (Exception)
+            catch (Exception ex)
             {
+                logger.Error("ERRO AO REMOVER CLIENTE CPF ID: {Id} | DATA: {DataEHora} | FEATURE:{Feature} | CAMADA: {Camada} | SQL: {Query}", id, DateTime.Now.ToString(), this.ToString(), "Repository", ex.Message);
+
                 return false;
             }
 
@@ -178,7 +207,23 @@ namespace LocadoraDeVeiculos.Infra.SQL.ClienteCPFModule
         }
         public bool ExisteCPF(string cpf)
         {
-            return Db.Exists(sqlExisteCPF, AdicionarParametro("CPF", cpf));
+            try
+            {
+                bool existe = Db.Exists(sqlExisteCPF, AdicionarParametro("CPF", cpf));
+
+                if (existe)
+                    logger.Information("O CPF {Cpf} JÁ EXISTE NO SISTEMA | DATA: {DataEHora}", cpf, DateTime.Now.ToString());
+                else
+                    logger.Debug("O CPF {Cpf} NÃO EXISTE NO SISTEMA| DATA: {DataEHora}", cpf, DateTime.Now.ToString());
+
+                return existe;
+            }
+            catch (Exception ex)
+            {
+                logger.Error("NÃO FOI POSSÍVEL SE COMUNICAR COM O BANCO DE DADOS PARA SELECIONAR O CPF {Cpf} | DATA: {DataEHora} | FEATURE:{Feature} | CAMADA: {Camada} | SQL: {Query}", cpf, DateTime.Now.ToString(), this.ToString(), "Repository", ex.Message);
+
+                return true;
+            }
         }
 
         public List<ClienteCPF> SelecionarPesquisa(string coluna, string pesquisa)
@@ -188,17 +233,65 @@ namespace LocadoraDeVeiculos.Infra.SQL.ClienteCPFModule
 
         public ClienteCPF SelecionarPorId(int id)
         {
-            return Db.Get(sqlSelecionarCondutorPorId, ConverterEmCondutor, AdicionarParametro("ID", id));
+            try
+            {
+                ClienteCPF clienteCPF = Db.Get(sqlSelecionarCondutorPorId, ConverterEmCondutor, AdicionarParametro("ID", id));
+
+                if (clienteCPF != null)
+                    logger.Debug("SUCESSO AO SELECIONAR CLIENTE CPF ID: {Id} | DATA: {DataEHora}", clienteCPF.Id, DateTime.Now.ToString());
+                else
+                    logger.Information("NÃO FOI POSSÍVEL SELECIONAR CLIENTE CPF ID: {Id} | DATA: {DataEHora}", clienteCPF.Id, DateTime.Now.ToString());
+
+                return clienteCPF;
+            }
+            catch (Exception ex)
+            {
+                logger.Error("NÃO FOI POSSÍVEL SE COMUNICAR COM O BANCO DE DADOS PARA SELECIONAR CLIENTE CPF ID: {Id} | DATA: {DataEHora} | FEATURE:{Feature} | CAMADA: {Camada} | SQL: {Query}", id, DateTime.Now.ToString(), this.ToString(), "Repository", ex.Message);
+
+                return null;
+            }
         }
 
         public List<ClienteCPF> SelecionarTodos()
         {
-            return Db.GetAll(sqlSelecionarTodosCondutores, ConverterEmCondutor);
+            try
+            {
+                List<ClienteCPF> clientesCPF = Db.GetAll(sqlSelecionarTodosCondutores, ConverterEmCondutor);
+
+                if (clientesCPF != null)
+                    logger.Debug("SUCESSO AO SELECIONAR TODOS OS CLIENTES CPF | DATA: {DataEHora}", DateTime.Now.ToString());
+                else
+                    logger.Information("NÃO FOI POSSÍVEL SELECIONAR TODOS OS CLIENTES CPF | DATA: {DataEHora}", DateTime.Now.ToString());
+
+                return clientesCPF;
+            }
+            catch (Exception ex)
+            {
+                logger.Error("NÃO FOI POSSÍVEL SE COMUNICAR COM O BANCO DE DADOS PARA SELECIONAR TODOS OS CLIENTES CPF | DATA: {DataEHora} | FEATURE:{Feature} | CAMADA: {Camada} | SQL: {Query}", DateTime.Now.ToString(), this.ToString(), "Repository", ex.Message);
+
+                return null;
+            }
         }
 
         public List<ClienteCPF> SelecionarPorIdEmpresa(int id)
         {
-            return Db.GetAll(sqlSelecionarCondutorPorIdEmpresa, ConverterEmCondutor, AdicionarParametro("ID", id));
+            try
+            {
+                List<ClienteCPF> clientesCPF = Db.GetAll(sqlSelecionarCondutorPorIdEmpresa, ConverterEmCondutor, AdicionarParametro("ID", id));
+
+                if (clientesCPF != null)
+                    logger.Debug("SUCESSO AO SELECIONAR TODOS OS CLIENTES CPF VINCULADOS AO ID {ID} | DATA: {DataEHora}", id, DateTime.Now.ToString());
+                else
+                    logger.Information("NÃO FOI POSSÍVEL SELECIONAR TODOS OS CLIENTES CPF VINCULADOS AO ID {ID} | DATA: {DataEHora}", id, DateTime.Now.ToString());
+
+                return clientesCPF;
+            }
+            catch (Exception ex)
+            {
+                logger.Error("NÃO FOI POSSÍVEL SE COMUNICAR COM O BANCO DE DADOS PARA SELECIONAR TODOS OS CLIENTES CPF VINCULADOS AO ID {ID} | DATA: {DataEHora} | FEATURE:{Feature} | CAMADA: {Camada} | SQL: {Query}", id, DateTime.Now.ToString(), this.ToString(), "Repository", ex.Message);
+
+                return null;
+            }
         }
 
         private Dictionary<string, object> ObtemParametrosCondutor(ClienteCPF condutor)
