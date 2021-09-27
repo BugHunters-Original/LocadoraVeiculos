@@ -1,6 +1,7 @@
 ﻿using LocadoraDeVeiculos.Dominio.GrupoVeiculoModule;
 using LocadoraDeVeiculos.Dominio.VeiculoModule;
 using LocadoraDeVeiculos.Infra.Shared;
+using Serilog.Core;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -277,10 +278,28 @@ namespace LocadoraDeVeiculos.Infra.SQL.VeiculoModule
                         [DISPONIBILIDADE_VEICULO] = @DISPONIBILIDADE_VEICULO";
         #endregion
 
+        private readonly Logger logger;
+
+        public VeiculoDAO(Logger log)
+        {
+            logger = log;
+        }
+
         public void Editar(int id, Veiculo veiculo)
         {
-            veiculo.Id = id;
-            Db.Update(sqlEditarVeiculo, ObtemParametrosVeiculo(veiculo));
+            try
+            {
+                veiculo.Id = id;
+                Db.Update(sqlEditarVeiculo, ObtemParametrosVeiculo(veiculo));
+                logger.Information("SUCESSO AO EDITAR VEÍCULO ID: {Id} | DATA: {DataEHora}", veiculo.Id, DateTime.Now.ToString());
+            }
+
+            catch(Exception ex)
+            {
+
+                logger.Error("ERRO AO EDITAR VEÍCULO ID: {Id} | DATA: {DataEHora} | FEATURE:{Feature} | CAMADA: {Camada} | SQL: {Query}", veiculo.Id, DateTime.Now.ToString(), this.ToString(), "Repository", ex.Message);
+
+            }
         }
 
         public bool Excluir(int id)
@@ -288,9 +307,14 @@ namespace LocadoraDeVeiculos.Infra.SQL.VeiculoModule
             try
             {
                 Db.Delete(sqlExcluirVeiculo, AdicionarParametro("ID", id));
+
+                logger.Information("SUCESSO AO REMOVER VEÍCULO ID: {Id} | DATA: {DataEHora}", id, DateTime.Now.ToString());
+
             }
-            catch (Exception)
+            catch (Exception ex)
             {
+                logger.Error("ERRO AO REMOVER VEÍCULO ID: {Id} | DATA: {DataEHora} | FEATURE:{Feature} | CAMADA: {Camada} | SQL: {Query}", id, DateTime.Now.ToString(), this.ToString(), "Repository", ex.Message);
+
                 return false;
             }
 
@@ -304,62 +328,228 @@ namespace LocadoraDeVeiculos.Infra.SQL.VeiculoModule
 
         public void Inserir(Veiculo veiculo)
         {
-            veiculo.Id = Db.Insert(sqlInserirVeiculo, ObtemParametrosVeiculo(veiculo));
+            try
+            {
+                veiculo.Id = Db.Insert(sqlInserirVeiculo, ObtemParametrosVeiculo(veiculo));
+                logger.Information("SUCESSO AO INSERIR VEÍCULO ID: {Id} | DATA: {DataEHora}", veiculo.Id, DateTime.Now.ToString());
+            }
+
+            catch(Exception ex)
+            {
+                logger.Error("ERRO AO INSERIR VEÍCULO ID: {Id} | DATA: {DataEHora} | FEATURE:{Feature} | CAMADA: {Camada} | SQL: {Query}", veiculo.Id, DateTime.Now.ToString(), this.ToString(), "Repository", ex.Message);
+
+            }
         }
 
         public List<Veiculo> SelecionarPesquisa(string coluna, string pesquisa)
         {
-            string sql = sqlSelecionarVeiculoPesquisa.Replace("COLUNADEPESQUISA", coluna);
-            return Db.GetAll(sql, ConverterEmVeiculo, AdicionarParametro("@SEGUNDAREF", pesquisa));
+            try
+            {
+                string sql = sqlSelecionarVeiculoPesquisa.Replace("COLUNADEPESQUISA", coluna);
+                List<Veiculo> veiculos = Db.GetAll(sql, ConverterEmVeiculo, AdicionarParametro("@SEGUNDAREF", pesquisa));
+
+                if (veiculos != null)
+                    logger.Debug("SUCESSO AO SELECIONAR VEÍCULO COM A PESQUISA: {Pesquisa} | DATA: {DataEHora}", pesquisa, DateTime.Now.ToString());
+                else
+                    logger.Information("NÃO FOI POSSÍVEL SELECIONAR VEÍCULO COM A PESQUISA: {Pesquisa} | DATA: {DataEHora}", pesquisa, DateTime.Now.ToString());
+
+
+                return veiculos;
+            }
+
+            catch(Exception ex) {
+
+                logger.Error("NÃO FOI POSSÍVEL SE COMUNICAR COM O BANCO DE DADOS PARA SELECIONAR VEÍCULO | DATA: {DataEHora} | FEATURE:{Feature} | CAMADA: {Camada} | SQL: {Query}", DateTime.Now.ToString(), this.ToString(), "Repository", ex.Message);
+
+                return null;
+            }
         }
 
         public void EditarDisponibilidade(Veiculo atual, Veiculo antigo)
         {
-            atual.DisponibilidadeVeiculo = 0;
-            antigo.DisponibilidadeVeiculo = 1;
-            Db.Update(sqlEditarVeiculo, ObtemParametrosVeiculo(atual));
-            Db.Update(sqlEditarVeiculo, ObtemParametrosVeiculo(antigo));
+            try
+            {
+                atual.DisponibilidadeVeiculo = 0;
+                antigo.DisponibilidadeVeiculo = 1;
+                Db.Update(sqlEditarVeiculo, ObtemParametrosVeiculo(atual));
+                Db.Update(sqlEditarVeiculo, ObtemParametrosVeiculo(antigo));
+                logger.Information("SUCESSO AO EDITAR DISPONIBILIDADE DO VEÍCULO ANTIGO ID: {Id} E DISPONIBILIDADE DO VEÍCULO ATUAL ID: {Id} | DATA: {DataEHora}",antigo.Id, atual.Id, DateTime.Now.ToString());
+
+            }
+
+            catch (Exception ex)
+            {
+
+                logger.Error("ERRO AO EDITAR DISPONIBILIDADE DO VEÍCULO ANTIGO ID: {Id} E DISPONIBILIDADE DO VEÍCULO ATUAL ID: {Id} | DATA: {DataEHora} | FEATURE:{Feature} | CAMADA: {Camada} | SQL: {Query}", antigo.Id, atual.Id, DateTime.Now.ToString(), this.ToString(), "Repository", ex.Message);
+
+            }
         }
 
         public void DevolverVeiculo(Veiculo veiculo)
         {
-            veiculo.DisponibilidadeVeiculo = 1;
-            Db.Update(sqlMudarDisponibilidade, ObtemParametrosVeiculo(veiculo));
+            try
+            {
+
+                veiculo.DisponibilidadeVeiculo = 1;
+                Db.Update(sqlMudarDisponibilidade, ObtemParametrosVeiculo(veiculo));
+                logger.Information("SUCESSO AO EDITAR DISPONILIDADE DO VEÍCULO ID: {Id} | DATA: {DataEHora}", veiculo.Id, DateTime.Now.ToString());
+
+            }
+
+            catch (Exception ex)
+            {
+                logger.Error("ERRO AO EDITAR DISPONIBILIDADE VEÍCULO ID: {Id} | DATA: {DataEHora} | FEATURE:{Feature} | CAMADA: {Camada} | SQL: {Query}", veiculo.Id, DateTime.Now.ToString(), this.ToString(), "Repository", ex.Message);
+
+            }
         }
 
         public void AtualizarQuilometragem(Veiculo veiculo)
         {
-            Db.Update(sqlEditarVeiculo, ObtemParametrosVeiculo(veiculo));
+            try
+            {
+                Db.Update(sqlEditarVeiculo, ObtemParametrosVeiculo(veiculo));
+                logger.Information("SUCESSO AO EDITAR QUILOMETRAGEM DO VEÍCULO ID: {Id} | DATA: {DataEHora}", veiculo.Id, DateTime.Now.ToString());
+            }
+
+            catch(Exception ex)
+            {
+                logger.Error("ERRO AO EDITAR QUILOMETRAGEM DO VEÍCULO ID: {Id} | DATA: {DataEHora} | FEATURE:{Feature} | CAMADA: {Camada} | SQL: {Query}", veiculo.Id, DateTime.Now.ToString(), this.ToString(), "Repository", ex.Message);
+            }
         }
 
         public Veiculo SelecionarPorId(int id)
         {
-            return Db.Get(sqlSelecionarVeiculoPorId, ConverterEmVeiculo, AdicionarParametro("ID", id));
+            try {
+               
+                Veiculo veiculo =  Db.Get(sqlSelecionarVeiculoPorId, ConverterEmVeiculo, AdicionarParametro("ID", id));
+
+                if (veiculo != null)
+                    logger.Debug("SUCESSO AO SELECIONAR VEÍCULO ID: {Id} | DATA: {DataEHora}", veiculo.Id, DateTime.Now.ToString());
+                else
+                    logger.Information("NÃO FOI POSSÍVEL SELECIONAR VEÍCULO ID: {Id} | DATA: {DataEHora}", veiculo.Id, DateTime.Now.ToString());
+
+                return veiculo;
+            }
+            catch (Exception ex) {
+
+                logger.Error("NÃO FOI POSSÍVEL SE COMUNICAR COM O BANCO DE DADOS PARA SELECIONAR VEÍCULO ID: {Id} | DATA: {DataEHora} | FEATURE:{Feature} | CAMADA: {Camada} | SQL: {Query}", id, DateTime.Now.ToString(), this.ToString(), "Repository", ex.Message);
+
+                return null;
+            }
         }
 
         public List<Veiculo> SelecionarTodos()
         {
-            return Db.GetAll(sqlSelecionarTodosVeiculos, ConverterEmVeiculo);
+            try
+            {
+                List<Veiculo> veiculos =  Db.GetAll(sqlSelecionarTodosVeiculos, ConverterEmVeiculo);
+
+                if(veiculos!=null)
+                    logger.Debug("SUCESSO AO SELECIONAR TODOS OS VEÍCULOS | DATA: {DataEHora}", DateTime.Now.ToString());
+
+                else
+                    logger.Information("NÃO FOI POSSÍVEL SELECIONAR TODOS OS VEÍCULOS | DATA: {DataEHora}", DateTime.Now.ToString());
+
+                return veiculos;
+            }
+            catch (Exception ex)
+            {
+                logger.Error("NÃO FOI POSSÍVEL SE COMUNICAR COM O BANCO DE DADOS PARA SELECIONAR TODOS OS VEÍCULOS | DATA: {DataEHora} | FEATURE:{Feature} | CAMADA: {Camada} | SQL: {Query}", DateTime.Now.ToString(), this.ToString(), "Repository", ex.Message);
+
+                return null;
+            }
         }
 
         public List<Veiculo> SelecionarTodosAlugados()
         {
-            return Db.GetAll(sqlVeiculoAlugado, ConverterEmVeiculo);
+            try
+            {
+                List<Veiculo> veiculos = Db.GetAll(sqlVeiculoAlugado, ConverterEmVeiculo);
+
+                if (veiculos != null)
+                    logger.Debug("SUCESSO AO SELECIONAR TODOS OS VEÍCULOS ALUGADOS | DATA: {DataEHora}", DateTime.Now.ToString());
+
+                else
+                    logger.Information("NÃO FOI POSSÍVEL SELECIONAR TODOS OS VEÍCULOS ALUGADOS | DATA: {DataEHora}", DateTime.Now.ToString());
+
+                return veiculos;
+            }
+
+            catch(Exception ex) {
+
+                logger.Error("NÃO FOI POSSÍVEL SE COMUNICAR COM O BANCO DE DADOS PARA SELECIONAR TODOS OS VEÍCULOS ALUGADOS | DATA: {DataEHora} | FEATURE:{Feature} | CAMADA: {Camada} | SQL: {Query}", DateTime.Now.ToString(), this.ToString(), "Repository", ex.Message);
+
+                return null;
+            }
         }
 
         public List<Veiculo> SelecionarTodosDisponiveis()
         {
-            return Db.GetAll(sqlVeiculoDisponivel, ConverterEmVeiculo);
+            try
+            {
+                List<Veiculo> veiculos = Db.GetAll(sqlVeiculoDisponivel, ConverterEmVeiculo);
+
+                if (veiculos != null)
+                    logger.Debug("SUCESSO AO SELECIONAR TODOS OS VEÍCULOS DISPONÍVEIS | DATA: {DataEHora}", DateTime.Now.ToString());
+
+                else
+                    logger.Information("NÃO FOI POSSÍVEL SELECIONAR TODOS OS VEÍCULOS DISPONÍVEIS | DATA: {DataEHora}", DateTime.Now.ToString());
+
+                return veiculos;
+            }
+
+            catch (Exception ex) {
+
+                logger.Error("NÃO FOI POSSÍVEL SE COMUNICAR COM O BANCO DE DADOS PARA SELECIONAR TODOS OS VEÍCULOS DISPONÍVEIS | DATA: {DataEHora} | FEATURE:{Feature} | CAMADA: {Camada} | SQL: {Query}", DateTime.Now.ToString(), this.ToString(), "Repository", ex.Message);
+
+                return null;
+            }
         }
 
         public int ReturnQuantidadeAlugados()
         {
-            return Db.GetAll(sqlQuantidadeAlugados, ConverterEmVeiculo).Count;
+            try
+            {
+                int alugados =   Db.GetAll(sqlQuantidadeAlugados, ConverterEmVeiculo).Count;
+
+                if(alugados > 0)
+                    logger.Debug("SUCESSO AO RETORNAR QUANTIDADE DE VEÍCULOS ALUGADOS | DATA: {DataEHora}", DateTime.Now.ToString());
+
+                else
+                    logger.Information("NÃO HÁ VEÍCULOS ALUGADOS | DATA: {DataEHora}", DateTime.Now.ToString());
+
+                return alugados;
+            }
+
+            catch(Exception ex)
+            {
+                logger.Error("NÃO FOI POSSÍVEL SE COMUNICAR COM O BANCO DE DADOS PARA RETORNAR A QUANTIDADE DE VEÍCULOS ALUGADOS | DATA: {DataEHora} | FEATURE:{Feature} | CAMADA: {Camada} | SQL: {Query}", DateTime.Now.ToString(), this.ToString(), "Repository", ex.Message);
+
+                return 0;
+            }
         }
 
         public int ReturnQuantidadeDisponiveis()
         {
-            return Db.GetAll(sqlQuantidadeDisponiveis, ConverterEmVeiculo).Count;
+            try
+            {
+                int disponiveis = Db.GetAll(sqlQuantidadeDisponiveis, ConverterEmVeiculo).Count;
+
+                if (disponiveis > 0)
+                    logger.Debug("SUCESSO AO RETORNAR QUANTIDADE DE VEÍCULOS DISPONÍVEIS | DATA: {DataEHora}", DateTime.Now.ToString());
+
+                else
+                    logger.Information("NÃO HÁ VEÍCULOS DISPONÍVEIS | DATA: {DataEHora}", DateTime.Now.ToString());
+
+                return disponiveis;
+            }
+
+            catch(Exception ex)
+            {
+                logger.Error("NÃO FOI POSSÍVEL SE COMUNICAR COM O BANCO DE DADOS PARA RETORNAR A QUANTIDADE DE VEÍCULOS DISPONÍVEIS | DATA: {DataEHora} | FEATURE:{Feature} | CAMADA: {Camada} | SQL: {Query}", DateTime.Now.ToString(), this.ToString(), "Repository", ex.Message);
+
+                return 0;
+            }
         }
 
         private Veiculo ConverterEmVeiculo(IDataReader reader)
