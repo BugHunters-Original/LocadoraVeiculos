@@ -271,7 +271,7 @@ namespace LocadoraDeVeiculos.Infra.SQL.TaxaServicoModule.TaxaDaLocacaoModule
 
             var controladorCPF = new ClienteCPFDAO(logger);
             var controladorCNPJ = new ClienteCNPJDAO(logger);
-            VeiculoDAO controladorVeiculo = new();
+            VeiculoDAO controladorVeiculo = new(logger);
 
             ClienteCPF condutor = controladorCPF.SelecionarPorId(idCondutor);
             Veiculo veiculo = controladorVeiculo.SelecionarPorId(idVeiculo);

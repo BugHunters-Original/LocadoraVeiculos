@@ -7,7 +7,7 @@ namespace LocadoraDeVeiculos.Infra.Log
     {
         public static Logger IniciarLog()
         {
-            return new LoggerConfiguration().WriteTo.Seq("http://20.195.202.178:5341/").CreateLogger();
+            return new LoggerConfiguration().MinimumLevel.Debug().WriteTo.Seq("http://20.195.202.178:5341/").CreateLogger();
         }
     }
 }

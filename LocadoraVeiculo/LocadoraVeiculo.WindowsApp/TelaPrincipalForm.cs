@@ -48,14 +48,14 @@ namespace LocadoraVeiculo.WindowsApp
         public static EnviaEmail email = new();
         public static MontaPdf pdf = new();
 
-        public static ClienteCNPJDAO cnpjRepository = new();
-        public static ClienteCPFDAO cpfRepository = new();
+        public static ClienteCNPJDAO cnpjRepository = new(logger);
+        public static ClienteCPFDAO cpfRepository = new(logger);
         public static GrupoVeiculoDAO grupoVeiculoRepository = new(logger);
-        public static VeiculoDAO veiculoRepository = new();
+        public static VeiculoDAO veiculoRepository = new(logger);
         public static FuncionarioDAO funcionarioRepository = new(logger);
-        public static ServicoDAO servicoRepository = new();
+        public static ServicoDAO servicoRepository = new(logger);
         public static DescontoDAO descontoRepository = new(logger);
-        public static ParceiroDAO parceiroRepository = new();
+        public static ParceiroDAO parceiroRepository = new(logger);
         public static TaxaDaLocacaoDAO taxaRepository = new(logger);
         public static LocacaoDAO locacaoRepository = new();
 
@@ -337,7 +337,7 @@ namespace LocadoraVeiculo.WindowsApp
 
         private void ConfigurarPainelDashBoard()
         {
-            UserControl tabela = new DashboardControl();
+            UserControl tabela = new DashboardControl(logger);
             tabela.Dock = DockStyle.Fill;
             panelRegistros.Controls.Clear();
             panelRegistros.Controls.Add(tabela);
