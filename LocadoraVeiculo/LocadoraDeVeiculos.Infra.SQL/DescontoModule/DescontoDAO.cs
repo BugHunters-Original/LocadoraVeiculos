@@ -1,6 +1,7 @@
 ﻿using LocadoraDeVeiculos.Dominio.DescontoModule;
 using LocadoraDeVeiculos.Dominio.ParceiroModule;
 using LocadoraDeVeiculos.Infra.Shared;
+using Serilog.Core;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -154,15 +155,35 @@ namespace LocadoraDeVeiculos.Infra.SQL.DescontoModule
                         D.COLUNADEPESQUISA LIKE @SEGUNDAREF+'%'";
         #endregion
 
+        private readonly Logger logger;
+
         public void Inserir(Desconto desconto)
         {
-            desconto.Id = Db.Insert(sqlInserirDesconto, ObtemParametrosDesconto(desconto));
+            try
+            {
+                desconto.Id = Db.Insert(sqlInserirDesconto, ObtemParametrosDesconto(desconto));
+
+                logger.Information("SUCESSO AO INSERIR DESCONTO ID: {Id} | DATA: {DataEHora}", desconto.Id, DateTime.Now.ToString());
+            }
+            catch (Exception ex)
+            {
+                logger.Error("ERRO AO INSERIR DESCONTO ID: {Id} | DATA: {DataEHora} | FEATURE:{Feature} | CAMADA: {Camada} | SQL: {Query}", desconto.Id, DateTime.Now.ToString(), this.ToString(), "Repository", ex.Message);
+            }
         }
 
         public void Editar(int id, Desconto desconto)
         {
-            desconto.Id = id;
-            Db.Update(sqlEditarDesconto, ObtemParametrosDesconto(desconto));
+            try
+            {
+                desconto.Id = id;
+                Db.Update(sqlEditarDesconto, ObtemParametrosDesconto(desconto));
+
+                logger.Information("SUCESSO AO EDITAR DESCONTO ID: {Id} | DATA: {DataEHora}", desconto.Id, DateTime.Now.ToString());
+            }
+            catch (Exception ex)
+            {
+                logger.Error("ERRO AO EDITAR DESCONTO ID: {Id} | DATA: {DataEHora} | FEATURE:{Feature} | CAMADA: {Camada} | SQL: {Query}", desconto.Id, DateTime.Now.ToString(), this.ToString(), "Repository", ex.Message);
+            }
         }
 
         public bool Excluir(int id)
@@ -170,9 +191,13 @@ namespace LocadoraDeVeiculos.Infra.SQL.DescontoModule
             try
             {
                 Db.Delete(sqlExcluirDesconto, AdicionarParametro("ID", id));
+
+                logger.Information("SUCESSO AO REMOVER DESCONTO ID: {Id} | DATA: {DataEHora}", id, DateTime.Now.ToString());
             }
-            catch (Exception)
+            catch (Exception ex)
             {
+                logger.Error("ERRO AO REMOVER DESCONTO ID: {Id} | DATA: {DataEHora} | FEATURE:{Feature} | CAMADA: {Camada} | SQL: {Query}", id, DateTime.Now.ToString(), this.ToString(), "Repository", ex.Message);
+
                 return false;
             }
 
@@ -196,18 +221,69 @@ namespace LocadoraDeVeiculos.Infra.SQL.DescontoModule
 
         public List<Desconto> SelecionarPesquisa(string coluna, string pesquisa)
         {
-            string sql = sqlSelecionarDeconto.Replace("COLUNADEPESQUISA", coluna);
-            return Db.GetAll(sql, ConverterEmDesconto, AdicionarParametro("@SEGUNDAREF", pesquisa));
+            try
+            {
+                string sql = sqlSelecionarDeconto.Replace("COLUNADEPESQUISA", coluna);
+                List<Desconto> descontos = Db.GetAll(sql, ConverterEmDesconto, AdicionarParametro("@SEGUNDAREF", pesquisa));
+
+                if (descontos != null)
+                    logger.Debug("SUCESSO AO SELECIONAR DESCONTO COM A PESQUISA: {Pesquisa} | DATA: {DataEHora}", pesquisa, DateTime.Now.ToString());
+                else
+                    logger.Information("NÃO FOI POSSÍVEL SELECIONAR DESCONTO COM A PESQUISA: {Pesquisa} | DATA: {DataEHora}", pesquisa, DateTime.Now.ToString());
+
+                return descontos;
+
+            }
+            catch (Exception ex)
+            {
+                logger.Error("NÃO FOI POSSÍVEL SE COMUNICAR COM O BANCO DE DADOS PARA SELECIONAR DESCONTO | DATA: {DataEHora} | FEATURE:{Feature} | CAMADA: {Camada} | SQL: {Query}", DateTime.Now.ToString(), this.ToString(), "Repository", ex.Message);
+
+                return null;
+            }
+
         }
 
         public Desconto SelecionarPorId(int id)
         {
-            return Db.Get(sqlSelecionarDescontoPorId, ConverterEmDesconto, AdicionarParametro("ID", id));
+            try
+            {
+                Desconto desconto = Db.Get(sqlSelecionarDescontoPorId, ConverterEmDesconto, AdicionarParametro("ID", id));
+
+                if (desconto != null)
+                    logger.Debug("SUCESSO AO SELECIONAR DESCONTO ID: {Id} | DATA: {DataEHora}", desconto.Id, DateTime.Now.ToString());
+                else
+                    logger.Information("NÃO FOI POSSÍVEL SELECIONAR DESCONTO ID: {Id} | DATA: {DataEHora}", desconto.Id, DateTime.Now.ToString());
+
+                return desconto;
+
+            }
+            catch (Exception ex)
+            {
+                logger.Error("NÃO FOI POSSÍVEL SE COMUNICAR COM O BANCO DE DADOS PARA SELECIONAR DESCONTO ID: {Id} | DATA: {DataEHora} | FEATURE:{Feature} | CAMADA: {Camada} | SQL: {Query}", id, DateTime.Now.ToString(), this.ToString(), "Repository", ex.Message);
+
+                return null;
+            }
         }
 
         public List<Desconto> SelecionarTodos()
         {
-            return Db.GetAll(sqlSelecionarTodosDescontos, ConverterEmDesconto);
+            try
+            {
+                List<Desconto> descontos = Db.GetAll(sqlSelecionarTodosDescontos, ConverterEmDesconto);
+
+                if (descontos != null)
+                    logger.Debug("SUCESSO AO SELECIONAR TODOS OS DESCONTOS | DATA: {DataEHora}", DateTime.Now.ToString());
+                else
+                    logger.Information("NÃO FOI POSSÍVEL SELECIONAR TODOS OS DESCONTOS | DATA: {DataEHora}", DateTime.Now.ToString());
+
+                return descontos;
+            }
+            catch (Exception ex)
+            {
+                logger.Error("NÃO FOI POSSÍVEL SE COMUNICAR COM O BANCO DE DADOS PARA SELECIONAR TODOS OS DESCONTOS | DATA: {DataEHora} | FEATURE:{Feature} | CAMADA: {Camada} | SQL: {Query}", DateTime.Now.ToString(), this.ToString(), "Repository", ex.Message);
+
+                return null;
+            }
         }
 
         private Desconto ConverterEmDesconto(IDataReader reader)
