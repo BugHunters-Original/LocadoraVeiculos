@@ -1,5 +1,6 @@
 ﻿using LocadoraDeVeiculos.Dominio.ClienteModule.ClienteCNPJModule;
 using Serilog.Core;
+using System;
 using System.Collections.Generic;
 
 namespace LocadoraDeVeiculos.Aplicacao.ClienteCNPJModule
@@ -17,56 +18,87 @@ namespace LocadoraDeVeiculos.Aplicacao.ClienteCNPJModule
 
         public bool RegistrarNovoClienteCNPJ(ClienteCNPJ clienteCNPJ)
         {
+            logger.Debug("REGISTRANDO CLIENTE CNPJ {ClienteNome} | {DataEHora} ", clienteCNPJ.Nome, DateTime.Now.ToString());
+
             if (EstaValido(clienteCNPJ))
             {
-                logger.Debug($"Registrando Cliente CNPJ {clienteCNPJ}...");
-
                 clienteCNPJRepository.Inserir(clienteCNPJ);
 
-                logger.Debug($"Cliente CNPJ {clienteCNPJ} registrado com sucesso!");
+                logger.Debug("CLIENTE CNPJ {ClienteNome} REGISTRADO COM SUCESSO | {DataEHora}", clienteCNPJ.Nome, DateTime.Now.ToString());
 
                 return true;
             }
-            return false;
+            else
+            {
+                logger.Error("NÃO FOI POSSÍVEL REGISTRAR CLIENTE CNPJ {ClienteNome} | {DataEHora}", clienteCNPJ.Nome, DateTime.Now.ToString());
+
+                return false;
+            }
         }
 
         public bool EditarClienteCNPJ(int id, ClienteCNPJ clienteCNPJ)
         {
+            logger.Debug("EDITANDO CLIENTE CNPJ {ClienteNome} | {DataEHora} ", clienteCNPJ.Nome, DateTime.Now.ToString());
+
             if (EstaValido(clienteCNPJ))
             {
-                logger.Debug($"Editando Cliente CNPJ {clienteCNPJ}...");
-
                 clienteCNPJRepository.Editar(id, clienteCNPJ);
 
-                logger.Debug($"Cliente CNPJ {clienteCNPJ} editado com sucesso!");
+                logger.Debug("CLIENTE CNPJ {ClienteNome} EDITADO COM SUCESSO | {DataEHora}", clienteCNPJ.Nome, DateTime.Now.ToString());
 
                 return true;
             }
-            return false;
+            else
+            {
+                logger.Error("NÃO FOI POSSÍVEL EDITAR CLIENTE CNPJ {ClienteNome} | {DataEHora}", clienteCNPJ.Nome, DateTime.Now.ToString());
+
+                return false;
+            }
         }
 
 
         public bool ExcluirClienteCNPJ(int id)
         {
+            logger.Debug("REMOVENDO CLIENTE CNPJ {Id} | {DataEHora}", id, DateTime.Now.ToString());
+
             var cliente = clienteCNPJRepository.SelecionarPorId(id);
+
             var excluiu = clienteCNPJRepository.Excluir(id);
 
             if (excluiu)
-                logger.Debug($"Excluiu Cliente CNPJ {cliente.Nome} com ID {cliente.Id}!");
+                logger.Debug("CLIENTE CNPJ {Id} REMOVIDO COM SUCESSO | {DataEHora}", cliente.Id, DateTime.Now.ToString());
             else
-                logger.Error($"Não excluiu Cliente CNPJ {cliente.Nome} com ID {cliente.Id}!");
+                logger.Error("NÃO FOI POSSÍVEL REMOVER CLIENTE CNPJ {Id} | {DataEHora}.", cliente.Id, DateTime.Now.ToString());
 
             return excluiu;
         }
 
         public ClienteCNPJ SelecionarClienteCNPJPorId(int id)
         {
-            return clienteCNPJRepository.SelecionarPorId(id);
+            logger.Debug("SELECIONANDO O CLIENTE CNPJ ID: {Id} | {DataEHora}", id, DateTime.Now.ToString());
+
+            ClienteCNPJ clienteCNPJ = clienteCNPJRepository.SelecionarPorId(id);
+
+            if (clienteCNPJ == null)
+                logger.Information("NÃO FOI POSSÍVEL ENCONTRAR O CLIENTE CNPJ ID {Id} | {DataEHora}", clienteCNPJ.Id, DateTime.Now.ToString());
+            else
+                logger.Debug("CLIENTE CNPJ ID {Id} SELECIONADO COM SUCESSO | {DataEHora}", clienteCNPJ.Id, DateTime.Now.ToString());
+
+            return clienteCNPJ;
         }
 
         public List<ClienteCNPJ> SelecionarTodosClientesCNPJ()
         {
-            return clienteCNPJRepository.SelecionarTodos();
+            logger.Debug("SELECIONANDO TODOS OS CLIENTES CNPJ | {DataEHora}", DateTime.Now.ToString());
+
+            List<ClienteCNPJ> clientes = clienteCNPJRepository.SelecionarTodos();
+
+            if (clientes.Count == 0)
+                logger.Information("NÃO HÁ CLIENTES CNPJ CADASTRADOS | {DataEHora}", DateTime.Now.ToString());
+            else
+                logger.Debug("A SELEÇÃO TROUXE {Quantidade} CLIENTE(S) CNPJ EXISTENTE(S) | {DataEHora}", clientes.Count, DateTime.Now.ToString());
+
+            return clientes;                
         }
         private bool EstaValido(ClienteCNPJ clienteCNPJ)
         {
