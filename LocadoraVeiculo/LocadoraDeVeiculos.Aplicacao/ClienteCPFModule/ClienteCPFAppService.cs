@@ -1,5 +1,6 @@
 ﻿using LocadoraDeVeiculos.Dominio.ClienteModule.ClienteCPFModule;
 using Serilog.Core;
+using System;
 using System.Collections.Generic;
 
 namespace LocadoraDeVeiculos.Aplicacao.ClienteCPFModule
@@ -17,60 +18,100 @@ namespace LocadoraDeVeiculos.Aplicacao.ClienteCPFModule
 
         public bool RegistrarNovoClienteCPF(ClienteCPF clienteCPF)
         {
+            logger.Debug("REGISTRANDO CLIENTE CPF {ClienteNome} | {DataEHora} ", clienteCPF.Nome, DateTime.Now.ToString());
+
             if (EstaValido(clienteCPF))
             {
-                logger.Debug($"Registrando Cliente CPF {clienteCPF}...");
-
                 clienteCPFRepository.Inserir(clienteCPF);
 
-                logger.Debug($"Cliente Cliente CPF {clienteCPF} registrado com sucesso!");
+                logger.Debug("CLIENTE CPF {ClienteNome} REGISTRADO COM SUCESSO | {DataEHora}", clienteCPF.Nome, DateTime.Now.ToString());
 
                 return true;
             }
-            return false;
+            else
+            {
+                logger.Error("NÃO FOI POSSÍVEL REGISTRAR CLIENTE CPF {ClienteNome} | {DataEHora}", clienteCPF.Nome, DateTime.Now.ToString());
+
+                return false;
+            }
         }
 
         public bool EditarClienteCPF(int id, ClienteCPF clienteCPF)
         {
+            logger.Debug("EDITANDO CLIENTE CPF {ClienteNome} | {DataEHora} ", clienteCPF.Nome, DateTime.Now.ToString());
+
             if (EstaValido(clienteCPF))
             {
-                logger.Debug($"Editando Cliente CPF {clienteCPF}...");
-
                 clienteCPFRepository.Editar(id, clienteCPF);
 
-                logger.Debug($"Cliente CPF {clienteCPF} editado com sucesso!");
+                logger.Debug("CLIENTE CPF {ClienteNome} EDITADO COM SUCESSO | {DataEHora}", clienteCPF.Nome, DateTime.Now.ToString());
 
                 return true;
             }
-            return false;
+            else
+            {
+                logger.Error("NÃO FOI POSSÍVEL EDITAR CLIENTE CPF {ClienteNome} | {DataEHora}", clienteCPF.Nome, DateTime.Now.ToString());
+
+                return false;
+            }
         }
 
         public bool ExcluirClienteCPF(int id)
         {
+            logger.Debug("REMOVENDO CLIENTE CPF {Id} | {DataEHora}", id, DateTime.Now.ToString());
+
             var cliente = clienteCPFRepository.SelecionarPorId(id);
+
             var excluiu = clienteCPFRepository.Excluir(id);
 
             if (excluiu)
-                logger.Debug($"Excluiu Cliente CPF {cliente.Nome} com ID {cliente.Id}!");
+                logger.Debug("CLIENTE CPF {Id} REMOVIDO COM SUCESSO | {DataEHora}", cliente.Id, DateTime.Now.ToString());
             else
-                logger.Error($"Não excluiu Cliente CPF {cliente.Nome} com ID {cliente.Id}!");
+                logger.Error("NÃO FOI POSSÍVEL REMOVER CLIENTE CPF {Id} | {DataEHora}.", cliente.Id, DateTime.Now.ToString());
 
             return excluiu;
         }
 
         public List<ClienteCPF> SelecionarPorIdEmpresa(int id)
         {
-            return clienteCPFRepository.SelecionarPorIdEmpresa(id);
+            logger.Debug("SELECIONANDO TODOS OS CLIENTES CPF RELACIONADOS A EMPRESA ID: {Id} | {DataEHora}", id, DateTime.Now.ToString());
+
+            List<ClienteCPF> clientes = clienteCPFRepository.SelecionarPorIdEmpresa(id);
+
+            if (clientes.Count == 0)
+                logger.Information("NÃO HÁ CLIENTES CPF RELACIONADOS A EMPRESA ID: {Id} | {DataEHora}", id, DateTime.Now.ToString());
+            else
+                logger.Debug("A SELEÇÃO TROUXE {Quantidade} CLIENTE(S) CPF RELACIONADO(S) A EMPRESA ID:{Id} | {DataEHora}", clientes.Count, id, DateTime.Now.ToString());
+
+            return clientes;
         }
 
         public ClienteCPF SelecionarClienteCPFPorId(int id)
         {
-            return clienteCPFRepository.SelecionarPorId(id);
+            logger.Debug("SELECIONANDO O CLIENTE CPF ID: {Id} | {DataEHora}", id, DateTime.Now.ToString());
+
+            ClienteCPF clienteCPF = clienteCPFRepository.SelecionarPorId(id);
+
+            if (clienteCPF == null)
+                logger.Information("NÃO FOI POSSÍVEL ENCONTRAR O CLIENTE CPF ID {Id} | {DataEHora}", clienteCPF.Id, DateTime.Now.ToString());
+            else
+                logger.Debug("CLIENTE CPF ID {Id} SELECIONADO COM SUCESSO | {DataEHora}", clienteCPF.Id, DateTime.Now.ToString());
+
+            return clienteCPF;
         }
 
         public List<ClienteCPF> SelecionarTodosClientesCPF()
         {
-            return clienteCPFRepository.SelecionarTodos();
+            logger.Debug("SELECIONANDO TODOS OS CLIENTES CPF | {DataEHora}", DateTime.Now.ToString());
+
+            List<ClienteCPF> clientes = clienteCPFRepository.SelecionarTodos();
+
+            if (clientes.Count == 0)
+                logger.Information("NÃO HÁ CLIENTES CPF CADASTRADOS | {DataEHora}", DateTime.Now.ToString());
+            else
+                logger.Debug("A SELEÇÃO TROUXE {Quantidade} CLIENTE(S) CPF EXISTENTE(S) | {DataEHora}", clientes.Count, DateTime.Now.ToString());
+
+            return clientes;
         }
         private bool EstaValido(ClienteCPF clienteCPF)
         {

@@ -150,7 +150,7 @@ namespace LocadoraDeVeiculos.Aplicacao.DescontoModule
             else
                 logger.Debug("A SELEÇÃO TROUXE {Quantidade} CUPOM(NS) DE DESCONTO(S) EXISTENTE(S) DE ACORDO COM A PESQUISA {Pesquisa} | {DataEHora}", descontos.Count, pesquisa, DateTime.Now.ToString());
 
-            return descontos
+            return descontos;
         }
     }
 }
