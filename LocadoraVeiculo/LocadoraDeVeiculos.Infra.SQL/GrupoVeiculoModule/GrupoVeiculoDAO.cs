@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using LocadoraDeVeiculos.Dominio.GrupoVeiculoModule;
+using LocadoraDeVeiculos.Infra.ExtensionMethods;
 using LocadoraDeVeiculos.Infra.Shared;
 using Serilog.Core;
 
@@ -116,11 +117,11 @@ namespace LocadoraDeVeiculos.Infra.SQL.GrupoVeiculoModule
             {
                 Db.Delete(sqlExcluirTipoGrupoVeiculo, AdicionarParametro("ID", id));
 
-                logger.Information("SUCESSO AO REMOVER GRUPO DE VEÍCULO ID: {Id}  ", id );
+                logger.Aqui().Information("SUCESSO AO REMOVER GRUPO DE VEÍCULO ID: {Id}  ", id );
             }
             catch (Exception ex)
             {
-                 logger.Error(ex , "ERRO AO REMOVER GRUPO DE VEÍCULO ID: {Id}  ", id);
+                 logger.Aqui().Error(ex , "ERRO AO REMOVER GRUPO DE VEÍCULO ID: {Id}  ", id);
 
                 return false;
             }
@@ -136,16 +137,16 @@ namespace LocadoraDeVeiculos.Infra.SQL.GrupoVeiculoModule
                 List<GrupoVeiculo> grupoVeiculo = Db.GetAll(sql, ConverterEmGrupoVeiculo, AdicionarParametro("@SEGUNDAREF", pesquisa));
 
                 if (grupoVeiculo != null)
-                    logger.Debug("SUCESSO AO SELECIONAR GRUPO DE VEÍCULO COM A PESQUISA: {Pesquisa}  ", pesquisa );
+                    logger.Aqui().Debug("SUCESSO AO SELECIONAR GRUPO DE VEÍCULO COM A PESQUISA: {Pesquisa}  ", pesquisa );
                 else
-                    logger.Information("NÃO FOI POSSÍVEL SELECIONAR GRUPO DE VEÍCULO COM A PESQUISA: {Pesquisa}  ", pesquisa );
+                    logger.Aqui().Information("NÃO FOI POSSÍVEL SELECIONAR GRUPO DE VEÍCULO COM A PESQUISA: {Pesquisa}  ", pesquisa );
 
                 return grupoVeiculo;
 
             }
             catch (Exception ex)
             {
-                 logger.Error(ex , "NÃO FOI POSSÍVEL SE COMUNICAR COM O BANCO DE DADOS PARA SELECIONAR GRUPO DE VEÍCULO  " );
+                 logger.Aqui().Error(ex , "NÃO FOI POSSÍVEL SE COMUNICAR COM O BANCO DE DADOS PARA SELECIONAR GRUPO DE VEÍCULO  " );
 
                 return null;
             }
@@ -163,16 +164,16 @@ namespace LocadoraDeVeiculos.Infra.SQL.GrupoVeiculoModule
                 GrupoVeiculo grupoVeiculo = Db.Get(sqlSelecionarTipoGrupoVeiculoPorId, ConverterEmGrupoVeiculo, AdicionarParametro("ID", id));
 
                 if (grupoVeiculo != null)
-                    logger.Debug("SUCESSO AO SELECIONAR GRUPO DE VEÍCULO ID: {Id}  ", grupoVeiculo.Id );
+                    logger.Aqui().Debug("SUCESSO AO SELECIONAR GRUPO DE VEÍCULO ID: {Id}  ", grupoVeiculo.Id );
                 else
-                    logger.Information("NÃO FOI POSSÍVEL SELECIONAR GRUPO DE VEÍCULO ID: {Id}  ", grupoVeiculo.Id );
+                    logger.Aqui().Information("NÃO FOI POSSÍVEL SELECIONAR GRUPO DE VEÍCULO ID: {Id}  ", grupoVeiculo.Id );
 
                 return grupoVeiculo;
          
             }
             catch (Exception ex)
             {
-                 logger.Error(ex , "NÃO FOI POSSÍVEL SE COMUNICAR COM O BANCO DE DADOS PARA SELECIONAR GRUPO DE VEÍCULO ID: {Id}  ", id );
+                 logger.Aqui().Error(ex , "NÃO FOI POSSÍVEL SE COMUNICAR COM O BANCO DE DADOS PARA SELECIONAR GRUPO DE VEÍCULO ID: {Id}  ", id );
 
                 return null;
             }
@@ -185,15 +186,15 @@ namespace LocadoraDeVeiculos.Infra.SQL.GrupoVeiculoModule
                 List<GrupoVeiculo> grupoVeiculo = Db.GetAll(sqlSelecionarTodosTipoGrupoVeiculo, ConverterEmGrupoVeiculo);
 
                 if (grupoVeiculo != null)
-                    logger.Debug("SUCESSO AO SELECIONAR TODOS OS GRUPOS DE VEÍCULOS  " );
+                    logger.Aqui().Debug("SUCESSO AO SELECIONAR TODOS OS GRUPOS DE VEÍCULOS  " );
                 else
-                    logger.Information("NÃO FOI POSSÍVEL SELECIONAR TODOS OS GRUPOS DE VEÍCULOS  " );
+                    logger.Aqui().Information("NÃO FOI POSSÍVEL SELECIONAR TODOS OS GRUPOS DE VEÍCULOS  " );
 
                 return grupoVeiculo;
             }
             catch (Exception ex)
             {
-                 logger.Error(ex , "NÃO FOI POSSÍVEL SE COMUNICAR COM O BANCO DE DADOS PARA SELECIONAR TODOS OS GRUPOS DE VEÍCULOS  " );
+                 logger.Aqui().Error(ex , "NÃO FOI POSSÍVEL SE COMUNICAR COM O BANCO DE DADOS PARA SELECIONAR TODOS OS GRUPOS DE VEÍCULOS  " );
 
                 return null;
             }
@@ -206,11 +207,11 @@ namespace LocadoraDeVeiculos.Infra.SQL.GrupoVeiculoModule
             {
                 grupoVeiculo.Id = Db.Insert(sqlInserirTipoGrupoVeiculo, ObtemParametrosTipoGrupoVeiculo(grupoVeiculo));
 
-                logger.Information("SUCESSO AO INSERIR GRUPO DE VEÍCULO ID: {Id}  ", grupoVeiculo.Id );
+                logger.Aqui().Information("SUCESSO AO INSERIR GRUPO DE VEÍCULO ID: {Id}  ", grupoVeiculo.Id );
             }
             catch (Exception ex)
             {
-                 logger.Error(ex , "ERRO AO INSERIR GRUPO DE VEÍCULO ID: {Id}  ", grupoVeiculo.Id );
+                 logger.Aqui().Error(ex , "ERRO AO INSERIR GRUPO DE VEÍCULO ID: {Id}  ", grupoVeiculo.Id );
             }
         }
 
@@ -221,11 +222,11 @@ namespace LocadoraDeVeiculos.Infra.SQL.GrupoVeiculoModule
                 grupoVeiculo.Id = id;
                 Db.Update(sqlEditarTipoGrupoVeiculo, ObtemParametrosTipoGrupoVeiculo(grupoVeiculo));
 
-                logger.Information("SUCESSO AO EDITAR GRUPO DE VEÍCULO ID: {Id}  ", grupoVeiculo.Id );
+                logger.Aqui().Information("SUCESSO AO EDITAR GRUPO DE VEÍCULO ID: {Id}  ", grupoVeiculo.Id );
             }
             catch (Exception ex)
             {
-                 logger.Error(ex , "ERRO AO EDITAR GRUPO DE VEÍCULO ID: {Id}  ", grupoVeiculo.Id );
+                 logger.Aqui().Error(ex , "ERRO AO EDITAR GRUPO DE VEÍCULO ID: {Id}  ", grupoVeiculo.Id );
             }
         }
 
