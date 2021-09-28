@@ -80,7 +80,6 @@ namespace LocadoraDeVeiculos.Infra.SQL.ParceiroModule
             try
             {
                 parceiro.Id = Db.Insert(sqlInserirParceiro, ObtemParametrosParceiro(parceiro));
-
                 logger.Information("SUCESSO AO INSERIR PARCEIRO ID: {Id} | DATA: {DataEHora}", parceiro.Id, DateTime.Now.ToString());
             }
             catch (Exception ex)
