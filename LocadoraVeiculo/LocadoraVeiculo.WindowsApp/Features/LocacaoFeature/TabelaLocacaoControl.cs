@@ -12,11 +12,9 @@ namespace LocadoraVeiculo.WindowsApp.Features.LocacaoFeature
     {
 
         LocacaoDAO locacaoDAO;
-        Logger logger;
-        public TabelaLocacaoControl(Logger logger)
+        public TabelaLocacaoControl()
         {
-            this.logger = logger;
-            locacaoDAO = new(logger);
+            locacaoDAO = new();
             InitializeComponent();
             ConfigurarGridLightMode();
             gridLocacao.ConfigurarGridSomenteLeitura();
@@ -87,9 +85,9 @@ namespace LocadoraVeiculo.WindowsApp.Features.LocacaoFeature
         private dynamic VerificarTipoDeTela(Locacao locacaoSelecionada)
         {
             if (locacaoSelecionada.StatusLocacao == "Em Aberto")
-                return new TelaDetalhesLocacaoEmAbertoForm(logger);
+                return new TelaDetalhesLocacaoEmAbertoForm();
             else
-                return new TelaDetalhesLocacaoConcluidaForm(logger);
+                return new TelaDetalhesLocacaoConcluidaForm();
         }
 
         public void AtualizarAparencia()

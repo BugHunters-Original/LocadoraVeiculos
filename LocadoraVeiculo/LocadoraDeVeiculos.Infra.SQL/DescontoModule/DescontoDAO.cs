@@ -1,6 +1,7 @@
 ﻿using LocadoraDeVeiculos.Dominio.DescontoModule;
 using LocadoraDeVeiculos.Dominio.ParceiroModule;
 using LocadoraDeVeiculos.Infra.ExtensionMethods;
+using LocadoraDeVeiculos.Infra.LogManager;
 using LocadoraDeVeiculos.Infra.Shared;
 using Serilog.Core;
 using System;
@@ -156,24 +157,17 @@ namespace LocadoraDeVeiculos.Infra.SQL.DescontoModule
                         D.COLUNADEPESQUISA LIKE @SEGUNDAREF+'%'";
         #endregion
 
-        private readonly Logger logger;
-
-        public DescontoDAO(Logger log)
-        {
-            logger = log;
-        }
-
         public void Inserir(Desconto desconto)
         {
             try
             {
                 desconto.Id = Db.Insert(sqlInserirDesconto, ObtemParametrosDesconto(desconto));
 
-                logger.Aqui().Information("SUCESSO AO INSERIR DESCONTO ID: {Id}  ", desconto.Id );
+                Log.Logger.Aqui().Information("SUCESSO AO INSERIR DESCONTO ID: {Id}  ", desconto.Id );
             }
             catch (Exception ex)
             {
-                logger.Aqui().Error(ex, "ERRO AO INSERIR DESCONTO ID: {Id}  ", desconto.Id );
+                Log.Logger.Aqui().Error(ex, "ERRO AO INSERIR DESCONTO ID: {Id}  ", desconto.Id );
             }
         }
 
@@ -184,11 +178,11 @@ namespace LocadoraDeVeiculos.Infra.SQL.DescontoModule
                 desconto.Id = id;
                 Db.Update(sqlEditarDesconto, ObtemParametrosDesconto(desconto));
 
-                logger.Aqui().Information("SUCESSO AO EDITAR DESCONTO ID: {Id}  ", desconto.Id );
+                Log.Logger.Aqui().Information("SUCESSO AO EDITAR DESCONTO ID: {Id}  ", desconto.Id );
             }
             catch (Exception ex)
             {
-                logger.Aqui().Error(ex, "ERRO AO EDITAR DESCONTO ID: {Id}  ", desconto.Id );
+                Log.Logger.Aqui().Error(ex, "ERRO AO EDITAR DESCONTO ID: {Id}  ", desconto.Id );
             }
         }
 
@@ -198,11 +192,11 @@ namespace LocadoraDeVeiculos.Infra.SQL.DescontoModule
             {
                 Db.Delete(sqlExcluirDesconto, AdicionarParametro("ID", id));
 
-                logger.Aqui().Information("SUCESSO AO REMOVER DESCONTO ID: {Id}  ", id );
+                Log.Logger.Aqui().Information("SUCESSO AO REMOVER DESCONTO ID: {Id}  ", id );
             }
             catch (Exception ex)
             {
-                logger.Aqui().Error(ex, "ERRO AO REMOVER DESCONTO ID: {Id}  ", id );
+                Log.Logger.Aqui().Error(ex, "ERRO AO REMOVER DESCONTO ID: {Id}  ", id );
 
                 return false;
             }
@@ -222,16 +216,16 @@ namespace LocadoraDeVeiculos.Infra.SQL.DescontoModule
                 Desconto desconto = Db.Get(sqlSelecionarDescontoPorCodigo, ConverterEmDesconto, AdicionarParametro("CODIGO", codigo));
 
                 if (desconto != null)
-                    logger.Aqui().Debug("SUCESSO AO SELECIONAR DESCONTO ID: {Id}  ", desconto.Id );
+                    Log.Logger.Aqui().Debug("SUCESSO AO SELECIONAR DESCONTO ID: {Id}  ", desconto.Id );
                 else
-                    logger.Aqui().Information("NÃO FOI POSSÍVEL SELECIONAR DESCONTO ID: {Id}  ", desconto.Id );
+                    Log.Logger.Aqui().Information("NÃO FOI POSSÍVEL SELECIONAR DESCONTO ID: {Id}  ", desconto.Id );
 
                 return desconto;
 
             }
             catch (Exception ex)
             {
-                logger.Aqui().Error(ex, "NÃO FOI POSSÍVEL SE COMUNICAR COM O BANCO DE DADOS PARA SELECIONAR DESCONTO  " );
+                Log.Logger.Aqui().Error(ex, "NÃO FOI POSSÍVEL SE COMUNICAR COM O BANCO DE DADOS PARA SELECIONAR DESCONTO  " );
 
                 return null;
             }
@@ -250,16 +244,16 @@ namespace LocadoraDeVeiculos.Infra.SQL.DescontoModule
                 List<Desconto> descontos = Db.GetAll(sql, ConverterEmDesconto, AdicionarParametro("@SEGUNDAREF", pesquisa));
 
                 if (descontos != null)
-                    logger.Aqui().Debug("SUCESSO AO SELECIONAR DESCONTO COM A PESQUISA: {Pesquisa}  ", pesquisa );
+                    Log.Logger.Aqui().Debug("SUCESSO AO SELECIONAR DESCONTO COM A PESQUISA: {Pesquisa}  ", pesquisa );
                 else
-                    logger.Aqui().Information("NÃO FOI POSSÍVEL SELECIONAR DESCONTO COM A PESQUISA: {Pesquisa}  ", pesquisa );
+                    Log.Logger.Aqui().Information("NÃO FOI POSSÍVEL SELECIONAR DESCONTO COM A PESQUISA: {Pesquisa}  ", pesquisa );
 
                 return descontos;
 
             }
             catch (Exception ex)
             {
-                logger.Aqui().Error(ex, "NÃO FOI POSSÍVEL SE COMUNICAR COM O BANCO DE DADOS PARA SELECIONAR DESCONTO  " );
+                Log.Logger.Aqui().Error(ex, "NÃO FOI POSSÍVEL SE COMUNICAR COM O BANCO DE DADOS PARA SELECIONAR DESCONTO  " );
 
                 return null;
             }
@@ -273,16 +267,16 @@ namespace LocadoraDeVeiculos.Infra.SQL.DescontoModule
                 Desconto desconto = Db.Get(sqlSelecionarDescontoPorId, ConverterEmDesconto, AdicionarParametro("ID", id));
 
                 if (desconto != null)
-                    logger.Aqui().Debug("SUCESSO AO SELECIONAR DESCONTO ID: {Id}  ", desconto.Id );
+                    Log.Logger.Aqui().Debug("SUCESSO AO SELECIONAR DESCONTO ID: {Id}  ", desconto.Id );
                 else
-                    logger.Aqui().Information("NÃO FOI POSSÍVEL SELECIONAR DESCONTO ID: {Id}  ", desconto.Id );
+                    Log.Logger.Aqui().Information("NÃO FOI POSSÍVEL SELECIONAR DESCONTO ID: {Id}  ", desconto.Id );
 
                 return desconto;
 
             }
             catch (Exception ex)
             {
-                logger.Aqui().Error(ex, "NÃO FOI POSSÍVEL SE COMUNICAR COM O BANCO DE DADOS PARA SELECIONAR DESCONTO ID: {Id}  ", id );
+                Log.Logger.Aqui().Error(ex, "NÃO FOI POSSÍVEL SE COMUNICAR COM O BANCO DE DADOS PARA SELECIONAR DESCONTO ID: {Id}  ", id );
 
                 return null;
             }
@@ -295,15 +289,15 @@ namespace LocadoraDeVeiculos.Infra.SQL.DescontoModule
                 List<Desconto> descontos = Db.GetAll(sqlSelecionarTodosDescontos, ConverterEmDesconto);
 
                 if (descontos != null)
-                    logger.Aqui().Debug("SUCESSO AO SELECIONAR TODOS OS DESCONTOS  " );
+                    Log.Logger.Aqui().Debug("SUCESSO AO SELECIONAR TODOS OS DESCONTOS  " );
                 else
-                    logger.Aqui().Information("NÃO FOI POSSÍVEL SELECIONAR TODOS OS DESCONTOS  " );
+                    Log.Logger.Aqui().Information("NÃO FOI POSSÍVEL SELECIONAR TODOS OS DESCONTOS  " );
 
                 return descontos;
             }
             catch (Exception ex)
             {
-                logger.Aqui().Error(ex, "NÃO FOI POSSÍVEL SE COMUNICAR COM O BANCO DE DADOS PARA SELECIONAR TODOS OS DESCONTOS  ");
+                Log.Logger.Aqui().Error(ex, "NÃO FOI POSSÍVEL SE COMUNICAR COM O BANCO DE DADOS PARA SELECIONAR TODOS OS DESCONTOS  ");
 
                 return null;
             }

@@ -5,6 +5,7 @@ using LocadoraDeVeiculos.Dominio.LocacaoModule;
 using LocadoraDeVeiculos.Dominio.ServicoModule;
 using LocadoraDeVeiculos.Dominio.TaxaDaLocacaoModule;
 using LocadoraDeVeiculos.Dominio.VeiculoModule;
+using LocadoraDeVeiculos.Infra.LogManager;
 using LocadoraDeVeiculos.Infra.Shared;
 using LocadoraDeVeiculos.Infra.SQL.ClienteCNPJModule;
 using LocadoraDeVeiculos.Infra.SQL.ClienteCPFModule;
@@ -87,24 +88,17 @@ namespace LocadoraDeVeiculos.Infra.SQL.TaxaServicoModule.TaxaDaLocacaoModule
                         ID_LOCACAO = @ID_LOCACAO";
         #endregion
 
-        private readonly Logger logger;
-
-        public TaxaDaLocacaoDAO(Logger log)
-        {
-            logger = log;
-        }
-
         public void InserirTaxa(TaxaDaLocacao registro)
         {
             try
             {
                 registro.Id = Db.Insert(sqlInserirTaxaLocacao, ObtemParametrosTaxaLocacao(registro));
 
-                logger.Information("SUCESSO AO INSERIR TAXA ID: {Id}  ", registro.Id );
+                Log.Logger.Information("SUCESSO AO INSERIR TAXA ID: {Id}  ", registro.Id );
             }
             catch (Exception ex)
             {
-                 logger.Error(ex , "ERRO AO INSERIR TAXA ID: {Id}  ", registro.Id );
+                 Log.Logger.Error(ex , "ERRO AO INSERIR TAXA ID: {Id}  ", registro.Id );
             }
         }
 
@@ -115,11 +109,11 @@ namespace LocadoraDeVeiculos.Infra.SQL.TaxaServicoModule.TaxaDaLocacaoModule
                 registro.Id = id;
                 Db.Update(sqlEditarTaxaLocacao, ObtemParametrosTaxaLocacao(registro));
 
-                logger.Information("SUCESSO AO EDITAR TAXA ID: {Id}  ", registro.Id );
+                Log.Logger.Information("SUCESSO AO EDITAR TAXA ID: {Id}  ", registro.Id );
             }
             catch (Exception ex)
             {
-                 logger.Error(ex , "ERRO AO EDITAR TAXA ID: {Id}  ", registro.Id );
+                 Log.Logger.Error(ex , "ERRO AO EDITAR TAXA ID: {Id}  ", registro.Id );
             }
         }
 
@@ -129,11 +123,11 @@ namespace LocadoraDeVeiculos.Infra.SQL.TaxaServicoModule.TaxaDaLocacaoModule
             {
                 Db.Delete(sqlExcluirTaxaLocacao, AdicionarParametro("ID_LOCACAO", id));
 
-                logger.Information("SUCESSO AO REMOVER TAXA ID: {Id}  ", id );
+                Log.Logger.Information("SUCESSO AO REMOVER TAXA ID: {Id}  ", id );
             }
             catch (Exception ex)
             {
-                 logger.Error(ex , "ERRO AO REMOVER TAXA ID: {Id}  ", id );
+                 Log.Logger.Error(ex , "ERRO AO REMOVER TAXA ID: {Id}  ", id );
 
                 return false;
             }
@@ -153,16 +147,16 @@ namespace LocadoraDeVeiculos.Infra.SQL.TaxaServicoModule.TaxaDaLocacaoModule
                 TaxaDaLocacao taxa = Db.Get(sqlSelecionarTaxaLocacaoPorId, ConverterEmTaxaLocacao, AdicionarParametro("ID", id));
 
                 if (taxa != null)
-                    logger.Debug("SUCESSO AO SELECIONAR TAXA ID: {Id}  ", taxa.Id );
+                    Log.Logger.Debug("SUCESSO AO SELECIONAR TAXA ID: {Id}  ", taxa.Id );
                 else
-                    logger.Information("NÃO FOI POSSÍVEL SELECIONAR TAXA ID: {Id}  ", taxa.Id );
+                    Log.Logger.Information("NÃO FOI POSSÍVEL SELECIONAR TAXA ID: {Id}  ", taxa.Id );
 
                 return taxa;
 
             }
             catch (Exception ex)
             {
-                 logger.Error(ex , "NÃO FOI POSSÍVEL SE COMUNICAR COM O BANCO DE DADOS PARA SELECIONAR TAXA ID: {Id}  ", id );
+                 Log.Logger.Error(ex , "NÃO FOI POSSÍVEL SE COMUNICAR COM O BANCO DE DADOS PARA SELECIONAR TAXA ID: {Id}  ", id );
 
                 return null;
             }
@@ -175,15 +169,15 @@ namespace LocadoraDeVeiculos.Infra.SQL.TaxaServicoModule.TaxaDaLocacaoModule
                 List<TaxaDaLocacao> taxa = Db.GetAll(sqlSelecionarTaxaLocacaoEspecifica, ConverterEmTaxaLocacao);
 
                 if (taxa != null)
-                    logger.Debug("SUCESSO AO SELECIONAR TODAS AS TAXAS  " );
+                    Log.Logger.Debug("SUCESSO AO SELECIONAR TODAS AS TAXAS  " );
                 else
-                    logger.Information("NÃO FOI POSSÍVEL SELECIONAR TODAS AS TAXAS  " );
+                    Log.Logger.Information("NÃO FOI POSSÍVEL SELECIONAR TODAS AS TAXAS  " );
 
                 return taxa;
             }
             catch (Exception ex)
             {
-                 logger.Error(ex , "NÃO FOI POSSÍVEL SE COMUNICAR COM O BANCO DE DADOS PARA SELECIONAR TODAS AS TAXAS " );
+                 Log.Logger.Error(ex , "NÃO FOI POSSÍVEL SE COMUNICAR COM O BANCO DE DADOS PARA SELECIONAR TODAS AS TAXAS " );
 
                 return null;
             }
@@ -196,15 +190,15 @@ namespace LocadoraDeVeiculos.Infra.SQL.TaxaServicoModule.TaxaDaLocacaoModule
                 List<TaxaDaLocacao> taxa = Db.GetAll(sqlSelecionarTaxaLocacaoPorId, ConverterEmTaxaLocacao, AdicionarParametro("ID_LOCACAOTAXA", id));
 
                 if (taxa != null)
-                    logger.Debug("SUCESSO AO SELECIONAR TODAS AS TAXAS DE UMA LOCAÇÃO  " );
+                    Log.Logger.Debug("SUCESSO AO SELECIONAR TODAS AS TAXAS DE UMA LOCAÇÃO  " );
                 else
-                    logger.Information("NÃO FOI POSSÍVEL SELECIONAR TODAS AS TAXAS DE UMA LOCAÇÃO  " );
+                    Log.Logger.Information("NÃO FOI POSSÍVEL SELECIONAR TODAS AS TAXAS DE UMA LOCAÇÃO  " );
 
                 return taxa;
             }
             catch (Exception ex)
             {
-                 logger.Error(ex , "NÃO FOI POSSÍVEL SE COMUNICAR COM O BANCO DE DADOS PARA SELECIONAR TODAS AS TAXAS DE UMA LOCAÇÃO  " );
+                 Log.Logger.Error(ex , "NÃO FOI POSSÍVEL SE COMUNICAR COM O BANCO DE DADOS PARA SELECIONAR TODAS AS TAXAS DE UMA LOCAÇÃO  " );
 
                 return null;
             }
@@ -230,7 +224,7 @@ namespace LocadoraDeVeiculos.Infra.SQL.TaxaServicoModule.TaxaDaLocacaoModule
         {
             int id_taxa = Convert.ToInt32(reader["ID_TAXA"]);
 
-            var controladorServico = new ServicoDAO(logger);
+            var controladorServico = new ServicoDAO();
             Servico servico = controladorServico.SelecionarPorId(id_taxa);
 
             int tipoCliente = Convert.ToInt32(reader["TIPOCLIENTE"]);
@@ -241,7 +235,7 @@ namespace LocadoraDeVeiculos.Infra.SQL.TaxaServicoModule.TaxaDaLocacaoModule
             Desconto desconto = null;
             if (reader["ID_DESCONTO"] != DBNull.Value)
             {
-                var controladorDesconto = new DescontoDAO(logger);
+                var controladorDesconto = new DescontoDAO();
                 int idDesconto = Convert.ToInt32(reader["ID_DESCONTO"]);
                 desconto = controladorDesconto.SelecionarPorId(idDesconto);
             }
@@ -269,9 +263,9 @@ namespace LocadoraDeVeiculos.Infra.SQL.TaxaServicoModule.TaxaDaLocacaoModule
             if (reader["PRECOSERVICOS"] != DBNull.Value)
                 precoServico = Convert.ToDecimal(reader["PRECOSERVICOS"]);
 
-            var controladorCPF = new ClienteCPFDAO(logger);
-            var controladorCNPJ = new ClienteCNPJDAO(logger);
-            VeiculoDAO controladorVeiculo = new(logger);
+            var controladorCPF = new ClienteCPFDAO();
+            var controladorCNPJ = new ClienteCNPJDAO();
+            VeiculoDAO controladorVeiculo = new();
 
             ClienteCPF condutor = controladorCPF.SelecionarPorId(idCondutor);
             Veiculo veiculo = controladorVeiculo.SelecionarPorId(idVeiculo);
@@ -289,10 +283,7 @@ namespace LocadoraDeVeiculos.Infra.SQL.TaxaServicoModule.TaxaDaLocacaoModule
                                                     dataSaida, dataRetorno, plano, tipoCliente, precoServico,
                                                     dias, status, precoGas, precoPlano, precoTotal, null);
 
-
             TaxaDaLocacao taxaLocacao = new TaxaDaLocacao(servico, locacao);
-
-
 
             return taxaLocacao;
         }
