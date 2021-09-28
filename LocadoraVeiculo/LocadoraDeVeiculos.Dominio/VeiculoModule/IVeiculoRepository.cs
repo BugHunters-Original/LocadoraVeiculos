@@ -12,6 +12,7 @@ namespace LocadoraDeVeiculos.Dominio.VeiculoModule
         List<Veiculo> SelecionarTodosAlugados();
         void EditarDisponibilidade(Veiculo atual, Veiculo antigo);
         void DevolverVeiculo(Veiculo veiculo);
+        void LocarVeiculo(Veiculo veiculo);
         void AtualizarQuilometragem(Veiculo veiculo);
     }
 

@@ -40,8 +40,8 @@ namespace LocadoraDeVeiculos.Aplicacao.VeiculoModule
         public void EditarVeiculo(int id, Veiculo veiculo)
         {
             string resultadoValidacaoDominio = veiculo.Validar();
-            logger.Debug("EDITANDO VEÍCULO {VeiculoNome} | {DataEHora} ", veiculo.Nome, DateTime.Now.ToString());
 
+            logger.Debug("EDITANDO VEÍCULO {VeiculoNome} | {DataEHora} ", veiculo.Nome, DateTime.Now.ToString());
 
             if (resultadoValidacaoDominio == "ESTA_VALIDO")
             {
@@ -114,9 +114,7 @@ namespace LocadoraDeVeiculos.Aplicacao.VeiculoModule
             else
                 logger.Debug("A SELEÇÃO TROUXE {Quantidade} VEÍCULO(S) EXISTENTE(S) DE ACORDO COM A PESQUISA {Pesquisa} | {DataEHora}", veiculos.Count, pesquisa, DateTime.Now.ToString());
 
-            return veiculos;
-
-           
+            return veiculos;           
         }
 
         public void EditarDisponibilidadeVeiculo(Veiculo atual, Veiculo antigo)

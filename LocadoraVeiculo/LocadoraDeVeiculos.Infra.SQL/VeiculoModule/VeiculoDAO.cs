@@ -389,7 +389,6 @@ namespace LocadoraDeVeiculos.Infra.SQL.VeiculoModule
         {
             try
             {
-
                 veiculo.DisponibilidadeVeiculo = 1;
                 Db.Update(sqlMudarDisponibilidade, ObtemParametrosVeiculo(veiculo));
                 logger.Information("SUCESSO AO EDITAR DISPONILIDADE DO VEÍCULO ID: {Id} | DATA: {DataEHora}", veiculo.Id, DateTime.Now.ToString());
@@ -403,6 +402,22 @@ namespace LocadoraDeVeiculos.Infra.SQL.VeiculoModule
             }
         }
 
+        public void LocarVeiculo(Veiculo veiculo)
+        {
+            try
+            {
+                veiculo.DisponibilidadeVeiculo = 0;
+                Db.Update(sqlMudarDisponibilidade, ObtemParametrosVeiculo(veiculo));
+                logger.Information("SUCESSO AO EDITAR DISPONILIDADE DO VEÍCULO ID: {Id} | DATA: {DataEHora}", veiculo.Id, DateTime.Now.ToString());
+
+            }
+
+            catch (Exception ex)
+            {
+                logger.Error("ERRO AO EDITAR DISPONIBILIDADE VEÍCULO ID: {Id} | DATA: {DataEHora} | FEATURE:{Feature} | CAMADA: {Camada} | SQL: {Query}", veiculo.Id, DateTime.Now.ToString(), this.ToString(), "Repository", ex.Message);
+
+            }
+        }
         public void AtualizarQuilometragem(Veiculo veiculo)
         {
             try
@@ -625,5 +640,6 @@ namespace LocadoraDeVeiculos.Infra.SQL.VeiculoModule
         {
             return new Dictionary<string, object>() { { campo, valor } };
         }
+
     }
 }

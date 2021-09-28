@@ -169,6 +169,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.LocacaoFeature
 
             condutoresRelacionados.ForEach(x => cbCondutor.Items.Add(x));
         }
+
         private void btnGravar_Click(object sender, EventArgs e)
         {
             ClienteBase cliente = (ClienteBase)cbCliente.SelectedItem;
@@ -215,8 +216,6 @@ namespace LocadoraVeiculo.WindowsApp.Features.LocacaoFeature
 
                 DialogResult = DialogResult.None;
             }
-            else
-                MudarDisponibilidadeVeiculo(veiculo);
         }
         private void cbCliente_SelectedIndexChanged(object sender, EventArgs e)
         {
