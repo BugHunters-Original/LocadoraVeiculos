@@ -57,7 +57,7 @@ namespace LocadoraVeiculo.WindowsApp
         public static DescontoDAO descontoRepository = new(logger);
         public static ParceiroDAO parceiroRepository = new(logger);
         public static TaxaDaLocacaoDAO taxaRepository = new(logger);
-        public static LocacaoDAO locacaoRepository = new();
+        public static LocacaoDAO locacaoRepository = new(logger);
 
         public static ClienteCNPJAppService cnpjService = new(cnpjRepository, logger);
         public static ClienteCPFAppService cpfService = new(cpfRepository, logger);
@@ -74,11 +74,10 @@ namespace LocadoraVeiculo.WindowsApp
         private ICadastravel operacoes;
         Thread th;
 
-        public TelaPrincipalForm(Logger logger)
+        public TelaPrincipalForm()
         {
-            logger = logger;
-            InitializeComponent();
             Instancia = this;
+            InitializeComponent();
             ConfigurarPainelDashBoard();
             SetColor();
             BotaoHome();
@@ -97,7 +96,7 @@ namespace LocadoraVeiculo.WindowsApp
 
             AtualizarRodape(configuracao.TipoCadastro);
 
-            operacoes = new OperacoesLocacao(locacaoService, cpfService, veiculoService, cnpjService, descontoService);
+            operacoes = new OperacoesLocacao(locacaoService, cpfService, veiculoService, cnpjService, descontoService, logger);
 
             ConfigurarPainelRegistros();
 

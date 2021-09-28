@@ -10,16 +10,16 @@ namespace LocadoraVeiculo.WindowsApp.Features.LoginFeature
 {
     public partial class TelaLoginForm : Form
     {
-        Thread th;
-        private readonly Logger logger;
-        LoginDAO loginService; 
+        private Thread th;
+        private Logger logger;
+        private LoginDAO loginService; 
 
         public TelaLoginForm(Logger logger)
         {
             this.logger = logger;
+            loginService = new LoginDAO(logger);
             InitializeComponent();
             SetColor();
-            loginService = new LoginDAO(logger);
         }
 
 
@@ -62,7 +62,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.LoginFeature
 
         private void ChamarTelaPrincipal(object obj)
         {
-            Application.Run(new TelaPrincipalForm(logger));
+            Application.Run(new TelaPrincipalForm());
         }
 
         private void btnModo_Click_1(object sender, EventArgs e)

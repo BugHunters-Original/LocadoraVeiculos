@@ -28,15 +28,16 @@ namespace LocadoraVeiculo.WindowsApp.Features.LocacaoFeature
 
         public OperacoesLocacao(LocacaoAppService locacaoService, ClienteCPFAppService cpfService,
                                 VeiculoAppService veiculoService, ClienteCNPJAppService cnpjService,
-                                DescontoAppService descontoService)
+                                DescontoAppService descontoService, Logger logger)
         {
+            this.logger = logger;
             this.locacaoService = locacaoService;
             this.cpfService = cpfService;
             this.cnpjService = cnpjService;
             this.descontoService = descontoService;
             this.veiculoService = veiculoService;
             taxaLocacaoService = new TaxaDaLocacaoDAO(logger);
-            tabelaLocacoes = new TabelaLocacaoControl();
+            tabelaLocacoes = new TabelaLocacaoControl(logger);
         }
 
         public void DevolverVeiculo()
@@ -94,7 +95,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.LocacaoFeature
                 return;
             }
 
-            TelaLocacaoForm tela = new TelaLocacaoForm(cpfService, veiculoService, cnpjService, descontoService, locacaoService);
+            TelaLocacaoForm tela = new TelaLocacaoForm(cpfService, veiculoService, cnpjService, descontoService, locacaoService, logger);
 
             tela.Locacao = locacaoSelecionada;
 
@@ -178,7 +179,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.LocacaoFeature
             if (!VerificarPossibilidadeDeInsercao())
                 return;
 
-            TelaLocacaoForm tela = new TelaLocacaoForm(cpfService, veiculoService, cnpjService, descontoService, locacaoService);
+            TelaLocacaoForm tela = new TelaLocacaoForm(cpfService, veiculoService, cnpjService, descontoService, locacaoService, logger);
 
             if (tela.ShowDialog() == DialogResult.OK)
             {

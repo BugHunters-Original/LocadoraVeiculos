@@ -83,7 +83,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.VeiculoFeature
                 bool excluiu = veiculoService.ExcluirVeiculo(id);
 
                 if (excluiu)
-                {               
+                {
                     List<Veiculo> veiculos = veiculoService.SelecionarTodosVeiculos();
 
                     tabelaVeiculos.AtualizarRegistros(veiculos);
@@ -99,9 +99,10 @@ namespace LocadoraVeiculo.WindowsApp.Features.VeiculoFeature
 
         }
 
-        public void DevolverVeiculo() { }
+        public void FiltrarRegistros()
+        {
 
-        public void FiltrarRegistros() { }
+        }
 
         public UserControl ObterTabela()
         {
@@ -137,6 +138,11 @@ namespace LocadoraVeiculo.WindowsApp.Features.VeiculoFeature
                 return false;
             }
             return true;
+        }
+
+        public void DevolverVeiculo()
+        {
+            throw new System.NotImplementedException();
         }
     }
 }

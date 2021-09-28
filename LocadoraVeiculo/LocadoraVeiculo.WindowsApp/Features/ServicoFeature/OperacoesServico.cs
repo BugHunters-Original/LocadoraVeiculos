@@ -17,6 +17,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.TaxaServicoFeature
             this.servicoService = servicoService;
             tabelaServico = new TabelaTaxaServicoControl();
         }
+
         public void DevolverVeiculo()
         {
             throw new NotImplementedException();
