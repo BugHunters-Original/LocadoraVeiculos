@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Threading;
 using System.Windows.Forms;
+using LocadoraDeVeiculos.Dominio.ClienteModule;
 using LocadoraVeiculo.WindowsApp.Shared;
 using LocadoraVeiculo.WindowsApp.Features.DescontoFeature;
 using LocadoraVeiculo.WindowsApp.Features.DashboardFeature;
@@ -24,7 +25,6 @@ using LocadoraDeVeiculos.Aplicacao.FuncionarioModule;
 using LocadoraDeVeiculos.Aplicacao.DescontoModule;
 using LocadoraDeVeiculos.Aplicacao.ServicoModule;
 using LocadoraDeVeiculos.Aplicacao.LocacaoModule;
-using LocadoraDeVeiculos.Dominio.ClienteModule;
 using LocadoraDeVeiculos.Infra.SQL.ParceiroModule;
 using LocadoraDeVeiculos.Infra.SQL.ClienteCNPJModule;
 using LocadoraDeVeiculos.Infra.SQL.ClienteCPFModule;
@@ -43,9 +43,9 @@ using Serilog.Core;
 namespace LocadoraVeiculo.WindowsApp
 {
     public partial class TelaPrincipalForm : Form
-    {
-        public static Logger logger = LogManager.IniciarLog();
+    {   
         public static EnviaEmail email = new();
+        public static Logger logger = LogManager.IniciarLog();
         public static MontaPdf pdf = new();
 
         public static ClienteCNPJDAO cnpjRepository = new(logger);
@@ -77,6 +77,7 @@ namespace LocadoraVeiculo.WindowsApp
         public TelaPrincipalForm()
         {
             Instancia = this;
+            LogManager.IniciarLog();
             InitializeComponent();
             ConfigurarPainelDashBoard();
             SetColor();
@@ -254,8 +255,11 @@ namespace LocadoraVeiculo.WindowsApp
         private void btnModo_Click(object sender, EventArgs e)
         {
             DarkMode.TrocarModo();
-            logger.Information("Troca de modo de exibição");
+
+            logger.Aqui().Information("Troca de modo de exibição");
+
             SetColor();
+
             if (operacoes != null)
             {
                 IAparenciaAlteravel tabela = (IAparenciaAlteravel)operacoes.ObterTabela();
