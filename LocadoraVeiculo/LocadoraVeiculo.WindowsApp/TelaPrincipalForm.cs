@@ -39,7 +39,6 @@ using LocadoraDeVeiculos.Infra.PDFLocacao;
 using LocadoraDeVeiculos.Infra.InternetServices;
 using LocadoraDeVeiculos.Infra.Log;
 using Serilog.Core;
-using LocadoraDeVeiculos.Infra.ExtensionMethods;
 
 namespace LocadoraVeiculo.WindowsApp
 {
