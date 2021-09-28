@@ -1,6 +1,6 @@
-﻿using LocadoraDeVeiculos.Infra.SQL.FuncionarioModule;
+﻿using LocadoraDeVeiculos.Infra.ExtensionMethods;
+using LocadoraDeVeiculos.Infra.SQL.FuncionarioModule;
 using Serilog.Core;
-using System;
 
 namespace LocadoraDeVeiculos.Infra.SQL.LoginModule
 {
@@ -19,11 +19,11 @@ namespace LocadoraDeVeiculos.Infra.SQL.LoginModule
 
             switch (resultado)
             {
-                case "valido": logger.Information("LOGIN FEITO | USUÁRIO {Usuario}", usuario ); break;
+                case "valido": logger.Aqui().Information("LOGIN FEITO | USUÁRIO {Usuario}", usuario ); break;
 
-                case "Senha Incorreta": logger.Information("TENTATIVA DE LOGIN | USUÁRIO {Usuario}", usuario ); break;
+                case "Senha Incorreta": logger.Aqui().Information("TENTATIVA DE LOGIN | USUÁRIO {Usuario}", usuario ); break;
 
-                case "Usuário Inexistente": logger.Information("ERRO DE LOGIN | USUÁRIO INEXISTENTE"); break;
+                case "Usuário Inexistente": logger.Aqui().Information("ERRO DE LOGIN | USUÁRIO INEXISTENTE"); break;
 
                 default: break;
             }

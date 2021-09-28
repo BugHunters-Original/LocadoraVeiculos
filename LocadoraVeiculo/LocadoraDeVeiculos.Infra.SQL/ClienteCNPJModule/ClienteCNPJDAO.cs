@@ -1,4 +1,5 @@
 ﻿using LocadoraDeVeiculos.Dominio.ClienteModule.ClienteCNPJModule;
+using LocadoraDeVeiculos.Infra.ExtensionMethods;
 using LocadoraDeVeiculos.Infra.Shared;
 using Serilog.Core;
 using System;
@@ -99,11 +100,11 @@ namespace LocadoraDeVeiculos.Infra.SQL.ClienteCNPJModule
             {
                 registro.Id = Db.Insert(sqlInserirCliente, ObtemParametrosCliente(registro));
 
-                logger.Information("SUCESSO AO INSERIR CLIENTE CNPJ ID: {Id}  ", registro.Id );
+                logger.Aqui().Information("SUCESSO AO INSERIR CLIENTE CNPJ ID: {Id}  ", registro.Id );
             }
             catch (Exception ex)
             {
-                logger.Error(ex ,"ERRO AO INSERIR CLIENTE CNPJ ID: {Id}  ", registro.Id);
+                logger.Aqui().Error(ex ,"ERRO AO INSERIR CLIENTE CNPJ ID: {Id}  ", registro.Id);
             }
         }
         public void Editar(int id, ClienteCNPJ registro)
@@ -113,11 +114,11 @@ namespace LocadoraDeVeiculos.Infra.SQL.ClienteCNPJModule
                 registro.Id = id;
                 Db.Update(sqlEditarCliente, ObtemParametrosCliente(registro));
 
-                logger.Information("SUCESSO AO EDITAR CLIENTE CNPJ ID: {Id}  ", registro.Id );
+                logger.Aqui().Information("SUCESSO AO EDITAR CLIENTE CNPJ ID: {Id}  ", registro.Id );
             }
             catch (Exception ex)
             {
-                logger.Error(ex, "ERRO AO EDITAR CLIENTE CNPJ ID: {Id}  ", registro.Id);
+                logger.Aqui().Error(ex, "ERRO AO EDITAR CLIENTE CNPJ ID: {Id}  ", registro.Id);
             }
         }
 
@@ -127,11 +128,11 @@ namespace LocadoraDeVeiculos.Infra.SQL.ClienteCNPJModule
             {
                 Db.Delete(sqlExcluirCliente, AdicionarParametro("ID", id));
 
-                logger.Information("SUCESSO AO REMOVER CLIENTE CNPJ ID: {Id}  ", id );
+                logger.Aqui().Information("SUCESSO AO REMOVER CLIENTE CNPJ ID: {Id}  ", id );
             }
             catch (Exception ex)
             {
-                logger.Error(ex, "ERRO AO REMOVER CLIENTE CNPJ ID: {Id}  ", id);
+                logger.Aqui().Error(ex, "ERRO AO REMOVER CLIENTE CNPJ ID: {Id}  ", id);
 
                 return false;
             }
@@ -150,15 +151,15 @@ namespace LocadoraDeVeiculos.Infra.SQL.ClienteCNPJModule
                 bool existe = Db.Exists(sqlExisteCNPJ, AdicionarParametro("CNPJ", cnpj));
 
                 if (existe)
-                    logger.Information("O CNPJ {Cnpj} JÁ EXISTE NO SISTEMA  ", cnpj );
+                    logger.Aqui().Information("O CNPJ {Cnpj} JÁ EXISTE NO SISTEMA  ", cnpj );
                 else
-                    logger.Debug("O CNPJ {Cnpj} NÃO EXISTE NO SISTEMA ", cnpj );
+                    logger.Aqui().Debug("O CNPJ {Cnpj} NÃO EXISTE NO SISTEMA ", cnpj );
 
                 return existe;
             }
             catch (Exception ex)
             {
-                logger.Error(ex, "NÃO FOI POSSÍVEL SE COMUNICAR COM O BANCO DE DADOS PARA SELECIONAR O CNPJ {Cnpj}  ", cnpj);
+                logger.Aqui().Error(ex, "NÃO FOI POSSÍVEL SE COMUNICAR COM O BANCO DE DADOS PARA SELECIONAR O CNPJ {Cnpj}  ", cnpj);
 
                 return true;
             }
@@ -171,15 +172,15 @@ namespace LocadoraDeVeiculos.Infra.SQL.ClienteCNPJModule
                 ClienteCNPJ clienteCNPJ = Db.Get(sqlSelecionarClientePorId, ConverterEmCliente, AdicionarParametro("ID", id));
 
                 if (clienteCNPJ != null)
-                    logger.Debug("SUCESSO AO SELECIONAR CLIENTE CNPJ ID: {Id}  ", clienteCNPJ.Id );
+                    logger.Aqui().Debug("SUCESSO AO SELECIONAR CLIENTE CNPJ ID: {Id}  ", clienteCNPJ.Id );
                 else
-                    logger.Information("NÃO FOI POSSÍVEL SELECIONAR CLIENTE CNPJ ID: {Id}  ", clienteCNPJ.Id );
+                    logger.Aqui().Information("NÃO FOI POSSÍVEL SELECIONAR CLIENTE CNPJ ID: {Id}  ", clienteCNPJ.Id );
 
                 return clienteCNPJ;
             }
             catch (Exception ex)
             {
-                logger.Error(ex, "NÃO FOI POSSÍVEL SE COMUNICAR COM O BANCO DE DADOS PARA SELECIONAR CLIENTE CNPJ ID: {Id}  ", id );
+                logger.Aqui().Error(ex, "NÃO FOI POSSÍVEL SE COMUNICAR COM O BANCO DE DADOS PARA SELECIONAR CLIENTE CNPJ ID: {Id}  ", id );
 
                 return null;
             }
@@ -192,15 +193,15 @@ namespace LocadoraDeVeiculos.Infra.SQL.ClienteCNPJModule
                 List<ClienteCNPJ> clientesCNPJ = Db.GetAll(sqlSelecionarTodosClientes, ConverterEmCliente);
 
                 if (clientesCNPJ != null)
-                    logger.Debug("SUCESSO AO SELECIONAR TODOS OS CLIENTES CNPJ  " );
+                    logger.Aqui().Debug("SUCESSO AO SELECIONAR TODOS OS CLIENTES CNPJ  " );
                 else
-                    logger.Information("NÃO FOI POSSÍVEL SELECIONAR TODOS OS CLIENTES CNPJ  " );
+                    logger.Aqui().Information("NÃO FOI POSSÍVEL SELECIONAR TODOS OS CLIENTES CNPJ  " );
 
                 return clientesCNPJ;
             }
             catch (Exception ex)
             {
-                logger.Error(ex, "NÃO FOI POSSÍVEL SE COMUNICAR COM O BANCO DE DADOS PARA SELECIONAR TODOS OS CLIENTES CNPJ  " );
+                logger.Aqui().Error(ex, "NÃO FOI POSSÍVEL SE COMUNICAR COM O BANCO DE DADOS PARA SELECIONAR TODOS OS CLIENTES CNPJ  " );
 
                 return null;
             }

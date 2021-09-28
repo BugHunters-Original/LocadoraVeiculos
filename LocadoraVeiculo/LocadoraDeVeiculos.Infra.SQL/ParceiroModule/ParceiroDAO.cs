@@ -1,4 +1,5 @@
 ﻿using LocadoraDeVeiculos.Dominio.ParceiroModule;
+using LocadoraDeVeiculos.Infra.ExtensionMethods;
 using LocadoraDeVeiculos.Infra.Shared;
 using Serilog.Core;
 using System;
@@ -80,11 +81,11 @@ namespace LocadoraDeVeiculos.Infra.SQL.ParceiroModule
             try
             {
                 parceiro.Id = Db.Insert(sqlInserirParceiro, ObtemParametrosParceiro(parceiro));
-                logger.Information("SUCESSO AO INSERIR PARCEIRO ID: {Id}  ", parceiro.Id );
+                logger.Aqui().Information("SUCESSO AO INSERIR PARCEIRO ID: {Id}  ", parceiro.Id );
             }
             catch (Exception ex)
             {
-                 logger.Error(ex , "ERRO AO INSERIR PARCEIRO ID: {Id}  ", parceiro.Id );
+                 logger.Aqui().Aqui().Error(ex , "ERRO AO INSERIR PARCEIRO ID: {Id}  ", parceiro.Id );
             }
         }
         public void Editar(int id, Parceiro parceiro)
@@ -94,11 +95,11 @@ namespace LocadoraDeVeiculos.Infra.SQL.ParceiroModule
                 parceiro.Id = id;
                 Db.Update(sqlEditarParceiro, ObtemParametrosParceiro(parceiro));
 
-                logger.Information("SUCESSO AO EDITAR PARCEIRO ID: {Id}  ", parceiro.Id );
+                logger.Aqui().Information("SUCESSO AO EDITAR PARCEIRO ID: {Id}  ", parceiro.Id );
             }
             catch (Exception ex)
             {
-                 logger.Error(ex , "ERRO AO EDITAR PARCEIRO ID: {Id}  ", parceiro.Id );
+                 logger.Aqui().Error(ex , "ERRO AO EDITAR PARCEIRO ID: {Id}  ", parceiro.Id );
             }
         }
 
@@ -108,11 +109,11 @@ namespace LocadoraDeVeiculos.Infra.SQL.ParceiroModule
             {
                 Db.Delete(sqlExcluirParceiro, AdicionarParametro("ID", id));
 
-                logger.Information("SUCESSO AO REMOVER PARCEIRO ID: {Id}  ", id );
+                logger.Aqui().Information("SUCESSO AO REMOVER PARCEIRO ID: {Id}  ", id );
             }
             catch (Exception ex)
             {
-                 logger.Error(ex , "ERRO AO REMOVER PARCEIRO ID: {Id}  ", id );
+                 logger.Aqui().Error(ex , "ERRO AO REMOVER PARCEIRO ID: {Id}  ", id );
 
                 return false;
             }
@@ -131,16 +132,16 @@ namespace LocadoraDeVeiculos.Infra.SQL.ParceiroModule
                 Parceiro parceiro = Db.Get(sqlSelecionarParceiroPorId, ConverterEmParceiro, AdicionarParametro("ID", id));
 
                 if (parceiro != null)
-                    logger.Debug("SUCESSO AO SELECIONAR PARCEIRO ID: {Id}  ", parceiro.Id );
+                    logger.Aqui().Debug("SUCESSO AO SELECIONAR PARCEIRO ID: {Id}  ", parceiro.Id );
                 else
-                    logger.Information("NÃO FOI POSSÍVEL SELECIONAR PARCEIRO ID: {Id}  ", parceiro.Id );
+                    logger.Aqui().Information("NÃO FOI POSSÍVEL SELECIONAR PARCEIRO ID: {Id}  ", parceiro.Id );
 
                 return parceiro;
 
             }
             catch (Exception ex)
             {
-                 logger.Error(ex , "NÃO FOI POSSÍVEL SE COMUNICAR COM O BANCO DE DADOS PARA SELECIONAR PARCEIRO ID: {Id}  ", id );
+                 logger.Aqui().Error(ex , "NÃO FOI POSSÍVEL SE COMUNICAR COM O BANCO DE DADOS PARA SELECIONAR PARCEIRO ID: {Id}  ", id );
 
                 return null;
             }
@@ -152,15 +153,15 @@ namespace LocadoraDeVeiculos.Infra.SQL.ParceiroModule
                 List<Parceiro> parceiro = Db.GetAll(sqlSelecionarTodosParceiros, ConverterEmParceiro);
 
                 if (parceiro != null)
-                    logger.Debug("SUCESSO AO SELECIONAR TODOS OS PARCEIROS  " );
+                    logger.Aqui().Debug("SUCESSO AO SELECIONAR TODOS OS PARCEIROS  " );
                 else
-                    logger.Information("NÃO FOI POSSÍVEL SELECIONAR TODOS OS PARCEIROS  " );
+                    logger.Aqui().Information("NÃO FOI POSSÍVEL SELECIONAR TODOS OS PARCEIROS  " );
 
                 return parceiro;
             }
             catch (Exception ex)
             {
-                 logger.Error(ex , "NÃO FOI POSSÍVEL SE COMUNICAR COM O BANCO DE DADOS PARA SELECIONAR TODOS OS PARCEIROS  " );
+                 logger.Aqui().Error(ex , "NÃO FOI POSSÍVEL SE COMUNICAR COM O BANCO DE DADOS PARA SELECIONAR TODOS OS PARCEIROS  " );
 
                 return null;
             }
@@ -173,16 +174,16 @@ namespace LocadoraDeVeiculos.Infra.SQL.ParceiroModule
                 List<Parceiro> parceiro = Db.GetAll(sql, ConverterEmParceiro, AdicionarParametro("@SEGUNDAREF", pesquisa));
 
                 if (parceiro != null)
-                    logger.Debug("SUCESSO AO SELECIONAR PARCEIRO COM A PESQUISA: {Pesquisa}  ", pesquisa );
+                    logger.Aqui().Debug("SUCESSO AO SELECIONAR PARCEIRO COM A PESQUISA: {Pesquisa}  ", pesquisa );
                 else
-                    logger.Information("NÃO FOI POSSÍVEL SELECIONAR PARCEIRO COM A PESQUISA: {Pesquisa}  ", pesquisa );
+                    logger.Aqui().Information("NÃO FOI POSSÍVEL SELECIONAR PARCEIRO COM A PESQUISA: {Pesquisa}  ", pesquisa );
 
                 return parceiro;
 
             }
             catch (Exception ex)
             {
-                 logger.Error(ex , "NÃO FOI POSSÍVEL SE COMUNICAR COM O BANCO DE DADOS PARA SELECIONAR PARCEIRO  " );
+                 logger.Aqui().Error(ex , "NÃO FOI POSSÍVEL SE COMUNICAR COM O BANCO DE DADOS PARA SELECIONAR PARCEIRO  " );
 
                 return null;
             }
