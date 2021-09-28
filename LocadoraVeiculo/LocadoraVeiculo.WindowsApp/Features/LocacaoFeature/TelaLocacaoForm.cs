@@ -128,12 +128,6 @@ namespace LocadoraVeiculo.WindowsApp.Features.LocacaoFeature
 
             veiculos.ForEach(x => cbVeiculo.Items.Add(x));
         }
-        private void MudarDisponibilidadeVeiculo(Veiculo veiculo)
-        {
-            veiculo.DisponibilidadeVeiculo = 0;
-
-            veiculoService.EditarVeiculo(veiculo.Id, veiculo);
-        }
         private static decimal? CalcularPrecoPlanoPorDias(Veiculo veiculo, string tipoLocacao, int dias)
         {
             switch (tipoLocacao)
