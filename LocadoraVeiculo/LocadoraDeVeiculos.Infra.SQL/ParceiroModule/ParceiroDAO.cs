@@ -1,4 +1,5 @@
 ﻿using LocadoraDeVeiculos.Dominio.ParceiroModule;
+using LocadoraDeVeiculos.Infra.ExtensionMethods;
 using LocadoraDeVeiculos.Infra.Shared;
 using Serilog.Core;
 using System;
@@ -80,7 +81,7 @@ namespace LocadoraDeVeiculos.Infra.SQL.ParceiroModule
             try
             {
                 parceiro.Id = Db.Insert(sqlInserirParceiro, ObtemParametrosParceiro(parceiro));
-                logger.Information("SUCESSO AO INSERIR PARCEIRO ID: {Id} | DATA: {DataEHora}", parceiro.Id, DateTime.Now.ToString());
+                logger.Aqui().Information("SUCESSO AO INSERIR PARCEIRO ID: {Id} ", parceiro.Id);
             }
             catch (Exception ex)
             {

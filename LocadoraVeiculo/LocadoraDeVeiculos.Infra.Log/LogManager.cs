@@ -1,9 +1,8 @@
-﻿using Serilog;
+﻿using Microsoft.Extensions.Configuration;
+using Serilog;
 using Serilog.Core;
-using Serilog.Events;
 using System;
 using System.IO;
-using System.Runtime.CompilerServices;
 
 namespace LocadoraDeVeiculos.Infra.Log
 {
@@ -11,29 +10,24 @@ namespace LocadoraDeVeiculos.Infra.Log
     {
         public static Logger IniciarLog()
         {
-            var levelSwitch = new LoggingLevelSwitch(LogEventLevel.Verbose);
+            var configuration = new ConfigurationBuilder()
+                         .SetBasePath(Directory.GetCurrentDirectory())
+                         .AddJsonFile("appsettings.json", false, true)
+                         .Build();
+
+            var levelSwitch = new LoggingLevelSwitch();
 
             return new LoggerConfiguration()
-                .MinimumLevel.Debug()
-                .WriteTo.Seq("http://20.195.202.178:5341/")
+                .ReadFrom.Configuration(configuration)
+                .MinimumLevel.ControlledBy(levelSwitch)
+                .WriteTo.Seq("http://20.195.202.178:5341/", controlLevelSwitch: levelSwitch)
                 .Enrich.FromLogContext()
                 .Enrich.WithProperty("ApplicationName", "Locadora de Veículos")
                 .Enrich.WithProperty("MachineName", Environment.MachineName)
-                .Enrich.WithProperty("ApplicationName", Environment.ProcessId)
-                .Enrich.WithProperty("ApplicationName", Environment.CurrentManagedThreadId)
-                .Enrich.WithProperty("ApplicationName", Environment.UserName)
+                .Enrich.WithProperty("ProcessId", Environment.ProcessId)
+                .Enrich.WithProperty("ThreadId", Environment.CurrentManagedThreadId)
+                .Enrich.WithProperty("UserName", Environment.UserName)
                 .CreateLogger();
         }
-        public static ILogger Aqui(this ILogger logger,
-            [CallerMemberName] string memberName = "",
-            [CallerFilePath] string sourceFilePath = "",
-            [CallerLineNumber] int sourceLineNumber = 0)
-        {
-            return logger
-                .ForContext("MemberName", memberName)
-                .ForContext("ClassName", Path.GetFileNameWithoutExtension(sourceFilePath))
-                .ForContext("MemberName", sourceLineNumber);
-        }
-
     }
 }
