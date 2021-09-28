@@ -18,19 +18,19 @@ namespace LocadoraDeVeiculos.Aplicacao.ClienteCNPJModule
 
         public bool RegistrarNovoClienteCNPJ(ClienteCNPJ clienteCNPJ)
         {
-            logger.Debug("REGISTRANDO CLIENTE CNPJ {ClienteNome} | {DataEHora} ", clienteCNPJ.Nome, DateTime.Now.ToString());
+            logger.Debug("REGISTRANDO CLIENTE CNPJ {ClienteNome}", clienteCNPJ.Nome);
 
             if (EstaValido(clienteCNPJ))
             {
                 clienteCNPJRepository.Inserir(clienteCNPJ);
 
-                logger.Debug("CLIENTE CNPJ {ClienteNome} REGISTRADO COM SUCESSO | {DataEHora}", clienteCNPJ.Nome, DateTime.Now.ToString());
+                logger.Debug("CLIENTE CNPJ {ClienteNome} REGISTRADO COM SUCESSO", clienteCNPJ.Nome);
 
                 return true;
             }
             else
             {
-                logger.Error("NÃO FOI POSSÍVEL REGISTRAR CLIENTE CNPJ {ClienteNome} | {DataEHora}", clienteCNPJ.Nome, DateTime.Now.ToString());
+                logger.Error("NÃO FOI POSSÍVEL REGISTRAR CLIENTE CNPJ {ClienteNome}", clienteCNPJ.Nome);
 
                 return false;
             }
@@ -38,19 +38,19 @@ namespace LocadoraDeVeiculos.Aplicacao.ClienteCNPJModule
 
         public bool EditarClienteCNPJ(int id, ClienteCNPJ clienteCNPJ)
         {
-            logger.Debug("EDITANDO CLIENTE CNPJ {ClienteNome} | {DataEHora} ", clienteCNPJ.Nome, DateTime.Now.ToString());
+            logger.Debug("EDITANDO CLIENTE CNPJ {ClienteNome}", clienteCNPJ.Nome);
 
             if (EstaValido(clienteCNPJ))
             {
                 clienteCNPJRepository.Editar(id, clienteCNPJ);
 
-                logger.Debug("CLIENTE CNPJ {ClienteNome} EDITADO COM SUCESSO | {DataEHora}", clienteCNPJ.Nome, DateTime.Now.ToString());
+                logger.Debug("CLIENTE CNPJ {ClienteNome} EDITADO COM SUCESSO", clienteCNPJ.Nome);
 
                 return true;
             }
             else
             {
-                logger.Error("NÃO FOI POSSÍVEL EDITAR CLIENTE CNPJ {ClienteNome} | {DataEHora}", clienteCNPJ.Nome, DateTime.Now.ToString());
+                logger.Error("NÃO FOI POSSÍVEL EDITAR CLIENTE CNPJ {ClienteNome}", clienteCNPJ.Nome);
 
                 return false;
             }
@@ -59,44 +59,44 @@ namespace LocadoraDeVeiculos.Aplicacao.ClienteCNPJModule
 
         public bool ExcluirClienteCNPJ(int id)
         {
-            logger.Debug("REMOVENDO CLIENTE CNPJ {Id} | {DataEHora}", id, DateTime.Now.ToString());
+            logger.Debug("REMOVENDO CLIENTE CNPJ {Id}", id);
 
             var cliente = clienteCNPJRepository.SelecionarPorId(id);
 
             var excluiu = clienteCNPJRepository.Excluir(id);
 
             if (excluiu)
-                logger.Debug("CLIENTE CNPJ {Id} REMOVIDO COM SUCESSO | {DataEHora}", cliente.Id, DateTime.Now.ToString());
+                logger.Debug("CLIENTE CNPJ {Id} REMOVIDO COM SUCESSO", cliente.Id);
             else
-                logger.Error("NÃO FOI POSSÍVEL REMOVER CLIENTE CNPJ {Id} | {DataEHora}.", cliente.Id, DateTime.Now.ToString());
+                logger.Error("NÃO FOI POSSÍVEL REMOVER CLIENTE CNPJ {Id}", cliente.Id);
 
             return excluiu;
         }
 
         public ClienteCNPJ SelecionarClienteCNPJPorId(int id)
         {
-            logger.Debug("SELECIONANDO O CLIENTE CNPJ ID: {Id} | {DataEHora}", id, DateTime.Now.ToString());
+            logger.Debug("SELECIONANDO O CLIENTE CNPJ ID: {Id}", id);
 
             ClienteCNPJ clienteCNPJ = clienteCNPJRepository.SelecionarPorId(id);
 
             if (clienteCNPJ == null)
-                logger.Information("NÃO FOI POSSÍVEL ENCONTRAR O CLIENTE CNPJ ID {Id} | {DataEHora}", clienteCNPJ.Id, DateTime.Now.ToString());
+                logger.Information("NÃO FOI POSSÍVEL ENCONTRAR O CLIENTE CNPJ ID {Id}", clienteCNPJ.Id);
             else
-                logger.Debug("CLIENTE CNPJ ID {Id} SELECIONADO COM SUCESSO | {DataEHora}", clienteCNPJ.Id, DateTime.Now.ToString());
+                logger.Debug("CLIENTE CNPJ ID {Id} SELECIONADO COM SUCESSO", clienteCNPJ.Id);
 
             return clienteCNPJ;
         }
 
         public List<ClienteCNPJ> SelecionarTodosClientesCNPJ()
         {
-            logger.Debug("SELECIONANDO TODOS OS CLIENTES CNPJ | {DataEHora}", DateTime.Now.ToString());
+            logger.Debug("SELECIONANDO TODOS OS CLIENTES CNPJ");
 
             List<ClienteCNPJ> clientes = clienteCNPJRepository.SelecionarTodos();
 
             if (clientes.Count == 0)
-                logger.Information("NÃO HÁ CLIENTES CNPJ CADASTRADOS | {DataEHora}", DateTime.Now.ToString());
+                logger.Information("NÃO HÁ CLIENTES CNPJ CADASTRADOS");
             else
-                logger.Debug("A SELEÇÃO TROUXE {Quantidade} CLIENTE(S) CNPJ EXISTENTE(S) | {DataEHora}", clientes.Count, DateTime.Now.ToString());
+                logger.Debug("A SELEÇÃO TROUXE {Quantidade} CLIENTE(S) CNPJ EXISTENTE(S)", clientes.Count);
 
             return clientes;                
         }
