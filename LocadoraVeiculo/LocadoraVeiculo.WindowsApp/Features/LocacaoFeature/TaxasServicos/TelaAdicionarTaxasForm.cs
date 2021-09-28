@@ -1,6 +1,6 @@
 ﻿using LocadoraDeVeiculos.Dominio.ServicoModule;
 using LocadoraDeVeiculos.Dominio.TaxaDaLocacaoModule;
-using LocadoraDeVeiculos.Infra.Log;
+using LocadoraDeVeiculos.Infra.LogManager;
 using LocadoraDeVeiculos.Infra.SQL.TaxaServicoModule.ServicoModule;
 using LocadoraVeiculo.WindowsApp.Features.DarkModeFeature;
 using Serilog.Core;
@@ -20,9 +20,9 @@ namespace LocadoraVeiculo.WindowsApp.Features.LocacaoFeature.TaxasServicos
             get { return servicosTaxas; }
         }
 
-        public TelaAdicionarTaxasForm(Logger logger)
+        public TelaAdicionarTaxasForm()
         {
-            servicoDAO = new(logger);
+            servicoDAO = new();
             InitializeComponent();
             PopularBox();
             SetColor();

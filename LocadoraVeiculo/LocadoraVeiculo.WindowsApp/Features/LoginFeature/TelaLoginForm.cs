@@ -1,4 +1,6 @@
-﻿using LocadoraDeVeiculos.Infra.SQL.LoginModule;
+﻿using LocadoraDeVeiculos.Infra.ExtensionMethods;
+using LocadoraDeVeiculos.Infra.LogManager;
+using LocadoraDeVeiculos.Infra.SQL.LoginModule;
 using LocadoraVeiculo.WindowsApp.Features.DarkModeFeature;
 using Serilog.Core;
 using System;
@@ -11,13 +13,12 @@ namespace LocadoraVeiculo.WindowsApp.Features.LoginFeature
     public partial class TelaLoginForm : Form
     {
         private Thread th;
-        private Logger logger;
         private LoginDAO loginService; 
 
-        public TelaLoginForm(Logger logger)
+        public TelaLoginForm()
         {
-            this.logger = logger;
-            loginService = new LoginDAO(logger);
+            Log.IniciarLog();
+            loginService = new LoginDAO();
             InitializeComponent();
             SetColor();
         }
@@ -67,7 +68,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.LoginFeature
 
         private void btnModo_Click_1(object sender, EventArgs e)
         {
-            logger.Information("Troca de modo de exibição");
+            Log.Logger.Aqui().Information("Troca de modo de exibição");
             DarkMode.TrocarModo();
             SetColor();
         }
