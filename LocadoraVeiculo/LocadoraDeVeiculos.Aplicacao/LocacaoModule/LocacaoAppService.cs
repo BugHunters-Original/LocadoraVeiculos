@@ -39,6 +39,10 @@ namespace LocadoraDeVeiculos.Aplicacao.LocacaoModule
 
                 logger.Debug("LOCAÇÃO {Locacao} REGISTRADA COM SUCESSO | {DataEHora}", locacao.ToString(), DateTime.Now.ToString());
 
+                veiculoRepo.LocarVeiculo(locacao.Veiculo);
+
+                logger.Debug("VEÍCULO {Veiculo} LOCADO COM SUCESSO | {DataEHora}", locacao.Veiculo.ToString(), DateTime.Now.ToString());
+
                 if (locacao.Desconto != null)
                 {
                     locacao.Desconto.Usos++;
