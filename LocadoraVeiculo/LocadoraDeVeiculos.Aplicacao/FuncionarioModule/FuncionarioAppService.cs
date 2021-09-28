@@ -1,5 +1,6 @@
 ﻿using LocadoraDeVeiculos.Dominio.FuncionarioModule;
 using Serilog.Core;
+using System;
 using System.Collections.Generic;
 
 namespace LocadoraDeVeiculos.Aplicacao.FuncionarioModule
@@ -19,19 +20,19 @@ namespace LocadoraDeVeiculos.Aplicacao.FuncionarioModule
         {
             string resultadoValidacaoDominio = funcionario.Validar();
 
-            logger.Debug($"Registrando funcionário {funcionario.Nome}...");
+            logger.Debug("REGISTRANDO FUNCIONÁRIO {FuncionarioNome} | {DataEHora} ", funcionario.Nome, DateTime.Now.ToString());
 
             if (resultadoValidacaoDominio == "ESTA_VALIDO")
             {           
                 funcionarioRepository.Inserir(funcionario);
 
-                logger.Debug($"Funcionário {funcionario.Nome} registrado com sucesso!");
+                logger.Debug("FUNCIONÁRIO {FuncionarioNome} REGISTRADO COM SUCESSO | {DataEHora}", funcionario.Nome, DateTime.Now.ToString());
 
                 return true;
             }
             else
             {
-                logger.Error($"Não foi possível registrar o Funcionário: {funcionario.Nome}.");
+                logger.Error("NÃO FOI POSSÍVEL REGISTRAR FUNCIONÁRIO {FuncionarioNome} | {DataEHora}", funcionario.Nome, DateTime.Now.ToString());
 
                 return false;
             }
@@ -42,19 +43,19 @@ namespace LocadoraDeVeiculos.Aplicacao.FuncionarioModule
         {
             string resultadoValidacaoDominio = funcionario.Validar();
 
-            logger.Debug($"Editando funcionário {funcionario.Nome}...");
+            logger.Debug("EDITANDO FUNCIONÁRIO {FuncionarioNome} | {DataEHora} ", funcionario.Nome, DateTime.Now.ToString());
 
             if (resultadoValidacaoDominio == "ESTA_VALIDO")
             {
                 funcionarioRepository.Editar(id, funcionario);
 
-                logger.Debug($"Funcionário {funcionario.Nome} Editado com sucesso!");
+                logger.Debug("FUNCIONÁRIO {FuncionarioNome} EDITADO COM SUCESSO | {DataEHora}", funcionario.Nome, DateTime.Now.ToString());
 
                 return true;
             }
             else
             {
-                logger.Error($"Não foi possível editar o Funcionário: {funcionario.Nome}.");
+                logger.Error("NÃO FOI POSSÍVEL EDITAR FUNCIONÁRIO {FuncionarioNome} | {DataEHora}", funcionario.Nome, DateTime.Now.ToString());
 
                 return false;
             }    
@@ -62,48 +63,59 @@ namespace LocadoraDeVeiculos.Aplicacao.FuncionarioModule
 
         public bool ExcluirFuncionario(int id)
         {
-            logger.Debug($"Excluindo o funcionário ID: {id}.");
+            logger.Debug("REMOVENDO FUNCIONÁRIO {Id} | {DataEHora}", id, DateTime.Now.ToString());
 
             var funcionario = funcionarioRepository.SelecionarPorId(id);
             var excluiu = funcionarioRepository.Excluir(id);
 
             if (excluiu)
-                logger.Debug($"Excluiu Funcionário {funcionario.Nome} com ID {funcionario.Id}!");
+                logger.Debug("FUNCIONÁRIO {Id} REMOVIDO COM SUCESSO | {DataEHora}", funcionario.Id, DateTime.Now.ToString());
             else
-                logger.Error($"Não excluiu Funcionário {funcionario.Nome} com ID {funcionario.Id}!");
+                logger.Error("NÃO FOI POSSÍVEL REMOVER FUNCIONÁRIO {Id} | {DataEHora}.", funcionario.Id, DateTime.Now.ToString());
 
             return excluiu;
         }
 
         public List<Funcionario> SelecionarPesquisa(string comboBox, string pesquisa)
         {
-            return funcionarioRepository.SelecionarPesquisa(comboBox, pesquisa);
+
+            logger.Debug("SELECIONADO FUNCIONÁRIOS DE ACORDO COM A PESQUISA {Pesquisa} | {DataEHora}", pesquisa, DateTime.Now.ToString());
+
+            List<Funcionario> funcionarios = funcionarioRepository.SelecionarPesquisa(comboBox, pesquisa);
+
+
+            if (funcionarios.Count == 0)
+                logger.Information("NÃO HÁ FUNCIONÁRIOS CADASTRADOS DE ACORDO COM A PESQUISA {Pesquisa} | {DataEHora}", pesquisa, DateTime.Now.ToString());
+            else
+                logger.Debug("A SELEÇÃO TROUXE {Quantidade} FUNCIONÁRIO(S) EXISTENTE(S) DE ACORDO COM A PESQUISA {Pesquisa} | {DataEHora}", funcionarios.Count, pesquisa, DateTime.Now.ToString());
+
+            return funcionarios;
         }
 
         public Funcionario SelecionarPorId(int id)
         {
-            logger.Debug($"Selecionando o funcionário ID: {id}.");
+            logger.Debug("SELECIONANDO O FUNCIONÁRIO ID: {Id} | {DataEHora}", id, DateTime.Now.ToString());
 
             Funcionario funcionario =  funcionarioRepository.SelecionarPorId(id);
 
             if (funcionario == null)
-                logger.Warning($"Não foi possível encontrar o funcionário com ID: {id}");
+                logger.Information("NÃO FOI POSSÍVEL ENCONTRAR O FUNCIONÁRIO ID {Id} | {DataEHora}", funcionario.Id, DateTime.Now.ToString());
             else
-                logger.Debug($"Selecionando funcionário ID: {id}, NOME: {funcionario.Nome}.");
+                logger.Debug("FUNCIONÁRIO ID {Id} SELECIONADO COM SUCESSO | {DataEHora}", funcionario.Id, DateTime.Now.ToString());
 
             return funcionario;
         }
 
         public List<Funcionario> SelecionarTodosFuncionarios()
         {
-            logger.Debug($"Selecionando todos os Funcionários.");
+            logger.Debug("SELECIONANDO TODOS OS FUNCIONÁRIOS | {DataEHora}", DateTime.Now.ToString());
 
             List<Funcionario>  funcionario = funcionarioRepository.SelecionarTodos();
 
             if (funcionario.Count == 0)
-                logger.Warning($"Não há funcionários cadastrados");
+                logger.Information("NÃO HÁ FUNCIONÁRIOS CADASTRADOS | {DataEHora}", DateTime.Now.ToString());
             else
-                logger.Debug($"Selecionou os {funcionario.Count} Funcionários existentes.");
+                logger.Debug("A SELEÇÃO TROUXE {Quantidade} FUNCIONÁRIO(S) EXISTENTE(S) | {DataEHora}", funcionario.Count, DateTime.Now.ToString());
 
             return funcionario;
         }
