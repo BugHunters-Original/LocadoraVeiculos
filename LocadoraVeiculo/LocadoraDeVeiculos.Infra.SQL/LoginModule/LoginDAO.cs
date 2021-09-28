@@ -19,11 +19,11 @@ namespace LocadoraDeVeiculos.Infra.SQL.LoginModule
 
             switch (resultado)
             {
-                case "valido": logger.Information("LOGIN FEITO | USUÁRIO {Usuario}| LOGIN DATA: {DataEHora}", usuario, DateTime.Now.ToString()); break;
+                case "valido": logger.Information("LOGIN FEITO | USUÁRIO {Usuario}", usuario ); break;
 
-                case "Senha Incorreta": logger.Information("TENTATIVA DE LOGIN | USUÁRIO {Usuario} | LOGIN DATA: {DataEHora}", usuario, DateTime.Now.ToString()); break;
+                case "Senha Incorreta": logger.Information("TENTATIVA DE LOGIN | USUÁRIO {Usuario}", usuario ); break;
 
-                case "Usuário Inexistente": logger.Information("ERRO DE LOGIN | USUÁRIO INEXISTENTE | LOGIN DATA: {DataEHora}", usuario, DateTime.Now.ToString()); break;
+                case "Usuário Inexistente": logger.Information("ERRO DE LOGIN | USUÁRIO INEXISTENTE"); break;
 
                 default: break;
             }

@@ -1,5 +1,4 @@
 ﻿using LocadoraDeVeiculos.Dominio.ParceiroModule;
-using LocadoraDeVeiculos.Infra.ExtensionMethods;
 using LocadoraDeVeiculos.Infra.Shared;
 using Serilog.Core;
 using System;
@@ -81,11 +80,11 @@ namespace LocadoraDeVeiculos.Infra.SQL.ParceiroModule
             try
             {
                 parceiro.Id = Db.Insert(sqlInserirParceiro, ObtemParametrosParceiro(parceiro));
-                logger.Aqui().Information("SUCESSO AO INSERIR PARCEIRO ID: {Id} ", parceiro.Id);
+                logger.Information("SUCESSO AO INSERIR PARCEIRO ID: {Id}  ", parceiro.Id );
             }
             catch (Exception ex)
             {
-                logger.Error("ERRO AO INSERIR PARCEIRO ID: {Id} | DATA: {DataEHora} | FEATURE:{Feature} | CAMADA: {Camada} | SQL: {Query}", parceiro.Id, DateTime.Now.ToString(), this.ToString(), "Repository", ex.Message);
+                 logger.Error(ex , "ERRO AO INSERIR PARCEIRO ID: {Id}  ", parceiro.Id );
             }
         }
         public void Editar(int id, Parceiro parceiro)
@@ -95,11 +94,11 @@ namespace LocadoraDeVeiculos.Infra.SQL.ParceiroModule
                 parceiro.Id = id;
                 Db.Update(sqlEditarParceiro, ObtemParametrosParceiro(parceiro));
 
-                logger.Information("SUCESSO AO EDITAR PARCEIRO ID: {Id} | DATA: {DataEHora}", parceiro.Id, DateTime.Now.ToString());
+                logger.Information("SUCESSO AO EDITAR PARCEIRO ID: {Id}  ", parceiro.Id );
             }
             catch (Exception ex)
             {
-                logger.Error("ERRO AO EDITAR PARCEIRO ID: {Id} | DATA: {DataEHora} | FEATURE:{Feature} | CAMADA: {Camada} | SQL: {Query}", parceiro.Id, DateTime.Now.ToString(), this.ToString(), "Repository", ex.Message);
+                 logger.Error(ex , "ERRO AO EDITAR PARCEIRO ID: {Id}  ", parceiro.Id );
             }
         }
 
@@ -109,11 +108,11 @@ namespace LocadoraDeVeiculos.Infra.SQL.ParceiroModule
             {
                 Db.Delete(sqlExcluirParceiro, AdicionarParametro("ID", id));
 
-                logger.Information("SUCESSO AO REMOVER PARCEIRO ID: {Id} | DATA: {DataEHora}", id, DateTime.Now.ToString());
+                logger.Information("SUCESSO AO REMOVER PARCEIRO ID: {Id}  ", id );
             }
             catch (Exception ex)
             {
-                logger.Error("ERRO AO REMOVER PARCEIRO ID: {Id} | DATA: {DataEHora} | FEATURE:{Feature} | CAMADA: {Camada} | SQL: {Query}", id, DateTime.Now.ToString(), this.ToString(), "Repository", ex.Message);
+                 logger.Error(ex , "ERRO AO REMOVER PARCEIRO ID: {Id}  ", id );
 
                 return false;
             }
@@ -132,16 +131,16 @@ namespace LocadoraDeVeiculos.Infra.SQL.ParceiroModule
                 Parceiro parceiro = Db.Get(sqlSelecionarParceiroPorId, ConverterEmParceiro, AdicionarParametro("ID", id));
 
                 if (parceiro != null)
-                    logger.Debug("SUCESSO AO SELECIONAR PARCEIRO ID: {Id} | DATA: {DataEHora}", parceiro.Id, DateTime.Now.ToString());
+                    logger.Debug("SUCESSO AO SELECIONAR PARCEIRO ID: {Id}  ", parceiro.Id );
                 else
-                    logger.Information("NÃO FOI POSSÍVEL SELECIONAR PARCEIRO ID: {Id} | DATA: {DataEHora}", parceiro.Id, DateTime.Now.ToString());
+                    logger.Information("NÃO FOI POSSÍVEL SELECIONAR PARCEIRO ID: {Id}  ", parceiro.Id );
 
                 return parceiro;
 
             }
             catch (Exception ex)
             {
-                logger.Error("NÃO FOI POSSÍVEL SE COMUNICAR COM O BANCO DE DADOS PARA SELECIONAR PARCEIRO ID: {Id} | DATA: {DataEHora} | FEATURE:{Feature} | CAMADA: {Camada} | SQL: {Query}", id, DateTime.Now.ToString(), this.ToString(), "Repository", ex.Message);
+                 logger.Error(ex , "NÃO FOI POSSÍVEL SE COMUNICAR COM O BANCO DE DADOS PARA SELECIONAR PARCEIRO ID: {Id}  ", id );
 
                 return null;
             }
@@ -153,15 +152,15 @@ namespace LocadoraDeVeiculos.Infra.SQL.ParceiroModule
                 List<Parceiro> parceiro = Db.GetAll(sqlSelecionarTodosParceiros, ConverterEmParceiro);
 
                 if (parceiro != null)
-                    logger.Debug("SUCESSO AO SELECIONAR TODOS OS PARCEIROS | DATA: {DataEHora}", DateTime.Now.ToString());
+                    logger.Debug("SUCESSO AO SELECIONAR TODOS OS PARCEIROS  " );
                 else
-                    logger.Information("NÃO FOI POSSÍVEL SELECIONAR TODOS OS PARCEIROS | DATA: {DataEHora}", DateTime.Now.ToString());
+                    logger.Information("NÃO FOI POSSÍVEL SELECIONAR TODOS OS PARCEIROS  " );
 
                 return parceiro;
             }
             catch (Exception ex)
             {
-                logger.Error("NÃO FOI POSSÍVEL SE COMUNICAR COM O BANCO DE DADOS PARA SELECIONAR TODOS OS PARCEIROS | DATA: {DataEHora} | FEATURE:{Feature} | CAMADA: {Camada} | SQL: {Query}", DateTime.Now.ToString(), this.ToString(), "Repository", ex.Message);
+                 logger.Error(ex , "NÃO FOI POSSÍVEL SE COMUNICAR COM O BANCO DE DADOS PARA SELECIONAR TODOS OS PARCEIROS  " );
 
                 return null;
             }
@@ -174,16 +173,16 @@ namespace LocadoraDeVeiculos.Infra.SQL.ParceiroModule
                 List<Parceiro> parceiro = Db.GetAll(sql, ConverterEmParceiro, AdicionarParametro("@SEGUNDAREF", pesquisa));
 
                 if (parceiro != null)
-                    logger.Debug("SUCESSO AO SELECIONAR PARCEIRO COM A PESQUISA: {Pesquisa} | DATA: {DataEHora}", pesquisa, DateTime.Now.ToString());
+                    logger.Debug("SUCESSO AO SELECIONAR PARCEIRO COM A PESQUISA: {Pesquisa}  ", pesquisa );
                 else
-                    logger.Information("NÃO FOI POSSÍVEL SELECIONAR PARCEIRO COM A PESQUISA: {Pesquisa} | DATA: {DataEHora}", pesquisa, DateTime.Now.ToString());
+                    logger.Information("NÃO FOI POSSÍVEL SELECIONAR PARCEIRO COM A PESQUISA: {Pesquisa}  ", pesquisa );
 
                 return parceiro;
 
             }
             catch (Exception ex)
             {
-                logger.Error("NÃO FOI POSSÍVEL SE COMUNICAR COM O BANCO DE DADOS PARA SELECIONAR PARCEIRO | DATA: {DataEHora} | FEATURE:{Feature} | CAMADA: {Camada} | SQL: {Query}", DateTime.Now.ToString(), this.ToString(), "Repository", ex.Message);
+                 logger.Error(ex , "NÃO FOI POSSÍVEL SE COMUNICAR COM O BANCO DE DADOS PARA SELECIONAR PARCEIRO  " );
 
                 return null;
             }

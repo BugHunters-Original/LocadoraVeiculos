@@ -99,11 +99,11 @@ namespace LocadoraDeVeiculos.Infra.SQL.ClienteCNPJModule
             {
                 registro.Id = Db.Insert(sqlInserirCliente, ObtemParametrosCliente(registro));
 
-                logger.Information("SUCESSO AO INSERIR CLIENTE CNPJ ID: {Id} | DATA: {DataEHora}", registro.Id, DateTime.Now.ToString());
+                logger.Information("SUCESSO AO INSERIR CLIENTE CNPJ ID: {Id}  ", registro.Id );
             }
             catch (Exception ex)
             {
-                logger.Error("ERRO AO INSERIR CLIENTE CNPJ ID: {Id} | DATA: {DataEHora} | FEATURE:{Feature} | CAMADA: {Camada} | SQL: {Query}", registro.Id, DateTime.Now.ToString(), this.ToString(), "Repository", ex.Message);
+                logger.Error(ex ,"ERRO AO INSERIR CLIENTE CNPJ ID: {Id}  ", registro.Id);
             }
         }
         public void Editar(int id, ClienteCNPJ registro)
@@ -113,11 +113,11 @@ namespace LocadoraDeVeiculos.Infra.SQL.ClienteCNPJModule
                 registro.Id = id;
                 Db.Update(sqlEditarCliente, ObtemParametrosCliente(registro));
 
-                logger.Information("SUCESSO AO EDITAR CLIENTE CNPJ ID: {Id} | DATA: {DataEHora}", registro.Id, DateTime.Now.ToString());
+                logger.Information("SUCESSO AO EDITAR CLIENTE CNPJ ID: {Id}  ", registro.Id );
             }
             catch (Exception ex)
             {
-                logger.Error("ERRO AO EDITAR CLIENTE CNPJ ID: {Id} | DATA: {DataEHora} | FEATURE:{Feature} | CAMADA: {Camada} | SQL: {Query}", registro.Id, DateTime.Now.ToString(), this.ToString(), "Repository", ex.Message);
+                logger.Error(ex, "ERRO AO EDITAR CLIENTE CNPJ ID: {Id}  ", registro.Id);
             }
         }
 
@@ -127,11 +127,11 @@ namespace LocadoraDeVeiculos.Infra.SQL.ClienteCNPJModule
             {
                 Db.Delete(sqlExcluirCliente, AdicionarParametro("ID", id));
 
-                logger.Information("SUCESSO AO REMOVER CLIENTE CNPJ ID: {Id} | DATA: {DataEHora}", id, DateTime.Now.ToString());
+                logger.Information("SUCESSO AO REMOVER CLIENTE CNPJ ID: {Id}  ", id );
             }
             catch (Exception ex)
             {
-                logger.Error("ERRO AO REMOVER CLIENTE CNPJ ID: {Id} | DATA: {DataEHora} | FEATURE:{Feature} | CAMADA: {Camada} | SQL: {Query}", id, DateTime.Now.ToString(), this.ToString(), "Repository", ex.Message);
+                logger.Error(ex, "ERRO AO REMOVER CLIENTE CNPJ ID: {Id}  ", id);
 
                 return false;
             }
@@ -150,15 +150,15 @@ namespace LocadoraDeVeiculos.Infra.SQL.ClienteCNPJModule
                 bool existe = Db.Exists(sqlExisteCNPJ, AdicionarParametro("CNPJ", cnpj));
 
                 if (existe)
-                    logger.Information("O CNPJ {Cnpj} JÁ EXISTE NO SISTEMA | DATA: {DataEHora}", cnpj, DateTime.Now.ToString());
+                    logger.Information("O CNPJ {Cnpj} JÁ EXISTE NO SISTEMA  ", cnpj );
                 else
-                    logger.Debug("O CNPJ {Cnpj} NÃO EXISTE NO SISTEMA| DATA: {DataEHora}", cnpj, DateTime.Now.ToString());
+                    logger.Debug("O CNPJ {Cnpj} NÃO EXISTE NO SISTEMA ", cnpj );
 
                 return existe;
             }
             catch (Exception ex)
             {
-                logger.Error("NÃO FOI POSSÍVEL SE COMUNICAR COM O BANCO DE DADOS PARA SELECIONAR O CNPJ {Cnpj} | DATA: {DataEHora} | FEATURE:{Feature} | CAMADA: {Camada} | SQL: {Query}", cnpj, DateTime.Now.ToString(), this.ToString(), "Repository", ex.Message);
+                logger.Error(ex, "NÃO FOI POSSÍVEL SE COMUNICAR COM O BANCO DE DADOS PARA SELECIONAR O CNPJ {Cnpj}  ", cnpj);
 
                 return true;
             }
@@ -171,15 +171,15 @@ namespace LocadoraDeVeiculos.Infra.SQL.ClienteCNPJModule
                 ClienteCNPJ clienteCNPJ = Db.Get(sqlSelecionarClientePorId, ConverterEmCliente, AdicionarParametro("ID", id));
 
                 if (clienteCNPJ != null)
-                    logger.Debug("SUCESSO AO SELECIONAR CLIENTE CNPJ ID: {Id} | DATA: {DataEHora}", clienteCNPJ.Id, DateTime.Now.ToString());
+                    logger.Debug("SUCESSO AO SELECIONAR CLIENTE CNPJ ID: {Id}  ", clienteCNPJ.Id );
                 else
-                    logger.Information("NÃO FOI POSSÍVEL SELECIONAR CLIENTE CNPJ ID: {Id} | DATA: {DataEHora}", clienteCNPJ.Id, DateTime.Now.ToString());
+                    logger.Information("NÃO FOI POSSÍVEL SELECIONAR CLIENTE CNPJ ID: {Id}  ", clienteCNPJ.Id );
 
                 return clienteCNPJ;
             }
             catch (Exception ex)
             {
-                logger.Error("NÃO FOI POSSÍVEL SE COMUNICAR COM O BANCO DE DADOS PARA SELECIONAR CLIENTE CNPJ ID: {Id} | DATA: {DataEHora} | FEATURE:{Feature} | CAMADA: {Camada} | SQL: {Query}", id, DateTime.Now.ToString(), this.ToString(), "Repository", ex.Message);
+                logger.Error(ex, "NÃO FOI POSSÍVEL SE COMUNICAR COM O BANCO DE DADOS PARA SELECIONAR CLIENTE CNPJ ID: {Id}  ", id );
 
                 return null;
             }
@@ -192,15 +192,15 @@ namespace LocadoraDeVeiculos.Infra.SQL.ClienteCNPJModule
                 List<ClienteCNPJ> clientesCNPJ = Db.GetAll(sqlSelecionarTodosClientes, ConverterEmCliente);
 
                 if (clientesCNPJ != null)
-                    logger.Debug("SUCESSO AO SELECIONAR TODOS OS CLIENTES CNPJ | DATA: {DataEHora}", DateTime.Now.ToString());
+                    logger.Debug("SUCESSO AO SELECIONAR TODOS OS CLIENTES CNPJ  " );
                 else
-                    logger.Information("NÃO FOI POSSÍVEL SELECIONAR TODOS OS CLIENTES CNPJ | DATA: {DataEHora}", DateTime.Now.ToString());
+                    logger.Information("NÃO FOI POSSÍVEL SELECIONAR TODOS OS CLIENTES CNPJ  " );
 
                 return clientesCNPJ;
             }
             catch (Exception ex)
             {
-                logger.Error("NÃO FOI POSSÍVEL SE COMUNICAR COM O BANCO DE DADOS PARA SELECIONAR TODOS OS CLIENTES CNPJ | DATA: {DataEHora} | FEATURE:{Feature} | CAMADA: {Camada} | SQL: {Query}", DateTime.Now.ToString(), this.ToString(), "Repository", ex.Message);
+                logger.Error(ex, "NÃO FOI POSSÍVEL SE COMUNICAR COM O BANCO DE DADOS PARA SELECIONAR TODOS OS CLIENTES CNPJ  " );
 
                 return null;
             }
