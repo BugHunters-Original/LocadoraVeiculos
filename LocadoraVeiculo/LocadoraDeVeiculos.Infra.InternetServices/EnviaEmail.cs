@@ -45,7 +45,7 @@ namespace LocadoraDeVeiculos.Infra.InternetServices
             }
             catch(Exception ex)
             {                
-                logger.Error("ERRO AO ENVIAR E-MAIL PARA {EmailCliente} | DATA: {DataEHora} | FEATURE: {Feature} | SQL: {Query}", locacao.Cliente.Email, DateTime.Now.ToString(), this.ToString(), ex.Message);
+                 logger.Error(ex , "ERRO AO ENVIAR E-MAIL PARA {EmailCliente} ");
                 return false;
             }
         }
