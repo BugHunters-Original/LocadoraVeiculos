@@ -100,11 +100,11 @@ namespace LocadoraDeVeiculos.Infra.SQL.TaxaServicoModule.TaxaDaLocacaoModule
             {
                 registro.Id = Db.Insert(sqlInserirTaxaLocacao, ObtemParametrosTaxaLocacao(registro));
 
-                logger.Information("SUCESSO AO INSERIR TAXA ID: {Id} | DATA: {DataEHora}", registro.Id, DateTime.Now.ToString());
+                logger.Information("SUCESSO AO INSERIR TAXA ID: {Id}  ", registro.Id );
             }
             catch (Exception ex)
             {
-                logger.Error("ERRO AO INSERIR TAXA ID: {Id} | DATA: {DataEHora} | FEATURE:{Feature} | CAMADA: {Camada} | SQL: {Query}", registro.Id, DateTime.Now.ToString(), this.ToString(), "Repository", ex.Message);
+                 logger.Error(ex , "ERRO AO INSERIR TAXA ID: {Id}  ", registro.Id );
             }
         }
 
@@ -115,11 +115,11 @@ namespace LocadoraDeVeiculos.Infra.SQL.TaxaServicoModule.TaxaDaLocacaoModule
                 registro.Id = id;
                 Db.Update(sqlEditarTaxaLocacao, ObtemParametrosTaxaLocacao(registro));
 
-                logger.Information("SUCESSO AO EDITAR TAXA ID: {Id} | DATA: {DataEHora}", registro.Id, DateTime.Now.ToString());
+                logger.Information("SUCESSO AO EDITAR TAXA ID: {Id}  ", registro.Id );
             }
             catch (Exception ex)
             {
-                logger.Error("ERRO AO EDITAR TAXA ID: {Id} | DATA: {DataEHora} | FEATURE:{Feature} | CAMADA: {Camada} | SQL: {Query}", registro.Id, DateTime.Now.ToString(), this.ToString(), "Repository", ex.Message);
+                 logger.Error(ex , "ERRO AO EDITAR TAXA ID: {Id}  ", registro.Id );
             }
         }
 
@@ -129,11 +129,11 @@ namespace LocadoraDeVeiculos.Infra.SQL.TaxaServicoModule.TaxaDaLocacaoModule
             {
                 Db.Delete(sqlExcluirTaxaLocacao, AdicionarParametro("ID_LOCACAO", id));
 
-                logger.Information("SUCESSO AO REMOVER TAXA ID: {Id} | DATA: {DataEHora}", id, DateTime.Now.ToString());
+                logger.Information("SUCESSO AO REMOVER TAXA ID: {Id}  ", id );
             }
             catch (Exception ex)
             {
-                logger.Error("ERRO AO REMOVER TAXA ID: {Id} | DATA: {DataEHora} | FEATURE:{Feature} | CAMADA: {Camada} | SQL: {Query}", id, DateTime.Now.ToString(), this.ToString(), "Repository", ex.Message);
+                 logger.Error(ex , "ERRO AO REMOVER TAXA ID: {Id}  ", id );
 
                 return false;
             }
@@ -153,16 +153,16 @@ namespace LocadoraDeVeiculos.Infra.SQL.TaxaServicoModule.TaxaDaLocacaoModule
                 TaxaDaLocacao taxa = Db.Get(sqlSelecionarTaxaLocacaoPorId, ConverterEmTaxaLocacao, AdicionarParametro("ID", id));
 
                 if (taxa != null)
-                    logger.Debug("SUCESSO AO SELECIONAR TAXA ID: {Id} | DATA: {DataEHora}", taxa.Id, DateTime.Now.ToString());
+                    logger.Debug("SUCESSO AO SELECIONAR TAXA ID: {Id}  ", taxa.Id );
                 else
-                    logger.Information("NÃO FOI POSSÍVEL SELECIONAR TAXA ID: {Id} | DATA: {DataEHora}", taxa.Id, DateTime.Now.ToString());
+                    logger.Information("NÃO FOI POSSÍVEL SELECIONAR TAXA ID: {Id}  ", taxa.Id );
 
                 return taxa;
 
             }
             catch (Exception ex)
             {
-                logger.Error("NÃO FOI POSSÍVEL SE COMUNICAR COM O BANCO DE DADOS PARA SELECIONAR TAXA ID: {Id} | DATA: {DataEHora} | FEATURE:{Feature} | CAMADA: {Camada} | SQL: {Query}", id, DateTime.Now.ToString(), this.ToString(), "Repository", ex.Message);
+                 logger.Error(ex , "NÃO FOI POSSÍVEL SE COMUNICAR COM O BANCO DE DADOS PARA SELECIONAR TAXA ID: {Id}  ", id );
 
                 return null;
             }
@@ -175,15 +175,15 @@ namespace LocadoraDeVeiculos.Infra.SQL.TaxaServicoModule.TaxaDaLocacaoModule
                 List<TaxaDaLocacao> taxa = Db.GetAll(sqlSelecionarTaxaLocacaoEspecifica, ConverterEmTaxaLocacao);
 
                 if (taxa != null)
-                    logger.Debug("SUCESSO AO SELECIONAR TODAS AS TAXAS | DATA: {DataEHora}", DateTime.Now.ToString());
+                    logger.Debug("SUCESSO AO SELECIONAR TODAS AS TAXAS  " );
                 else
-                    logger.Information("NÃO FOI POSSÍVEL SELECIONAR TODAS AS TAXAS | DATA: {DataEHora}", DateTime.Now.ToString());
+                    logger.Information("NÃO FOI POSSÍVEL SELECIONAR TODAS AS TAXAS  " );
 
                 return taxa;
             }
             catch (Exception ex)
             {
-                logger.Error("NÃO FOI POSSÍVEL SE COMUNICAR COM O BANCO DE DADOS PARA SELECIONAR TODAS AS TAXAS | DATA: {DataEHora} | FEATURE:{Feature} | CAMADA: {Camada} | SQL: {Query}", DateTime.Now.ToString(), this.ToString(), "Repository", ex.Message);
+                 logger.Error(ex , "NÃO FOI POSSÍVEL SE COMUNICAR COM O BANCO DE DADOS PARA SELECIONAR TODAS AS TAXAS " );
 
                 return null;
             }
@@ -196,15 +196,15 @@ namespace LocadoraDeVeiculos.Infra.SQL.TaxaServicoModule.TaxaDaLocacaoModule
                 List<TaxaDaLocacao> taxa = Db.GetAll(sqlSelecionarTaxaLocacaoPorId, ConverterEmTaxaLocacao, AdicionarParametro("ID_LOCACAOTAXA", id));
 
                 if (taxa != null)
-                    logger.Debug("SUCESSO AO SELECIONAR TODAS AS TAXAS DE UMA LOCAÇÃO | DATA: {DataEHora}", DateTime.Now.ToString());
+                    logger.Debug("SUCESSO AO SELECIONAR TODAS AS TAXAS DE UMA LOCAÇÃO  " );
                 else
-                    logger.Information("NÃO FOI POSSÍVEL SELECIONAR TODAS AS TAXAS DE UMA LOCAÇÃO | DATA: {DataEHora}", DateTime.Now.ToString());
+                    logger.Information("NÃO FOI POSSÍVEL SELECIONAR TODAS AS TAXAS DE UMA LOCAÇÃO  " );
 
                 return taxa;
             }
             catch (Exception ex)
             {
-                logger.Error("NÃO FOI POSSÍVEL SE COMUNICAR COM O BANCO DE DADOS PARA SELECIONAR TODAS AS TAXAS DE UMA LOCAÇÃO | DATA: {DataEHora} | FEATURE:{Feature} | CAMADA: {Camada} | SQL: {Query}", DateTime.Now.ToString(), this.ToString(), "Repository", ex.Message);
+                 logger.Error(ex , "NÃO FOI POSSÍVEL SE COMUNICAR COM O BANCO DE DADOS PARA SELECIONAR TODAS AS TAXAS DE UMA LOCAÇÃO  " );
 
                 return null;
             }

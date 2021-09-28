@@ -94,11 +94,11 @@ namespace LocadoraDeVeiculos.Infra.SQL.TaxaServicoModule.ServicoModule
             {
                 registro.Id = Db.Insert(sqlInserirServico, ObtemParametrosServico(registro));
 
-                logger.Information("SUCESSO AO INSERIR SERVIÇO ID: {Id} | DATA: {DataEHora}", registro.Id, DateTime.Now.ToString());
+                logger.Information("SUCESSO AO INSERIR SERVIÇO ID: {Id}  ", registro.Id );
             }
             catch (Exception ex)
             {
-                logger.Error("ERRO AO INSERIR SERVIÇO ID: {Id} | DATA: {DataEHora} | FEATURE:{Feature} | CAMADA: {Camada} | SQL: {Query}", registro.Id, DateTime.Now.ToString(), this.ToString(), "Repository", ex.Message);
+                 logger.Error(ex , "ERRO AO INSERIR SERVIÇO ID: {Id}  ", registro.Id );
             }
         }
 
@@ -109,11 +109,11 @@ namespace LocadoraDeVeiculos.Infra.SQL.TaxaServicoModule.ServicoModule
                 registro.Id = id;
                 Db.Update(sqlEditarServico, ObtemParametrosServico(registro));
 
-                logger.Information("SUCESSO AO EDITAR SERVIÇO ID: {Id} | DATA: {DataEHora}", registro.Id, DateTime.Now.ToString());
+                logger.Information("SUCESSO AO EDITAR SERVIÇO ID: {Id}  ", registro.Id );
             }
             catch (Exception ex)
             {
-                logger.Error("ERRO AO EDITAR SERVIÇO ID: {Id} | DATA: {DataEHora} | FEATURE:{Feature} | CAMADA: {Camada} | SQL: {Query}", registro.Id, DateTime.Now.ToString(), this.ToString(), "Repository", ex.Message);
+                 logger.Error(ex , "ERRO AO EDITAR SERVIÇO ID: {Id}  ", registro.Id );
             }
         }
 
@@ -123,11 +123,11 @@ namespace LocadoraDeVeiculos.Infra.SQL.TaxaServicoModule.ServicoModule
             {
                 Db.Delete(sqlExcluirServico, AdicionarParametro("ID", id));
 
-                logger.Information("SUCESSO AO REMOVER SERVIÇO ID: {Id} | DATA: {DataEHora}", id, DateTime.Now.ToString());
+                logger.Information("SUCESSO AO REMOVER SERVIÇO ID: {Id}  ", id );
             }
             catch (Exception ex)
             {
-                logger.Error("ERRO AO REMOVER SERVIÇO ID: {Id} | DATA: {DataEHora} | FEATURE:{Feature} | CAMADA: {Camada} | SQL: {Query}", id, DateTime.Now.ToString(), this.ToString(), "Repository", ex.Message);
+                 logger.Error(ex , "ERRO AO REMOVER SERVIÇO ID: {Id}  ", id );
 
                 return false;
             }
@@ -147,16 +147,16 @@ namespace LocadoraDeVeiculos.Infra.SQL.TaxaServicoModule.ServicoModule
                 Servico servico = Db.Get(sqlSelecionarServicoPorId, ConverterEmServico, AdicionarParametro("ID", id));
 
                 if (servico != null)
-                    logger.Debug("SUCESSO AO SELECIONAR SERVIÇO ID: {Id} | DATA: {DataEHora}", servico.Id, DateTime.Now.ToString());
+                    logger.Debug("SUCESSO AO SELECIONAR SERVIÇO ID: {Id}  ", servico.Id );
                 else
-                    logger.Information("NÃO FOI POSSÍVEL SELECIONAR SERVIÇO ID: {Id} | DATA: {DataEHora}", servico.Id, DateTime.Now.ToString());
+                    logger.Information("NÃO FOI POSSÍVEL SELECIONAR SERVIÇO ID: {Id}  ", servico.Id );
 
                 return servico;
 
             }
             catch (Exception ex)
             {
-                logger.Error("NÃO FOI POSSÍVEL SE COMUNICAR COM O BANCO DE DADOS PARA SELECIONAR SERVIÇO ID: {Id} | DATA: {DataEHora} | FEATURE:{Feature} | CAMADA: {Camada} | SQL: {Query}", id, DateTime.Now.ToString(), this.ToString(), "Repository", ex.Message);
+                 logger.Error(ex , "NÃO FOI POSSÍVEL SE COMUNICAR COM O BANCO DE DADOS PARA SELECIONAR SERVIÇO ID: {Id}  ", id );
 
                 return null;
             }
@@ -169,15 +169,15 @@ namespace LocadoraDeVeiculos.Infra.SQL.TaxaServicoModule.ServicoModule
                 List<Servico> servico = Db.GetAll(sqlSelecionarTodosServicos, ConverterEmServico);
 
                 if (servico != null)
-                    logger.Debug("SUCESSO AO SELECIONAR TODOS OS SERVIÇOS | DATA: {DataEHora}", DateTime.Now.ToString());
+                    logger.Debug("SUCESSO AO SELECIONAR TODOS OS SERVIÇOS  " );
                 else
-                    logger.Information("NÃO FOI POSSÍVEL SELECIONAR TODOS OS SERVIÇOS | DATA: {DataEHora}", DateTime.Now.ToString());
+                    logger.Information("NÃO FOI POSSÍVEL SELECIONAR TODOS OS SERVIÇOS  " );
 
                 return servico;
             }
             catch (Exception ex)
             {
-                logger.Error("NÃO FOI POSSÍVEL SE COMUNICAR COM O BANCO DE DADOS PARA SELECIONAR TODOS OS SERVIÇOS | DATA: {DataEHora} | FEATURE:{Feature} | CAMADA: {Camada} | SQL: {Query}", DateTime.Now.ToString(), this.ToString(), "Repository", ex.Message);
+                 logger.Error(ex , "NÃO FOI POSSÍVEL SE COMUNICAR COM O BANCO DE DADOS PARA SELECIONAR TODOS OS SERVIÇOS  " );
 
                 return null;
             }
@@ -202,16 +202,16 @@ namespace LocadoraDeVeiculos.Infra.SQL.TaxaServicoModule.ServicoModule
                 List<Servico> servico = Db.GetAll(sql, ConverterEmServico, AdicionarParametro("@SEGUNDAREF", pesquisa));
 
                 if (servico != null)
-                    logger.Debug("SUCESSO AO SELECIONAR SERVIÇO COM A PESQUISA: {Pesquisa} | DATA: {DataEHora}", pesquisa, DateTime.Now.ToString());
+                    logger.Debug("SUCESSO AO SELECIONAR SERVIÇO COM A PESQUISA: {Pesquisa}  ", pesquisa );
                 else
-                    logger.Information("NÃO FOI POSSÍVEL SELECIONAR SERVIÇO COM A PESQUISA: {Pesquisa} | DATA: {DataEHora}", pesquisa, DateTime.Now.ToString());
+                    logger.Information("NÃO FOI POSSÍVEL SELECIONAR SERVIÇO COM A PESQUISA: {Pesquisa}  ", pesquisa );
 
                 return servico;
 
             }
             catch (Exception ex)
             {
-                logger.Error("NÃO FOI POSSÍVEL SE COMUNICAR COM O BANCO DE DADOS PARA SELECIONAR SERVIÇO | DATA: {DataEHora} | FEATURE:{Feature} | CAMADA: {Camada} | SQL: {Query}", DateTime.Now.ToString(), this.ToString(), "Repository", ex.Message);
+                 logger.Error(ex , "NÃO FOI POSSÍVEL SE COMUNICAR COM O BANCO DE DADOS PARA SELECIONAR SERVIÇO  " );
 
                 return null;
             }
