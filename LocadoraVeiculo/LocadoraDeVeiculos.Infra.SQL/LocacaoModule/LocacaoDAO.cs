@@ -26,11 +26,6 @@ namespace LocadoraDeVeiculos.Infra.SQL.LocacaoModule
         private readonly TaxaDaLocacaoDAO taxaDaLocacaoDAO;
         private readonly Logger logger;
 
-        public LocacaoDAO(Logger log)
-        {
-            logger = log;
-        }
-
         #region Queries
         private const string sqlInserirLocacao =
             @"INSERT INTO TBLOCACAO
@@ -201,8 +196,9 @@ namespace LocadoraDeVeiculos.Infra.SQL.LocacaoModule
                     WHERE 
                         [CODIGO] = @CUPOM";
         #endregion
-        public LocacaoDAO()
+        public LocacaoDAO(Logger log)
         {
+            logger = log;
             descontoDAO = new(logger);
             clienteCPFDAO = new(logger);
             clienteCNPJDAO = new(logger);

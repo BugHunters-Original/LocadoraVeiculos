@@ -18,9 +18,9 @@ namespace LocadoraVeiculo.WindowsApp.Features.LocacaoFeature.Visualizacao
         private Locacao locacao;
         private readonly TaxaDaLocacaoDAO taxaDaLocacaoDAO;
 
-        public TelaDetalhesLocacaoEmAbertoForm()
+        public TelaDetalhesLocacaoEmAbertoForm(Logger logger)
         {
-            taxaDaLocacaoDAO = new TaxaDaLocacaoDAO(LogManager.IniciarLog());
+            taxaDaLocacaoDAO = new TaxaDaLocacaoDAO(logger);
             InitializeComponent();
             SetColor();
         }

@@ -2,12 +2,8 @@
 using System.Windows.Forms;
 
 namespace LocadoraVeiculo.WindowsApp.Shared
-{
-    public interface IAparenciaAlteravel
-    {
-        void AtualizarAparencia();
-    }
-    public interface ICadastravel
+{    
+    public interface ICadastravel 
     {
         void InserirNovoRegistro();
 
@@ -19,10 +15,9 @@ namespace LocadoraVeiculo.WindowsApp.Shared
 
         void FiltrarRegistros();
 
-        void DevolverVeiculo();
-
         void PesquisarRegistro(string combobox, string pesquisa);
 
         List<string> PreencheComboBoxDePesquisa();
+        void DevolverVeiculo();
     }
 }

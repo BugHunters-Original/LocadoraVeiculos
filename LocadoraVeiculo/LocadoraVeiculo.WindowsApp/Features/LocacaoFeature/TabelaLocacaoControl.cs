@@ -1,12 +1,8 @@
 ﻿using LocadoraDeVeiculos.Dominio.LocacaoModule;
-using LocadoraDeVeiculos.Infra.SQL.ClienteCNPJModule;
-using LocadoraDeVeiculos.Infra.SQL.ClienteCPFModule;
-using LocadoraDeVeiculos.Infra.SQL.DescontoModule;
 using LocadoraDeVeiculos.Infra.SQL.LocacaoModule;
-using LocadoraDeVeiculos.Infra.SQL.TaxaServicoModule.TaxaDaLocacaoModule;
-using LocadoraDeVeiculos.Infra.SQL.VeiculoModule;
 using LocadoraVeiculo.WindowsApp.Features.LocacaoFeature.Visualizacao;
 using LocadoraVeiculo.WindowsApp.Shared;
+using Serilog.Core;
 using System.Collections.Generic;
 using System.Windows.Forms;
 
@@ -15,10 +11,12 @@ namespace LocadoraVeiculo.WindowsApp.Features.LocacaoFeature
     public partial class TabelaLocacaoControl : UserControl, IAparenciaAlteravel
     {
 
-        LocacaoDAO locacaoDAO = new();
-
-        public TabelaLocacaoControl()
+        LocacaoDAO locacaoDAO;
+        Logger logger;
+        public TabelaLocacaoControl(Logger logger)
         {
+            this.logger = logger;
+            locacaoDAO = new(logger);
             InitializeComponent();
             ConfigurarGridLightMode();
             gridLocacao.ConfigurarGridSomenteLeitura();
@@ -78,17 +76,20 @@ namespace LocadoraVeiculo.WindowsApp.Features.LocacaoFeature
 
             Locacao locacaoSelecionada = locacaoDAO.SelecionarPorId(id);
 
-            dynamic tela;
-
-            if (locacaoSelecionada.StatusLocacao == "Em Aberto")
-                tela = new TelaDetalhesLocacaoEmAbertoForm();
-            else
-                tela = new TelaDetalhesLocacaoConcluidaForm();
+            dynamic tela = VerificarTipoDeTela(locacaoSelecionada);
 
             tela.Locacao = locacaoSelecionada;
 
             if (tela.ShowDialog() == DialogResult.OK)
                 TelaPrincipalForm.Instancia.AtualizarRodape($"Locação do veículo: [{tela.Locacao.Veiculo.Nome}] visualizada");
+        }
+
+        private dynamic VerificarTipoDeTela(Locacao locacaoSelecionada)
+        {
+            if (locacaoSelecionada.StatusLocacao == "Em Aberto")
+                return new TelaDetalhesLocacaoEmAbertoForm(logger);
+            else
+                return new TelaDetalhesLocacaoConcluidaForm(logger);
         }
 
         public void AtualizarAparencia()

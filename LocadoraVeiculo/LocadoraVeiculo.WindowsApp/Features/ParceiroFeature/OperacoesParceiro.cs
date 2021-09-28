@@ -89,10 +89,6 @@ namespace LocadoraVeiculo.WindowsApp.Features.ParceiroFeature
         {
             throw new NotImplementedException();
         }
-        public void DevolverVeiculo()
-        {
-            throw new NotImplementedException();
-        }
 
         public void PesquisarRegistro(string combobox, string pesquisa)
         {
@@ -118,6 +114,11 @@ namespace LocadoraVeiculo.WindowsApp.Features.ParceiroFeature
                 return false;
             }
             return true;
+        }
+
+        public void DevolverVeiculo()
+        {
+            throw new NotImplementedException();
         }
     }
 }

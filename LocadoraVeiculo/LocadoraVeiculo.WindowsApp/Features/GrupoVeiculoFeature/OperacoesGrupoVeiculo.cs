@@ -78,19 +78,19 @@ namespace LocadoraVeiculo.WindowsApp.Features.GrupoVeiculoFeature
                 "Exclusão de Grupo de Veiculos", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK)
             {
 
-                ResultadoOperacao resultado = grupoVeiculoService.ExcluirGrupoVeiculo(grupoVeiculoSelecionado);
+                //ResultadoOperacao resultado = grupoVeiculoService.ExcluirGrupoVeiculo(grupoVeiculoSelecionado);
 
-                if (resultado.sucesso)
-                {
-                    List<GrupoVeiculo> grupoVeiculos = grupoVeiculoService.SelecionarTodosGruposVeiculos();
-                    tabelaGrupoVeiculo.AtualizarRegistros(grupoVeiculos);
+                //if (resultado.sucesso)
+                //{
+                //    List<GrupoVeiculo> grupoVeiculos = grupoVeiculoService.SelecionarTodosGruposVeiculos();
+                //    tabelaGrupoVeiculo.AtualizarRegistros(grupoVeiculos);
 
-                    TelaPrincipalForm.Instancia.AtualizarRodape(resultado.mensagem);
-                }
-                else
-                {
-                    MessageBox.Show(resultado.mensagem, "Exclusão de Grupos de Veiculos", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
+                //    TelaPrincipalForm.Instancia.AtualizarRodape(resultado.mensagem);
+                //}
+                //else
+                //{
+                //    MessageBox.Show(resultado.mensagem, "Exclusão de Grupos de Veiculos", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                //}
             }
         }
 

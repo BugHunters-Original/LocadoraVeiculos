@@ -160,11 +160,6 @@ namespace LocadoraVeiculo.WindowsApp.Features.ClienteFeature
             return preencheLista;
         }
 
-        public void DevolverVeiculo()
-        {
-            throw new NotImplementedException();
-        }
-
         private static bool ConfirmaExclusao(ClienteBase clienteSelecionado)
         {
             return MessageBox.Show($"Tem certeza que deseja excluir o Cliente: [{clienteSelecionado}] ?",
@@ -230,6 +225,11 @@ namespace LocadoraVeiculo.WindowsApp.Features.ClienteFeature
         private bool RetornarExcluiuConformeTipo(int id, ClienteBase clienteSelecionado)
         {
             return clienteSelecionado is ClienteCPF ? CPFService.ExcluirClienteCPF(id) : CNPJService.ExcluirClienteCNPJ(id);
+        }
+
+        public void DevolverVeiculo()
+        {
+            throw new NotImplementedException();
         }
     }
 }

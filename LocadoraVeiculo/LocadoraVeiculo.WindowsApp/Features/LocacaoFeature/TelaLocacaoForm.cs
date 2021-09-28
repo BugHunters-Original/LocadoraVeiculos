@@ -34,13 +34,12 @@ namespace LocadoraVeiculo.WindowsApp.Features.LocacaoFeature
         private readonly LocacaoAppService locacaoService;
         private readonly TaxaDaLocacaoDAO taxaDaLocacaoDAO;
         readonly TelaAdicionarTaxasForm telaDasTaxas;
-        private readonly Logger logger;
         public List<Servico> Servicos { get; set; }
 
 
         public TelaLocacaoForm(ClienteCPFAppService cpfService, VeiculoAppService veiculoService,
                                ClienteCNPJAppService cnpjService, DescontoAppService descontoService,
-                               LocacaoAppService locacaoService)
+                               LocacaoAppService locacaoService, Logger logger)
         {
             this.cpfService = cpfService;
             this.cnpjService = cnpjService;
@@ -48,7 +47,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.LocacaoFeature
             this.descontoService = descontoService;
             this.locacaoService = locacaoService;
             taxaDaLocacaoDAO = new(logger);
-            telaDasTaxas = new TelaAdicionarTaxasForm();
+            telaDasTaxas = new TelaAdicionarTaxasForm(logger);
             InitializeComponent();
             PopularComboboxes();
             SetColor();
