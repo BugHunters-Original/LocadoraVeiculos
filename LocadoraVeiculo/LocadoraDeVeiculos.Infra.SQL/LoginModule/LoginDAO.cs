@@ -23,7 +23,7 @@ namespace LocadoraDeVeiculos.Infra.SQL.LoginModule
 
                 case "Senha Incorreta": logger.Information("TENTATIVA DE LOGIN | USUÁRIO {Usuario}", usuario ); break;
 
-                case "Usuário Inexistente": logger.Information("ERRO DE LOGIN | USUÁRIO INEXISTENTE", usuario ); break;
+                case "Usuário Inexistente": logger.Information("ERRO DE LOGIN | USUÁRIO INEXISTENTE"); break;
 
                 default: break;
             }
