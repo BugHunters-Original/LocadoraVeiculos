@@ -17,7 +17,6 @@ namespace LocadoraVeiculo.WindowsApp.Shared
 
         void PesquisarRegistro(string pesquisa);
 
-        List<string> PreencheComboBoxDePesquisa();
         void DevolverVeiculo();
     }
 }

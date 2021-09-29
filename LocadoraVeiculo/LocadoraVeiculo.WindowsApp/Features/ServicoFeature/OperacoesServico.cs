@@ -3,6 +3,7 @@ using LocadoraDeVeiculos.Dominio.ServicoModule;
 using LocadoraVeiculo.WindowsApp.Shared;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Windows.Forms;
 
 namespace LocadoraVeiculo.WindowsApp.Features.TaxaServicoFeature
@@ -99,19 +100,15 @@ namespace LocadoraVeiculo.WindowsApp.Features.TaxaServicoFeature
             return tabelaServico;
         }
 
-        public void PesquisarRegistro(string combobox, string pesquisa)
+        public void PesquisarRegistro(string pesquisa)
         {
-            List<Servico> servicos = servicoService.SelecionarPesquisa(combobox, pesquisa);
+            List<Servico> parceiros = servicoService.SelecionarTodosServicos();
 
-            tabelaServico.AtualizarRegistros(servicos);
-        }
+            var palavras = pesquisa.Split(' ');
 
-        public List<string> PreencheComboBoxDePesquisa()
-        {
-            List<string> preencheLista = new List<string>();
-            preencheLista.Add("NOME_TAXA");
+            List<Servico> filtrados = parceiros.Where(i => palavras.Any(p => i.ToString().IndexOf(p, StringComparison.OrdinalIgnoreCase) >= 0)).ToList();
 
-            return preencheLista;
+            tabelaServico.AtualizarRegistros(filtrados);
         }
 
         private bool VerificarIdSelecionado(int id, string acao, string onde)

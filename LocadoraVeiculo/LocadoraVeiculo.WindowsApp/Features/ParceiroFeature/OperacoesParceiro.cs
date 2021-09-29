@@ -102,14 +102,6 @@ namespace LocadoraVeiculo.WindowsApp.Features.ParceiroFeature
             tabelaParceiro.AtualizarRegistros(filtrados);
         }
 
-        public List<string> PreencheComboBoxDePesquisa()
-        {
-            List<string> preencheLista = new List<string>();
-
-            preencheLista.Add("NOME_PARCEIRO");
-
-            return preencheLista;
-        }
         private bool VerificarIdSelecionado(int id, string acao, string onde)
         {
             if (id == 0)

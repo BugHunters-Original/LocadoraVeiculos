@@ -160,28 +160,6 @@ namespace LocadoraDeVeiculos.Infra.SQL.ParceiroModule
                 return null;
             }
         }
-        public List<Parceiro> SelecionarPesquisa(string coluna, string pesquisa)
-        {
-            try
-            {
-                string sql = sqlSelecionarParceiro.Replace("COLUNADEPESQUISA", coluna);
-                List<Parceiro> parceiro = Db.GetAll(sql, ConverterEmParceiro, AdicionarParametro("@SEGUNDAREF", pesquisa));
-
-                if (parceiro != null)
-                    Log.Logger.Debug("SUCESSO AO SELECIONAR PARCEIRO COM A PESQUISA: {Pesquisa}  ", pesquisa );
-                else
-                    Log.Logger.Information("NÃO FOI POSSÍVEL SELECIONAR PARCEIRO COM A PESQUISA: {Pesquisa}  ", pesquisa );
-
-                return parceiro;
-
-            }
-            catch (Exception ex)
-            {
-                 Log.Logger.Error(ex , "NÃO FOI POSSÍVEL SE COMUNICAR COM O BANCO DE DADOS PARA SELECIONAR PARCEIRO  " );
-
-                return null;
-            }
-        }
 
         private Parceiro ConverterEmParceiro(IDataReader reader)
         {
