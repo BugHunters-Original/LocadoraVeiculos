@@ -190,29 +190,6 @@ namespace LocadoraDeVeiculos.Infra.SQL.TaxaServicoModule.ServicoModule
             return parametros;
         }
 
-        public List<Servico> SelecionarPesquisa(string coluna, string pesquisa)
-        {
-            try
-            {
-                string sql = sqlSelecionarTaxaServico.Replace("COLUNADEPESQUISA", coluna);
-                List<Servico> servico = Db.GetAll(sql, ConverterEmServico, AdicionarParametro("@SEGUNDAREF", pesquisa));
-
-                if (servico != null)
-                    Log.Logger.Aqui().Debug("SUCESSO AO SELECIONAR SERVIÇO COM A PESQUISA: {Pesquisa}  ", pesquisa);
-                else
-                    Log.Logger.Aqui().Information("NÃO FOI POSSÍVEL SELECIONAR SERVIÇO COM A PESQUISA: {Pesquisa}  ", pesquisa);
-
-                return servico;
-
-            }
-            catch (Exception ex)
-            {
-                Log.Logger.Aqui().Error(ex, "NÃO FOI POSSÍVEL SE COMUNICAR COM O BANCO DE DADOS PARA SELECIONAR SERVIÇO  ");
-
-                return null;
-            }
-        }
-
         private Servico ConverterEmServico(IDataReader reader)
         {
             int id = Convert.ToInt32(reader["ID"]);

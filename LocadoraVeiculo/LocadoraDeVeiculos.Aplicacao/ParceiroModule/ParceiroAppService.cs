@@ -77,20 +77,6 @@ namespace LocadoraDeVeiculos.Aplicacao.ParceiroModule
             return excluiu;
         }
 
-        public List<Parceiro> SelecionarPesquisa(string comboBox, string pesquisa)
-        {
-            Log.Logger.Aqui().Debug("SELECIONADO PARCEIROS DE ACORDO COM A PESQUISA {Pesquisa}", pesquisa);
-
-            List<Parceiro> parceiros = parceiroRepository.SelecionarPesquisa(comboBox, pesquisa);
-
-            if (parceiros.Count == 0)
-                Log.Logger.Aqui().Information("NÃO HÁ PARCEIROS CADASTRADOS DE ACORDO COM A PESQUISA {Pesquisa}", pesquisa);
-            else
-                Log.Logger.Aqui().Debug("A SELEÇÃO TROUXE {Quantidade} PARCEIRO(S) EXISTENTE(S) DE ACORDO COM A PESQUISA {Pesquisa}", parceiros.Count, pesquisa);
-
-            return parceiros;
-        }
-
         public Parceiro SelecionarPorId(int id)
         {
             Log.Logger.Aqui().Debug("SELECIONANDO O PARCEIRO ID: {Id}", id);

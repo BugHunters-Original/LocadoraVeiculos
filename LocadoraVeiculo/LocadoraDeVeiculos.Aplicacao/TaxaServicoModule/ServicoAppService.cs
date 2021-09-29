@@ -77,20 +77,6 @@ namespace LocadoraDeVeiculos.Aplicacao.ServicoModule
             return excluiu;
         }
 
-        public List<Servico> SelecionarPesquisa(string comboBox, string pesquisa)
-        {
-            Log.Logger.Aqui().Debug("SELECIONADO SERVIÇO DE ACORDO COM A PESQUISA {Pesquisa}", pesquisa);
-
-            List<Servico> servicos = taxaServicoRepository.SelecionarPesquisa(comboBox, pesquisa);
-
-            if (servicos.Count == 0)
-                Log.Logger.Aqui().Information("NÃO HÁ SERVIÇOS CADASTRADOS DE ACORDO COM A PESQUISA {Pesquisa}", pesquisa);
-            else
-                Log.Logger.Aqui().Debug("A SELEÇÃO TROUXE {Quantidade} SERVIÇO(S) EXISTENTE(S) DE ACORDO COM A PESQUISA {Pesquisa}", servicos.Count, pesquisa);
-
-            return servicos;
-        }
-
         public Servico SelecionarPorId(int id)
         {
             Log.Logger.Aqui().Debug("SELECIONANDO O SERVIÇO ID: {Id}", id);
