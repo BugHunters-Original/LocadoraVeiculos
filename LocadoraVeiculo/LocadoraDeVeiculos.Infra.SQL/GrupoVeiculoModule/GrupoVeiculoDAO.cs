@@ -122,28 +122,7 @@ namespace LocadoraDeVeiculos.Infra.SQL.GrupoVeiculoModule
             return true;
         }
 
-        public List<GrupoVeiculo> SelecionarPesquisa(string coluna, string pesquisa)
-        {
-            try
-            {
-                string sql = sqlSelecionarGrupoVeiculoPesquisa.Replace("COLUNADEPESQUISA", coluna);
-                List<GrupoVeiculo> grupoVeiculo = Db.GetAll(sql, ConverterEmGrupoVeiculo, AdicionarParametro("@SEGUNDAREF", pesquisa));
-
-                if (grupoVeiculo != null)
-                    Log.Logger.Debug("SUCESSO AO SELECIONAR GRUPO DE VEÍCULO COM A PESQUISA: {Pesquisa}  ", pesquisa );
-                else
-                    Log.Logger.Information("NÃO FOI POSSÍVEL SELECIONAR GRUPO DE VEÍCULO COM A PESQUISA: {Pesquisa}  ", pesquisa );
-
-                return grupoVeiculo;
-
-            }
-            catch (Exception ex)
-            {
-                 Log.Logger.Error(ex , "NÃO FOI POSSÍVEL SE COMUNICAR COM O BANCO DE DADOS PARA SELECIONAR GRUPO DE VEÍCULO  " );
-
-                return null;
-            }
-        }
+        
 
         public bool Existe(int id)
         {

@@ -336,29 +336,7 @@ namespace LocadoraDeVeiculos.Infra.SQL.VeiculoModule
             }
         }
 
-        public List<Veiculo> SelecionarPesquisa(string coluna, string pesquisa)
-        {
-            try
-            {
-                string sql = sqlSelecionarVeiculoPesquisa.Replace("COLUNADEPESQUISA", coluna);
-                List<Veiculo> veiculos = Db.GetAll(sql, ConverterEmVeiculo, AdicionarParametro("@SEGUNDAREF", pesquisa));
-
-                if (veiculos != null)
-                    Log.Logger.Debug("SUCESSO AO SELECIONAR VEÍCULO COM A PESQUISA: {Pesquisa}  ", pesquisa );
-                else
-                    Log.Logger.Information("NÃO FOI POSSÍVEL SELECIONAR VEÍCULO COM A PESQUISA: {Pesquisa}  ", pesquisa );
-
-
-                return veiculos;
-            }
-
-            catch(Exception ex) {
-
-                 Log.Logger.Error(ex , "NÃO FOI POSSÍVEL SE COMUNICAR COM O BANCO DE DADOS PARA SELECIONAR VEÍCULO  " );
-
-                return null;
-            }
-        }
+       
 
         public void EditarDisponibilidade(Veiculo atual, Veiculo antigo)
         {

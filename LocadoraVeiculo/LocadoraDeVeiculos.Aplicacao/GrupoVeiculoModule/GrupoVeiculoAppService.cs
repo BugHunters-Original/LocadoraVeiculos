@@ -68,20 +68,7 @@ namespace LocadoraDeVeiculos.Aplicacao.GrupoVeiculoModule
 
         }
 
-        public List<GrupoVeiculo> SelecionarPesquisa(string comboBox, string pesquisa)
-        {
-            Log.Logger.Aqui().Debug("SELECIONADO GRUPOS DE VEÍCULOS DE ACORDO COM A PESQUISA {Pesquisa} | {DataEHora}", pesquisa, DateTime.Now.ToString());
-
-            List<GrupoVeiculo> grupos = grupoVeiculoRepository.SelecionarPesquisa(comboBox, pesquisa);
-
-            if (grupos.Count == 0)
-                Log.Logger.Aqui().Information("NÃO HÁ GRUPOS DE VEÍCULOS CADASTRADOS DE ACORDO COM A PESQUISA {Pesquisa} | {DataEHora}", pesquisa, DateTime.Now.ToString());
-            else
-                Log.Logger.Aqui().Debug("A SELEÇÃO TROUXE {Quantidade} GRUPO(S) DE VEÍCULO(S) EXISTENTE(S) DE ACORDO COM A PESQUISA {Pesquisa} | {DataEHora}", grupos.Count, pesquisa, DateTime.Now.ToString());
-
-            return grupos;
-
-        }
+       
 
         public GrupoVeiculo SelecionarPorId(int id)
         {
