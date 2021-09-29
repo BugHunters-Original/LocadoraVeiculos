@@ -3,6 +3,7 @@ using LocadoraDeVeiculos.Dominio.GrupoVeiculoModule;
 using LocadoraVeiculo.WindowsApp.Shared;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Windows.Forms;
 
 namespace LocadoraVeiculo.WindowsApp.Features.GrupoVeiculoFeature
@@ -106,20 +107,19 @@ namespace LocadoraVeiculo.WindowsApp.Features.GrupoVeiculoFeature
             return tabelaGrupoVeiculo;
         }
 
-        public void PesquisarRegistro(string combobox, string pesquisa)
+        public void PesquisarRegistro(string pesquisa)
         {
-            List<GrupoVeiculo> grupoVeiculos = grupoVeiculoService.SelecionarPesquisa(combobox, pesquisa);
+            List<GrupoVeiculo> gruposVeiculos = grupoVeiculoService.SelecionarTodosGruposVeiculos();
 
-            tabelaGrupoVeiculo.AtualizarRegistros(grupoVeiculos);
+            var palavras = pesquisa.Split(' ');
+
+            List<GrupoVeiculo> filtrados = gruposVeiculos.Where(i => palavras.Any(p => i.ToString().IndexOf(p, StringComparison.OrdinalIgnoreCase) >= 0)).ToList();
+
+            tabelaGrupoVeiculo.AtualizarRegistros(filtrados);
         }
+       
 
-        public List<string> PreencheComboBoxDePesquisa()
-        {
-            List<string> preencheLista = new List<string>();
-            preencheLista.Add("NOMETIPO");
-
-            return preencheLista;
-        }
+        
         private bool VerificarIdSelecionado(int id, string acao, string onde)
         {
             if (id == 0)
