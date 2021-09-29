@@ -1,20 +1,16 @@
 ﻿using FluentAssertions;
 using LocadoraDeVeiculos.Aplicacao.DescontoModule;
 using LocadoraDeVeiculos.Dominio.DescontoModule;
-using LocadoraDeVeiculos.Infra.Log;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
-using Serilog.Core;
 
 namespace LocadoraDeVeiculos.AppServiceTests.DescontoModule
 {
     [TestClass]
     public class DescontoMock
     {
-        Logger logger;
         public DescontoMock()
         {
-            logger = LogManager.IniciarLog();
         }
         [TestMethod]
         public void Deve_chamar_inserir()
@@ -25,7 +21,7 @@ namespace LocadoraDeVeiculos.AppServiceTests.DescontoModule
 
             desconto.Setup(x => x.Validar()).Returns("ESTA_VALIDO");
 
-            DescontoAppService descontoService = new(descontoMock.Object, logger);
+            DescontoAppService descontoService = new(descontoMock.Object);
 
             descontoService.RegistrarNovoDesconto(desconto.Object);
 
@@ -41,7 +37,7 @@ namespace LocadoraDeVeiculos.AppServiceTests.DescontoModule
 
             descontoMock.Setup(x => x.VerificarCodigoExistente("123456789123456789")).Returns(true);
 
-            DescontoAppService descontoService = new(descontoMock.Object, logger);
+            DescontoAppService descontoService = new(descontoMock.Object);
 
             var inseriu = descontoService.RegistrarNovoDesconto(desconto.Object);
 
@@ -55,7 +51,7 @@ namespace LocadoraDeVeiculos.AppServiceTests.DescontoModule
 
             Mock<IDescontoRepository> descontoMock = new();
 
-            DescontoAppService descontoService = new(descontoMock.Object, logger);
+            DescontoAppService descontoService = new(descontoMock.Object);
 
             desconto.Setup(x => x.Validar()).Returns("ESTA_VALIDO");
 
@@ -73,7 +69,7 @@ namespace LocadoraDeVeiculos.AppServiceTests.DescontoModule
 
             descontoMock.Setup(x => x.VerificarCodigoExistente("123456789123456789")).Returns(true);
 
-            DescontoAppService descontoService = new(descontoMock.Object, logger);
+            DescontoAppService descontoService = new(descontoMock.Object);
 
             var editou = descontoService.EditarDesconto(desconto.Object.Id, desconto.Object);
 

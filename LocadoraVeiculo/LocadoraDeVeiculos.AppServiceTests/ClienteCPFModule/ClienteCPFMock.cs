@@ -4,18 +4,14 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using FluentAssertions;
 using System;
 using Moq;
-using Serilog.Core;
-using LocadoraDeVeiculos.Infra.Log;
 
 namespace LocadoraDeVeiculos.AppServiceTests.ClienteCPFModule
 {
     [TestClass]
     public class ClienteCPFMock
     {
-        Logger logger;
         public ClienteCPFMock()
         {
-            logger = LogManager.IniciarLog();
         }
         [TestMethod]
         public void Deve_chamar_inserir()
@@ -25,7 +21,7 @@ namespace LocadoraDeVeiculos.AppServiceTests.ClienteCPFModule
 
             Mock<IClienteCPFRepository> clienteMock = new();
 
-            ClienteCPFAppService clienteCPFService = new(clienteMock.Object, logger);
+            ClienteCPFAppService clienteCPFService = new(clienteMock.Object);
 
             clienteCPFService.RegistrarNovoClienteCPF(cliente);
 
@@ -42,7 +38,7 @@ namespace LocadoraDeVeiculos.AppServiceTests.ClienteCPFModule
 
             clienteMock.Setup(x => x.ExisteCPF("011.900.119.56")).Returns(true);
 
-            ClienteCPFAppService clienteCPFService = new(clienteMock.Object, logger);
+            ClienteCPFAppService clienteCPFService = new(clienteMock.Object);
 
             var inseriu = clienteCPFService.RegistrarNovoClienteCPF(cliente);
 
@@ -60,7 +56,7 @@ namespace LocadoraDeVeiculos.AppServiceTests.ClienteCPFModule
 
             Mock<IClienteCPFRepository> clienteMock = new();
 
-            ClienteCPFAppService clienteCPFService = new(clienteMock.Object, logger);
+            ClienteCPFAppService clienteCPFService = new(clienteMock.Object);
 
             clienteCPFService.EditarClienteCPF(cliente.Id, cliente);
 
@@ -77,7 +73,7 @@ namespace LocadoraDeVeiculos.AppServiceTests.ClienteCPFModule
 
             clienteMock.Setup(x => x.ExisteCPF("011.900.119.56")).Returns(true);
 
-            ClienteCPFAppService clienteCPFService = new(clienteMock.Object, logger);
+            ClienteCPFAppService clienteCPFService = new(clienteMock.Object);
 
             var editou = clienteCPFService.EditarClienteCPF(cliente.Id, cliente);
 

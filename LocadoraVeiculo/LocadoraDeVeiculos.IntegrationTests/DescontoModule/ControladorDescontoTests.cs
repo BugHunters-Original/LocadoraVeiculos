@@ -1,7 +1,6 @@
 ﻿using FluentAssertions;
 using LocadoraDeVeiculos.Dominio.DescontoModule;
 using LocadoraDeVeiculos.Dominio.ParceiroModule;
-using LocadoraDeVeiculos.Infra.Log;
 using LocadoraDeVeiculos.Infra.Shared;
 using LocadoraDeVeiculos.Infra.SQL.DescontoModule;
 using LocadoraDeVeiculos.Infra.SQL.ParceiroModule;
@@ -23,8 +22,7 @@ namespace LocadoraDeVeiculos.Test.DescontoModule
 
         public ControladorDescontoTest()
         {
-            logger = LogManager.IniciarLog();
-            descontoDAO = new DescontoDAO(logger);
+            descontoDAO = new DescontoDAO();
             parceiroDAO = new ParceiroDAO();
             LimparBancos();
 
