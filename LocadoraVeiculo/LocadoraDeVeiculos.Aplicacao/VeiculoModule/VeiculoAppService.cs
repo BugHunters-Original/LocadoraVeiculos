@@ -102,20 +102,7 @@ namespace LocadoraDeVeiculos.Aplicacao.VeiculoModule
              
         }
 
-        public List<Veiculo> SelecionarPesquisa(string comboBox, string pesquisa)
-        {
-            Log.Logger.Aqui().Debug("SELECIONADO VEÍCULOS DE ACORDO COM A PESQUISA {Pesquisa}", pesquisa);
-
-            List<Veiculo> veiculos = veiculoRepository.SelecionarPesquisa(comboBox, pesquisa);
-
-
-            if (veiculos.Count == 0)
-                Log.Logger.Aqui().Information("NÃO HÁ VEÍCULOS CADASTRADOS DE ACORDO COM A PESQUISA {Pesquisa}", pesquisa);
-            else
-                Log.Logger.Aqui().Debug("A SELEÇÃO TROUXE {Quantidade} VEÍCULO(S) EXISTENTE(S) DE ACORDO COM A PESQUISA {Pesquisa}", veiculos.Count, pesquisa);
-
-            return veiculos;           
-        }
+       
 
         public void EditarDisponibilidadeVeiculo(Veiculo atual, Veiculo antigo)
         {
