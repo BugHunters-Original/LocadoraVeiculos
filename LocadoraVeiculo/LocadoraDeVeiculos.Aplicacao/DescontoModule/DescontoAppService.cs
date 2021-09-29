@@ -133,20 +133,5 @@ namespace LocadoraDeVeiculos.Aplicacao.DescontoModule
 
             return desconto;
         }
-
-        public List<Desconto> SelecionarPesquisa(string comboBox, string pesquisa)
-        {
-            Log.Logger.Aqui().Debug("SELECIONADO CUPONS DE DESCONTOS DE ACORDO COM A PESQUISA {Pesquisa}", pesquisa);
-
-            List<Desconto> descontos = descontoRepository.SelecionarPesquisa(comboBox, pesquisa);
-
-
-            if (descontos.Count == 0)
-                Log.Logger.Aqui().Information("NÃO HÁ CUPONS DE DESCONTOS CADASTRADOS DE ACORDO COM A PESQUISA {Pesquisa}", pesquisa);
-            else
-                Log.Logger.Aqui().Debug("A SELEÇÃO TROUXE {Quantidade} CUPOM(NS) DE DESCONTO(S) EXISTENTE(S) DE ACORDO COM A PESQUISA {Pesquisa}", descontos.Count, pesquisa);
-
-            return descontos;
-        }
     }
 }
