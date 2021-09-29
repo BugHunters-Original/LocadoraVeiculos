@@ -102,15 +102,6 @@ namespace LocadoraVeiculo.WindowsApp.Features.FuncionarioFeature
             return tabelaFuncionarios;
         }
 
-        public List<string> PreencheComboBoxDePesquisa()
-        {
-            List<string> preencheLista = new List<string>();
-            preencheLista.Add("NOME");
-            preencheLista.Add("USUARIO");
-            preencheLista.Add("CPF");
-
-            return preencheLista;
-        }
         private bool VerificarIdSelecionado(int id, string acao, string onde)
         {
             if (id == 0)

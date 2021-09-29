@@ -135,15 +135,6 @@ namespace LocadoraVeiculo.WindowsApp.Features.DescontoFeature
             return tabelaDesconto;
         }
 
-        public List<string> PreencheComboBoxDePesquisa()
-        {
-            List<string> preencheLista = new List<string>();
-            preencheLista.Add("CODIGO");
-            preencheLista.Add("MEIO");
-            preencheLista.Add("NOMECUPOM");
-
-            return preencheLista;
-        }
         private bool VerificarIdSelecionado(int id, string acao, string onde)
         {
             if (id == 0)
