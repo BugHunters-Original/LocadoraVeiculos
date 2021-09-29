@@ -1,8 +1,6 @@
-﻿using LocadoraDeVeiculos.Infra.ExtensionMethods;
-using LocadoraDeVeiculos.Infra.LogManager;
+﻿using LocadoraDeVeiculos.Infra.LogManager;
 using LocadoraDeVeiculos.Infra.SQL.LoginModule;
 using LocadoraVeiculo.WindowsApp.Features.DarkModeFeature;
-using Serilog.Core;
 using System;
 using System.Drawing;
 using System.Threading;
@@ -58,7 +56,6 @@ namespace LocadoraVeiculo.WindowsApp.Features.LoginFeature
                 labelFooter.Text = resultValidacao;
                 Footer.BackColor = (resultValidacao == "Senha Incorreta") ? Color.Gold : Color.Red;
             }
-
         }
 
         private void ChamarTelaPrincipal(object obj)
