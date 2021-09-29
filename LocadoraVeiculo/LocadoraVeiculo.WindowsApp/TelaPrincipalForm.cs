@@ -254,7 +254,7 @@ namespace LocadoraVeiculo.WindowsApp
         {
             DarkMode.TrocarModo();
 
-            Log.Logger.Aqui().Information("Troca de modo de exibição");
+            Log.Logger.Information("Troca de modo de exibição");
 
             SetColor();
 

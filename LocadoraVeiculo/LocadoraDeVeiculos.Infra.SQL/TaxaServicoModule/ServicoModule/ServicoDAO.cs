@@ -90,11 +90,11 @@ namespace LocadoraDeVeiculos.Infra.SQL.TaxaServicoModule.ServicoModule
             {
                 registro.Id = Db.Insert(sqlInserirServico, ObtemParametrosServico(registro));
 
-                Log.Logger.Aqui().Information("SUCESSO AO INSERIR SERVIÇO ID: {Id}  ", registro.Id);
+                Log.Logger.Information("SUCESSO AO INSERIR SERVIÇO ID: {Id}  ", registro.Id);
             }
             catch (Exception ex)
             {
-                Log.Logger.Aqui().Error(ex, "ERRO AO INSERIR SERVIÇO ID: {Id}  ", registro.Id);
+                Log.Logger.Error(ex, "ERRO AO INSERIR SERVIÇO ID: {Id}  ", registro.Id);
             }
         }
 
@@ -105,11 +105,11 @@ namespace LocadoraDeVeiculos.Infra.SQL.TaxaServicoModule.ServicoModule
                 registro.Id = id;
                 Db.Update(sqlEditarServico, ObtemParametrosServico(registro));
 
-                Log.Logger.Aqui().Information("SUCESSO AO EDITAR SERVIÇO ID: {Id}  ", registro.Id);
+                Log.Logger.Information("SUCESSO AO EDITAR SERVIÇO ID: {Id}  ", registro.Id);
             }
             catch (Exception ex)
             {
-                Log.Logger.Aqui().Error(ex, "ERRO AO EDITAR SERVIÇO ID: {Id}  ", registro.Id);
+                Log.Logger.Error(ex, "ERRO AO EDITAR SERVIÇO ID: {Id}  ", registro.Id);
             }
         }
 
@@ -119,11 +119,11 @@ namespace LocadoraDeVeiculos.Infra.SQL.TaxaServicoModule.ServicoModule
             {
                 Db.Delete(sqlExcluirServico, AdicionarParametro("ID", id));
 
-                Log.Logger.Aqui().Information("SUCESSO AO REMOVER SERVIÇO ID: {Id}  ", id);
+                Log.Logger.Information("SUCESSO AO REMOVER SERVIÇO ID: {Id}  ", id);
             }
             catch (Exception ex)
             {
-                Log.Logger.Aqui().Error(ex, "ERRO AO REMOVER SERVIÇO ID: {Id}  ", id);
+                Log.Logger.Error(ex, "ERRO AO REMOVER SERVIÇO ID: {Id}  ", id);
 
                 return false;
             }
@@ -143,16 +143,16 @@ namespace LocadoraDeVeiculos.Infra.SQL.TaxaServicoModule.ServicoModule
                 Servico servico = Db.Get(sqlSelecionarServicoPorId, ConverterEmServico, AdicionarParametro("ID", id));
 
                 if (servico != null)
-                    Log.Logger.Aqui().Debug("SUCESSO AO SELECIONAR SERVIÇO ID: {Id}  ", servico.Id);
+                    Log.Logger.Debug("SUCESSO AO SELECIONAR SERVIÇO ID: {Id}  ", servico.Id);
                 else
-                    Log.Logger.Aqui().Information("NÃO FOI POSSÍVEL SELECIONAR SERVIÇO ID: {Id}  ", servico.Id);
+                    Log.Logger.Information("NÃO FOI POSSÍVEL SELECIONAR SERVIÇO ID: {Id}  ", servico.Id);
 
                 return servico;
 
             }
             catch (Exception ex)
             {
-                Log.Logger.Aqui().Error(ex, "NÃO FOI POSSÍVEL SE COMUNICAR COM O BANCO DE DADOS PARA SELECIONAR SERVIÇO ID: {Id}  ", id);
+                Log.Logger.Error(ex, "NÃO FOI POSSÍVEL SE COMUNICAR COM O BANCO DE DADOS PARA SELECIONAR SERVIÇO ID: {Id}  ", id);
 
                 return null;
             }
@@ -165,15 +165,15 @@ namespace LocadoraDeVeiculos.Infra.SQL.TaxaServicoModule.ServicoModule
                 List<Servico> servico = Db.GetAll(sqlSelecionarTodosServicos, ConverterEmServico);
 
                 if (servico != null)
-                    Log.Logger.Aqui().Debug("SUCESSO AO SELECIONAR TODOS OS SERVIÇOS  ");
+                    Log.Logger.Debug("SUCESSO AO SELECIONAR TODOS OS SERVIÇOS  ");
                 else
-                    Log.Logger.Aqui().Information("NÃO FOI POSSÍVEL SELECIONAR TODOS OS SERVIÇOS  ");
+                    Log.Logger.Information("NÃO FOI POSSÍVEL SELECIONAR TODOS OS SERVIÇOS  ");
 
                 return servico;
             }
             catch (Exception ex)
             {
-                Log.Logger.Aqui().Error(ex, "NÃO FOI POSSÍVEL SE COMUNICAR COM O BANCO DE DADOS PARA SELECIONAR TODOS OS SERVIÇOS  ");
+                Log.Logger.Error(ex, "NÃO FOI POSSÍVEL SE COMUNICAR COM O BANCO DE DADOS PARA SELECIONAR TODOS OS SERVIÇOS  ");
 
                 return null;
             }
@@ -198,16 +198,16 @@ namespace LocadoraDeVeiculos.Infra.SQL.TaxaServicoModule.ServicoModule
                 List<Servico> servico = Db.GetAll(sql, ConverterEmServico, AdicionarParametro("@SEGUNDAREF", pesquisa));
 
                 if (servico != null)
-                    Log.Logger.Aqui().Debug("SUCESSO AO SELECIONAR SERVIÇO COM A PESQUISA: {Pesquisa}  ", pesquisa);
+                    Log.Logger.Debug("SUCESSO AO SELECIONAR SERVIÇO COM A PESQUISA: {Pesquisa}  ", pesquisa);
                 else
-                    Log.Logger.Aqui().Information("NÃO FOI POSSÍVEL SELECIONAR SERVIÇO COM A PESQUISA: {Pesquisa}  ", pesquisa);
+                    Log.Logger.Information("NÃO FOI POSSÍVEL SELECIONAR SERVIÇO COM A PESQUISA: {Pesquisa}  ", pesquisa);
 
                 return servico;
 
             }
             catch (Exception ex)
             {
-                Log.Logger.Aqui().Error(ex, "NÃO FOI POSSÍVEL SE COMUNICAR COM O BANCO DE DADOS PARA SELECIONAR SERVIÇO  ");
+                Log.Logger.Error(ex, "NÃO FOI POSSÍVEL SE COMUNICAR COM O BANCO DE DADOS PARA SELECIONAR SERVIÇO  ");
 
                 return null;
             }

@@ -68,7 +68,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.LoginFeature
 
         private void btnModo_Click_1(object sender, EventArgs e)
         {
-            Log.Logger.Aqui().Information("Troca de modo de exibição");
+            Log.Logger.Information("Troca de modo de exibição");
             DarkMode.TrocarModo();
             SetColor();
         }
