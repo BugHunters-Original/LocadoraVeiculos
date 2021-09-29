@@ -135,13 +135,6 @@ namespace LocadoraVeiculo.WindowsApp.Features.DescontoFeature
             return tabelaDesconto;
         }
 
-        public void PesquisarRegistro(string combobox, string pesquisa)
-        {
-            List<Desconto> descontos = descontoService.SelecionarPesquisa(combobox, pesquisa);
-
-            tabelaDesconto.AtualizarRegistros(descontos);
-        }
-
         public List<string> PreencheComboBoxDePesquisa()
         {
             List<string> preencheLista = new List<string>();

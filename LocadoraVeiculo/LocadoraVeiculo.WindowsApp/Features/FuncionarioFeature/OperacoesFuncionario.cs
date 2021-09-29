@@ -102,13 +102,6 @@ namespace LocadoraVeiculo.WindowsApp.Features.FuncionarioFeature
             return tabelaFuncionarios;
         }
 
-        public void PesquisarRegistro(string combobox, string pesquisa)
-        {
-            List<Funcionario> funcionarios = funcionarioService.SelecionarPesquisa(combobox, pesquisa);
-
-            tabelaFuncionarios.AtualizarRegistros(funcionarios);
-        }
-
         public List<string> PreencheComboBoxDePesquisa()
         {
             List<string> preencheLista = new List<string>();
