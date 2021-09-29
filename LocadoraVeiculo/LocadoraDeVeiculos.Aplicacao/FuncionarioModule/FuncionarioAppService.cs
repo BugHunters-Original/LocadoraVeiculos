@@ -76,22 +76,6 @@ namespace LocadoraDeVeiculos.Aplicacao.FuncionarioModule
             return excluiu;
         }
 
-        public List<Funcionario> SelecionarPesquisa(string comboBox, string pesquisa)
-        {
-
-            Log.Logger.Aqui().Debug("SELECIONADO FUNCIONÁRIOS DE ACORDO COM A PESQUISA {Pesquisa}", pesquisa);
-
-            List<Funcionario> funcionarios = funcionarioRepository.SelecionarPesquisa(comboBox, pesquisa);
-
-
-            if (funcionarios.Count == 0)
-                Log.Logger.Aqui().Information("NÃO HÁ FUNCIONÁRIOS CADASTRADOS DE ACORDO COM A PESQUISA {Pesquisa}", pesquisa);
-            else
-                Log.Logger.Aqui().Debug("A SELEÇÃO TROUXE {Quantidade} FUNCIONÁRIO(S) EXISTENTE(S) DE ACORDO COM A PESQUISA {Pesquisa}", funcionarios.Count, pesquisa);
-
-            return funcionarios;
-        }
-
         public Funcionario SelecionarPorId(int id)
         {
             Log.Logger.Aqui().Debug("SELECIONANDO O FUNCIONÁRIO ID: {Id}", id);

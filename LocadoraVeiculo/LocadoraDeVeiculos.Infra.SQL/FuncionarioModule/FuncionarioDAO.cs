@@ -63,20 +63,6 @@ namespace LocadoraDeVeiculos.Infra.SQL.FuncionarioModule
                     WHERE 
                         ID = @ID";
 
-        private const string sqlSelecionarFuncionarioPorNome =
-           @"SELECT
-                        [ID],
-		                [NOME], 
-                        [SALARIO],
-		                [CPF], 
-		                [DATA_ENTRADA],
-                        [USUARIO], 
-		                [SENHA]
-	                FROM
-                       TBFUNCIONARIO
-                    WHERE 
-                        COLUNADEPESQUISA LIKE @SEGUNDAREF+'%'";
-
         private const string sqlSelecionarTodosFuncionarios =
                     @"SELECT
                         [ID],
@@ -187,29 +173,6 @@ namespace LocadoraDeVeiculos.Infra.SQL.FuncionarioModule
             catch (Exception ex)
             {
                 Log.Logger.Error(ex, "NÃO FOI POSSÍVEL SE COMUNICAR COM O BANCO DE DADOS PARA SELECIONAR TODOS OS FUNCIONÁRIOS  " );
-
-                return null;
-            }
-        }
-
-        public List<Funcionario> SelecionarPesquisa(string coluna, string pesquisa)
-        {  
-            try
-            {
-                string sql = sqlSelecionarFuncionarioPorNome.Replace("COLUNADEPESQUISA", coluna);
-                List<Funcionario> funcionarios = Db.GetAll(sql, ConverterEmFuncionario, AdicionarParametro("@SEGUNDAREF", pesquisa));
-
-                if (funcionarios != null)
-                    Log.Logger.Debug("SUCESSO AO SELECIONAR FUNCIONARIO COM A PESQUISA: {Pesquisa}  ", pesquisa );
-                else
-                    Log.Logger.Information("NÃO FOI POSSÍVEL SELECIONAR FUNCIONARIO COM A PESQUISA: {Pesquisa}  ", pesquisa );
-
-                return funcionarios;
-
-            }
-            catch (Exception ex)
-            {
-                Log.Logger.Error(ex, "NÃO FOI POSSÍVEL SE COMUNICAR COM O BANCO DE DADOS PARA SELECIONAR FUNCIONARIO  " );
 
                 return null;
             }
