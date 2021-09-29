@@ -222,11 +222,6 @@ namespace LocadoraDeVeiculos.Infra.SQL.ClienteCPFModule
             }
         }
 
-        public List<ClienteCPF> SelecionarPesquisa(string coluna, string pesquisa)
-        {
-            throw new NotImplementedException();
-        }
-
         public ClienteCPF SelecionarPorId(int id)
         {
             try

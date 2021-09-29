@@ -137,7 +137,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.ClienteFeature
             return tabelaClientes;
         }
 
-        public void PesquisarRegistro(string combobox, string pesquisa)
+        public void PesquisarRegistro(string pesquisa)
         {
             IEnumerable<ClienteBase> clientes = new List<ClienteBase>();
 
@@ -148,17 +148,6 @@ namespace LocadoraVeiculo.WindowsApp.Features.ClienteFeature
             tabelaClientes.AtualizarRegistros(clientes);
         }
 
-        public List<string> PreencheComboBoxDePesquisa()
-        {
-            List<string> preencheLista = new List<string>();
-
-            preencheLista.Add("NOME");
-            preencheLista.Add("CPF-CNPJ");
-            preencheLista.Add("TELEFONE");
-            preencheLista.Add("EMAIL");
-
-            return preencheLista;
-        }
 
         private static bool ConfirmaExclusao(ClienteBase clienteSelecionado)
         {

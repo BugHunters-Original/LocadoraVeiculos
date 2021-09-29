@@ -204,15 +204,11 @@ namespace LocadoraVeiculo.WindowsApp.Features.LocacaoFeature
             return tabelaLocacoes;
         }
 
-        public void PesquisarRegistro(string combobox, string pesquisa)
+        public void PesquisarRegistro(string pesquisa)
         {
             throw new System.NotImplementedException();
         }
 
-        public List<string> PreencheComboBoxDePesquisa()
-        {
-            throw new System.NotImplementedException();
-        }
         private bool VerificarPossibilidadeDeInsercao()
         {
             if (veiculoService.SelecionarTodosDisponiveis().Count == 0)
