@@ -32,7 +32,7 @@ namespace LocadoraDeVeiculos.Aplicacao.VeiculoModule
 
             }
             else
-                Log.Logger.Aqui().Error("NÃO FOI POSSÍVEL REGISTRAR VEÍCULO {VeiculoNome}", v   eiculo.Nome);
+                Log.Logger.Aqui().Error("NÃO FOI POSSÍVEL REGISTRAR VEÍCULO {VeiculoNome}", veiculo.Nome);
 
 
         }

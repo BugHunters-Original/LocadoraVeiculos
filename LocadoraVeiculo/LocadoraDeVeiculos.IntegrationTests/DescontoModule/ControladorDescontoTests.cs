@@ -16,8 +16,6 @@ namespace LocadoraDeVeiculos.Test.DescontoModule
         DescontoDAO descontoDAO = null;
         ParceiroDAO parceiroDAO = null;
 
-        Logger logger;
-
         Parceiro parceiro;
 
         public ControladorDescontoTest()

@@ -1,7 +1,6 @@
 ﻿using LocadoraDeVeiculos.Aplicacao.VeiculoModule;
 using LocadoraDeVeiculos.Dominio.GrupoVeiculoModule;
 using LocadoraDeVeiculos.Dominio.VeiculoModule;
-using LocadoraDeVeiculos.Infra.Log;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 using Serilog.Core;
@@ -18,8 +17,7 @@ namespace LocadoraDeVeiculos.AppServiceTests.VeiculoModule
         Mock<Veiculo> veiculoMock;
         
         public VeiculoAppServiceTests()
-        {
-           
+        {   
             veiculoDAOMock = new();
             imagem = new byte[] { 0x20, 0x20, 0x20, 0x20 };
             grupoVeiculo = new GrupoVeiculo("Econômico", 40, 5, 50, 30, 40, 10);
