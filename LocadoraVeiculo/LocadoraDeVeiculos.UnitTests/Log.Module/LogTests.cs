@@ -1,5 +1,5 @@
 ﻿using FluentAssertions;
-using LocadoraDeVeiculos.Infra.Log;
+using LocadoraDeVeiculos.Infra.LogManager;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Collections.Generic;

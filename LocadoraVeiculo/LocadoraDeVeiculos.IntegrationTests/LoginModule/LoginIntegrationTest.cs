@@ -1,6 +1,5 @@
 ﻿using FluentAssertions;
 using LocadoraDeVeiculos.Dominio.FuncionarioModule;
-using LocadoraDeVeiculos.Infra.Log;
 using LocadoraDeVeiculos.Infra.Shared;
 using LocadoraDeVeiculos.Infra.SQL.FuncionarioModule;
 using LocadoraDeVeiculos.Infra.SQL.LoginModule;
@@ -20,13 +19,10 @@ namespace LocadoraDeVeiculos.IntegrationTests.LoginModule
         FuncionarioDAO repositoryFunc = null;
         LoginDAO repositoryLogin = null;
 
-        Logger logger;
-
         public LoginIntegrationTest()
         {
-            logger = LogManager.IniciarLog();
-            repositoryFunc = new(logger);
-            repositoryLogin = new(logger);
+            repositoryFunc = new();
+            repositoryLogin = new();
             Db.Update("DELETE FROM [TBFUNCIONARIO]");
 
         }
