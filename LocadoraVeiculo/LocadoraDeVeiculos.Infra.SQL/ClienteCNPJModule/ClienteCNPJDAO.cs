@@ -201,11 +201,6 @@ namespace LocadoraDeVeiculos.Infra.SQL.ClienteCNPJModule
             }
         }
 
-        public List<ClienteCNPJ> SelecionarPesquisa(string combobox, string pesquisa)
-        {
-            throw new NotImplementedException();
-        }
-
         private ClienteCNPJ ConverterEmCliente(IDataReader reader)
         {
             int id = Convert.ToInt32(reader["ID"]);

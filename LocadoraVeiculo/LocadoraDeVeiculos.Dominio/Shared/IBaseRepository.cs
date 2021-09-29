@@ -15,7 +15,5 @@ namespace LocadoraDeVeiculos.Dominio.Shared
         public T SelecionarPorId(int id);
 
         public List<T> SelecionarTodos();
-
-        public List<T> SelecionarPesquisa(string combobox, string pesquisa);
     }
 }

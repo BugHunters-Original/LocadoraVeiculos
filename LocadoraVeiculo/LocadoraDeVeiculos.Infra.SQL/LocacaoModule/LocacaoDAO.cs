@@ -393,10 +393,7 @@ namespace LocadoraDeVeiculos.Infra.SQL.LocacaoModule
                 return 0;
             }
         }
-        public List<Locacao> SelecionarPesquisa(string combobox, string pesquisa)
-        {
-            throw new NotImplementedException();
-        }
+
         private Dictionary<string, object> ObtemParametrosLocacao(Locacao locacao)
         {
             var parametros = new Dictionary<string, object>();
