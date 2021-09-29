@@ -1,4 +1,6 @@
 ﻿using LocadoraDeVeiculos.Dominio.FuncionarioModule;
+using LocadoraDeVeiculos.Infra.ExtensionMethods;
+using LocadoraDeVeiculos.Infra.LogManager;
 using LocadoraDeVeiculos.Infra.Shared;
 using Serilog.Core;
 using System;
@@ -96,24 +98,17 @@ namespace LocadoraDeVeiculos.Infra.SQL.FuncionarioModule
                 [ID] = @ID";
         #endregion
 
-        private readonly Logger logger;
-
-        public FuncionarioDAO(Logger log)
-        {
-            logger = log;
-        }
-
         public void Inserir(Funcionario funcionario)
         {
             try
             {
                 funcionario.Id = Db.Insert(sqlInserirFuncionario, ObtemParametrosFuncionario(funcionario));
 
-                logger.Information("SUCESSO AO INSERIR FUNCIONÁRIO ID: {Id} | DATA: {DataEHora}", funcionario.Id, DateTime.Now.ToString());
+                Log.Logger.Aqui().Information("SUCESSO AO INSERIR FUNCIONÁRIO ID: {Id}  ", funcionario.Id );
             }
             catch (Exception ex)
             {
-                logger.Error("ERRO AO INSERIR FUNCIONÁRIO ID: {Id} | DATA: {DataEHora} | FEATURE:{Feature} | CAMADA: {Camada} | SQL: {Query}", funcionario.Id, DateTime.Now.ToString(), this.ToString(), "Repository", ex.Message);
+                Log.Logger.Aqui().Error(ex, "ERRO AO INSERIR FUNCIONÁRIO ID: {Id}  ", funcionario.Id );
             }
         }
 
@@ -124,11 +119,11 @@ namespace LocadoraDeVeiculos.Infra.SQL.FuncionarioModule
                 funcionario.Id = id;
                 Db.Update(sqlEditarFuncionario, ObtemParametrosFuncionario(funcionario));
 
-                logger.Information("SUCESSO AO EDITAR FUNCIONÁRIO ID: {Id} | DATA: {DataEHora}", funcionario.Id, DateTime.Now.ToString());
+                Log.Logger.Aqui().Information("SUCESSO AO EDITAR FUNCIONÁRIO ID: {Id}  ", funcionario.Id );
             }
             catch (Exception ex)
             {
-                logger.Error("ERRO AO EDITAR FUNCIONÁRIO ID: {Id} | DATA: {DataEHora} | FEATURE:{Feature} | CAMADA: {Camada} | SQL: {Query}", funcionario.Id, DateTime.Now.ToString(), this.ToString(), "Repository", ex.Message);
+                Log.Logger.Aqui().Error(ex, "ERRO AO EDITAR FUNCIONÁRIO ID: {Id}  ", funcionario.Id );
             }
         }
 
@@ -138,11 +133,11 @@ namespace LocadoraDeVeiculos.Infra.SQL.FuncionarioModule
             {
                 Db.Delete(sqlExcluirFuncionario, AdicionarParametro("ID", id));
 
-                logger.Information("SUCESSO AO REMOVER FUNCIONÁRIO ID: {Id} | DATA: {DataEHora}", id, DateTime.Now.ToString());
+                Log.Logger.Aqui().Information("SUCESSO AO REMOVER FUNCIONÁRIO ID: {Id}  ", id );
             }
             catch (Exception ex)
             {
-                logger.Error("ERRO AO REMOVER FUNCIONÁRIO ID: {Id} | DATA: {DataEHora} | FEATURE:{Feature} | CAMADA: {Camada} | SQL: {Query}", id, DateTime.Now.ToString(), this.ToString(), "Repository", ex.Message);
+                Log.Logger.Aqui().Error(ex, "ERRO AO REMOVER FUNCIONÁRIO ID: {Id}  ", id );
 
                 return false;
             }
@@ -161,16 +156,16 @@ namespace LocadoraDeVeiculos.Infra.SQL.FuncionarioModule
                 Funcionario funcionario = Db.Get(sqlSelecionarFuncionarioPorId, ConverterEmFuncionario, AdicionarParametro("ID", id));
 
                 if (funcionario != null)
-                    logger.Debug("SUCESSO AO SELECIONAR FUNCIONÁRIO ID: {Id} | DATA: {DataEHora}", funcionario.Id, DateTime.Now.ToString());
+                    Log.Logger.Aqui().Debug("SUCESSO AO SELECIONAR FUNCIONÁRIO ID: {Id}  ", funcionario.Id );
                 else
-                    logger.Information("NÃO FOI POSSÍVEL SELECIONAR FUNCIONÁRIO ID: {Id} | DATA: {DataEHora}", funcionario.Id, DateTime.Now.ToString());
+                    Log.Logger.Aqui().Information("NÃO FOI POSSÍVEL SELECIONAR FUNCIONÁRIO ID: {Id}  ", funcionario.Id );
 
                 return funcionario;
 
             }
             catch (Exception ex)
             {
-                logger.Error("NÃO FOI POSSÍVEL SE COMUNICAR COM O BANCO DE DADOS PARA SELECIONAR FUNCIONÁRIO ID: {Id} | DATA: {DataEHora} | FEATURE:{Feature} | CAMADA: {Camada} | SQL: {Query}", id, DateTime.Now.ToString(), this.ToString(), "Repository", ex.Message);
+                Log.Logger.Aqui().Error(ex, "NÃO FOI POSSÍVEL SE COMUNICAR COM O BANCO DE DADOS PARA SELECIONAR FUNCIONÁRIO ID: {Id}  ", id );
 
                 return null;
             }
@@ -183,15 +178,15 @@ namespace LocadoraDeVeiculos.Infra.SQL.FuncionarioModule
                 List<Funcionario> funcionarios = Db.GetAll(sqlSelecionarTodosFuncionarios, ConverterEmFuncionario);
 
                 if (funcionarios != null)
-                    logger.Debug("SUCESSO AO SELECIONAR TODOS OS FUNCIONÁRIOS | DATA: {DataEHora}", DateTime.Now.ToString());
+                    Log.Logger.Aqui().Debug("SUCESSO AO SELECIONAR TODOS OS FUNCIONÁRIOS  " );
                 else
-                    logger.Information("NÃO FOI POSSÍVEL SELECIONAR TODOS OS FUNCIONÁRIOS | DATA: {DataEHora}", DateTime.Now.ToString());
+                    Log.Logger.Aqui().Information("NÃO FOI POSSÍVEL SELECIONAR TODOS OS FUNCIONÁRIOS  " );
 
                 return funcionarios;
             }
             catch (Exception ex)
             {
-                logger.Error("NÃO FOI POSSÍVEL SE COMUNICAR COM O BANCO DE DADOS PARA SELECIONAR TODOS OS FUNCIONÁRIOS | DATA: {DataEHora} | FEATURE:{Feature} | CAMADA: {Camada} | SQL: {Query}", DateTime.Now.ToString(), this.ToString(), "Repository", ex.Message);
+                Log.Logger.Aqui().Error(ex, "NÃO FOI POSSÍVEL SE COMUNICAR COM O BANCO DE DADOS PARA SELECIONAR TODOS OS FUNCIONÁRIOS  " );
 
                 return null;
             }
@@ -205,16 +200,16 @@ namespace LocadoraDeVeiculos.Infra.SQL.FuncionarioModule
                 List<Funcionario> funcionarios = Db.GetAll(sql, ConverterEmFuncionario, AdicionarParametro("@SEGUNDAREF", pesquisa));
 
                 if (funcionarios != null)
-                    logger.Debug("SUCESSO AO SELECIONAR FUNCIONARIO COM A PESQUISA: {Pesquisa} | DATA: {DataEHora}", pesquisa, DateTime.Now.ToString());
+                    Log.Logger.Aqui().Debug("SUCESSO AO SELECIONAR FUNCIONARIO COM A PESQUISA: {Pesquisa}  ", pesquisa );
                 else
-                    logger.Information("NÃO FOI POSSÍVEL SELECIONAR FUNCIONARIO COM A PESQUISA: {Pesquisa} | DATA: {DataEHora}", pesquisa, DateTime.Now.ToString());
+                    Log.Logger.Aqui().Information("NÃO FOI POSSÍVEL SELECIONAR FUNCIONARIO COM A PESQUISA: {Pesquisa}  ", pesquisa );
 
                 return funcionarios;
 
             }
             catch (Exception ex)
             {
-                logger.Error("NÃO FOI POSSÍVEL SE COMUNICAR COM O BANCO DE DADOS PARA SELECIONAR FUNCIONARIO | DATA: {DataEHora} | FEATURE:{Feature} | CAMADA: {Camada} | SQL: {Query}", DateTime.Now.ToString(), this.ToString(), "Repository", ex.Message);
+                Log.Logger.Aqui().Error(ex, "NÃO FOI POSSÍVEL SE COMUNICAR COM O BANCO DE DADOS PARA SELECIONAR FUNCIONARIO  " );
 
                 return null;
             }

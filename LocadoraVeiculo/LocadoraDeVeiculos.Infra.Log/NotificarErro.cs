@@ -10,7 +10,7 @@ using System.Net.Mail;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace LocadoraDeVeiculos.Infra.Log
+namespace LocadoraDeVeiculos.Infra.LogManager
 {
     public class NotificarErro 
     {

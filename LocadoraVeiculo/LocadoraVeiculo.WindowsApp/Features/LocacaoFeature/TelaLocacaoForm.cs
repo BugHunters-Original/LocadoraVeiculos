@@ -39,15 +39,15 @@ namespace LocadoraVeiculo.WindowsApp.Features.LocacaoFeature
 
         public TelaLocacaoForm(ClienteCPFAppService cpfService, VeiculoAppService veiculoService,
                                ClienteCNPJAppService cnpjService, DescontoAppService descontoService,
-                               LocacaoAppService locacaoService, Logger logger)
+                               LocacaoAppService locacaoService)
         {
             this.cpfService = cpfService;
             this.cnpjService = cnpjService;
             this.veiculoService = veiculoService;
             this.descontoService = descontoService;
             this.locacaoService = locacaoService;
-            taxaDaLocacaoDAO = new(logger);
-            telaDasTaxas = new TelaAdicionarTaxasForm(logger);
+            taxaDaLocacaoDAO = new();
+            telaDasTaxas = new TelaAdicionarTaxasForm();
             InitializeComponent();
             PopularComboboxes();
             SetColor();

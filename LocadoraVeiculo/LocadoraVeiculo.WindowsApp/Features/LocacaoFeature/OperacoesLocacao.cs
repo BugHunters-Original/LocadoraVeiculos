@@ -24,20 +24,18 @@ namespace LocadoraVeiculo.WindowsApp.Features.LocacaoFeature
         private readonly VeiculoAppService veiculoService;
         private readonly TaxaDaLocacaoDAO taxaLocacaoService;
         private readonly TabelaLocacaoControl tabelaLocacoes;
-        private readonly Logger logger;
 
         public OperacoesLocacao(LocacaoAppService locacaoService, ClienteCPFAppService cpfService,
                                 VeiculoAppService veiculoService, ClienteCNPJAppService cnpjService,
-                                DescontoAppService descontoService, Logger logger)
+                                DescontoAppService descontoService)
         {
-            this.logger = logger;
             this.locacaoService = locacaoService;
             this.cpfService = cpfService;
             this.cnpjService = cnpjService;
             this.descontoService = descontoService;
             this.veiculoService = veiculoService;
-            taxaLocacaoService = new TaxaDaLocacaoDAO(logger);
-            tabelaLocacoes = new TabelaLocacaoControl(logger);
+            taxaLocacaoService = new TaxaDaLocacaoDAO();
+            tabelaLocacoes = new TabelaLocacaoControl();
         }
 
         public void DevolverVeiculo()
@@ -95,7 +93,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.LocacaoFeature
                 return;
             }
 
-            TelaLocacaoForm tela = new TelaLocacaoForm(cpfService, veiculoService, cnpjService, descontoService, locacaoService, logger);
+            TelaLocacaoForm tela = new TelaLocacaoForm(cpfService, veiculoService, cnpjService, descontoService, locacaoService);
 
             tela.Locacao = locacaoSelecionada;
 
@@ -179,7 +177,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.LocacaoFeature
             if (!VerificarPossibilidadeDeInsercao())
                 return;
 
-            TelaLocacaoForm tela = new TelaLocacaoForm(cpfService, veiculoService, cnpjService, descontoService, locacaoService, logger);
+            TelaLocacaoForm tela = new TelaLocacaoForm(cpfService, veiculoService, cnpjService, descontoService, locacaoService);
 
             if (tela.ShowDialog() == DialogResult.OK)
             {

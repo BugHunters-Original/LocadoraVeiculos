@@ -19,10 +19,10 @@ namespace LocadoraVeiculo.WindowsApp.Features.DashboardFeature
 
         private static string telaAtual = "";
 
-        public DashboardControl(Logger logger)
+        public DashboardControl()
         {
-            veiculoDAO = new VeiculoDAO(logger);
-            locacaoDAO = new LocacaoDAO(logger);
+            veiculoDAO = new VeiculoDAO();
+            locacaoDAO = new LocacaoDAO();
             InitializeComponent();
             TrataLabels();
             ConfigurarGridLightMode();

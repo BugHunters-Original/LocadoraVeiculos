@@ -1,29 +1,25 @@
-﻿using LocadoraDeVeiculos.Infra.SQL.FuncionarioModule;
+﻿using LocadoraDeVeiculos.Infra.ExtensionMethods;
+using LocadoraDeVeiculos.Infra.LogManager;
+using LocadoraDeVeiculos.Infra.SQL.FuncionarioModule;
 using Serilog.Core;
-using System;
 
 namespace LocadoraDeVeiculos.Infra.SQL.LoginModule
 {
     public class LoginDAO
     {
-        private static Logger logger;
-        public LoginDAO(Logger log)
-        {
-            logger = log;
-        }
 
-        FuncionarioDAO funcionarioService = new FuncionarioDAO(logger);
+        FuncionarioDAO funcionarioService = new FuncionarioDAO();
         public string ValidarLogin(string usuario, string senha)
         {
             string resultado = ValidarChaves(usuario, senha);
 
             switch (resultado)
             {
-                case "valido": logger.Information("LOGIN FEITO | USUÁRIO {Usuario}| LOGIN DATA: {DataEHora}", usuario, DateTime.Now.ToString()); break;
+                case "valido": Log.Logger.Aqui().Information("LOGIN FEITO | USUÁRIO {Usuario}", usuario ); break;
 
-                case "Senha Incorreta": logger.Information("TENTATIVA DE LOGIN | USUÁRIO {Usuario} | LOGIN DATA: {DataEHora}", usuario, DateTime.Now.ToString()); break;
+                case "Senha Incorreta": Log.Logger.Aqui().Information("TENTATIVA DE LOGIN | USUÁRIO {Usuario}", usuario ); break;
 
-                case "Usuário Inexistente": logger.Information("ERRO DE LOGIN | USUÁRIO INEXISTENTE | LOGIN DATA: {DataEHora}", usuario, DateTime.Now.ToString()); break;
+                case "Usuário Inexistente": Log.Logger.Aqui().Information("ERRO DE LOGIN | USUÁRIO INEXISTENTE"); break;
 
                 default: break;
             }

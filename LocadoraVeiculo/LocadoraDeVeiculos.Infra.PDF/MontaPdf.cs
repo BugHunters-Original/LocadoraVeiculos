@@ -5,6 +5,8 @@ using iText.Layout;
 using iText.Layout.Element;
 using iText.Layout.Properties;
 using LocadoraDeVeiculos.Dominio.LocacaoModule;
+using LocadoraDeVeiculos.Infra.ExtensionMethods;
+using LocadoraDeVeiculos.Infra.LogManager;
 using Serilog.Core;
 using System;
 
@@ -12,7 +14,7 @@ namespace LocadoraDeVeiculos.Infra.PDFLocacao
 {
     public class MontaPdf : IPDF
     {
-        public void MontarPDF(Locacao locacao, Logger logger)
+        public void MontarPDF(Locacao locacao)
         {
             try
             {
@@ -56,12 +58,12 @@ namespace LocadoraDeVeiculos.Infra.PDFLocacao
 
                     pdfDocument.Close();
 
-                    logger.Information("PDF DA LOCAÇÃO ID: {Id} CONCLUÍDO COM SUCESSO | {DataEHora}", locacao.Id, DateTime.Now.ToString());
+                    Log.Logger.Aqui().Information("PDF DA LOCAÇÃO ID: {Id} CONCLUÍDO COM SUCESSO | {DataEHora}", locacao.Id, DateTime.Now.ToString());
                 }
             }
             catch (Exception ex)
             {
-                logger.Error("ERRO AO INSERIR LOCAÇÃO ID: {Id} | DATA: {DataEHora} | FEATURE: {Feature} | SQL: {Query}", locacao.Id, DateTime.Now.ToString(), this.ToString(), ex.Message);
+                Log.Logger.Aqui().Error("ERRO AO INSERIR LOCAÇÃO ID: {Id} | DATA: {DataEHora} | FEATURE: {Feature} | SQL: {Query}", locacao.Id, DateTime.Now.ToString(), this.ToString(), ex.Message);
             }
         }
     }

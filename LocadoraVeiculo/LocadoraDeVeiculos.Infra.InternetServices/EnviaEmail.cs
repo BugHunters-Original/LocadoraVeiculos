@@ -1,5 +1,7 @@
 ﻿using LocadoraDeVeiculos.Dominio.LocacaoModule;
 using LocadoraDeVeiculos.Infra.EmailLocadora;
+using LocadoraDeVeiculos.Infra.ExtensionMethods;
+using LocadoraDeVeiculos.Infra.LogManager;
 using Serilog.Core;
 using System;
 using System.Net.Mail;
@@ -8,7 +10,7 @@ namespace LocadoraDeVeiculos.Infra.InternetServices
 {
     public class EnviaEmail : IEmail
     {
-        public bool EnviarEmail(Locacao locacao, Logger logger)
+        public bool EnviarEmail(Locacao locacao)
         {
             try
             {
@@ -37,15 +39,15 @@ namespace LocadoraDeVeiculos.Infra.InternetServices
                         //ENVIAR
                         smtp.Send(email);
 
-                        logger.Debug("E-MAIL ENVIADO PARA {EmailCliente} com sucesso!", locacao.Cliente.Email);
+                        Log.Logger.Aqui().Debug("E-MAIL ENVIADO PARA {EmailCliente} com sucesso!", locacao.Cliente.Email);
 
                         return true;
                     }
                 }
             }
             catch(Exception ex)
-            {                
-                logger.Error("ERRO AO ENVIAR E-MAIL PARA {EmailCliente} | DATA: {DataEHora} | FEATURE: {Feature} | SQL: {Query}", locacao.Cliente.Email, DateTime.Now.ToString(), this.ToString(), ex.Message);
+            {
+                Log.Logger.Aqui().Error(ex , "ERRO AO ENVIAR E-MAIL PARA {EmailCliente} ");
                 return false;
             }
         }

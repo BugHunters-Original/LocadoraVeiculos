@@ -37,37 +37,36 @@ using LocadoraDeVeiculos.Infra.SQL.VeiculoModule;
 using LocadoraDeVeiculos.Infra.SQL.TaxaServicoModule.TaxaDaLocacaoModule;
 using LocadoraDeVeiculos.Infra.PDFLocacao;
 using LocadoraDeVeiculos.Infra.InternetServices;
-using LocadoraDeVeiculos.Infra.Log;
-using Serilog.Core;
+using LocadoraDeVeiculos.Infra.LogManager;
+using LocadoraDeVeiculos.Infra.ExtensionMethods;
 
 namespace LocadoraVeiculo.WindowsApp
 {
     public partial class TelaPrincipalForm : Form
     {   
         public static EnviaEmail email = new();
-        public static Logger logger = LogManager.IniciarLog();
         public static MontaPdf pdf = new();
 
-        public static ClienteCNPJDAO cnpjRepository = new(logger);
-        public static ClienteCPFDAO cpfRepository = new(logger);
-        public static GrupoVeiculoDAO grupoVeiculoRepository = new(logger);
-        public static VeiculoDAO veiculoRepository = new(logger);
-        public static FuncionarioDAO funcionarioRepository = new(logger);
-        public static ServicoDAO servicoRepository = new(logger);
-        public static DescontoDAO descontoRepository = new(logger);
-        public static ParceiroDAO parceiroRepository = new(logger);
-        public static TaxaDaLocacaoDAO taxaRepository = new(logger);
-        public static LocacaoDAO locacaoRepository = new(logger);
+        public static ClienteCNPJDAO cnpjRepository = new();
+        public static ClienteCPFDAO cpfRepository = new();
+        public static GrupoVeiculoDAO grupoVeiculoRepository = new();
+        public static VeiculoDAO veiculoRepository = new();
+        public static FuncionarioDAO funcionarioRepository = new();
+        public static ServicoDAO servicoRepository = new();
+        public static DescontoDAO descontoRepository = new();
+        public static ParceiroDAO parceiroRepository = new();
+        public static TaxaDaLocacaoDAO taxaRepository = new();
+        public static LocacaoDAO locacaoRepository = new();
 
-        public static ClienteCNPJAppService cnpjService = new(cnpjRepository, logger);
-        public static ClienteCPFAppService cpfService = new(cpfRepository, logger);
-        public static GrupoVeiculoAppService grupoVeiculoService = new(grupoVeiculoRepository, logger);
-        public static LocacaoAppService locacaoService = new(locacaoRepository, logger, email, pdf, descontoRepository, veiculoRepository);
-        public static VeiculoAppService veiculoService = new(veiculoRepository, logger);
-        public static FuncionarioAppService funcionarioService = new(funcionarioRepository, logger);
-        public static ServicoAppService servicoService = new(servicoRepository, logger);
-        public static DescontoAppService descontoService = new(descontoRepository, logger);
-        public static ParceiroAppService parceiroService = new(parceiroRepository, logger);
+        public static ClienteCNPJAppService cnpjService = new(cnpjRepository);
+        public static ClienteCPFAppService cpfService = new(cpfRepository);
+        public static GrupoVeiculoAppService grupoVeiculoService = new(grupoVeiculoRepository);
+        public static LocacaoAppService locacaoService = new(locacaoRepository, email, pdf, descontoRepository, veiculoRepository);
+        public static VeiculoAppService veiculoService = new(veiculoRepository);
+        public static FuncionarioAppService funcionarioService = new(funcionarioRepository);
+        public static ServicoAppService servicoService = new(servicoRepository);
+        public static DescontoAppService descontoService = new(descontoRepository);
+        public static ParceiroAppService parceiroService = new(parceiroRepository);
 
         public static TelaPrincipalForm Instancia;
         public static DashboardControl dash;
@@ -77,7 +76,6 @@ namespace LocadoraVeiculo.WindowsApp
         public TelaPrincipalForm()
         {
             Instancia = this;
-            LogManager.IniciarLog();
             InitializeComponent();
             ConfigurarPainelDashBoard();
             SetColor();
@@ -97,7 +95,7 @@ namespace LocadoraVeiculo.WindowsApp
 
             AtualizarRodape(configuracao.TipoCadastro);
 
-            operacoes = new OperacoesLocacao(locacaoService, cpfService, veiculoService, cnpjService, descontoService, logger);
+            operacoes = new OperacoesLocacao(locacaoService, cpfService, veiculoService, cnpjService, descontoService);
 
             ConfigurarPainelRegistros();
 
@@ -256,7 +254,7 @@ namespace LocadoraVeiculo.WindowsApp
         {
             DarkMode.TrocarModo();
 
-            logger.Aqui().Information("Troca de modo de exibição");
+            Log.Logger.Aqui().Information("Troca de modo de exibição");
 
             SetColor();
 
@@ -340,7 +338,7 @@ namespace LocadoraVeiculo.WindowsApp
 
         private void ConfigurarPainelDashBoard()
         {
-            UserControl tabela = new DashboardControl(logger);
+            UserControl tabela = new DashboardControl();
             tabela.Dock = DockStyle.Fill;
             panelRegistros.Controls.Clear();
             panelRegistros.Controls.Add(tabela);
@@ -381,7 +379,7 @@ namespace LocadoraVeiculo.WindowsApp
 
         private void ChamarTelaLogin(object obj)
         {
-            Application.Run(new TelaLoginForm(logger));
+            Application.Run(new TelaLoginForm());
         }
 
         private void btnClose_Click(object sender, EventArgs e)
