@@ -8,7 +8,7 @@ using System.Collections.Generic;
 
 namespace LocadoraDeVeiculos.Aplicacao.GrupoVeiculoModule
 {
-    
+
 
     public class GrupoVeiculoAppService
     {
@@ -25,52 +25,38 @@ namespace LocadoraDeVeiculos.Aplicacao.GrupoVeiculoModule
 
             Log.Logger.Aqui().Debug("REGISTRANDO GRUPO DE VEÍCULOS {grupoVeiculoNome}", grupoVeiculo.NomeTipo);
 
-            if (resultadoValidacaoDominio == "ESTA_VALIDO")            {
-               
-
+            if (resultadoValidacaoDominio == "ESTA_VALIDO")
+            {
                 grupoVeiculoRepository.Inserir(grupoVeiculo);
 
                 Log.Logger.Aqui().Debug("GRUPO DE VEÍCULO {grupoVeiculoNome} REGISTRADO COM SUCESSO", grupoVeiculo.NomeTipo);
-
-               
             }
-
-            else            
+            else
                 Log.Logger.Aqui().Error("NÃO FOI POSSÍVEL REGISTRAR GRUPO VEÍCULO {grupoVeiculoNome}", grupoVeiculo.NomeTipo);
-
-            
 
         }
 
         public void EditarNovoGrupoVeiculo(int id, GrupoVeiculo grupoVeiculo)
         {
-
             string resultadoValidacaoDominio = grupoVeiculo.Validar();
 
             Log.Logger.Aqui().Debug("EDITANDO GRUPO VEÍCULO {grupoVeiculoNome}", grupoVeiculo.NomeTipo);
 
             if (resultadoValidacaoDominio == "ESTA_VALIDO")
-            {               
-
+            {
                 grupoVeiculoRepository.Editar(id, grupoVeiculo);
-
                 Log.Logger.Aqui().Debug("GRUPO VEÍCULO {grupoVeiculoNome} EDITADO COM SUCESSO", grupoVeiculo.NomeTipo);
-
-                
             }
-
-            else            
+            else
                 Log.Logger.Aqui().Error("NÃO FOI POSSÍVEL EDITAR GRUPO VEÍCULO {grupoVeiculoNome}", grupoVeiculo.NomeTipo);
 
-               
-            
         }
 
         public bool ExcluirGrupoVeiculo(int id)
         {
             Log.Logger.Aqui().Debug("REMOVENDO GRUPO VEÍCULO{Id}", id);
 
-           
+
             var excluiu = grupoVeiculoRepository.Excluir(id);
 
             if (excluiu)
@@ -86,7 +72,7 @@ namespace LocadoraDeVeiculos.Aplicacao.GrupoVeiculoModule
         {
             Log.Logger.Aqui().Debug("SELECIONADO GRUPOS DE VEÍCULOS DE ACORDO COM A PESQUISA {Pesquisa}", pesquisa);
 
-            List<GrupoVeiculo> grupos =  grupoVeiculoRepository.SelecionarPesquisa(comboBox, pesquisa);
+            List<GrupoVeiculo> grupos = grupoVeiculoRepository.SelecionarPesquisa(comboBox, pesquisa);
 
             if (grupos.Count == 0)
                 Log.Logger.Aqui().Information("NÃO HÁ GRUPOS DE VEÍCULOS CADASTRADOS DE ACORDO COM A PESQUISA {Pesquisa}", pesquisa);
@@ -109,7 +95,7 @@ namespace LocadoraDeVeiculos.Aplicacao.GrupoVeiculoModule
                 Log.Logger.Aqui().Debug("GRUPO DE VEÍCULO ID {Id} SELECIONADO COM SUCESSO", grupoVeiculo.Id);
 
             return grupoVeiculo;
-           
+
         }
 
         public List<GrupoVeiculo> SelecionarTodosGruposVeiculos()

@@ -1,4 +1,5 @@
 ﻿using iText.IO.Image;
+using iText.IO.Util;
 using iText.Kernel.Geom;
 using iText.Kernel.Pdf;
 using iText.Layout;
@@ -7,7 +8,6 @@ using iText.Layout.Properties;
 using LocadoraDeVeiculos.Dominio.LocacaoModule;
 using LocadoraDeVeiculos.Infra.ExtensionMethods;
 using LocadoraDeVeiculos.Infra.LogManager;
-using Serilog.Core;
 using System;
 
 namespace LocadoraDeVeiculos.Infra.PDFLocacao
@@ -21,9 +21,8 @@ namespace LocadoraDeVeiculos.Infra.PDFLocacao
                 using (PdfWriter wPdf = new PdfWriter($@"..\..\..\..\Recibos\recibo{locacao.Id}.pdf", new WriterProperties().SetPdfVersion(PdfVersion.PDF_2_0)))
                 {
                     var pdfDocument = new PdfDocument(wPdf);
-
                     var document = new Document(pdfDocument, PageSize.A4);
-                    document.Add(new Paragraph("Recibo Locação de Automóvel\nBUG HUNTERS").SetTextAlignment(TextAlignment.CENTER).SetBold().SetFontSize(20));
+                    //document.Add(new Paragraph("Recibo Locação de Automóvel\nBUG HUNTERS").SetTextAlignment(TextAlignment.CENTER).SetBold().SetFontSize(20));
                     document.Add(new Paragraph("\n\n"));
                     document.Add(new Paragraph("Cliente: " + locacao.Cliente.ToString()));
                     document.Add(new Paragraph("Condutor: " + locacao.Condutor.ToString()));
@@ -58,12 +57,12 @@ namespace LocadoraDeVeiculos.Infra.PDFLocacao
 
                     pdfDocument.Close();
 
-                    Log.Logger.Aqui().Information("PDF DA LOCAÇÃO ID: {Id} CONCLUÍDO COM SUCESSO | {DataEHora}", locacao.Id, DateTime.Now.ToString());
+                    Log.Logger.Aqui().Information("PDF DA LOCAÇÃO ID: {Id} CONCLUÍDO COM SUCESSO", locacao.Id);
                 }
             }
             catch (Exception ex)
             {
-                Log.Logger.Aqui().Error("ERRO AO INSERIR LOCAÇÃO ID: {Id} | DATA: {DataEHora} | FEATURE: {Feature} | SQL: {Query}", locacao.Id, DateTime.Now.ToString(), this.ToString(), ex.Message);
+                Log.Logger.Aqui().Error(ex, "ERRO AO INSERIR LOCAÇÃO ID: {Id}", locacao.Id);
             }
         }
     }
