@@ -3,6 +3,7 @@ using LocadoraDeVeiculos.Dominio.ParceiroModule;
 using LocadoraVeiculo.WindowsApp.Shared;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Windows.Forms;
 
 namespace LocadoraVeiculo.WindowsApp.Features.ParceiroFeature
@@ -90,11 +91,15 @@ namespace LocadoraVeiculo.WindowsApp.Features.ParceiroFeature
             throw new NotImplementedException();
         }
 
-        public void PesquisarRegistro(string combobox, string pesquisa)
+        public void PesquisarRegistro(string pesquisa)
         {
-            List<Parceiro> parceiros = parceiroService.SelecionarPesquisa(combobox, pesquisa);
+            List<Parceiro> parceiros = parceiroService.SelecionarTodosParceiros();
 
-            tabelaParceiro.AtualizarRegistros(parceiros);
+            var palavras = pesquisa.Split(' ');
+
+            List<Parceiro> filtrados = parceiros.Where(i => palavras.Any(p => i.ToString().IndexOf(p, StringComparison.OrdinalIgnoreCase) >= 0)).ToList();
+
+            tabelaParceiro.AtualizarRegistros(filtrados);
         }
 
         public List<string> PreencheComboBoxDePesquisa()
