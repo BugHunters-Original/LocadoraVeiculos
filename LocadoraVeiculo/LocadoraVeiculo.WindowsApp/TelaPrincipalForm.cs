@@ -98,8 +98,6 @@ namespace LocadoraVeiculo.WindowsApp
             operacoes = new OperacoesLocacao(locacaoService, cpfService, veiculoService, cnpjService, descontoService);
 
             ConfigurarPainelRegistros();
-
-            PreencherComboBox();
         }
 
         private void menuItemCliente_Click(object sender, EventArgs e)
@@ -113,8 +111,6 @@ namespace LocadoraVeiculo.WindowsApp
             operacoes = new OperacoesCliente(cnpjService, cpfService, new FiltroCliente(cnpjRepository, cpfRepository));
 
             ConfigurarPainelRegistros();
-
-            PreencherComboBox();
         }
 
         private void menuItemVeiculo_Click(object sender, EventArgs e)
@@ -128,8 +124,6 @@ namespace LocadoraVeiculo.WindowsApp
             operacoes = new OperacoesVeiculo(veiculoService, grupoVeiculoService);
 
             ConfigurarPainelRegistros();
-
-            PreencherComboBox();
         }
 
         private void menuItemFuncionario_Click(object sender, EventArgs e)
@@ -143,8 +137,6 @@ namespace LocadoraVeiculo.WindowsApp
             operacoes = new OperacoesFuncionario(funcionarioService);
 
             ConfigurarPainelRegistros();
-
-            PreencherComboBox();
         }
 
         private void parceirosToolStripMenuItem_Click(object sender, EventArgs e)
@@ -158,8 +150,6 @@ namespace LocadoraVeiculo.WindowsApp
             operacoes = new OperacoesParceiro(parceiroService);
 
             ConfigurarPainelRegistros();
-
-            PreencherComboBox();
         }
 
         private void grupoDeVeículosToolStripMenuItem_Click(object sender, EventArgs e)
@@ -173,8 +163,6 @@ namespace LocadoraVeiculo.WindowsApp
             operacoes = new OperacoesGrupoVeiculo(grupoVeiculoService);
 
             ConfigurarPainelRegistros();
-
-            PreencherComboBox();
         }
 
         private void taxasEServiçosToolStripMenuItem_Click(object sender, EventArgs e)
@@ -188,8 +176,6 @@ namespace LocadoraVeiculo.WindowsApp
             operacoes = new OperacoesServico(servicoService);
 
             ConfigurarPainelRegistros();
-
-            PreencherComboBox();
         }
 
         private void descontosToolStripMenuItem_Click(object sender, EventArgs e)
@@ -203,8 +189,6 @@ namespace LocadoraVeiculo.WindowsApp
             operacoes = new OperacoesDesconto(descontoService, parceiroService, locacaoService);
 
             ConfigurarPainelRegistros();
-
-            PreencherComboBox();
         }
 
         private void preçosCombustívelToolStripMenuItem_Click(object sender, EventArgs e)
@@ -436,19 +420,13 @@ namespace LocadoraVeiculo.WindowsApp
 
         private void button1_Click(object sender, EventArgs e)
         {
-            operacoes.PesquisarRegistro(cbCategorias.Text, txtPesquisar.Text);
+            
+
         }
 
-        private void PreencherComboBox()
+        private void txtPesquisar_TextChanged(object sender, EventArgs e)
         {
-            //cbCategorias.Items.Clear();
-            //List<string> lista = operacoes.PreencheComboBoxDePesquisa();
-            //foreach (var item in lista)
-            //{
-            //    cbCategorias.Items.Add(item);
-            //}
-            //cbCategorias.SelectedIndex = 0;
-
+            operacoes.PesquisarRegistro(txtPesquisar.Text);
         }
     }
 }
