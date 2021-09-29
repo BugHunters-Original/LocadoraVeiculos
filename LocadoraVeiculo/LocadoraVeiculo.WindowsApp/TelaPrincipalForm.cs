@@ -38,7 +38,6 @@ using LocadoraDeVeiculos.Infra.SQL.TaxaServicoModule.TaxaDaLocacaoModule;
 using LocadoraDeVeiculos.Infra.PDFLocacao;
 using LocadoraDeVeiculos.Infra.InternetServices;
 using LocadoraDeVeiculos.Infra.LogManager;
-using LocadoraDeVeiculos.Infra.ExtensionMethods;
 
 namespace LocadoraVeiculo.WindowsApp
 {
@@ -238,7 +237,7 @@ namespace LocadoraVeiculo.WindowsApp
         {
             DarkMode.TrocarModo();
 
-            Log.Logger.Aqui().Information("Troca de modo de exibição");
+            Log.Logger.Information("Troca de modo de exibição");
 
             SetColor();
 

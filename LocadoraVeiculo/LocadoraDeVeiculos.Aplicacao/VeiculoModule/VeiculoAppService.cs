@@ -154,7 +154,7 @@ namespace LocadoraDeVeiculos.Aplicacao.VeiculoModule
            
         }
 
-        public int ReturnQuantidadeVeiculosAlugados()
+        public int SelecionarQuantidadeVeiculosAlugados()
         {
             Log.Logger.Aqui().Debug("SELECIONANDO QUANTIDADE DE VEÍCULOS ALUGADOS");
 
@@ -169,7 +169,7 @@ namespace LocadoraDeVeiculos.Aplicacao.VeiculoModule
            
         }
 
-        public int ReturnQuantidadeVeiculosDisponiveis()
+        public int SelecionarQuantidadeVeiculosDisponiveis()
         {
             Log.Logger.Aqui().Debug("SELECIONANDO QUANTIDADE DE VEÍCULOS DISPONÍVEIS");
 

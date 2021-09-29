@@ -65,7 +65,9 @@ namespace LocadoraVeiculo.WindowsApp.Features.LocacaoFeature
 
                 txtID.Text = locacao.Id.ToString();
 
-                cbCliente.SelectedItem = locacao.Cliente;
+                cbCliente.Items.Add(locacao.Cliente);
+
+                cbCliente.SelectedIndex = cbCliente.Items.Count - 1;
 
                 cbVeiculo.Items.Add(locacao.Veiculo);
 

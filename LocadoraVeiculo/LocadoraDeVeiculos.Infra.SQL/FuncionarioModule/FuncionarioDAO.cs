@@ -63,20 +63,6 @@ namespace LocadoraDeVeiculos.Infra.SQL.FuncionarioModule
                     WHERE 
                         ID = @ID";
 
-        private const string sqlSelecionarFuncionarioPorNome =
-           @"SELECT
-                        [ID],
-		                [NOME], 
-                        [SALARIO],
-		                [CPF], 
-		                [DATA_ENTRADA],
-                        [USUARIO], 
-		                [SENHA]
-	                FROM
-                       TBFUNCIONARIO
-                    WHERE 
-                        COLUNADEPESQUISA LIKE @SEGUNDAREF+'%'";
-
         private const string sqlSelecionarTodosFuncionarios =
                     @"SELECT
                         [ID],
@@ -104,11 +90,11 @@ namespace LocadoraDeVeiculos.Infra.SQL.FuncionarioModule
             {
                 funcionario.Id = Db.Insert(sqlInserirFuncionario, ObtemParametrosFuncionario(funcionario));
 
-                Log.Logger.Aqui().Information("SUCESSO AO INSERIR FUNCIONÁRIO ID: {Id}  ", funcionario.Id );
+                Log.Logger.Information("SUCESSO AO INSERIR FUNCIONÁRIO ID: {Id}  ", funcionario.Id );
             }
             catch (Exception ex)
             {
-                Log.Logger.Aqui().Error(ex, "ERRO AO INSERIR FUNCIONÁRIO ID: {Id}  ", funcionario.Id );
+                Log.Logger.Error(ex, "ERRO AO INSERIR FUNCIONÁRIO ID: {Id}  ", funcionario.Id );
             }
         }
 
@@ -119,11 +105,11 @@ namespace LocadoraDeVeiculos.Infra.SQL.FuncionarioModule
                 funcionario.Id = id;
                 Db.Update(sqlEditarFuncionario, ObtemParametrosFuncionario(funcionario));
 
-                Log.Logger.Aqui().Information("SUCESSO AO EDITAR FUNCIONÁRIO ID: {Id}  ", funcionario.Id );
+                Log.Logger.Information("SUCESSO AO EDITAR FUNCIONÁRIO ID: {Id}  ", funcionario.Id );
             }
             catch (Exception ex)
             {
-                Log.Logger.Aqui().Error(ex, "ERRO AO EDITAR FUNCIONÁRIO ID: {Id}  ", funcionario.Id );
+                Log.Logger.Error(ex, "ERRO AO EDITAR FUNCIONÁRIO ID: {Id}  ", funcionario.Id );
             }
         }
 
@@ -133,11 +119,11 @@ namespace LocadoraDeVeiculos.Infra.SQL.FuncionarioModule
             {
                 Db.Delete(sqlExcluirFuncionario, AdicionarParametro("ID", id));
 
-                Log.Logger.Aqui().Information("SUCESSO AO REMOVER FUNCIONÁRIO ID: {Id}  ", id );
+                Log.Logger.Information("SUCESSO AO REMOVER FUNCIONÁRIO ID: {Id}  ", id );
             }
             catch (Exception ex)
             {
-                Log.Logger.Aqui().Error(ex, "ERRO AO REMOVER FUNCIONÁRIO ID: {Id}  ", id );
+                Log.Logger.Error(ex, "ERRO AO REMOVER FUNCIONÁRIO ID: {Id}  ", id );
 
                 return false;
             }
@@ -156,16 +142,16 @@ namespace LocadoraDeVeiculos.Infra.SQL.FuncionarioModule
                 Funcionario funcionario = Db.Get(sqlSelecionarFuncionarioPorId, ConverterEmFuncionario, AdicionarParametro("ID", id));
 
                 if (funcionario != null)
-                    Log.Logger.Aqui().Debug("SUCESSO AO SELECIONAR FUNCIONÁRIO ID: {Id}  ", funcionario.Id );
+                    Log.Logger.Debug("SUCESSO AO SELECIONAR FUNCIONÁRIO ID: {Id}  ", funcionario.Id );
                 else
-                    Log.Logger.Aqui().Information("NÃO FOI POSSÍVEL SELECIONAR FUNCIONÁRIO ID: {Id}  ", funcionario.Id );
+                    Log.Logger.Information("NÃO FOI POSSÍVEL SELECIONAR FUNCIONÁRIO ID: {Id}  ", funcionario.Id );
 
                 return funcionario;
 
             }
             catch (Exception ex)
             {
-                Log.Logger.Aqui().Error(ex, "NÃO FOI POSSÍVEL SE COMUNICAR COM O BANCO DE DADOS PARA SELECIONAR FUNCIONÁRIO ID: {Id}  ", id );
+                Log.Logger.Error(ex, "NÃO FOI POSSÍVEL SE COMUNICAR COM O BANCO DE DADOS PARA SELECIONAR FUNCIONÁRIO ID: {Id}  ", id );
 
                 return null;
             }
@@ -178,38 +164,15 @@ namespace LocadoraDeVeiculos.Infra.SQL.FuncionarioModule
                 List<Funcionario> funcionarios = Db.GetAll(sqlSelecionarTodosFuncionarios, ConverterEmFuncionario);
 
                 if (funcionarios != null)
-                    Log.Logger.Aqui().Debug("SUCESSO AO SELECIONAR TODOS OS FUNCIONÁRIOS  " );
+                    Log.Logger.Debug("SUCESSO AO SELECIONAR TODOS OS FUNCIONÁRIOS  " );
                 else
-                    Log.Logger.Aqui().Information("NÃO FOI POSSÍVEL SELECIONAR TODOS OS FUNCIONÁRIOS  " );
+                    Log.Logger.Information("NÃO FOI POSSÍVEL SELECIONAR TODOS OS FUNCIONÁRIOS  " );
 
                 return funcionarios;
             }
             catch (Exception ex)
             {
-                Log.Logger.Aqui().Error(ex, "NÃO FOI POSSÍVEL SE COMUNICAR COM O BANCO DE DADOS PARA SELECIONAR TODOS OS FUNCIONÁRIOS  " );
-
-                return null;
-            }
-        }
-
-        public List<Funcionario> SelecionarPesquisa(string coluna, string pesquisa)
-        {  
-            try
-            {
-                string sql = sqlSelecionarFuncionarioPorNome.Replace("COLUNADEPESQUISA", coluna);
-                List<Funcionario> funcionarios = Db.GetAll(sql, ConverterEmFuncionario, AdicionarParametro("@SEGUNDAREF", pesquisa));
-
-                if (funcionarios != null)
-                    Log.Logger.Aqui().Debug("SUCESSO AO SELECIONAR FUNCIONARIO COM A PESQUISA: {Pesquisa}  ", pesquisa );
-                else
-                    Log.Logger.Aqui().Information("NÃO FOI POSSÍVEL SELECIONAR FUNCIONARIO COM A PESQUISA: {Pesquisa}  ", pesquisa );
-
-                return funcionarios;
-
-            }
-            catch (Exception ex)
-            {
-                Log.Logger.Aqui().Error(ex, "NÃO FOI POSSÍVEL SE COMUNICAR COM O BANCO DE DADOS PARA SELECIONAR FUNCIONARIO  " );
+                Log.Logger.Error(ex, "NÃO FOI POSSÍVEL SE COMUNICAR COM O BANCO DE DADOS PARA SELECIONAR TODOS OS FUNCIONÁRIOS  " );
 
                 return null;
             }

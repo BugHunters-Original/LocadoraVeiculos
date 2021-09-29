@@ -20,7 +20,7 @@ namespace LocadoraDeVeiculos.Aplicacao.ClienteCNPJModule
         {
             Log.Logger.Aqui().Debug("REGISTRANDO CLIENTE CNPJ {ClienteNome}", clienteCNPJ.Nome);
 
-            if (EstaValido(clienteCNPJ))
+            if (clienteCNPJ.Validar() == "ESTA_VALIDO")
             {
                 clienteCNPJRepository.Inserir(clienteCNPJ);
 
@@ -40,7 +40,7 @@ namespace LocadoraDeVeiculos.Aplicacao.ClienteCNPJModule
         {
             Log.Logger.Aqui().Debug("EDITANDO CLIENTE CNPJ {ClienteNome}", clienteCNPJ.Nome);
 
-            if (EstaValido(clienteCNPJ))
+            if (clienteCNPJ.Validar() == "ESTA_VALIDO")
             {
                 clienteCNPJRepository.Editar(id, clienteCNPJ);
 
@@ -99,10 +99,6 @@ namespace LocadoraDeVeiculos.Aplicacao.ClienteCNPJModule
                 Log.Logger.Aqui().Debug("A SELEÇÃO TROUXE {Quantidade} CLIENTE(S) CNPJ EXISTENTE(S)", clientes.Count);
 
             return clientes;                
-        }
-        private bool EstaValido(ClienteCNPJ clienteCNPJ)
-        {
-            return clienteCNPJ.Validar() == "ESTA_VALIDO" && !clienteCNPJRepository.ExisteCNPJ(clienteCNPJ.Cnpj);
         }
     }
 }

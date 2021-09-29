@@ -286,13 +286,13 @@ namespace LocadoraDeVeiculos.Infra.SQL.VeiculoModule
             {
                 veiculo.Id = id;
                 Db.Update(sqlEditarVeiculo, ObtemParametrosVeiculo(veiculo));
-                Log.Logger.Aqui().Information("SUCESSO AO EDITAR VEÍCULO ID: {Id}  ", veiculo.Id );
+                Log.Logger.Information("SUCESSO AO EDITAR VEÍCULO ID: {Id}  ", veiculo.Id );
             }
 
             catch(Exception ex)
             {
 
-                 Log.Logger.Aqui().Error(ex , "ERRO AO EDITAR VEÍCULO ID: {Id}  ", veiculo.Id );
+                 Log.Logger.Error(ex , "ERRO AO EDITAR VEÍCULO ID: {Id}  ", veiculo.Id );
 
             }
         }
@@ -303,12 +303,12 @@ namespace LocadoraDeVeiculos.Infra.SQL.VeiculoModule
             {
                 Db.Delete(sqlExcluirVeiculo, AdicionarParametro("ID", id));
 
-                Log.Logger.Aqui().Information("SUCESSO AO REMOVER VEÍCULO ID: {Id}  ", id );
+                Log.Logger.Information("SUCESSO AO REMOVER VEÍCULO ID: {Id}  ", id );
 
             }
             catch (Exception ex)
             {
-                 Log.Logger.Aqui().Error(ex , "ERRO AO REMOVER VEÍCULO ID: {Id}  ", id );
+                 Log.Logger.Error(ex , "ERRO AO REMOVER VEÍCULO ID: {Id}  ", id );
 
                 return false;
             }
@@ -326,12 +326,12 @@ namespace LocadoraDeVeiculos.Infra.SQL.VeiculoModule
             try
             {
                 veiculo.Id = Db.Insert(sqlInserirVeiculo, ObtemParametrosVeiculo(veiculo));
-                Log.Logger.Aqui().Information("SUCESSO AO INSERIR VEÍCULO ID: {Id}  ", veiculo.Id );
+                Log.Logger.Information("SUCESSO AO INSERIR VEÍCULO ID: {Id}  ", veiculo.Id );
             }
 
             catch(Exception ex)
             {
-                 Log.Logger.Aqui().Error(ex , "ERRO AO INSERIR VEÍCULO ID: {Id}  ", veiculo.Id );
+                 Log.Logger.Error(ex , "ERRO AO INSERIR VEÍCULO ID: {Id}  ", veiculo.Id );
 
             }
         }
@@ -344,9 +344,9 @@ namespace LocadoraDeVeiculos.Infra.SQL.VeiculoModule
                 List<Veiculo> veiculos = Db.GetAll(sql, ConverterEmVeiculo, AdicionarParametro("@SEGUNDAREF", pesquisa));
 
                 if (veiculos != null)
-                    Log.Logger.Aqui().Debug("SUCESSO AO SELECIONAR VEÍCULO COM A PESQUISA: {Pesquisa}  ", pesquisa );
+                    Log.Logger.Debug("SUCESSO AO SELECIONAR VEÍCULO COM A PESQUISA: {Pesquisa}  ", pesquisa );
                 else
-                    Log.Logger.Aqui().Information("NÃO FOI POSSÍVEL SELECIONAR VEÍCULO COM A PESQUISA: {Pesquisa}  ", pesquisa );
+                    Log.Logger.Information("NÃO FOI POSSÍVEL SELECIONAR VEÍCULO COM A PESQUISA: {Pesquisa}  ", pesquisa );
 
 
                 return veiculos;
@@ -354,7 +354,7 @@ namespace LocadoraDeVeiculos.Infra.SQL.VeiculoModule
 
             catch(Exception ex) {
 
-                 Log.Logger.Aqui().Error(ex , "NÃO FOI POSSÍVEL SE COMUNICAR COM O BANCO DE DADOS PARA SELECIONAR VEÍCULO  " );
+                 Log.Logger.Error(ex , "NÃO FOI POSSÍVEL SE COMUNICAR COM O BANCO DE DADOS PARA SELECIONAR VEÍCULO  " );
 
                 return null;
             }
@@ -368,14 +368,14 @@ namespace LocadoraDeVeiculos.Infra.SQL.VeiculoModule
                 antigo.DisponibilidadeVeiculo = 1;
                 Db.Update(sqlEditarVeiculo, ObtemParametrosVeiculo(atual));
                 Db.Update(sqlEditarVeiculo, ObtemParametrosVeiculo(antigo));
-                Log.Logger.Aqui().Information("SUCESSO AO EDITAR DISPONIBILIDADE DO VEÍCULO ANTIGO ID: {Id} E DISPONIBILIDADE DO VEÍCULO ATUAL ID: {Id}  ",antigo.Id, atual.Id );
+                Log.Logger.Information("SUCESSO AO EDITAR DISPONIBILIDADE DO VEÍCULO ANTIGO ID: {Id} E DISPONIBILIDADE DO VEÍCULO ATUAL ID: {Id}  ",antigo.Id, atual.Id );
 
             }
 
             catch (Exception ex)
             {
 
-                 Log.Logger.Aqui().Error(ex , "ERRO AO EDITAR DISPONIBILIDADE DO VEÍCULO ANTIGO ID: {Id} E DISPONIBILIDADE DO VEÍCULO ATUAL ID: {Id}  ", antigo.Id, atual.Id );
+                 Log.Logger.Error(ex , "ERRO AO EDITAR DISPONIBILIDADE DO VEÍCULO ANTIGO ID: {Id} E DISPONIBILIDADE DO VEÍCULO ATUAL ID: {Id}  ", antigo.Id, atual.Id );
 
             }
         }
@@ -386,13 +386,13 @@ namespace LocadoraDeVeiculos.Infra.SQL.VeiculoModule
             {
                 veiculo.DisponibilidadeVeiculo = 1;
                 Db.Update(sqlMudarDisponibilidade, ObtemParametrosVeiculo(veiculo));
-                Log.Logger.Aqui().Information("SUCESSO AO EDITAR DISPONILIDADE DO VEÍCULO ID: {Id}  ", veiculo.Id );
+                Log.Logger.Information("SUCESSO AO EDITAR DISPONILIDADE DO VEÍCULO ID: {Id}  ", veiculo.Id );
 
             }
 
             catch (Exception ex)
             {
-                 Log.Logger.Aqui().Error(ex , "ERRO AO EDITAR DISPONIBILIDADE VEÍCULO ID: {Id}  ", veiculo.Id );
+                 Log.Logger.Error(ex , "ERRO AO EDITAR DISPONIBILIDADE VEÍCULO ID: {Id}  ", veiculo.Id );
 
             }
         }
@@ -403,13 +403,13 @@ namespace LocadoraDeVeiculos.Infra.SQL.VeiculoModule
             {
                 veiculo.DisponibilidadeVeiculo = 0;
                 Db.Update(sqlMudarDisponibilidade, ObtemParametrosVeiculo(veiculo));
-                Log.Logger.Aqui().Information("SUCESSO AO EDITAR DISPONILIDADE DO VEÍCULO ID: {Id}  ", veiculo.Id );
+                Log.Logger.Information("SUCESSO AO EDITAR DISPONILIDADE DO VEÍCULO ID: {Id}  ", veiculo.Id );
 
             }
 
             catch (Exception ex)
             {
-                 Log.Logger.Aqui().Error(ex , "ERRO AO EDITAR DISPONIBILIDADE VEÍCULO ID: {Id}  ", veiculo.Id );
+                 Log.Logger.Error(ex , "ERRO AO EDITAR DISPONIBILIDADE VEÍCULO ID: {Id}  ", veiculo.Id );
 
             }
         }
@@ -418,12 +418,12 @@ namespace LocadoraDeVeiculos.Infra.SQL.VeiculoModule
             try
             {
                 Db.Update(sqlEditarVeiculo, ObtemParametrosVeiculo(veiculo));
-                Log.Logger.Aqui().Information("SUCESSO AO EDITAR QUILOMETRAGEM DO VEÍCULO ID: {Id}  ", veiculo.Id );
+                Log.Logger.Information("SUCESSO AO EDITAR QUILOMETRAGEM DO VEÍCULO ID: {Id}  ", veiculo.Id );
             }
 
             catch(Exception ex)
             {
-                 Log.Logger.Aqui().Error(ex , "ERRO AO EDITAR QUILOMETRAGEM DO VEÍCULO ID: {Id}  ", veiculo.Id );
+                 Log.Logger.Error(ex , "ERRO AO EDITAR QUILOMETRAGEM DO VEÍCULO ID: {Id}  ", veiculo.Id );
             }
         }
 
@@ -434,15 +434,15 @@ namespace LocadoraDeVeiculos.Infra.SQL.VeiculoModule
                 Veiculo veiculo =  Db.Get(sqlSelecionarVeiculoPorId, ConverterEmVeiculo, AdicionarParametro("ID", id));
 
                 if (veiculo != null)
-                    Log.Logger.Aqui().Debug("SUCESSO AO SELECIONAR VEÍCULO ID: {Id}  ", veiculo.Id );
+                    Log.Logger.Debug("SUCESSO AO SELECIONAR VEÍCULO ID: {Id}  ", veiculo.Id );
                 else
-                    Log.Logger.Aqui().Information("NÃO FOI POSSÍVEL SELECIONAR VEÍCULO ID: {Id}  ", veiculo.Id );
+                    Log.Logger.Information("NÃO FOI POSSÍVEL SELECIONAR VEÍCULO ID: {Id}  ", veiculo.Id );
 
                 return veiculo;
             }
             catch (Exception ex) {
 
-                 Log.Logger.Aqui().Error(ex , "NÃO FOI POSSÍVEL SE COMUNICAR COM O BANCO DE DADOS PARA SELECIONAR VEÍCULO ID: {Id}  ", id );
+                 Log.Logger.Error(ex , "NÃO FOI POSSÍVEL SE COMUNICAR COM O BANCO DE DADOS PARA SELECIONAR VEÍCULO ID: {Id}  ", id );
 
                 return null;
             }
@@ -455,16 +455,16 @@ namespace LocadoraDeVeiculos.Infra.SQL.VeiculoModule
                 List<Veiculo> veiculos =  Db.GetAll(sqlSelecionarTodosVeiculos, ConverterEmVeiculo);
 
                 if(veiculos!=null)
-                    Log.Logger.Aqui().Debug("SUCESSO AO SELECIONAR TODOS OS VEÍCULOS  " );
+                    Log.Logger.Debug("SUCESSO AO SELECIONAR TODOS OS VEÍCULOS  " );
 
                 else
-                    Log.Logger.Aqui().Information("NÃO FOI POSSÍVEL SELECIONAR TODOS OS VEÍCULOS  " );
+                    Log.Logger.Information("NÃO FOI POSSÍVEL SELECIONAR TODOS OS VEÍCULOS  " );
 
                 return veiculos;
             }
             catch (Exception ex)
             {
-                 Log.Logger.Aqui().Error(ex , "NÃO FOI POSSÍVEL SE COMUNICAR COM O BANCO DE DADOS PARA SELECIONAR TODOS OS VEÍCULOS  " );
+                 Log.Logger.Error(ex , "NÃO FOI POSSÍVEL SE COMUNICAR COM O BANCO DE DADOS PARA SELECIONAR TODOS OS VEÍCULOS  " );
 
                 return null;
             }
@@ -477,17 +477,17 @@ namespace LocadoraDeVeiculos.Infra.SQL.VeiculoModule
                 List<Veiculo> veiculos = Db.GetAll(sqlVeiculoAlugado, ConverterEmVeiculo);
 
                 if (veiculos != null)
-                    Log.Logger.Aqui().Debug("SUCESSO AO SELECIONAR TODOS OS VEÍCULOS ALUGADOS  " );
+                    Log.Logger.Debug("SUCESSO AO SELECIONAR TODOS OS VEÍCULOS ALUGADOS  " );
 
                 else
-                    Log.Logger.Aqui().Information("NÃO FOI POSSÍVEL SELECIONAR TODOS OS VEÍCULOS ALUGADOS  " );
+                    Log.Logger.Information("NÃO FOI POSSÍVEL SELECIONAR TODOS OS VEÍCULOS ALUGADOS  " );
 
                 return veiculos;
             }
 
             catch(Exception ex) {
 
-                 Log.Logger.Aqui().Error(ex , "NÃO FOI POSSÍVEL SE COMUNICAR COM O BANCO DE DADOS PARA SELECIONAR TODOS OS VEÍCULOS ALUGADOS  " );
+                 Log.Logger.Error(ex , "NÃO FOI POSSÍVEL SE COMUNICAR COM O BANCO DE DADOS PARA SELECIONAR TODOS OS VEÍCULOS ALUGADOS  " );
 
                 return null;
             }
@@ -500,17 +500,17 @@ namespace LocadoraDeVeiculos.Infra.SQL.VeiculoModule
                 List<Veiculo> veiculos = Db.GetAll(sqlVeiculoDisponivel, ConverterEmVeiculo);
 
                 if (veiculos != null)
-                    Log.Logger.Aqui().Debug("SUCESSO AO SELECIONAR TODOS OS VEÍCULOS DISPONÍVEIS  " );
+                    Log.Logger.Debug("SUCESSO AO SELECIONAR TODOS OS VEÍCULOS DISPONÍVEIS  " );
 
                 else
-                    Log.Logger.Aqui().Information("NÃO FOI POSSÍVEL SELECIONAR TODOS OS VEÍCULOS DISPONÍVEIS  " );
+                    Log.Logger.Information("NÃO FOI POSSÍVEL SELECIONAR TODOS OS VEÍCULOS DISPONÍVEIS  " );
 
                 return veiculos;
             }
 
             catch (Exception ex) {
 
-                 Log.Logger.Aqui().Error(ex , "NÃO FOI POSSÍVEL SE COMUNICAR COM O BANCO DE DADOS PARA SELECIONAR TODOS OS VEÍCULOS DISPONÍVEIS  " );
+                 Log.Logger.Error(ex , "NÃO FOI POSSÍVEL SE COMUNICAR COM O BANCO DE DADOS PARA SELECIONAR TODOS OS VEÍCULOS DISPONÍVEIS  " );
 
                 return null;
             }
@@ -523,17 +523,17 @@ namespace LocadoraDeVeiculos.Infra.SQL.VeiculoModule
                 int alugados =   Db.GetAll(sqlQuantidadeAlugados, ConverterEmVeiculo).Count;
 
                 if(alugados > 0)
-                    Log.Logger.Aqui().Debug("SUCESSO AO RETORNAR QUANTIDADE DE VEÍCULOS ALUGADOS  " );
+                    Log.Logger.Debug("SUCESSO AO RETORNAR QUANTIDADE DE VEÍCULOS ALUGADOS  " );
 
                 else
-                    Log.Logger.Aqui().Information("NÃO HÁ VEÍCULOS ALUGADOS  " );
+                    Log.Logger.Information("NÃO HÁ VEÍCULOS ALUGADOS  " );
 
                 return alugados;
             }
 
             catch(Exception ex)
             {
-                 Log.Logger.Aqui().Error(ex , "NÃO FOI POSSÍVEL SE COMUNICAR COM O BANCO DE DADOS PARA RETORNAR A QUANTIDADE DE VEÍCULOS ALUGADOS  " );
+                 Log.Logger.Error(ex , "NÃO FOI POSSÍVEL SE COMUNICAR COM O BANCO DE DADOS PARA RETORNAR A QUANTIDADE DE VEÍCULOS ALUGADOS  " );
 
                 return 0;
             }
@@ -546,17 +546,17 @@ namespace LocadoraDeVeiculos.Infra.SQL.VeiculoModule
                 int disponiveis = Db.GetAll(sqlQuantidadeDisponiveis, ConverterEmVeiculo).Count;
 
                 if (disponiveis > 0)
-                    Log.Logger.Aqui().Debug("SUCESSO AO RETORNAR QUANTIDADE DE VEÍCULOS DISPONÍVEIS  " );
+                    Log.Logger.Debug("SUCESSO AO RETORNAR QUANTIDADE DE VEÍCULOS DISPONÍVEIS  " );
 
                 else
-                    Log.Logger.Aqui().Information("NÃO HÁ VEÍCULOS DISPONÍVEIS  " );
+                    Log.Logger.Information("NÃO HÁ VEÍCULOS DISPONÍVEIS  " );
 
                 return disponiveis;
             }
 
             catch(Exception ex)
             {
-                 Log.Logger.Aqui().Error(ex , "NÃO FOI POSSÍVEL SE COMUNICAR COM O BANCO DE DADOS PARA RETORNAR A QUANTIDADE DE VEÍCULOS DISPONÍVEIS  " );
+                 Log.Logger.Error(ex , "NÃO FOI POSSÍVEL SE COMUNICAR COM O BANCO DE DADOS PARA RETORNAR A QUANTIDADE DE VEÍCULOS DISPONÍVEIS  " );
 
                 return 0;
             }

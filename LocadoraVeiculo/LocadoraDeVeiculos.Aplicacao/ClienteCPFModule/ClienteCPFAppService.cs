@@ -18,7 +18,7 @@ namespace LocadoraDeVeiculos.Aplicacao.ClienteCPFModule
         {
             Log.Logger.Aqui().Debug("REGISTRANDO CLIENTE CPF {ClienteNome}", clienteCPF.Nome);
 
-            if (EstaValido(clienteCPF))
+            if (clienteCPF.Validar() == "ESTA_VALIDO")
             {
                 clienteCPFRepository.Inserir(clienteCPF);
 
@@ -38,7 +38,7 @@ namespace LocadoraDeVeiculos.Aplicacao.ClienteCPFModule
         {
             Log.Logger.Aqui().Debug("EDITANDO CLIENTE CPF {ClienteNome}", clienteCPF.Nome);
 
-            if (EstaValido(clienteCPF))
+            if (clienteCPF.Validar() == "ESTA_VALIDO")
             {
                 clienteCPFRepository.Editar(id, clienteCPF);
 
@@ -110,10 +110,6 @@ namespace LocadoraDeVeiculos.Aplicacao.ClienteCPFModule
                 Log.Logger.Aqui().Debug("A SELEÇÃO TROUXE {Quantidade} CLIENTE(S) CPF EXISTENTE(S)", clientes.Count);
 
             return clientes;
-        }
-        private bool EstaValido(ClienteCPF clienteCPF)
-        {
-            return clienteCPF.Validar() == "ESTA_VALIDO" && !clienteCPFRepository.ExisteCPF(clienteCPF.Cpf);
         }
     }
 }

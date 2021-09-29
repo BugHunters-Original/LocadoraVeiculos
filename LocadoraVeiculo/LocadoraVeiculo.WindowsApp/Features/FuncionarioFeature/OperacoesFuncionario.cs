@@ -3,6 +3,7 @@ using LocadoraDeVeiculos.Dominio.FuncionarioModule;
 using LocadoraVeiculo.WindowsApp.Shared;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Windows.Forms;
 
 namespace LocadoraVeiculo.WindowsApp.Features.FuncionarioFeature
@@ -126,6 +127,17 @@ namespace LocadoraVeiculo.WindowsApp.Features.FuncionarioFeature
                 return false;
             }
             return true;
+        }
+
+        public void PesquisarRegistro(string pesquisa)
+        {
+            List<Funcionario> funcionarios = funcionarioService.SelecionarTodosFuncionarios();
+
+            var palavras = pesquisa.Split(' ');
+
+            List<Funcionario> filtrados = funcionarios.Where(i => palavras.Any(p => i.ToString().IndexOf(p, StringComparison.OrdinalIgnoreCase) >= 0)).ToList();
+
+            tabelaFuncionarios.AtualizarRegistros(filtrados);
         }
     }
 }

@@ -63,8 +63,6 @@ namespace LocadoraVeiculo.WindowsApp.Features.GrupoVeiculoFeature
             throw new NotImplementedException();
         }
 
-
-
         public void ExcluirRegistro()
         {
             int id = tabelaGrupoVeiculo.ObtemIdSelecionado();
@@ -88,7 +86,6 @@ namespace LocadoraVeiculo.WindowsApp.Features.GrupoVeiculoFeature
 
                     TelaPrincipalForm.Instancia.AtualizarRodape($"Grupo veículo: [{grupoVeiculoSelecionado.NomeTipo}] removido com sucesso");
                 }
-
                 else
                 {
                     MessageBox.Show("Grupo veículos está associado a um veículo", "Exclusão de Grupos de Veiculos", MessageBoxButtons.OK, MessageBoxIcon.Error);

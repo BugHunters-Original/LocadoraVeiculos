@@ -5,6 +5,7 @@ using LocadoraDeVeiculos.Dominio.DescontoModule;
 using LocadoraVeiculo.WindowsApp.Shared;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Windows.Forms;
 
 namespace LocadoraVeiculo.WindowsApp.Features.DescontoFeature
@@ -159,6 +160,17 @@ namespace LocadoraVeiculo.WindowsApp.Features.DescontoFeature
                 return false;
             }
             return true;
+        }
+
+        public void PesquisarRegistro(string pesquisa)
+        {
+            List<Desconto> descontos = descontoService.SelecionarTodosDescontos();
+
+            var palavras = pesquisa.Split(' ');
+
+            List<Desconto> filtrados = descontos.Where(i => palavras.Any(p => i.ToString().IndexOf(p, StringComparison.OrdinalIgnoreCase) >= 0)).ToList();
+
+            tabelaDesconto.AtualizarRegistros(filtrados);
         }
     }
 }
