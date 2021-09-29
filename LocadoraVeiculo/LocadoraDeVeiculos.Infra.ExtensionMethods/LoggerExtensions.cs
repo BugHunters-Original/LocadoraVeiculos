@@ -15,12 +15,6 @@ namespace LocadoraDeVeiculos.Infra.ExtensionMethods
                 .ForContext("MemberName", memberName)
                 .ForContext("ClassName", Path.GetFileNameWithoutExtension(sourceFilePath))
                 .ForContext("LineNumber", sourceLineNumber);
-
-        }
-
-        public static void FuncionalidadeUsada(this ILogger logger)
-        {
-            logger.Information("Funcionalidade Usada");
         }
     }
 }
