@@ -1,7 +1,7 @@
 ﻿using FluentAssertions;
 using LocadoraDeVeiculos.Dominio.GrupoVeiculoModule;
 using LocadoraDeVeiculos.Dominio.VeiculoModule;
-using LocadoraDeVeiculos.Infra.Log;
+
 using LocadoraDeVeiculos.Infra.Shared;
 using LocadoraDeVeiculos.Infra.SQL.GrupoVeiculoModule;
 using LocadoraDeVeiculos.Infra.SQL.VeiculoModule;
@@ -16,14 +16,14 @@ namespace LocadoraDeVeiculos.IntegrationTests.VeiculoModule
         GrupoVeiculoDAO grupoVeiculoDAO;
         VeiculoDAO veiculoDAO;
         GrupoVeiculo grupo;
-        Logger logger;
+        
 
         byte[] imagem;
 
         public VeiculoIntegrationTests()
         {
-            logger = LogManager.IniciarLog();
-            grupoVeiculoDAO = new GrupoVeiculoDAO(logger);
+            
+            grupoVeiculoDAO = new GrupoVeiculoDAO();
             veiculoDAO = new VeiculoDAO();
             Db.Update("DELETE FROM [TBTIPOVEICULO]");
             Db.Update("DELETE FROM [TBVEICULOS]");

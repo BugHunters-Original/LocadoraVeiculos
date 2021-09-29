@@ -131,7 +131,7 @@ namespace LocadoraDeVeiculos.Aplicacao.VeiculoModule
             List<Veiculo> veiculo = veiculoRepository.SelecionarTodosAlugados();
 
             if (veiculo.Count == 0)
-                Log.Logger.Aqui().Information("NÃO HÁ VEÍCULOS ALUGADOS| {DataEHora}");
+                Log.Logger.Aqui().Information("NÃO HÁ VEÍCULOS ALUGADOS");
             else
                 Log.Logger.Aqui().Debug("A SELEÇÃO TROUXE {Quantidade} VEÍCULO(S) ALUGADO(S)", veiculo.Count);
 
@@ -146,7 +146,7 @@ namespace LocadoraDeVeiculos.Aplicacao.VeiculoModule
             List<Veiculo> veiculo = veiculoRepository.SelecionarTodosDisponiveis();
 
             if (veiculo.Count == 0)
-                Log.Logger.Aqui().Information("NÃO HÁ VEÍCULOS DISPONÍVEIS| {DataEHora}");
+                Log.Logger.Aqui().Information("NÃO HÁ VEÍCULOS DISPONÍVEIS");
             else
                 Log.Logger.Aqui().Debug("A SELEÇÃO TROUXE {Quantidade} VEÍCULO(S) DISPONÍVEIS", veiculo.Count);
 
@@ -161,7 +161,7 @@ namespace LocadoraDeVeiculos.Aplicacao.VeiculoModule
             int quantidade = veiculoRepository.ReturnQuantidadeAlugados();
 
             if (quantidade == 0)
-                Log.Logger.Aqui().Information("NÃO HÁ VEÍCULOS ALUGADOS| {DataEHora}");
+                Log.Logger.Aqui().Information("NÃO HÁ VEÍCULOS ALUGADOS");
             else
                 Log.Logger.Aqui().Debug("A SELEÇÃO TROUXE {Quantidade} VEÍCULO(S) ALUGADOS",  quantidade);
 
@@ -176,7 +176,7 @@ namespace LocadoraDeVeiculos.Aplicacao.VeiculoModule
             int quantidade = veiculoRepository.ReturnQuantidadeDisponiveis();
 
             if (quantidade == 0)
-                Log.Logger.Aqui().Information("NÃO HÁ VEÍCULOS DISPONÍVEIS| {DataEHora}");
+                Log.Logger.Aqui().Information("NÃO HÁ VEÍCULOS DISPONÍVEIS");
             else
                 Log.Logger.Aqui().Debug("A SELEÇÃO TROUXE {Quantidade} VEÍCULO(S) DISPONÍVEIS", quantidade);
 

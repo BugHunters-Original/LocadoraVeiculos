@@ -4,19 +4,14 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 using FluentAssertions;
 using Serilog.Core;
-using LocadoraDeVeiculos.Infra.Log;
 
 namespace LocadoraDeVeiculos.AppServiceTests.GrupoVeiculoModule
 {
-    //Testar: se existir um veicuo associado ao grupo, ele nao pode ser excluído
+    
     [TestClass]
     public class GrupoVeiculoAppServiceTest
     {
-        Logger logger;
-        public GrupoVeiculoAppServiceTest()
-        {
-            logger = LogManager.IniciarLog();
-        }
+       
         [TestMethod]
         public void Deve_Chamar_Excluir()
         {
@@ -26,7 +21,7 @@ namespace LocadoraDeVeiculos.AppServiceTests.GrupoVeiculoModule
             grupoVeiculoMock.Setup(x => x.Excluir(grupoVeiculo.Id)).Returns(true);
 
 
-            GrupoVeiculoAppService grupoVeiculoService = new(grupoVeiculoMock.Object, logger);
+            GrupoVeiculoAppService grupoVeiculoService = new(grupoVeiculoMock.Object);
 
             var resultado = grupoVeiculoService.ExcluirGrupoVeiculo(grupoVeiculo.Id);
             resultado.Should().BeTrue();
@@ -44,7 +39,7 @@ namespace LocadoraDeVeiculos.AppServiceTests.GrupoVeiculoModule
 
             Mock<IGrupoVeiculoRepository> grupoVeiculoMock = new();
 
-            GrupoVeiculoAppService grupoVeiculoService = new(grupoVeiculoMock.Object, logger);
+            GrupoVeiculoAppService grupoVeiculoService = new(grupoVeiculoMock.Object);
 
             grupoVeiculoService.RegistrarNovoGrupoVeiculo(grupoVeiculo);
 
@@ -62,7 +57,7 @@ namespace LocadoraDeVeiculos.AppServiceTests.GrupoVeiculoModule
 
             grupoVeiculo.Setup(x => x.Validar()).Returns("O campo Categoria é obrigatório");
 
-            GrupoVeiculoAppService grupoVeiculoService = new(grupoVeiculoMock.Object, logger);
+            GrupoVeiculoAppService grupoVeiculoService = new(grupoVeiculoMock.Object);
 
             grupoVeiculoService.RegistrarNovoGrupoVeiculo(grupoVeiculo.Object);
 
@@ -77,7 +72,7 @@ namespace LocadoraDeVeiculos.AppServiceTests.GrupoVeiculoModule
 
             Mock<IGrupoVeiculoRepository> grupoVeiculoMock = new();
 
-            GrupoVeiculoAppService grupoVeiculoService = new(grupoVeiculoMock.Object, logger);
+            GrupoVeiculoAppService grupoVeiculoService = new(grupoVeiculoMock.Object);
 
             grupoVeiculoService.EditarNovoGrupoVeiculo(grupoVeiculo.Id, grupoVeiculoEditado);
 
@@ -94,7 +89,7 @@ namespace LocadoraDeVeiculos.AppServiceTests.GrupoVeiculoModule
 
             grupoVeiculoEditado.Setup(x => x.Validar()).Returns("O campo Categoria é obrigatório");
 
-            GrupoVeiculoAppService grupoVeiculoService = new(grupoVeiculoMock.Object, logger);
+            GrupoVeiculoAppService grupoVeiculoService = new(grupoVeiculoMock.Object);
 
             grupoVeiculoService.EditarNovoGrupoVeiculo(grupoVeiculo.Object.Id, grupoVeiculoEditado.Object);
 

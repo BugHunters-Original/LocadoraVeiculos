@@ -1,7 +1,6 @@
 ﻿using LocadoraDeVeiculos.Aplicacao.VeiculoModule;
 using LocadoraDeVeiculos.Dominio.GrupoVeiculoModule;
 using LocadoraDeVeiculos.Dominio.VeiculoModule;
-using LocadoraDeVeiculos.Infra.Log;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 using Serilog.Core;
@@ -16,10 +15,9 @@ namespace LocadoraDeVeiculos.AppServiceTests.VeiculoModule
         byte[] imagem;
         GrupoVeiculo grupoVeiculo;
         Mock<Veiculo> veiculoMock;
-        Logger logger;
+        
         public VeiculoAppServiceTests()
-        {
-            logger = LogManager.IniciarLog();
+        {   
             veiculoDAOMock = new();
             imagem = new byte[] { 0x20, 0x20, 0x20, 0x20 };
             grupoVeiculo = new GrupoVeiculo("Econômico", 40, 5, 50, 30, 40, 10);
@@ -39,7 +37,7 @@ namespace LocadoraDeVeiculos.AppServiceTests.VeiculoModule
             });
 
             //actions
-            VeiculoAppService veiculoAppService = new VeiculoAppService(veiculoDAOMock.Object, logger);
+            VeiculoAppService veiculoAppService = new VeiculoAppService(veiculoDAOMock.Object);
             veiculoAppService.RegistrarNovoVeiculo(veiculo);
 
             //assert
@@ -58,7 +56,7 @@ namespace LocadoraDeVeiculos.AppServiceTests.VeiculoModule
                 return "ESTA_VALIDO";
             });
             //actions
-            VeiculoAppService veiculoAppService = new VeiculoAppService(veiculoDAOMock.Object, logger);
+            VeiculoAppService veiculoAppService = new VeiculoAppService(veiculoDAOMock.Object);
             
             veiculoAppService.EditarVeiculo(1, veiculo);
 
@@ -77,7 +75,7 @@ namespace LocadoraDeVeiculos.AppServiceTests.VeiculoModule
                 return "O campo Nome é obrigatório";
             });
 
-            VeiculoAppService veiculoService = new(veiculoDAOMock.Object, logger);
+            VeiculoAppService veiculoService = new(veiculoDAOMock.Object);
 
             veiculoService.RegistrarNovoVeiculo(veiculo);
 

@@ -5,7 +5,6 @@ using LocadoraDeVeiculos.Dominio.GrupoVeiculoModule;
 using LocadoraDeVeiculos.Dominio.LocacaoModule;
 using LocadoraDeVeiculos.Dominio.ServicoModule;
 using LocadoraDeVeiculos.Dominio.VeiculoModule;
-using LocadoraDeVeiculos.Infra.Log;
 using LocadoraDeVeiculos.Infra.Shared;
 using LocadoraDeVeiculos.Infra.SQL.ClienteCNPJModule;
 using LocadoraDeVeiculos.Infra.SQL.ClienteCPFModule;
@@ -41,15 +40,12 @@ namespace LocadoraDeVeiculos.Test.LocacaoModule
         DateTime dataSaida, dataRetorno;
         int dias;
 
-        Logger logger;
-
         public LocacaoIntegrationTests()
         {
-            logger = LogManager.IniciarLog();
             controladorVeiculo = new VeiculoDAO();
             controladorCliente = new ClienteCNPJDAO();
             controladorCondutor = new ClienteCPFDAO();
-            controladorGrupo = new GrupoVeiculoDAO(logger);
+            controladorGrupo = new GrupoVeiculoDAO();
             controladorServico = new ServicoDAO();
             controladorLocacao = new LocacaoDAO();
 

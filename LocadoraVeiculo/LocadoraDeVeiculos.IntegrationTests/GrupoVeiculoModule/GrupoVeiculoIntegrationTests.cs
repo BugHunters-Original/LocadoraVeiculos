@@ -1,6 +1,6 @@
 ﻿using FluentAssertions;
 using LocadoraDeVeiculos.Dominio.GrupoVeiculoModule;
-using LocadoraDeVeiculos.Infra.Log;
+
 using LocadoraDeVeiculos.Infra.Shared;
 using LocadoraDeVeiculos.Infra.SQL.GrupoVeiculoModule;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -12,11 +12,11 @@ namespace LocadoraDeVeiculos.IntegrationTests.GrupoVeiculoModule
     public class GrupoVeiculoIntegrationTests
     {
         GrupoVeiculoDAO grupoVeiculoDAO;
-        Logger logger;
+      
         public GrupoVeiculoIntegrationTests()
         {
-            logger = LogManager.IniciarLog();
-            grupoVeiculoDAO = new GrupoVeiculoDAO(logger);
+           
+            grupoVeiculoDAO = new GrupoVeiculoDAO();
             LimparBancos();
         }
 
