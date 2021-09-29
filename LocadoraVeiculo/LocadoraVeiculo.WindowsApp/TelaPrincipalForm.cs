@@ -38,7 +38,6 @@ using LocadoraDeVeiculos.Infra.SQL.TaxaServicoModule.TaxaDaLocacaoModule;
 using LocadoraDeVeiculos.Infra.PDFLocacao;
 using LocadoraDeVeiculos.Infra.InternetServices;
 using LocadoraDeVeiculos.Infra.LogManager;
-using Serilog.Core;
 using LocadoraDeVeiculos.Infra.ExtensionMethods;
 
 namespace LocadoraVeiculo.WindowsApp
