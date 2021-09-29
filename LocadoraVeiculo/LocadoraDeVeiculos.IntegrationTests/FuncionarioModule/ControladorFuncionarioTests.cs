@@ -13,7 +13,7 @@ namespace LocadoraDeVeiculos.Test.FuncionarioModule
     {
 
         FuncionarioDAO funcionarioDAO = null;
-        Logger logger;
+
         public ControladorFuncionarioTests()
         {
             funcionarioDAO = new FuncionarioDAO();
