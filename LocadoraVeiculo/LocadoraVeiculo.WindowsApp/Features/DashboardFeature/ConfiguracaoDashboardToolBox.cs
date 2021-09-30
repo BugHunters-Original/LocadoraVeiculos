@@ -53,5 +53,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.DashboardFeature
         public bool EnabledEditar => false;
 
         public bool EnabledExcluir => false;
+
+        public bool EnabledPesquisar => false;
     }
 }

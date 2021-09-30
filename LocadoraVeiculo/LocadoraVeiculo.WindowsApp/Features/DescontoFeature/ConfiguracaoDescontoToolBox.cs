@@ -64,5 +64,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.DescontoFeature
         {
             get { return false; }
         }
+
+        public bool EnabledPesquisar => true;
     }
 }

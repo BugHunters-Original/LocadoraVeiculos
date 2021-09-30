@@ -14,5 +14,6 @@
         bool EnabledExcluir { get; }
         bool EnabledFiltrar { get; }
         bool EnabledDevolver { get; }
+        bool EnabledPesquisar { get; }
     }
 }

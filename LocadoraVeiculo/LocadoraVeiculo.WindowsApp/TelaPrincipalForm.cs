@@ -305,6 +305,9 @@ namespace LocadoraVeiculo.WindowsApp
             parceirosToolStripMenuItem.ForeColor = DarkMode.corFonte;
             emailLocadoraToolStripMenuItem.ForeColor = DarkMode.corFonte;
 
+            txtPesquisar.BackColor = DarkMode.corFundoTxBox;
+            txtPesquisar.ForeColor = DarkMode.corFonte;
+
             statusStripFooter.BackColor = DarkMode.corPanel;
         }
 
@@ -342,15 +345,11 @@ namespace LocadoraVeiculo.WindowsApp
             btnAdicionar.Enabled = configuracao.EnabledAdicionar;
             btnEditar.Enabled = configuracao.EnabledEditar;
             btnExcluir.Enabled = configuracao.EnabledExcluir;
+            txtPesquisar.Visible = configuracao.EnabledPesquisar;
         }
 
         private void BotaoHome()
         {
-            btnEditar.Enabled = false;
-            btnAdicionar.Enabled = false;
-            btnExcluir.Enabled = false;
-            btnDevolver.Enabled = false;
-
             ConfiguracaoDashboardToolBox configuracao = new ConfiguracaoDashboardToolBox();
 
             ConfigurarToolBox(configuracao);
@@ -415,12 +414,6 @@ namespace LocadoraVeiculo.WindowsApp
         {
             ToolTip toolTip = new ToolTip();
             toolTip.SetToolTip(this.btnClose, "Fechar");
-        }
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-            
-
         }
 
         private void txtPesquisar_TextChanged(object sender, EventArgs e)

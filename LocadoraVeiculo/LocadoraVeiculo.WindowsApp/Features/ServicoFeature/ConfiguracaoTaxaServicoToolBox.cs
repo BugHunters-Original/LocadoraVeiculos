@@ -30,5 +30,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.TaxaServicoFeature
         public bool EnabledFiltrar => false;
 
         public bool EnabledDevolver => false;
+
+        public bool EnabledPesquisar => true;
     }
 }
