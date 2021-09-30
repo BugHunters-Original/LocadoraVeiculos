@@ -205,7 +205,7 @@ namespace LocadoraVeiculo.WindowsApp
         private void menuToolStripMenuItem_Click(object sender, EventArgs e)
         {
             operacoes = null;
-            BotaoHome();
+            BotaoHome(); 
         }
 
         private void btnAdicionar_Click(object sender, EventArgs e)
