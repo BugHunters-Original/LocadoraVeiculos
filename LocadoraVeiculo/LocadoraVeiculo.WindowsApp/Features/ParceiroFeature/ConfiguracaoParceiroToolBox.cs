@@ -30,5 +30,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.ParceiroFeature
         public bool EnabledEditar => true;
 
         public bool EnabledExcluir => true;
+
+        public bool EnabledPesquisar => true;
     }
 }
