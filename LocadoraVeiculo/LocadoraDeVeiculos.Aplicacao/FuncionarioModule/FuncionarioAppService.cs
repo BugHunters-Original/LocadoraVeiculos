@@ -39,7 +39,7 @@ namespace LocadoraDeVeiculos.Aplicacao.FuncionarioModule
 
            
         }
-        public bool EditarFuncionario(int id, Funcionario funcionario)
+        public bool EditarFuncionario(Funcionario funcionario)
         {
             string resultadoValidacaoDominio = funcionario.Validar();
 
@@ -47,7 +47,7 @@ namespace LocadoraDeVeiculos.Aplicacao.FuncionarioModule
 
             if (resultadoValidacaoDominio == "ESTA_VALIDO")
             {
-                funcionarioRepository.Editar(id, funcionario);
+                funcionarioRepository.Editar(funcionario);
 
                 Log.Logger.Aqui().Debug("FUNCIONÁRIO {FuncionarioNome} EDITADO COM SUCESSO", funcionario.Nome);
 
@@ -61,12 +61,11 @@ namespace LocadoraDeVeiculos.Aplicacao.FuncionarioModule
             }    
         }
 
-        public bool ExcluirFuncionario(int id)
+        public bool ExcluirFuncionario(Funcionario funcionario)
         {
-            Log.Logger.Aqui().Debug("REMOVENDO FUNCIONÁRIO {Id}", id);
+            Log.Logger.Aqui().Debug("REMOVENDO FUNCIONÁRIO {Id}", funcionario.Id);
 
-            var funcionario = funcionarioRepository.SelecionarPorId(id);
-            var excluiu = funcionarioRepository.Excluir(id);
+            var excluiu = funcionarioRepository.Excluir(funcionario);
 
             if (excluiu)
                 Log.Logger.Aqui().Debug("FUNCIONÁRIO {Id} REMOVIDO COM SUCESSO", funcionario.Id);
@@ -80,7 +79,7 @@ namespace LocadoraDeVeiculos.Aplicacao.FuncionarioModule
         {
             Log.Logger.Aqui().Debug("SELECIONANDO O FUNCIONÁRIO ID: {Id}", id);
 
-            Funcionario funcionario =  funcionarioRepository.SelecionarPorId(id);
+            Funcionario funcionario =  funcionarioRepository.GetById(id);
 
             if (funcionario == null)
                 Log.Logger.Aqui().Information("NÃO FOI POSSÍVEL ENCONTRAR O FUNCIONÁRIO ID {Id}", funcionario.Id);
@@ -94,7 +93,7 @@ namespace LocadoraDeVeiculos.Aplicacao.FuncionarioModule
         {
             Log.Logger.Aqui().Debug("SELECIONANDO TODOS OS FUNCIONÁRIOS");
 
-            List<Funcionario>  funcionario = funcionarioRepository.SelecionarTodos();
+            List<Funcionario>  funcionario = funcionarioRepository.GetAll();
 
             if (funcionario.Count == 0)
                 Log.Logger.Aqui().Information("NÃO HÁ FUNCIONÁRIOS CADASTRADOS");
