@@ -14,11 +14,11 @@ namespace LocadoraDeVeiculos.Dominio.ParceiroModule
 
         public Parceiro()
         {
-            Tbdescontos = new HashSet<Desconto>();
+            Descontos = new HashSet<Desconto>();
         }
 
         public string Nome { get; set; }
-        public ICollection<Desconto> Descontos { get; set; }
+        public virtual ICollection<Desconto> Descontos { get; set; }
 
         public override string Validar()
         {
