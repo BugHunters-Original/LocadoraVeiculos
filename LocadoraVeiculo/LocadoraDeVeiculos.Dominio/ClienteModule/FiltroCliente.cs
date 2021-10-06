@@ -19,10 +19,10 @@ namespace LocadoraDeVeiculos.Dominio.ClienteModule
             switch (tipoFiltro)
             {
                 case FiltroClienteEnum.PessoaFisica:
-                    return clienteCPFRepo.SelecionarTodos();
+                    return clienteCPFRepo.GetAll();
 
                 case FiltroClienteEnum.PessoaJuridica:
-                    return clienteCNPJRepo.SelecionarTodos();
+                    return clienteCNPJRepo.GetAll();
 
                 default: return null;
             }

@@ -60,6 +60,14 @@
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.CSharp" Version="4.7.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="5.0.10">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="5.0.10">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
     <PackageReference Include="Portable.BouncyCastle" Version="1.8.9" />
     <PackageReference Include="Microsoft.DotNet.UpgradeAssistant.Extensions.Default.Analyzers" Version="0.3.242703">
       <PrivateAssets>all</PrivateAssets>
@@ -74,6 +82,7 @@
     <ProjectReference Include="..\LocadoraDeVeiculos.EmailLocadora\LocadoraDeVeiculos.Infra.EmailLocadora.csproj" />
     <ProjectReference Include="..\LocadoraDeVeiculos.Infra.InternetServices\LocadoraDeVeiculos.Infra.InternetServices.csproj" />
     <ProjectReference Include="..\LocadoraDeVeiculos.Infra.Log\LocadoraDeVeiculos.Infra.Log.csproj" />
+    <ProjectReference Include="..\LocadoraDeVeiculos.Infra.ORM\LocadoraDeVeiculos.Infra.ORM.csproj" />
     <ProjectReference Include="..\LocadoraDeVeiculos.Infra.PDF\LocadoraDeVeiculos.Infra.ReciboPDF.csproj" />
     <ProjectReference Include="..\LocadoraDeVeiculos.Infra.SQL\LocadoraDeVeiculos.Infra.SQL.csproj" />
   </ItemGroup>
