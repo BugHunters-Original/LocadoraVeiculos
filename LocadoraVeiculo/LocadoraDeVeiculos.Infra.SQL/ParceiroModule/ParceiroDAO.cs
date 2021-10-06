@@ -75,11 +75,11 @@ namespace LocadoraDeVeiculos.Infra.SQL.ParceiroModule
             try
             {
                 parceiro.Id = Db.Insert(sqlInserirParceiro, ObtemParametrosParceiro(parceiro));
-                Log.Logger.Information("SUCESSO AO INSERIR PARCEIRO ID: {Id}  ", parceiro.Id );
+                Log.Logger.Information("SUCESSO AO INSERIR PARCEIRO ID: {Id}  ", parceiro.Id);
             }
             catch (Exception ex)
             {
-                 Log.Logger.Error(ex , "ERRO AO INSERIR PARCEIRO ID: {Id}  ", parceiro.Id );
+                Log.Logger.Error(ex, "ERRO AO INSERIR PARCEIRO ID: {Id}  ", parceiro.Id);
             }
         }
         public void Editar(int id, Parceiro parceiro)

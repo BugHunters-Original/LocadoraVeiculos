@@ -1,4 +1,5 @@
-﻿using LocadoraDeVeiculos.Dominio.VeiculoModule;
+﻿using LocadoraDeVeiculos.Dominio.Shared;
+using LocadoraDeVeiculos.Dominio.VeiculoModule;
 using LocadoraDeVeiculos.Infra.ExtensionMethods;
 using LocadoraDeVeiculos.Infra.LogManager;
 using Serilog.Core;
@@ -34,7 +35,6 @@ namespace LocadoraDeVeiculos.Aplicacao.VeiculoModule
             else
                 Log.Logger.Aqui().Error("NÃO FOI POSSÍVEL REGISTRAR VEÍCULO {VeiculoNome}", veiculo.Nome);
 
-
         }
 
         public void EditarVeiculo(int id, Veiculo veiculo)
@@ -53,7 +53,6 @@ namespace LocadoraDeVeiculos.Aplicacao.VeiculoModule
 
             else
                 Log.Logger.Aqui().Error("NÃO FOI POSSÍVEL EDITAR VEÍCULO {VeiculoNome}", veiculo.Nome);
-
 
         }
 
@@ -98,11 +97,8 @@ namespace LocadoraDeVeiculos.Aplicacao.VeiculoModule
             else
                 Log.Logger.Aqui().Debug("A SELEÇÃO TROUXE {Quantidade} VEÍCULO(S) EXISTENTE(S)", veiculo.Count);
 
-            return veiculo;
-             
-        }
-
-       
+            return veiculo;             
+        }       
 
         public void EditarDisponibilidadeVeiculo(Veiculo atual, Veiculo antigo)
         {
@@ -122,8 +118,7 @@ namespace LocadoraDeVeiculos.Aplicacao.VeiculoModule
             else
                 Log.Logger.Aqui().Debug("A SELEÇÃO TROUXE {Quantidade} VEÍCULO(S) ALUGADO(S)", veiculo.Count);
 
-            return veiculo;
-            
+            return veiculo;            
         }
 
         public List<Veiculo> SelecionarTodosDisponiveis()
@@ -137,8 +132,7 @@ namespace LocadoraDeVeiculos.Aplicacao.VeiculoModule
             else
                 Log.Logger.Aqui().Debug("A SELEÇÃO TROUXE {Quantidade} VEÍCULO(S) DISPONÍVEIS", veiculo.Count);
 
-            return veiculo;
-           
+            return veiculo;           
         }
 
         public int SelecionarQuantidadeVeiculosAlugados()

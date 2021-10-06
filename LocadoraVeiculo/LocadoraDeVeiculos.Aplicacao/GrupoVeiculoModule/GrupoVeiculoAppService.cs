@@ -8,12 +8,9 @@ using System.Collections.Generic;
 
 namespace LocadoraDeVeiculos.Aplicacao.GrupoVeiculoModule
 {
-
-
     public class GrupoVeiculoAppService
     {
-        private readonly IGrupoVeiculoRepository grupoVeiculoRepository;
-       
+        private readonly IGrupoVeiculoRepository grupoVeiculoRepository;       
 
         public GrupoVeiculoAppService(IGrupoVeiculoRepository grupoVeiculoRepository)
         {
