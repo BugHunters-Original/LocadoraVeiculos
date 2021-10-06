@@ -14,7 +14,7 @@ namespace LocadoraDeVeiculos.Dominio.ParceiroModule
 
         public Parceiro()
         {
-
+            Tbdescontos = new HashSet<Desconto>();
         }
 
         public string Nome { get; set; }
