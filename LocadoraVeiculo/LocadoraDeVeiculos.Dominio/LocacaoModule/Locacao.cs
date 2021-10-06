@@ -4,11 +4,9 @@ using LocadoraDeVeiculos.Dominio.DescontoModule;
 using LocadoraDeVeiculos.Dominio.Shared;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using LocadoraDeVeiculos.Dominio.ServicoModule;
 using LocadoraDeVeiculos.Dominio.ClienteModule.ClienteCPFModule;
+using LocadoraDeVeiculos.Dominio.TaxaDaLocacaoModule;
 
 namespace LocadoraDeVeiculos.Dominio.LocacaoModule
 {
@@ -16,7 +14,7 @@ namespace LocadoraDeVeiculos.Dominio.LocacaoModule
     {
         public Locacao(ClienteBase cliente, Veiculo veiculo, Desconto desconto, ClienteCPF condutor, DateTime dataSaida,
                DateTime dataRetorno, string tipoLocacao, int tipoCliente, decimal? precoServicos, int dias,
-               string statusLocacao, decimal? precoCombustivel, decimal? precoPlano, decimal? precoTotal, List<Servico> servicos)
+               string statusLocacao, decimal? precoCombustivel, decimal? precoPlano, decimal? precoTotal, ICollection<TaxaDaLocacao> taxasDaLocacao)
         {
             Cliente = cliente;
             Veiculo = veiculo;
@@ -32,15 +30,19 @@ namespace LocadoraDeVeiculos.Dominio.LocacaoModule
             PrecoCombustivel = precoCombustivel;
             PrecoPlano = precoPlano;
             PrecoTotal = precoTotal;
-            Servicos = servicos;
+            TaxasDaLocacao = taxasDaLocacao;
         }
         public Locacao()
         {
 
         }
+        public int IdCliente { get; set; }
         public ClienteBase Cliente { get; set; }
+        public int IdVeiculo { get; set; }
         public Veiculo Veiculo { get; set; }
+        public int IdDesconto { get; set; }
         public Desconto Desconto { get; set; }
+        public int IdCondutor { get; set; }
         public ClienteCPF Condutor { get; set; }
         public DateTime DataSaida { get; set; }
         public DateTime DataRetorno { get; set; }
@@ -52,7 +54,7 @@ namespace LocadoraDeVeiculos.Dominio.LocacaoModule
         public decimal? PrecoCombustivel { get; set; }
         public decimal? PrecoPlano { get; set; }
         public decimal? PrecoTotal { get; set; }
-        public List<Servico> Servicos { get; set; }
+        public virtual ICollection<TaxaDaLocacao> TaxasDaLocacao { get; set; }
 
         public bool Equals(Locacao other)
         {
@@ -76,20 +78,7 @@ namespace LocadoraDeVeiculos.Dominio.LocacaoModule
         {
             return "Cliente:" + Cliente + " Carro:" + Veiculo;
         }
-        public override int GetHashCode()
-        {
-            int hashCode = 381890681;
-            hashCode = hashCode * -1521134295 + Id.GetHashCode();
-            hashCode = hashCode * -1521134295 + EqualityComparer<ClienteBase>.Default.GetHashCode(Cliente);
-            hashCode = hashCode * -1521134295 + EqualityComparer<Veiculo>.Default.GetHashCode(Veiculo);
-            hashCode = hashCode * -1521134295 + EqualityComparer<ClienteCPF>.Default.GetHashCode(Condutor);
-            hashCode = hashCode * -1521134295 + DataSaida.GetHashCode();
-            hashCode = hashCode * -1521134295 + DataRetorno.GetHashCode();
-            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(TipoLocacao);
-            hashCode = hashCode * -1521134295 + TipoCliente.GetHashCode();
-            hashCode = hashCode * -1521134295 + PrecoServicos.GetHashCode();
-            return hashCode;
-        }
+
 
         public override string Validar()
         {
@@ -122,5 +111,30 @@ namespace LocadoraDeVeiculos.Dominio.LocacaoModule
             return valido;
         }
 
+        public override int GetHashCode()
+        {
+            HashCode hash = new HashCode();
+            hash.Add(Id);
+            hash.Add(IdCliente);
+            hash.Add(Cliente);
+            hash.Add(IdVeiculo);
+            hash.Add(Veiculo);
+            hash.Add(IdDesconto);
+            hash.Add(Desconto);
+            hash.Add(IdCondutor);
+            hash.Add(Condutor);
+            hash.Add(DataSaida);
+            hash.Add(DataRetorno);
+            hash.Add(TipoLocacao);
+            hash.Add(StatusLocacao);
+            hash.Add(TipoCliente);
+            hash.Add(Dias);
+            hash.Add(PrecoServicos);
+            hash.Add(PrecoCombustivel);
+            hash.Add(PrecoPlano);
+            hash.Add(PrecoTotal);
+            hash.Add(TaxasDaLocacao);
+            return hash.ToHashCode();
+        }
     }
 }

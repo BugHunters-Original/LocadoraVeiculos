@@ -7,10 +7,10 @@ using System;
 
 namespace LocadoraDeVeiculos.Infra.ORM.Shared
 {
-    public class BaseDAO<T> : IBaseRepository<T> where T : EntidadeBase
+    public class BaseDAO<T> : IBaseRepository<T> where T : EntidadeBase, new()
     {
         public readonly LocacaoContext contexto;
-        public readonly DbSet<T> registros;
+        public readonly DbSet<T> registros; 
         public BaseDAO(LocacaoContext contexto)
         {
             this.contexto = contexto;
@@ -42,7 +42,21 @@ namespace LocadoraDeVeiculos.Infra.ORM.Shared
                 return false;
             }
         }
-
+        //public bool Excluir(int id)
+        //{
+        //    try
+        //    {
+        //        var a = new T() { Id = id };
+        //        registros.Attach(a);
+        //        registros.Remove(a);
+        //        contexto.SaveChanges();
+        //        return true;
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        return false;
+        //    }
+        //}
         public bool Excluir(T registro)
         {
             try

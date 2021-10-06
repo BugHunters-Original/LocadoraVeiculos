@@ -1,11 +1,17 @@
 ﻿using LocadoraDeVeiculos.Dominio.ClienteModule.ClienteCNPJModule;
+using LocadoraDeVeiculos.Dominio.LocacaoModule;
 using System;
+using System.Collections.Generic;
 using System.Net.Mail;
 
 namespace LocadoraDeVeiculos.Dominio.ClienteModule.ClienteCPFModule
 {
     public class ClienteCPF : ClienteBase, IEquatable<ClienteCPF>
     {
+        public ClienteCPF()
+        {
+
+        }
         public ClienteCPF(string nome, string telefone, string endereco, string CPF,
             string RG, string CNH, DateTime dataValidade, string email, ClienteCNPJ cliente = null)
         {
@@ -18,12 +24,15 @@ namespace LocadoraDeVeiculos.Dominio.ClienteModule.ClienteCPFModule
             DataValidade = dataValidade;
             Cliente = cliente;
             Email = email;
+            Locacoes = new HashSet<Locacao>();
         }
         public string Cpf { get; set; }
         public string Rg { get; set; }
         public string Cnh { get; set; }
         public DateTime DataValidade { get; set; }
+        public int IdCliente { get; set; }
         public ClienteCNPJ Cliente { get; set; }
+        public virtual ICollection<Locacao> Locacoes { get; set; }
 
         public bool Equals(ClienteCPF other)
         {
