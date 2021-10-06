@@ -17,8 +17,8 @@ namespace LocadoraDeVeiculos.Aplicacao.LocacaoModule
         private readonly IVeiculoRepository veiculoRepo;
         private readonly IEmail email;
         private readonly IPDF pdf;
-        public LocacaoAppService(ILocacaoRepository locacaoRepo,
-                                 IEmail email, IPDF pdf, IDescontoRepository descontoRepo,
+        public LocacaoAppService(ILocacaoRepository locacaoRepo,IEmail email,
+                                 IPDF pdf, IDescontoRepository descontoRepo,
                                  IVeiculoRepository veiculoRepo)
         {
             this.veiculoRepo = veiculoRepo;

@@ -36,13 +36,13 @@ namespace LocadoraDeVeiculos.Aplicacao.ClienteCNPJModule
             }
         }
 
-        public bool EditarClienteCNPJ(int id, ClienteCNPJ clienteCNPJ)
+        public bool EditarClienteCNPJ(ClienteCNPJ clienteCNPJ)
         {
             Log.Logger.Aqui().Debug("EDITANDO CLIENTE CNPJ {ClienteNome}", clienteCNPJ.Nome);
 
             if (clienteCNPJ.Validar() == "ESTA_VALIDO")
             {
-                clienteCNPJRepository.Editar(id, clienteCNPJ);
+                clienteCNPJRepository.Editar(clienteCNPJ);
 
                 Log.Logger.Aqui().Debug("CLIENTE CNPJ {ClienteNome} EDITADO COM SUCESSO", clienteCNPJ.Nome);
 
@@ -57,13 +57,11 @@ namespace LocadoraDeVeiculos.Aplicacao.ClienteCNPJModule
         }
 
 
-        public bool ExcluirClienteCNPJ(int id)
+        public bool ExcluirClienteCNPJ(ClienteCNPJ cliente)
         {
-            Log.Logger.Aqui().Debug("REMOVENDO CLIENTE CNPJ {Id}", id);
+            Log.Logger.Aqui().Debug("REMOVENDO CLIENTE CNPJ {Id}", cliente.Id);
 
-            var cliente = clienteCNPJRepository.SelecionarPorId(id);
-
-            var excluiu = clienteCNPJRepository.Excluir(id);
+            var excluiu = clienteCNPJRepository.Excluir(cliente);
 
             if (excluiu)
                 Log.Logger.Aqui().Debug("CLIENTE CNPJ {Id} REMOVIDO COM SUCESSO", cliente.Id);
@@ -77,7 +75,7 @@ namespace LocadoraDeVeiculos.Aplicacao.ClienteCNPJModule
         {
             Log.Logger.Aqui().Debug("SELECIONANDO O CLIENTE CNPJ ID: {Id}", id);
 
-            ClienteCNPJ clienteCNPJ = clienteCNPJRepository.SelecionarPorId(id);
+            ClienteCNPJ clienteCNPJ = clienteCNPJRepository.GetById(id);
 
             if (clienteCNPJ == null)
                 Log.Logger.Aqui().Information("NÃO FOI POSSÍVEL ENCONTRAR O CLIENTE CNPJ ID {Id}", clienteCNPJ.Id);
@@ -91,7 +89,7 @@ namespace LocadoraDeVeiculos.Aplicacao.ClienteCNPJModule
         {
             Log.Logger.Aqui().Debug("SELECIONANDO TODOS OS CLIENTES CNPJ");
 
-            List<ClienteCNPJ> clientes = clienteCNPJRepository.SelecionarTodos();
+            List<ClienteCNPJ> clientes = clienteCNPJRepository.GetAll();
 
             if (clientes.Count == 0)
                 Log.Logger.Aqui().Information("NÃO HÁ CLIENTES CNPJ CADASTRADOS");
