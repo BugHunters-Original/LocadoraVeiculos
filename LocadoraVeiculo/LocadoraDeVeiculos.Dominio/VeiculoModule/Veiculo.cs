@@ -1,4 +1,5 @@
 ﻿using LocadoraDeVeiculos.Dominio.GrupoVeiculoModule;
+using LocadoraDeVeiculos.Dominio.LocacaoModule;
 using LocadoraDeVeiculos.Dominio.Shared;
 using System;
 using System.Collections.Generic;
@@ -23,7 +24,10 @@ namespace LocadoraDeVeiculos.Dominio.VeiculoModule
         public string TipoCombustivel { get; set; }
         public int DisponibilidadeVeiculo { get; set; }
         public GrupoVeiculo GrupoVeiculo { get; set; }
+        public virtual int IdGrupoVeiculo { get; set; }
 
+        
+        public virtual ICollection<Locacao> Locacoes { get; set; }
 
 
         public Veiculo(string nome, string numero_Placa, string numero_Chassi, byte[] foto, string cor,
@@ -45,6 +49,7 @@ namespace LocadoraDeVeiculos.Dominio.VeiculoModule
             this.TipoCombustivel = tipo_Combustivel;
             this.DisponibilidadeVeiculo = disponibilidade_Veiculo;
             this.GrupoVeiculo = grupoVeiculo;
+            this.Locacoes = new HashSet<Locacao>();
 
         }
 

@@ -1,4 +1,5 @@
 ﻿using LocadoraDeVeiculos.Dominio.Shared;
+using LocadoraDeVeiculos.Dominio.VeiculoModule;
 using System;
 using System.Collections.Generic;
 
@@ -11,9 +12,11 @@ namespace LocadoraDeVeiculos.Dominio.GrupoVeiculoModule
         public decimal? ValorDiarioPDiario { get; set; }
         public decimal? ValorKmRodadoPDiario { get; set; }
         public decimal? ValorDiarioPControlado { get; set; }
-        public decimal? LimitePControlado { get; set; }
+        public decimal? LimitePControlado { get; set; }        
         public decimal? ValorKmRodadoPControlado { get; set; }
         public decimal? ValorDiarioPLivre { get; set; }
+
+        public virtual ICollection<Veiculo> Veiculos { get; set; }
 
         public GrupoVeiculo(string nomeTipo, decimal? valorDiarioPDiario, decimal? valorKmRodadoPDiario,
             decimal? valorDiarioPControlado, decimal? limitePControlado, decimal? valorKmRodadoPControlado,
@@ -26,6 +29,7 @@ namespace LocadoraDeVeiculos.Dominio.GrupoVeiculoModule
             LimitePControlado = limitePControlado;
             ValorKmRodadoPControlado = valorKmRodadoPControlado;
             ValorDiarioPLivre = valorDiarioPLivre;
+            Veiculos = new HashSet<Veiculo>();
         }
 
         public override string Validar()
