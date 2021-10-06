@@ -12,9 +12,9 @@ namespace LocadoraDeVeiculos.Aplicacao.ParceiroModule
     {
         private readonly IParceiroRepository parceiroRepository;
         
-        public ParceiroAppService(IBaseRepository<Parceiro> parceiroRepo)
+        public ParceiroAppService(IParceiroRepository parceiroRepo)
         {
-            parceiroRepository = (IParceiroRepository)parceiroRepo;
+            parceiroRepository = parceiroRepo;
         }
 
         public bool RegistrarNovoParceiro(Parceiro parceiro)

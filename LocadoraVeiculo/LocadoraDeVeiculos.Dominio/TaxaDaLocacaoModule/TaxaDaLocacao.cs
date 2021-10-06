@@ -11,7 +11,10 @@ namespace LocadoraDeVeiculos.Dominio.TaxaDaLocacaoModule
 {
     public class TaxaDaLocacao : EntidadeBase
     {
+        public TaxaDaLocacao()
+        {
 
+        }
         public TaxaDaLocacao(Servico taxaLocacao, Locacao locacaoEscolhida)
         {
             this.TaxaLocacao = taxaLocacao;
