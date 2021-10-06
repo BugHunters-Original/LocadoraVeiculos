@@ -1,4 +1,5 @@
 ﻿using LocadoraDeVeiculos.Dominio.ParceiroModule;
+using LocadoraDeVeiculos.Dominio.Shared;
 using LocadoraDeVeiculos.Infra.ExtensionMethods;
 using LocadoraDeVeiculos.Infra.LogManager;
 using Serilog.Core;
@@ -9,8 +10,8 @@ namespace LocadoraDeVeiculos.Aplicacao.ParceiroModule
 {
     public class ParceiroAppService
     {
-        private readonly IParceiroRepository parceiroRepository;
-
+        private readonly IBaseRepository<Parceiro> parceiroRepository;
+        
         public ParceiroAppService(IParceiroRepository parceiroRepo)
         {
             parceiroRepository = parceiroRepo;

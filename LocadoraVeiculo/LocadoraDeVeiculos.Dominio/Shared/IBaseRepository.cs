@@ -6,14 +6,14 @@ namespace LocadoraDeVeiculos.Dominio.Shared
     {
         public void Inserir(T registro);
 
-        public void Editar(int id, T registro);
+        public void Editar(T registro);
 
         public bool Excluir(int id);
 
         public bool Existe(int id);
 
-        public T SelecionarPorId(int id);
+        public T GetById(int id);
 
-        public List<T> SelecionarTodos();
+        public List<T> GetAll();
     }
 }
