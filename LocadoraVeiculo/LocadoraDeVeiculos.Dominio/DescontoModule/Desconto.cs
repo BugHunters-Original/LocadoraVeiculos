@@ -36,6 +36,7 @@ namespace LocadoraDeVeiculos.Dominio.DescontoModule
         public string Tipo { get; set; }
         public DateTime Validade { get; set; }
         public Parceiro Parceiro { get; set; }
+        public int IdParceiro { get; set; }
         public string Meio { get; set; }
         public int Usos { get; set; }
         public override string ToString()
