@@ -10,11 +10,11 @@ namespace LocadoraDeVeiculos.Aplicacao.ParceiroModule
 {
     public class ParceiroAppService
     {
-        private readonly IBaseRepository<Parceiro> parceiroRepository;
+        private readonly IParceiroRepository parceiroRepository;
         
-        public ParceiroAppService(IParceiroRepository parceiroRepo)
+        public ParceiroAppService(IBaseRepository<Parceiro> parceiroRepo)
         {
-            parceiroRepository = parceiroRepo;
+            parceiroRepository = (IParceiroRepository)parceiroRepo;
         }
 
         public bool RegistrarNovoParceiro(Parceiro parceiro)
@@ -40,7 +40,7 @@ namespace LocadoraDeVeiculos.Aplicacao.ParceiroModule
             }
         }
 
-        public bool EditarParceiro(int id, Parceiro parceiro)
+        public bool EditarParceiro(Parceiro parceiro)
         {
             string resultadoValidacaoDominio = parceiro.Validar();
 
@@ -48,7 +48,7 @@ namespace LocadoraDeVeiculos.Aplicacao.ParceiroModule
 
             if (resultadoValidacaoDominio == "ESTA_VALIDO")
             {
-                parceiroRepository.Editar(id, parceiro);
+                parceiroRepository.Editar(parceiro);
 
                 Log.Logger.Aqui().Debug("PARCEIRO {ParceiroNome} EDITADO COM SUCESSO", parceiro.Nome);
 
@@ -62,13 +62,11 @@ namespace LocadoraDeVeiculos.Aplicacao.ParceiroModule
             }
         }
 
-        public bool ExcluirParceiro(int id)
+        public bool ExcluirParceiro(Parceiro parceiro)
         {
-            Log.Logger.Aqui().Debug("REMOVENDO PARCEIRO {Id}", id);
+            Log.Logger.Aqui().Debug("REMOVENDO PARCEIRO {Id}", parceiro.Id);
 
-            var parceiro = parceiroRepository.SelecionarPorId(id);
-
-            var excluiu = parceiroRepository.Excluir(id);
+            var excluiu = parceiroRepository.Excluir(parceiro);
 
             if (excluiu)
                 Log.Logger.Aqui().Debug("PARCEIRO {Id} REMOVIDO COM SUCESSO", parceiro.Id);
@@ -82,7 +80,7 @@ namespace LocadoraDeVeiculos.Aplicacao.ParceiroModule
         {
             Log.Logger.Aqui().Debug("SELECIONANDO O PARCEIRO ID: {Id}", id);
 
-            var parceiro = parceiroRepository.SelecionarPorId(id);
+            var parceiro = parceiroRepository.GetById(id);
 
             if (parceiro == null)
                 Log.Logger.Aqui().Information("NÃO FOI POSSÍVEL ENCONTRAR PARCEIRO ID {Id}", parceiro.Id);
@@ -96,7 +94,7 @@ namespace LocadoraDeVeiculos.Aplicacao.ParceiroModule
         {
             Log.Logger.Aqui().Debug("SELECIONANDO TODOS OS PARCEIROS");
 
-            List<Parceiro> parceiro = parceiroRepository.SelecionarTodos();
+            List<Parceiro> parceiro = parceiroRepository.GetAll();
 
             if (parceiro.Count == 0)
                 Log.Logger.Aqui().Information("NÃO HÁ PARCEIROS CADASTRADOS");

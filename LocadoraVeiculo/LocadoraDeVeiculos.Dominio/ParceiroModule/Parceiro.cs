@@ -1,9 +1,7 @@
-﻿using LocadoraDeVeiculos.Dominio.Shared;
+﻿using LocadoraDeVeiculos.Dominio.DescontoModule;
+using LocadoraDeVeiculos.Dominio.Shared;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace LocadoraDeVeiculos.Dominio.ParceiroModule
 {
@@ -20,6 +18,8 @@ namespace LocadoraDeVeiculos.Dominio.ParceiroModule
         }
 
         public string Nome { get; set; }
+        public ICollection<Desconto> Descontos { get; set; }
+
         public override string Validar()
         {
             string valido = "";

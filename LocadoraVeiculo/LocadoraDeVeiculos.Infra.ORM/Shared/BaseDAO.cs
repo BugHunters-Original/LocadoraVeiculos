@@ -16,32 +16,34 @@ namespace LocadoraDeVeiculos.Infra.ORM.Shared
             this.contexto = contexto;
             registros = contexto.Set<T>();
         }
-        public void Inserir(T registro)
+        public bool Inserir(T registro)
         {
             try
             {
                 registros.Add(registro);
                 contexto.SaveChanges();
+                return true;
             }
             catch (Exception ex)
             {
-                Console.WriteLine(ex);
+                return false;
             }
         }
-        public void Editar(T registro)
+        public bool Editar(T registro)
         {
             try
             {
                 registros.Update(registro);
                 contexto.SaveChanges();
+                return true;
             }
             catch (Exception ex)
             {
-                Console.WriteLine(ex);
+                return false;
             }
         }
 
-        public bool Excluir(int id)
+        public bool Excluir(T registro)
         {
             try
             {
