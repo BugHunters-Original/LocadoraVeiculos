@@ -39,7 +39,7 @@ namespace LocadoraDeVeiculos.Aplicacao.ServicoModule
             }
         }
 
-        public bool EditarServico(int id, Servico servico)
+        public bool EditarServico(Servico servico)
         {
             string resultadoValidacaoDominio = servico.Validar();
 
@@ -47,7 +47,7 @@ namespace LocadoraDeVeiculos.Aplicacao.ServicoModule
 
             if (resultadoValidacaoDominio == "ESTA_VALIDO")
             {
-                taxaServicoRepository.Editar(id, servico);
+                taxaServicoRepository.Editar(servico);
 
                 Log.Logger.Aqui().Debug("SERVIÇO {ServicoNome} EDITADO COM SUCESSO", servico.Nome);
 
@@ -61,18 +61,16 @@ namespace LocadoraDeVeiculos.Aplicacao.ServicoModule
             }
         }
 
-        public bool ExcluirServico(int id)
+        public bool ExcluirServico(Servico servico)
         {
-            Log.Logger.Aqui().Debug("REMOVENDO SERVIÇO {Id}", id);
+            Log.Logger.Aqui().Debug("REMOVENDO SERVIÇO {Id}", servico.Id);
 
-            var parceiro = taxaServicoRepository.SelecionarPorId(id);
-
-            var excluiu = taxaServicoRepository.Excluir(id);
+            var excluiu = taxaServicoRepository.Excluir(servico);
 
             if (excluiu)
-                Log.Logger.Aqui().Debug("SERVIÇO {Id} REMOVIDO COM SUCESSO", parceiro.Id);
+                Log.Logger.Aqui().Debug("SERVIÇO {Id} REMOVIDO COM SUCESSO", servico.Id);
             else
-                Log.Logger.Aqui().Error("NÃO FOI POSSÍVEL REMOVER SERVIÇO {Id}.", parceiro.Id);
+                Log.Logger.Aqui().Error("NÃO FOI POSSÍVEL REMOVER SERVIÇO {Id}.", servico.Id);
 
             return excluiu;
         }
@@ -81,7 +79,7 @@ namespace LocadoraDeVeiculos.Aplicacao.ServicoModule
         {
             Log.Logger.Aqui().Debug("SELECIONANDO O SERVIÇO ID: {Id}", id);
 
-            var servico = taxaServicoRepository.SelecionarPorId(id);
+            var servico = taxaServicoRepository.GetById(id);
 
             if (servico == null)
                 Log.Logger.Aqui().Information("NÃO FOI POSSÍVEL ENCONTRAR SERVIÇO ID {Id}", servico.Id);
@@ -95,7 +93,7 @@ namespace LocadoraDeVeiculos.Aplicacao.ServicoModule
         {
             Log.Logger.Aqui().Debug("SELECIONANDO TODOS OS SERVIÇOS");
 
-            List<Servico> servicos = taxaServicoRepository.SelecionarTodos();
+            List<Servico> servicos = taxaServicoRepository.GetAll();
 
             if (servicos.Count == 0)
                 Log.Logger.Aqui().Information("NÃO HÁ SERVIÇOS CADASTRADOS");
