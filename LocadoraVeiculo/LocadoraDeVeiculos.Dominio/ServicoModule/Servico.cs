@@ -18,14 +18,14 @@ namespace LocadoraDeVeiculos.Dominio.ServicoModule
         }
         public Servico()
         {
-            TaxasDaLocacaos = new HashSet<TaxaDaLocacao>();
+            TaxasDaLocacao = new HashSet<TaxaDaLocacao>();
         }
 
         public string Nome { get; set; }
         public decimal? Preco { get; set; }
         public int TipoCalculo { get; set; }
 
-        public virtual ICollection<TaxaDaLocacao> TaxasDaLocacaos { get; set; }
+        public virtual ICollection<TaxaDaLocacao> TaxasDaLocacao { get; set; }
 
         public override string Validar()
         {

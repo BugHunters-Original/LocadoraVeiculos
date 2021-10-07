@@ -14,6 +14,10 @@ namespace LocadoraDeVeiculos.Infra.Configurations.ParceiroModule
         public void Configure(EntityTypeBuilder<Parceiro> builder)
         {
             builder.ToTable("TBParceiros");
+
+            builder.HasKey(c => c.Id);
+
+            builder.Property(e => e.Nome).HasColumnType("VARCHAR(50)").IsRequired();
         }
     }
 }
