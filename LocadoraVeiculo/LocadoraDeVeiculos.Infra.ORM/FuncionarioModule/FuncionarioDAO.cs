@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace LocadoraDeVeiculos.Infra.ORM.FuncionarioModule
 {
-    class FuncionarioDAO : BaseDAO<Funcionario>, IFuncionarioRepository
+    public class FuncionarioDAO : BaseDAO<Funcionario>, IFuncionarioRepository
     {
         public FuncionarioDAO(LocacaoContext contexto) : base(contexto)
         {

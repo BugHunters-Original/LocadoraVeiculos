@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace LocadoraDeVeiculos.Infra.ORM.LocacaoModule
 {
-    class LocacaoDAO : BaseDAO<Locacao>, ILocacaoRepository
+    public class LocacaoDAO : BaseDAO<Locacao>, ILocacaoRepository
     {
         public LocacaoDAO(LocacaoContext context):base(context)
         {

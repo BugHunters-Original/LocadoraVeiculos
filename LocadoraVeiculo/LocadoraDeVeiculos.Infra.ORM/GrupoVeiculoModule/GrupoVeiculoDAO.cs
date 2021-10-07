@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace LocadoraDeVeiculos.Infra.ORM.GrupoVeiculoModule
 {
-    class GrupoVeiculoDAO : BaseDAO<GrupoVeiculo>, IGrupoVeiculoRepository
+    public class GrupoVeiculoDAO : BaseDAO<GrupoVeiculo>, IGrupoVeiculoRepository
     {
         public GrupoVeiculoDAO(LocacaoContext contexto) : base(contexto)
         {
