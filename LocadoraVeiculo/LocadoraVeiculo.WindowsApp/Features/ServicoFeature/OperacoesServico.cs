@@ -39,7 +39,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.TaxaServicoFeature
 
             if (tela.ShowDialog() == DialogResult.OK)
             {
-                servicoService.EditarServico(id, tela.Servico);
+                servicoService.EditarServico(tela.Servico);
 
                 List<Servico> servicos = servicoService.SelecionarTodosServicos();
 
@@ -61,7 +61,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.TaxaServicoFeature
             if (MessageBox.Show($"Tem certeza que deseja excluir o Serviço: [{servicoSelecionado}] ?",
                 "Exclusão de Serviços", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK)
             {
-                servicoService.ExcluirServico(id);
+                servicoService.ExcluirServico(servicoSelecionado);
 
                 List<Servico> servicos = servicoService.SelecionarTodosServicos();
 

@@ -33,7 +33,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.ParceiroFeature
 
             if (tela.ShowDialog() == DialogResult.OK)
             {
-                parceiroService.EditarParceiro(id, tela.Parceiro);
+                parceiroService.EditarParceiro(tela.Parceiro);
 
                 List<Parceiro> locacaoes = parceiroService.SelecionarTodosParceiros();
 
@@ -54,7 +54,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.ParceiroFeature
             if (MessageBox.Show($"Tem certeza que deseja excluir o Funcionário: [{parceiroSelecionado.Nome}] ?",
                 "Exclusão de Funcionários", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK)
             {
-                parceiroService.ExcluirParceiro(id);
+                parceiroService.ExcluirParceiro(parceiroSelecionado);
 
                 List<Parceiro> parceiros = parceiroService.SelecionarTodosParceiros();
 
