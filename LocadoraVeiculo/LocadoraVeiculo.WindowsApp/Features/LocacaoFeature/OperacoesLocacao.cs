@@ -5,7 +5,8 @@ using LocadoraDeVeiculos.Aplicacao.LocacaoModule;
 using LocadoraDeVeiculos.Aplicacao.VeiculoModule;
 using LocadoraDeVeiculos.Dominio.LocacaoModule;
 using LocadoraDeVeiculos.Dominio.TaxaDaLocacaoModule;
-using LocadoraDeVeiculos.Infra.SQL.TaxaServicoModule.TaxaDaLocacaoModule;
+using LocadoraDeVeiculos.Infra.Context;
+using LocadoraDeVeiculos.Infra.ORM.TaxaDaLocacaoModule;
 using LocadoraVeiculo.WindowsApp.Features.LocacaoFeature.DevolucaoLocacao;
 using LocadoraVeiculo.WindowsApp.Features.LocacaoFeature.NotaFiscal;
 using LocadoraVeiculo.WindowsApp.Shared;
@@ -34,7 +35,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.LocacaoFeature
             this.cnpjService = cnpjService;
             this.descontoService = descontoService;
             this.veiculoService = veiculoService;
-            taxaLocacaoService = new TaxaDaLocacaoDAO();
+            taxaLocacaoService = new TaxaDaLocacaoDAO(new LocacaoContext());
             tabelaLocacoes = new TabelaLocacaoControl();
         }
 
@@ -102,7 +103,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.LocacaoFeature
                 if (tela.Locacao.Veiculo != locacaoSelecionada.Veiculo)
                     veiculoService.EditarDisponibilidadeVeiculo(tela.Locacao.Veiculo, locacaoSelecionada.Veiculo);
 
-                locacaoService.EditarLocacao(id, tela.Locacao);
+                locacaoService.EditarLocacao(tela.Locacao);
 
                 taxaLocacaoService.ExcluirTaxa(locacaoSelecionada.Id);
 
@@ -111,7 +112,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.LocacaoFeature
                     foreach (var item in tela.Servicos)
                     {
                         TaxaDaLocacao taxaDaLocacao = new TaxaDaLocacao(item, tela.Locacao);
-                        taxaLocacaoService.InserirTaxa(taxaDaLocacao);
+                        taxaLocacaoService.Inserir(taxaDaLocacao);
                     }
                 }
 
@@ -138,7 +139,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.LocacaoFeature
 
                 taxaLocacaoService.ExcluirTaxa(locacaoSelecionada.Id);
 
-                locacaoService.ExcluirLocacao(id);
+                locacaoService.ExcluirLocacao(locacaoSelecionada);
 
                 List<Locacao> servicos = locacaoService.SelecionarTodasLocacoes();
 
@@ -185,7 +186,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.LocacaoFeature
 
                 if (tela.Servicos != null)
                     foreach (var item in tela.Servicos)
-                        taxaLocacaoService.InserirTaxa(new TaxaDaLocacao(item, tela.Locacao));
+                        taxaLocacaoService.Inserir(new TaxaDaLocacao(item, tela.Locacao));
 
                 List<Locacao> locacaoes = locacaoService.SelecionarTodasLocacoes();
 

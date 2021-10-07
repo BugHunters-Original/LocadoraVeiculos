@@ -8,6 +8,6 @@ namespace LocadoraDeVeiculos.Dominio.TaxaDaLocacaoModule
 {
     public interface ITaxaRepository
     {
-        List<TaxaDaLocacao> SelecionarTaxasDeUmaLocacao(int id);
+        List<TaxaDaLocacao> SelecionarTaxasDeUmaLocacao(int id);        
     }
 }

@@ -32,10 +32,10 @@ namespace LocadoraDeVeiculos.Infra.PDFLocacao
                     document.Add(new Paragraph("Plano Escolhido: " + locacao.TipoLocacao));
                     document.Add(new Paragraph("Total Plano Escolhido: R$" + locacao.PrecoPlano));
 
-                    if (locacao.Servicos != null)
+                    if (locacao.TaxasDaLocacao != null)
                     {
                         document.Add(new Paragraph("Serviço(s) Contratado(s): "));
-                        foreach (var servico in locacao.Servicos)
+                        foreach (var servico in locacao.TaxasDaLocacao)
                             document.Add(new Paragraph("--" + servico.ToString()));
                     }
                     else

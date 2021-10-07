@@ -3,8 +3,6 @@ using LocadoraDeVeiculos.Dominio.LocacaoModule;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using LocadoraDeVeiculos.Dominio.VeiculoModule;
-using Serilog.Core;
-using System;
 using LocadoraDeVeiculos.Infra.ExtensionMethods;
 using LocadoraDeVeiculos.Infra.LogManager;
 
