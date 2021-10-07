@@ -19,6 +19,8 @@ using LocadoraDeVeiculos.Aplicacao.VeiculoModule;
 using LocadoraDeVeiculos.Aplicacao.ClienteCNPJModule;
 using LocadoraDeVeiculos.Aplicacao.DescontoModule;
 using LocadoraDeVeiculos.Aplicacao.LocacaoModule;
+using LocadoraDeVeiculos.Infra.ORM.TaxaDaLocacaoModule;
+using LocadoraDeVeiculos.Infra.Context;
 
 namespace LocadoraVeiculo.WindowsApp.Features.LocacaoFeature
 {
@@ -44,7 +46,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.LocacaoFeature
             this.veiculoService = veiculoService;
             this.descontoService = descontoService;
             this.locacaoService = locacaoService;
-            taxaDaLocacaoDAO = new();
+            taxaDaLocacaoDAO = new(new LocacaoContext());
             telaDasTaxas = new TelaAdicionarTaxasForm();
             InitializeComponent();
             PopularComboboxes();
