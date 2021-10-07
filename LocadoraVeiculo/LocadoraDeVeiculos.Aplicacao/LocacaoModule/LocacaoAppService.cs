@@ -61,11 +61,11 @@ namespace LocadoraDeVeiculos.Aplicacao.LocacaoModule
                 Log.Logger.Aqui().Error("NÃO FOI POSSÍVEL REGISTRAR LOCAÇÃO {Locacao}", locacao.ToString());
             }
         }
-        public void ConcluirLocacao(int id, Locacao locacao)
+        public void ConcluirLocacao(Locacao locacao)
         {
             Log.Logger.Aqui().Debug("CONCLUINDO LOCAÇÃO {Locacao}", locacao.ToString());
 
-            locacaoRepo.ConcluirLocacao(id, locacao);
+            locacaoRepo.ConcluirLocacao(locacao);
 
             Log.Logger.Aqui().Debug("DEVOLVENDO VEÍCULO {Veiculo}", locacao.Veiculo.ToString());
 

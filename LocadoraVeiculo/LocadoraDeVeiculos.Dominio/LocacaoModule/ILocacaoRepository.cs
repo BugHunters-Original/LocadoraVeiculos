@@ -9,7 +9,7 @@ namespace LocadoraDeVeiculos.Dominio.LocacaoModule
 {
     public interface ILocacaoRepository : IBaseRepository<Locacao>
     {
-        public void ConcluirLocacao(int id, Locacao locacao);
+        public void ConcluirLocacao(Locacao locacao);
         public List<Locacao> SelecionarTodasLocacoesConcluidas();
         public List<Locacao> SelecionarTodasLocacoesPendentes();
         public int SelecionarQuantidadeLocacoesPendentes();

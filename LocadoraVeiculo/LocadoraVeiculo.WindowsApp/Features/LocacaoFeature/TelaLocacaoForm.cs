@@ -151,7 +151,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.LocacaoFeature
             List<TaxaDaLocacao> lista = taxaDaLocacaoDAO.SelecionarTaxasDeUmaLocacao(locacao.Id);
 
             if (lista != null)
-                lista.ForEach(x => listServicos.Items.Add(x.TaxaLocacao));
+                lista.ForEach(x => listServicos.Items.Add(x.Servico));
 
             telaDasTaxas.CheckBoxTaxas(lista);
         }

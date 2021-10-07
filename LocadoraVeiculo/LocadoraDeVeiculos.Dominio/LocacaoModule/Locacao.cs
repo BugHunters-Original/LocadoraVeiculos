@@ -14,7 +14,7 @@ namespace LocadoraDeVeiculos.Dominio.LocacaoModule
     {
         public Locacao(ClienteBase cliente, Veiculo veiculo, Desconto desconto, ClienteCPF condutor, DateTime dataSaida,
                DateTime dataRetorno, string tipoLocacao, int tipoCliente, decimal? precoServicos, int dias,
-               string statusLocacao, decimal? precoCombustivel, decimal? precoPlano, decimal? precoTotal, ICollection<TaxaDaLocacao> taxasDaLocacao)
+               string statusLocacao, decimal? precoCombustivel, decimal? precoPlano, decimal? precoTotal, List<Servico> servicos)
         {
             Cliente = cliente;
             Veiculo = veiculo;
@@ -30,7 +30,7 @@ namespace LocadoraDeVeiculos.Dominio.LocacaoModule
             PrecoCombustivel = precoCombustivel;
             PrecoPlano = precoPlano;
             PrecoTotal = precoTotal;
-            TaxasDaLocacao = taxasDaLocacao;
+            Servicos = servicos;
         }
         public Locacao()
         {
@@ -54,6 +54,7 @@ namespace LocadoraDeVeiculos.Dominio.LocacaoModule
         public decimal? PrecoCombustivel { get; set; }
         public decimal? PrecoPlano { get; set; }
         public decimal? PrecoTotal { get; set; }
+        public virtual List<Servico> Servicos { get; set; }
         public virtual ICollection<TaxaDaLocacao> TaxasDaLocacao { get; set; }
 
         public bool Equals(Locacao other)

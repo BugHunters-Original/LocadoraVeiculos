@@ -6,9 +6,9 @@ using LocadoraDeVeiculos.Dominio.LocacaoModule;
 using LocadoraVeiculo.WindowsApp.Features.DarkModeFeature;
 using LocadoraVeiculo.WindowsApp.Shared;
 using LocadoraVeiculo.WindowsApp.Features.VeiculoFeature;
-using LocadoraDeVeiculos.Infra.SQL.VeiculoModule;
-using LocadoraDeVeiculos.Infra.SQL.LocacaoModule;
-using Serilog.Core;
+using LocadoraDeVeiculos.Infra.ORM.VeiculoModule;
+using LocadoraDeVeiculos.Infra.ORM.LocacaoModule;
+using LocadoraDeVeiculos.Infra.Context;
 
 namespace LocadoraVeiculo.WindowsApp.Features.DashboardFeature
 {
@@ -21,8 +21,8 @@ namespace LocadoraVeiculo.WindowsApp.Features.DashboardFeature
 
         public DashboardControl()
         {
-            veiculoDAO = new VeiculoDAO();
-            locacaoDAO = new LocacaoDAO();
+            veiculoDAO = new VeiculoDAO(new LocacaoContext());
+            locacaoDAO = new LocacaoDAO(new LocacaoContext());
             InitializeComponent();
             TrataLabels();
             ConfigurarGridLightMode();
@@ -194,7 +194,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.DashboardFeature
                 if (id == 0)
                     return;
 
-                Veiculo veiculoSelecionado = veiculoDAO.SelecionarPorId(id);
+                Veiculo veiculoSelecionado = veiculoDAO.GetById(id);
 
                 TelaDetalhesVeiculoForm tela = new TelaDetalhesVeiculoForm();
 

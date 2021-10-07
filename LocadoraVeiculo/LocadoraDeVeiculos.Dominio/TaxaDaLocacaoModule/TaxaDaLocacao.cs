@@ -15,16 +15,16 @@ namespace LocadoraDeVeiculos.Dominio.TaxaDaLocacaoModule
         {
 
         }
-        public TaxaDaLocacao(Servico taxaLocacao, Locacao locacaoEscolhida)
+        public TaxaDaLocacao(Servico servico, Locacao locacaoEscolhida)
         {
-            this.TaxaLocacao = taxaLocacao;
+            this.Servico = servico;
             this.LocacaoEscolhida = locacaoEscolhida;
         }
 
         public int? IdLocacao { get; set; }
         public int? IdTaxa { get; set; }
 
-        public virtual Servico TaxaLocacao { get; set; }
+        public virtual Servico Servico { get; set; }
         public virtual Locacao LocacaoEscolhida { get; set; }
 
         public override string Validar()

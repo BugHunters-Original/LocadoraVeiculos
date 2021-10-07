@@ -67,7 +67,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.LocacaoFeature
 
                 if (telaNotaFiscal.ShowDialog() == DialogResult.OK)
                 {
-                    locacaoService.ConcluirLocacao(locacaoSelecionada.Id, telaNotaFiscal.Locacao);
+                    locacaoService.ConcluirLocacao(telaNotaFiscal.Locacao);
 
                     List<Locacao> locacaoes = locacaoService.SelecionarTodasLocacoes();
 
@@ -135,7 +135,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.LocacaoFeature
             if (MessageBox.Show($"Tem certeza que deseja excluir a Locação: [{locacaoSelecionada}] ?",
                 "Exclusão de Locações", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK)
             {
-                locacaoService.ConcluirLocacao(locacaoSelecionada.Id, locacaoSelecionada);
+                locacaoService.ConcluirLocacao(locacaoSelecionada);
 
                 taxaLocacaoService.ExcluirTaxa(locacaoSelecionada.Id);
 

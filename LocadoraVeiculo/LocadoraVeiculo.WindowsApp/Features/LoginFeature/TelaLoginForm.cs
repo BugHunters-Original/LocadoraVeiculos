@@ -1,5 +1,5 @@
-﻿using LocadoraDeVeiculos.Infra.LogManager;
-using LocadoraDeVeiculos.Infra.SQL.LoginModule;
+﻿using LocadoraDeVeiculos.Infra.Context;
+using LocadoraDeVeiculos.Infra.LogManager;
 using LocadoraVeiculo.WindowsApp.Features.DarkModeFeature;
 using System;
 using System.Drawing;

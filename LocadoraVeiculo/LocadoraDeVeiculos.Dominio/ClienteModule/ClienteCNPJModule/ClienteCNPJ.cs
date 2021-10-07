@@ -7,6 +7,7 @@ namespace LocadoraDeVeiculos.Dominio.ClienteModule.ClienteCNPJModule
 {
     public class ClienteCNPJ : ClienteBase, IEquatable<ClienteCNPJ>
     {
+        public int IdClienteCNPJ { get; set; }
         public string Cnpj { get; set; }
         public ICollection<ClienteCPF> Condutores { get; set; }
         public ClienteCNPJ()
