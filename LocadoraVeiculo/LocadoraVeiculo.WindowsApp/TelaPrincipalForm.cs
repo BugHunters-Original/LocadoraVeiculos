@@ -33,6 +33,12 @@ using LocadoraDeVeiculos.Infra.Context;
 using LocadoraDeVeiculos.Infra.ORM.ClienteCPFModule;
 using LocadoraDeVeiculos.Infra.ORM.ServicoModule;
 using LocadoraDeVeiculos.Infra.ORM.ParceiroModule;
+using LocadoraDeVeiculos.Infra.ORM.GrupoVeiculoModule;
+using LocadoraDeVeiculos.Infra.ORM.VeiculoModule;
+using LocadoraDeVeiculos.Infra.ORM.FuncionarioModule;
+using LocadoraDeVeiculos.Infra.ORM.DescontoModule;
+using LocadoraDeVeiculos.Infra.ORM.TaxaDaLocacaoModule;
+using LocadoraDeVeiculos.Infra.ORM.LocacaoModule;
 
 namespace LocadoraVeiculo.WindowsApp
 {
