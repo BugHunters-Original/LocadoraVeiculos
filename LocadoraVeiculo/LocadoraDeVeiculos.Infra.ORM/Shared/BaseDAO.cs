@@ -4,13 +4,14 @@ using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.Linq;
 using System;
+using LocadoraDeVeiculos.Infra.LogManager;
 
 namespace LocadoraDeVeiculos.Infra.ORM.Shared
 {
     public class BaseDAO<T> : IBaseRepository<T> where T : EntidadeBase, new()
     {
         public readonly LocacaoContext contexto;
-        public readonly DbSet<T> registros; 
+        public readonly DbSet<T> registros;
         public BaseDAO(LocacaoContext contexto)
         {
             this.contexto = contexto;
@@ -22,10 +23,14 @@ namespace LocadoraDeVeiculos.Infra.ORM.Shared
             {
                 registros.Add(registro);
                 contexto.SaveChanges();
+                Log.Logger.Information("SUCESSO AO INSERIR {Dominio} ID: {Id}  ",
+                                                 registro.GetType().Name, registro.Id);
                 return true;
             }
             catch (Exception ex)
             {
+                Log.Logger.Error(ex, "$ERRO AO INSERIR {Dominio} ID: {Id}  ",
+                                        registro.GetType().Name, registro.Id);
                 return false;
             }
         }
@@ -35,10 +40,14 @@ namespace LocadoraDeVeiculos.Infra.ORM.Shared
             {
                 registros.Update(registro);
                 contexto.SaveChanges();
+                Log.Logger.Information("SUCESSO AO EDITAR {Dominio} ID: {Id}  ",
+                                        registro.GetType().Name, registro.Id);
                 return true;
             }
             catch (Exception ex)
             {
+                Log.Logger.Error(ex, "ERRO AO EDITAR {Dominio} ID: {Id}  ",
+                                     registro.GetType().Name, registro.Id);
                 return false;
             }
         }
@@ -63,10 +72,14 @@ namespace LocadoraDeVeiculos.Infra.ORM.Shared
             {
                 registros.Remove(registro);
                 contexto.SaveChanges();
+                Log.Logger.Information("SUCESSO AO REMOVER {Dominio} ID: {Id}  ",
+                                        registro.GetType().Name, registro.Id);
                 return true;
             }
             catch (Exception ex)
             {
+                Log.Logger.Error(ex, "ERRO AO REMOVER {Dominio} ID: {Id}  ",
+                                     registro.GetType().Name, registro.Id);
                 return false;
             }
         }
