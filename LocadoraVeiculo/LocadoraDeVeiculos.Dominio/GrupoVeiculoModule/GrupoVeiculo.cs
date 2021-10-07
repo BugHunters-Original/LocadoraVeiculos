@@ -32,6 +32,11 @@ namespace LocadoraDeVeiculos.Dominio.GrupoVeiculoModule
             Veiculos = new HashSet<Veiculo>();
         }
 
+        public GrupoVeiculo()
+        {
+
+        }
+
         public override string Validar()
         {
             string resultadoValidacao = "";

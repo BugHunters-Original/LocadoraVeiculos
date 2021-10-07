@@ -46,7 +46,7 @@ namespace LocadoraDeVeiculos.Aplicacao.VeiculoModule
             if (resultadoValidacaoDominio == "ESTA_VALIDO")
             {
                
-                veiculoRepository.Editar(id, veiculo);
+                veiculoRepository.Editar(veiculo);
                 Log.Logger.Aqui().Debug("VEÍCULO {VeiculoNome} EDITADO COM SUCESSO", veiculo.Nome);
 
             }
@@ -60,8 +60,8 @@ namespace LocadoraDeVeiculos.Aplicacao.VeiculoModule
         {
             Log.Logger.Aqui().Debug("SELECIONANDO O VEÍCULO ID: {Id}", id);
 
-            var veiculo = veiculoRepository.SelecionarPorId(id);
-            var excluiu = veiculoRepository.Excluir(id);
+            var veiculo = veiculoRepository.GetById(id);
+            var excluiu = veiculoRepository.Excluir(veiculo);
 
             if (excluiu)
                 Log.Logger.Aqui().Debug("VEÍCULO {Id} REMOVIDO COM SUCESSO", veiculo.Id);
@@ -75,7 +75,7 @@ namespace LocadoraDeVeiculos.Aplicacao.VeiculoModule
         {
             Log.Logger.Aqui().Debug("SELECIONANDO O VEÍCULO ID: {Id}", id);
 
-            Veiculo veiculo =  veiculoRepository.SelecionarPorId(id);
+            Veiculo veiculo =  veiculoRepository.GetById(id);
 
 
             if (veiculo == null)
@@ -90,7 +90,7 @@ namespace LocadoraDeVeiculos.Aplicacao.VeiculoModule
         {
             Log.Logger.Aqui().Debug("SELECIONANDO TODOS OS VEÍCULOS");
 
-            List<Veiculo> veiculo = veiculoRepository.SelecionarTodos();
+            List<Veiculo> veiculo = veiculoRepository.GetAll();
 
             if (veiculo.Count == 0)
                 Log.Logger.Aqui().Information("NÃO HÁ VEÍCULOS CADASTRADOS");
