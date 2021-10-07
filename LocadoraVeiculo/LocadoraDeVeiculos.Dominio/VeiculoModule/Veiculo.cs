@@ -53,6 +53,11 @@ namespace LocadoraDeVeiculos.Dominio.VeiculoModule
 
         }
 
+        public Veiculo()
+        {
+
+        }
+
         public override string Validar()
         {
             string resultadoValidacao = "";
