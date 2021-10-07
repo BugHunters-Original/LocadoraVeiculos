@@ -31,6 +31,8 @@ using LocadoraDeVeiculos.Infra.LogManager;
 using LocadoraDeVeiculos.Infra.ORM.ClienteCNPJModule;
 using LocadoraDeVeiculos.Infra.Context;
 using LocadoraDeVeiculos.Infra.ORM.ClienteCPFModule;
+using LocadoraDeVeiculos.Infra.ORM.ServicoModule;
+using LocadoraDeVeiculos.Infra.ORM.ParceiroModule;
 
 namespace LocadoraVeiculo.WindowsApp
 {
