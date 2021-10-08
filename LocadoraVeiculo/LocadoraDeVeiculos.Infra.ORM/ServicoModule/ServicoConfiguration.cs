@@ -13,7 +13,7 @@ namespace LocadoraDeVeiculos.Infra.Configurations.ServicoModule
     {
         public void Configure(EntityTypeBuilder<Servico> builder)
         {
-            builder.ToTable("TBTaxasServicos");
+            builder.ToTable("TBServicos");
 
             builder.HasKey(c => c.Id);
 

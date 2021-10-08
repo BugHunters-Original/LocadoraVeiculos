@@ -26,7 +26,6 @@ namespace LocadoraDeVeiculos.Dominio.ClienteModule.ClienteCPFModule
             Email = email;
             Locacoes = new HashSet<Locacao>();
         }
-        public int IdClienteCPF { get; set; }
         public string Cpf { get; set; }
         public string Rg { get; set; }
         public string Cnh { get; set; }

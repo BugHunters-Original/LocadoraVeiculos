@@ -14,7 +14,7 @@ namespace LocadoraDeVeiculos.Infra.Configurations.GrupoVeiculoModule
         public void Configure(EntityTypeBuilder<GrupoVeiculo> builder)
         {
            
-            builder.ToTable("TBTipoVeiculo");
+            builder.ToTable("TBTiposVeiculo");
 
             builder.HasKey(grupoveiculo => grupoveiculo.Id);
             

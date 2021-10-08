@@ -8,19 +8,19 @@ namespace LocadoraDeVeiculos.Infra.Configurations.ClienteCPFModule
     {
         public void Configure(EntityTypeBuilder<ClienteCPF> builder)
         {
-            builder.ToTable("TBClienteCPF");
+            builder.ToTable("TBClientesCPF");
 
-            builder.HasKey(c => c.IdClienteCPF);
+            //builder.HasKey(c => c.Id);
 
             builder.Property(e => e.Cpf).HasColumnType("VARCHAR(14)").IsRequired();
 
-            builder.Property(e => e.Email).HasColumnType("VARCHAR(250)").IsRequired();
+            //builder.Property(e => e.Email).HasColumnType("VARCHAR(250)").IsRequired();
 
-            builder.Property(e => e.Endereco).HasColumnType("VARCHAR(100)").IsRequired();
+            //builder.Property(e => e.Endereco).HasColumnType("VARCHAR(100)").IsRequired();
 
-            builder.Property(e => e.Nome).HasColumnType("VARCHAR(100)").IsRequired();
+            //builder.Property(e => e.Nome).HasColumnType("VARCHAR(100)").IsRequired();
 
-            builder.Property(e => e.Telefone).HasColumnType("VARCHAR(15)").IsRequired();
+            //builder.Property(e => e.Telefone).HasColumnType("VARCHAR(15)").IsRequired();
 
             builder.Property(e => e.Cnh).HasColumnType("VARCHAR(12)").IsRequired();
 

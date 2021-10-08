@@ -16,6 +16,8 @@ namespace LocadoraDeVeiculos.Infra.Configurations.VeiculoModule
 
             builder.ToTable("TBVeiculos");
 
+            builder.HasKey(veiculo => veiculo.Id);
+
             builder.Property(veiculo => veiculo.CapacidadePessoas).HasColumnType("INT").IsRequired();
 
             builder.Property(veiculo => veiculo.CapacidadeTanque).HasColumnType("INT").IsRequired();
@@ -34,7 +36,7 @@ namespace LocadoraDeVeiculos.Infra.Configurations.VeiculoModule
 
             builder.Property(veiculo => veiculo.Nome).HasColumnType("VARCHAR(64)").IsRequired();
 
-            builder.Property(veiculo => veiculo.NumeroChassi).HasColumnType("VARCHAR(64").IsRequired();
+            builder.Property(veiculo => veiculo.NumeroChassi).HasColumnType("VARCHAR(64)").IsRequired();
 
             builder.Property(veiculo => veiculo.NumeroPlaca).HasColumnType("VARCHAR(64)").IsRequired();
                     
@@ -46,8 +48,7 @@ namespace LocadoraDeVeiculos.Infra.Configurations.VeiculoModule
 
             builder.HasOne(veiculo => veiculo.GrupoVeiculo)
                    .WithMany(p => p.Veiculos)
-                    .HasForeignKey(d => d.IdGrupoVeiculo);
-                   
+                   .HasForeignKey(d => d.IdGrupoVeiculo);               
                     
             
         }

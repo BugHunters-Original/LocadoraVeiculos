@@ -17,7 +17,8 @@ namespace LocadoraDeVeiculos.Infra.ORM.ClienteCNPJModule
         }
         public bool ExisteCNPJ(string cnpj)
         {
-            throw new NotImplementedException();
+            Console.WriteLine("sexo...");
+            return true;
         }
     }
 }

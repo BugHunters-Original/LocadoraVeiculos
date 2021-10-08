@@ -25,7 +25,7 @@ namespace LocadoraDeVeiculos.Dominio.ServicoModule
         public decimal? Preco { get; set; }
         public int TipoCalculo { get; set; }
 
-        public virtual ICollection<TaxaDaLocacao> TaxasDaLocacao { get; set; }
+        public ICollection<TaxaDaLocacao> TaxasDaLocacao { get; set; }
 
         public override string Validar()
         {

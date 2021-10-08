@@ -55,7 +55,7 @@ namespace LocadoraDeVeiculos.Dominio.LocacaoModule
         public decimal? PrecoPlano { get; set; }
         public decimal? PrecoTotal { get; set; }
         public virtual List<Servico> Servicos { get; set; }
-        public virtual ICollection<TaxaDaLocacao> TaxasDaLocacao { get; set; }
+        public ICollection<TaxaDaLocacao> TaxasDaLocacao { get; set; }
 
         public bool Equals(Locacao other)
         {

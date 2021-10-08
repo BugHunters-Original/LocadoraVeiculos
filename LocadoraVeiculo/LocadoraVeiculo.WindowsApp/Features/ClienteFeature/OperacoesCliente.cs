@@ -58,7 +58,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.ClienteFeature
 
             if (!VerificarIdSelecionado(id, "Editar", "Edição"))
                 return;
-
+            //sim
             ClienteBase clienteSelecionado = VerificarTipoCliente(id, tipo);
 
             TelaClienteForm tela = new(CNPJService);
@@ -91,7 +91,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.ClienteFeature
 
             if (!VerificarIdSelecionado(id, "Excluir", "Exclusão"))
                 return;
-
+            //sim
             ClienteBase clienteSelecionado = VerificarTipoCliente(id, tipo);
 
             if (ConfirmaExclusao(clienteSelecionado))
@@ -156,7 +156,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.ClienteFeature
         }
 
         private ClienteBase VerificarTipoCliente(int id, string tipo)
-        {
+        {   //sim
             return tipo.Length == 14 ? CPFService.SelecionarClienteCPFPorId(id) : CNPJService.SelecionarClienteCNPJPorId(id);
         }
 
@@ -177,6 +177,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.ClienteFeature
 
         private void AtualizarGrid(ClienteBase clienteSelecionado)
         {
+            //sim
             IEnumerable<ClienteBase> clientes = clienteSelecionado is ClienteCPF ? CPFService.SelecionarTodosClientesCPF() : CNPJService.SelecionarTodosClientesCNPJ();
 
             tabelaClientes.AtualizarRegistros(clientes);

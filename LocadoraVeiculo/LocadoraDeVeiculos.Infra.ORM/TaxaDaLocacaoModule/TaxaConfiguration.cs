@@ -17,9 +17,13 @@ namespace LocadoraDeVeiculos.Infra.Configurations.TaxaDaLocacaoModule
 
             builder.HasKey(c => new { c.IdLocacao, c.IdTaxa});
 
-            builder.HasOne(c => c.LocacaoEscolhida).WithMany(c => c.TaxasDaLocacao).HasForeignKey(c => c.IdLocacao).IsRequired();
+            builder.HasOne(c => c.LocacaoEscolhida)
+                .WithMany(c => c.TaxasDaLocacao)
+                .HasForeignKey(c => c.IdLocacao).IsRequired();
 
-            builder.HasOne(c => c.Servico).WithMany(c => c.TaxasDaLocacao).HasForeignKey(c => c.IdTaxa).IsRequired();
+            builder.HasOne(c => c.Servico)
+                .WithMany(c => c.TaxasDaLocacao)
+                .HasForeignKey(c => c.IdTaxa).IsRequired();
         }
     }
 }
