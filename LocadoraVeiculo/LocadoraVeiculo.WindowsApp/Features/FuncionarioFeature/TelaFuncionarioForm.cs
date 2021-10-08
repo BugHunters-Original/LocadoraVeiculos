@@ -74,13 +74,25 @@ namespace LocadoraVeiculo.WindowsApp.Features.FuncionarioFeature
             string usuario = text_UsuarioFuncionario.Text;
             string senha = text_SenhaFuncionario.Text;
             decimal? salario = null;
+            DateTime dataEntrada = date_EntradaFuncionario.Value;
 
             if (!string.IsNullOrEmpty(text_salarioFuncionario.Text))
                 salario = Convert.ToDecimal(text_salarioFuncionario.Text);
 
-            DateTime dataEntrada = date_EntradaFuncionario.Value;
+            if (funcionario != null)
+            {
+                funcionario.Nome = nome;
+                funcionario.CpfFuncionario = cpf;
+                funcionario.Usuario = usuario;
+                funcionario.Senha = senha;
+                funcionario.Salario = salario;
+                funcionario.DataEntrada = dataEntrada;
+            }
 
-            funcionario = new Funcionario(nome, salario, dataEntrada, cpf, usuario, senha);
+            else
+            {
+                funcionario = new Funcionario(nome, salario, dataEntrada, cpf, usuario, senha);
+            }             
 
             string resultadoValidacao = funcionario.Validar();
 
