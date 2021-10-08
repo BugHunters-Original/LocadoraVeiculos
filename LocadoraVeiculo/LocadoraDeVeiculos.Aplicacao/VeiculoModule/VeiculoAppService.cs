@@ -37,7 +37,7 @@ namespace LocadoraDeVeiculos.Aplicacao.VeiculoModule
 
         }
 
-        public void EditarVeiculo(int id, Veiculo veiculo)
+        public void EditarVeiculo(Veiculo veiculo)
         {
             string resultadoValidacaoDominio = veiculo.Validar();
 
@@ -56,11 +56,10 @@ namespace LocadoraDeVeiculos.Aplicacao.VeiculoModule
 
         }
 
-        public bool ExcluirVeiculo(int id)
+        public bool ExcluirVeiculo(Veiculo veiculo)
         {
-            Log.Logger.Aqui().Debug("SELECIONANDO O VEÍCULO ID: {Id}", id);
+            Log.Logger.Aqui().Debug("SELECIONANDO O VEÍCULO ID: {Id}", veiculo.Id);
 
-            var veiculo = veiculoRepository.GetById(id);
             var excluiu = veiculoRepository.Excluir(veiculo);
 
             if (excluiu)
