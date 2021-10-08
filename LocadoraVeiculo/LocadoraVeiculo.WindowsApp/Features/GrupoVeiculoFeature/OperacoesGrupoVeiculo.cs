@@ -50,7 +50,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.GrupoVeiculoFeature
 
             if (tela.ShowDialog() == DialogResult.OK)
             {
-                grupoVeiculoService.EditarNovoGrupoVeiculo(id, tela.GrupoVeiculo);
+                grupoVeiculoService.EditarNovoGrupoVeiculo(tela.GrupoVeiculo);
 
                 List<GrupoVeiculo> grupoVeiculos = grupoVeiculoService.SelecionarTodosGruposVeiculos();
                 tabelaGrupoVeiculo.AtualizarRegistros(grupoVeiculos);
@@ -77,7 +77,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.GrupoVeiculoFeature
                 "Exclusão de Grupo de Veiculos", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK)
             {
 
-                bool excluiu = grupoVeiculoService.ExcluirGrupoVeiculo(id);
+                bool excluiu = grupoVeiculoService.ExcluirGrupoVeiculo(grupoVeiculoSelecionado);
 
                 if (excluiu)
                 {

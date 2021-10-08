@@ -33,7 +33,7 @@ namespace LocadoraDeVeiculos.Aplicacao.GrupoVeiculoModule
                 Log.Logger.Aqui().Error("NÃO FOI POSSÍVEL REGISTRAR GRUPO VEÍCULO {grupoVeiculoNome}", grupoVeiculo.NomeTipo);
         }
 
-        public void EditarNovoGrupoVeiculo(int id, GrupoVeiculo grupoVeiculo)
+        public void EditarNovoGrupoVeiculo(GrupoVeiculo grupoVeiculo)
         {
             string resultadoValidacaoDominio = grupoVeiculo.Validar();
 
@@ -49,17 +49,16 @@ namespace LocadoraDeVeiculos.Aplicacao.GrupoVeiculoModule
                 Log.Logger.Aqui().Error("NÃO FOI POSSÍVEL EDITAR GRUPO VEÍCULO {grupoVeiculoNome}", grupoVeiculo.NomeTipo);
         }
 
-        public bool ExcluirGrupoVeiculo(int id)
+        public bool ExcluirGrupoVeiculo(GrupoVeiculo grupoVeiculo)
         {
-            Log.Logger.Aqui().Debug("REMOVENDO GRUPO VEÍCULO{Id} | {DataEHora}", id, DateTime.Now.ToString());
+            Log.Logger.Aqui().Debug("REMOVENDO GRUPO VEÍCULO{Id} | {DataEHora}", grupoVeiculo.Id, DateTime.Now.ToString());
 
-            var grupoVeiculo = grupoVeiculoRepository.GetById(id);
             var excluiu = grupoVeiculoRepository.Excluir(grupoVeiculo);
 
             if (excluiu)
-                Log.Logger.Aqui().Debug("GRUPO DE VEÍCULOS {Id} REMOVIDO COM SUCESSO | {DataEHora}", id, DateTime.Now.ToString());
+                Log.Logger.Aqui().Debug("GRUPO DE VEÍCULOS {Id} REMOVIDO COM SUCESSO | {DataEHora}", grupoVeiculo.Id, DateTime.Now.ToString());
             else
-                Log.Logger.Aqui().Error("NÃO FOI POSSÍVEL REMOVER CUPOM DE DESCONTO {Id} | {DataEHora}.", id, DateTime.Now.ToString());
+                Log.Logger.Aqui().Error("NÃO FOI POSSÍVEL REMOVER CUPOM DE DESCONTO {Id} | {DataEHora}.", grupoVeiculo.Id, DateTime.Now.ToString());
 
             return excluiu;
 
