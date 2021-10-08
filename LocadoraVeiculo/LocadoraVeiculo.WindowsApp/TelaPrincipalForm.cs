@@ -1,4 +1,5 @@
-﻿using System;
+﻿#region Usings
+using System;
 using System.Threading;
 using System.Windows.Forms;
 using LocadoraDeVeiculos.Dominio.ClienteModule;
@@ -39,7 +40,7 @@ using LocadoraDeVeiculos.Infra.ORM.FuncionarioModule;
 using LocadoraDeVeiculos.Infra.ORM.DescontoModule;
 using LocadoraDeVeiculos.Infra.ORM.TaxaDaLocacaoModule;
 using LocadoraDeVeiculos.Infra.ORM.LocacaoModule;
-
+#endregion
 namespace LocadoraVeiculo.WindowsApp
 {
     public partial class TelaPrincipalForm : Form

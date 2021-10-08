@@ -60,18 +60,7 @@ namespace LocadoraDeVeiculos.Dominio.DescontoModule
             return Equals(obj as Desconto);
         }
 
-        public override int GetHashCode()
-        {
-            int hashCode = -157931640;
-            hashCode = hashCode * -1521134295 + Id.GetHashCode();
-            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(Codigo);
-            hashCode = hashCode * -1521134295 + Valor.GetHashCode();
-            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(Tipo);
-            hashCode = hashCode * -1521134295 + Validade.GetHashCode();
-            hashCode = hashCode * -1521134295 + EqualityComparer<Parceiro>.Default.GetHashCode(Parceiro);
-            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(Meio);
-            return hashCode;
-        }
+
 
         public override string Validar()
         {
@@ -108,6 +97,23 @@ namespace LocadoraDeVeiculos.Dominio.DescontoModule
                 valido = "ESTA_VALIDO";
 
             return valido;
+        }
+
+        public override int GetHashCode()
+        {
+            HashCode hash = new HashCode();
+            hash.Add(Id);
+            hash.Add(Nome);
+            hash.Add(Codigo);
+            hash.Add(Valor);
+            hash.Add(ValorMinimo);
+            hash.Add(Tipo);
+            hash.Add(Validade);
+            hash.Add(Parceiro);
+            hash.Add(IdParceiro);
+            hash.Add(Meio);
+            hash.Add(Usos);
+            return hash.ToHashCode();
         }
     }
 }
