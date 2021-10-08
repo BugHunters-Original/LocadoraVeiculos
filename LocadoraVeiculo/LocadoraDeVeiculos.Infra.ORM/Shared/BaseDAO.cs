@@ -5,6 +5,7 @@ using System.Linq;
 using System;
 using LocadoraDeVeiculos.Infra.LogManager;
 using LocadoraDeVeiculos.Infra.Context;
+using Microsoft.EntityFrameworkCore.ChangeTracking;
 
 namespace LocadoraDeVeiculos.Infra.ORM.Shared
 {
@@ -17,37 +18,45 @@ namespace LocadoraDeVeiculos.Infra.ORM.Shared
             this.contexto = contexto;
             registros = contexto.Set<T>();
         }
-        public bool Inserir(T registro)
+        public virtual bool Inserir(T registro)
         {
             try
             {
                 registros.Add(registro);
+
+                var a = contexto.ChangeTracker.DebugView.LongView;
+
                 contexto.SaveChanges();
-                Log.Logger.Information("SUCESSO AO INSERIR {Dominio} ID: {Id}  ",
-                                                 registro.GetType().Name, registro.Id);
+
+                Log.Logger.Information("SUCESSO AO INSERIR {Dominio} ID: {Id}  ", registro.GetType().Name, registro.Id);
+
                 return true;
             }
             catch (Exception ex)
             {
-                Log.Logger.Error(ex, "$ERRO AO INSERIR {Dominio} ID: {Id}  ",
-                                        registro.GetType().Name, registro.Id);
+                Log.Logger.Error(ex, "$ERRO AO INSERIR {Dominio} ID: {Id}  ", registro.GetType().Name, registro.Id);
+                
                 return false;
             }
         }
-        public bool Editar(T registro)
+        public virtual bool Editar(T registro)
         {
             try
             {
+                contexto.ChangeTracker.Clear();
+
                 registros.Update(registro);
+
                 contexto.SaveChanges();
-                Log.Logger.Information("SUCESSO AO EDITAR {Dominio} ID: {Id}  ",
-                                        registro.GetType().Name, registro.Id);
+
+                Log.Logger.Information("SUCESSO AO EDITAR {Dominio} ID: {Id}  ", registro.GetType().Name, registro.Id);
+                
                 return true;
             }
             catch (Exception ex)
             {
-                Log.Logger.Error(ex, "ERRO AO EDITAR {Dominio} ID: {Id}  ",
-                                     registro.GetType().Name, registro.Id);
+                Log.Logger.Error(ex, "ERRO AO EDITAR {Dominio} ID: {Id}  ", registro.GetType().Name, registro.Id);
+                
                 return false;
             }
         }
@@ -66,25 +75,29 @@ namespace LocadoraDeVeiculos.Infra.ORM.Shared
         //        return false;
         //    }
         //}
-        public bool Excluir(T registro)
+        public virtual bool Excluir(T registro)
         {
             try
             {
+                contexto.ChangeTracker.Clear();
+
                 registros.Remove(registro);
+
                 contexto.SaveChanges();
-                Log.Logger.Information("SUCESSO AO REMOVER {Dominio} ID: {Id}  ",
-                                        registro.GetType().Name, registro.Id);
+
+                Log.Logger.Information("SUCESSO AO REMOVER {Dominio} ID: {Id}  ", registro.GetType().Name, registro.Id);
+                
                 return true;
             }
             catch (Exception ex)
             {
-                Log.Logger.Error(ex, "ERRO AO REMOVER {Dominio} ID: {Id}  ",
-                                     registro.GetType().Name, registro.Id);
+                Log.Logger.Error(ex, "ERRO AO REMOVER {Dominio} ID: {Id}  ",registro.GetType().Name, registro.Id);
+                
                 return false;
             }
         }
 
-        public bool Existe(int id)
+        public virtual bool Existe(int id)
         {
             throw new NotImplementedException();
         }
@@ -94,7 +107,7 @@ namespace LocadoraDeVeiculos.Infra.ORM.Shared
             return registros.AsNoTracking().ToList();
         }
 
-        public T GetById(int id)
+        public virtual T GetById(int id)
         {
             return registros.AsNoTracking().SingleOrDefault(x => x.Id == id);
         }

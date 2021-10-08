@@ -47,6 +47,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.DescontoFeature
                 descontoService.RegistrarNovoDesconto(tela.Desconto);
 
                 List<Desconto> descontos = descontoService.SelecionarTodosDescontos();
+
                 tabelaDesconto.AtualizarRegistros(descontos);
 
                 TelaPrincipalForm.Instancia.AtualizarRodape($"Cupom de desconto: [{tela.Desconto}] inserido com sucesso");

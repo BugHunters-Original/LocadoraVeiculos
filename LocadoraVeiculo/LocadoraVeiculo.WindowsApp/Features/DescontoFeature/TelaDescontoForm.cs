@@ -82,7 +82,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.DescontoFeature
 
             var dataValidade = Convert.ToDateTime(dtValidade.Value);
 
-            Parceiro parceiro = (Parceiro)cbParceiros.SelectedItem;
+            var parceiro = cbParceiros.SelectedItem as Parceiro;
 
             var meio = txtMeio.Text;
 
@@ -92,7 +92,20 @@ namespace LocadoraVeiculo.WindowsApp.Features.DescontoFeature
 
             var uso = desconto?.Usos;
 
-            desconto = new Desconto(codigo, valor, tipo, dataValidade, parceiro, meio, nome, valorMinimo, uso ?? 0);
+            if (desconto != null)
+            {
+                desconto.Codigo = codigo;
+                desconto.Valor = valor;
+                desconto.Tipo = tipo;
+                desconto.Validade = dataValidade;
+                desconto.Parceiro = parceiro;
+                desconto.Meio = meio;
+                desconto.Nome = nome;
+                desconto.ValorMinimo = valorMinimo;
+                desconto.Usos = uso ?? 0;
+            }
+            else
+                desconto = new Desconto(codigo, valor, tipo, dataValidade, parceiro, meio, nome, valorMinimo, uso ?? 0);
 
             string resultadoValidacao = desconto.Validar();
 

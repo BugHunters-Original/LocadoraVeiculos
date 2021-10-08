@@ -41,8 +41,13 @@ namespace LocadoraVeiculo.WindowsApp.Features.ParceiroFeature
         }
         private void btnGravar_Click(object sender, EventArgs e)
         {
-            string nome = txtNome.Text;
-            parceiro = new Parceiro(nome);
+            var nome = txtNome.Text;
+
+            if (parceiro != null)
+                parceiro.Nome = txtNome.Text;
+            else
+                parceiro = new Parceiro(nome);            
+
             string resultadoValidacao = parceiro.Validar();
 
             if (resultadoValidacao != "ESTA_VALIDO")
