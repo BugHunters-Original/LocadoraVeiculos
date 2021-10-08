@@ -2,6 +2,7 @@
 using LocadoraDeVeiculos.Dominio.DescontoModule;
 using LocadoraDeVeiculos.Dominio.ParceiroModule;
 using LocadoraDeVeiculos.Infra.Context;
+using LocadoraDeVeiculos.Infra.LogManager;
 using LocadoraDeVeiculos.Infra.ORM.DescontoModule;
 using LocadoraDeVeiculos.Infra.ORM.ParceiroModule;
 using LocadoraDeVeiculos.Infra.Shared;
@@ -26,6 +27,7 @@ namespace LocadoraDeVeiculos.Test.DescontoModule
             descontoDAO = new DescontoDAO(context);
             parceiroDAO = new ParceiroDAO(context);
             LimparBancos();
+            Log.IniciarLog();
 
             parceiro = new Parceiro("Arthur");
             parceiroDAO.Inserir(parceiro);

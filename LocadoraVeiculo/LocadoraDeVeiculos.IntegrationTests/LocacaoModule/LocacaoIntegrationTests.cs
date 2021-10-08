@@ -6,6 +6,7 @@ using LocadoraDeVeiculos.Dominio.LocacaoModule;
 using LocadoraDeVeiculos.Dominio.ServicoModule;
 using LocadoraDeVeiculos.Dominio.VeiculoModule;
 using LocadoraDeVeiculos.Infra.Context;
+using LocadoraDeVeiculos.Infra.LogManager;
 using LocadoraDeVeiculos.Infra.ORM.ClienteCNPJModule;
 using LocadoraDeVeiculos.Infra.ORM.ClienteCPFModule;
 using LocadoraDeVeiculos.Infra.ORM.GrupoVeiculoModule;
@@ -53,6 +54,7 @@ namespace LocadoraDeVeiculos.Test.LocacaoModule
             controladorLocacao = new LocacaoDAO(context);
 
             LimparBanco();
+            Log.IniciarLog();
 
             dataSaida = new DateTime(2021, 08, 19);
             dataRetorno = new DateTime(2021, 08, 19);

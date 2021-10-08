@@ -2,6 +2,7 @@
 using LocadoraDeVeiculos.Dominio.GrupoVeiculoModule;
 using LocadoraDeVeiculos.Dominio.VeiculoModule;
 using LocadoraDeVeiculos.Infra.Context;
+using LocadoraDeVeiculos.Infra.LogManager;
 using LocadoraDeVeiculos.Infra.ORM.GrupoVeiculoModule;
 using LocadoraDeVeiculos.Infra.ORM.VeiculoModule;
 using LocadoraDeVeiculos.Infra.Shared;
@@ -27,6 +28,8 @@ namespace LocadoraDeVeiculos.IntegrationTests.VeiculoModule
             veiculoDAO = new VeiculoDAO(context);
 
             LimparBanco();
+            Log.IniciarLog();
+
             grupo = new GrupoVeiculo("Econômico", 10, 10, 10, 10, 10, 10);
             grupoVeiculoDAO.Inserir(grupo);
             imagem = new byte[] { 0x20, 0x20, 0x20, 0x20, 0x20, 0x20, 0x20 };

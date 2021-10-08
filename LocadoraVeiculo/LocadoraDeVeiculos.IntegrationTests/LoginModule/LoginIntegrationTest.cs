@@ -1,6 +1,7 @@
 ﻿using FluentAssertions;
 using LocadoraDeVeiculos.Dominio.FuncionarioModule;
 using LocadoraDeVeiculos.Infra.Context;
+using LocadoraDeVeiculos.Infra.LogManager;
 using LocadoraDeVeiculos.Infra.ORM.FuncionarioModule;
 using LocadoraDeVeiculos.Infra.ORM.LoginModule;
 using LocadoraDeVeiculos.Infra.Shared;
@@ -24,7 +25,7 @@ namespace LocadoraDeVeiculos.IntegrationTests.LoginModule
 
             var Func = context.Funcionarios;
             context.Funcionarios.RemoveRange(Func);
-
+            Log.IniciarLog();
         }
 
         [TestMethod]

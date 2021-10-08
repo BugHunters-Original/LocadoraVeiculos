@@ -1,6 +1,7 @@
 ﻿using FluentAssertions;
 using LocadoraDeVeiculos.Dominio.ParceiroModule;
 using LocadoraDeVeiculos.Infra.Context;
+using LocadoraDeVeiculos.Infra.LogManager;
 using LocadoraDeVeiculos.Infra.ORM.ParceiroModule;
 using LocadoraDeVeiculos.Infra.Shared;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -17,11 +18,14 @@ namespace LocadoraDeVeiculos.IntegrationTests.ParceiroModule
     {
         ParceiroDAO repository = null;
         static LocacaoContext context = null;
+        
+
         public ParceiroIntegrationTest()
         {
             context = new();
             repository = new(context);
             LimparBancos();
+            Log.IniciarLog();
         }
 
         private static void LimparBancos()

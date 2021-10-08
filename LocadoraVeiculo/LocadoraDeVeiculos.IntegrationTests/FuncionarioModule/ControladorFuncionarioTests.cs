@@ -1,6 +1,7 @@
 ﻿using FluentAssertions;
 using LocadoraDeVeiculos.Dominio.FuncionarioModule;
 using LocadoraDeVeiculos.Infra.Context;
+using LocadoraDeVeiculos.Infra.LogManager;
 using LocadoraDeVeiculos.Infra.ORM.FuncionarioModule;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
@@ -19,6 +20,7 @@ namespace LocadoraDeVeiculos.Test.FuncionarioModule
             context = new();
             funcionarioDAO = new FuncionarioDAO(context);
             LimparBanco();
+            Log.IniciarLog();
         }
 
         private static void LimparBanco()

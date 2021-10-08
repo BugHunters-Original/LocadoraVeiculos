@@ -1,6 +1,7 @@
 using FluentAssertions;
 using LocadoraDeVeiculos.Dominio.ClienteModule.ClienteCNPJModule;
 using LocadoraDeVeiculos.Infra.Context;
+using LocadoraDeVeiculos.Infra.LogManager;
 using LocadoraDeVeiculos.Infra.ORM.ClienteCNPJModule;
 using LocadoraDeVeiculos.Infra.Shared;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -18,6 +19,7 @@ namespace LocadoraDeVeiculos.Test.ClienteNPJModule
             context = new();
             cnpjDAO = new ClienteCNPJDAO(context);
             LimparBanco();
+            Log.IniciarLog();
         }
 
         private static void LimparBanco()

@@ -2,6 +2,7 @@
 using LocadoraDeVeiculos.Dominio.ClienteModule.ClienteCNPJModule;
 using LocadoraDeVeiculos.Dominio.ClienteModule.ClienteCPFModule;
 using LocadoraDeVeiculos.Infra.Context;
+using LocadoraDeVeiculos.Infra.LogManager;
 using LocadoraDeVeiculos.Infra.ORM.ClienteCNPJModule;
 using LocadoraDeVeiculos.Infra.ORM.ClienteCPFModule;
 using LocadoraDeVeiculos.Infra.Shared;
@@ -23,6 +24,7 @@ namespace LocadoraDeVeiculos.Test.ClienteCPFModule
             cnpjDAO = new ClienteCNPJDAO(context);
             cpfDAO = new ClienteCPFDAO(context);
             LimparBancos();
+            Log.IniciarLog();
         }
 
         private static void LimparBancos()
