@@ -51,14 +51,13 @@ namespace LocadoraDeVeiculos.Test.FuncionarioModule
             var funcionario = new Funcionario("Luisa Farias", 3000, new DateTime(2021, 03, 03), "099.427.999-09", "luisa_f", "1234567");
             funcionarioDAO.Inserir(funcionario);
 
-            var novoFuncionario = new Funcionario("Luisa Farias", 4000, new DateTime(2021, 03, 03), "099.427.999-09", "luisa_f", "1234567");
-
             //action
-            funcionarioDAO.Editar(novoFuncionario);
+            funcionario.Salario = 100000;
+            funcionarioDAO.Editar(funcionario);
 
             //assert
             Funcionario funcionarioAtualizado = funcionarioDAO.GetById(funcionario.Id);
-            funcionarioAtualizado.Should().Be(novoFuncionario);
+            funcionarioAtualizado.Salario.Should().Be(100000);
             LimparBanco();
         }
 
@@ -113,9 +112,10 @@ namespace LocadoraDeVeiculos.Test.FuncionarioModule
 
             //assert
             funcionarios.Should().HaveCount(3);
-            funcionarios[0].Nome.Should().Be("Andrey");
+            funcionarios[0].Nome.Should().Be("Luisa Farias");
             funcionarios[1].Nome.Should().Be("Arthur");
-            funcionarios[2].Nome.Should().Be("Luisa Farias");
+            funcionarios[2].Nome.Should().Be("Andrey");
+
             LimparBanco();
         }
     }

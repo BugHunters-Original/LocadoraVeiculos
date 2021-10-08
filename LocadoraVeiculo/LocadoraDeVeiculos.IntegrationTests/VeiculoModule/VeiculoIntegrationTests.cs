@@ -46,7 +46,7 @@ namespace LocadoraDeVeiculos.IntegrationTests.VeiculoModule
 
             //assert
             var veiculoEncontrado = veiculoDAO.GetById(veiculo.Id);
-            veiculoEncontrado.Should().Be(veiculo);
+            veiculoEncontrado.Nome.Should().Be("marea");
             LimparBanco();
         }
 
@@ -57,14 +57,13 @@ namespace LocadoraDeVeiculos.IntegrationTests.VeiculoModule
             var veiculo = new Veiculo("marea", "1234567", "12345678901234567", imagem, "azul", "fiat", 2000, 2, 80, 1, 'G', 1000, "gasolina", 1, grupo);
             veiculoDAO.Inserir(veiculo);
 
-            var VeiculoEditado = new Veiculo("uneiras", "7654321", "12345678901234567", imagem, "preto", "audi", 2012, 2, 80, 1, 'G', 1000, "gasolina", 1, grupo);
-
+            veiculo.Marca = "audi";
             //action
-            veiculoDAO.Editar(VeiculoEditado);
+            veiculoDAO.Editar(veiculo);
 
             //assert
             var veiculoAtualizado = veiculoDAO.GetById(veiculo.Id);
-            veiculoAtualizado.Should().Be(VeiculoEditado);
+            veiculoAtualizado.Marca.Should().Be("audi");
             LimparBanco();
         }
 
