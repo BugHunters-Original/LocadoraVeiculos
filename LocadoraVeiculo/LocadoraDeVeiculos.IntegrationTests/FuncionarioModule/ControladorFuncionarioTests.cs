@@ -1,9 +1,8 @@
 ﻿using FluentAssertions;
 using LocadoraDeVeiculos.Dominio.FuncionarioModule;
-using LocadoraDeVeiculos.Infra.Shared;
-using LocadoraDeVeiculos.Infra.SQL.FuncionarioModule;
+using LocadoraDeVeiculos.Infra.Context;
+using LocadoraDeVeiculos.Infra.ORM.FuncionarioModule;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Serilog.Core;
 using System;
 
 namespace LocadoraDeVeiculos.Test.FuncionarioModule
@@ -13,16 +12,19 @@ namespace LocadoraDeVeiculos.Test.FuncionarioModule
     {
 
         FuncionarioDAO funcionarioDAO = null;
+        static LocacaoContext context = null;
 
         public ControladorFuncionarioTests()
         {
-            funcionarioDAO = new FuncionarioDAO();
+            context = new();
+            funcionarioDAO = new FuncionarioDAO(context);
             LimparBanco();
         }
 
         private static void LimparBanco()
         {
-            Db.Update("DELETE FROM [TBFUNCIONARIO]");
+            var Func = context.Funcionarios;
+            context.Funcionarios.RemoveRange(Func);
         }
 
         [TestMethod]
@@ -35,7 +37,7 @@ namespace LocadoraDeVeiculos.Test.FuncionarioModule
             funcionarioDAO.Inserir(novoFuncionario);
 
             //assert
-            var funcionarioEncontrado = funcionarioDAO.SelecionarPorId(novoFuncionario.Id);
+            var funcionarioEncontrado = funcionarioDAO.GetById(novoFuncionario.Id);
             funcionarioEncontrado.Should().Be(novoFuncionario);
             LimparBanco();
         }
@@ -50,10 +52,10 @@ namespace LocadoraDeVeiculos.Test.FuncionarioModule
             var novoFuncionario = new Funcionario("Luisa Farias", 4000, new DateTime(2021, 03, 03), "099.427.999-09", "luisa_f", "1234567");
 
             //action
-            funcionarioDAO.Editar(funcionario.Id, novoFuncionario);
+            funcionarioDAO.Editar(novoFuncionario);
 
             //assert
-            Funcionario funcionarioAtualizado = funcionarioDAO.SelecionarPorId(funcionario.Id);
+            Funcionario funcionarioAtualizado = funcionarioDAO.GetById(funcionario.Id);
             funcionarioAtualizado.Should().Be(novoFuncionario);
             LimparBanco();
         }
@@ -68,10 +70,10 @@ namespace LocadoraDeVeiculos.Test.FuncionarioModule
             funcionarioDAO.Inserir(funcionario);
 
             //action            
-            funcionarioDAO.Excluir(funcionario.Id);
+            funcionarioDAO.Excluir(funcionario);
 
             //assert
-            Funcionario funcionarioEncontrado = funcionarioDAO.SelecionarPorId(funcionario.Id);
+            Funcionario funcionarioEncontrado = funcionarioDAO.GetById(funcionario.Id);
             funcionarioEncontrado.Should().BeNull();
             LimparBanco();
         }
@@ -84,7 +86,7 @@ namespace LocadoraDeVeiculos.Test.FuncionarioModule
             funcionarioDAO.Inserir(funcionario);
 
             //action
-            Funcionario funcionarioEncontrado = funcionarioDAO.SelecionarPorId(funcionario.Id);
+            Funcionario funcionarioEncontrado = funcionarioDAO.GetById(funcionario.Id);
 
             //assert
             funcionarioEncontrado.Should().NotBeNull();
@@ -105,7 +107,7 @@ namespace LocadoraDeVeiculos.Test.FuncionarioModule
             funcionarioDAO.Inserir(f3);
 
             //action
-            var funcionarios = funcionarioDAO.SelecionarTodos();
+            var funcionarios = funcionarioDAO.GetAll();
 
             //assert
             funcionarios.Should().HaveCount(3);
