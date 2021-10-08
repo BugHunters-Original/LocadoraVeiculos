@@ -1,13 +1,10 @@
 ﻿using FluentAssertions;
 using LocadoraDeVeiculos.Dominio.ServicoModule;
+using LocadoraDeVeiculos.Infra.Context;
+using LocadoraDeVeiculos.Infra.LogManager;
+using LocadoraDeVeiculos.Infra.ORM.ServicoModule;
 using LocadoraDeVeiculos.Infra.Shared;
-using LocadoraDeVeiculos.Infra.SQL.TaxaServicoModule.ServicoModule;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace LocadoraDeVeiculos.IntegrationTests.ServicoModule
 {
@@ -15,16 +12,20 @@ namespace LocadoraDeVeiculos.IntegrationTests.ServicoModule
     public class ServicoIntegrationTest
     {
         ServicoDAO repository = null;
+        static LocacaoContext context = null;
 
         public ServicoIntegrationTest()
         {
-            repository = new ServicoDAO();
+            context = new();
+            repository = new ServicoDAO(context);
             LimparBanco();
+            Log.IniciarLog();
         }
 
         private static void LimparBanco()
         {
-            Db.Update("DELETE FROM [TBTAXASSERVICOS]");
+            var Serv = context.Servicos;
+            context.Servicos.RemoveRange(Serv);
         }
 
         [TestMethod]
@@ -37,7 +38,7 @@ namespace LocadoraDeVeiculos.IntegrationTests.ServicoModule
             repository.Inserir(novoServico);
 
             //assert
-            var clienteEncontrado = repository.SelecionarPorId(novoServico.Id);
+            var clienteEncontrado = repository.GetById(novoServico.Id);
             clienteEncontrado.Should().Be(novoServico);
             LimparBanco();
         }
@@ -51,10 +52,10 @@ namespace LocadoraDeVeiculos.IntegrationTests.ServicoModule
             var novoServico = new Servico("CADEIRINHA", 20, 1);
 
             //action
-            repository.Editar(servico.Id, novoServico);
+            repository.Editar(novoServico);
 
             //assert
-            Servico servicoAtualizado = repository.SelecionarPorId(servico.Id);
+            Servico servicoAtualizado = repository.GetById(servico.Id);
             servicoAtualizado.Should().Be(novoServico);
             LimparBanco();
         }
@@ -66,10 +67,10 @@ namespace LocadoraDeVeiculos.IntegrationTests.ServicoModule
             repository.Inserir(servico);
 
             //action            
-            repository.Excluir(servico.Id);
+            repository.Excluir(servico);
 
             //assert
-            Servico servicoEncontrado = repository.SelecionarPorId(servico.Id);
+            Servico servicoEncontrado = repository.GetById(servico.Id);
             servicoEncontrado.Should().BeNull();
             LimparBanco();
         }
@@ -81,7 +82,7 @@ namespace LocadoraDeVeiculos.IntegrationTests.ServicoModule
             repository.Inserir(servico);
 
             //action
-            Servico servicoEncontrado = repository.SelecionarPorId(servico.Id);
+            Servico servicoEncontrado = repository.GetById(servico.Id);
 
             //assert
             servicoEncontrado.Should().NotBeNull();
@@ -101,7 +102,7 @@ namespace LocadoraDeVeiculos.IntegrationTests.ServicoModule
             repository.Inserir(s3);
 
             //action
-            var servicos = repository.SelecionarTodos();
+            var servicos = repository.GetAll();
 
             //assert
             servicos.Should().HaveCount(3);

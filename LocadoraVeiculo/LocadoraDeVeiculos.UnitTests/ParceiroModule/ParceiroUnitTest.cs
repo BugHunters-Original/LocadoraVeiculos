@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 namespace LocadoraDeVeiculos.UnitTests.ParceiroModule
 {
     [TestClass]
-    class ParceiroUnitTest
+    public class ParceiroUnitTest
     {
         [TestMethod]
         public void DeveValidar_Parceiro()

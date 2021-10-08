@@ -1,9 +1,11 @@
 ﻿using FluentAssertions;
 using LocadoraDeVeiculos.Dominio.DescontoModule;
 using LocadoraDeVeiculos.Dominio.ParceiroModule;
+using LocadoraDeVeiculos.Infra.Context;
+using LocadoraDeVeiculos.Infra.LogManager;
+using LocadoraDeVeiculos.Infra.ORM.DescontoModule;
+using LocadoraDeVeiculos.Infra.ORM.ParceiroModule;
 using LocadoraDeVeiculos.Infra.Shared;
-using LocadoraDeVeiculos.Infra.SQL.DescontoModule;
-using LocadoraDeVeiculos.Infra.SQL.ParceiroModule;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Serilog.Core;
 using System;
@@ -15,14 +17,17 @@ namespace LocadoraDeVeiculos.Test.DescontoModule
     {
         DescontoDAO descontoDAO = null;
         ParceiroDAO parceiroDAO = null;
+        static LocacaoContext context = null;
 
         Parceiro parceiro;
 
         public ControladorDescontoTest()
         {
-            descontoDAO = new DescontoDAO();
-            parceiroDAO = new ParceiroDAO();
+            context = new();
+            descontoDAO = new DescontoDAO(context);
+            parceiroDAO = new ParceiroDAO(context);
             LimparBancos();
+            Log.IniciarLog();
 
             parceiro = new Parceiro("Arthur");
             parceiroDAO.Inserir(parceiro);
@@ -30,8 +35,11 @@ namespace LocadoraDeVeiculos.Test.DescontoModule
 
         private static void LimparBancos()
         {
-            Db.Update("DELETE FROM [TBDESCONTO]");
-            Db.Update("DELETE FROM [TBPARCEIROS]");
+            var Desc = context.Descontos;
+            context.Descontos.RemoveRange(Desc);
+
+            var Parc = context.Parceiros;
+            context.Parceiros.RemoveRange(Parc);
         }
 
         [TestMethod]
@@ -44,7 +52,7 @@ namespace LocadoraDeVeiculos.Test.DescontoModule
             descontoDAO.Inserir(desconto);
 
             //assert
-            var descontoEncontrado = descontoDAO.SelecionarPorId(desconto.Id);
+            var descontoEncontrado = descontoDAO.GetById(desconto.Id);
             descontoEncontrado.Should().Be(desconto);
             LimparBancos();
         }
@@ -58,10 +66,10 @@ namespace LocadoraDeVeiculos.Test.DescontoModule
             var descontoEditado = new Desconto("xuxu", 100, "Porcentagem", new DateTime(2030, 11, 11), parceiro, "Radio", "dimdim", 50, 2);
 
             //action
-            descontoDAO.Editar(desconto.Id, descontoEditado);
+            descontoDAO.Editar(descontoEditado);
 
             //assert
-            var descontoAtualizado = descontoDAO.SelecionarPorId(desconto.Id);
+            var descontoAtualizado = descontoDAO.GetById(desconto.Id);
             descontoAtualizado.Should().Be(descontoEditado);
             LimparBancos();
         }
@@ -74,10 +82,10 @@ namespace LocadoraDeVeiculos.Test.DescontoModule
             descontoDAO.Inserir(desconto);
 
             //action            
-            descontoDAO.Excluir(desconto.Id);
+            descontoDAO.Excluir(desconto);
 
             //assert
-            var descontoEncontrado = descontoDAO.SelecionarPorId(desconto.Id);
+            var descontoEncontrado = descontoDAO.GetById(desconto.Id);
             descontoEncontrado.Should().BeNull();
             LimparBancos();
         }
@@ -90,7 +98,7 @@ namespace LocadoraDeVeiculos.Test.DescontoModule
             descontoDAO.Inserir(desconto);
 
             //action
-            var descontoEncontrado = descontoDAO.SelecionarPorId(desconto.Id);
+            var descontoEncontrado = descontoDAO.GetById(desconto.Id);
 
             //assert
             descontoEncontrado.Should().NotBeNull();
@@ -111,7 +119,7 @@ namespace LocadoraDeVeiculos.Test.DescontoModule
             descontoDAO.Inserir(d3);
 
             //action
-            var veiculos = descontoDAO.SelecionarTodos();
+            var veiculos = descontoDAO.GetAll();
 
             //assert
             veiculos.Should().HaveCount(3);

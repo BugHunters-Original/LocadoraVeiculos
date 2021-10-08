@@ -1,15 +1,12 @@
 ﻿using FluentAssertions;
 using LocadoraDeVeiculos.Dominio.FuncionarioModule;
+using LocadoraDeVeiculos.Infra.Context;
+using LocadoraDeVeiculos.Infra.LogManager;
+using LocadoraDeVeiculos.Infra.ORM.FuncionarioModule;
+using LocadoraDeVeiculos.Infra.ORM.LoginModule;
 using LocadoraDeVeiculos.Infra.Shared;
-using LocadoraDeVeiculos.Infra.SQL.FuncionarioModule;
-using LocadoraDeVeiculos.Infra.SQL.LoginModule;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Serilog.Core;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace LocadoraDeVeiculos.IntegrationTests.LoginModule
 {
@@ -18,13 +15,17 @@ namespace LocadoraDeVeiculos.IntegrationTests.LoginModule
     {
         FuncionarioDAO repositoryFunc = null;
         LoginDAO repositoryLogin = null;
+        static LocacaoContext context = null;
 
         public LoginIntegrationTest()
         {
-            repositoryFunc = new();
+            context = new();
+            repositoryFunc = new(context);
             repositoryLogin = new();
-            Db.Update("DELETE FROM [TBFUNCIONARIO]");
 
+            var Func = context.Funcionarios;
+            context.Funcionarios.RemoveRange(Func);
+            Log.IniciarLog();
         }
 
         [TestMethod]

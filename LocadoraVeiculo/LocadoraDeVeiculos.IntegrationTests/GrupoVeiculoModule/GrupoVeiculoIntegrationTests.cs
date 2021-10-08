@@ -1,8 +1,9 @@
 ﻿using FluentAssertions;
 using LocadoraDeVeiculos.Dominio.GrupoVeiculoModule;
-
+using LocadoraDeVeiculos.Infra.Context;
+using LocadoraDeVeiculos.Infra.LogManager;
+using LocadoraDeVeiculos.Infra.ORM.GrupoVeiculoModule;
 using LocadoraDeVeiculos.Infra.Shared;
-using LocadoraDeVeiculos.Infra.SQL.GrupoVeiculoModule;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Serilog.Core;
 
@@ -12,19 +13,26 @@ namespace LocadoraDeVeiculos.IntegrationTests.GrupoVeiculoModule
     public class GrupoVeiculoIntegrationTests
     {
         GrupoVeiculoDAO grupoVeiculoDAO;
-      
+        static LocacaoContext context = null;
+
         public GrupoVeiculoIntegrationTests()
         {
-           
-            grupoVeiculoDAO = new GrupoVeiculoDAO();
+            context = new();
+            grupoVeiculoDAO = new GrupoVeiculoDAO(context);
             LimparBancos();
+            Log.IniciarLog();
         }
 
         private static void LimparBancos()
         {
-            Db.Update("DELETE FROM [TBLOCACAO]");
-            Db.Update("DELETE FROM [TBTIPOVEICULO]");
-            Db.Update("DELETE FROM [TBVEICULOS]");
+            var Loca = context.Locacoes;
+            context.Locacoes.RemoveRange(Loca);
+
+            var GrupoV = context.GruposVeiculo;
+            context.GruposVeiculo.RemoveRange(GrupoV);
+
+            var Veic = context.Veiculos;
+            context.Veiculos.RemoveRange(Veic);
         }
 
         [TestMethod]
@@ -37,7 +45,7 @@ namespace LocadoraDeVeiculos.IntegrationTests.GrupoVeiculoModule
             grupoVeiculoDAO.Inserir(novoTipoGrupo);
 
             //assert
-            var grupoVeiculoEncontrado = grupoVeiculoDAO.SelecionarPorId(novoTipoGrupo.Id);
+            var grupoVeiculoEncontrado = grupoVeiculoDAO.GetById(novoTipoGrupo.Id);
             grupoVeiculoEncontrado.Should().Be(novoTipoGrupo);
             LimparBancos();
         }
@@ -52,10 +60,10 @@ namespace LocadoraDeVeiculos.IntegrationTests.GrupoVeiculoModule
             var novoTipoGrupoEditado = new GrupoVeiculo("Esportivo", 10, 10, 10, 10, 10, 10);
 
             //action
-            grupoVeiculoDAO.Editar(novoTipoGrupo.Id, novoTipoGrupoEditado);
+            grupoVeiculoDAO.Editar(novoTipoGrupoEditado);
 
             //assert
-            GrupoVeiculo grupoAtualizado = grupoVeiculoDAO.SelecionarPorId(novoTipoGrupo.Id);
+            GrupoVeiculo grupoAtualizado = grupoVeiculoDAO.GetById(novoTipoGrupo.Id);
             grupoAtualizado.Should().Be(novoTipoGrupoEditado);
             LimparBancos();
         }
@@ -68,10 +76,10 @@ namespace LocadoraDeVeiculos.IntegrationTests.GrupoVeiculoModule
             grupoVeiculoDAO.Inserir(novoTipoGrupo);
 
             //action            
-            grupoVeiculoDAO.Excluir(novoTipoGrupo.Id);
+            grupoVeiculoDAO.Excluir(novoTipoGrupo);
 
             //assert
-            GrupoVeiculo grupoEncontrado = grupoVeiculoDAO.SelecionarPorId(novoTipoGrupo.Id);
+            GrupoVeiculo grupoEncontrado = grupoVeiculoDAO.GetById(novoTipoGrupo.Id);
             grupoEncontrado.Should().BeNull();
             LimparBancos();
         }
@@ -84,7 +92,7 @@ namespace LocadoraDeVeiculos.IntegrationTests.GrupoVeiculoModule
             grupoVeiculoDAO.Inserir(novoTipoGrupo);
 
             //action
-            GrupoVeiculo grupoEncontrado = grupoVeiculoDAO.SelecionarPorId(novoTipoGrupo.Id);
+            GrupoVeiculo grupoEncontrado = grupoVeiculoDAO.GetById(novoTipoGrupo.Id);
 
             //assert
             grupoEncontrado.Should().NotBeNull();
@@ -104,7 +112,7 @@ namespace LocadoraDeVeiculos.IntegrationTests.GrupoVeiculoModule
             grupoVeiculoDAO.Inserir(g3);
 
             //action
-            var contatos = grupoVeiculoDAO.SelecionarTodos();
+            var contatos = grupoVeiculoDAO.GetAll();
 
             //assert
             contatos.Should().HaveCount(3);
