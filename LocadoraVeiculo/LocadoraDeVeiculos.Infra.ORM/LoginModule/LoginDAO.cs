@@ -2,8 +2,12 @@
 using LocadoraDeVeiculos.Infra.LogManager;
 using LocadoraDeVeiculos.Infra.ORM.FuncionarioModule;
 using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
-namespace LocadoraVeiculo.WindowsApp.Features.LoginFeature
+namespace LocadoraDeVeiculos.Infra.ORM.LoginModule
 {
     public class LoginDAO
     {
