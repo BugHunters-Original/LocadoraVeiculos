@@ -4,7 +4,7 @@ using LocadoraDeVeiculos.Infra.ORM.Shared;
 using Serilog;
 using System;
 using System.Collections.Generic;
-
+using System.Linq;
 
 namespace LocadoraDeVeiculos.Infra.ORM.VeiculoModule
 {
@@ -17,7 +17,7 @@ namespace LocadoraDeVeiculos.Infra.ORM.VeiculoModule
         public void AtualizarQuilometragem(Veiculo veiculo)
         {
             try
-            {
+            {                
                 Editar(veiculo);
                 Log.Logger.Information("SUCESSO AO EDITAR QUILOMETRAGEM DO VEÍCULO ID: {Id}  ", veiculo.Id);
             }
@@ -88,8 +88,8 @@ namespace LocadoraDeVeiculos.Infra.ORM.VeiculoModule
         {
             try
             {
-                int alugados = GetAll().Count;
-
+                
+                int alugados = contexto.Veiculos.Where(veiculo => veiculo.DisponibilidadeVeiculo == 0).Count();
                 if (alugados > 0)
                     Log.Logger.Debug("SUCESSO AO RETORNAR QUANTIDADE DE VEÍCULOS ALUGADOS  ");
 
@@ -111,7 +111,7 @@ namespace LocadoraDeVeiculos.Infra.ORM.VeiculoModule
         {
             try
             {
-                int disponiveis = GetAll().Count;
+                int disponiveis = contexto.Veiculos.Where(veiculo => veiculo.DisponibilidadeVeiculo == 1).Count(); ;
 
                 if (disponiveis > 0)
                     Log.Logger.Debug("SUCESSO AO RETORNAR QUANTIDADE DE VEÍCULOS DISPONÍVEIS  ");
@@ -134,7 +134,7 @@ namespace LocadoraDeVeiculos.Infra.ORM.VeiculoModule
         {
             try
             {
-                List<Veiculo> veiculos = GetAll();
+                List<Veiculo> veiculos = contexto.Veiculos.Where(veiculo => veiculo.DisponibilidadeVeiculo == 0).ToList();
 
                 if (veiculos != null)
                     Log.Logger.Debug("SUCESSO AO SELECIONAR TODOS OS VEÍCULOS ALUGADOS  ");
@@ -158,7 +158,7 @@ namespace LocadoraDeVeiculos.Infra.ORM.VeiculoModule
         {
             try
             {
-                List<Veiculo> veiculos = GetAll();
+                List<Veiculo> veiculos = contexto.Veiculos.Where(veiculo=>veiculo.DisponibilidadeVeiculo == 1).ToList();
 
                 if (veiculos != null)
                     Log.Logger.Debug("SUCESSO AO SELECIONAR TODOS OS VEÍCULOS DISPONÍVEIS  ");
