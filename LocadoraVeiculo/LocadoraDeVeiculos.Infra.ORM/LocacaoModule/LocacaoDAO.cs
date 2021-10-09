@@ -2,6 +2,7 @@
 using LocadoraDeVeiculos.Infra.Context;
 using LocadoraDeVeiculos.Infra.LogManager;
 using LocadoraDeVeiculos.Infra.ORM.Shared;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,7 +17,14 @@ namespace LocadoraDeVeiculos.Infra.ORM.LocacaoModule
         {
 
         }
-
+        public override List<Locacao> GetAll()
+        {
+            return registros.AsNoTracking().Include(x => x.Cliente).Include(x=>x.Veiculo).ToList();
+        }
+        public override Locacao GetById(int id)
+        {
+            return registros.AsNoTracking().Include(x => x.Cliente).Include(x => x.Veiculo).SingleOrDefault(x => x.Id == id);
+        }
         public void ConcluirLocacao(Locacao locacao)
         {
             try
