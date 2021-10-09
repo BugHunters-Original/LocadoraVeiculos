@@ -1,9 +1,14 @@
 ﻿CREATE TABLE [dbo].[TBTaxasDaLocacao] (
-    [Id]         INT IDENTITY (1, 1) NOT NULL,
-    [Id_Locacao] INT NULL,
-    [Id_Taxa]    INT NULL,
-    CONSTRAINT [PK_TBTaxasDaLocacao] PRIMARY KEY CLUSTERED ([Id] ASC),
-    CONSTRAINT [FK_TBTaxasDaLocacao_TBLocacao] FOREIGN KEY ([Id_Locacao]) REFERENCES [dbo].[TBLocacao] ([Id]),
-    CONSTRAINT [FK_TBTaxasDaLocacao_TBTaxasServicos] FOREIGN KEY ([Id_Taxa]) REFERENCES [dbo].[TBTaxasServicos] ([Id])
+    [IdLocacao] INT NOT NULL,
+    [IdTaxa]    INT NOT NULL,
+    [Id]        INT NOT NULL,
+    CONSTRAINT [PK_TBTaxasDaLocacao] PRIMARY KEY CLUSTERED ([IdLocacao] ASC, [IdTaxa] ASC),
+    CONSTRAINT [FK_TBTaxasDaLocacao_Locacoes_IdLocacao] FOREIGN KEY ([IdLocacao]) REFERENCES [dbo].[Locacoes] ([Id]) ON DELETE CASCADE,
+    CONSTRAINT [FK_TBTaxasDaLocacao_TBServicos_IdTaxa] FOREIGN KEY ([IdTaxa]) REFERENCES [dbo].[TBServicos] ([Id]) ON DELETE CASCADE
 );
+
+
+GO
+CREATE NONCLUSTERED INDEX [IX_TBTaxasDaLocacao_IdTaxa]
+    ON [dbo].[TBTaxasDaLocacao]([IdTaxa] ASC);
 

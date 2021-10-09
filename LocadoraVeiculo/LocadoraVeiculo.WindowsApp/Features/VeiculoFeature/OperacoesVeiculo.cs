@@ -60,7 +60,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.VeiculoFeature
 
             if (tela.ShowDialog() == DialogResult.OK)
             {
-                veiculoService.EditarVeiculo(id, tela.Veiculo);
+                veiculoService.EditarVeiculo(tela.Veiculo);
 
                 List<Veiculo> veiculos = veiculoService.SelecionarTodosVeiculos();
 
@@ -82,7 +82,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.VeiculoFeature
             if (MessageBox.Show($"Tem certeza que deseja excluir o Veículo: [{veiculoSelecionada.Nome}] ?",
                 "Exclusão de Veículos", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK)
             {
-                bool excluiu = veiculoService.ExcluirVeiculo(id);
+                bool excluiu = veiculoService.ExcluirVeiculo(veiculoSelecionada);
 
                 if (excluiu)
                 {

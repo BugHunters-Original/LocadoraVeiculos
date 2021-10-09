@@ -1,7 +1,9 @@
 ﻿using FluentAssertions;
 using LocadoraDeVeiculos.Dominio.ParceiroModule;
+using LocadoraDeVeiculos.Infra.Context;
+using LocadoraDeVeiculos.Infra.LogManager;
+using LocadoraDeVeiculos.Infra.ORM.ParceiroModule;
 using LocadoraDeVeiculos.Infra.Shared;
-using LocadoraDeVeiculos.Infra.SQL.ParceiroModule;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Collections.Generic;
@@ -12,20 +14,27 @@ using System.Threading.Tasks;
 namespace LocadoraDeVeiculos.IntegrationTests.ParceiroModule
 {
     [TestClass]
-    class ParceiroIntegrationTest
+    public class ParceiroIntegrationTest
     {
         ParceiroDAO repository = null;
+        static LocacaoContext context = null;
+        
 
         public ParceiroIntegrationTest()
         {
-            repository = new();
+            context = new();
+            repository = new(context);
             LimparBancos();
+            Log.IniciarLog();
         }
 
         private static void LimparBancos()
         {
-            Db.Update("DELETE FROM [TBDESCONTO]");
-            Db.Update("DELETE FROM [TBPARCEIROS]");
+            var desc = context.Descontos;
+            context.Descontos.RemoveRange(desc);
+
+            var list = context.Parceiros;
+            context.Parceiros.RemoveRange(list);
 
         }
 
@@ -39,7 +48,7 @@ namespace LocadoraDeVeiculos.IntegrationTests.ParceiroModule
             repository.Inserir(novoParceiro);
 
             //assert
-            var parceiroEncontrado = repository.SelecionarPorId(novoParceiro.Id);
+            var parceiroEncontrado = repository.GetById(novoParceiro.Id);
             parceiroEncontrado.Should().Be(novoParceiro);
             LimparBancos();
         }
@@ -52,14 +61,13 @@ namespace LocadoraDeVeiculos.IntegrationTests.ParceiroModule
 
             repository.Inserir(novoParceiro);
 
-            var novoParceiroEditado = new Parceiro("Luisa S");
-
             //action
-            repository.Editar(novoParceiro.Id, novoParceiroEditado);
+            novoParceiro.Nome = "Luisa S";
+            repository.Editar(novoParceiro);
 
             //assert
-            Parceiro parceiroAtualizado = repository.SelecionarPorId(novoParceiro.Id);
-            parceiroAtualizado.Should().Be(novoParceiroEditado);
+            Parceiro parceiroAtualizado = repository.GetById(novoParceiro.Id);
+            parceiroAtualizado.Nome.Should().Be("Luisa S");
             LimparBancos();
         }
 
@@ -71,10 +79,10 @@ namespace LocadoraDeVeiculos.IntegrationTests.ParceiroModule
             repository.Inserir(novoParceiro);
 
             //action            
-            repository.Excluir(novoParceiro.Id);
+            repository.Excluir(novoParceiro);
 
             //assert
-            Parceiro parceiroEncontrado = repository.SelecionarPorId(novoParceiro.Id);
+            Parceiro parceiroEncontrado = repository.GetById(novoParceiro.Id);
             parceiroEncontrado.Should().BeNull();
             LimparBancos();
         }
@@ -87,7 +95,7 @@ namespace LocadoraDeVeiculos.IntegrationTests.ParceiroModule
             repository.Inserir(novoParceiro);
 
             //action
-            Parceiro parceiroEncontrado = repository.SelecionarPorId(novoParceiro.Id);
+            Parceiro parceiroEncontrado = repository.GetById(novoParceiro.Id);
 
             //assert
             parceiroEncontrado.Should().NotBeNull();
@@ -107,7 +115,7 @@ namespace LocadoraDeVeiculos.IntegrationTests.ParceiroModule
             repository.Inserir(parceiro3);
 
             //action
-            var parceiros = repository.SelecionarTodos();
+            var parceiros = repository.GetAll();
 
             //assert
             parceiros.Should().HaveCount(3);

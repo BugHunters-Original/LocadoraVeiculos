@@ -3,8 +3,6 @@ using LocadoraDeVeiculos.Dominio.LocacaoModule;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using LocadoraDeVeiculos.Dominio.VeiculoModule;
-using Serilog.Core;
-using System;
 using LocadoraDeVeiculos.Infra.ExtensionMethods;
 using LocadoraDeVeiculos.Infra.LogManager;
 
@@ -17,8 +15,8 @@ namespace LocadoraDeVeiculos.Aplicacao.LocacaoModule
         private readonly IVeiculoRepository veiculoRepo;
         private readonly IEmail email;
         private readonly IPDF pdf;
-        public LocacaoAppService(ILocacaoRepository locacaoRepo,
-                                 IEmail email, IPDF pdf, IDescontoRepository descontoRepo,
+        public LocacaoAppService(ILocacaoRepository locacaoRepo,IEmail email,
+                                 IPDF pdf, IDescontoRepository descontoRepo,
                                  IVeiculoRepository veiculoRepo)
         {
             this.veiculoRepo = veiculoRepo;
@@ -47,7 +45,7 @@ namespace LocadoraDeVeiculos.Aplicacao.LocacaoModule
                 {
                     locacao.Desconto.Usos++;
 
-                    descontoRepo.Editar(locacao.Desconto.Id, locacao.Desconto);
+                    descontoRepo.Editar(locacao.Desconto);
                 }
 
                 Log.Logger.Aqui().Debug("MONTANDO PDF DA LOCAÇÃO ID: {Id}", locacao.Id);
@@ -63,11 +61,11 @@ namespace LocadoraDeVeiculos.Aplicacao.LocacaoModule
                 Log.Logger.Aqui().Error("NÃO FOI POSSÍVEL REGISTRAR LOCAÇÃO {Locacao}", locacao.ToString());
             }
         }
-        public void ConcluirLocacao(int id, Locacao locacao)
+        public void ConcluirLocacao(Locacao locacao)
         {
             Log.Logger.Aqui().Debug("CONCLUINDO LOCAÇÃO {Locacao}", locacao.ToString());
 
-            locacaoRepo.ConcluirLocacao(id, locacao);
+            locacaoRepo.ConcluirLocacao(locacao);
 
             Log.Logger.Aqui().Debug("DEVOLVENDO VEÍCULO {Veiculo}", locacao.Veiculo.ToString());
 
@@ -77,7 +75,7 @@ namespace LocadoraDeVeiculos.Aplicacao.LocacaoModule
 
             veiculoRepo.AtualizarQuilometragem(locacao.Veiculo);
         }
-        public void EditarLocacao(int id, Locacao locacao)
+        public void EditarLocacao(Locacao locacao)
         {
             string resultadoValidacaoDominio = locacao.Validar();
 
@@ -85,7 +83,7 @@ namespace LocadoraDeVeiculos.Aplicacao.LocacaoModule
 
             if (resultadoValidacaoDominio == "ESTA_VALIDO")
             {
-                locacaoRepo.Editar(id, locacao);
+                locacaoRepo.Editar(locacao);
 
                 Log.Logger.Aqui().Debug("LOCAÇÃO {Locacao} EDITADA COM SUCESSO", locacao.ToString());
             }
@@ -95,13 +93,11 @@ namespace LocadoraDeVeiculos.Aplicacao.LocacaoModule
             }
         }
 
-        public bool ExcluirLocacao(int id)
+        public bool ExcluirLocacao(Locacao locacao)
         {
-            Log.Logger.Aqui().Debug("REMOVENDO LOCAÇÃO {Id}", id);
+            Log.Logger.Aqui().Debug("REMOVENDO LOCAÇÃO {Id}", locacao);
 
-            var locacao = locacaoRepo.SelecionarPorId(id);
-
-            var excluiu = locacaoRepo.Excluir(id);
+            var excluiu = locacaoRepo.Excluir(locacao);
 
             if (excluiu)
                 Log.Logger.Aqui().Debug("LOCAÇÃO {Id} REMOVIDA COM SUCESSO", locacao.Id);
@@ -114,7 +110,7 @@ namespace LocadoraDeVeiculos.Aplicacao.LocacaoModule
         {
             Log.Logger.Aqui().Debug("SELECIONANDO TODAS AS LOCAÇÕES");
 
-            List<Locacao> locacao = locacaoRepo.SelecionarTodos();
+            List<Locacao> locacao = locacaoRepo.GetAll();
 
             if (locacao.Count == 0)
                 Log.Logger.Aqui().Information("NÃO HÁ LOCAÇÕES CADASTRADAS");
@@ -127,7 +123,7 @@ namespace LocadoraDeVeiculos.Aplicacao.LocacaoModule
         {
             Log.Logger.Aqui().Debug("SELECIONANDO A LOCAÇÃO ID: {Id}", id);
 
-            Locacao locacao = locacaoRepo.SelecionarPorId(id);
+            Locacao locacao = locacaoRepo.GetById(id);
 
             if (locacao == null)
                 Log.Logger.Aqui().Information("NÃO FOI POSSÍVEL ENCONTRAR A LOCAÇÃO ID {Id}", locacao.Id);

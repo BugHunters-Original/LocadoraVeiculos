@@ -1,9 +1,7 @@
-﻿using LocadoraDeVeiculos.Dominio.Shared;
+﻿using LocadoraDeVeiculos.Dominio.DescontoModule;
+using LocadoraDeVeiculos.Dominio.Shared;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace LocadoraDeVeiculos.Dominio.ParceiroModule
 {
@@ -16,10 +14,12 @@ namespace LocadoraDeVeiculos.Dominio.ParceiroModule
 
         public Parceiro()
         {
-
+            Descontos = new HashSet<Desconto>();
         }
 
         public string Nome { get; set; }
+        public virtual ICollection<Desconto> Descontos { get; set; }
+
         public override string Validar()
         {
             string valido = "";

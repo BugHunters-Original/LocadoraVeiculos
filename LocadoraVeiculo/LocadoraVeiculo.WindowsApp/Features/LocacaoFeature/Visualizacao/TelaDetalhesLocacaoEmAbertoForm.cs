@@ -1,8 +1,8 @@
 ﻿using LocadoraDeVeiculos.Dominio.LocacaoModule;
 using LocadoraDeVeiculos.Dominio.TaxaDaLocacaoModule;
+using LocadoraDeVeiculos.Infra.Context;
 using LocadoraDeVeiculos.Infra.InternetServices;
-using LocadoraDeVeiculos.Infra.LogManager;
-using LocadoraDeVeiculos.Infra.SQL.TaxaServicoModule.TaxaDaLocacaoModule;
+using LocadoraDeVeiculos.Infra.ORM.TaxaDaLocacaoModule;
 using LocadoraVeiculo.WindowsApp.Features.DarkModeFeature;
 using Serilog.Core;
 using System;
@@ -20,7 +20,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.LocacaoFeature.Visualizacao
 
         public TelaDetalhesLocacaoEmAbertoForm()
         {
-            taxaDaLocacaoDAO = new TaxaDaLocacaoDAO();
+            taxaDaLocacaoDAO = new TaxaDaLocacaoDAO(new LocacaoContext());
             InitializeComponent();
             SetColor();
         }
@@ -65,7 +65,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.LocacaoFeature.Visualizacao
             if (lista != null)
                 foreach (var servico in lista)
                 {
-                    listServicos.Items.Add(servico.TaxaLocacao);
+                    listServicos.Items.Add(servico.Servico);
                 }
         }
 

@@ -14,18 +14,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.ParceiroFeature
         {
             InitializeComponent();
             SetColor();
-        }
-
-        private void SetColor()
-        {
-            this.header_parceiro.BackColor = DarkMode.corHeader;
-            this.BackColor = DarkMode.corPanel;
-            this.ForeColor = DarkMode.corFonte; 
-            txtID.BackColor = Color.DarkSeaGreen;
-            txtNome.BackColor = DarkMode.corFundoTxBox;
-
-            btnGravar.BackColor = DarkMode.corFundoTxBox;
-            btnCancelar.BackColor = DarkMode.corFundoTxBox;
+            parceiro = new();
         }
 
         public Parceiro Parceiro
@@ -39,10 +28,28 @@ namespace LocadoraVeiculo.WindowsApp.Features.ParceiroFeature
             }
 
         }
+
+        private void SetColor()
+        {
+            this.header_parceiro.BackColor = DarkMode.corHeader;
+            this.BackColor = DarkMode.corPanel;
+            this.ForeColor = DarkMode.corFonte;
+            txtID.BackColor = Color.DarkSeaGreen;
+            txtNome.BackColor = DarkMode.corFundoTxBox;
+
+            btnGravar.BackColor = DarkMode.corFundoTxBox;
+            btnCancelar.BackColor = DarkMode.corFundoTxBox;
+        }
+
+        private void ConfigurarParceiro()
+        {
+            parceiro.Nome = txtNome.Text;
+        }
+
         private void btnGravar_Click(object sender, EventArgs e)
         {
-            string nome = txtNome.Text;
-            parceiro = new Parceiro(nome);
+            ConfigurarParceiro();
+
             string resultadoValidacao = parceiro.Validar();
 
             if (resultadoValidacao != "ESTA_VALIDO")

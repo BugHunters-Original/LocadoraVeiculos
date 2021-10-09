@@ -1,4 +1,5 @@
-﻿using LocadoraDeVeiculos.Dominio.VeiculoModule;
+﻿using LocadoraDeVeiculos.Dominio.Shared;
+using LocadoraDeVeiculos.Dominio.VeiculoModule;
 using LocadoraDeVeiculos.Infra.ExtensionMethods;
 using LocadoraDeVeiculos.Infra.LogManager;
 using Serilog.Core;
@@ -34,10 +35,9 @@ namespace LocadoraDeVeiculos.Aplicacao.VeiculoModule
             else
                 Log.Logger.Aqui().Error("NÃO FOI POSSÍVEL REGISTRAR VEÍCULO {VeiculoNome}", veiculo.Nome);
 
-
         }
 
-        public void EditarVeiculo(int id, Veiculo veiculo)
+        public void EditarVeiculo(Veiculo veiculo)
         {
             string resultadoValidacaoDominio = veiculo.Validar();
 
@@ -46,7 +46,7 @@ namespace LocadoraDeVeiculos.Aplicacao.VeiculoModule
             if (resultadoValidacaoDominio == "ESTA_VALIDO")
             {
                
-                veiculoRepository.Editar(id, veiculo);
+                veiculoRepository.Editar(veiculo);
                 Log.Logger.Aqui().Debug("VEÍCULO {VeiculoNome} EDITADO COM SUCESSO", veiculo.Nome);
 
             }
@@ -54,15 +54,13 @@ namespace LocadoraDeVeiculos.Aplicacao.VeiculoModule
             else
                 Log.Logger.Aqui().Error("NÃO FOI POSSÍVEL EDITAR VEÍCULO {VeiculoNome}", veiculo.Nome);
 
-
         }
 
-        public bool ExcluirVeiculo(int id)
+        public bool ExcluirVeiculo(Veiculo veiculo)
         {
-            Log.Logger.Aqui().Debug("SELECIONANDO O VEÍCULO ID: {Id}", id);
+            Log.Logger.Aqui().Debug("SELECIONANDO O VEÍCULO ID: {Id}", veiculo.Id);
 
-            var veiculo = veiculoRepository.SelecionarPorId(id);
-            var excluiu = veiculoRepository.Excluir(id);
+            var excluiu = veiculoRepository.Excluir(veiculo);
 
             if (excluiu)
                 Log.Logger.Aqui().Debug("VEÍCULO {Id} REMOVIDO COM SUCESSO", veiculo.Id);
@@ -76,7 +74,7 @@ namespace LocadoraDeVeiculos.Aplicacao.VeiculoModule
         {
             Log.Logger.Aqui().Debug("SELECIONANDO O VEÍCULO ID: {Id}", id);
 
-            Veiculo veiculo =  veiculoRepository.SelecionarPorId(id);
+            Veiculo veiculo =  veiculoRepository.GetById(id);
 
 
             if (veiculo == null)
@@ -91,18 +89,15 @@ namespace LocadoraDeVeiculos.Aplicacao.VeiculoModule
         {
             Log.Logger.Aqui().Debug("SELECIONANDO TODOS OS VEÍCULOS");
 
-            List<Veiculo> veiculo = veiculoRepository.SelecionarTodos();
+            List<Veiculo> veiculo = veiculoRepository.GetAll();
 
             if (veiculo.Count == 0)
                 Log.Logger.Aqui().Information("NÃO HÁ VEÍCULOS CADASTRADOS");
             else
                 Log.Logger.Aqui().Debug("A SELEÇÃO TROUXE {Quantidade} VEÍCULO(S) EXISTENTE(S)", veiculo.Count);
 
-            return veiculo;
-             
-        }
-
-       
+            return veiculo;             
+        }       
 
         public void EditarDisponibilidadeVeiculo(Veiculo atual, Veiculo antigo)
         {
@@ -122,8 +117,7 @@ namespace LocadoraDeVeiculos.Aplicacao.VeiculoModule
             else
                 Log.Logger.Aqui().Debug("A SELEÇÃO TROUXE {Quantidade} VEÍCULO(S) ALUGADO(S)", veiculo.Count);
 
-            return veiculo;
-            
+            return veiculo;            
         }
 
         public List<Veiculo> SelecionarTodosDisponiveis()
@@ -137,8 +131,7 @@ namespace LocadoraDeVeiculos.Aplicacao.VeiculoModule
             else
                 Log.Logger.Aqui().Debug("A SELEÇÃO TROUXE {Quantidade} VEÍCULO(S) DISPONÍVEIS", veiculo.Count);
 
-            return veiculo;
-           
+            return veiculo;           
         }
 
         public int SelecionarQuantidadeVeiculosAlugados()

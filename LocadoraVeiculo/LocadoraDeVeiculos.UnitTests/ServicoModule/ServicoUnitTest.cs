@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 namespace LocadoraDeVeiculos.UnitTests.TaxaServicoModule
 {
     [TestClass]
-    class ServicoUnitTest
+    public class ServicoUnitTest
     {
         [TestMethod]
         public void DeveValidar_Nome()

@@ -18,7 +18,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.ClienteFeature
         private readonly TabelaClienteControl tabelaClientes;
         private readonly FiltroCliente filtroCliente;
         public OperacoesCliente(ClienteCNPJAppService CNPJService, ClienteCPFAppService CPFService,
-            FiltroCliente filtroCliente)
+                                FiltroCliente filtroCliente)
         {
             this.filtroCliente = filtroCliente;
             this.CNPJService = CNPJService;
@@ -58,7 +58,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.ClienteFeature
 
             if (!VerificarIdSelecionado(id, "Editar", "Edição"))
                 return;
-
+            //sim
             ClienteBase clienteSelecionado = VerificarTipoCliente(id, tipo);
 
             TelaClienteForm tela = new(CNPJService);
@@ -91,7 +91,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.ClienteFeature
 
             if (!VerificarIdSelecionado(id, "Excluir", "Exclusão"))
                 return;
-
+            //sim
             ClienteBase clienteSelecionado = VerificarTipoCliente(id, tipo);
 
             if (ConfirmaExclusao(clienteSelecionado))
@@ -99,7 +99,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.ClienteFeature
                 if (!VerificarCondutoresDisponiveis(clienteSelecionado))
                     return;
 
-                bool excluiu = RetornarExcluiuConformeTipo(id, clienteSelecionado);
+                bool excluiu = RetornarExcluiuConformeTipo(clienteSelecionado);
 
                 if (excluiu)
                 {
@@ -156,7 +156,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.ClienteFeature
         }
 
         private ClienteBase VerificarTipoCliente(int id, string tipo)
-        {
+        {   //sim
             return tipo.Length == 14 ? CPFService.SelecionarClienteCPFPorId(id) : CNPJService.SelecionarClienteCNPJPorId(id);
         }
 
@@ -177,6 +177,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.ClienteFeature
 
         private void AtualizarGrid(ClienteBase clienteSelecionado)
         {
+            //sim
             IEnumerable<ClienteBase> clientes = clienteSelecionado is ClienteCPF ? CPFService.SelecionarTodosClientesCPF() : CNPJService.SelecionarTodosClientesCNPJ();
 
             tabelaClientes.AtualizarRegistros(clientes);
@@ -207,13 +208,13 @@ namespace LocadoraVeiculo.WindowsApp.Features.ClienteFeature
 
         private bool RetornarEditouConformeTipo(int id, ClienteBase clienteSelecionado, TelaClienteForm tela)
         {
-            return clienteSelecionado is ClienteCPF ? CPFService.EditarClienteCPF(id, (ClienteCPF)tela.Cliente) :
-                                                      CNPJService.EditarClienteCNPJ(id, (ClienteCNPJ)tela.Cliente);
+            return clienteSelecionado is ClienteCPF ? CPFService.EditarClienteCPF((ClienteCPF)tela.Cliente) :
+                                                      CNPJService.EditarClienteCNPJ((ClienteCNPJ)tela.Cliente);
         }
 
-        private bool RetornarExcluiuConformeTipo(int id, ClienteBase clienteSelecionado)
+        private bool RetornarExcluiuConformeTipo(ClienteBase cliente)
         {
-            return clienteSelecionado is ClienteCPF ? CPFService.ExcluirClienteCPF(id) : CNPJService.ExcluirClienteCNPJ(id);
+            return cliente is ClienteCPF ? CPFService.ExcluirClienteCPF((ClienteCPF)cliente) : CNPJService.ExcluirClienteCNPJ((ClienteCNPJ)cliente);
         }
 
         public void DevolverVeiculo()

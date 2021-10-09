@@ -79,8 +79,21 @@ namespace LocadoraVeiculo.WindowsApp.Features.GrupoVeiculoFeature
             var valorKmRodadoPControlado = Convert.ToDecimal(txtValorKmRodadoPControlado.Text);
             var valorDiarioPLivre = Convert.ToDecimal(txtDiariaPLivre.Text);
 
-            grupoVeiculo = new GrupoVeiculo(nomeTipo, valorDiarioPDiario, valorKmRodadoPDiario, valorDiarioPControlado,
+            if (grupoVeiculo != null) 
+            { 
+                grupoVeiculo.NomeTipo = txtNome.Text;
+                grupoVeiculo.ValorDiarioPDiario = valorDiarioPDiario;
+                grupoVeiculo.NomeTipo = txtNome.Text;
+                grupoVeiculo.NomeTipo = txtNome.Text;
+                grupoVeiculo.NomeTipo = txtNome.Text;
+                grupoVeiculo.NomeTipo = txtNome.Text;
+                grupoVeiculo.NomeTipo = txtNome.Text;
+            }
+            else
+                grupoVeiculo = new GrupoVeiculo(nomeTipo, valorDiarioPDiario, valorKmRodadoPDiario, valorDiarioPControlado,
                                                                 limitePControlado, valorKmRodadoPControlado, valorDiarioPLivre);
+
+
 
             string resultadoValidacao = grupoVeiculo.Validar();
 

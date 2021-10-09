@@ -5,13 +5,15 @@ using LocadoraDeVeiculos.Dominio.GrupoVeiculoModule;
 using LocadoraDeVeiculos.Dominio.LocacaoModule;
 using LocadoraDeVeiculos.Dominio.ServicoModule;
 using LocadoraDeVeiculos.Dominio.VeiculoModule;
+using LocadoraDeVeiculos.Infra.Context;
+using LocadoraDeVeiculos.Infra.LogManager;
+using LocadoraDeVeiculos.Infra.ORM.ClienteCNPJModule;
+using LocadoraDeVeiculos.Infra.ORM.ClienteCPFModule;
+using LocadoraDeVeiculos.Infra.ORM.GrupoVeiculoModule;
+using LocadoraDeVeiculos.Infra.ORM.LocacaoModule;
+using LocadoraDeVeiculos.Infra.ORM.ServicoModule;
+using LocadoraDeVeiculos.Infra.ORM.VeiculoModule;
 using LocadoraDeVeiculos.Infra.Shared;
-using LocadoraDeVeiculos.Infra.SQL.ClienteCNPJModule;
-using LocadoraDeVeiculos.Infra.SQL.ClienteCPFModule;
-using LocadoraDeVeiculos.Infra.SQL.GrupoVeiculoModule;
-using LocadoraDeVeiculos.Infra.SQL.LocacaoModule;
-using LocadoraDeVeiculos.Infra.SQL.TaxaServicoModule.ServicoModule;
-using LocadoraDeVeiculos.Infra.SQL.VeiculoModule;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Serilog.Core;
 using System;
@@ -27,6 +29,7 @@ namespace LocadoraDeVeiculos.Test.LocacaoModule
         ClienteCNPJDAO controladorCliente = null;
         ClienteCPFDAO controladorCondutor = null;
         ServicoDAO controladorServico = null;
+        static LocacaoContext context = null;
 
         Veiculo veiculo;
         GrupoVeiculo grupo;
@@ -42,14 +45,16 @@ namespace LocadoraDeVeiculos.Test.LocacaoModule
 
         public LocacaoIntegrationTests()
         {
-            controladorVeiculo = new VeiculoDAO();
-            controladorCliente = new ClienteCNPJDAO();
-            controladorCondutor = new ClienteCPFDAO();
-            controladorGrupo = new GrupoVeiculoDAO();
-            controladorServico = new ServicoDAO();
-            controladorLocacao = new LocacaoDAO();
+            context = new();
+            controladorVeiculo = new VeiculoDAO(context);
+            controladorCliente = new ClienteCNPJDAO(context);
+            controladorCondutor = new ClienteCPFDAO(context);
+            controladorGrupo = new GrupoVeiculoDAO(context);
+            controladorServico = new ServicoDAO(context);
+            controladorLocacao = new LocacaoDAO(context);
 
             LimparBanco();
+            Log.IniciarLog();
 
             dataSaida = new DateTime(2021, 08, 19);
             dataRetorno = new DateTime(2021, 08, 19);
@@ -79,15 +84,31 @@ namespace LocadoraDeVeiculos.Test.LocacaoModule
 
         private static void LimparBanco()
         {
-            Db.Update("DELETE FROM [TBTAXASDALOCACAO]");
-            Db.Update("DELETE FROM [TBLOCACAO]");
-            Db.Update("DELETE FROM [TBVEICULOS]");
-            Db.Update("DELETE FROM [TBFUNCIONARIO]");
-            Db.Update("DELETE FROM [TBTIPOVEICULO]");
-            Db.Update("DELETE FROM [TBCLIENTECNPJ]");
-            Db.Update("DELETE FROM [TBCLIENTECPF]");
-            Db.Update("DELETE FROM [TBTAXASSERVICOS]");
+            var Taxas = context.TaxasDaLocacao;
+            context.TaxasDaLocacao.RemoveRange(Taxas);
+
+            var Loca = context.Locacoes;
+            context.Locacoes.RemoveRange(Loca);
+
+            var Veic = context.Veiculos;
+            context.Veiculos.RemoveRange(Veic);
+
+            var GrupoV = context.GruposVeiculo;
+            context.GruposVeiculo.RemoveRange(GrupoV);
+
+            var Func = context.Funcionarios;
+            context.Funcionarios.RemoveRange(Func);
+
+            var CliCpf = context.ClientesCPF;
+            context.ClientesCPF.RemoveRange(CliCpf);
+
+            var CliCnpj = context.ClientesCNPJ;
+            context.ClientesCNPJ.RemoveRange(CliCnpj);
+
+            var Serv = context.Servicos;
+            context.Servicos.RemoveRange(Serv);
         }
+    
 
         [TestMethod]
         public void DeveInserir_Locacao()
@@ -101,7 +122,7 @@ namespace LocadoraDeVeiculos.Test.LocacaoModule
             controladorLocacao.Inserir(novaLocacao);
 
             //assert
-            var locacaoEncontrada = controladorLocacao.SelecionarPorId(novaLocacao.Id);
+            var locacaoEncontrada = controladorLocacao.GetById(novaLocacao.Id);
             locacaoEncontrada.Should().Be(novaLocacao);
 
             LimparBanco();
@@ -121,10 +142,10 @@ namespace LocadoraDeVeiculos.Test.LocacaoModule
                                     "KM Controlado", 1, precoServicos, dias, "Em Aberto", null, grupo.ValorDiarioPControlado * dias, null, null);
 
             //action
-            controladorLocacao.Editar(novaLocacao.Id, novaLocacaoEditada);
+            controladorLocacao.Editar(novaLocacaoEditada);
 
             //assert        
-            var locacaoAtualizada = controladorLocacao.SelecionarPorId(novaLocacao.Id);
+            var locacaoAtualizada = controladorLocacao.GetById(novaLocacao.Id);
             locacaoAtualizada.Should().Be(novaLocacaoEditada);
 
 
@@ -141,10 +162,10 @@ namespace LocadoraDeVeiculos.Test.LocacaoModule
             controladorLocacao.Inserir(novaLocacao);
 
             //action
-            controladorLocacao.Excluir(novaLocacao.Id);
+            controladorLocacao.Excluir(novaLocacao);
 
             //assert        
-            Locacao locacaoAtualizada = controladorLocacao.SelecionarPorId(novaLocacao.Id);
+            Locacao locacaoAtualizada = controladorLocacao.GetById(novaLocacao.Id);
             locacaoAtualizada.Should().BeNull();
 
 
@@ -161,7 +182,7 @@ namespace LocadoraDeVeiculos.Test.LocacaoModule
             controladorLocacao.Inserir(novaLocacao);
 
             //action
-            var locacaoEncontrada = controladorLocacao.SelecionarPorId(novaLocacao.Id);
+            var locacaoEncontrada = controladorLocacao.GetById(novaLocacao.Id);
 
             //assert
             locacaoEncontrada.Should().NotBeNull();
@@ -188,7 +209,7 @@ namespace LocadoraDeVeiculos.Test.LocacaoModule
             controladorLocacao.Inserir(novaLocacao3);
 
             //action
-            var locacoes = controladorLocacao.SelecionarTodos();
+            var locacoes = controladorLocacao.GetAll();
 
             //assert
             locacoes.Should().HaveCount(3);
@@ -208,8 +229,8 @@ namespace LocadoraDeVeiculos.Test.LocacaoModule
             controladorLocacao.Inserir(novaLocacao);
 
             //action
-            controladorLocacao.ConcluirLocacao(novaLocacao.Id, novaLocacao);
-            var locacaoEncontrada = controladorLocacao.SelecionarPorId(novaLocacao.Id);
+            controladorLocacao.ConcluirLocacao(novaLocacao);
+            var locacaoEncontrada = controladorLocacao.GetById(novaLocacao.Id);
 
             //assert
             locacaoEncontrada.StatusLocacao.Should().Be("Concluída");
@@ -224,7 +245,7 @@ namespace LocadoraDeVeiculos.Test.LocacaoModule
                                     "Plano Diário", 1, precoServicos, dias, "Em Aberto", null, grupo.ValorDiarioPDiario * dias, null, null);
 
             controladorLocacao.Inserir(novaLocacao);
-            controladorLocacao.ConcluirLocacao(novaLocacao.Id, novaLocacao);
+            controladorLocacao.ConcluirLocacao(novaLocacao);
 
             var novaLocacaoNaoConcluida = new Locacao(cliente, veiculo, null, condutor, dataSaida, dataRetorno,
                                     "Plano Diário", 1, precoServicos, dias, "Em Aberto", null, grupo.ValorDiarioPDiario * dias, null, null);
@@ -250,7 +271,7 @@ namespace LocadoraDeVeiculos.Test.LocacaoModule
                                     "Plano Diário", 1, precoServicos, dias, "Em Aberto", null, grupo.ValorDiarioPDiario * dias, null, null);
 
             controladorLocacao.Inserir(novaLocacao);
-            controladorLocacao.ConcluirLocacao(novaLocacao.Id, novaLocacao);
+            controladorLocacao.ConcluirLocacao(novaLocacao);
 
             var novaLocacaoNaoConcluida = new Locacao(cliente, veiculo, null, condutor, dataSaida, dataRetorno,
                                     "Plano Diário", 1, precoServicos, dias, "Em Aberto", null, grupo.ValorDiarioPDiario * dias, null, null);

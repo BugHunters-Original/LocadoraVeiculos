@@ -1,10 +1,18 @@
-﻿using System;
+﻿using LocadoraDeVeiculos.Dominio.ClienteModule.ClienteCPFModule;
+using System;
+using System.Collections.Generic;
 using System.Net.Mail;
 
 namespace LocadoraDeVeiculos.Dominio.ClienteModule.ClienteCNPJModule
 {
     public class ClienteCNPJ : ClienteBase, IEquatable<ClienteCNPJ>
     {
+        public string Cnpj { get; set; }
+        public ICollection<ClienteCPF> Condutores { get; set; }
+        public ClienteCNPJ()
+        {
+
+        }
         public ClienteCNPJ(string nome, string endereco, string telefone, string cnpj, string email)
         {
             Nome = nome;
@@ -12,9 +20,8 @@ namespace LocadoraDeVeiculos.Dominio.ClienteModule.ClienteCNPJModule
             Telefone = telefone;
             Cnpj = cnpj;
             Email = email;
+            Condutores = new HashSet<ClienteCPF>();
         }
-
-        public string Cnpj { get; set; }
 
         public override string Validar()
         {

@@ -1,5 +1,6 @@
 ﻿using LocadoraDeVeiculos.Dominio.LocacaoModule;
-using LocadoraDeVeiculos.Infra.SQL.LocacaoModule;
+using LocadoraDeVeiculos.Infra.Context;
+using LocadoraDeVeiculos.Infra.ORM.LocacaoModule;
 using LocadoraVeiculo.WindowsApp.Features.LocacaoFeature.Visualizacao;
 using LocadoraVeiculo.WindowsApp.Shared;
 using Serilog.Core;
@@ -14,7 +15,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.LocacaoFeature
         LocacaoDAO locacaoDAO;
         public TabelaLocacaoControl()
         {
-            locacaoDAO = new();
+            locacaoDAO = new(new LocacaoContext());
             InitializeComponent();
             ConfigurarGridLightMode();
             gridLocacao.ConfigurarGridSomenteLeitura();
@@ -72,7 +73,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.LocacaoFeature
             if (id == 0)
                 return;
 
-            Locacao locacaoSelecionada = locacaoDAO.SelecionarPorId(id);
+            Locacao locacaoSelecionada = locacaoDAO.GetById(id);
 
             dynamic tela = VerificarTipoDeTela(locacaoSelecionada);
 

@@ -14,13 +14,13 @@ using LocadoraDeVeiculos.Dominio.ClienteModule;
 using LocadoraDeVeiculos.Dominio.DescontoModule;
 using LocadoraDeVeiculos.Dominio.ClienteModule.ClienteCNPJModule;
 using LocadoraDeVeiculos.Dominio.ClienteModule.ClienteCPFModule;
-using LocadoraDeVeiculos.Infra.SQL.TaxaServicoModule.TaxaDaLocacaoModule;
 using LocadoraDeVeiculos.Aplicacao.ClienteCPFModule;
 using LocadoraDeVeiculos.Aplicacao.VeiculoModule;
 using LocadoraDeVeiculos.Aplicacao.ClienteCNPJModule;
 using LocadoraDeVeiculos.Aplicacao.DescontoModule;
 using LocadoraDeVeiculos.Aplicacao.LocacaoModule;
-using Serilog.Core;
+using LocadoraDeVeiculos.Infra.ORM.TaxaDaLocacaoModule;
+using LocadoraDeVeiculos.Infra.Context;
 
 namespace LocadoraVeiculo.WindowsApp.Features.LocacaoFeature
 {
@@ -46,7 +46,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.LocacaoFeature
             this.veiculoService = veiculoService;
             this.descontoService = descontoService;
             this.locacaoService = locacaoService;
-            taxaDaLocacaoDAO = new();
+            taxaDaLocacaoDAO = new(new LocacaoContext());
             telaDasTaxas = new TelaAdicionarTaxasForm();
             InitializeComponent();
             PopularComboboxes();
@@ -151,7 +151,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.LocacaoFeature
             List<TaxaDaLocacao> lista = taxaDaLocacaoDAO.SelecionarTaxasDeUmaLocacao(locacao.Id);
 
             if (lista != null)
-                lista.ForEach(x => listServicos.Items.Add(x.TaxaLocacao));
+                lista.ForEach(x => listServicos.Items.Add(x.Servico));
 
             telaDasTaxas.CheckBoxTaxas(lista);
         }

@@ -22,8 +22,7 @@ namespace LocadoraDeVeiculos.Aplicacao.DescontoModule
             Log.Logger.Aqui().Debug("REGISTRANDO CUPOM DE DESCONTO {DescontoNome}", desconto.Nome);
 
             if (resultadoValidacaoDominio == "ESTA_VALIDO")
-            {
-                
+            {                
                 descontoRepository.Inserir(desconto);
 
                 Log.Logger.Aqui().Debug("CUPOM DE DESCONTO {DescontoNome} REGISTRADO COM SUCESSO", desconto.Nome);
@@ -39,7 +38,7 @@ namespace LocadoraDeVeiculos.Aplicacao.DescontoModule
             
         }
 
-        public bool EditarDesconto(int id, Desconto desconto)
+        public bool EditarDesconto(Desconto desconto)
         {
             string resultadoValidacaoDominio = desconto.Validar();
 
@@ -47,7 +46,7 @@ namespace LocadoraDeVeiculos.Aplicacao.DescontoModule
 
             if (resultadoValidacaoDominio == "ESTA_VALIDO")
             {
-                descontoRepository.Editar(id, desconto);
+                descontoRepository.Editar(desconto);
 
                 Log.Logger.Aqui().Debug("CUPOM DE DESCONTO {DescontoNome} EDITADO COM SUCESSO", desconto.Nome);
 
@@ -61,13 +60,11 @@ namespace LocadoraDeVeiculos.Aplicacao.DescontoModule
             }        
         }
 
-        public bool ExcluirDesconto(int id)
+        public bool ExcluirDesconto(Desconto desconto)
         {        
-            Log.Logger.Aqui().Debug("REMOVENDO CUPOM DE DESCONTO {Id}", id);
+            Log.Logger.Aqui().Debug("REMOVENDO CUPOM DE DESCONTO {Id}", desconto.Id);
 
-            var desconto = descontoRepository.SelecionarPorId(id);
-
-            var excluiu = descontoRepository.Excluir(id);
+            var excluiu = descontoRepository.Excluir(desconto);
 
             if (excluiu)
                 Log.Logger.Aqui().Debug("CUPOM DE DESCONTO {Id} REMOVIDO COM SUCESSO", desconto.Id);
@@ -81,7 +78,7 @@ namespace LocadoraDeVeiculos.Aplicacao.DescontoModule
         {
             Log.Logger.Aqui().Debug("SELECIONANDO O CUPOM DE DESCONTO ID: {Id}", id);
 
-            Desconto desconto =  descontoRepository.SelecionarPorId(id);
+            Desconto desconto =  descontoRepository.GetById(id);
 
             if (desconto == null)
                 Log.Logger.Aqui().Information("NÃO FOI POSSÍVEL ENCONTRAR O CUPOM DE DESCONTO ID {Id}", desconto.Id);
@@ -95,7 +92,7 @@ namespace LocadoraDeVeiculos.Aplicacao.DescontoModule
         {
             Log.Logger.Aqui().Debug("SELECIONANDO TODOS OS CUPONS DE DESCONTOS");
 
-            List<Desconto> desconto = descontoRepository.SelecionarTodos();
+            List<Desconto> desconto = descontoRepository.GetAll();
 
             if(desconto.Count == 0)
                 Log.Logger.Aqui().Information("NÃO HÁ CUPONS DE DESCONTOS CADASTRADOS");

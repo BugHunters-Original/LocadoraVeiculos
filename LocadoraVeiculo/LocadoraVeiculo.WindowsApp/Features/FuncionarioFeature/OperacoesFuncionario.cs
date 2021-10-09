@@ -40,7 +40,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.FuncionarioFeature
 
             if (tela.ShowDialog() == DialogResult.OK)
             {
-                funcionarioService.EditarFuncionario(id, tela.Funcionario);
+                funcionarioService.EditarFuncionario(tela.Funcionario);
 
                 List<Funcionario> compromissos = funcionarioService.SelecionarTodosFuncionarios();
 
@@ -62,7 +62,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.FuncionarioFeature
             if (MessageBox.Show($"Tem certeza que deseja excluir o Funcionário: [{funcionarioSelecionado.Nome}] ?",
                 "Exclusão de Funcionários", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK)
             {
-                funcionarioService.ExcluirFuncionario(id);
+                funcionarioService.ExcluirFuncionario(funcionarioSelecionado);
 
                 List<Funcionario> compromissos = funcionarioService.SelecionarTodosFuncionarios();
 

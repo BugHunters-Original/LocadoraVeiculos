@@ -47,6 +47,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.DescontoFeature
                 descontoService.RegistrarNovoDesconto(tela.Desconto);
 
                 List<Desconto> descontos = descontoService.SelecionarTodosDescontos();
+
                 tabelaDesconto.AtualizarRegistros(descontos);
 
                 TelaPrincipalForm.Instancia.AtualizarRodape($"Cupom de desconto: [{tela.Desconto}] inserido com sucesso");
@@ -84,7 +85,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.DescontoFeature
 
                 }
 
-                descontoService.EditarDesconto(id, tela.Desconto);
+                descontoService.EditarDesconto(tela.Desconto);
 
                 List<Desconto> desconto = descontoService.SelecionarTodosDescontos();
                 tabelaDesconto.AtualizarRegistros(desconto);
@@ -109,7 +110,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.DescontoFeature
 
                 if (contador == 0)
                 {
-                    descontoService.ExcluirDesconto(id);
+                    descontoService.ExcluirDesconto(descontoSelecionado);
                     List<Desconto> desconto = descontoService.SelecionarTodosDescontos();
                     tabelaDesconto.AtualizarRegistros(desconto);
                     TelaPrincipalForm.Instancia.AtualizarRodape($"Grupo de Veiculos: [{descontoSelecionado}] removido com sucesso");

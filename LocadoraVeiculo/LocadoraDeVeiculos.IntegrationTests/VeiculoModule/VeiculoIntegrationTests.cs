@@ -1,10 +1,11 @@
 ﻿using FluentAssertions;
 using LocadoraDeVeiculos.Dominio.GrupoVeiculoModule;
 using LocadoraDeVeiculos.Dominio.VeiculoModule;
-
+using LocadoraDeVeiculos.Infra.Context;
+using LocadoraDeVeiculos.Infra.LogManager;
+using LocadoraDeVeiculos.Infra.ORM.GrupoVeiculoModule;
+using LocadoraDeVeiculos.Infra.ORM.VeiculoModule;
 using LocadoraDeVeiculos.Infra.Shared;
-using LocadoraDeVeiculos.Infra.SQL.GrupoVeiculoModule;
-using LocadoraDeVeiculos.Infra.SQL.VeiculoModule;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Serilog.Core;
 
@@ -16,17 +17,18 @@ namespace LocadoraDeVeiculos.IntegrationTests.VeiculoModule
         GrupoVeiculoDAO grupoVeiculoDAO;
         VeiculoDAO veiculoDAO;
         GrupoVeiculo grupo;
-        
+        static LocacaoContext context = null;
 
         byte[] imagem;
 
         public VeiculoIntegrationTests()
         {
-            
-            grupoVeiculoDAO = new GrupoVeiculoDAO();
-            veiculoDAO = new VeiculoDAO();
-            Db.Update("DELETE FROM [TBTIPOVEICULO]");
-            Db.Update("DELETE FROM [TBVEICULOS]");
+            context = new();
+            grupoVeiculoDAO = new GrupoVeiculoDAO(context);
+            veiculoDAO = new VeiculoDAO(context);
+
+            LimparBanco();
+            Log.IniciarLog();
 
             grupo = new GrupoVeiculo("Econômico", 10, 10, 10, 10, 10, 10);
             grupoVeiculoDAO.Inserir(grupo);
@@ -43,8 +45,8 @@ namespace LocadoraDeVeiculos.IntegrationTests.VeiculoModule
             veiculoDAO.Inserir(veiculo);
 
             //assert
-            var veiculoEncontrado = veiculoDAO.SelecionarPorId(veiculo.Id);
-            veiculoEncontrado.Should().Be(veiculo);
+            var veiculoEncontrado = veiculoDAO.GetById(veiculo.Id);
+            veiculoEncontrado.Nome.Should().Be("marea");
             LimparBanco();
         }
 
@@ -55,14 +57,13 @@ namespace LocadoraDeVeiculos.IntegrationTests.VeiculoModule
             var veiculo = new Veiculo("marea", "1234567", "12345678901234567", imagem, "azul", "fiat", 2000, 2, 80, 1, 'G', 1000, "gasolina", 1, grupo);
             veiculoDAO.Inserir(veiculo);
 
-            var VeiculoEditado = new Veiculo("uneiras", "7654321", "12345678901234567", imagem, "preto", "audi", 2012, 2, 80, 1, 'G', 1000, "gasolina", 1, grupo);
-
+            veiculo.Marca = "audi";
             //action
-            veiculoDAO.Editar(veiculo.Id, VeiculoEditado);
+            veiculoDAO.Editar(veiculo);
 
             //assert
-            var veiculoAtualizado = veiculoDAO.SelecionarPorId(veiculo.Id);
-            veiculoAtualizado.Should().Be(VeiculoEditado);
+            var veiculoAtualizado = veiculoDAO.GetById(veiculo.Id);
+            veiculoAtualizado.Marca.Should().Be("audi");
             LimparBanco();
         }
 
@@ -74,10 +75,10 @@ namespace LocadoraDeVeiculos.IntegrationTests.VeiculoModule
             veiculoDAO.Inserir(veiculo);
 
             //action            
-            veiculoDAO.Excluir(veiculo.Id);
+            veiculoDAO.Excluir(veiculo);
 
             //assert
-            var veiculoEncontrado = veiculoDAO.SelecionarPorId(veiculo.Id);
+            var veiculoEncontrado = veiculoDAO.GetById(veiculo.Id);
             veiculoEncontrado.Should().BeNull();
             LimparBanco();
         }
@@ -90,7 +91,7 @@ namespace LocadoraDeVeiculos.IntegrationTests.VeiculoModule
             veiculoDAO.Inserir(veiculo);
 
             //action
-            var veiculoEncontrado = veiculoDAO.SelecionarPorId(veiculo.Id);
+            var veiculoEncontrado = veiculoDAO.GetById(veiculo.Id);
 
             //assert
             veiculoEncontrado.Should().NotBeNull();
@@ -111,7 +112,7 @@ namespace LocadoraDeVeiculos.IntegrationTests.VeiculoModule
             veiculoDAO.Inserir(v3);
 
             //action
-            var veiculos = veiculoDAO.SelecionarTodos();
+            var veiculos = veiculoDAO.GetAll();
 
             //assert
             veiculos.Should().HaveCount(3);
@@ -123,8 +124,11 @@ namespace LocadoraDeVeiculos.IntegrationTests.VeiculoModule
 
         public void LimparBanco()
         {
-            Db.Update("DELETE FROM [TBVEICULOS]");
-            Db.Update("DELETE FROM [TBTIPOVEICULO]");
+            var Veic = context.Veiculos;
+            context.Veiculos.RemoveRange(Veic);
+
+            var GrupoV = context.GruposVeiculo;
+            context.GruposVeiculo.RemoveRange(GrupoV);
         }
     }
 }

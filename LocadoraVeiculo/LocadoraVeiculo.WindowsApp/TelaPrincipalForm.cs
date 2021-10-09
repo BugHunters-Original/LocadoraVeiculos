@@ -1,4 +1,5 @@
-﻿using System;
+﻿#region Usings
+using System;
 using System.Threading;
 using System.Windows.Forms;
 using LocadoraDeVeiculos.Dominio.ClienteModule;
@@ -25,20 +26,21 @@ using LocadoraDeVeiculos.Aplicacao.FuncionarioModule;
 using LocadoraDeVeiculos.Aplicacao.DescontoModule;
 using LocadoraDeVeiculos.Aplicacao.ServicoModule;
 using LocadoraDeVeiculos.Aplicacao.LocacaoModule;
-using LocadoraDeVeiculos.Infra.SQL.ParceiroModule;
-using LocadoraDeVeiculos.Infra.SQL.ClienteCNPJModule;
-using LocadoraDeVeiculos.Infra.SQL.ClienteCPFModule;
-using LocadoraDeVeiculos.Infra.SQL.GrupoVeiculoModule;
-using LocadoraDeVeiculos.Infra.SQL.FuncionarioModule;
-using LocadoraDeVeiculos.Infra.SQL.DescontoModule;
-using LocadoraDeVeiculos.Infra.SQL.TaxaServicoModule.ServicoModule;
-using LocadoraDeVeiculos.Infra.SQL.LocacaoModule;
-using LocadoraDeVeiculos.Infra.SQL.VeiculoModule;
-using LocadoraDeVeiculos.Infra.SQL.TaxaServicoModule.TaxaDaLocacaoModule;
 using LocadoraDeVeiculos.Infra.PDFLocacao;
 using LocadoraDeVeiculos.Infra.InternetServices;
 using LocadoraDeVeiculos.Infra.LogManager;
-
+using LocadoraDeVeiculos.Infra.ORM.ClienteCNPJModule;
+using LocadoraDeVeiculos.Infra.Context;
+using LocadoraDeVeiculos.Infra.ORM.ClienteCPFModule;
+using LocadoraDeVeiculos.Infra.ORM.ServicoModule;
+using LocadoraDeVeiculos.Infra.ORM.ParceiroModule;
+using LocadoraDeVeiculos.Infra.ORM.GrupoVeiculoModule;
+using LocadoraDeVeiculos.Infra.ORM.VeiculoModule;
+using LocadoraDeVeiculos.Infra.ORM.FuncionarioModule;
+using LocadoraDeVeiculos.Infra.ORM.DescontoModule;
+using LocadoraDeVeiculos.Infra.ORM.TaxaDaLocacaoModule;
+using LocadoraDeVeiculos.Infra.ORM.LocacaoModule;
+#endregion
 namespace LocadoraVeiculo.WindowsApp
 {
     public partial class TelaPrincipalForm : Form
@@ -46,16 +48,16 @@ namespace LocadoraVeiculo.WindowsApp
         public static EnviaEmail email = new();
         public static MontaPdf pdf = new();
 
-        public static ClienteCNPJDAO cnpjRepository = new();
-        public static ClienteCPFDAO cpfRepository = new();
-        public static GrupoVeiculoDAO grupoVeiculoRepository = new();
-        public static VeiculoDAO veiculoRepository = new();
-        public static FuncionarioDAO funcionarioRepository = new();
-        public static ServicoDAO servicoRepository = new();
-        public static DescontoDAO descontoRepository = new();
-        public static ParceiroDAO parceiroRepository = new();
-        public static TaxaDaLocacaoDAO taxaRepository = new();
-        public static LocacaoDAO locacaoRepository = new();
+        public static ClienteCNPJDAO cnpjRepository = new(new LocacaoContext());
+        public static ClienteCPFDAO cpfRepository = new(new LocacaoContext());
+        public static GrupoVeiculoDAO grupoVeiculoRepository = new(new LocacaoContext());
+        public static VeiculoDAO veiculoRepository = new(new LocacaoContext());
+        public static FuncionarioDAO funcionarioRepository = new(new LocacaoContext());
+        public static ServicoDAO servicoRepository = new(new LocacaoContext());
+        public static DescontoDAO descontoRepository = new(new LocacaoContext());
+        public static ParceiroDAO parceiroRepository = new(new LocacaoContext());
+        public static TaxaDaLocacaoDAO taxaRepository = new(new LocacaoContext());
+        public static LocacaoDAO locacaoRepository = new(new LocacaoContext());
 
         public static ClienteCNPJAppService cnpjService = new(cnpjRepository);
         public static ClienteCPFAppService cpfService = new(cpfRepository);

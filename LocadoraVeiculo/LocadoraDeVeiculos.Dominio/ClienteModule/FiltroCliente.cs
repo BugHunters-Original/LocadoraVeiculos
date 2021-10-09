@@ -1,10 +1,6 @@
 ﻿using LocadoraDeVeiculos.Dominio.ClienteModule.ClienteCNPJModule;
 using LocadoraDeVeiculos.Dominio.ClienteModule.ClienteCPFModule;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace LocadoraDeVeiculos.Dominio.ClienteModule
 {
@@ -23,10 +19,10 @@ namespace LocadoraDeVeiculos.Dominio.ClienteModule
             switch (tipoFiltro)
             {
                 case FiltroClienteEnum.PessoaFisica:
-                    return clienteCPFRepo.SelecionarTodos();
+                    return clienteCPFRepo.GetAll();
 
                 case FiltroClienteEnum.PessoaJuridica:
-                    return clienteCNPJRepo.SelecionarTodos();
+                    return clienteCNPJRepo.GetAll();
 
                 default: return null;
             }

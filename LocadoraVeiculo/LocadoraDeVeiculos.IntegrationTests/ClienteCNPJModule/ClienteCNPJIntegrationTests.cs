@@ -1,7 +1,9 @@
 using FluentAssertions;
 using LocadoraDeVeiculos.Dominio.ClienteModule.ClienteCNPJModule;
+using LocadoraDeVeiculos.Infra.Context;
+using LocadoraDeVeiculos.Infra.LogManager;
+using LocadoraDeVeiculos.Infra.ORM.ClienteCNPJModule;
 using LocadoraDeVeiculos.Infra.Shared;
-using LocadoraDeVeiculos.Infra.SQL.ClienteCNPJModule;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace LocadoraDeVeiculos.Test.ClienteNPJModule
@@ -10,19 +12,29 @@ namespace LocadoraDeVeiculos.Test.ClienteNPJModule
     public class ClienteCNPJIntegrationTests
     {
         ClienteCNPJDAO cnpjDAO = null;
+        static LocacaoContext context = null;
 
         public ClienteCNPJIntegrationTests()
         {
-            cnpjDAO = new ClienteCNPJDAO();
+            context = new();
+            cnpjDAO = new ClienteCNPJDAO(context);
             LimparBanco();
+            Log.IniciarLog();
         }
 
         private static void LimparBanco()
         {
-            Db.Update("DELETE FROM [TBTAXASDALOCACAO]");
-            Db.Update("DELETE FROM [TBLOCACAO]");
-            Db.Update("DELETE FROM [TBCLIENTECPF]");
-            Db.Update("DELETE FROM [TBCLIENTECNPJ]");
+            var Taxas = context.TaxasDaLocacao;
+            context.TaxasDaLocacao.RemoveRange(Taxas);
+
+            var Loca = context.Locacoes;
+            context.Locacoes.RemoveRange(Loca);
+
+            var CliCpf = context.ClientesCPF;
+            context.ClientesCPF.RemoveRange(CliCpf);
+
+            var CliCnpj = context.ClientesCNPJ;
+            context.ClientesCNPJ.RemoveRange(CliCnpj);
         }
 
         [TestMethod]
@@ -35,7 +47,7 @@ namespace LocadoraDeVeiculos.Test.ClienteNPJModule
             cnpjDAO.Inserir(novoCliente);
 
             //assert
-            var clienteEncontrado = cnpjDAO.SelecionarPorId(novoCliente.Id);
+            var clienteEncontrado = cnpjDAO.GetById(novoCliente.Id);
             clienteEncontrado.Should().Be(novoCliente);
 
             LimparBanco();
@@ -47,14 +59,14 @@ namespace LocadoraDeVeiculos.Test.ClienteNPJModule
             var cliente = new ClienteCNPJ("Gabriel Marques", "Guarujá", "(49)99803-5074", "77.637.684/0111-61", "gabas220601@gmail.com");
             cnpjDAO.Inserir(cliente);
 
-            var novoCliente = new ClienteCNPJ("Andrey Silva", "Santa Helena", "(49)99803-5074", "77.637.684/0111-61", "gabas220601@gmail.com");
+            cliente.Nome = "Andrey Silva";
 
             //action
-            cnpjDAO.Editar(cliente.Id, novoCliente);
+            cnpjDAO.Editar(cliente);
 
             //assert
-            ClienteCNPJ clienteAtualizado = cnpjDAO.SelecionarPorId(cliente.Id);
-            clienteAtualizado.Should().Be(novoCliente);
+            ClienteCNPJ clienteAtualizado = cnpjDAO.GetById(cliente.Id);
+            clienteAtualizado.Nome.Should().Be("Andrey Silva");
             LimparBanco();
         }
 
@@ -66,10 +78,10 @@ namespace LocadoraDeVeiculos.Test.ClienteNPJModule
             cnpjDAO.Inserir(cliente);
 
             //action            
-            cnpjDAO.Excluir(cliente.Id);
+            cnpjDAO.Excluir(cliente);
 
             //assert
-            ClienteCNPJ clienteEncontrado = cnpjDAO.SelecionarPorId(cliente.Id);
+            ClienteCNPJ clienteEncontrado = cnpjDAO.GetById(cliente.Id);
             clienteEncontrado.Should().BeNull();
 
             LimparBanco();
@@ -82,7 +94,7 @@ namespace LocadoraDeVeiculos.Test.ClienteNPJModule
             cnpjDAO.Inserir(cliente);
 
             //action
-            ClienteCNPJ clienteEncontrado = cnpjDAO.SelecionarPorId(cliente.Id);
+            ClienteCNPJ clienteEncontrado = cnpjDAO.GetById(cliente.Id);
 
             //assert
             clienteEncontrado.Should().NotBeNull();
@@ -102,7 +114,7 @@ namespace LocadoraDeVeiculos.Test.ClienteNPJModule
             cnpjDAO.Inserir(c3);
 
             //action
-            var contatos = cnpjDAO.SelecionarTodos();
+            var contatos = cnpjDAO.GetAll();
 
             //assert
             contatos.Should().HaveCount(3);

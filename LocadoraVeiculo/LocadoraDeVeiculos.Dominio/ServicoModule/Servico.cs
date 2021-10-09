@@ -1,4 +1,5 @@
 ﻿using LocadoraDeVeiculos.Dominio.Shared;
+using LocadoraDeVeiculos.Dominio.TaxaDaLocacaoModule;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,12 +18,15 @@ namespace LocadoraDeVeiculos.Dominio.ServicoModule
         }
         public Servico()
         {
-
+            TaxasDaLocacao = new HashSet<TaxaDaLocacao>();
         }
 
         public string Nome { get; set; }
         public decimal? Preco { get; set; }
         public int TipoCalculo { get; set; }
+
+        public ICollection<TaxaDaLocacao> TaxasDaLocacao { get; set; }
+
         public override string Validar()
         {
             string valido = "";

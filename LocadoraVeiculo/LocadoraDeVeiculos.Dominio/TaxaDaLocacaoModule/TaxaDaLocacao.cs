@@ -11,17 +11,21 @@ namespace LocadoraDeVeiculos.Dominio.TaxaDaLocacaoModule
 {
     public class TaxaDaLocacao : EntidadeBase
     {
-        private Servico taxaLocacao;
-        private Locacao locacaoEscolhida;
-
-        public TaxaDaLocacao(Servico taxaLocacao, Locacao locacaoEscolhida)
+        public TaxaDaLocacao()
         {
-            this.TaxaLocacao = taxaLocacao;
+
+        }
+        public TaxaDaLocacao(Servico servico, Locacao locacaoEscolhida)
+        {
+            this.Servico = servico;
             this.LocacaoEscolhida = locacaoEscolhida;
         }
 
-        public Servico TaxaLocacao { get => taxaLocacao; set => taxaLocacao = value; }
-        public Locacao LocacaoEscolhida { get => locacaoEscolhida; set => locacaoEscolhida = value; }
+        public int? IdLocacao { get; set; }
+        public int? IdTaxa { get; set; }
+
+        public virtual Servico Servico { get; set; }
+        public virtual Locacao LocacaoEscolhida { get; set; }
 
         public override string Validar()
         {

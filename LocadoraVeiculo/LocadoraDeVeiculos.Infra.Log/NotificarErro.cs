@@ -23,6 +23,7 @@ namespace LocadoraDeVeiculos.Infra.LogManager
 
             emailSuporte = config.GetSection("emailSuporte").Value;
             senhaSuporte = config.GetSection("senhaSuporte").Value;
+            
         }
         
         public static bool EnviarEmailErro(Exception ex)

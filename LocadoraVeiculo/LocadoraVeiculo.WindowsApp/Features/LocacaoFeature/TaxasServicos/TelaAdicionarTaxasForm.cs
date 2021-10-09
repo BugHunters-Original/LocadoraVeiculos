@@ -1,9 +1,8 @@
 ﻿using LocadoraDeVeiculos.Dominio.ServicoModule;
 using LocadoraDeVeiculos.Dominio.TaxaDaLocacaoModule;
-using LocadoraDeVeiculos.Infra.LogManager;
-using LocadoraDeVeiculos.Infra.SQL.TaxaServicoModule.ServicoModule;
+using LocadoraDeVeiculos.Infra.Context;
+using LocadoraDeVeiculos.Infra.ORM.ServicoModule;
 using LocadoraVeiculo.WindowsApp.Features.DarkModeFeature;
-using Serilog.Core;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,15 +13,11 @@ namespace LocadoraVeiculo.WindowsApp.Features.LocacaoFeature.TaxasServicos
     public partial class TelaAdicionarTaxasForm : Form
     {
         private ServicoDAO servicoDAO;
-        private List<Servico> servicosTaxas;
-        public List<Servico> Servicos
-        {
-            get { return servicosTaxas; }
-        }
+        public List<Servico> Servicos { get; set; }
 
         public TelaAdicionarTaxasForm()
         {
-            servicoDAO = new();
+            servicoDAO = new(new LocacaoContext());
             InitializeComponent();
             PopularBox();
             SetColor();
@@ -44,13 +39,13 @@ namespace LocadoraVeiculo.WindowsApp.Features.LocacaoFeature.TaxasServicos
 
         public void CheckBoxTaxas(List<TaxaDaLocacao> lista)
         {
-            List<Servico> servicos = servicoDAO.SelecionarTodos();
+            List<Servico> servicos = servicoDAO.GetAll();
 
             foreach (var item in servicos)
             {
                 foreach (var taxa in lista)
                 {
-                    if (item.ToString() == taxa.TaxaLocacao.ToString())
+                    if (item.ToString() == taxa.Servico.ToString())
                     {
                         cBoxTaxas.SetItemChecked(cBoxTaxas.Items.IndexOf(item), true);
                     }
@@ -60,7 +55,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.LocacaoFeature.TaxasServicos
 
         private void PopularBox()
         {
-            List<Servico> servicos = servicoDAO.SelecionarTodos();
+            List<Servico> servicos = servicoDAO.GetAll();
             servicos.ForEach(x => cBoxTaxas.Items.Add(x));
         }
 
@@ -73,7 +68,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.LocacaoFeature.TaxasServicos
 
             servicos.ForEach(x => precos.Add(x.Preco));
 
-            servicosTaxas = servicos.ToList();
+            Servicos = servicos.ToList();
         }
     }
 }
