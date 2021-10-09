@@ -59,7 +59,6 @@
   <ItemGroup>
     <Folder Include="Properties" />
     <Folder Include="dbo\" />
-    <Folder Include="dbo\Tables\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Script1.sql" />
@@ -67,14 +66,14 @@
   <ItemGroup>
     <Build Include="dbo\Tables\TBVeiculos.sql" />
     <Build Include="dbo\Tables\TBTiposVeiculo.sql" />
-    <Build Include="dbo\Tables\TBTaxasServicos.sql" />
+    <Build Include="dbo\Tables\TBTaxasDaLocacao.sql" />
     <Build Include="dbo\Tables\TBServicos.sql" />
     <Build Include="dbo\Tables\TBParceiros.sql" />
     <Build Include="dbo\Tables\TBFuncionarios.sql" />
     <Build Include="dbo\Tables\TBDescontos.sql" />
     <Build Include="dbo\Tables\TBClientesCPF.sql" />
     <Build Include="dbo\Tables\TBClientesCNPJ.sql" />
-    <Build Include="dbo\Tables\TBClienteBase.sql" />
+    <Build Include="dbo\Tables\TBClientesBase.sql" />
     <Build Include="dbo\Tables\Locacoes.sql" />
     <Build Include="dbo\Tables\__EFMigrationsHistory.sql" />
   </ItemGroup>

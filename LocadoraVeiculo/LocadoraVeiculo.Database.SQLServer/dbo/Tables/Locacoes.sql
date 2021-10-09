@@ -19,7 +19,7 @@
     [PrecoPlano]       DECIMAL (18, 2) NULL,
     [PrecoTotal]       DECIMAL (18, 2) NULL,
     CONSTRAINT [PK_Locacoes] PRIMARY KEY CLUSTERED ([Id] ASC),
-    CONSTRAINT [FK_Locacoes_TBClienteBase_ClienteId] FOREIGN KEY ([ClienteId]) REFERENCES [dbo].[TBClienteBase] ([Id]),
+    CONSTRAINT [FK_Locacoes_TBClientesBase_ClienteId] FOREIGN KEY ([ClienteId]) REFERENCES [dbo].[TBClientesBase] ([Id]),
     CONSTRAINT [FK_Locacoes_TBClientesCPF_CondutorId] FOREIGN KEY ([CondutorId]) REFERENCES [dbo].[TBClientesCPF] ([Id]),
     CONSTRAINT [FK_Locacoes_TBDescontos_DescontoId] FOREIGN KEY ([DescontoId]) REFERENCES [dbo].[TBDescontos] ([Id]),
     CONSTRAINT [FK_Locacoes_TBVeiculos_VeiculoId] FOREIGN KEY ([VeiculoId]) REFERENCES [dbo].[TBVeiculos] ([Id])
