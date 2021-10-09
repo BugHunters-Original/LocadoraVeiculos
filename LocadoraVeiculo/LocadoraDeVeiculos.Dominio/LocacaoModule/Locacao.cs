@@ -40,7 +40,7 @@ namespace LocadoraDeVeiculos.Dominio.LocacaoModule
         public ClienteBase Cliente { get; set; }
         public int IdVeiculo { get; set; }
         public Veiculo Veiculo { get; set; }
-        public int IdDesconto { get; set; }
+        public int? IdDesconto { get; set; }
         public Desconto Desconto { get; set; }
         public int IdCondutor { get; set; }
         public ClienteCPF Condutor { get; set; }

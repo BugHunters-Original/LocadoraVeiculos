@@ -1,5 +1,7 @@
-﻿using LocadoraDeVeiculos.Dominio.Shared;
+﻿using LocadoraDeVeiculos.Dominio.LocacaoModule;
+using LocadoraDeVeiculos.Dominio.Shared;
 using System;
+using System.Collections.Generic;
 
 namespace LocadoraDeVeiculos.Dominio.ClienteModule
 {
@@ -17,6 +19,7 @@ namespace LocadoraDeVeiculos.Dominio.ClienteModule
         public string Endereco { get; set; }
         public string Telefone { get; set; }
         public string Email { get; set; }
+        public  ICollection<Locacao> Locacoes { get; set; }
 
     }
 }

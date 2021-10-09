@@ -28,6 +28,8 @@ namespace LocadoraDeVeiculos.Infra.ORM.Shared
 
                 contexto.SaveChanges();
 
+                var b = contexto.ChangeTracker.DebugView.LongView;
+
                 Log.Logger.Information("SUCESSO AO INSERIR {Dominio} ID: {Id}  ", registro.GetType().Name, registro.Id);
 
                 return true;

@@ -140,25 +140,20 @@ namespace LocadoraDeVeiculos.Infra.ORM.Migrations
                         .IsRequired()
                         .HasColumnType("VARCHAR(64)");
 
-                    b.Property<decimal?>("ValorDiarioPControlado")
-                        .IsRequired()
-                        .HasColumnType("DECIMAL");
+                    b.Property<double>("ValorDiarioPControlado")
+                        .HasColumnType("FLOAT");
 
-                    b.Property<decimal?>("ValorDiarioPDiario")
-                        .IsRequired()
-                        .HasColumnType("DECIMAL");
+                    b.Property<double>("ValorDiarioPDiario")
+                        .HasColumnType("FLOAT");
 
-                    b.Property<decimal?>("ValorDiarioPLivre")
-                        .IsRequired()
-                        .HasColumnType("DECIMAL");
+                    b.Property<double>("ValorDiarioPLivre")
+                        .HasColumnType("FLOAT");
 
-                    b.Property<decimal?>("ValorKmRodadoPControlado")
-                        .IsRequired()
-                        .HasColumnType("DECIMAL");
+                    b.Property<double>("ValorKmRodadoPControlado")
+                        .HasColumnType("FLOAT");
 
-                    b.Property<decimal?>("ValorKmRodadoPDiario")
-                        .IsRequired()
-                        .HasColumnType("DECIMAL");
+                    b.Property<double>("ValorKmRodadoPDiario")
+                        .HasColumnType("FLOAT");
 
                     b.HasKey("Id");
 
@@ -172,23 +167,14 @@ namespace LocadoraDeVeiculos.Infra.ORM.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int?>("ClienteId")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("CondutorId")
-                        .HasColumnType("int");
-
                     b.Property<DateTime>("DataRetorno")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("DATE");
 
                     b.Property<DateTime>("DataSaida")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int?>("DescontoId")
-                        .HasColumnType("int");
+                        .HasColumnType("DATE");
 
                     b.Property<int>("Dias")
-                        .HasColumnType("int");
+                        .HasColumnType("INT");
 
                     b.Property<int>("IdCliente")
                         .HasColumnType("int");
@@ -202,41 +188,43 @@ namespace LocadoraDeVeiculos.Infra.ORM.Migrations
                     b.Property<int>("IdVeiculo")
                         .HasColumnType("int");
 
-                    b.Property<decimal?>("PrecoCombustivel")
-                        .HasColumnType("decimal(18,2)");
+                    b.Property<double>("PrecoCombustivel")
+                        .HasColumnType("FLOAT");
 
-                    b.Property<decimal?>("PrecoPlano")
-                        .HasColumnType("decimal(18,2)");
+                    b.Property<double>("PrecoPlano")
+                        .HasColumnType("FLOAT");
 
-                    b.Property<decimal?>("PrecoServicos")
-                        .HasColumnType("decimal(18,2)");
+                    b.Property<double>("PrecoServicos")
+                        .HasColumnType("FLOAT");
 
-                    b.Property<decimal?>("PrecoTotal")
-                        .HasColumnType("decimal(18,2)");
+                    b.Property<double>("PrecoTotal")
+                        .HasColumnType("FLOAT");
 
                     b.Property<string>("StatusLocacao")
-                        .HasColumnType("nvarchar(max)");
+                        .IsRequired()
+                        .HasColumnType("VARCHAR(20)");
 
                     b.Property<int>("TipoCliente")
-                        .HasColumnType("int");
+                        .HasColumnType("INT");
 
                     b.Property<string>("TipoLocacao")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int?>("VeiculoId")
-                        .HasColumnType("int");
+                        .IsRequired()
+                        .HasColumnType("VARCHAR(20)");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("ClienteId");
+                    b.HasIndex("IdCliente");
 
-                    b.HasIndex("CondutorId");
+                    b.HasIndex("IdCondutor")
+                        .IsUnique();
 
-                    b.HasIndex("DescontoId");
+                    b.HasIndex("IdDesconto")
+                        .IsUnique();
 
-                    b.HasIndex("VeiculoId");
+                    b.HasIndex("IdVeiculo")
+                        .IsUnique();
 
-                    b.ToTable("Locacoes");
+                    b.ToTable("TBLocacoes");
                 });
 
             modelBuilder.Entity("LocadoraDeVeiculos.Dominio.ParceiroModule.Parceiro", b =>
@@ -397,7 +385,7 @@ namespace LocadoraDeVeiculos.Infra.ORM.Migrations
                     b.Property<DateTime>("DataValidade")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("IdCliente")
+                    b.Property<int?>("IdCliente")
                         .HasColumnType("int");
 
                     b.Property<string>("Rg")
@@ -423,20 +411,28 @@ namespace LocadoraDeVeiculos.Infra.ORM.Migrations
             modelBuilder.Entity("LocadoraDeVeiculos.Dominio.LocacaoModule.Locacao", b =>
                 {
                     b.HasOne("LocadoraDeVeiculos.Dominio.ClienteModule.ClienteBase", "Cliente")
-                        .WithMany()
-                        .HasForeignKey("ClienteId");
+                        .WithMany("Locacoes")
+                        .HasForeignKey("IdCliente")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("LocadoraDeVeiculos.Dominio.ClienteModule.ClienteCPFModule.ClienteCPF", "Condutor")
-                        .WithMany("Locacoes")
-                        .HasForeignKey("CondutorId");
+                        .WithOne("Locacao")
+                        .HasForeignKey("LocadoraDeVeiculos.Dominio.LocacaoModule.Locacao", "IdCondutor")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("LocadoraDeVeiculos.Dominio.DescontoModule.Desconto", "Desconto")
-                        .WithMany()
-                        .HasForeignKey("DescontoId");
+                        .WithOne("Locacao")
+                        .HasForeignKey("LocadoraDeVeiculos.Dominio.LocacaoModule.Locacao", "IdDesconto")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("LocadoraDeVeiculos.Dominio.VeiculoModule.Veiculo", "Veiculo")
-                        .WithMany("Locacoes")
-                        .HasForeignKey("VeiculoId");
+                        .WithOne("Locacao")
+                        .HasForeignKey("LocadoraDeVeiculos.Dominio.LocacaoModule.Locacao", "IdVeiculo")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("Cliente");
 
@@ -503,11 +499,19 @@ namespace LocadoraDeVeiculos.Infra.ORM.Migrations
 
                     b.HasOne("LocadoraDeVeiculos.Dominio.ClienteModule.ClienteCNPJModule.ClienteCNPJ", "Cliente")
                         .WithMany("Condutores")
-                        .HasForeignKey("IdCliente")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("IdCliente");
 
                     b.Navigation("Cliente");
+                });
+
+            modelBuilder.Entity("LocadoraDeVeiculos.Dominio.ClienteModule.ClienteBase", b =>
+                {
+                    b.Navigation("Locacoes");
+                });
+
+            modelBuilder.Entity("LocadoraDeVeiculos.Dominio.DescontoModule.Desconto", b =>
+                {
+                    b.Navigation("Locacao");
                 });
 
             modelBuilder.Entity("LocadoraDeVeiculos.Dominio.GrupoVeiculoModule.GrupoVeiculo", b =>
@@ -534,7 +538,7 @@ namespace LocadoraDeVeiculos.Infra.ORM.Migrations
 
             modelBuilder.Entity("LocadoraDeVeiculos.Dominio.VeiculoModule.Veiculo", b =>
                 {
-                    b.Navigation("Locacoes");
+                    b.Navigation("Locacao");
                 });
 
             modelBuilder.Entity("LocadoraDeVeiculos.Dominio.ClienteModule.ClienteCNPJModule.ClienteCNPJ", b =>
@@ -544,7 +548,7 @@ namespace LocadoraDeVeiculos.Infra.ORM.Migrations
 
             modelBuilder.Entity("LocadoraDeVeiculos.Dominio.ClienteModule.ClienteCPFModule.ClienteCPF", b =>
                 {
-                    b.Navigation("Locacoes");
+                    b.Navigation("Locacao");
                 });
 #pragma warning restore 612, 618
         }

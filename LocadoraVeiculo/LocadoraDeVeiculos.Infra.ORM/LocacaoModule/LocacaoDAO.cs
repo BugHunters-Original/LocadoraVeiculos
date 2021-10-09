@@ -13,13 +13,24 @@ namespace LocadoraDeVeiculos.Infra.ORM.LocacaoModule
 {
     public class LocacaoDAO : BaseDAO<Locacao>, ILocacaoRepository
     {
-        public LocacaoDAO(LocacaoContext context):base(context)
+        public LocacaoDAO(LocacaoContext context) : base(context)
         {
 
         }
+        public override bool Inserir(Locacao registro)
+        {
+            contexto.Entry(registro.Cliente).State = EntityState.Unchanged;
+            contexto.Entry(registro.Condutor).State = EntityState.Unchanged;
+            contexto.Entry(registro.Veiculo).State = EntityState.Unchanged;
+            if (registro.Desconto != null)
+                contexto.Entry(registro.Desconto).State = EntityState.Unchanged;
+            if (registro.TaxasDaLocacao != null)
+                contexto.Entry(registro.TaxasDaLocacao).State = EntityState.Unchanged;
+            return base.Inserir(registro);
+        }
         public override List<Locacao> GetAll()
         {
-            return registros.AsNoTracking().Include(x => x.Cliente).Include(x=>x.Veiculo).ToList();
+            return registros.AsNoTracking().Include(x => x.Cliente).Include(x => x.Veiculo).ToList();
         }
         public override Locacao GetById(int id)
         {

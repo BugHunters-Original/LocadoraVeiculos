@@ -7,8 +7,10 @@
     [IdCliente]    INT           NULL,
     CONSTRAINT [PK_TBClientesCPF] PRIMARY KEY CLUSTERED ([Id] ASC),
     CONSTRAINT [FK_TBClientesCPF_TBClientesBase_Id] FOREIGN KEY ([Id]) REFERENCES [dbo].[TBClientesBase] ([Id]),
-    CONSTRAINT [FK_TBClientesCPF_TBClientesCNPJ_IdCliente] FOREIGN KEY ([IdCliente]) REFERENCES [dbo].[TBClientesCNPJ] ([Id]) ON DELETE CASCADE
+    CONSTRAINT [FK_TBClientesCPF_TBClientesCNPJ_IdCliente] FOREIGN KEY ([IdCliente]) REFERENCES [dbo].[TBClientesCNPJ] ([Id])
 );
+
+
 
 
 GO
