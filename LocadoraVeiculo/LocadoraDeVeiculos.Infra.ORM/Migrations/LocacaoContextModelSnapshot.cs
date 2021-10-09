@@ -44,7 +44,7 @@ namespace LocadoraDeVeiculos.Infra.ORM.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("TBClienteBase");
+                    b.ToTable("TBClientesBase");
                 });
 
             modelBuilder.Entity("LocadoraDeVeiculos.Dominio.DescontoModule.Desconto", b =>
@@ -297,7 +297,7 @@ namespace LocadoraDeVeiculos.Infra.ORM.Migrations
 
                     b.HasIndex("IdTaxa");
 
-                    b.ToTable("TBTaxasServicos");
+                    b.ToTable("TBTaxasDaLocacao");
                 });
 
             modelBuilder.Entity("LocadoraDeVeiculos.Dominio.VeiculoModule.Veiculo", b =>

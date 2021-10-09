@@ -20,7 +20,9 @@ namespace LocadoraDeVeiculos.Infra.ORM.ClienteCPFModule
         }
         public override bool Inserir(ClienteCPF registro)
         {
-            contexto.Entry(registro.Cliente).State = EntityState.Unchanged;
+            if (registro.Cliente != null)
+                contexto.Entry(registro.Cliente).State = EntityState.Unchanged;
+
             return base.Inserir(registro);
         }
 

@@ -8,7 +8,7 @@ namespace LocadoraDeVeiculos.Infra.ORM.ClienteBaseConfiguration
     {
         public void Configure(EntityTypeBuilder<ClienteBase> builder)
         {
-            builder.ToTable("TBClienteBase");
+            builder.ToTable("TBClientesBase");
 
             builder.HasKey(c => c.Id);
 

@@ -30,7 +30,7 @@ namespace LocadoraDeVeiculos.Dominio.ClienteModule.ClienteCPFModule
         public string Rg { get; set; }
         public string Cnh { get; set; }
         public DateTime DataValidade { get; set; }
-        public int IdCliente { get; set; }
+        public int? IdCliente { get; set; }
         public ClienteCNPJ Cliente { get; set; }
         public virtual ICollection<Locacao> Locacoes { get; set; }
 

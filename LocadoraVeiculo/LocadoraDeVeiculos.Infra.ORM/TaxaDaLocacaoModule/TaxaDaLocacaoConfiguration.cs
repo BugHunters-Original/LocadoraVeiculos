@@ -9,11 +9,11 @@ using System.Threading.Tasks;
 
 namespace LocadoraDeVeiculos.Infra.Configurations.TaxaDaLocacaoModule
 {
-    public class TaxaConfiguration : IEntityTypeConfiguration<TaxaDaLocacao>
+    public class TaxaDaLocacaoConfiguration : IEntityTypeConfiguration<TaxaDaLocacao>
     {
         public void Configure(EntityTypeBuilder<TaxaDaLocacao> builder)
         {
-            builder.ToTable("TBTaxasServicos");
+            builder.ToTable("TBTaxasDaLocacao");
 
             builder.HasKey(c => new { c.IdLocacao, c.IdTaxa});
 

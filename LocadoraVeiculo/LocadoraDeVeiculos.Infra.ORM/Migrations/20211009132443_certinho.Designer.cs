@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace LocadoraDeVeiculos.Infra.ORM.Migrations
 {
     [DbContext(typeof(LocacaoContext))]
-    [Migration("20211007232422_vai_deus")]
-    partial class vai_deus
+    [Migration("20211009132443_certinho")]
+    partial class certinho
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -46,7 +46,7 @@ namespace LocadoraDeVeiculos.Infra.ORM.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("TBClienteBase");
+                    b.ToTable("TBClientesBase");
                 });
 
             modelBuilder.Entity("LocadoraDeVeiculos.Dominio.DescontoModule.Desconto", b =>
@@ -299,7 +299,7 @@ namespace LocadoraDeVeiculos.Infra.ORM.Migrations
 
                     b.HasIndex("IdTaxa");
 
-                    b.ToTable("TBTaxasServicos");
+                    b.ToTable("TBTaxasDaLocacao");
                 });
 
             modelBuilder.Entity("LocadoraDeVeiculos.Dominio.VeiculoModule.Veiculo", b =>
