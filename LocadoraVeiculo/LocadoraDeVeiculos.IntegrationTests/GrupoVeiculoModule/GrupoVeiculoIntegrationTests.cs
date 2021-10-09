@@ -57,14 +57,13 @@ namespace LocadoraDeVeiculos.IntegrationTests.GrupoVeiculoModule
             var novoTipoGrupo = new GrupoVeiculo("Econômico", 10, 10, 10, 10, 10, 10);
             grupoVeiculoDAO.Inserir(novoTipoGrupo);
 
-            var novoTipoGrupoEditado = new GrupoVeiculo("Esportivo", 10, 10, 10, 10, 10, 10);
-
             //action
-            grupoVeiculoDAO.Editar(novoTipoGrupoEditado);
+            novoTipoGrupo.NomeTipo = "Esportivo";
+            grupoVeiculoDAO.Editar(novoTipoGrupo);
 
             //assert
             GrupoVeiculo grupoAtualizado = grupoVeiculoDAO.GetById(novoTipoGrupo.Id);
-            grupoAtualizado.Should().Be(novoTipoGrupoEditado);
+            grupoAtualizado.NomeTipo.Should().Be("Esportivo");
             LimparBancos();
         }
 

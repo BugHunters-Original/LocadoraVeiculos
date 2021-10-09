@@ -52,7 +52,7 @@ namespace LocadoraDeVeiculos.Infra.ORM.Shared
                 contexto.SaveChanges();
 
                 Log.Logger.Information("SUCESSO AO EDITAR {Dominio} ID: {Id}  ", registro.GetType().Name, registro.Id);
-                
+          
                 return true;
             }
             catch (Exception ex)

@@ -61,14 +61,13 @@ namespace LocadoraDeVeiculos.IntegrationTests.ParceiroModule
 
             repository.Inserir(novoParceiro);
 
-            var novoParceiroEditado = new Parceiro("Luisa S");
-
             //action
-            repository.Editar(novoParceiroEditado);
+            novoParceiro.Nome = "Luisa S";
+            repository.Editar(novoParceiro);
 
             //assert
             Parceiro parceiroAtualizado = repository.GetById(novoParceiro.Id);
-            parceiroAtualizado.Should().Be(novoParceiroEditado);
+            parceiroAtualizado.Nome.Should().Be("Luisa S");
             LimparBancos();
         }
 

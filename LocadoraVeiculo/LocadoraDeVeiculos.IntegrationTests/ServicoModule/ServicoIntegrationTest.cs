@@ -49,14 +49,15 @@ namespace LocadoraDeVeiculos.IntegrationTests.ServicoModule
             var servico = new Servico("GPS", 12, 1);
             repository.Inserir(servico);
 
-            var novoServico = new Servico("CADEIRINHA", 20, 1);
 
             //action
-            repository.Editar(novoServico);
+            servico.Nome = "CADEIRINHA";
+
+            repository.Editar(servico);
 
             //assert
             Servico servicoAtualizado = repository.GetById(servico.Id);
-            servicoAtualizado.Should().Be(novoServico);
+            servicoAtualizado.Nome.Should().Be("CADEIRINHA");
             LimparBanco();
         }
         [TestMethod]

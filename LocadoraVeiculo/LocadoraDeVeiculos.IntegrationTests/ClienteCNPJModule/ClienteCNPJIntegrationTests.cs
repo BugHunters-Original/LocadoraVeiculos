@@ -59,14 +59,14 @@ namespace LocadoraDeVeiculos.Test.ClienteNPJModule
             var cliente = new ClienteCNPJ("Gabriel Marques", "Guarujá", "(49)99803-5074", "77.637.684/0111-61", "gabas220601@gmail.com");
             cnpjDAO.Inserir(cliente);
 
-            var novoCliente = new ClienteCNPJ("Andrey Silva", "Santa Helena", "(49)99803-5074", "77.637.684/0111-61", "gabas220601@gmail.com");
+            cliente.Nome = "Andrey Silva";
 
             //action
-            cnpjDAO.Editar(novoCliente);
+            cnpjDAO.Editar(cliente);
 
             //assert
             ClienteCNPJ clienteAtualizado = cnpjDAO.GetById(cliente.Id);
-            clienteAtualizado.Should().Be(novoCliente);
+            clienteAtualizado.Nome.Should().Be("Andrey Silva");
             LimparBanco();
         }
 

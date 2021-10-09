@@ -63,14 +63,15 @@ namespace LocadoraDeVeiculos.Test.DescontoModule
             //arrange
             var desconto = new Desconto("dinheiro", 50, "Porcentagem", new DateTime(2030, 10, 10), parceiro, "YouTube", "dimdim", 50, 1);
             descontoDAO.Inserir(desconto);
-            var descontoEditado = new Desconto("xuxu", 100, "Porcentagem", new DateTime(2030, 11, 11), parceiro, "Radio", "dimdim", 50, 2);
+
 
             //action
-            descontoDAO.Editar(descontoEditado);
+            desconto.Codigo = "xuxu";
+            descontoDAO.Editar(desconto);
 
             //assert
             var descontoAtualizado = descontoDAO.GetById(desconto.Id);
-            descontoAtualizado.Should().Be(descontoEditado);
+            descontoAtualizado.Codigo.Should().Be("xuxu");
             LimparBancos();
         }
 
