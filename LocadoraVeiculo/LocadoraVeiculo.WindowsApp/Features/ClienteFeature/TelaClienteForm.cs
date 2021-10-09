@@ -23,51 +23,6 @@ namespace LocadoraVeiculo.WindowsApp.Features.ClienteFeature
             SetColor();
         }
 
-        private void SetColor()
-        {
-            this.header_Cliente.BackColor = DarkMode.corHeader;
-            this.BackColor = DarkMode.corPanel;
-            this.ForeColor = DarkMode.corFonte;
-            txtID.BackColor = Color.DarkSeaGreen;
-            txtNome.BackColor = DarkMode.corFundoTxBox;
-            txtEndereco.BackColor = DarkMode.corFundoTxBox;
-            mskTelefone.BackColor = DarkMode.corFundoTxBox;
-            mskCpf.BackColor = DarkMode.corFundoTxBox;
-            mskCnpj.BackColor = DarkMode.corFundoTxBox;
-            mskCnh.BackColor = DarkMode.corFundoTxBox;
-            dtDataValidade.BackColor = DarkMode.corFundoTxBox;
-            mskRg.BackColor = DarkMode.corFundoTxBox;
-            cbEmpresas.BackColor = DarkMode.corFundoTxBox;
-            txtEmail.BackColor = DarkMode.corFundoTxBox;
-
-            txtID.ForeColor = DarkMode.corFonte;
-            txtNome.ForeColor = DarkMode.corFonte;
-            txtEndereco.ForeColor = DarkMode.corFonte;
-            mskTelefone.ForeColor = DarkMode.corFonte;
-            mskCpf.ForeColor = DarkMode.corFonte;
-            mskCnpj.ForeColor = DarkMode.corFonte;
-            mskCnh.ForeColor = DarkMode.corFonte;
-            dtDataValidade.ForeColor = DarkMode.corFonte;
-            mskRg.ForeColor = DarkMode.corFonte;
-            cbEmpresas.ForeColor = DarkMode.corFonte;
-            txtEmail.ForeColor = DarkMode.corFonte;
-
-            btnGravar.BackColor = DarkMode.corFundoTxBox;
-            btnCancelar.BackColor = DarkMode.corFundoTxBox;
-            rbFisico.ForeColor = DarkMode.corFonte;
-            rbJuridico.ForeColor = DarkMode.corFonte;
-        }
-
-        public FiltroClienteEnum TipoCliente
-        {
-            get
-            {
-                if (rbFisico.Checked)
-                    return FiltroClienteEnum.PessoaFisica;
-                else
-                    return FiltroClienteEnum.PessoaJuridica;
-            }
-        }
         public ClienteBase Cliente
         {
             get { return cliente; }
@@ -106,11 +61,110 @@ namespace LocadoraVeiculo.WindowsApp.Features.ClienteFeature
 
         }
 
+        public FiltroClienteEnum TipoCliente
+        {
+            get
+            {
+                if (rbFisico.Checked)
+                    return FiltroClienteEnum.PessoaFisica;
+                else
+                    return FiltroClienteEnum.PessoaJuridica;
+            }
+        }
+
+        private void SetColor()
+        {
+            this.header_Cliente.BackColor = DarkMode.corHeader;
+            this.BackColor = DarkMode.corPanel;
+            this.ForeColor = DarkMode.corFonte;
+            txtID.BackColor = Color.DarkSeaGreen;
+            txtNome.BackColor = DarkMode.corFundoTxBox;
+            txtEndereco.BackColor = DarkMode.corFundoTxBox;
+            mskTelefone.BackColor = DarkMode.corFundoTxBox;
+            mskCpf.BackColor = DarkMode.corFundoTxBox;
+            mskCnpj.BackColor = DarkMode.corFundoTxBox;
+            mskCnh.BackColor = DarkMode.corFundoTxBox;
+            dtDataValidade.BackColor = DarkMode.corFundoTxBox;
+            mskRg.BackColor = DarkMode.corFundoTxBox;
+            cbEmpresas.BackColor = DarkMode.corFundoTxBox;
+            txtEmail.BackColor = DarkMode.corFundoTxBox;
+
+            txtID.ForeColor = DarkMode.corFonte;
+            txtNome.ForeColor = DarkMode.corFonte;
+            txtEndereco.ForeColor = DarkMode.corFonte;
+            mskTelefone.ForeColor = DarkMode.corFonte;
+            mskCpf.ForeColor = DarkMode.corFonte;
+            mskCnpj.ForeColor = DarkMode.corFonte;
+            mskCnh.ForeColor = DarkMode.corFonte;
+            dtDataValidade.ForeColor = DarkMode.corFonte;
+            mskRg.ForeColor = DarkMode.corFonte;
+            cbEmpresas.ForeColor = DarkMode.corFonte;
+            txtEmail.ForeColor = DarkMode.corFonte;
+
+            btnGravar.BackColor = DarkMode.corFundoTxBox;
+            btnCancelar.BackColor = DarkMode.corFundoTxBox;
+            rbFisico.ForeColor = DarkMode.corFonte;
+            rbJuridico.ForeColor = DarkMode.corFonte;
+        }
+
         private void PopularCombobox()
         {
             List<ClienteCNPJ> empresas = CNPJService.SelecionarTodosClientesCNPJ();
 
             empresas.ForEach(x => cbEmpresas.Items.Add(x));
+        }
+
+        private void ConfigurarCliente()
+        {
+            string nome = txtNome.Text;
+            string endereco = txtEndereco.Text;
+            string telefone = mskTelefone.Text;
+            string email = txtEmail.Text;
+
+            if (rbFisico.Checked)
+            {
+                string cpf = mskCpf.Text;
+                string rg = mskRg.Text;
+                string cnh = mskCnh.Text;
+                DateTime dataValidade = dtDataValidade.Value;
+                ClienteCNPJ empresa = (ClienteCNPJ)cbEmpresas.SelectedItem;
+
+                if (cliente != null)
+                {
+
+                    ClienteCPF clienteCPF = (ClienteCPF)cliente;
+                    clienteCPF.Cpf = cpf;
+                    clienteCPF.Rg = rg;
+                    clienteCPF.Cnh = cnh;
+                    clienteCPF.DataValidade = dataValidade;
+                    clienteCPF.Cliente = empresa;
+                    clienteCPF.Nome = nome;
+                    clienteCPF.Endereco = endereco;
+                    clienteCPF.Telefone = telefone;
+                    clienteCPF.Email = email;
+
+                    cliente = clienteCPF;
+                }
+                else
+                    cliente = new ClienteCPF(nome, telefone, endereco, cpf, rg, cnh, dataValidade, email, empresa);
+            }
+            else
+            {
+                string cnpj = mskCnpj.Text;
+                if (cliente != null)
+                {
+                    ClienteCNPJ clienteCNPJ = (ClienteCNPJ)cliente;
+                    clienteCNPJ.Cnpj = cnpj;
+                    clienteCNPJ.Nome = nome;
+                    clienteCNPJ.Endereco = endereco;
+                    clienteCNPJ.Telefone = telefone;
+                    clienteCNPJ.Email = email;
+
+                    cliente = clienteCNPJ;
+                }
+                else
+                    cliente = new ClienteCNPJ(nome, endereco, telefone, cnpj, email);
+            }
         }
 
         private void rbFisico_CheckedChanged(object sender, EventArgs e)
@@ -135,52 +189,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.ClienteFeature
 
         private void btnGravar_Click(object sender, EventArgs e)
         {
-            string nome = txtNome.Text;
-            string endereco = txtEndereco.Text;
-            string telefone = mskTelefone.Text;
-            string email = txtEmail.Text;
-
-            if (cliente != null)
-            {
-                cliente.Nome = nome;
-                cliente.Endereco = endereco;
-                cliente.Telefone = telefone;
-                cliente.Email = email;
-
-                if (rbFisico.Checked)
-                {
-                    string cpf = mskCpf.Text;
-                    string rg = mskRg.Text;
-                    string cnh = mskCnh.Text;
-                    DateTime dataValidade = dtDataValidade.Value;
-                    ClienteCNPJ empresa = (ClienteCNPJ)cbEmpresas.SelectedItem;
-                }
-                else
-                {
-                    string cnpj = mskCnpj.Text;
-
-                    cliente = new ClienteCNPJ(nome, endereco, telefone, cnpj, email);
-                }
-            }
-            else
-            {
-                if (rbFisico.Checked)
-                {
-                    string cpf = mskCpf.Text;
-                    string rg = mskRg.Text;
-                    string cnh = mskCnh.Text;
-                    DateTime dataValidade = dtDataValidade.Value;
-                    ClienteCNPJ empresa = (ClienteCNPJ)cbEmpresas.SelectedItem;
-
-                    cliente = new ClienteCPF(nome, telefone, endereco, cpf, rg, cnh, dataValidade, email, empresa);
-                }
-                else
-                {
-                    string cnpj = mskCnpj.Text;
-
-                    cliente = new ClienteCNPJ(nome, endereco, telefone, cnpj, email);
-                }
-            }
+            ConfigurarCliente();
 
             string resultadoValidacao = cliente.Validar();
 

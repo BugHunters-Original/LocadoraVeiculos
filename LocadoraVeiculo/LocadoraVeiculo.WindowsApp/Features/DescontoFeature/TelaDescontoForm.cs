@@ -23,6 +23,29 @@ namespace LocadoraVeiculo.WindowsApp.Features.DescontoFeature
             CarregarParceiros();
         }
 
+        public Desconto Desconto
+        {
+            get { return desconto; }
+
+            set
+            {
+                desconto = value;
+                txtId.Text = desconto.Id.ToString();
+                txtValor.Text = Convert.ToString(desconto.Valor);
+                txtCodigo.Text = desconto.Codigo;
+                txtCodigo.Enabled = false;
+                txtMeio.Text = desconto.Meio;
+                txtNome.Text = desconto.Nome;
+                txtValorMinimo.Text = desconto.ValorMinimo.ToString();
+                cbParceiros.SelectedItem = desconto.Parceiro;
+                dtValidade.Value = Convert.ToDateTime(desconto.Validade);
+                if (desconto.Tipo == "Inteiro")
+                    rbInteiro.Checked = true;
+                else
+                    rbPorcentagem.Checked = true;
+            }
+        }
+
         private void SetColor()
         {
             this.header_GrupoVeiculo.BackColor = DarkMode.corHeader;
@@ -50,58 +73,29 @@ namespace LocadoraVeiculo.WindowsApp.Features.DescontoFeature
             btnCancelar.BackColor = DarkMode.corFundoTxBox;
         }
 
-        public Desconto Desconto
+        private void CarregarParceiros()
         {
-            get { return desconto; }
+            cbParceiros.DataSource = parceiroService.SelecionarTodosParceiros();
+        }
 
-            set
-            {
-                desconto = value;
-                txtId.Text = desconto.Id.ToString();
-                txtValor.Text = Convert.ToString(desconto.Valor);
-                txtCodigo.Text = desconto.Codigo;
-                txtCodigo.Enabled = false;
-                txtMeio.Text = desconto.Meio;
-                txtNome.Text = desconto.Nome;
-                txtValorMinimo.Text = desconto.ValorMinimo.ToString();
-                cbParceiros.SelectedItem = desconto.Parceiro;
-                dtValidade.Value = Convert.ToDateTime(desconto.Validade);
-                if (desconto.Tipo == "Inteiro")
-                    rbInteiro.Checked = true;
-                else
-                    rbPorcentagem.Checked = true;
-            }
+        private void ConfigurarDesconto()
+        {
+            var uso = desconto?.Usos;
+
+            desconto.Codigo = txtCodigo.Text; ;
+            desconto.Valor = txtValor.Text == "" ? 0 : Convert.ToDecimal(txtValor.Text); ;
+            desconto.Tipo = rbPorcentagem.Checked ? "Porcentagem" : "Inteiro"; ;
+            desconto.Validade = Convert.ToDateTime(dtValidade.Value); ;
+            desconto.Parceiro = cbParceiros.SelectedItem as Parceiro; ;
+            desconto.Meio = txtMeio.Text;
+            desconto.Nome = txtNome.Text;
+            desconto.ValorMinimo = txtValorMinimo.Text == "" ? 0 : Convert.ToDecimal(txtValorMinimo.Text);
+            desconto.Usos = uso ?? 0;
         }
 
         private void btnGravar_Click(object sender, EventArgs e)
         {
-            var codigo = txtCodigo.Text;
-
-            var valor = txtValor.Text == "" ? 0 : Convert.ToDecimal(txtValor.Text);
-
-            var tipo = rbPorcentagem.Checked ? "Porcentagem" : "Inteiro";
-
-            var dataValidade = Convert.ToDateTime(dtValidade.Value);
-
-            var parceiro = cbParceiros.SelectedItem as Parceiro;
-
-            var meio = txtMeio.Text;
-
-            var nome = txtNome.Text;
-
-            var valorMinimo = txtValorMinimo.Text == "" ? 0 : Convert.ToDecimal(txtValorMinimo.Text);
-
-            var uso = desconto?.Usos;
-
-            desconto.Codigo = codigo;
-            desconto.Valor = valor;
-            desconto.Tipo = tipo;
-            desconto.Validade = dataValidade;
-            desconto.Parceiro = parceiro;
-            desconto.Meio = meio;
-            desconto.Nome = nome;
-            desconto.ValorMinimo = valorMinimo;
-            desconto.Usos = uso ?? 0;
+            ConfigurarDesconto();
 
             string resultadoValidacao = desconto.Validar();
 
@@ -118,11 +112,6 @@ namespace LocadoraVeiculo.WindowsApp.Features.DescontoFeature
         private void TelaDescontoForm_FormClosing(object sender, FormClosingEventArgs e)
         {
             TelaPrincipalForm.Instancia.AtualizarRodape("");
-        }
-
-        private void CarregarParceiros()
-        {
-            cbParceiros.DataSource = parceiroService.SelecionarTodosParceiros();
         }
     }
 }
