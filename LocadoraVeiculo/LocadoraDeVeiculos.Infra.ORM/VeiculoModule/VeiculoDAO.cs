@@ -1,6 +1,7 @@
 ﻿using LocadoraDeVeiculos.Dominio.VeiculoModule;
 using LocadoraDeVeiculos.Infra.Context;
 using LocadoraDeVeiculos.Infra.ORM.Shared;
+using Microsoft.EntityFrameworkCore;
 using Serilog;
 using System;
 using System.Collections.Generic;
@@ -13,6 +14,19 @@ namespace LocadoraDeVeiculos.Infra.ORM.VeiculoModule
         public VeiculoDAO(LocacaoContext contexto):base(contexto)
         {
 
+        }
+        public override List<Veiculo> GetAll()
+        {
+            return registros.AsNoTracking().Include(x => x.GrupoVeiculo).ToList();
+        }
+        public override Veiculo GetById(int id)
+        {
+            return registros.AsNoTracking().Include(x => x.GrupoVeiculo).SingleOrDefault(x => x.Id == id);
+        }
+        public override bool Inserir(Veiculo registro)
+        {
+            contexto.Entry(registro.GrupoVeiculo).State = EntityState.Unchanged;
+            return base.Inserir(registro);
         }
         public void AtualizarQuilometragem(Veiculo veiculo)
         {
@@ -134,7 +148,7 @@ namespace LocadoraDeVeiculos.Infra.ORM.VeiculoModule
         {
             try
             {
-                List<Veiculo> veiculos = contexto.Veiculos.Where(veiculo => veiculo.DisponibilidadeVeiculo == 0).ToList();
+                List<Veiculo> veiculos = contexto.Veiculos.Where(veiculo => veiculo.DisponibilidadeVeiculo == 0).Include(x => x.GrupoVeiculo).ToList();
 
                 if (veiculos != null)
                     Log.Logger.Debug("SUCESSO AO SELECIONAR TODOS OS VEÍCULOS ALUGADOS  ");
@@ -158,7 +172,7 @@ namespace LocadoraDeVeiculos.Infra.ORM.VeiculoModule
         {
             try
             {
-                List<Veiculo> veiculos = contexto.Veiculos.Where(veiculo=>veiculo.DisponibilidadeVeiculo == 1).ToList();
+                List<Veiculo> veiculos = contexto.Veiculos.Where(veiculo=>veiculo.DisponibilidadeVeiculo == 1).Include(x=>x.GrupoVeiculo).ToList();
 
                 if (veiculos != null)
                     Log.Logger.Debug("SUCESSO AO SELECIONAR TODOS OS VEÍCULOS DISPONÍVEIS  ");

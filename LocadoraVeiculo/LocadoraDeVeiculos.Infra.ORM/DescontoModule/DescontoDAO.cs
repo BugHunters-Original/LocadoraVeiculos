@@ -24,26 +24,22 @@ namespace LocadoraDeVeiculos.Infra.ORM.DescontoModule
 
         public override List<Desconto> GetAll()
         {
-            contexto.ChangeTracker.Clear();
             return registros.AsNoTracking().Include(x=>x.Parceiro).ToList();
         }
 
         public override Desconto GetById(int id)
         {
-            contexto.ChangeTracker.Clear();
             return registros.AsNoTracking().Include(x=>x.Parceiro).SingleOrDefault(x => x.Id == id);
         }
 
         public bool VerificarCodigoExistente(string codigo)
         {
-            contexto.ChangeTracker.Clear();
-            return contexto.Descontos.ToList().Exists(d => d.Codigo == codigo);
+            return contexto.Descontos.AsNoTracking().ToList().Exists(d => d.Codigo == codigo);
         }
 
         public Desconto VerificarCodigoValido(string codigo)
         {
-            contexto.ChangeTracker.Clear();
-            return contexto.Descontos.ToList().Find(d => d.Codigo == codigo);
+            return contexto.Descontos.AsNoTracking().ToList().Find(d => d.Codigo == codigo);
         }
     }
 }
