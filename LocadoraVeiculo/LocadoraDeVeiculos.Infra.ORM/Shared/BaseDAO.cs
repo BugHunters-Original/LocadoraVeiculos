@@ -22,9 +22,9 @@ namespace LocadoraDeVeiculos.Infra.ORM.Shared
         {
             try
             {
-                registros.Add(registro);
+                contexto.ChangeTracker.Clear();
 
-                var a = contexto.ChangeTracker.DebugView.LongView;
+                registros.Add(registro);
 
                 contexto.SaveChanges();
 
@@ -34,6 +34,8 @@ namespace LocadoraDeVeiculos.Infra.ORM.Shared
             }
             catch (Exception ex)
             {
+                contexto.ChangeTracker.Clear();
+
                 Log.Logger.Error(ex, "$ERRO AO INSERIR {Dominio} ID: {Id}  ", registro.GetType().Name, registro.Id);
                 
                 return false;
@@ -55,26 +57,13 @@ namespace LocadoraDeVeiculos.Infra.ORM.Shared
             }
             catch (Exception ex)
             {
+                contexto.ChangeTracker.Clear();
+
                 Log.Logger.Error(ex, "ERRO AO EDITAR {Dominio} ID: {Id}  ", registro.GetType().Name, registro.Id);
                 
                 return false;
             }
         }
-        //public bool Excluir(int id)
-        //{
-        //    try
-        //    {
-        //        var a = new T() { Id = id };
-        //        registros.Attach(a);
-        //        registros.Remove(a);
-        //        contexto.SaveChanges();
-        //        return true;
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        return false;
-        //    }
-        //}
         public virtual bool Excluir(T registro)
         {
             try
@@ -91,6 +80,8 @@ namespace LocadoraDeVeiculos.Infra.ORM.Shared
             }
             catch (Exception ex)
             {
+                contexto.ChangeTracker.Clear();
+
                 Log.Logger.Error(ex, "ERRO AO REMOVER {Dominio} ID: {Id}  ",registro.GetType().Name, registro.Id);
                 
                 return false;
@@ -99,7 +90,7 @@ namespace LocadoraDeVeiculos.Infra.ORM.Shared
 
         public virtual bool Existe(int id)
         {
-            throw new NotImplementedException();
+            return registros.AsNoTracking().ToList().Exists(x=>x.Id == id);
         }
 
         public virtual List<T> GetAll()

@@ -140,24 +140,48 @@ namespace LocadoraVeiculo.WindowsApp.Features.ClienteFeature
             string telefone = mskTelefone.Text;
             string email = txtEmail.Text;
 
-            if (rbFisico.Checked)
+            if (cliente != null)
             {
-                string cpf = mskCpf.Text;
-                string rg = mskRg.Text;
-                string cnh = mskCnh.Text;
-                DateTime dataValidade = dtDataValidade.Value;
-                ClienteCNPJ empresa = (ClienteCNPJ)cbEmpresas.SelectedItem;
+                cliente.Nome = nome;
+                cliente.Endereco = endereco;
+                cliente.Telefone = telefone;
+                cliente.Email = email;
 
-                cliente = new ClienteCPF(nome, telefone, endereco, cpf, rg, cnh, dataValidade, email, empresa);
+                if (rbFisico.Checked)
+                {
+                    string cpf = mskCpf.Text;
+                    string rg = mskRg.Text;
+                    string cnh = mskCnh.Text;
+                    DateTime dataValidade = dtDataValidade.Value;
+                    ClienteCNPJ empresa = (ClienteCNPJ)cbEmpresas.SelectedItem;
+                }
+                else
+                {
+                    string cnpj = mskCnpj.Text;
 
+                    cliente = new ClienteCNPJ(nome, endereco, telefone, cnpj, email);
+                }
             }
             else
             {
-                string cnpj = mskCnpj.Text;
+                if (rbFisico.Checked)
+                {
+                    string cpf = mskCpf.Text;
+                    string rg = mskRg.Text;
+                    string cnh = mskCnh.Text;
+                    DateTime dataValidade = dtDataValidade.Value;
+                    ClienteCNPJ empresa = (ClienteCNPJ)cbEmpresas.SelectedItem;
 
-                cliente = new ClienteCNPJ(nome, endereco, telefone, cnpj, email);
+                    cliente = new ClienteCPF(nome, telefone, endereco, cpf, rg, cnh, dataValidade, email, empresa);
+                }
+                else
+                {
+                    string cnpj = mskCnpj.Text;
 
+                    cliente = new ClienteCNPJ(nome, endereco, telefone, cnpj, email);
+                }
             }
+
             string resultadoValidacao = cliente.Validar();
 
             if (resultadoValidacao != "ESTA_VALIDO")

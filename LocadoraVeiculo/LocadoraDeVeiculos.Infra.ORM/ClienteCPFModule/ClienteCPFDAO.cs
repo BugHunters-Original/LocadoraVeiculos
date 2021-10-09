@@ -18,14 +18,30 @@ namespace LocadoraDeVeiculos.Infra.ORM.ClienteCPFModule
         {
 
         }
+        public override bool Inserir(ClienteCPF registro)
+        {
+            contexto.Entry(registro.Cliente).State = EntityState.Unchanged;
+            return base.Inserir(registro);
+        }
+
+        public override List<ClienteCPF> GetAll()
+        {
+            return registros.AsNoTracking().Include(x => x.Cliente).ToList();
+        }
+
+        public override ClienteCPF GetById(int id)
+        {
+            return registros.AsNoTracking().Include(x => x.Cliente).SingleOrDefault(x => x.Id == id);
+        }
+
         public bool ExisteCPF(string cpf)
         {
-            throw new NotImplementedException();
+            return registros.AsNoTracking().ToList().Exists(x => x.Cpf == cpf);
         }
 
         public List<ClienteCPF> SelecionarPorIdEmpresa(int id)
         {
-            throw new NotImplementedException();
+            return registros.AsNoTracking().Include(x => x.Cliente).Where(x => x.Cliente.Id == id).ToList();
         }
     }
 }
