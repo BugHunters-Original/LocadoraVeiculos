@@ -28,7 +28,7 @@ namespace LocadoraDeVeiculos.Infra.Context
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             optionsBuilder
-                .UseSqlServer(@"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=teste;Integrated Security=True");
+                .UseSqlServer(@"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=LocadoraVeiculos;Integrated Security=True");
         }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
