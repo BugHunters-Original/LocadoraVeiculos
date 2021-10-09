@@ -22,8 +22,7 @@ namespace LocadoraDeVeiculos.Aplicacao.DescontoModule
             Log.Logger.Aqui().Debug("REGISTRANDO CUPOM DE DESCONTO {DescontoNome}", desconto.Nome);
 
             if (resultadoValidacaoDominio == "ESTA_VALIDO")
-            {
-                
+            {                
                 descontoRepository.Inserir(desconto);
 
                 Log.Logger.Aqui().Debug("CUPOM DE DESCONTO {DescontoNome} REGISTRADO COM SUCESSO", desconto.Nome);

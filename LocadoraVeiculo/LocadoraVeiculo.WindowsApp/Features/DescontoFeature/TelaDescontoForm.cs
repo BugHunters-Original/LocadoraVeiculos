@@ -17,6 +17,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.DescontoFeature
         public TelaDescontoForm(ParceiroAppService parceiroService)
         {
             this.parceiroService = parceiroService;
+            desconto = new();
             InitializeComponent();
             SetColor();
             CarregarParceiros();
@@ -92,20 +93,15 @@ namespace LocadoraVeiculo.WindowsApp.Features.DescontoFeature
 
             var uso = desconto?.Usos;
 
-            if (desconto != null)
-            {
-                desconto.Codigo = codigo;
-                desconto.Valor = valor;
-                desconto.Tipo = tipo;
-                desconto.Validade = dataValidade;
-                desconto.Parceiro = parceiro;
-                desconto.Meio = meio;
-                desconto.Nome = nome;
-                desconto.ValorMinimo = valorMinimo;
-                desconto.Usos = uso ?? 0;
-            }
-            else
-                desconto = new Desconto(codigo, valor, tipo, dataValidade, parceiro, meio, nome, valorMinimo, uso ?? 0);
+            desconto.Codigo = codigo;
+            desconto.Valor = valor;
+            desconto.Tipo = tipo;
+            desconto.Validade = dataValidade;
+            desconto.Parceiro = parceiro;
+            desconto.Meio = meio;
+            desconto.Nome = nome;
+            desconto.ValorMinimo = valorMinimo;
+            desconto.Usos = uso ?? 0;
 
             string resultadoValidacao = desconto.Validar();
 

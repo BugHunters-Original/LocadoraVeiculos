@@ -14,13 +14,14 @@ namespace LocadoraVeiculo.WindowsApp.Features.ParceiroFeature
         {
             InitializeComponent();
             SetColor();
+            parceiro = new();
         }
 
         private void SetColor()
         {
             this.header_parceiro.BackColor = DarkMode.corHeader;
             this.BackColor = DarkMode.corPanel;
-            this.ForeColor = DarkMode.corFonte; 
+            this.ForeColor = DarkMode.corFonte;
             txtID.BackColor = Color.DarkSeaGreen;
             txtNome.BackColor = DarkMode.corFundoTxBox;
 
@@ -41,12 +42,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.ParceiroFeature
         }
         private void btnGravar_Click(object sender, EventArgs e)
         {
-            var nome = txtNome.Text;
-
-            if (parceiro != null)
-                parceiro.Nome = txtNome.Text;
-            else
-                parceiro = new Parceiro(nome);            
+            parceiro.Nome = txtNome.Text;
 
             string resultadoValidacao = parceiro.Validar();
 
