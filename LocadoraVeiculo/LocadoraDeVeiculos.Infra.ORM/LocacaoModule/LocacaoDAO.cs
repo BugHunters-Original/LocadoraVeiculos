@@ -19,22 +19,31 @@ namespace LocadoraDeVeiculos.Infra.ORM.LocacaoModule
         }
         public override bool Inserir(Locacao registro)
         {
+            //ARRUMAR CERTINHO
             contexto.Entry(registro.Cliente).State = EntityState.Unchanged;
+
             contexto.Entry(registro.Condutor).State = EntityState.Unchanged;
+
             contexto.Entry(registro.Veiculo).State = EntityState.Unchanged;
+
             if (registro.Desconto != null)
                 contexto.Entry(registro.Desconto).State = EntityState.Unchanged;
+
+            if (registro.Servicos != null)
+                foreach (var item in registro.Servicos)
+                    contexto.Entry(item).State = EntityState.Unchanged;
+                
             if (registro.TaxasDaLocacao != null)
                 contexto.Entry(registro.TaxasDaLocacao).State = EntityState.Unchanged;
             return base.Inserir(registro);
         }
         public override List<Locacao> GetAll()
         {
-            return registros.AsNoTracking().Include(x => x.Cliente).Include(x => x.Veiculo).ToList();
+            return registros.AsNoTracking().Include(x => x.Cliente).Include(x => x.Veiculo).Include(x=>x.Desconto).Include(x => x.Condutor).ToList();
         }
         public override Locacao GetById(int id)
         {
-            return registros.AsNoTracking().Include(x => x.Cliente).Include(x => x.Veiculo).SingleOrDefault(x => x.Id == id);
+            return registros.AsNoTracking().Include(x => x.Cliente).Include(x => x.Veiculo).Include(x => x.Desconto).Include(x => x.Condutor).SingleOrDefault(x => x.Id == id);
         }
         public void ConcluirLocacao(Locacao locacao)
         {
