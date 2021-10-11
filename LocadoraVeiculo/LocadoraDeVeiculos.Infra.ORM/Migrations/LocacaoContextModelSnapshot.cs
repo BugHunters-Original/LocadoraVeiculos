@@ -176,32 +176,31 @@ namespace LocadoraDeVeiculos.Infra.ORM.Migrations
                     b.Property<int>("Dias")
                         .HasColumnType("INT");
 
-                    b.Property<int>("IdCliente")
+                    b.Property<int?>("IdCliente")
                         .HasColumnType("int");
 
-                    b.Property<int>("IdCondutor")
+                    b.Property<int?>("IdCondutor")
                         .HasColumnType("int");
 
-                    b.Property<int>("IdDesconto")
+                    b.Property<int?>("IdDesconto")
+                        .HasColumnType("INT");
+
+                    b.Property<int?>("IdVeiculo")
                         .HasColumnType("int");
 
-                    b.Property<int>("IdVeiculo")
-                        .HasColumnType("int");
-
-                    b.Property<double>("PrecoCombustivel")
+                    b.Property<double?>("PrecoCombustivel")
                         .HasColumnType("FLOAT");
 
                     b.Property<double>("PrecoPlano")
                         .HasColumnType("FLOAT");
 
-                    b.Property<double>("PrecoServicos")
+                    b.Property<double?>("PrecoServicos")
                         .HasColumnType("FLOAT");
 
                     b.Property<double>("PrecoTotal")
                         .HasColumnType("FLOAT");
 
                     b.Property<string>("StatusLocacao")
-                        .IsRequired()
                         .HasColumnType("VARCHAR(20)");
 
                     b.Property<int>("TipoCliente")
@@ -216,13 +215,16 @@ namespace LocadoraDeVeiculos.Infra.ORM.Migrations
                     b.HasIndex("IdCliente");
 
                     b.HasIndex("IdCondutor")
-                        .IsUnique();
+                        .IsUnique()
+                        .HasFilter("[IdCondutor] IS NOT NULL");
 
                     b.HasIndex("IdDesconto")
-                        .IsUnique();
+                        .IsUnique()
+                        .HasFilter("[IdDesconto] IS NOT NULL");
 
                     b.HasIndex("IdVeiculo")
-                        .IsUnique();
+                        .IsUnique()
+                        .HasFilter("[IdVeiculo] IS NOT NULL");
 
                     b.ToTable("TBLocacoes");
                 });
@@ -412,27 +414,19 @@ namespace LocadoraDeVeiculos.Infra.ORM.Migrations
                 {
                     b.HasOne("LocadoraDeVeiculos.Dominio.ClienteModule.ClienteBase", "Cliente")
                         .WithMany("Locacoes")
-                        .HasForeignKey("IdCliente")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("IdCliente");
 
                     b.HasOne("LocadoraDeVeiculos.Dominio.ClienteModule.ClienteCPFModule.ClienteCPF", "Condutor")
                         .WithOne("Locacao")
-                        .HasForeignKey("LocadoraDeVeiculos.Dominio.LocacaoModule.Locacao", "IdCondutor")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("LocadoraDeVeiculos.Dominio.LocacaoModule.Locacao", "IdCondutor");
 
                     b.HasOne("LocadoraDeVeiculos.Dominio.DescontoModule.Desconto", "Desconto")
                         .WithOne("Locacao")
-                        .HasForeignKey("LocadoraDeVeiculos.Dominio.LocacaoModule.Locacao", "IdDesconto")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("LocadoraDeVeiculos.Dominio.LocacaoModule.Locacao", "IdDesconto");
 
                     b.HasOne("LocadoraDeVeiculos.Dominio.VeiculoModule.Veiculo", "Veiculo")
                         .WithOne("Locacao")
-                        .HasForeignKey("LocadoraDeVeiculos.Dominio.LocacaoModule.Locacao", "IdVeiculo")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("LocadoraDeVeiculos.Dominio.LocacaoModule.Locacao", "IdVeiculo");
 
                     b.Navigation("Cliente");
 

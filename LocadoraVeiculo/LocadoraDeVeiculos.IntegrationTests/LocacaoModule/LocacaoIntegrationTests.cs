@@ -245,14 +245,8 @@ namespace LocadoraDeVeiculos.Test.LocacaoModule
                                     "Plano Diário", 1, precoServicos, dias, "Em Aberto", 1, grupo.ValorDiarioPDiario * dias, 1, null);
 
             controladorLocacao.Inserir(novaLocacao);
+
             controladorLocacao.ConcluirLocacao(novaLocacao);
-
-            var novaLocacaoNaoConcluida = new Locacao(cliente, veiculo, null, condutor, dataSaida, dataRetorno,
-                                    "Plano Diário", 1, precoServicos, dias, "Em Aberto", 1, grupo.ValorDiarioPDiario * dias, 1, null);
-
-            controladorLocacao.Inserir(novaLocacaoNaoConcluida);
-
-
             //action
 
             var locacoesConcluidas = controladorLocacao.SelecionarTodasLocacoesConcluidas();

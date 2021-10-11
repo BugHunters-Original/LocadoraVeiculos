@@ -25,26 +25,27 @@ namespace LocadoraDeVeiculos.Infra.ORM.LocacaoModule
 
             builder.HasOne(x => x.Condutor).WithOne(x => x.Locacao).HasForeignKey<Locacao>(x => x.IdCondutor);
 
+            builder.Property(x => x.IdDesconto).HasColumnType("INT");
+
             builder.Property(x => x.DataRetorno).HasColumnType("DATE").IsRequired();
 
             builder.Property(x => x.DataSaida).HasColumnType("DATE").IsRequired();
 
             builder.Property(x => x.TipoLocacao).HasColumnType("VARCHAR(20)").IsRequired();
 
-            builder.Property(x => x.StatusLocacao).HasColumnType("VARCHAR(20)").IsRequired();
+            builder.Property(x => x.StatusLocacao).HasColumnType("VARCHAR(20)");
 
             builder.Property(x => x.TipoCliente).HasColumnType("INT").IsRequired();
 
             builder.Property(x => x.Dias).HasColumnType("INT").IsRequired();
 
-            builder.Property(x => x.PrecoServicos).HasColumnType("FLOAT").IsRequired();
+            builder.Property(x => x.PrecoServicos).HasColumnType("FLOAT");
 
-            builder.Property(x => x.PrecoCombustivel).HasColumnType("FLOAT").IsRequired();
+            builder.Property(x => x.PrecoCombustivel).HasColumnType("FLOAT");
 
             builder.Property(x => x.PrecoPlano).HasColumnType("FLOAT").IsRequired();
 
             builder.Property(x => x.PrecoTotal).HasColumnType("FLOAT").IsRequired();
-
         }
     }
 }

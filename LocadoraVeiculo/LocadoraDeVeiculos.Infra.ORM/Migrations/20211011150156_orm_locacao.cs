@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace LocadoraDeVeiculos.Infra.ORM.Migrations
 {
-    public partial class tudo_certo : Migration
+    public partial class orm_locacao : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -185,18 +185,18 @@ namespace LocadoraDeVeiculos.Infra.ORM.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    IdCliente = table.Column<int>(type: "int", nullable: false),
-                    IdVeiculo = table.Column<int>(type: "int", nullable: false),
-                    IdDesconto = table.Column<int>(type: "int", nullable: false),
-                    IdCondutor = table.Column<int>(type: "int", nullable: false),
+                    IdCliente = table.Column<int>(type: "int", nullable: true),
+                    IdVeiculo = table.Column<int>(type: "int", nullable: true),
+                    IdDesconto = table.Column<int>(type: "INT", nullable: true),
+                    IdCondutor = table.Column<int>(type: "int", nullable: true),
                     DataSaida = table.Column<DateTime>(type: "DATE", nullable: false),
                     DataRetorno = table.Column<DateTime>(type: "DATE", nullable: false),
                     TipoLocacao = table.Column<string>(type: "VARCHAR(20)", nullable: false),
-                    StatusLocacao = table.Column<string>(type: "VARCHAR(20)", nullable: false),
+                    StatusLocacao = table.Column<string>(type: "VARCHAR(20)", nullable: true),
                     TipoCliente = table.Column<int>(type: "INT", nullable: false),
                     Dias = table.Column<int>(type: "INT", nullable: false),
-                    PrecoServicos = table.Column<double>(type: "FLOAT", nullable: false),
-                    PrecoCombustivel = table.Column<double>(type: "FLOAT", nullable: false),
+                    PrecoServicos = table.Column<double>(type: "FLOAT", nullable: true),
+                    PrecoCombustivel = table.Column<double>(type: "FLOAT", nullable: true),
                     PrecoPlano = table.Column<double>(type: "FLOAT", nullable: false),
                     PrecoTotal = table.Column<double>(type: "FLOAT", nullable: false)
                 },
@@ -208,25 +208,25 @@ namespace LocadoraDeVeiculos.Infra.ORM.Migrations
                         column: x => x.IdCliente,
                         principalTable: "TBClientesBase",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_TBLocacoes_TBClientesCPF_IdCondutor",
                         column: x => x.IdCondutor,
                         principalTable: "TBClientesCPF",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_TBLocacoes_TBDescontos_IdDesconto",
                         column: x => x.IdDesconto,
                         principalTable: "TBDescontos",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_TBLocacoes_TBVeiculos_IdVeiculo",
                         column: x => x.IdVeiculo,
                         principalTable: "TBVeiculos",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
@@ -295,19 +295,22 @@ namespace LocadoraDeVeiculos.Infra.ORM.Migrations
                 name: "IX_TBLocacoes_IdCondutor",
                 table: "TBLocacoes",
                 column: "IdCondutor",
-                unique: true);
+                unique: true,
+                filter: "[IdCondutor] IS NOT NULL");
 
             migrationBuilder.CreateIndex(
                 name: "IX_TBLocacoes_IdDesconto",
                 table: "TBLocacoes",
                 column: "IdDesconto",
-                unique: true);
+                unique: true,
+                filter: "[IdDesconto] IS NOT NULL");
 
             migrationBuilder.CreateIndex(
                 name: "IX_TBLocacoes_IdVeiculo",
                 table: "TBLocacoes",
                 column: "IdVeiculo",
-                unique: true);
+                unique: true,
+                filter: "[IdVeiculo] IS NOT NULL");
 
             migrationBuilder.CreateIndex(
                 name: "IX_TBServicos_LocacaoId",

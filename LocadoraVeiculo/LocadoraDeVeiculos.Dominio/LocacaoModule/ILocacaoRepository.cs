@@ -14,5 +14,6 @@ namespace LocadoraDeVeiculos.Dominio.LocacaoModule
         public List<Locacao> SelecionarTodasLocacoesPendentes();
         public int SelecionarQuantidadeLocacoesPendentes();
         public int SelecionarLocacoesComCupons(string cupom);
+        void AbrirLocacao(Locacao locacao);
     }
 }

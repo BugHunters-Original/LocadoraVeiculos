@@ -36,13 +36,13 @@ namespace LocadoraDeVeiculos.Dominio.LocacaoModule
         {
 
         }
-        public int IdCliente { get; set; }
+        public int? IdCliente { get; set; }
         public ClienteBase Cliente { get; set; }
-        public int IdVeiculo { get; set; }
+        public int? IdVeiculo { get; set; }
         public Veiculo Veiculo { get; set; }
         public int? IdDesconto { get; set; }
         public Desconto Desconto { get; set; }
-        public int IdCondutor { get; set; }
+        public int? IdCondutor { get; set; }
         public ClienteCPF Condutor { get; set; }
         public DateTime DataSaida { get; set; }
         public DateTime DataRetorno { get; set; }
@@ -54,7 +54,7 @@ namespace LocadoraDeVeiculos.Dominio.LocacaoModule
         public decimal? PrecoCombustivel { get; set; }
         public decimal? PrecoPlano { get; set; }
         public decimal? PrecoTotal { get; set; }
-        public virtual List<Servico> Servicos { get; set; }
+        public List<Servico> Servicos { get; set; }
         public ICollection<TaxaDaLocacao> TaxasDaLocacao { get; set; }
 
         public bool Equals(Locacao other)

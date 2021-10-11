@@ -24,11 +24,7 @@ namespace LocadoraDeVeiculos.Infra.ORM.Shared
             {
                 registros.Add(registro);
 
-                var a = contexto.ChangeTracker.DebugView.LongView;
-
                 contexto.SaveChanges();
-
-                var b = contexto.ChangeTracker.DebugView.LongView;
 
                 Log.Logger.Information("SUCESSO AO INSERIR {Dominio} ID: {Id}  ", registro.GetType().Name, registro.Id);
 
@@ -47,8 +43,6 @@ namespace LocadoraDeVeiculos.Infra.ORM.Shared
         {
             try
             {
-                contexto.ChangeTracker.Clear();
-
                 registros.Update(registro);
 
                 contexto.SaveChanges();
@@ -70,8 +64,6 @@ namespace LocadoraDeVeiculos.Infra.ORM.Shared
         {
             try
             {
-                contexto.ChangeTracker.Clear();
-
                 registros.Remove(registro);
 
                 contexto.SaveChanges();
@@ -92,19 +84,16 @@ namespace LocadoraDeVeiculos.Infra.ORM.Shared
 
         public virtual bool Existe(int id)
         {
-            contexto.ChangeTracker.Clear();
             return registros.AsNoTracking().ToList().Exists(x=>x.Id == id);
         }
 
         public virtual List<T> GetAll()
         {
-            contexto.ChangeTracker.Clear();
             return registros.AsNoTracking().ToList();
         }
 
         public virtual T GetById(int id)
         {
-            contexto.ChangeTracker.Clear();
             return registros.AsNoTracking().SingleOrDefault(x => x.Id == id);
         }
     }
