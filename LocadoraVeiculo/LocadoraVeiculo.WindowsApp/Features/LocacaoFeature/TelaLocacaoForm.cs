@@ -48,6 +48,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.LocacaoFeature
             this.locacaoService = locacaoService;
             taxaDaLocacaoDAO = new(new LocacaoContext());
             telaDasTaxas = new TelaAdicionarTaxasForm();
+            locacao = new();
             InitializeComponent();
             PopularComboboxes();
             SetColor();
@@ -168,39 +169,36 @@ namespace LocadoraVeiculo.WindowsApp.Features.LocacaoFeature
 
         private void btnGravar_Click(object sender, EventArgs e)
         {
-            ClienteBase cliente = (ClienteBase)cbCliente.SelectedItem;
+            locacao.Cliente = (ClienteBase)cbCliente.SelectedItem;
 
-            Veiculo veiculo = (Veiculo)cbVeiculo.SelectedItem;
+            locacao.Veiculo = (Veiculo)cbVeiculo.SelectedItem;
 
-            Desconto desconto = txtCupom.Text != "" ? descontoService.VerificarCodigoValido(txtCupom.Text) : null;
+            locacao.Desconto = txtCupom.Text != "" ? descontoService.VerificarCodigoValido(txtCupom.Text) : null;
 
-            int tipoCliente = cbCliente.SelectedItem is ClienteCPF ? 0 : 1;
+            locacao.TipoCliente = cbCliente.SelectedItem is ClienteCPF ? 0 : 1;
 
-            ClienteCPF condutor = cbCliente.SelectedItem is ClienteCPF ? (ClienteCPF)cliente : (ClienteCPF)cbCondutor.SelectedItem;
+            locacao.Condutor = cbCliente.SelectedItem is ClienteCPF ? (ClienteCPF)locacao.Cliente : (ClienteCPF)cbCondutor.SelectedItem;
 
-            DateTime dataSaida = dtSaida.Value;
+            locacao.DataSaida = dtSaida.Value;
 
-            DateTime dataRetornoEsperado = dtRetorno.Value;
+            locacao.DataRetorno = dtRetorno.Value;
 
-            string tipoLocacao = cbTipoLocacao.Text;
+            locacao.TipoLocacao = cbTipoLocacao.Text;
 
-            var dias = Convert.ToInt32((dtRetorno.Value - dtSaida.Value).TotalDays);
+            locacao.Dias = Convert.ToInt32((dtRetorno.Value - dtSaida.Value).TotalDays);
 
-            decimal? precoServicos = 0;
+            locacao.PrecoServicos = 0;
 
             if (Servicos != null)
                 foreach (var item in Servicos.ToList())
-                    precoServicos = item.TipoCalculo != 1 ? precoServicos + item.Preco * dias : precoServicos + item.Preco;
+                    locacao.PrecoServicos = item.TipoCalculo != 1 ? locacao.PrecoServicos + item.Preco * locacao.Dias : locacao.PrecoServicos + item.Preco;
 
 
-            decimal? precoPlano = CalcularPrecoPlanoPorDias(veiculo, tipoLocacao, dias);
+            locacao.PrecoPlano = CalcularPrecoPlanoPorDias(locacao.Veiculo, locacao.TipoLocacao, locacao.Dias);
 
-            decimal? precoTotal = precoPlano + precoServicos;
+            locacao.PrecoTotal = locacao.PrecoPlano + locacao.PrecoServicos;
 
-            var status = locacao?.StatusLocacao;
-
-            locacao = new Locacao(cliente, veiculo, desconto, condutor, dataSaida, dataRetornoEsperado, tipoLocacao,
-                                    tipoCliente, precoServicos, dias, status ?? "Em Aberto", null, precoPlano, precoTotal, Servicos);
+            locacao.Servicos = Servicos;
 
             string resultadoValidacao = locacao.Validar();
 

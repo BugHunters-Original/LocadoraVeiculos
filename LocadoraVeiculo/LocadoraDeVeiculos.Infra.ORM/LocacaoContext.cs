@@ -10,6 +10,7 @@ using LocadoraDeVeiculos.Dominio.ServicoModule;
 using LocadoraDeVeiculos.Dominio.TaxaDaLocacaoModule;
 using LocadoraDeVeiculos.Dominio.VeiculoModule;
 using Microsoft.EntityFrameworkCore;
+using System.Collections.Generic;
 
 namespace LocadoraDeVeiculos.Infra.Context
 {

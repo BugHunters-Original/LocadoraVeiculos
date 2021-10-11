@@ -48,8 +48,8 @@ namespace LocadoraDeVeiculos.Infra.Configurations.VeiculoModule
 
             builder.HasOne(veiculo => veiculo.GrupoVeiculo)
                    .WithMany(p => p.Veiculos)
-                   .HasForeignKey(d => d.IdGrupoVeiculo);               
-                    
+                   .HasForeignKey(d => d.IdGrupoVeiculo);
+                         
             
         }
     }

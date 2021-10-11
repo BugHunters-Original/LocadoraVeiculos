@@ -13,39 +13,58 @@ namespace LocadoraDeVeiculos.Infra.ORM.LocacaoModule
 {
     public class LocacaoDAO : BaseDAO<Locacao>, ILocacaoRepository
     {
-        public LocacaoDAO(LocacaoContext context):base(context)
+        public LocacaoDAO(LocacaoContext context) : base(context)
         {
 
+        }
+        public override bool Inserir(Locacao registro)
+        {
+            contexto.Entry(registro.Cliente).State = EntityState.Unchanged;
+
+            contexto.Entry(registro.Condutor).State = EntityState.Unchanged;
+
+            contexto.Entry(registro.Veiculo).State = EntityState.Unchanged;
+
+            if (registro.Desconto != null)
+                contexto.Entry(registro.Desconto).State = EntityState.Unchanged;
+
+            if (registro.Servicos != null)
+                foreach (var item in registro.Servicos)
+                    contexto.Entry(item).State = EntityState.Unchanged;
+
+            if (registro.TaxasDaLocacao != null)
+                contexto.Entry(registro.TaxasDaLocacao).State = EntityState.Unchanged;
+
+            return base.Inserir(registro);
         }
         public override List<Locacao> GetAll()
         {
-            return registros.AsNoTracking().Include(x => x.Cliente).Include(x=>x.Veiculo).ToList();
+            return registros.AsNoTracking().
+                   Include(x => x.Cliente).
+                   Include(x => x.Veiculo).
+                   ThenInclude(x => x.GrupoVeiculo).
+                   Include(x => x.Desconto).
+                   Include(x => x.Condutor).
+                   ToList();
         }
         public override Locacao GetById(int id)
         {
-            return registros.AsNoTracking().Include(x => x.Cliente).Include(x => x.Veiculo).SingleOrDefault(x => x.Id == id);
-        }
-        public void ConcluirLocacao(Locacao locacao)
-        {
-            try
-            {
-                locacao.StatusLocacao = "Concluída";
-
-                contexto.Locacoes.Update(locacao);
-
-                Log.Logger.Information("SUCESSO AO CONCLUIR LOCAÇÃO ID: {Id}  ", locacao.Id);
-            }
-            catch (Exception ex)
-            {
-                Log.Logger.Error(ex, "ERRO AO CONCLUIR LOCAÇÃO ID: {Id}  ", locacao.Id);
-            }
+            return registros.AsNoTracking().
+                   Include(x => x.Cliente).
+                   Include(x => x.Veiculo).
+                   ThenInclude(x => x.GrupoVeiculo).
+                   Include(x => x.Desconto).
+                   Include(x => x.Condutor).
+                   SingleOrDefault(x => x.Id == id);
         }
 
         public int SelecionarLocacoesComCupons(string cupom)
         {
             try
             {
-                int qtdLocacoesComCupom = contexto.Locacoes.Where(x => x.Desconto.Codigo == cupom).Count();
+                int qtdLocacoesComCupom = registros.AsNoTracking().
+                                          Where(x => x.Desconto.Codigo == cupom).
+                                          Count();
 
                 if (qtdLocacoesComCupom == 0)
                     Log.Logger.Debug("SUCESSO AO SELECIONAR A QUANTIDADE DE LOCAÇÕES COM CUPOM  ");
@@ -67,7 +86,9 @@ namespace LocadoraDeVeiculos.Infra.ORM.LocacaoModule
         {
             try
             {
-                int qtdLocacoesPendentes = contexto.Locacoes.Where(x => x.StatusLocacao == "Concluída").Count();
+                int qtdLocacoesPendentes = registros.AsNoTracking().
+                                           Where(x => x.StatusLocacao == "Concluída").
+                                           Count();
 
                 if (qtdLocacoesPendentes == 0)
                     Log.Logger.Debug("SUCESSO AO SELECIONAR A QUANTIDADE DE LOCAÇÕES PENDENTES  ");
@@ -89,9 +110,16 @@ namespace LocadoraDeVeiculos.Infra.ORM.LocacaoModule
         {
             try
             {
-                List<Locacao> locacoes = contexto.Locacoes.Where(x => x.StatusLocacao == "Concluída").ToList();
+                List<Locacao> locacoes = registros.AsNoTracking().
+                                           Include(x => x.Cliente).
+                                           Include(x => x.Veiculo).
+                                           ThenInclude(x => x.GrupoVeiculo).
+                                           Include(x => x.Desconto).
+                                           Include(x => x.Condutor).
+                                           Where(x => x.StatusLocacao == "Concluída").
+                                           ToList();
 
-                if (locacoes != null)
+                if (locacoes.Count != 0)
                     Log.Logger.Debug("SUCESSO AO SELECIONAR TODAS AS LOCAÇÕES CONCLUÍDAS  ");
                 else
                     Log.Logger.Information("NÃO FOI POSSÍVEL SELECIONAR TODAS AS LOCAÇÕES CONCLUÍDAS  ");
@@ -110,9 +138,16 @@ namespace LocadoraDeVeiculos.Infra.ORM.LocacaoModule
         {
             try
             {
-                List<Locacao> locacoes = contexto.Locacoes.Where(x => x.StatusLocacao == "Pendente").ToList();
+                List<Locacao> locacoes = registros.AsNoTracking().
+                                           Include(x => x.Cliente).
+                                           Include(x => x.Veiculo).
+                                           ThenInclude(x => x.GrupoVeiculo).
+                                           Include(x => x.Desconto).
+                                           Include(x => x.Condutor).
+                                           Where(x => x.StatusLocacao == "Em Aberto").
+                                           ToList();
 
-                if (locacoes != null)
+                if (locacoes.Count != 0)
                     Log.Logger.Debug("SUCESSO AO SELECIONAR TODAS AS LOCAÇÕES PENDENTES  ");
                 else
                     Log.Logger.Information("NÃO FOI POSSÍVEL SELECIONAR TODAS AS LOCAÇÕES PENDENTES  ");
@@ -124,6 +159,42 @@ namespace LocadoraDeVeiculos.Infra.ORM.LocacaoModule
                 Log.Logger.Error(ex, "NÃO FOI POSSÍVEL SE COMUNICAR COM O BANCO DE DADOS PARA SELECIONAR TODAS AS LOCAÇÕES PENDENTES  ");
 
                 return null;
+            }
+        }
+
+        public void AbrirLocacao(Locacao locacao)
+        {
+            try
+            {
+                locacao.StatusLocacao = "Em Aberto";
+
+                contexto.Locacoes.Update(locacao);
+
+                contexto.SaveChanges();
+
+                Log.Logger.Information("SUCESSO AO INICIAR LOCAÇÃO ID: {Id}  ", locacao.Id);
+            }
+            catch (Exception ex)
+            {
+                Log.Logger.Error(ex, "ERRO AO INICIAR LOCAÇÃO ID: {Id}  ", locacao.Id);
+            }
+        }
+
+        public void ConcluirLocacao(Locacao locacao)
+        {
+            try
+            {
+                locacao.StatusLocacao = "Concluída";
+
+                contexto.Locacoes.Update(locacao);
+
+                contexto.SaveChanges();
+
+                Log.Logger.Information("SUCESSO AO CONCLUIR LOCAÇÃO ID: {Id}  ", locacao.Id);
+            }
+            catch (Exception ex)
+            {
+                Log.Logger.Error(ex, "ERRO AO CONCLUIR LOCAÇÃO ID: {Id}  ", locacao.Id);
             }
         }
     }

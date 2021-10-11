@@ -5,8 +5,10 @@
     [TipoCalculo] INT          NOT NULL,
     [LocacaoId]   INT          NULL,
     CONSTRAINT [PK_TBServicos] PRIMARY KEY CLUSTERED ([Id] ASC),
-    CONSTRAINT [FK_TBServicos_Locacoes_LocacaoId] FOREIGN KEY ([LocacaoId]) REFERENCES [dbo].[Locacoes] ([Id])
+    CONSTRAINT [FK_TBServicos_TBLocacoes_LocacaoId] FOREIGN KEY ([LocacaoId]) REFERENCES [dbo].[TBLocacoes] ([Id])
 );
+
+
 
 
 GO

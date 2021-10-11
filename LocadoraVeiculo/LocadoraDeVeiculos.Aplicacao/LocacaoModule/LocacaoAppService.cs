@@ -35,6 +35,8 @@ namespace LocadoraDeVeiculos.Aplicacao.LocacaoModule
             {
                 locacaoRepo.Inserir(locacao);
 
+                locacaoRepo.AbrirLocacao(locacao);
+
                 Log.Logger.Aqui().Debug("LOCAÇÃO {Locacao} REGISTRADA COM SUCESSO", locacao.ToString());
 
                 veiculoRepo.LocarVeiculo(locacao.Veiculo);

@@ -59,6 +59,7 @@
   <ItemGroup>
     <Folder Include="Properties" />
     <Folder Include="dbo\" />
+    <Folder Include="dbo\Tables\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Script1.sql" />
@@ -74,7 +75,7 @@
     <Build Include="dbo\Tables\TBClientesCPF.sql" />
     <Build Include="dbo\Tables\TBClientesCNPJ.sql" />
     <Build Include="dbo\Tables\TBClientesBase.sql" />
-    <Build Include="dbo\Tables\Locacoes.sql" />
     <Build Include="dbo\Tables\__EFMigrationsHistory.sql" />
+    <Build Include="dbo\Tables\TBLocacoes.sql" />
   </ItemGroup>
 </Project>

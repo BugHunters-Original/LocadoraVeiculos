@@ -1,4 +1,5 @@
-﻿using LocadoraDeVeiculos.Dominio.ParceiroModule;
+﻿using LocadoraDeVeiculos.Dominio.LocacaoModule;
+using LocadoraDeVeiculos.Dominio.ParceiroModule;
 using LocadoraDeVeiculos.Dominio.Shared;
 using System;
 using System.Collections.Generic;
@@ -39,6 +40,7 @@ namespace LocadoraDeVeiculos.Dominio.DescontoModule
         public int IdParceiro { get; set; }
         public string Meio { get; set; }
         public int Usos { get; set; }
+        public Locacao Locacao { get; set; }
         public override string ToString()
         {
             return Nome;
