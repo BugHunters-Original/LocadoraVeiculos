@@ -45,10 +45,10 @@ namespace LocadoraDeVeiculos.AppServiceTests.ServicoModule
 
             //actions
             ServicoAppService ServicoAppService = new ServicoAppService(servicoDAOMock.Object);
-            ServicoAppService.EditarServico(1, novoServico);
+            ServicoAppService.EditarServico(novoServico);
 
             //assert
-            servicoDAOMock.Verify(x => x.Editar(1, novoServico));
+            servicoDAOMock.Verify(x => x.Editar(novoServico));
 
         }
     }

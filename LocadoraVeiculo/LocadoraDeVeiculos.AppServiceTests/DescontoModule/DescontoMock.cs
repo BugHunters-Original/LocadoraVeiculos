@@ -55,9 +55,9 @@ namespace LocadoraDeVeiculos.AppServiceTests.DescontoModule
 
             desconto.Setup(x => x.Validar()).Returns("ESTA_VALIDO");
 
-            descontoService.EditarDesconto(desconto.Object.Id, desconto.Object);
+            descontoService.EditarDesconto(desconto.Object);
 
-            descontoMock.Verify(x => x.Editar(desconto.Object.Id, desconto.Object));
+            descontoMock.Verify(x => x.Editar(desconto.Object));
         }
 
         [TestMethod]
@@ -71,7 +71,7 @@ namespace LocadoraDeVeiculos.AppServiceTests.DescontoModule
 
             DescontoAppService descontoService = new(descontoMock.Object);
 
-            var editou = descontoService.EditarDesconto(desconto.Object.Id, desconto.Object);
+            var editou = descontoService.EditarDesconto(desconto.Object);
 
             editou.Should().BeFalse();
         }

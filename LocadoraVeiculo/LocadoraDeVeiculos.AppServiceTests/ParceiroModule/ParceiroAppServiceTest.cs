@@ -1,5 +1,6 @@
 ﻿using LocadoraDeVeiculos.Aplicacao.ParceiroModule;
 using LocadoraDeVeiculos.Dominio.ParceiroModule;
+using LocadoraDeVeiculos.Infra.LogManager;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 using Serilog.Core;
@@ -11,6 +12,11 @@ namespace LocadoraDeVeiculos.AppServiceTests.ParceiroModule
     {
         Mock<IParceiroRepository> parceiroDAOMock = new();
         Mock<Parceiro> parceiroMock = new();
+
+        public ParceiroAppServiceTest()
+        {
+            Log.IniciarLog();
+        }
 
         [TestMethod]
         public void Deve_Chamar_Inserir()
@@ -45,10 +51,10 @@ namespace LocadoraDeVeiculos.AppServiceTests.ParceiroModule
 
             //actions
             ParceiroAppService parceiroAppService = new ParceiroAppService(parceiroDAOMock.Object);
-            parceiroAppService.EditarParceiro(1 , novoParceiro);
+            parceiroAppService.EditarParceiro(novoParceiro);
 
             //assert
-            parceiroDAOMock.Verify(x => x.Editar(1, novoParceiro));
+            parceiroDAOMock.Verify(x => x.Editar(novoParceiro));
 
         }
     }

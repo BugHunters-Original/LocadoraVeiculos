@@ -22,8 +22,8 @@
     <ProjectReference Include="..\LocadoraDeVeiculos.Dominio\LocadoraDeVeiculos.Dominio.csproj" />
     <ProjectReference Include="..\LocadoraDeVeiculos.Infra.InternetServices\LocadoraDeVeiculos.Infra.InternetServices.csproj" />
     <ProjectReference Include="..\LocadoraDeVeiculos.Infra.Log\LocadoraDeVeiculos.Infra.Log.csproj" />
+    <ProjectReference Include="..\LocadoraDeVeiculos.Infra.ORM\LocadoraDeVeiculos.Infra.ORM.csproj" />
     <ProjectReference Include="..\LocadoraDeVeiculos.Infra.PDF\LocadoraDeVeiculos.Infra.ReciboPDF.csproj" />
-    <ProjectReference Include="..\LocadoraDeVeiculos.Infra.SQL\LocadoraDeVeiculos.Infra.SQL.csproj" />
   </ItemGroup>
 
 </Project>

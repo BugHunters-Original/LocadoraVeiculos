@@ -58,10 +58,10 @@ namespace LocadoraDeVeiculos.AppServiceTests.VeiculoModule
             //actions
             VeiculoAppService veiculoAppService = new VeiculoAppService(veiculoDAOMock.Object);
             
-            veiculoAppService.EditarVeiculo(1, veiculo);
+            veiculoAppService.EditarVeiculo(veiculo);
 
             //assert
-            veiculoDAOMock.Verify(x => x.Editar(1, veiculo));
+            veiculoDAOMock.Verify(x => x.Editar(veiculo));
 
         }
 

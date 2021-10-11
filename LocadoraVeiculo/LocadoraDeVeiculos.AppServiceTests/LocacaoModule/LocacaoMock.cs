@@ -87,7 +87,7 @@ namespace LocadoraDeVeiculos.AppServiceTests.LocacaoModule
         {
             locacaoObj.Setup(x => x.Validar()).Returns("ESTA_VALIDO");
 
-            locacaoService.ConcluirLocacao(0, locacaoObj.Object);
+            locacaoService.ConcluirLocacao(locacaoObj.Object);
 
             veiculoRepo.Verify(x => x.DevolverVeiculo(It.IsAny<Veiculo>()));
         }
@@ -96,7 +96,7 @@ namespace LocadoraDeVeiculos.AppServiceTests.LocacaoModule
         {
             locacaoObj.Setup(x => x.Validar()).Returns("ESTA_VALIDO");
 
-            locacaoService.ConcluirLocacao(0, locacaoObj.Object);
+            locacaoService.ConcluirLocacao(locacaoObj.Object);
 
             veiculoRepo.Verify(x => x.AtualizarQuilometragem(It.IsAny<Veiculo>()));
         }
