@@ -45,30 +45,6 @@ namespace LocadoraVeiculo.WindowsApp
 {
     public partial class TelaPrincipalForm : Form
     {
-        public static EnviaEmail email = new();
-        public static MontaPdf pdf = new();
-
-        public static ClienteCNPJDAO cnpjRepository = new(new LocacaoContext());
-        public static ClienteCPFDAO cpfRepository = new(new LocacaoContext());
-        public static GrupoVeiculoDAO grupoVeiculoRepository = new(new LocacaoContext());
-        public static VeiculoDAO veiculoRepository = new(new LocacaoContext());
-        public static FuncionarioDAO funcionarioRepository = new(new LocacaoContext());
-        public static ServicoDAO servicoRepository = new(new LocacaoContext());
-        public static DescontoDAO descontoRepository = new(new LocacaoContext());
-        public static ParceiroDAO parceiroRepository = new(new LocacaoContext());
-        public static TaxaDaLocacaoDAO taxaRepository = new(new LocacaoContext());
-        public static LocacaoDAO locacaoRepository = new(new LocacaoContext());
-
-        public static ClienteCNPJAppService cnpjService = new(cnpjRepository);
-        public static ClienteCPFAppService cpfService = new(cpfRepository);
-        public static GrupoVeiculoAppService grupoVeiculoService = new(grupoVeiculoRepository);
-        public static LocacaoAppService locacaoService = new(locacaoRepository, email, pdf, descontoRepository, veiculoRepository, taxaRepository);
-        public static VeiculoAppService veiculoService = new(veiculoRepository);
-        public static FuncionarioAppService funcionarioService = new(funcionarioRepository);
-        public static ServicoAppService servicoService = new(servicoRepository);
-        public static DescontoAppService descontoService = new(descontoRepository);
-        public static ParceiroAppService parceiroService = new(parceiroRepository);
-
         public static TelaPrincipalForm Instancia;
         public static DashboardControl dash;
         private ICadastravel operacoes;
@@ -110,7 +86,6 @@ namespace LocadoraVeiculo.WindowsApp
                    new VeiculoAppService(new VeiculoDAO(contexto)),
                    new ClienteCNPJAppService(new ClienteCNPJDAO(contexto)),
                    new DescontoAppService(new DescontoDAO(contexto)));
-                   
         }
 
         private void menuItemCliente_Click(object sender, EventArgs e)
