@@ -15,6 +15,9 @@ namespace LocadoraVeiculo.WindowsApp.Features.GrupoVeiculoFeature
         {
             InitializeComponent();
             SetColor();
+            grupoVeiculo = new();
+
+
         }
 
         private void SetColor()
@@ -69,31 +72,23 @@ namespace LocadoraVeiculo.WindowsApp.Features.GrupoVeiculoFeature
             }
         }
 
+        private void ConfigurarGrupoVeiculo()
+        {
+            
+            grupoVeiculo.NomeTipo = txtNome.Text;
+            grupoVeiculo.ValorDiarioPDiario = Convert.ToDecimal(txtValorDiarioPDiario.Text);
+            grupoVeiculo.ValorKmRodadoPDiario = Convert.ToDecimal(txtValorKmRodadoPDiario.Text);
+            grupoVeiculo.ValorDiarioPControlado = Convert.ToDecimal(txtValorDiarioPControlado.Text);
+            grupoVeiculo.LimitePControlado = Convert.ToDecimal(txtLimitePControlado.Text);
+            grupoVeiculo.ValorKmRodadoPControlado = Convert.ToDecimal(txtValorKmRodadoPControlado.Text);
+            grupoVeiculo.ValorDiarioPLivre = Convert.ToDecimal(txtDiariaPLivre.Text);
+           
+
+        }
+
         private void btnGravar_Click(object sender, EventArgs e)
         {
-            var nomeTipo = txtNome.Text;
-            var valorDiarioPDiario = Convert.ToDecimal(txtValorDiarioPDiario.Text);
-            var valorKmRodadoPDiario = Convert.ToDecimal(txtValorKmRodadoPDiario.Text);
-            var valorDiarioPControlado = Convert.ToDecimal(txtValorDiarioPControlado.Text);
-            var limitePControlado = Convert.ToDecimal(txtLimitePControlado.Text);
-            var valorKmRodadoPControlado = Convert.ToDecimal(txtValorKmRodadoPControlado.Text);
-            var valorDiarioPLivre = Convert.ToDecimal(txtDiariaPLivre.Text);
-
-            if (grupoVeiculo != null) 
-            { 
-                grupoVeiculo.NomeTipo = txtNome.Text;
-                grupoVeiculo.ValorDiarioPDiario = valorDiarioPDiario;
-                grupoVeiculo.NomeTipo = txtNome.Text;
-                grupoVeiculo.NomeTipo = txtNome.Text;
-                grupoVeiculo.NomeTipo = txtNome.Text;
-                grupoVeiculo.NomeTipo = txtNome.Text;
-                grupoVeiculo.NomeTipo = txtNome.Text;
-            }
-            else
-                grupoVeiculo = new GrupoVeiculo(nomeTipo, valorDiarioPDiario, valorKmRodadoPDiario, valorDiarioPControlado,
-                                                                limitePControlado, valorKmRodadoPControlado, valorDiarioPLivre);
-
-
+            ConfigurarGrupoVeiculo();
 
             string resultadoValidacao = grupoVeiculo.Validar();
 
