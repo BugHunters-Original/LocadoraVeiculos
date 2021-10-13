@@ -21,6 +21,8 @@ namespace LocadoraDeVeiculos.Infra.ORM.LocacaoModule
         {
             contexto.Entry(registro.Cliente).State = EntityState.Unchanged;
 
+            contexto.Entry(registro).State = EntityState.Unchanged;
+
             contexto.Entry(registro.Condutor).State = EntityState.Unchanged;
 
             contexto.Entry(registro.Veiculo).State = EntityState.Unchanged;
