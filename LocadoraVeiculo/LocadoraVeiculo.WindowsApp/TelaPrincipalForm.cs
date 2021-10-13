@@ -44,7 +44,7 @@ using LocadoraDeVeiculos.Infra.ORM.LocacaoModule;
 namespace LocadoraVeiculo.WindowsApp
 {
     public partial class TelaPrincipalForm : Form
-    {   
+    {
         public static EnviaEmail email = new();
         public static MontaPdf pdf = new();
 
@@ -148,9 +148,14 @@ namespace LocadoraVeiculo.WindowsApp
 
             AtualizarRodape(configuracao.TipoCadastro);
 
-            operacoes = new OperacoesParceiro(parceiroService);
+            operacoes = GetOperacoesParceiro();
 
             ConfigurarPainelRegistros();
+        }
+
+        private OperacoesParceiro GetOperacoesParceiro()
+        {
+            return new OperacoesParceiro(new ParceiroAppService(new ParceiroDAO(new LocacaoContext())));
         }
 
         private void grupoDeVeículosToolStripMenuItem_Click(object sender, EventArgs e)
@@ -187,9 +192,19 @@ namespace LocadoraVeiculo.WindowsApp
 
             AtualizarRodape(configuracao.TipoCadastro);
 
-            operacoes = new OperacoesDesconto(descontoService, parceiroService, locacaoService);
+            operacoes = GetOperacoesDesconto();
 
             ConfigurarPainelRegistros();
+        }
+
+        private OperacoesDesconto GetOperacoesDesconto()
+        {
+            return null;
+            //LocacaoContext contexto = new();
+            //return new OperacoesDesconto(
+            //       new DescontoAppService(new DescontoDAO(contexto)),
+            //       new ParceiroAppService(new ParceiroDAO(contexto)),
+            //       new LocacaoAppService(new LocacaoDAO(contexto), );
         }
 
         private void preçosCombustívelToolStripMenuItem_Click(object sender, EventArgs e)
@@ -207,7 +222,7 @@ namespace LocadoraVeiculo.WindowsApp
         private void menuToolStripMenuItem_Click(object sender, EventArgs e)
         {
             operacoes = null;
-            BotaoHome(); 
+            BotaoHome();
         }
 
         private void btnAdicionar_Click(object sender, EventArgs e)

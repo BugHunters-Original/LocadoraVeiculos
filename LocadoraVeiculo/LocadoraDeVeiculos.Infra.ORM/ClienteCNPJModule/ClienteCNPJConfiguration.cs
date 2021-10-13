@@ -17,17 +17,7 @@ namespace LocadoraDeVeiculos.Infra.Configurations.ClienteCNPJModule
         {
             builder.ToTable("TBClientesCNPJ");
 
-            //builder.HasKey(c => c.Id);
-
             builder.Property(e => e.Cnpj).HasColumnType("VARCHAR(20)").IsRequired();
-
-            //builder.Property(e => e.Email).HasColumnType("VARCHAR(250)").IsRequired();
-
-            //builder.Property(e => e.Endereco).HasColumnType("VARCHAR(100)").IsRequired();
-
-            //builder.Property(e => e.Nome).HasColumnType("VARCHAR(100)").IsRequired();
-
-            //builder.Property(e => e.Telefone).HasColumnType("VARCHAR(15)").IsRequired();
         }
     }
 }

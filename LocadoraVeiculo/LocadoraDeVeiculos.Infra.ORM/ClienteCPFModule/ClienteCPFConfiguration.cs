@@ -1,6 +1,8 @@
 ﻿using LocadoraDeVeiculos.Dominio.ClienteModule.ClienteCPFModule;
+using LocadoraDeVeiculos.Dominio.LocacaoModule;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
+using System.Collections.Generic;
 
 namespace LocadoraDeVeiculos.Infra.Configurations.ClienteCPFModule
 {
@@ -10,17 +12,7 @@ namespace LocadoraDeVeiculos.Infra.Configurations.ClienteCPFModule
         {
             builder.ToTable("TBClientesCPF");
 
-            //builder.HasKey(c => c.Id);
-
             builder.Property(e => e.Cpf).HasColumnType("VARCHAR(14)").IsRequired();
-
-            //builder.Property(e => e.Email).HasColumnType("VARCHAR(250)").IsRequired();
-
-            //builder.Property(e => e.Endereco).HasColumnType("VARCHAR(100)").IsRequired();
-
-            //builder.Property(e => e.Nome).HasColumnType("VARCHAR(100)").IsRequired();
-
-            //builder.Property(e => e.Telefone).HasColumnType("VARCHAR(15)").IsRequired();
 
             builder.Property(e => e.Cnh).HasColumnType("VARCHAR(12)").IsRequired();
 

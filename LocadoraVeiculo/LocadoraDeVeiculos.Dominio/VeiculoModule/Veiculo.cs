@@ -26,7 +26,7 @@ namespace LocadoraDeVeiculos.Dominio.VeiculoModule
         public GrupoVeiculo GrupoVeiculo { get; set; }
         public virtual int IdGrupoVeiculo { get; set; }
         
-        public Locacao Locacao { get; set; }
+        public ICollection<Locacao> Locacoes { get; set; }
 
 
         public Veiculo(string nome, string numero_Placa, string numero_Chassi, byte[] foto, string cor,
@@ -48,6 +48,7 @@ namespace LocadoraDeVeiculos.Dominio.VeiculoModule
             this.TipoCombustivel = tipo_Combustivel;
             this.DisponibilidadeVeiculo = disponibilidade_Veiculo;
             this.GrupoVeiculo = grupoVeiculo;
+            Locacoes = new HashSet<Locacao>();
 
         }
 

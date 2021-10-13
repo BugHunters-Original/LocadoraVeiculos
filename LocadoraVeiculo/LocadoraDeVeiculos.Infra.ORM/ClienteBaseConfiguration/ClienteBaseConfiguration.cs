@@ -19,6 +19,7 @@ namespace LocadoraDeVeiculos.Infra.ORM.ClienteBaseConfiguration
             builder.Property(e => e.Nome).HasColumnType("VARCHAR(100)").IsRequired();
 
             builder.Property(e => e.Telefone).HasColumnType("VARCHAR(15)").IsRequired();
+
         }
     }
 }
