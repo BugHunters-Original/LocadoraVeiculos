@@ -43,8 +43,6 @@ namespace LocadoraDeVeiculos.Infra.ORM.TaxaDaLocacaoModule
 
                 contexto.SaveChanges();
 
-                contexto.ChangeTracker.Clear();
-
                 Log.Logger.Information("SUCESSO AO REMOVER TAXA ID: {Id}  ", id);
 
                 return true;

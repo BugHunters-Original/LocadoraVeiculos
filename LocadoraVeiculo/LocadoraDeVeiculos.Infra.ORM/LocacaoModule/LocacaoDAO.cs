@@ -174,8 +174,6 @@ namespace LocadoraDeVeiculos.Infra.ORM.LocacaoModule
 
                 contexto.SaveChanges();
 
-                contexto.ChangeTracker.Clear();
-
                 Log.Logger.Information("SUCESSO AO INICIAR LOCAÇÃO ID: {Id}  ", locacao.Id);
             }
             catch (Exception ex)

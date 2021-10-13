@@ -96,9 +96,21 @@ namespace LocadoraVeiculo.WindowsApp
 
             AtualizarRodape(configuracao.TipoCadastro);
 
-            operacoes = new OperacoesLocacao(locacaoService, cpfService, veiculoService, cnpjService, descontoService);
+            operacoes = GetOperacoesLocacao();
 
             ConfigurarPainelRegistros();
+        }
+
+        private OperacoesLocacao GetOperacoesLocacao()
+        {
+            LocacaoContext contexto = new();
+            return new OperacoesLocacao(
+                   new LocacaoAppService(new LocacaoDAO(contexto), new EnviaEmail(), new MontaPdf(), new DescontoDAO(contexto), new VeiculoDAO(contexto), new TaxaDaLocacaoDAO(contexto)),
+                   new ClienteCPFAppService(new ClienteCPFDAO(contexto)),
+                   new VeiculoAppService(new VeiculoDAO(contexto)),
+                   new ClienteCNPJAppService(new ClienteCNPJDAO(contexto)),
+                   new DescontoAppService(new DescontoDAO(contexto)));
+                   
         }
 
         private void menuItemCliente_Click(object sender, EventArgs e)
@@ -109,9 +121,18 @@ namespace LocadoraVeiculo.WindowsApp
 
             AtualizarRodape(configuracao.TipoCadastro);
 
-            operacoes = new OperacoesCliente(cnpjService, cpfService, new FiltroCliente(cnpjRepository, cpfRepository));
+            operacoes = GetOperacoesCliente();
 
             ConfigurarPainelRegistros();
+        }
+
+        private OperacoesCliente GetOperacoesCliente()
+        {
+            LocacaoContext contexto = new();
+            return new OperacoesCliente(
+                   new ClienteCNPJAppService(new ClienteCNPJDAO(contexto)),
+                   new ClienteCPFAppService(new ClienteCPFDAO(contexto)),
+                   new FiltroCliente(new ClienteCNPJDAO(contexto), new ClienteCPFDAO(contexto)));
         }
 
         private void menuItemVeiculo_Click(object sender, EventArgs e)
@@ -122,9 +143,17 @@ namespace LocadoraVeiculo.WindowsApp
 
             AtualizarRodape(configuracao.TipoCadastro);
 
-            operacoes = new OperacoesVeiculo(veiculoService, grupoVeiculoService);
+            operacoes = GetOperacoesVeiculo();
 
             ConfigurarPainelRegistros();
+        }
+
+        private OperacoesVeiculo GetOperacoesVeiculo()
+        {
+            LocacaoContext contexto = new();
+            return new OperacoesVeiculo(
+                   new VeiculoAppService(new VeiculoDAO(contexto)),
+                   new GrupoVeiculoAppService(new GrupoVeiculoDAO(contexto)));
         }
 
         private void menuItemFuncionario_Click(object sender, EventArgs e)
@@ -135,9 +164,14 @@ namespace LocadoraVeiculo.WindowsApp
 
             AtualizarRodape(configuracao.TipoCadastro);
 
-            operacoes = new OperacoesFuncionario(funcionarioService);
+            operacoes = GetOperacoesFuncionario();
 
             ConfigurarPainelRegistros();
+        }
+
+        private OperacoesFuncionario GetOperacoesFuncionario()
+        {
+            return new OperacoesFuncionario(new FuncionarioAppService(new FuncionarioDAO(new LocacaoContext())));
         }
 
         private void parceirosToolStripMenuItem_Click(object sender, EventArgs e)
@@ -166,9 +200,14 @@ namespace LocadoraVeiculo.WindowsApp
 
             AtualizarRodape(configuracao.TipoCadastro);
 
-            operacoes = new OperacoesGrupoVeiculo(grupoVeiculoService);
+            operacoes = GetOperacoesGrupoDeVeiculos();
 
             ConfigurarPainelRegistros();
+        }
+
+        private OperacoesGrupoVeiculo GetOperacoesGrupoDeVeiculos()
+        {
+            return new OperacoesGrupoVeiculo(new GrupoVeiculoAppService(new GrupoVeiculoDAO(new LocacaoContext())));
         }
 
         private void taxasEServiçosToolStripMenuItem_Click(object sender, EventArgs e)
@@ -179,9 +218,14 @@ namespace LocadoraVeiculo.WindowsApp
 
             AtualizarRodape(configuracao.TipoCadastro);
 
-            operacoes = new OperacoesServico(servicoService);
+            operacoes = GetOperacoesTaxasEServicos();
 
             ConfigurarPainelRegistros();
+        }
+
+        private OperacoesServico GetOperacoesTaxasEServicos()
+        {
+            return new OperacoesServico(new ServicoAppService(new ServicoDAO(new LocacaoContext())));
         }
 
         private void descontosToolStripMenuItem_Click(object sender, EventArgs e)
@@ -199,12 +243,12 @@ namespace LocadoraVeiculo.WindowsApp
 
         private OperacoesDesconto GetOperacoesDesconto()
         {
-            return null;
-            //LocacaoContext contexto = new();
-            //return new OperacoesDesconto(
-            //       new DescontoAppService(new DescontoDAO(contexto)),
-            //       new ParceiroAppService(new ParceiroDAO(contexto)),
-            //       new LocacaoAppService(new LocacaoDAO(contexto), );
+            LocacaoContext contexto = new();
+            return new OperacoesDesconto(
+                   new DescontoAppService(new DescontoDAO(contexto)),
+                   new ParceiroAppService(new ParceiroDAO(contexto)),
+                   new LocacaoAppService(new LocacaoDAO(contexto), new EnviaEmail(), new MontaPdf(), new DescontoDAO(contexto), new VeiculoDAO(contexto), new TaxaDaLocacaoDAO(contexto)));
+
         }
 
         private void preçosCombustívelToolStripMenuItem_Click(object sender, EventArgs e)

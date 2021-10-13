@@ -47,7 +47,9 @@ namespace LocadoraDeVeiculos.Infra.ORM.VeiculoModule
             try
             {
                 veiculo.DisponibilidadeVeiculo = 1;
+
                 Editar(veiculo);
+
                 Log.Logger.Information("SUCESSO AO EDITAR DISPONILIDADE DO VEÍCULO ID: {Id}  ", veiculo.Id);
 
             }
@@ -64,8 +66,11 @@ namespace LocadoraDeVeiculos.Infra.ORM.VeiculoModule
             try
             {
                 atual.DisponibilidadeVeiculo = 0;
+
                 antigo.DisponibilidadeVeiculo = 1;
+
                 Editar(atual);
+
                 Editar(antigo);
                 
                 Log.Logger.Information("SUCESSO AO EDITAR DISPONIBILIDADE DO VEÍCULO ANTIGO ID: {Id} E DISPONIBILIDADE DO VEÍCULO ATUAL ID: {Id}  ", antigo.Id, atual.Id);
@@ -85,6 +90,7 @@ namespace LocadoraDeVeiculos.Infra.ORM.VeiculoModule
             try
             {
                 veiculo.DisponibilidadeVeiculo = 0;
+
                 Editar(veiculo);
 
                 Log.Logger.Information("SUCESSO AO EDITAR DISPONILIDADE DO VEÍCULO ID: {Id}  ", veiculo.Id);
@@ -103,7 +109,8 @@ namespace LocadoraDeVeiculos.Infra.ORM.VeiculoModule
             try
             {
                 
-                int alugados = contexto.Veiculos.Where(veiculo => veiculo.DisponibilidadeVeiculo == 0).Count();
+                int alugados = contexto.Veiculos.Where(veiculo => veiculo.DisponibilidadeVeiculo == 0).AsNoTracking().Count();
+                
                 if (alugados > 0)
                     Log.Logger.Debug("SUCESSO AO RETORNAR QUANTIDADE DE VEÍCULOS ALUGADOS  ");
 
@@ -125,7 +132,7 @@ namespace LocadoraDeVeiculos.Infra.ORM.VeiculoModule
         {
             try
             {
-                int disponiveis = contexto.Veiculos.Where(veiculo => veiculo.DisponibilidadeVeiculo == 1).Count(); ;
+                int disponiveis = contexto.Veiculos.Where(veiculo => veiculo.DisponibilidadeVeiculo == 1).AsNoTracking().Count(); ;
 
                 if (disponiveis > 0)
                     Log.Logger.Debug("SUCESSO AO RETORNAR QUANTIDADE DE VEÍCULOS DISPONÍVEIS  ");
@@ -148,7 +155,7 @@ namespace LocadoraDeVeiculos.Infra.ORM.VeiculoModule
         {
             try
             {
-                List<Veiculo> veiculos = contexto.Veiculos.Where(veiculo => veiculo.DisponibilidadeVeiculo == 0).Include(x => x.GrupoVeiculo).ToList();
+                List<Veiculo> veiculos = contexto.Veiculos.Where(veiculo => veiculo.DisponibilidadeVeiculo == 0).Include(x => x.GrupoVeiculo).AsNoTracking().ToList();
 
                 if (veiculos != null)
                     Log.Logger.Debug("SUCESSO AO SELECIONAR TODOS OS VEÍCULOS ALUGADOS  ");
@@ -172,7 +179,7 @@ namespace LocadoraDeVeiculos.Infra.ORM.VeiculoModule
         {
             try
             {
-                List<Veiculo> veiculos = contexto.Veiculos.Where(veiculo=>veiculo.DisponibilidadeVeiculo == 1).Include(x=>x.GrupoVeiculo).ToList();
+                List<Veiculo> veiculos = contexto.Veiculos.Where(veiculo=>veiculo.DisponibilidadeVeiculo == 1).AsNoTracking().Include(x=>x.GrupoVeiculo).ToList();
 
                 if (veiculos != null)
                     Log.Logger.Debug("SUCESSO AO SELECIONAR TODOS OS VEÍCULOS DISPONÍVEIS  ");
