@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace LocadoraDeVeiculos.Infra.ORM.Migrations
 {
-    public partial class orm_locacao : Migration
+    public partial class orm_banco : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -301,16 +301,12 @@ namespace LocadoraDeVeiculos.Infra.ORM.Migrations
             migrationBuilder.CreateIndex(
                 name: "IX_TBLocacoes_IdDesconto",
                 table: "TBLocacoes",
-                column: "IdDesconto",
-                unique: true,
-                filter: "[IdDesconto] IS NOT NULL");
+                column: "IdDesconto");
 
             migrationBuilder.CreateIndex(
                 name: "IX_TBLocacoes_IdVeiculo",
                 table: "TBLocacoes",
-                column: "IdVeiculo",
-                unique: true,
-                filter: "[IdVeiculo] IS NOT NULL");
+                column: "IdVeiculo");
 
             migrationBuilder.CreateIndex(
                 name: "IX_TBServicos_LocacaoId",

@@ -19,9 +19,9 @@ namespace LocadoraDeVeiculos.Infra.ORM.LocacaoModule
 
             builder.HasOne(x => x.Cliente).WithMany(x => x.Locacoes).HasForeignKey(x => x.IdCliente);
 
-            builder.HasOne(x => x.Veiculo).WithOne(x => x.Locacao).HasForeignKey<Locacao>(x => x.IdVeiculo);
+            builder.HasOne(x => x.Veiculo).WithMany(x => x.Locacoes).HasForeignKey(x => x.IdVeiculo);
 
-            builder.HasOne(x => x.Desconto).WithOne(x => x.Locacao).HasForeignKey<Locacao>(x => x.IdDesconto);
+            builder.HasOne(x => x.Desconto).WithMany(x => x.Locacoes).HasForeignKey(x => x.IdDesconto);
 
             builder.HasOne(x => x.Condutor).WithOne(x => x.Locacao).HasForeignKey<Locacao>(x => x.IdCondutor);
 

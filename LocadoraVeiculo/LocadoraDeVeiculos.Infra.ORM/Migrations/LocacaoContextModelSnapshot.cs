@@ -218,13 +218,9 @@ namespace LocadoraDeVeiculos.Infra.ORM.Migrations
                         .IsUnique()
                         .HasFilter("[IdCondutor] IS NOT NULL");
 
-                    b.HasIndex("IdDesconto")
-                        .IsUnique()
-                        .HasFilter("[IdDesconto] IS NOT NULL");
+                    b.HasIndex("IdDesconto");
 
-                    b.HasIndex("IdVeiculo")
-                        .IsUnique()
-                        .HasFilter("[IdVeiculo] IS NOT NULL");
+                    b.HasIndex("IdVeiculo");
 
                     b.ToTable("TBLocacoes");
                 });
@@ -421,12 +417,12 @@ namespace LocadoraDeVeiculos.Infra.ORM.Migrations
                         .HasForeignKey("LocadoraDeVeiculos.Dominio.LocacaoModule.Locacao", "IdCondutor");
 
                     b.HasOne("LocadoraDeVeiculos.Dominio.DescontoModule.Desconto", "Desconto")
-                        .WithOne("Locacao")
-                        .HasForeignKey("LocadoraDeVeiculos.Dominio.LocacaoModule.Locacao", "IdDesconto");
+                        .WithMany("Locacoes")
+                        .HasForeignKey("IdDesconto");
 
                     b.HasOne("LocadoraDeVeiculos.Dominio.VeiculoModule.Veiculo", "Veiculo")
-                        .WithOne("Locacao")
-                        .HasForeignKey("LocadoraDeVeiculos.Dominio.LocacaoModule.Locacao", "IdVeiculo");
+                        .WithMany("Locacoes")
+                        .HasForeignKey("IdVeiculo");
 
                     b.Navigation("Cliente");
 
@@ -505,7 +501,7 @@ namespace LocadoraDeVeiculos.Infra.ORM.Migrations
 
             modelBuilder.Entity("LocadoraDeVeiculos.Dominio.DescontoModule.Desconto", b =>
                 {
-                    b.Navigation("Locacao");
+                    b.Navigation("Locacoes");
                 });
 
             modelBuilder.Entity("LocadoraDeVeiculos.Dominio.GrupoVeiculoModule.GrupoVeiculo", b =>
@@ -532,7 +528,7 @@ namespace LocadoraDeVeiculos.Infra.ORM.Migrations
 
             modelBuilder.Entity("LocadoraDeVeiculos.Dominio.VeiculoModule.Veiculo", b =>
                 {
-                    b.Navigation("Locacao");
+                    b.Navigation("Locacoes");
                 });
 
             modelBuilder.Entity("LocadoraDeVeiculos.Dominio.ClienteModule.ClienteCNPJModule.ClienteCNPJ", b =>

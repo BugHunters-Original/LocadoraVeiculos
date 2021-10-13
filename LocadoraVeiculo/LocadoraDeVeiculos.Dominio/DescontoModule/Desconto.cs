@@ -40,7 +40,7 @@ namespace LocadoraDeVeiculos.Dominio.DescontoModule
         public int IdParceiro { get; set; }
         public string Meio { get; set; }
         public int Usos { get; set; }
-        public Locacao Locacao { get; set; }
+        public ICollection<Locacao> Locacoes { get; set; }
         public override string ToString()
         {
             return Nome;
