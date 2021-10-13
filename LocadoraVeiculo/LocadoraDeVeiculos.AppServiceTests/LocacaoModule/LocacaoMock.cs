@@ -1,6 +1,7 @@
 ﻿using LocadoraDeVeiculos.Aplicacao.LocacaoModule;
 using LocadoraDeVeiculos.Dominio.DescontoModule;
 using LocadoraDeVeiculos.Dominio.LocacaoModule;
+using LocadoraDeVeiculos.Dominio.TaxaDaLocacaoModule;
 using LocadoraDeVeiculos.Dominio.VeiculoModule;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
@@ -17,6 +18,7 @@ namespace LocadoraDeVeiculos.AppServiceTests.LocacaoModule
         Mock<IVeiculoRepository> veiculoRepo;
         Mock<IDescontoRepository> descontoRepo;
         Mock<ILocacaoRepository> locacaoRepo;
+        Mock<ITaxaRepository> taxaRepo;
         LocacaoAppService locacaoService;
         public LocacaoMock()
         {
@@ -33,7 +35,7 @@ namespace LocadoraDeVeiculos.AppServiceTests.LocacaoModule
             locacaoRepo = new();
 
             locacaoService = new(locacaoRepo.Object, emailRepo.Object,
-                                 pdfRepo.Object, descontoRepo.Object, veiculoRepo.Object);
+                                 pdfRepo.Object, descontoRepo.Object, veiculoRepo.Object, taxaRepo.Object);
         }
 
         [TestMethod]
@@ -87,7 +89,7 @@ namespace LocadoraDeVeiculos.AppServiceTests.LocacaoModule
         {
             locacaoObj.Setup(x => x.Validar()).Returns("ESTA_VALIDO");
 
-            locacaoService.ConcluirLocacao(0, locacaoObj.Object);
+            locacaoService.ConcluirLocacao(locacaoObj.Object);
 
             veiculoRepo.Verify(x => x.DevolverVeiculo(It.IsAny<Veiculo>()));
         }
@@ -96,7 +98,7 @@ namespace LocadoraDeVeiculos.AppServiceTests.LocacaoModule
         {
             locacaoObj.Setup(x => x.Validar()).Returns("ESTA_VALIDO");
 
-            locacaoService.ConcluirLocacao(0, locacaoObj.Object);
+            locacaoService.ConcluirLocacao(locacaoObj.Object);
 
             veiculoRepo.Verify(x => x.AtualizarQuilometragem(It.IsAny<Veiculo>()));
         }

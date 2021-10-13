@@ -24,9 +24,11 @@ namespace LocadoraDeVeiculos.Infra.ORM.Shared
             {
                 registros.Add(registro);
 
+                var a = contexto.ChangeTracker.DebugView.LongView;
+
                 contexto.SaveChanges();
 
-                contexto.ChangeTracker.Clear();
+                a = contexto.ChangeTracker.DebugView.LongView;
 
                 Log.Logger.Information("SUCESSO AO INSERIR {Dominio} ID: {Id}  ", registro.GetType().Name, registro.Id);
 
@@ -37,7 +39,7 @@ namespace LocadoraDeVeiculos.Infra.ORM.Shared
                 contexto.ChangeTracker.Clear();
 
                 Log.Logger.Error(ex, "$ERRO AO INSERIR {Dominio} ID: {Id}  ", registro.GetType().Name, registro.Id);
-                
+
                 return false;
             }
         }
@@ -49,10 +51,8 @@ namespace LocadoraDeVeiculos.Infra.ORM.Shared
 
                 contexto.SaveChanges();
 
-                contexto.ChangeTracker.Clear();
-
                 Log.Logger.Information("SUCESSO AO EDITAR {Dominio} ID: {Id}  ", registro.GetType().Name, registro.Id);
-          
+
                 return true;
             }
             catch (Exception ex)
@@ -60,7 +60,7 @@ namespace LocadoraDeVeiculos.Infra.ORM.Shared
                 contexto.ChangeTracker.Clear();
 
                 Log.Logger.Error(ex, "ERRO AO EDITAR {Dominio} ID: {Id}  ", registro.GetType().Name, registro.Id);
-                
+
                 return false;
             }
         }
@@ -72,25 +72,23 @@ namespace LocadoraDeVeiculos.Infra.ORM.Shared
 
                 contexto.SaveChanges();
 
-                contexto.ChangeTracker.Clear();
-
                 Log.Logger.Information("SUCESSO AO REMOVER {Dominio} ID: {Id}  ", registro.GetType().Name, registro.Id);
-                
+
                 return true;
             }
             catch (Exception ex)
             {
                 contexto.ChangeTracker.Clear();
 
-                Log.Logger.Error(ex, "ERRO AO REMOVER {Dominio} ID: {Id}  ",registro.GetType().Name, registro.Id);
-                
+                Log.Logger.Error(ex, "ERRO AO REMOVER {Dominio} ID: {Id}  ", registro.GetType().Name, registro.Id);
+
                 return false;
             }
         }
 
         public virtual bool Existe(int id)
         {
-            return registros.AsNoTracking().ToList().Exists(x=>x.Id == id);
+            return registros.AsNoTracking().ToList().Exists(x => x.Id == id);
         }
 
         public virtual List<T> GetAll()

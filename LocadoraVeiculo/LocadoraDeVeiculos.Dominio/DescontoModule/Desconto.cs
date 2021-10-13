@@ -23,6 +23,7 @@ namespace LocadoraDeVeiculos.Dominio.DescontoModule
             Meio = meio;
             ValorMinimo = valorMinimo;
             Usos = usos;
+            Locacoes = new HashSet<Locacao>();
         }
 
         public Desconto()

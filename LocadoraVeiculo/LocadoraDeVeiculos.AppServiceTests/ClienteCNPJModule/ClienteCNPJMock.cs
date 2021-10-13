@@ -3,6 +3,7 @@ using LocadoraDeVeiculos.Aplicacao.ClienteCNPJModule;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using FluentAssertions;
 using Moq;
+using LocadoraDeVeiculos.Infra.LogManager;
 
 namespace LocadoraDeVeiculos.AppServiceTests.ClienteCNPJModule
 {
@@ -11,6 +12,7 @@ namespace LocadoraDeVeiculos.AppServiceTests.ClienteCNPJModule
     {
         public ClienteCNPJMock()
         {
+            Log.IniciarLog();
         }
         [TestMethod]
         public void Deve_chamar_inserir()
@@ -54,9 +56,9 @@ namespace LocadoraDeVeiculos.AppServiceTests.ClienteCNPJModule
 
             ClienteCNPJAppService clienteCNPJService = new(clienteMock.Object);
 
-            clienteCNPJService.EditarClienteCNPJ(cliente.Id, cliente);
+            clienteCNPJService.EditarClienteCNPJ(cliente);
 
-            clienteMock.Verify(x => x.Editar(cliente.Id, cliente));
+            clienteMock.Verify(x => x.Editar(cliente));
         }
 
         [TestMethod]
@@ -71,7 +73,7 @@ namespace LocadoraDeVeiculos.AppServiceTests.ClienteCNPJModule
 
             ClienteCNPJAppService clienteCNPJService = new(clienteMock.Object);
 
-            var editou = clienteCNPJService.EditarClienteCNPJ(cliente.Id, cliente);
+            var editou = clienteCNPJService.EditarClienteCNPJ(cliente);
 
             editou.Should().BeFalse();
         }

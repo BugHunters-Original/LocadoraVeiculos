@@ -55,9 +55,9 @@ namespace LocadoraDeVeiculos.AppServiceTests.FuncionarioModule
 
             FuncionarioAppService funcionarioService = new(funcionarioMock.Object);
 
-            funcionarioService.EditarFuncionario(funcionario.Object.Id, funcionario.Object);
+            funcionarioService.EditarFuncionario(funcionario.Object);
 
-            funcionarioMock.Verify(x => x.Editar(funcionario.Object.Id, funcionario.Object));
+            funcionarioMock.Verify(x => x.Editar(funcionario.Object));
         }
 
         [TestMethod]
@@ -71,7 +71,7 @@ namespace LocadoraDeVeiculos.AppServiceTests.FuncionarioModule
 
             FuncionarioAppService funcionarioService = new(funcionarioMock.Object);
 
-            var inseriu = funcionarioService.EditarFuncionario(funcionario.Object.Id, funcionario.Object);
+            var inseriu = funcionarioService.EditarFuncionario(funcionario.Object);
 
             inseriu.Should().BeFalse();
         }

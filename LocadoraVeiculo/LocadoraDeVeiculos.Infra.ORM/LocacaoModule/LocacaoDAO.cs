@@ -29,32 +29,30 @@ namespace LocadoraDeVeiculos.Infra.ORM.LocacaoModule
                 contexto.Entry(registro.Desconto).State = EntityState.Unchanged;
 
             if (registro.Servicos != null)
-                foreach (var item in registro.Servicos)
-                    contexto.Entry(item).State = EntityState.Unchanged;
-
-            if (registro.TaxasDaLocacao != null)
-                contexto.Entry(registro.TaxasDaLocacao).State = EntityState.Unchanged;
+                registro.Servicos.ForEach(x => contexto.Entry(x).State = EntityState.Unchanged);
 
             return base.Inserir(registro);
         }
         public override List<Locacao> GetAll()
         {
-            return registros.AsNoTracking().
+            return registros.
                    Include(x => x.Cliente).
                    Include(x => x.Veiculo).
                    ThenInclude(x => x.GrupoVeiculo).
                    Include(x => x.Desconto).
                    Include(x => x.Condutor).
+                   AsNoTracking().
                    ToList();
         }
         public override Locacao GetById(int id)
         {
-            return registros.AsNoTracking().
+            return registros.
                    Include(x => x.Cliente).
                    Include(x => x.Veiculo).
                    ThenInclude(x => x.GrupoVeiculo).
                    Include(x => x.Desconto).
                    Include(x => x.Condutor).
+                   AsNoTracking().
                    SingleOrDefault(x => x.Id == id);
         }
 
@@ -62,8 +60,9 @@ namespace LocadoraDeVeiculos.Infra.ORM.LocacaoModule
         {
             try
             {
-                int qtdLocacoesComCupom = registros.AsNoTracking().
+                int qtdLocacoesComCupom = registros.
                                           Where(x => x.Desconto.Codigo == cupom).
+                                          AsNoTracking().
                                           Count();
 
                 if (qtdLocacoesComCupom == 0)
@@ -86,8 +85,9 @@ namespace LocadoraDeVeiculos.Infra.ORM.LocacaoModule
         {
             try
             {
-                int qtdLocacoesPendentes = registros.AsNoTracking().
+                int qtdLocacoesPendentes = registros.
                                            Where(x => x.StatusLocacao == "Concluída").
+                                           AsNoTracking().
                                            Count();
 
                 if (qtdLocacoesPendentes == 0)
@@ -110,13 +110,14 @@ namespace LocadoraDeVeiculos.Infra.ORM.LocacaoModule
         {
             try
             {
-                List<Locacao> locacoes = registros.AsNoTracking().
+                List<Locacao> locacoes = registros.
                                            Include(x => x.Cliente).
                                            Include(x => x.Veiculo).
                                            ThenInclude(x => x.GrupoVeiculo).
                                            Include(x => x.Desconto).
                                            Include(x => x.Condutor).
                                            Where(x => x.StatusLocacao == "Concluída").
+                                           AsNoTracking().
                                            ToList();
 
                 if (locacoes.Count != 0)
@@ -138,13 +139,14 @@ namespace LocadoraDeVeiculos.Infra.ORM.LocacaoModule
         {
             try
             {
-                List<Locacao> locacoes = registros.AsNoTracking().
+                List<Locacao> locacoes = registros.
                                            Include(x => x.Cliente).
                                            Include(x => x.Veiculo).
                                            ThenInclude(x => x.GrupoVeiculo).
                                            Include(x => x.Desconto).
                                            Include(x => x.Condutor).
                                            Where(x => x.StatusLocacao == "Em Aberto").
+                                           AsNoTracking().
                                            ToList();
 
                 if (locacoes.Count != 0)

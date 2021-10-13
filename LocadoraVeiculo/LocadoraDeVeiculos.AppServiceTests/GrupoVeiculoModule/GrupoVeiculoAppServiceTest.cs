@@ -18,12 +18,12 @@ namespace LocadoraDeVeiculos.AppServiceTests.GrupoVeiculoModule
             GrupoVeiculo grupoVeiculo = new("SUV", 40m, 5m, 50m, 30m, 40m, 10m);
 
             Mock<IGrupoVeiculoRepository> grupoVeiculoMock = new();
-            grupoVeiculoMock.Setup(x => x.Excluir(grupoVeiculo.Id)).Returns(true);
+            grupoVeiculoMock.Setup(x => x.Excluir(grupoVeiculo)).Returns(true);
 
 
             GrupoVeiculoAppService grupoVeiculoService = new(grupoVeiculoMock.Object);
 
-            var resultado = grupoVeiculoService.ExcluirGrupoVeiculo(grupoVeiculo.Id);
+            var resultado = grupoVeiculoService.ExcluirGrupoVeiculo(grupoVeiculo);
             resultado.Should().BeTrue();
 
 
@@ -74,9 +74,9 @@ namespace LocadoraDeVeiculos.AppServiceTests.GrupoVeiculoModule
 
             GrupoVeiculoAppService grupoVeiculoService = new(grupoVeiculoMock.Object);
 
-            grupoVeiculoService.EditarNovoGrupoVeiculo(grupoVeiculo.Id, grupoVeiculoEditado);
+            grupoVeiculoService.EditarNovoGrupoVeiculo(grupoVeiculoEditado);
 
-            grupoVeiculoMock.Verify(x => x.Editar(grupoVeiculo.Id, grupoVeiculoEditado));
+            grupoVeiculoMock.Verify(x => x.Editar(grupoVeiculoEditado));
         }
 
         [TestMethod]
@@ -91,9 +91,9 @@ namespace LocadoraDeVeiculos.AppServiceTests.GrupoVeiculoModule
 
             GrupoVeiculoAppService grupoVeiculoService = new(grupoVeiculoMock.Object);
 
-            grupoVeiculoService.EditarNovoGrupoVeiculo(grupoVeiculo.Object.Id, grupoVeiculoEditado.Object);
+            grupoVeiculoService.EditarNovoGrupoVeiculo(grupoVeiculoEditado.Object);
 
-            grupoVeiculoMock.Verify(x => x.Editar(grupoVeiculo.Object.Id, grupoVeiculoEditado.Object), Times.Never);
+            grupoVeiculoMock.Verify(x => x.Editar(grupoVeiculoEditado.Object), Times.Never);
         }
     }
 }

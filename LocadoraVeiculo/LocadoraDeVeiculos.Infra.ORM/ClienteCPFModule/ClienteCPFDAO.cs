@@ -28,12 +28,12 @@ namespace LocadoraDeVeiculos.Infra.ORM.ClienteCPFModule
 
         public override List<ClienteCPF> GetAll()
         {
-            return registros.AsNoTracking().Include(x => x.Cliente).ToList();
+            return registros.Include(x => x.Cliente).AsNoTracking().ToList();
         }
 
         public override ClienteCPF GetById(int id)
         {
-            return registros.AsNoTracking().Include(x => x.Cliente).SingleOrDefault(x => x.Id == id);
+            return registros.Include(x => x.Cliente).AsNoTracking().SingleOrDefault(x => x.Id == id);
         }
 
         public bool ExisteCPF(string cpf)
@@ -43,7 +43,7 @@ namespace LocadoraDeVeiculos.Infra.ORM.ClienteCPFModule
 
         public List<ClienteCPF> SelecionarPorIdEmpresa(int id)
         {
-            return registros.AsNoTracking().Include(x => x.Cliente).Where(x => x.Cliente.Id == id).ToList();
+            return registros.Include(x => x.Cliente).Where(x => x.Cliente.Id == id).AsNoTracking().ToList();
         }
     }
 }
