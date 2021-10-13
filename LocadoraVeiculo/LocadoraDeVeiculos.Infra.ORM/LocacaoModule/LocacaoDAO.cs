@@ -88,7 +88,7 @@ namespace LocadoraDeVeiculos.Infra.ORM.LocacaoModule
             try
             {
                 int qtdLocacoesPendentes = registros.
-                                           Where(x => x.StatusLocacao == "Concluída").
+                                           Where(x => x.StatusLocacao == "Em Aberto").
                                            AsNoTracking().
                                            Count();
 
@@ -175,8 +175,6 @@ namespace LocadoraDeVeiculos.Infra.ORM.LocacaoModule
                 contexto.Locacoes.Update(locacao);
 
                 contexto.SaveChanges();
-
-                contexto.ChangeTracker.Clear();
 
                 Log.Logger.Information("SUCESSO AO INICIAR LOCAÇÃO ID: {Id}  ", locacao.Id);
             }
