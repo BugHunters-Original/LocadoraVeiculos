@@ -62,7 +62,7 @@ namespace LocadoraVeiculo.WindowsApp
         public static ClienteCNPJAppService cnpjService = new(cnpjRepository);
         public static ClienteCPFAppService cpfService = new(cpfRepository);
         public static GrupoVeiculoAppService grupoVeiculoService = new(grupoVeiculoRepository);
-        public static LocacaoAppService locacaoService = new(locacaoRepository, email, pdf, descontoRepository, veiculoRepository);
+        public static LocacaoAppService locacaoService = new(locacaoRepository, email, pdf, descontoRepository, veiculoRepository, taxaRepository);
         public static VeiculoAppService veiculoService = new(veiculoRepository);
         public static FuncionarioAppService funcionarioService = new(funcionarioRepository);
         public static ServicoAppService servicoService = new(servicoRepository);

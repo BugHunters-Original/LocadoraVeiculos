@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using LocadoraDeVeiculos.Dominio.VeiculoModule;
 using LocadoraDeVeiculos.Infra.ExtensionMethods;
 using LocadoraDeVeiculos.Infra.LogManager;
+using LocadoraDeVeiculos.Dominio.TaxaDaLocacaoModule;
 
 namespace LocadoraDeVeiculos.Aplicacao.LocacaoModule
 {
@@ -13,15 +14,17 @@ namespace LocadoraDeVeiculos.Aplicacao.LocacaoModule
         private readonly ILocacaoRepository locacaoRepo;
         private readonly IDescontoRepository descontoRepo;
         private readonly IVeiculoRepository veiculoRepo;
+        private readonly ITaxaRepository taxaDaLocacaoRepo;
         private readonly IEmail email;
         private readonly IPDF pdf;
-        public LocacaoAppService(ILocacaoRepository locacaoRepo,IEmail email,
+        public LocacaoAppService(ILocacaoRepository locacaoRepo, IEmail email,
                                  IPDF pdf, IDescontoRepository descontoRepo,
-                                 IVeiculoRepository veiculoRepo)
+                                 IVeiculoRepository veiculoRepo, ITaxaRepository taxaDaLocacaoRepo)
         {
             this.veiculoRepo = veiculoRepo;
             this.locacaoRepo = locacaoRepo;
             this.descontoRepo = descontoRepo;
+            this.taxaDaLocacaoRepo = taxaDaLocacaoRepo;
             this.email = email;
             this.pdf = pdf;
         }
@@ -36,6 +39,9 @@ namespace LocadoraDeVeiculos.Aplicacao.LocacaoModule
                 locacaoRepo.Inserir(locacao);
 
                 locacaoRepo.AbrirLocacao(locacao);
+
+                if (locacao.Servicos != null)
+                    locacao.Servicos.ForEach(x => taxaDaLocacaoRepo.Inserir(new TaxaDaLocacao(x, locacao)));
 
                 Log.Logger.Aqui().Debug("LOCAÇÃO {Locacao} REGISTRADA COM SUCESSO", locacao.ToString());
 
@@ -87,6 +93,11 @@ namespace LocadoraDeVeiculos.Aplicacao.LocacaoModule
             {
                 locacaoRepo.Editar(locacao);
 
+                taxaDaLocacaoRepo.ExcluirTaxa(locacao.Id);
+
+                if (locacao.Servicos != null)
+                    locacao.Servicos.ForEach(x => taxaDaLocacaoRepo.Inserir(new TaxaDaLocacao(x, locacao)));
+
                 Log.Logger.Aqui().Debug("LOCAÇÃO {Locacao} EDITADA COM SUCESSO", locacao.ToString());
             }
             else
@@ -99,7 +110,11 @@ namespace LocadoraDeVeiculos.Aplicacao.LocacaoModule
         {
             Log.Logger.Aqui().Debug("REMOVENDO LOCAÇÃO {Id}", locacao);
 
+            locacaoRepo.ConcluirLocacao(locacao);
+
             veiculoRepo.DevolverVeiculo(locacao.Veiculo);
+
+            taxaDaLocacaoRepo.ExcluirTaxa(locacao.Id);
 
             var excluiu = locacaoRepo.Excluir(locacao);
 
