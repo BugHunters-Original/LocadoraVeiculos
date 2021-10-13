@@ -88,6 +88,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.FuncionarioFeature
         {
 
             funcionario.Nome = text_NomeFuncionario.Text;
+            funcionario.CpfFuncionario = text_CPFFuncionario.Text;
             funcionario.Usuario = text_UsuarioFuncionario.Text;
             funcionario.Senha = text_SenhaFuncionario.Text;
             funcionario.Salario = text_salarioFuncionario.Text == "" ? 0 : Convert.ToDecimal(text_salarioFuncionario.Text);
