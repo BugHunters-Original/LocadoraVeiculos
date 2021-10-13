@@ -86,7 +86,7 @@ namespace LocadoraDeVeiculos.Infra.ORM.LocacaoModule
             try
             {
                 int qtdLocacoesPendentes = registros.
-                                           Where(x => x.StatusLocacao == "Concluída").
+                                           Where(x => x.StatusLocacao == "Em Aberto").
                                            AsNoTracking().
                                            Count();
 
