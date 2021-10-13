@@ -104,18 +104,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.LocacaoFeature
                     veiculoService.EditarDisponibilidadeVeiculo(tela.Locacao.Veiculo, locacaoSelecionada.Veiculo);
 
                 locacaoService.EditarLocacao(tela.Locacao);
-
-                taxaLocacaoService.ExcluirTaxa(locacaoSelecionada.Id);
-
-                if (tela.Servicos != null)
-                {
-                    foreach (var item in tela.Servicos)
-                    {
-                        TaxaDaLocacao taxaDaLocacao = new TaxaDaLocacao(item, tela.Locacao);
-                        taxaLocacaoService.Inserir(taxaDaLocacao);
-                    }
-                }
-
+               
                 List<Locacao> locacaoes = locacaoService.SelecionarTodasLocacoes();
 
                 tabelaLocacoes.AtualizarRegistros(locacaoes);
@@ -135,10 +124,6 @@ namespace LocadoraVeiculo.WindowsApp.Features.LocacaoFeature
             if (MessageBox.Show($"Tem certeza que deseja excluir a Locação: [{locacaoSelecionada}] ?",
                 "Exclusão de Locações", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK)
             {
-                locacaoService.ConcluirLocacao(locacaoSelecionada);
-
-                taxaLocacaoService.ExcluirTaxa(locacaoSelecionada.Id);
-
                 locacaoService.ExcluirLocacao(locacaoSelecionada);
 
                 List<Locacao> servicos = locacaoService.SelecionarTodasLocacoes();
@@ -184,16 +169,11 @@ namespace LocadoraVeiculo.WindowsApp.Features.LocacaoFeature
             {
                 locacaoService.RegistrarNovaLocacao(tela.Locacao);
 
-                if (tela.Servicos != null)
-                    foreach (var item in tela.Servicos)
-                        taxaLocacaoService.Inserir(new TaxaDaLocacao(item, tela.Locacao));
-
                 List<Locacao> locacaoes = locacaoService.SelecionarTodasLocacoes();
 
                 tabelaLocacoes.AtualizarRegistros(locacaoes);
 
                 TelaPrincipalForm.Instancia.AtualizarRodape($"Locação: [{tela.Locacao}] inserida com sucesso");
-
             }
         }
 
@@ -202,6 +182,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.LocacaoFeature
             List<Locacao> locacoes = locacaoService.SelecionarTodasLocacoes();
 
             tabelaLocacoes.AtualizarRegistros(locacoes);
+
             return tabelaLocacoes;
         }
 

@@ -14,12 +14,13 @@ namespace LocadoraVeiculo.WindowsApp.Features.TaxaServicoFeature
         {
             InitializeComponent();
             SetColor();
+            servico = new();
         }
 
         private void SetColor()
         {
             this.header_TaxaServico.BackColor = DarkMode.corHeader;
-            this.BackColor = DarkMode.corPanel; 
+            this.BackColor = DarkMode.corPanel;
             this.ForeColor = DarkMode.corFonte;
             txtID.BackColor = Color.DarkSeaGreen;
             txtNome.BackColor = DarkMode.corFundoTxBox;
@@ -51,17 +52,12 @@ namespace LocadoraVeiculo.WindowsApp.Features.TaxaServicoFeature
 
         private void btnGravar_Click(object sender, EventArgs e)
         {
-            string nome = txtNome.Text;
+            servico.Nome = txtNome.Text;
 
-            decimal? preco = null;
             if (!string.IsNullOrEmpty(txtPreco.Text))
-                preco = Convert.ToDecimal(txtPreco.Text);
+                servico.Preco = Convert.ToDecimal(txtPreco.Text);
 
-            int tipoCalculo = 0;
-            if (rdFixo.Checked == true)
-                tipoCalculo = 1;
-
-            servico = new Servico(nome, preco, tipoCalculo);
+            servico.TipoCalculo = rdFixo.Checked == true ? 1 : 0;
 
             string resultadoValidacao = servico.Validar();
 

@@ -2,6 +2,7 @@
 using LocadoraDeVeiculos.Infra.Context;
 using LocadoraDeVeiculos.Infra.LogManager;
 using LocadoraDeVeiculos.Infra.ORM.Shared;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,14 +17,36 @@ namespace LocadoraDeVeiculos.Infra.ORM.TaxaDaLocacaoModule
         {
 
         }
+        public override List<TaxaDaLocacao> GetAll()
+        {
+            return registros.Include(x => x.LocacaoEscolhida).Include(x => x.Servico).AsNoTracking().ToList();
+        }
+        public override TaxaDaLocacao GetById(int id)
+        {
+            return registros.Include(x => x.LocacaoEscolhida).Include(x => x.Servico).AsNoTracking().SingleOrDefault(x => x.Id == id);
+        }
+        public override bool Inserir(TaxaDaLocacao registro)
+        {
+            contexto.Entry(registro.Servico).State = EntityState.Unchanged;
+
+            contexto.Entry(registro.LocacaoEscolhida).State = EntityState.Unchanged;
+
+            return base.Inserir(registro);
+        }
         public bool ExcluirTaxa(int id)
         {
             try
             {
-                var taxasRelacionadasAoId = contexto.TaxasDaLocacao.Where(x => x.IdLocacao == id).ToList();
+                var taxasRelacionadasAoId = registros.Where(x => x.IdLocacao == id).AsNoTracking().ToList();
+
                 taxasRelacionadasAoId.ForEach(x => contexto.TaxasDaLocacao.Remove(x));
+
                 contexto.SaveChanges();
+
+                contexto.ChangeTracker.Clear();
+
                 Log.Logger.Information("SUCESSO AO REMOVER TAXA ID: {Id}  ", id);
+
                 return true;
             }
             catch (Exception ex)
@@ -37,7 +60,7 @@ namespace LocadoraDeVeiculos.Infra.ORM.TaxaDaLocacaoModule
         {
             try
             {
-                List<TaxaDaLocacao> taxa = contexto.TaxasDaLocacao.Where(x => x.IdLocacao == id).ToList();
+                List<TaxaDaLocacao> taxa = contexto.TaxasDaLocacao.Where(x => x.IdLocacao == id).AsNoTracking().ToList();
 
                 if (taxa != null)
                     Log.Logger.Debug("SUCESSO AO SELECIONAR TODAS AS TAXAS DE UMA LOCAÇÃO  ");
