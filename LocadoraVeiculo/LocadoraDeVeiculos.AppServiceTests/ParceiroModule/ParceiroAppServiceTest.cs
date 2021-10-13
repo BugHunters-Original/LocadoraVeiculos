@@ -21,7 +21,7 @@ namespace LocadoraDeVeiculos.AppServiceTests.ParceiroModule
         [TestMethod]
         public void Deve_Chamar_Inserir()
         {
-            //arrange
+            //arrange 
             Parceiro novoParceiro = parceiroMock.Object;
 
             parceiroMock.Setup(x => x.Validar()).Returns(() =>
