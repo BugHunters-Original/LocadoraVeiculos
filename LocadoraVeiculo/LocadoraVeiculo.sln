@@ -51,7 +51,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LocadoraDeVeiculos.Infra.Ex
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "4.5 Config Methods", "4.5 Config Methods", "{10FFA5E5-4BFE-46D9-A6D6-B6F092DB5FD0}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Shared", "Shared", "{B89FC8CC-5B78-4B1A-8E78-22B7E9BDAE1D}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "4.7 JSON", "4.7 JSON", "{B89FC8CC-5B78-4B1A-8E78-22B7E9BDAE1D}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LocadoraDeVeiculos.Infra.Shared", "LocadoraDeVeiculos.Infra.Shared\LocadoraDeVeiculos.Infra.Shared.csproj", "{E775AD2C-0760-4D44-8ECB-70602E2AD9B5}"
 EndProject

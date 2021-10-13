@@ -14,21 +14,9 @@ namespace LocadoraDeVeiculos.Infra.LogManager
 {
     public class NotificarErro 
     {
-        public static string emailSuporte;
-        public static string senhaSuporte;
-
-        public static void PegarChaves()
-        {
-            var config = Db.InitConfiguration();
-
-            emailSuporte = config.GetSection("emailSuporte").Value;
-            senhaSuporte = config.GetSection("senhaSuporte").Value;
-            
-        }
         
         public static bool EnviarEmailErro(Exception ex)
         {
-            PegarChaves();
             try
             {
                 using (SmtpClient smtp = new SmtpClient())
@@ -44,7 +32,7 @@ namespace LocadoraDeVeiculos.Infra.LogManager
 
                         //EMAIL
                         email.From = new MailAddress(Email.EmailLocadora);
-                        email.To.Add(emailSuporte);
+                        email.To.Add(Email.EmailLocadoraSuporte);
 
                         email.Subject = "BeeCar";
                         email.IsBodyHtml = false;
