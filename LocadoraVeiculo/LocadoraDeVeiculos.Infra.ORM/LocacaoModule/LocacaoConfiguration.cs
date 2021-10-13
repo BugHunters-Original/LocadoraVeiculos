@@ -15,6 +15,8 @@ namespace LocadoraDeVeiculos.Infra.ORM.LocacaoModule
         {
             builder.ToTable("TBLocacoes");
 
+            builder.Ignore(x => x.Servicos);
+
             builder.HasKey(x => x.Id);
 
             builder.HasOne(x => x.Cliente).WithMany(x => x.Locacoes).HasForeignKey(x => x.IdCliente);

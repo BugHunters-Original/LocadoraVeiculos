@@ -24,23 +24,31 @@
 
 
 
-GO
-CREATE UNIQUE NONCLUSTERED INDEX [IX_TBLocacoes_IdVeiculo]
-    ON [dbo].[TBLocacoes]([IdVeiculo] ASC) WHERE ([IdVeiculo] IS NOT NULL);
-
-
 
 
 GO
-CREATE UNIQUE NONCLUSTERED INDEX [IX_TBLocacoes_IdDesconto]
-    ON [dbo].[TBLocacoes]([IdDesconto] ASC) WHERE ([IdDesconto] IS NOT NULL);
+CREATE NONCLUSTERED INDEX [IX_TBLocacoes_IdVeiculo]
+    ON [dbo].[TBLocacoes]([IdVeiculo] ASC);
+
+
 
 
 
 
 GO
-CREATE UNIQUE NONCLUSTERED INDEX [IX_TBLocacoes_IdCondutor]
-    ON [dbo].[TBLocacoes]([IdCondutor] ASC) WHERE ([IdCondutor] IS NOT NULL);
+CREATE NONCLUSTERED INDEX [IX_TBLocacoes_IdDesconto]
+    ON [dbo].[TBLocacoes]([IdDesconto] ASC);
+
+
+
+
+
+
+GO
+CREATE NONCLUSTERED INDEX [IX_TBLocacoes_IdCondutor]
+    ON [dbo].[TBLocacoes]([IdCondutor] ASC);
+
+
 
 
 

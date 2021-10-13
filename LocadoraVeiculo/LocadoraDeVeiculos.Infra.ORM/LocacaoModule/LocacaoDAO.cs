@@ -21,8 +21,6 @@ namespace LocadoraDeVeiculos.Infra.ORM.LocacaoModule
         {
             contexto.Entry(registro.Cliente).State = EntityState.Unchanged;
 
-            contexto.Entry(registro).State = EntityState.Unchanged;
-
             contexto.Entry(registro.Condutor).State = EntityState.Unchanged;
 
             contexto.Entry(registro.Veiculo).State = EntityState.Unchanged;
@@ -172,9 +170,7 @@ namespace LocadoraDeVeiculos.Infra.ORM.LocacaoModule
             {
                 locacao.StatusLocacao = "Em Aberto";
 
-                contexto.Locacoes.Update(locacao);
-
-                contexto.SaveChanges();
+                Editar(locacao);
 
                 Log.Logger.Information("SUCESSO AO INICIAR LOCAÇÃO ID: {Id}  ", locacao.Id);
             }
@@ -190,11 +186,7 @@ namespace LocadoraDeVeiculos.Infra.ORM.LocacaoModule
             {
                 locacao.StatusLocacao = "Concluída";
 
-                contexto.Locacoes.Update(locacao);
-
-                contexto.SaveChanges();
-
-                contexto.ChangeTracker.Clear();
+                Editar(locacao);
 
                 Log.Logger.Information("SUCESSO AO CONCLUIR LOCAÇÃO ID: {Id}  ", locacao.Id);
             }

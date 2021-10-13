@@ -3,15 +3,14 @@
     [Nome]        VARCHAR (50) NOT NULL,
     [Preco]       FLOAT (53)   NOT NULL,
     [TipoCalculo] INT          NOT NULL,
-    [LocacaoId]   INT          NULL,
-    CONSTRAINT [PK_TBServicos] PRIMARY KEY CLUSTERED ([Id] ASC),
-    CONSTRAINT [FK_TBServicos_TBLocacoes_LocacaoId] FOREIGN KEY ([LocacaoId]) REFERENCES [dbo].[TBLocacoes] ([Id])
+    CONSTRAINT [PK_TBServicos] PRIMARY KEY CLUSTERED ([Id] ASC)
 );
 
 
 
 
+
+
 GO
-CREATE NONCLUSTERED INDEX [IX_TBServicos_LocacaoId]
-    ON [dbo].[TBServicos]([LocacaoId] ASC);
+
 

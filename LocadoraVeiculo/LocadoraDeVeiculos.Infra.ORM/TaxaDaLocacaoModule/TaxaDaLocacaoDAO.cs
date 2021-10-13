@@ -58,7 +58,10 @@ namespace LocadoraDeVeiculos.Infra.ORM.TaxaDaLocacaoModule
         {
             try
             {
-                List<TaxaDaLocacao> taxa = contexto.TaxasDaLocacao.Where(x => x.IdLocacao == id).AsNoTracking().ToList();
+                List<TaxaDaLocacao> taxa = registros.Where(x => x.IdLocacao == id).
+                                            Include(x=>x.Servico).
+                                            AsNoTracking().
+                                            ToList();
 
                 if (taxa != null)
                     Log.Logger.Debug("SUCESSO AO SELECIONAR TODAS AS TAXAS DE UMA LOCAÇÃO  ");

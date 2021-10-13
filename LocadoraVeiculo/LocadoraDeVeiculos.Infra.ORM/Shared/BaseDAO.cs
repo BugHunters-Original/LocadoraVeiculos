@@ -24,11 +24,9 @@ namespace LocadoraDeVeiculos.Infra.ORM.Shared
             {
                 registros.Add(registro);
 
-                var a = contexto.ChangeTracker.DebugView.LongView;
-
                 contexto.SaveChanges();
 
-                a = contexto.ChangeTracker.DebugView.LongView;
+                contexto.ChangeTracker.Clear();
 
                 Log.Logger.Information("SUCESSO AO INSERIR {Dominio} ID: {Id}  ", registro.GetType().Name, registro.Id);
 
@@ -51,6 +49,8 @@ namespace LocadoraDeVeiculos.Infra.ORM.Shared
 
                 contexto.SaveChanges();
 
+                contexto.ChangeTracker.Clear();
+
                 Log.Logger.Information("SUCESSO AO EDITAR {Dominio} ID: {Id}  ", registro.GetType().Name, registro.Id);
 
                 return true;
@@ -71,6 +71,8 @@ namespace LocadoraDeVeiculos.Infra.ORM.Shared
                 registros.Remove(registro);
 
                 contexto.SaveChanges();
+
+                contexto.ChangeTracker.Clear();
 
                 Log.Logger.Information("SUCESSO AO REMOVER {Dominio} ID: {Id}  ", registro.GetType().Name, registro.Id);
 

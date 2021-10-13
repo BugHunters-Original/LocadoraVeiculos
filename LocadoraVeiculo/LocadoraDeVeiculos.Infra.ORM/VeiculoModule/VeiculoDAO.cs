@@ -17,15 +17,16 @@ namespace LocadoraDeVeiculos.Infra.ORM.VeiculoModule
         }
         public override List<Veiculo> GetAll()
         {
-            return registros.AsNoTracking().Include(x => x.GrupoVeiculo).ToList();
+            return registros.Include(x => x.GrupoVeiculo).AsNoTracking().ToList();
         }
         public override Veiculo GetById(int id)
         {
-            return registros.AsNoTracking().Include(x => x.GrupoVeiculo).SingleOrDefault(x => x.Id == id);
+            return registros.Include(x => x.GrupoVeiculo).AsNoTracking().SingleOrDefault(x => x.Id == id);
         }
         public override bool Inserir(Veiculo registro)
         {
             contexto.Entry(registro.GrupoVeiculo).State = EntityState.Unchanged;
+
             return base.Inserir(registro);
         }
         public void AtualizarQuilometragem(Veiculo veiculo)
@@ -33,6 +34,7 @@ namespace LocadoraDeVeiculos.Infra.ORM.VeiculoModule
             try
             {                
                 Editar(veiculo);
+
                 Log.Logger.Information("SUCESSO AO EDITAR QUILOMETRAGEM DO VEÍCULO ID: {Id}  ", veiculo.Id);
             }
 
@@ -79,9 +81,7 @@ namespace LocadoraDeVeiculos.Infra.ORM.VeiculoModule
 
             catch (Exception ex)
             {
-
                 Log.Logger.Error(ex, "ERRO AO EDITAR DISPONIBILIDADE DO VEÍCULO ANTIGO ID: {Id} E DISPONIBILIDADE DO VEÍCULO ATUAL ID: {Id}  ", antigo.Id, atual.Id);
-
             }
         }
         
@@ -100,7 +100,6 @@ namespace LocadoraDeVeiculos.Infra.ORM.VeiculoModule
             catch (Exception ex)
             {
                 Log.Logger.Error(ex, "ERRO AO EDITAR DISPONIBILIDADE VEÍCULO ID: {Id}  ", veiculo.Id);
-
             }
         }
 
@@ -109,11 +108,10 @@ namespace LocadoraDeVeiculos.Infra.ORM.VeiculoModule
             try
             {
                 
-                int alugados = contexto.Veiculos.Where(veiculo => veiculo.DisponibilidadeVeiculo == 0).AsNoTracking().Count();
+                int alugados = registros.Where(veiculo => veiculo.DisponibilidadeVeiculo == 0).AsNoTracking().Count();
                 
                 if (alugados > 0)
                     Log.Logger.Debug("SUCESSO AO RETORNAR QUANTIDADE DE VEÍCULOS ALUGADOS  ");
-
                 else
                     Log.Logger.Information("NÃO HÁ VEÍCULOS ALUGADOS  ");
 
@@ -132,11 +130,10 @@ namespace LocadoraDeVeiculos.Infra.ORM.VeiculoModule
         {
             try
             {
-                int disponiveis = contexto.Veiculos.Where(veiculo => veiculo.DisponibilidadeVeiculo == 1).AsNoTracking().Count(); ;
+                int disponiveis = registros.Where(veiculo => veiculo.DisponibilidadeVeiculo == 1).AsNoTracking().Count(); ;
 
                 if (disponiveis > 0)
                     Log.Logger.Debug("SUCESSO AO RETORNAR QUANTIDADE DE VEÍCULOS DISPONÍVEIS  ");
-
                 else
                     Log.Logger.Information("NÃO HÁ VEÍCULOS DISPONÍVEIS  ");
 
@@ -155,11 +152,10 @@ namespace LocadoraDeVeiculos.Infra.ORM.VeiculoModule
         {
             try
             {
-                List<Veiculo> veiculos = contexto.Veiculos.Where(veiculo => veiculo.DisponibilidadeVeiculo == 0).Include(x => x.GrupoVeiculo).AsNoTracking().ToList();
+                List<Veiculo> veiculos = registros.Where(veiculo => veiculo.DisponibilidadeVeiculo == 0).Include(x => x.GrupoVeiculo).AsNoTracking().ToList();
 
                 if (veiculos != null)
                     Log.Logger.Debug("SUCESSO AO SELECIONAR TODOS OS VEÍCULOS ALUGADOS  ");
-
                 else
                     Log.Logger.Information("NÃO FOI POSSÍVEL SELECIONAR TODOS OS VEÍCULOS ALUGADOS  ");
 
@@ -179,11 +175,10 @@ namespace LocadoraDeVeiculos.Infra.ORM.VeiculoModule
         {
             try
             {
-                List<Veiculo> veiculos = contexto.Veiculos.Where(veiculo=>veiculo.DisponibilidadeVeiculo == 1).AsNoTracking().Include(x=>x.GrupoVeiculo).ToList();
+                List<Veiculo> veiculos = registros.Where(veiculo=>veiculo.DisponibilidadeVeiculo == 1).Include(x=>x.GrupoVeiculo).AsNoTracking().ToList();
 
                 if (veiculos != null)
                     Log.Logger.Debug("SUCESSO AO SELECIONAR TODOS OS VEÍCULOS DISPONÍVEIS  ");
-
                 else
                     Log.Logger.Information("NÃO FOI POSSÍVEL SELECIONAR TODOS OS VEÍCULOS DISPONÍVEIS  ");
 
