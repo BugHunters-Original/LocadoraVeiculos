@@ -58,9 +58,9 @@ namespace LocadoraDeVeiculos.AppServiceTests.ClienteCPFModule
 
             ClienteCPFAppService clienteCPFService = new(clienteMock.Object);
 
-            clienteCPFService.EditarClienteCPF(cliente.Id, cliente);
+            clienteCPFService.EditarClienteCPF(cliente);
 
-            clienteMock.Verify(x => x.Editar(cliente.Id, cliente));
+            clienteMock.Verify(x => x.Editar(cliente));
         }
 
         [TestMethod]
@@ -75,7 +75,7 @@ namespace LocadoraDeVeiculos.AppServiceTests.ClienteCPFModule
 
             ClienteCPFAppService clienteCPFService = new(clienteMock.Object);
 
-            var editou = clienteCPFService.EditarClienteCPF(cliente.Id, cliente);
+            var editou = clienteCPFService.EditarClienteCPF(cliente);
 
             editou.Should().BeFalse();
         }

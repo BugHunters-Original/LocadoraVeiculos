@@ -78,14 +78,14 @@ namespace LocadoraDeVeiculos.Test.ClienteCPFModule
             cpfDAO.Inserir(clienteCPF);
 
             //action
-            var novoClienteCPF = new ClienteCPF("Juca", "(49)12345-6789", "Coral", "011.900.119-57",
-                                        "6.187.754", "12345678910", new DateTime(2022, 06, 22), "gabas220601@gmail.com", clienteCNPJ);
+            clienteCPF.Email = "arthurrrrrrrrr@gmail.com";
 
-            cpfDAO.Editar(novoClienteCPF);
+
+            cpfDAO.Editar(clienteCPF);
 
             //assert
             var clienteCPFEncontrado = cpfDAO.GetById(clienteCPF.Id);
-            clienteCPFEncontrado.Should().Be(novoClienteCPF);
+            clienteCPFEncontrado.Email.Should().Be("arthurrrrrrrrr@gmail.com");
             LimparBancos();
         }
 
