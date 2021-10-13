@@ -20,6 +20,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.VeiculoFeature
             InitializeComponent();
             SetColor();
             CarregarGrupos();
+            veiculo = new();
         }
 
         private void SetColor()
@@ -100,45 +101,32 @@ namespace LocadoraVeiculo.WindowsApp.Features.VeiculoFeature
 
         private void btnGravar_Click_1(object sender, EventArgs e)
         {
-            byte[] foto = ConverteImagemParaByteArray(pictureBoxImagem.Image, pictureBoxImagem);
-            string nome = txtNome.Text;
-            string placa = txtPlaca.Text;
-            string chassi = txtChassi.Text;
-            string cor = txtCor.Text;
-            string marca = txtMarca.Text;
+            veiculo.DisponibilidadeVeiculo = veiculo.Nome == null ? 1 : veiculo.DisponibilidadeVeiculo;
+            veiculo.Nome = txtNome.Text;
+            veiculo.NumeroChassi = txtChassi.Text;
+            veiculo.NumeroPlaca = txtPlaca.Text;
+            veiculo.Foto = ConverteImagemParaByteArray(pictureBoxImagem.Image, pictureBoxImagem);
+            veiculo.Cor = txtCor.Text;
+            veiculo.Marca = txtMarca.Text;
+            veiculo.Ano = txtAno.Text != "" ? Convert.ToInt32(txtAno.Text) : null;
 
-            int? ano = null;
-            if (!string.IsNullOrEmpty(txtAno.Text))
-                ano = Convert.ToInt32(txtAno.Text);
+            veiculo.NumeroPortas = txtNPortas.Text != "" ?
+                Convert.ToInt32(txtNPortas.Text) : null;
 
-            int? NPortas = null;
-            if (!string.IsNullOrEmpty(txtNPortas.Text))
-                NPortas = Convert.ToInt32(txtNPortas.Text);
+            veiculo.CapacidadeTanque = txtCapacidadeTanque.Text != "" ?
+                Convert.ToInt32(txtCapacidadeTanque.Text) : null;
 
-            int? CapacidadeTanque = null;
-            if (!string.IsNullOrEmpty(txtCapacidadeTanque.Text))
-                CapacidadeTanque = Convert.ToInt32(txtCapacidadeTanque.Text);
+            veiculo.CapacidadePessoas = txtCapacidadePessoas.Text != "" ?
+                 Convert.ToInt32(txtCapacidadePessoas.Text) : null;
 
-            int? CapacidadePessoas = null;
-            if (!string.IsNullOrEmpty(txtCapacidadePessoas.Text))
-                CapacidadePessoas = Convert.ToInt32(txtCapacidadePessoas.Text);
+            veiculo.KmInicial = txtKm.Text != "" ? Convert.ToInt32(txtKm.Text) : null;
 
-            int? Km = null;
-            if (!string.IsNullOrEmpty(txtKm.Text))
-                Km = Convert.ToInt32(txtKm.Text);
+            veiculo.TamanhoPortaMalas = cmbTamanhoPortaMalas.Text != " " ?
+                Convert.ToChar(cmbTamanhoPortaMalas.Text) : ' ';
 
-            char TamanhoPortaMalas = ' ';
-            if (cmbTamanhoPortaMalas.Text.ToString() != "")
-                TamanhoPortaMalas = Convert.ToChar(cmbTamanhoPortaMalas.Text);
-            string TipoCombustivel = cmbTipoCombustivel.Text;
-
-            GrupoVeiculo grupo = (GrupoVeiculo)cmbGrupo.SelectedItem;
-
-            int disponibilidade = veiculo == null ? 1 : veiculo.DisponibilidadeVeiculo;
-
-            veiculo = new Veiculo(nome, placa, chassi, foto, cor, marca, ano, NPortas, CapacidadeTanque,
-                CapacidadePessoas, TamanhoPortaMalas, Km, TipoCombustivel, disponibilidade, grupo);
-
+            veiculo.TipoCombustivel = cmbTipoCombustivel.Text;
+            veiculo.GrupoVeiculo = (GrupoVeiculo)cmbGrupo.SelectedItem;
+             
             string resultadoValidacao = veiculo.Validar();
 
             if (resultadoValidacao != "ESTA_VALIDO")
