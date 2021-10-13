@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using LocadoraDeVeiculos.Infra.Shared;
+using System.Collections.Generic;
 using System.Configuration;
 
 namespace LocadoraDeVeiculos.Infra.JsonConfigGeral
@@ -28,7 +29,9 @@ namespace LocadoraDeVeiculos.Infra.JsonConfigGeral
 
         public string Ler(string chave)
         {
-            return ConfigurationManager.AppSettings[chave];
+            var config = Json.InitConfiguration();
+
+            return config.GetSection(chave).Value;
         }
 
 
