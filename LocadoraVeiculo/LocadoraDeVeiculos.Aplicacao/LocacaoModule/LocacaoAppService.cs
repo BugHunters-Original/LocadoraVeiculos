@@ -99,6 +99,8 @@ namespace LocadoraDeVeiculos.Aplicacao.LocacaoModule
         {
             Log.Logger.Aqui().Debug("REMOVENDO LOCAÇÃO {Id}", locacao);
 
+            veiculoRepo.DevolverVeiculo(locacao.Veiculo);
+
             var excluiu = locacaoRepo.Excluir(locacao);
 
             if (excluiu)

@@ -172,6 +172,8 @@ namespace LocadoraDeVeiculos.Infra.ORM.LocacaoModule
 
                 contexto.SaveChanges();
 
+                contexto.ChangeTracker.Clear();
+
                 Log.Logger.Information("SUCESSO AO INICIAR LOCAÇÃO ID: {Id}  ", locacao.Id);
             }
             catch (Exception ex)
@@ -189,6 +191,8 @@ namespace LocadoraDeVeiculos.Infra.ORM.LocacaoModule
                 contexto.Locacoes.Update(locacao);
 
                 contexto.SaveChanges();
+
+                contexto.ChangeTracker.Clear();
 
                 Log.Logger.Information("SUCESSO AO CONCLUIR LOCAÇÃO ID: {Id}  ", locacao.Id);
             }
