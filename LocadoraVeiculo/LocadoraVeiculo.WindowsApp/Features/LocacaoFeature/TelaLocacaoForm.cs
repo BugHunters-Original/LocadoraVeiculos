@@ -169,6 +169,22 @@ namespace LocadoraVeiculo.WindowsApp.Features.LocacaoFeature
 
         private void btnGravar_Click(object sender, EventArgs e)
         {
+            ConfigurarLocacao();
+
+            string resultadoValidacao = locacao.Validar();
+
+            if (resultadoValidacao != "ESTA_VALIDO")
+            {
+                string primeiroErro = new StringReader(resultadoValidacao).ReadLine();
+
+                TelaPrincipalForm.Instancia.AtualizarRodape(primeiroErro);
+
+                DialogResult = DialogResult.None;
+            }
+        }
+
+        private void ConfigurarLocacao()
+        {
             locacao.Cliente = (ClienteBase)cbCliente.SelectedItem;
 
             locacao.Veiculo = (Veiculo)cbVeiculo.SelectedItem;
@@ -199,18 +215,8 @@ namespace LocadoraVeiculo.WindowsApp.Features.LocacaoFeature
             locacao.PrecoTotal = locacao.PrecoPlano + locacao.PrecoServicos;
 
             locacao.Servicos = Servicos;
-
-            string resultadoValidacao = locacao.Validar();
-
-            if (resultadoValidacao != "ESTA_VALIDO")
-            {
-                string primeiroErro = new StringReader(resultadoValidacao).ReadLine();
-
-                TelaPrincipalForm.Instancia.AtualizarRodape(primeiroErro);
-
-                DialogResult = DialogResult.None;
-            }
         }
+
         private void cbCliente_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (cbCliente.SelectedItem is ClienteCPF)
