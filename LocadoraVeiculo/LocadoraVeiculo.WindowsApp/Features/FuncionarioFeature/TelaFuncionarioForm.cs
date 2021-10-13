@@ -15,6 +15,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.FuncionarioFeature
         {
             InitializeComponent();
             SetColor();
+            funcionario = new();
         }
 
         private void SetColor()
@@ -69,30 +70,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.FuncionarioFeature
 
         private void bt_GravarFuncionario_Click(object sender, EventArgs e)
         {
-            string nome = text_NomeFuncionario.Text;
-            string cpf = text_CPFFuncionario.Text;
-            string usuario = text_UsuarioFuncionario.Text;
-            string senha = text_SenhaFuncionario.Text;
-            decimal? salario = null;
-            DateTime dataEntrada = date_EntradaFuncionario.Value;
-
-            if (!string.IsNullOrEmpty(text_salarioFuncionario.Text))
-                salario = Convert.ToDecimal(text_salarioFuncionario.Text);
-
-            if (funcionario != null)
-            {
-                funcionario.Nome = nome;
-                funcionario.CpfFuncionario = cpf;
-                funcionario.Usuario = usuario;
-                funcionario.Senha = senha;
-                funcionario.Salario = salario;
-                funcionario.DataEntrada = dataEntrada;
-            }
-
-            else
-            {
-                funcionario = new Funcionario(nome, salario, dataEntrada, cpf, usuario, senha);
-            }             
+            ConfigurarDesconto();
 
             string resultadoValidacao = funcionario.Validar();
 
@@ -104,6 +82,17 @@ namespace LocadoraVeiculo.WindowsApp.Features.FuncionarioFeature
 
                 DialogResult = DialogResult.None;
             }
+        }
+
+        private void ConfigurarDesconto()
+        {
+
+            funcionario.Nome = text_NomeFuncionario.Text;
+            funcionario.CpfFuncionario = text_CPFFuncionario.Text;
+            funcionario.Usuario = text_UsuarioFuncionario.Text;
+            funcionario.Senha = text_SenhaFuncionario.Text;
+            funcionario.Salario = text_salarioFuncionario.Text == "" ? 0 : Convert.ToDecimal(text_salarioFuncionario.Text);
+            funcionario.DataEntrada = date_EntradaFuncionario.Value;
         }
 
         private void textBox_KeyPress(object sender, KeyPressEventArgs e)
