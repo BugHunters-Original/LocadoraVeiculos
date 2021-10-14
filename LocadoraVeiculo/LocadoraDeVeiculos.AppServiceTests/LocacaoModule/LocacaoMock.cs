@@ -14,9 +14,8 @@ namespace LocadoraDeVeiculos.AppServiceTests.LocacaoModule
     [TestClass]
     public class LocacaoMock
     {
+        Veiculo veiculoObj;
         Mock<Locacao> locacaoObj;
-        Mock<Veiculo> veiculoObj;
-        Mock<GrupoVeiculo> grupoObj;
         Mock<IPDF> pdfRepo;
         Mock<IEmail> emailRepo;
         Mock<IVeiculoRepository> veiculoRepo;
@@ -24,7 +23,6 @@ namespace LocadoraDeVeiculos.AppServiceTests.LocacaoModule
         Mock<ILocacaoRepository> locacaoRepo;
         Mock<ITaxaRepository> taxaRepo;
         LocacaoAppService locacaoService;
-        Veiculo veiculo;
         public LocacaoMock()
         {
             locacaoObj = new();
@@ -41,12 +39,7 @@ namespace LocadoraDeVeiculos.AppServiceTests.LocacaoModule
 
             taxaRepo = new();
 
-            grupoObj = new();
-
-            byte[] imagem = new byte[] { 0x20, 0x20, 0x20, 0x20 };
-
-            veiculo = new Veiculo("Carro", "AAA8888", "12345678912345678", imagem, "vermelho", "Ford", 2009, 9, 200, 1, 'M', 90, "Álcool", 1, grupoObj.Object);
-
+            veiculoObj = new();
 
             locacaoService = new(locacaoRepo.Object, emailRepo.Object,
                                  pdfRepo.Object, descontoRepo.Object, veiculoRepo.Object, taxaRepo.Object);
@@ -61,15 +54,11 @@ namespace LocadoraDeVeiculos.AppServiceTests.LocacaoModule
         {
             locacaoObj.Setup(x => x.Validar()).Returns("ESTA_VALIDO");
 
-            Veiculo a = locacaoObj.Object.Veiculo;
-
             pdfRepo.Setup(x => x.MontarPDF(locacaoObj.Object));
 
             emailRepo.Setup(x => x.EnviarEmail(locacaoObj.Object));
 
-            //veiculoObj.Setup(x => x.ToString()).Returns("");
-
-            locacaoObj.Setup(x => x.Veiculo).Returns(veiculo);
+            locacaoObj.Object.Veiculo = veiculoObj;
 
             locacaoService.RegistrarNovaLocacao(locacaoObj.Object);
 
@@ -113,6 +102,10 @@ namespace LocadoraDeVeiculos.AppServiceTests.LocacaoModule
         {
             locacaoObj.Setup(x => x.Validar()).Returns("ESTA_VALIDO");
 
+            //locacaoObj.Setup(x => x.Veiculo).Returns(veiculoObj);
+
+            locacaoObj.Object.Veiculo = veiculoObj;
+
             locacaoService.ConcluirLocacao(locacaoObj.Object);
 
             veiculoRepo.Verify(x => x.DevolverVeiculo(It.IsAny<Veiculo>()));
@@ -121,6 +114,8 @@ namespace LocadoraDeVeiculos.AppServiceTests.LocacaoModule
         public void Deve_atualizar_quilometragem()
         {
             locacaoObj.Setup(x => x.Validar()).Returns("ESTA_VALIDO");
+
+            locacaoObj.Object.Veiculo = veiculoObj;
 
             locacaoService.ConcluirLocacao(locacaoObj.Object);
 
