@@ -19,25 +19,25 @@ namespace LocadoraDeVeiculos.Infra.ORM.TaxaDaLocacaoModule
         }
         public override List<TaxaDaLocacao> GetAll()
         {
-            return registros.Include(x => x.LocacaoEscolhida).Include(x => x.Servico).AsNoTracking().ToList();
+            return registros.Include(x => x.LocacaoEscolhida).Include(x => x.Servico).ToList();
         }
         public override TaxaDaLocacao GetById(int id)
         {
-            return registros.Include(x => x.LocacaoEscolhida).Include(x => x.Servico).AsNoTracking().SingleOrDefault(x => x.Id == id);
+            return registros.Include(x => x.LocacaoEscolhida).Include(x => x.Servico).SingleOrDefault(x => x.Id == id);
         }
-        public override bool Inserir(TaxaDaLocacao registro)
-        {
-            contexto.Entry(registro.Servico).State = EntityState.Unchanged;
+        //public override bool Inserir(TaxaDaLocacao registro)
+        //{
+        //    contexto.Entry(registro.Servico).State = EntityState.Unchanged;
 
-            contexto.Entry(registro.LocacaoEscolhida).State = EntityState.Unchanged;
+        //    contexto.Entry(registro.LocacaoEscolhida).State = EntityState.Unchanged;
 
-            return base.Inserir(registro);
-        }
+        //    return base.Inserir(registro);
+        //}
         public bool ExcluirTaxa(int id)
         {
             try
             {
-                var taxasRelacionadasAoId = registros.Where(x => x.IdLocacao == id).AsNoTracking().ToList();
+                var taxasRelacionadasAoId = registros.Where(x => x.IdLocacao == id).ToList();
 
                 taxasRelacionadasAoId.ForEach(x => contexto.TaxasDaLocacao.Remove(x));
 
@@ -60,7 +60,6 @@ namespace LocadoraDeVeiculos.Infra.ORM.TaxaDaLocacaoModule
             {
                 List<TaxaDaLocacao> taxa = registros.Where(x => x.IdLocacao == id).
                                             Include(x=>x.Servico).
-                                            AsNoTracking().
                                             ToList();
 
                 if (taxa != null)

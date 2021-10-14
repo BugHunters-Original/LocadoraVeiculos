@@ -17,18 +17,18 @@ namespace LocadoraDeVeiculos.Infra.ORM.VeiculoModule
         }
         public override List<Veiculo> GetAll()
         {
-            return registros.Include(x => x.GrupoVeiculo).AsNoTracking().ToList();
+            return registros.Include(x => x.GrupoVeiculo).ToList();
         }
         public override Veiculo GetById(int id)
         {
-            return registros.Include(x => x.GrupoVeiculo).AsNoTracking().SingleOrDefault(x => x.Id == id);
+            return registros.Include(x => x.GrupoVeiculo).SingleOrDefault(x => x.Id == id);
         }
-        public override bool Inserir(Veiculo registro)
-        {
-            contexto.Entry(registro.GrupoVeiculo).State = EntityState.Unchanged;
+        //public override bool Inserir(Veiculo registro)
+        //{
+        //    contexto.Entry(registro.GrupoVeiculo).State = EntityState.Unchanged;
 
-            return base.Inserir(registro);
-        }
+        //    return base.Inserir(registro);
+        //}
         public void AtualizarQuilometragem(Veiculo veiculo)
         {
             try
@@ -108,7 +108,7 @@ namespace LocadoraDeVeiculos.Infra.ORM.VeiculoModule
             try
             {
                 
-                int alugados = registros.Where(veiculo => veiculo.DisponibilidadeVeiculo == 0).AsNoTracking().Count();
+                int alugados = registros.Where(veiculo => veiculo.DisponibilidadeVeiculo == 0).Count();
                 
                 if (alugados > 0)
                     Log.Logger.Debug("SUCESSO AO RETORNAR QUANTIDADE DE VEÍCULOS ALUGADOS  ");
@@ -130,7 +130,7 @@ namespace LocadoraDeVeiculos.Infra.ORM.VeiculoModule
         {
             try
             {
-                int disponiveis = registros.Where(veiculo => veiculo.DisponibilidadeVeiculo == 1).AsNoTracking().Count(); ;
+                int disponiveis = registros.Where(veiculo => veiculo.DisponibilidadeVeiculo == 1).Count(); ;
 
                 if (disponiveis > 0)
                     Log.Logger.Debug("SUCESSO AO RETORNAR QUANTIDADE DE VEÍCULOS DISPONÍVEIS  ");
@@ -152,7 +152,7 @@ namespace LocadoraDeVeiculos.Infra.ORM.VeiculoModule
         {
             try
             {
-                List<Veiculo> veiculos = registros.Where(veiculo => veiculo.DisponibilidadeVeiculo == 0).Include(x => x.GrupoVeiculo).AsNoTracking().ToList();
+                List<Veiculo> veiculos = registros.Where(veiculo => veiculo.DisponibilidadeVeiculo == 0).Include(x => x.GrupoVeiculo).ToList();
 
                 if (veiculos != null)
                     Log.Logger.Debug("SUCESSO AO SELECIONAR TODOS OS VEÍCULOS ALUGADOS  ");
@@ -175,7 +175,7 @@ namespace LocadoraDeVeiculos.Infra.ORM.VeiculoModule
         {
             try
             {
-                List<Veiculo> veiculos = registros.Where(veiculo=>veiculo.DisponibilidadeVeiculo == 1).Include(x=>x.GrupoVeiculo).AsNoTracking().ToList();
+                List<Veiculo> veiculos = registros.Where(veiculo=>veiculo.DisponibilidadeVeiculo == 1).Include(x=>x.GrupoVeiculo).ToList();
 
                 if (veiculos != null)
                     Log.Logger.Debug("SUCESSO AO SELECIONAR TODOS OS VEÍCULOS DISPONÍVEIS  ");
