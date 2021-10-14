@@ -18,17 +18,18 @@ namespace LocadoraDeVeiculos.IntegrationTests.VeiculoModule
         GrupoVeiculoDAO grupoVeiculoDAO;
         VeiculoDAO veiculoDAO;
         GrupoVeiculo grupo;
-        static LocacaoContext context = null;
+        static LocacaoContext context = new();
 
         byte[] imagem;
 
         public VeiculoIntegrationTests()
         {
-            context = new();
+            LimparBanco();
+
             grupoVeiculoDAO = new GrupoVeiculoDAO(context);
             veiculoDAO = new VeiculoDAO(context);
 
-            LimparBanco();
+
             
             Infra.LogManager.Log.Logger = new Serilog.LoggerConfiguration()
             .WriteTo.Console()
@@ -106,6 +107,7 @@ namespace LocadoraDeVeiculos.IntegrationTests.VeiculoModule
         [TestMethod]
         public void DeveSelecionar_Todos()
         {
+            LimparBanco();
             //arrange
             var v1 = new Veiculo("marea", "1234567", "12345678901234567", imagem, "azul", "fiat", 2000, 2, 80, 1, 'G', 1000, "gasolina", 1, grupo);
             veiculoDAO.Inserir(v1);
