@@ -35,7 +35,7 @@ namespace LocadoraDeVeiculos.AppServiceTests.ClienteCNPJModule
         public void Não_Deve_inserir()
         {
             ClienteCNPJ cliente = new("Gabriel", "Guarujá", "(49)99803-5074",
-                                                  "123456789123456789", "gabas220601@gmail.com");
+                                                  "123456789123456789", "gabas220601");
 
             Mock<IClienteCNPJRepository> clienteMock = new();
 
@@ -67,7 +67,7 @@ namespace LocadoraDeVeiculos.AppServiceTests.ClienteCNPJModule
         public void Não_Deve_editar()
         {
             ClienteCNPJ cliente = new("Gabriel", "Guarujá", "(49)99803-5074",
-                                                  "123456789123456789", "gabas220601@gmail.com");
+                                                  "12345678912345", "gabas220601@gmail.com");
 
             Mock<IClienteCNPJRepository> clienteMock = new();
 

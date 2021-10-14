@@ -7,6 +7,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 using Serilog.Core;
 using Serilog;
+using LocadoraDeVeiculos.Dominio.GrupoVeiculoModule;
 
 namespace LocadoraDeVeiculos.AppServiceTests.LocacaoModule
 {
@@ -14,6 +15,8 @@ namespace LocadoraDeVeiculos.AppServiceTests.LocacaoModule
     public class LocacaoMock
     {
         Mock<Locacao> locacaoObj;
+        Mock<Veiculo> veiculoObj;
+        Mock<GrupoVeiculo> grupoObj;
         Mock<IPDF> pdfRepo;
         Mock<IEmail> emailRepo;
         Mock<IVeiculoRepository> veiculoRepo;
@@ -21,6 +24,7 @@ namespace LocadoraDeVeiculos.AppServiceTests.LocacaoModule
         Mock<ILocacaoRepository> locacaoRepo;
         Mock<ITaxaRepository> taxaRepo;
         LocacaoAppService locacaoService;
+        Veiculo veiculo;
         public LocacaoMock()
         {
             locacaoObj = new();
@@ -35,6 +39,15 @@ namespace LocadoraDeVeiculos.AppServiceTests.LocacaoModule
 
             locacaoRepo = new();
 
+            taxaRepo = new();
+
+            grupoObj = new();
+
+            byte[] imagem = new byte[] { 0x20, 0x20, 0x20, 0x20 };
+
+            veiculo = new Veiculo("Carro", "AAA8888", "12345678912345678", imagem, "vermelho", "Ford", 2009, 9, 200, 1, 'M', 90, "Álcool", 1, grupoObj.Object);
+
+
             locacaoService = new(locacaoRepo.Object, emailRepo.Object,
                                  pdfRepo.Object, descontoRepo.Object, veiculoRepo.Object, taxaRepo.Object);
 
@@ -48,9 +61,15 @@ namespace LocadoraDeVeiculos.AppServiceTests.LocacaoModule
         {
             locacaoObj.Setup(x => x.Validar()).Returns("ESTA_VALIDO");
 
+            Veiculo a = locacaoObj.Object.Veiculo;
+
             pdfRepo.Setup(x => x.MontarPDF(locacaoObj.Object));
 
             emailRepo.Setup(x => x.EnviarEmail(locacaoObj.Object));
+
+            //veiculoObj.Setup(x => x.ToString()).Returns("");
+
+            locacaoObj.Setup(x => x.Veiculo).Returns(veiculo);
 
             locacaoService.RegistrarNovaLocacao(locacaoObj.Object);
 
