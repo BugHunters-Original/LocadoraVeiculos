@@ -17,8 +17,8 @@ namespace LocadoraDeVeiculos.Infra.ORM.LocacaoModule
         {
 
         }
-        public override bool Inserir(Locacao registro)
-        {
+        //public override bool Inserir(Locacao registro)
+        //{
             //contexto.Entry(registro.Cliente).State = EntityState.Unchanged;
 
             //contexto.Entry(registro.Condutor).State = EntityState.Unchanged;
@@ -31,8 +31,8 @@ namespace LocadoraDeVeiculos.Infra.ORM.LocacaoModule
             //if (registro.Servicos != null)
             //    registro.Servicos.ForEach(x => contexto.Entry(x).State = EntityState.Unchanged);
 
-            return base.Inserir(registro);
-        }
+        //    return base.Inserir(registro);
+        //}
         public override List<Locacao> GetAll()
         {
             return registros.
@@ -41,7 +41,6 @@ namespace LocadoraDeVeiculos.Infra.ORM.LocacaoModule
                    ThenInclude(x => x.GrupoVeiculo).
                    Include(x => x.Desconto).
                    Include(x => x.Condutor).
-                   //AsNoTracking().
                    ToList();
         }
         public override Locacao GetById(int id)
@@ -52,7 +51,6 @@ namespace LocadoraDeVeiculos.Infra.ORM.LocacaoModule
                    ThenInclude(x => x.GrupoVeiculo).
                    Include(x => x.Desconto).
                    Include(x => x.Condutor).
-                   //AsNoTracking().
                    SingleOrDefault(x => x.Id == id);
         }
 
@@ -62,7 +60,6 @@ namespace LocadoraDeVeiculos.Infra.ORM.LocacaoModule
             {
                 int qtdLocacoesComCupom = registros.
                                           Where(x => x.Desconto.Codigo == cupom).
-                                          AsNoTracking().
                                           Count();
 
                 if (qtdLocacoesComCupom == 0)
@@ -87,7 +84,6 @@ namespace LocadoraDeVeiculos.Infra.ORM.LocacaoModule
             {
                 int qtdLocacoesPendentes = registros.
                                            Where(x => x.StatusLocacao == "Em Aberto").
-                                           AsNoTracking().
                                            Count();
 
                 if (qtdLocacoesPendentes == 0)
@@ -117,7 +113,6 @@ namespace LocadoraDeVeiculos.Infra.ORM.LocacaoModule
                                            Include(x => x.Desconto).
                                            Include(x => x.Condutor).
                                            Where(x => x.StatusLocacao == "Concluída").
-                                           AsNoTracking().
                                            ToList();
 
                 if (locacoes.Count != 0)
@@ -146,7 +141,6 @@ namespace LocadoraDeVeiculos.Infra.ORM.LocacaoModule
                                            Include(x => x.Desconto).
                                            Include(x => x.Condutor).
                                            Where(x => x.StatusLocacao == "Em Aberto").
-                                           AsNoTracking().
                                            ToList();
 
                 if (locacoes.Count != 0)

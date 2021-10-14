@@ -18,38 +18,38 @@ namespace LocadoraDeVeiculos.Infra.ORM.ClienteCPFModule
         {
 
         }
-        public override bool Inserir(ClienteCPF registro)
-        {
-            //if (registro.Cliente != null)
-            //    contexto.Entry(registro.Cliente).State = EntityState.Unchanged;
+        //public override bool Inserir(ClienteCPF registro)
+        //{
+        //    if (registro.Cliente != null)
+        //        contexto.Entry(registro.Cliente).State = EntityState.Unchanged;
 
-            return base.Inserir(registro);
-        }
-        public override bool Editar(ClienteCPF registro)
-        {
-            if (registro.Cliente != null)
-                contexto.Entry(registro.Cliente).State = EntityState.Unchanged;
+        //    return base.Inserir(registro);
+        //}
+        //public override bool Editar(ClienteCPF registro)
+        //{
+        //    if (registro.Cliente != null)
+        //        contexto.Entry(registro.Cliente).State = EntityState.Unchanged;
 
-            return base.Editar(registro);
-        }
+        //    return base.Editar(registro);
+        //}
         public override List<ClienteCPF> GetAll()
         {
-            return registros.Include(x => x.Cliente).AsNoTracking().ToList();
+            return registros.Include(x => x.Cliente).ToList();
         }
 
         public override ClienteCPF GetById(int id)
         {
-            return registros.Include(x => x.Cliente).AsNoTracking().SingleOrDefault(x => x.Id == id);
+            return registros.Include(x => x.Cliente).SingleOrDefault(x => x.Id == id);
         }
 
         public bool ExisteCPF(string cpf)
         {
-            return registros.AsNoTracking().ToList().Exists(x => x.Cpf == cpf);
+            return registros.ToList().Exists(x => x.Cpf == cpf);
         }
 
         public List<ClienteCPF> SelecionarPorIdEmpresa(int id)
         {
-            return registros.Include(x => x.Cliente).Where(x => x.Cliente.Id == id).AsNoTracking().ToList();
+            return registros.Include(x => x.Cliente).Where(x => x.Cliente.Id == id).ToList();
         }
     }
 }

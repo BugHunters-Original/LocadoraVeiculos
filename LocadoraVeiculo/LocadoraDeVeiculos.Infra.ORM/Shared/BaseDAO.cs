@@ -90,17 +90,17 @@ namespace LocadoraDeVeiculos.Infra.ORM.Shared
 
         public virtual bool Existe(int id)
         {
-            return registros.AsNoTracking().ToList().Exists(x => x.Id == id);
+            return registros.ToList().Exists(x => x.Id == id);
         }
 
         public virtual List<T> GetAll()
         {
-            return registros.AsNoTracking().ToList();
+            return registros.ToList();
         }
 
         public virtual T GetById(int id)
         {
-            return registros.AsNoTracking().SingleOrDefault(x => x.Id == id);
+            return registros.SingleOrDefault(x => x.Id == id);
         }
     }
 }
