@@ -9,6 +9,7 @@ using LocadoraDeVeiculos.Infra.Shared;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Serilog.Core;
 using System;
+using Serilog;
 
 namespace LocadoraDeVeiculos.Test.DescontoModule
 {
@@ -27,7 +28,10 @@ namespace LocadoraDeVeiculos.Test.DescontoModule
             descontoDAO = new DescontoDAO(context);
             parceiroDAO = new ParceiroDAO(context);
             LimparBancos();
-            Log.IniciarLog();
+            
+            Infra.LogManager.Log.Logger = new Serilog.LoggerConfiguration()
+            .WriteTo.Console()
+            .CreateLogger();
 
             parceiro = new Parceiro("Arthur");
             parceiroDAO.Inserir(parceiro);

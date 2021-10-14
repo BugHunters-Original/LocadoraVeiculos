@@ -6,6 +6,7 @@ using LocadoraDeVeiculos.Infra.ORM.GrupoVeiculoModule;
 using LocadoraDeVeiculos.Infra.Shared;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Serilog.Core;
+using Serilog;
 
 namespace LocadoraDeVeiculos.IntegrationTests.GrupoVeiculoModule
 {
@@ -20,7 +21,10 @@ namespace LocadoraDeVeiculos.IntegrationTests.GrupoVeiculoModule
             context = new();
             grupoVeiculoDAO = new GrupoVeiculoDAO(context);
             LimparBancos();
-            Log.IniciarLog();
+            
+            Infra.LogManager.Log.Logger = new Serilog.LoggerConfiguration()
+            .WriteTo.Console()
+            .CreateLogger();
         }
 
         private static void LimparBancos()

@@ -10,6 +10,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Serilog;
 
 namespace LocadoraDeVeiculos.IntegrationTests.ParceiroModule
 {
@@ -25,7 +26,10 @@ namespace LocadoraDeVeiculos.IntegrationTests.ParceiroModule
             context = new();
             repository = new(context);
             LimparBancos();
-            Log.IniciarLog();
+            
+            Infra.LogManager.Log.Logger = new Serilog.LoggerConfiguration()
+            .WriteTo.Console()
+            .CreateLogger();
         }
 
         private static void LimparBancos()

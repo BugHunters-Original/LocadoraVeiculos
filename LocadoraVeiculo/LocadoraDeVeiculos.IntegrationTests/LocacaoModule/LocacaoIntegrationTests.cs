@@ -15,6 +15,7 @@ using LocadoraDeVeiculos.Infra.ORM.ServicoModule;
 using LocadoraDeVeiculos.Infra.ORM.VeiculoModule;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
+using Serilog;
 
 namespace LocadoraDeVeiculos.Test.LocacaoModule
 {
@@ -62,7 +63,11 @@ namespace LocadoraDeVeiculos.Test.LocacaoModule
             controladorLocacao = new LocacaoDAO(context);
 
             LimparBanco();
-            Log.IniciarLog();
+
+            
+            Infra.LogManager.Log.Logger = new Serilog.LoggerConfiguration()
+            .WriteTo.Console()
+            .CreateLogger();
 
             dataSaida = new DateTime(2021, 08, 19);
             dataRetorno = new DateTime(2021, 08, 19);

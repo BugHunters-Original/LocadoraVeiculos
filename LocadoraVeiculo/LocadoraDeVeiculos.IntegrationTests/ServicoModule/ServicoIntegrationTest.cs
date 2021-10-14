@@ -5,6 +5,7 @@ using LocadoraDeVeiculos.Infra.LogManager;
 using LocadoraDeVeiculos.Infra.ORM.ServicoModule;
 using LocadoraDeVeiculos.Infra.Shared;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Serilog;
 
 namespace LocadoraDeVeiculos.IntegrationTests.ServicoModule
 {
@@ -19,7 +20,10 @@ namespace LocadoraDeVeiculos.IntegrationTests.ServicoModule
             context = new();
             repository = new ServicoDAO(context);
             LimparBanco();
-            Log.IniciarLog();
+            
+            Infra.LogManager.Log.Logger = new Serilog.LoggerConfiguration()
+            .WriteTo.Console()
+            .CreateLogger();
         }
 
         private static void LimparBanco()

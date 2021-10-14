@@ -5,6 +5,7 @@ using LocadoraDeVeiculos.Infra.LogManager;
 using LocadoraDeVeiculos.Infra.ORM.ClienteCNPJModule;
 using LocadoraDeVeiculos.Infra.Shared;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Serilog;
 
 namespace LocadoraDeVeiculos.Test.ClienteNPJModule
 {
@@ -19,7 +20,10 @@ namespace LocadoraDeVeiculos.Test.ClienteNPJModule
             context = new();
             cnpjDAO = new ClienteCNPJDAO(context);
             LimparBanco();
-            Log.IniciarLog();
+
+            Infra.LogManager.Log.Logger = new Serilog.LoggerConfiguration()
+            .WriteTo.Console()
+            .CreateLogger();
         }
 
         private static void LimparBanco()

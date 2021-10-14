@@ -8,6 +8,7 @@ using LocadoraDeVeiculos.Infra.ORM.VeiculoModule;
 using LocadoraDeVeiculos.Infra.Shared;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Serilog.Core;
+using Serilog;
 
 namespace LocadoraDeVeiculos.IntegrationTests.VeiculoModule
 {
@@ -28,10 +29,14 @@ namespace LocadoraDeVeiculos.IntegrationTests.VeiculoModule
             veiculoDAO = new VeiculoDAO(context);
 
             LimparBanco();
-            Log.IniciarLog();
+            
+            Infra.LogManager.Log.Logger = new Serilog.LoggerConfiguration()
+            .WriteTo.Console()
+            .CreateLogger();
 
             grupo = new GrupoVeiculo("Econômico", 10, 10, 10, 10, 10, 10);
             grupoVeiculoDAO.Inserir(grupo);
+
             imagem = new byte[] { 0x20, 0x20, 0x20, 0x20, 0x20, 0x20, 0x20 };
         }
 

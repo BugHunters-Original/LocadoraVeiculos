@@ -8,6 +8,7 @@ using LocadoraDeVeiculos.Infra.ORM.ClienteCPFModule;
 using LocadoraDeVeiculos.Infra.Shared;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
+using Serilog;
 
 namespace LocadoraDeVeiculos.Test.ClienteCPFModule
 {
@@ -24,7 +25,10 @@ namespace LocadoraDeVeiculos.Test.ClienteCPFModule
             cnpjDAO = new ClienteCNPJDAO(context);
             cpfDAO = new ClienteCPFDAO(context);
             LimparBancos();
-            Log.IniciarLog();
+            
+            Infra.LogManager.Log.Logger = new Serilog.LoggerConfiguration()
+            .WriteTo.Console()
+            .CreateLogger();
         }
 
         private static void LimparBancos()

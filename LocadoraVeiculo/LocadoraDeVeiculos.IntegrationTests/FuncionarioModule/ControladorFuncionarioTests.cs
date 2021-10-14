@@ -5,6 +5,7 @@ using LocadoraDeVeiculos.Infra.LogManager;
 using LocadoraDeVeiculos.Infra.ORM.FuncionarioModule;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
+using Serilog;
 
 namespace LocadoraDeVeiculos.Test.FuncionarioModule
 {
@@ -20,7 +21,10 @@ namespace LocadoraDeVeiculos.Test.FuncionarioModule
             context = new();
             funcionarioDAO = new FuncionarioDAO(context);
             LimparBanco();
-            Log.IniciarLog();
+            
+            Infra.LogManager.Log.Logger = new Serilog.LoggerConfiguration()
+            .WriteTo.Console()
+            .CreateLogger();
         }
 
         private static void LimparBanco()
