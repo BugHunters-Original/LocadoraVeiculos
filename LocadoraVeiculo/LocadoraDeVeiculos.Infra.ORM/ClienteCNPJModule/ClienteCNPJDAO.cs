@@ -21,7 +21,6 @@ namespace LocadoraDeVeiculos.Infra.ORM.ClienteCNPJModule
             return registros.
                    Include(x => x.Condutores).
                    Include(x => x.Locacoes).
-                   AsNoTracking().
                    SingleOrDefault(x => x.Id == id);
         }
         public override List<ClienteCNPJ> GetAll()
@@ -29,12 +28,11 @@ namespace LocadoraDeVeiculos.Infra.ORM.ClienteCNPJModule
             return registros.
                      Include(x => x.Condutores).
                      Include(x => x.Locacoes).
-                     //AsNoTracking().
                      ToList();
         }
         public bool ExisteCNPJ(string cnpj)
         {
-            return registros.AsNoTracking().ToList().Exists(x => x.Cnpj == cnpj);
+            return registros.ToList().Exists(x => x.Cnpj == cnpj);
         }
     }
 }
