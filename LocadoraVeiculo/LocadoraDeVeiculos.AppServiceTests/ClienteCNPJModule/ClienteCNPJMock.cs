@@ -4,6 +4,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using FluentAssertions;
 using Moq;
 using LocadoraDeVeiculos.Infra.LogManager;
+using Serilog;
 
 namespace LocadoraDeVeiculos.AppServiceTests.ClienteCNPJModule
 {
@@ -12,7 +13,9 @@ namespace LocadoraDeVeiculos.AppServiceTests.ClienteCNPJModule
     {
         public ClienteCNPJMock()
         {
-            Log.IniciarLog();
+            Infra.LogManager.Log.Logger = new Serilog.LoggerConfiguration()
+                .WriteTo.Console()
+                .CreateLogger();
         }
         [TestMethod]
         public void Deve_chamar_inserir()

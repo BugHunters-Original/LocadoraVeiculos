@@ -29,7 +29,7 @@ namespace LocadoraDeVeiculos.Infra.ORM.ClienteCNPJModule
             return registros.
                      Include(x => x.Condutores).
                      Include(x => x.Locacoes).
-                     AsNoTracking().
+                     //AsNoTracking().
                      ToList();
         }
         public bool ExisteCNPJ(string cnpj)

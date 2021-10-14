@@ -19,17 +19,17 @@ namespace LocadoraDeVeiculos.Infra.ORM.LocacaoModule
         }
         public override bool Inserir(Locacao registro)
         {
-            contexto.Entry(registro.Cliente).State = EntityState.Unchanged;
+            //contexto.Entry(registro.Cliente).State = EntityState.Unchanged;
 
-            contexto.Entry(registro.Condutor).State = EntityState.Unchanged;
+            //contexto.Entry(registro.Condutor).State = EntityState.Unchanged;
 
-            contexto.Entry(registro.Veiculo).State = EntityState.Unchanged;
+            //contexto.Entry(registro.Veiculo).State = EntityState.Unchanged;
 
-            if (registro.Desconto != null)
-                contexto.Entry(registro.Desconto).State = EntityState.Unchanged;
+            //if (registro.Desconto != null)
+            //    contexto.Entry(registro.Desconto).State = EntityState.Unchanged;
 
-            if (registro.Servicos != null)
-                registro.Servicos.ForEach(x => contexto.Entry(x).State = EntityState.Unchanged);
+            //if (registro.Servicos != null)
+            //    registro.Servicos.ForEach(x => contexto.Entry(x).State = EntityState.Unchanged);
 
             return base.Inserir(registro);
         }
@@ -41,7 +41,7 @@ namespace LocadoraDeVeiculos.Infra.ORM.LocacaoModule
                    ThenInclude(x => x.GrupoVeiculo).
                    Include(x => x.Desconto).
                    Include(x => x.Condutor).
-                   AsNoTracking().
+                   //AsNoTracking().
                    ToList();
         }
         public override Locacao GetById(int id)
@@ -52,7 +52,7 @@ namespace LocadoraDeVeiculos.Infra.ORM.LocacaoModule
                    ThenInclude(x => x.GrupoVeiculo).
                    Include(x => x.Desconto).
                    Include(x => x.Condutor).
-                   AsNoTracking().
+                   //AsNoTracking().
                    SingleOrDefault(x => x.Id == id);
         }
 
