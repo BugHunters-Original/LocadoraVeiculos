@@ -17,6 +17,7 @@ namespace LocadoraDeVeiculos.Infra.ORM.LocacaoModule
         {
 
         }
+
         //public override bool Inserir(Locacao registro)
         //{
             //contexto.Entry(registro.Cliente).State = EntityState.Unchanged;
@@ -33,6 +34,7 @@ namespace LocadoraDeVeiculos.Infra.ORM.LocacaoModule
 
         //    return base.Inserir(registro);
         //}
+
         public override List<Locacao> GetAll()
         {
             return registros.

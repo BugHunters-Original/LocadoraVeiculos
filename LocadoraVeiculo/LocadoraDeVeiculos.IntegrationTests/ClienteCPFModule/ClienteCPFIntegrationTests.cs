@@ -115,12 +115,8 @@ namespace LocadoraDeVeiculos.Test.ClienteCPFModule
         public void DeveSelecionar_Cliente_PorId()
         {
             //arrange
-            var clienteCNPJ = new ClienteCNPJ("Gabriel Marques", "Guarujá", "(49)99803-5074", "01190011956", "gabas220601@gmail.com");
-
-            cnpjDAO.Inserir(clienteCNPJ);
-
             var clienteCPF = new ClienteCPF("Pedro", "(49)12345-6789", "Coral", "011.900.119-57",
-                                        "6.187.754", "12345678910", new DateTime(2022, 06, 22), "gabas220601@gmail.com", clienteCNPJ);
+                                        "6.187.754", "12345678910", new DateTime(2022, 06, 22), "gabas220601@gmail.com", null);
 
             cpfDAO.Inserir(clienteCPF);
 
@@ -131,6 +127,7 @@ namespace LocadoraDeVeiculos.Test.ClienteCPFModule
             clienteCPFEncontrado.Should().NotBeNull();
             LimparBancos();
         }
+
         [TestMethod]
         public void DeveSelecionar_TodosClientes()
         {

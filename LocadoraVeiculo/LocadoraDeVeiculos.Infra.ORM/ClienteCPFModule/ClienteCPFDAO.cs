@@ -18,6 +18,7 @@ namespace LocadoraDeVeiculos.Infra.ORM.ClienteCPFModule
         {
 
         }
+
         //public override bool Inserir(ClienteCPF registro)
         //{
         //    if (registro.Cliente != null)
@@ -32,6 +33,7 @@ namespace LocadoraDeVeiculos.Infra.ORM.ClienteCPFModule
 
         //    return base.Editar(registro);
         //}
+
         public override List<ClienteCPF> GetAll()
         {
             return registros.Include(x => x.Cliente).ToList();
