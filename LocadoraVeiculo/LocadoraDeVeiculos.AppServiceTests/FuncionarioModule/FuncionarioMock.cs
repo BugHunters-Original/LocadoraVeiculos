@@ -3,6 +3,7 @@ using LocadoraDeVeiculos.Aplicacao.FuncionarioModule;
 using LocadoraDeVeiculos.Dominio.FuncionarioModule;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
+using Serilog;
 
 namespace LocadoraDeVeiculos.AppServiceTests.FuncionarioModule
 {
@@ -10,7 +11,10 @@ namespace LocadoraDeVeiculos.AppServiceTests.FuncionarioModule
     public class FuncionarioMock
     {
         public FuncionarioMock()
-        {
+        {           
+            Infra.LogManager.Log.Logger = new Serilog.LoggerConfiguration()
+            .WriteTo.Console()
+            .CreateLogger();
         }
         [TestMethod]
         public void Deve_chamar_inserir()

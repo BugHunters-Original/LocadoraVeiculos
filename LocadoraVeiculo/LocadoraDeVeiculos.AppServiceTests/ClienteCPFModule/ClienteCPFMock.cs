@@ -4,6 +4,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using FluentAssertions;
 using System;
 using Moq;
+using Serilog;
 
 namespace LocadoraDeVeiculos.AppServiceTests.ClienteCPFModule
 {

@@ -3,7 +3,6 @@ using LocadoraDeVeiculos.Aplicacao.ClienteCNPJModule;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using FluentAssertions;
 using Moq;
-using LocadoraDeVeiculos.Infra.LogManager;
 using Serilog;
 
 namespace LocadoraDeVeiculos.AppServiceTests.ClienteCNPJModule

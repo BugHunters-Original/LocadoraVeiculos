@@ -3,6 +3,7 @@ using LocadoraDeVeiculos.Dominio.ServicoModule;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 using Serilog.Core;
+using Serilog;
 
 namespace LocadoraDeVeiculos.AppServiceTests.ServicoModule
 {
@@ -11,6 +12,13 @@ namespace LocadoraDeVeiculos.AppServiceTests.ServicoModule
     {
         Mock<IServicoRepository> servicoDAOMock = new();
         Mock<Servico> servicoMock = new();
+
+        public ServicoAppServiceTest()
+        {
+            Infra.LogManager.Log.Logger = new Serilog.LoggerConfiguration()
+            .WriteTo.Console()
+            .CreateLogger();
+        }
 
         [TestMethod]
         public void Deve_Chamar_Inserir()

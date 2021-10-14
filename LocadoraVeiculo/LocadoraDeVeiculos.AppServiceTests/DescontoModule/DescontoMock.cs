@@ -3,6 +3,7 @@ using LocadoraDeVeiculos.Aplicacao.DescontoModule;
 using LocadoraDeVeiculos.Dominio.DescontoModule;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
+using Serilog;
 
 namespace LocadoraDeVeiculos.AppServiceTests.DescontoModule
 {
@@ -11,6 +12,9 @@ namespace LocadoraDeVeiculos.AppServiceTests.DescontoModule
     {
         public DescontoMock()
         {
+            Infra.LogManager.Log.Logger = new Serilog.LoggerConfiguration()
+            .WriteTo.Console()
+            .CreateLogger();
         }
         [TestMethod]
         public void Deve_chamar_inserir()

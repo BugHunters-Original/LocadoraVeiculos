@@ -6,6 +6,7 @@ using LocadoraDeVeiculos.Dominio.VeiculoModule;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 using Serilog.Core;
+using Serilog;
 
 namespace LocadoraDeVeiculos.AppServiceTests.LocacaoModule
 {
@@ -36,6 +37,10 @@ namespace LocadoraDeVeiculos.AppServiceTests.LocacaoModule
 
             locacaoService = new(locacaoRepo.Object, emailRepo.Object,
                                  pdfRepo.Object, descontoRepo.Object, veiculoRepo.Object, taxaRepo.Object);
+
+            Infra.LogManager.Log.Logger = new Serilog.LoggerConfiguration()
+            .WriteTo.Console()
+            .CreateLogger();
         }
 
         [TestMethod]

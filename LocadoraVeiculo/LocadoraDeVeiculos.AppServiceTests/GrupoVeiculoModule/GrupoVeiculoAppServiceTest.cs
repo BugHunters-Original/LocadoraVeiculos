@@ -4,6 +4,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 using FluentAssertions;
 using Serilog.Core;
+using Serilog;
 
 namespace LocadoraDeVeiculos.AppServiceTests.GrupoVeiculoModule
 {
@@ -11,6 +12,12 @@ namespace LocadoraDeVeiculos.AppServiceTests.GrupoVeiculoModule
     [TestClass]
     public class GrupoVeiculoAppServiceTest
     {
+        public GrupoVeiculoAppServiceTest()
+        {           
+            Infra.LogManager.Log.Logger = new Serilog.LoggerConfiguration()
+            .WriteTo.Console()
+            .CreateLogger();
+        }
        
         [TestMethod]
         public void Deve_Chamar_Excluir()
