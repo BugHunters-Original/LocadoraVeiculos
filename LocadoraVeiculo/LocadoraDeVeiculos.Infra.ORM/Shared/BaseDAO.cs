@@ -26,16 +26,12 @@ namespace LocadoraDeVeiculos.Infra.ORM.Shared
 
                 contexto.SaveChanges();
 
-                contexto.ChangeTracker.Clear();
-
                 Log.Logger.Information("SUCESSO AO INSERIR {Dominio} ID: {Id}  ", registro.GetType().Name, registro.Id);
 
                 return true;
             }
             catch (Exception ex)
             {
-                contexto.ChangeTracker.Clear();
-
                 Log.Logger.Error(ex, "$ERRO AO INSERIR {Dominio} ID: {Id}  ", registro.GetType().Name, registro.Id);
 
                 return false;
@@ -49,16 +45,12 @@ namespace LocadoraDeVeiculos.Infra.ORM.Shared
 
                 contexto.SaveChanges();
 
-                contexto.ChangeTracker.Clear();
-
                 Log.Logger.Information("SUCESSO AO EDITAR {Dominio} ID: {Id}  ", registro.GetType().Name, registro.Id);
 
                 return true;
             }
             catch (Exception ex)
             {
-                contexto.ChangeTracker.Clear();
-
                 Log.Logger.Error(ex, "ERRO AO EDITAR {Dominio} ID: {Id}  ", registro.GetType().Name, registro.Id);
 
                 return false;
@@ -72,16 +64,12 @@ namespace LocadoraDeVeiculos.Infra.ORM.Shared
 
                 contexto.SaveChanges();
 
-                contexto.ChangeTracker.Clear();
-
                 Log.Logger.Information("SUCESSO AO REMOVER {Dominio} ID: {Id}  ", registro.GetType().Name, registro.Id);
 
                 return true;
             }
             catch (Exception ex)
             {
-                contexto.ChangeTracker.Clear();
-
                 Log.Logger.Error(ex, "ERRO AO REMOVER {Dominio} ID: {Id}  ", registro.GetType().Name, registro.Id);
 
                 return false;
