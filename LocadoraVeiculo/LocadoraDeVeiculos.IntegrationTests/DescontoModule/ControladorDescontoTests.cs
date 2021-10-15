@@ -50,8 +50,7 @@ namespace LocadoraDeVeiculos.Test.DescontoModule
 
         [TestMethod]
         public void DeveInserir_Desconto()
-        {
-            LimparBancos();
+        {     
             //arrange
             var desconto = new Desconto("dinheiro", 50, "Porcentagem", new DateTime(2030, 10, 10), parceiro, "YouTube", "dimdim", 50, 1);
 
@@ -61,12 +60,14 @@ namespace LocadoraDeVeiculos.Test.DescontoModule
             //assert
             var descontoEncontrado = descontoDAO.GetById(desconto.Id);
             descontoEncontrado.Should().Be(desconto);
+
+            LimparBancos();
         }
 
         [TestMethod]
         public void DeveAtualizar_Desconto()
         {
-            LimparBancos();
+            
             //arrange
             var desconto = new Desconto("dinheiro", 50, "Porcentagem", new DateTime(2030, 10, 10), parceiro, "YouTube", "dimdim", 50, 1);
             descontoDAO.Inserir(desconto);
@@ -79,12 +80,14 @@ namespace LocadoraDeVeiculos.Test.DescontoModule
             //assert
             var descontoAtualizado = descontoDAO.GetById(desconto.Id);
             descontoAtualizado.Codigo.Should().Be("xuxu");
+
+            LimparBancos();
         }
 
         [TestMethod]
         public void DeveExcluir_Desconto()
         {
-            LimparBancos();
+            
             //arrange            
             var desconto = new Desconto("dinheiro", 50, "Porcentagem", new DateTime(2030, 10, 10), parceiro, "YouTube", "dimdim", 50, 1);
             descontoDAO.Inserir(desconto);
@@ -95,12 +98,14 @@ namespace LocadoraDeVeiculos.Test.DescontoModule
             //assert
             var descontoEncontrado = descontoDAO.GetById(desconto.Id);
             descontoEncontrado.Should().BeNull();
+
+            LimparBancos();
         }
 
         [TestMethod]
         public void DeveSelecionar_Veiculo_PorId()
         {
-            LimparBancos();
+            
             //arrange
             var desconto = new Desconto("dinheiro", 50, "Porcentagem", new DateTime(2030, 10, 10), parceiro, "YouTube", "dimdim", 50, 1);
             descontoDAO.Inserir(desconto);
@@ -110,12 +115,14 @@ namespace LocadoraDeVeiculos.Test.DescontoModule
 
             //assert
             descontoEncontrado.Should().NotBeNull();
+
+            LimparBancos();
         }
 
         [TestMethod]
         public void DeveSelecionar_Todos()
         {
-            LimparBancos();
+            
             //arrange
             var d1 = new Desconto("dinheiro", 50, "Porcentagem", new DateTime(2030, 10, 10), parceiro, "YouTube", "dimdim", 50, 1);
             descontoDAO.Inserir(d1);
@@ -134,6 +141,8 @@ namespace LocadoraDeVeiculos.Test.DescontoModule
             veiculos[0].Codigo.Should().Be("dinheiro");
             veiculos[1].Codigo.Should().Be("xuxu");
             veiculos[2].Codigo.Should().Be("leilao");
+
+            LimparBancos();
         }
     }
 }

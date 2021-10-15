@@ -11,7 +11,9 @@ using LocadoraVeiculo.WindowsApp.Features.LocacaoFeature.DevolucaoLocacao;
 using LocadoraVeiculo.WindowsApp.Features.LocacaoFeature.NotaFiscal;
 using LocadoraVeiculo.WindowsApp.Shared;
 using Serilog.Core;
+using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Windows.Forms;
 
 namespace LocadoraVeiculo.WindowsApp.Features.LocacaoFeature
@@ -188,7 +190,13 @@ namespace LocadoraVeiculo.WindowsApp.Features.LocacaoFeature
 
         public void PesquisarRegistro(string pesquisa)
         {
-            throw new System.NotImplementedException();
+            List<Locacao> locacoes = locacaoService.SelecionarTodasLocacoes();
+
+            var palavras = pesquisa.Split(' ');
+
+            List<Locacao> filtrados = locacoes.Where(i => palavras.Any(p => i.ToString().IndexOf(p, StringComparison.OrdinalIgnoreCase) >= 0)).ToList();
+
+            tabelaLocacoes.AtualizarRegistros(filtrados);
         }
 
         private bool VerificarPossibilidadeDeInsercao()
