@@ -80,12 +80,14 @@ namespace LocadoraVeiculo.WindowsApp
         private OperacoesLocacao GetOperacoesLocacao()
         {
             LocacaoContext contexto = new();
+            TaxaDaLocacaoDAO taxaDaLocacaoDAO = new(contexto);
             return new OperacoesLocacao(
-                   new LocacaoAppService(new LocacaoDAO(contexto), new EnviaEmail(), new MontaPdf(), new DescontoDAO(contexto), new VeiculoDAO(contexto), new TaxaDaLocacaoDAO(contexto)),
+                   new LocacaoAppService(new LocacaoDAO(contexto), new EnviaEmail(), new MontaPdf(), new DescontoDAO(contexto), new VeiculoDAO(contexto), taxaDaLocacaoDAO),
                    new ClienteCPFAppService(new ClienteCPFDAO(contexto)),
                    new VeiculoAppService(new VeiculoDAO(contexto)),
                    new ClienteCNPJAppService(new ClienteCNPJDAO(contexto)),
-                   new DescontoAppService(new DescontoDAO(contexto)));
+                   new DescontoAppService(new DescontoDAO(contexto)),
+                   taxaDaLocacaoDAO);
         }
 
         private void menuItemCliente_Click(object sender, EventArgs e)

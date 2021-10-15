@@ -17,6 +17,11 @@ namespace LocadoraDeVeiculos.Infra.ORM.TaxaDaLocacaoModule
         {
 
         }
+        public override bool Inserir(TaxaDaLocacao registro)
+        {
+            contexto.Entry(registro.Servico).State = EntityState.Unchanged;
+            return base.Inserir(registro);
+        }
         public override List<TaxaDaLocacao> GetAll()
         {
             return registros.Include(x => x.LocacaoEscolhida).Include(x => x.Servico).ToList();
@@ -25,14 +30,6 @@ namespace LocadoraDeVeiculos.Infra.ORM.TaxaDaLocacaoModule
         {
             return registros.Include(x => x.LocacaoEscolhida).Include(x => x.Servico).SingleOrDefault(x => x.Id == id);
         }
-        //public override bool Inserir(TaxaDaLocacao registro)
-        //{
-        //    contexto.Entry(registro.Servico).State = EntityState.Unchanged;
-
-        //    contexto.Entry(registro.LocacaoEscolhida).State = EntityState.Unchanged;
-
-        //    return base.Inserir(registro);
-        //}
         public bool ExcluirTaxa(int id)
         {
             try
@@ -58,9 +55,10 @@ namespace LocadoraDeVeiculos.Infra.ORM.TaxaDaLocacaoModule
         {
             try
             {
-                List<TaxaDaLocacao> taxa = registros.Where(x => x.IdLocacao == id).
-                                            Include(x=>x.Servico).
-                                            ToList();
+                List<TaxaDaLocacao> taxa = registros.
+                                           Where(x => x.IdLocacao == id).
+                                           Include(x => x.Servico).
+                                           ToList();
 
                 if (taxa != null)
                     Log.Logger.Debug("SUCESSO AO SELECIONAR TODAS AS TAXAS DE UMA LOCAÇÃO  ");
@@ -72,7 +70,7 @@ namespace LocadoraDeVeiculos.Infra.ORM.TaxaDaLocacaoModule
             catch (Exception ex)
             {
                 Log.Logger.Error(ex, "NÃO FOI POSSÍVEL SE COMUNICAR COM O BANCO DE DADOS PARA SELECIONAR TODAS AS TAXAS DE UMA LOCAÇÃO  ");
-                
+
                 return null;
             }
         }

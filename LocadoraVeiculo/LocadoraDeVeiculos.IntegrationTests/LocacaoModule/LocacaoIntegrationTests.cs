@@ -314,6 +314,7 @@ namespace LocadoraDeVeiculos.Test.LocacaoModule
                                     "Plano Diário", 1, precoServicos, dias, "Em Aberto", 1, grupo.ValorDiarioPDiario * dias, 1, null);
 
             controladorLocacao.Inserir(novaLocacao);
+
             controladorLocacao.ConcluirLocacao(novaLocacao);
 
             var novaLocacaoNaoConcluida = new Locacao(cliente1, veiculo1, null, condutor1, dataSaida, dataRetorno,
@@ -328,6 +329,7 @@ namespace LocadoraDeVeiculos.Test.LocacaoModule
 
             //assert
             locacoesNaoConcluida.Should().HaveCount(1);
+
             locacoesNaoConcluida[0].StatusLocacao.Should().Be("Em Aberto");
 
             LimparBanco();

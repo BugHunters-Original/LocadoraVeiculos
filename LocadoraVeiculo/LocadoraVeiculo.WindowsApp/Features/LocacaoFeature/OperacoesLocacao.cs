@@ -25,19 +25,19 @@ namespace LocadoraVeiculo.WindowsApp.Features.LocacaoFeature
         private readonly ClienteCNPJAppService cnpjService;
         private readonly DescontoAppService descontoService;
         private readonly VeiculoAppService veiculoService;
-        private readonly TaxaDaLocacaoDAO taxaLocacaoService;
+        private readonly TaxaDaLocacaoDAO taxaLocacaoDAO;
         private readonly TabelaLocacaoControl tabelaLocacoes;
 
         public OperacoesLocacao(LocacaoAppService locacaoService, ClienteCPFAppService cpfService,
                                 VeiculoAppService veiculoService, ClienteCNPJAppService cnpjService,
-                                DescontoAppService descontoService)
+                                DescontoAppService descontoService, TaxaDaLocacaoDAO taxaLocacaoDAO)
         {
             this.locacaoService = locacaoService;
             this.cpfService = cpfService;
             this.cnpjService = cnpjService;
             this.descontoService = descontoService;
             this.veiculoService = veiculoService;
-            taxaLocacaoService = new TaxaDaLocacaoDAO(new LocacaoContext());
+            this.taxaLocacaoDAO = taxaLocacaoDAO;
             tabelaLocacoes = new TabelaLocacaoControl();
         }
 
@@ -96,7 +96,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.LocacaoFeature
                 return;
             }
 
-            TelaLocacaoForm tela = new TelaLocacaoForm(cpfService, veiculoService, cnpjService, descontoService, locacaoService);
+            TelaLocacaoForm tela = new TelaLocacaoForm(cpfService, veiculoService, cnpjService, descontoService, locacaoService, taxaLocacaoDAO);
 
             tela.Locacao = locacaoSelecionada;
 
@@ -106,7 +106,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.LocacaoFeature
                     veiculoService.EditarDisponibilidadeVeiculo(tela.Locacao.Veiculo, locacaoSelecionada.Veiculo);
 
                 locacaoService.EditarLocacao(tela.Locacao);
-               
+
                 List<Locacao> locacaoes = locacaoService.SelecionarTodasLocacoes();
 
                 tabelaLocacoes.AtualizarRegistros(locacaoes);
@@ -165,7 +165,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.LocacaoFeature
             if (!VerificarPossibilidadeDeInsercao())
                 return;
 
-            TelaLocacaoForm tela = new TelaLocacaoForm(cpfService, veiculoService, cnpjService, descontoService, locacaoService);
+            TelaLocacaoForm tela = new TelaLocacaoForm(cpfService, veiculoService, cnpjService, descontoService, locacaoService, taxaLocacaoDAO);
 
             if (tela.ShowDialog() == DialogResult.OK)
             {
