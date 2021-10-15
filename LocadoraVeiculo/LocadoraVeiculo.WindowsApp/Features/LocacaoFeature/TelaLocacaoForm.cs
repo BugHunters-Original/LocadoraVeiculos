@@ -39,14 +39,14 @@ namespace LocadoraVeiculo.WindowsApp.Features.LocacaoFeature
 
         public TelaLocacaoForm(ClienteCPFAppService cpfService, VeiculoAppService veiculoService,
                                ClienteCNPJAppService cnpjService, DescontoAppService descontoService,
-                               LocacaoAppService locacaoService)
+                               LocacaoAppService locacaoService, TaxaDaLocacaoDAO taxaDaLocacaoDAO)
         {
             this.cpfService = cpfService;
             this.cnpjService = cnpjService;
             this.veiculoService = veiculoService;
             this.descontoService = descontoService;
             this.locacaoService = locacaoService;
-            taxaDaLocacaoDAO = new(new LocacaoContext());
+            this.taxaDaLocacaoDAO = taxaDaLocacaoDAO;
             telaDasTaxas = new TelaAdicionarTaxasForm();
             locacao = new();
             InitializeComponent();
@@ -130,6 +130,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.LocacaoFeature
             clientesCNPJ.ForEach(x => cbCliente.Items.Add(x));
 
             veiculos.ForEach(x => cbVeiculo.Items.Add(x));
+            cbVeiculo.SelectedIndex = 0;
         }
         private static decimal? CalcularPrecoPlanoPorDias(Veiculo veiculo, string tipoLocacao, int dias)
         {

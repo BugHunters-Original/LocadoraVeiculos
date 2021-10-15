@@ -77,6 +77,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.LocacaoFeature.DevolucaoLocacao
             // txtKmAtual
             // 
             this.txtKmAtual.Location = new System.Drawing.Point(171, 146);
+            this.txtKmAtual.MaxLength = 8;
             this.txtKmAtual.Name = "txtKmAtual";
             this.txtKmAtual.Size = new System.Drawing.Size(325, 24);
             this.txtKmAtual.TabIndex = 3;
