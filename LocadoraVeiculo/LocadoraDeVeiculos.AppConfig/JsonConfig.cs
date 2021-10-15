@@ -1,11 +1,17 @@
 ﻿using LocadoraDeVeiculos.Infra.Shared;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using System.Collections.Generic;
 using System.Configuration;
+using System.IO;
 
 namespace LocadoraDeVeiculos.Infra.JsonConfigGeral
 {
     public class JsonConfig
     {
+        public static string pathAppConfig = @$"{Directory.GetCurrentDirectory()}\appsettings.json";
+        public static JObject AppConfig => JObject.Parse(File.ReadAllText(pathAppConfig));
+
         public JsonConfig(Dictionary<string, string> camposIniciais)
         {
             AdicionarCamposCasoNaoExistente(camposIniciais);
@@ -13,40 +19,29 @@ namespace LocadoraDeVeiculos.Infra.JsonConfigGeral
 
         private void AdicionarCamposCasoNaoExistente(Dictionary<string, string> campos)
         {
-            var configFile = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
-            var settings = configFile.AppSettings.Settings;
-
             foreach (var campo in campos)
-            {
-                if (settings[campo.Key] == null)
-                    settings.Add(campo.Key, campo.Value);
-            }
-
-            configFile.Save(ConfigurationSaveMode.Modified);
-            ConfigurationManager.RefreshSection(configFile.AppSettings.SectionInformation.Name);
-
+                Setar(campo.Key, campo.Value);
         }
 
         public string Ler(string chave)
         {
-            var config = Json.InitConfiguration();
-
-            return config.GetSection(chave).Value;
+            return AppConfig[chave].ToString();
         }
-
 
         public void Setar(string chave, object valor)
         {
-            var configFile = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
-            var settings = configFile.AppSettings.Settings;
+            var app = AppConfig;
 
-            if (settings[chave] == null)
-                return;
+            JValue jValue = new(valor);
 
-            settings[chave].Value = valor.ToString();
+            app[chave] = jValue;
 
-            configFile.Save(ConfigurationSaveMode.Modified);
-            ConfigurationManager.RefreshSection(configFile.AppSettings.SectionInformation.Name);
+            Save(app);
         }
+        protected static void Save(JObject newAppConfig)
+        {
+            File.WriteAllText(pathAppConfig, JsonConvert.SerializeObject(newAppConfig));
+        }
+
     }
 }
