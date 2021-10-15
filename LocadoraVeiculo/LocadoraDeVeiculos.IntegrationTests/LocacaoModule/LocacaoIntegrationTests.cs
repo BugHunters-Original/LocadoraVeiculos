@@ -16,6 +16,7 @@ using LocadoraDeVeiculos.Infra.ORM.VeiculoModule;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using Serilog;
+using LocadoraDeVeiculos.Infra.ExtensionMethods;
 
 namespace LocadoraDeVeiculos.Test.LocacaoModule
 {
@@ -33,11 +34,11 @@ namespace LocadoraDeVeiculos.Test.LocacaoModule
         Veiculo veiculo;
         GrupoVeiculo grupo;
         ClienteCNPJ cliente;
-        ClienteCPF condutor;        
+        ClienteCPF condutor;
         Veiculo veiculo1;
 
         ClienteCNPJ cliente1;
-        ClienteCPF condutor1;       
+        ClienteCPF condutor1;
         Veiculo veiculo2;
 
         ClienteCNPJ cliente2;
@@ -64,7 +65,6 @@ namespace LocadoraDeVeiculos.Test.LocacaoModule
 
             LimparBanco();
 
-            
             Infra.LogManager.Log.Logger = new Serilog.LoggerConfiguration()
             .WriteTo.Console()
             .CreateLogger();
@@ -111,7 +111,7 @@ namespace LocadoraDeVeiculos.Test.LocacaoModule
 
             servico1 = new Servico("Seguro", 2500, 0);
             controladorServico.Inserir(servico1);
-            
+
             //3
 
             cliente2 = new ClienteCNPJ("Marques", "Guarujá", "(49)99803-5074", "77.637.684/0111-61", "gabas2201@gmail.com");
@@ -136,36 +136,32 @@ namespace LocadoraDeVeiculos.Test.LocacaoModule
 
         private static void LimparBanco()
         {
-            var Taxas = context.TaxasDaLocacao;
-            context.TaxasDaLocacao.RemoveRange(Taxas);
+            context.TaxasDaLocacao.Clear();
 
-            var Loca = context.Locacoes;
-            context.Locacoes.RemoveRange(Loca);
+            context.Locacoes.Clear();
 
-            var Veic = context.Veiculos;
-            context.Veiculos.RemoveRange(Veic);
+            context.Veiculos.Clear();
 
-            var GrupoV = context.GruposVeiculo;
-            context.GruposVeiculo.RemoveRange(GrupoV);
+            context.GruposVeiculo.Clear();
 
-            var Func = context.Funcionarios;
-            context.Funcionarios.RemoveRange(Func);
+            context.Funcionarios.Clear();
 
-            var CliCpf = context.ClientesCPF;
-            context.ClientesCPF.RemoveRange(CliCpf);
+            context.ClientesCPF.Clear();
 
-            var CliCnpj = context.ClientesCNPJ;
-            context.ClientesCNPJ.RemoveRange(CliCnpj);
+            context.ClientesCNPJ.Clear();
 
-            var Serv = context.Servicos;
-            context.Servicos.RemoveRange(Serv);
+            context.Servicos.Clear();
+
+            context.SaveChanges();
+
+            context.ChangeTracker.Clear();
+
         }
-
-
         [TestMethod]
         public void DeveInserir_Locacao()
         {
 
+            LimparBanco();
             //arrange
             var novaLocacao = new Locacao(cliente, veiculo, null, condutor, dataSaida, dataRetorno,
                                     "Plano Diário", 1, precoServicos, dias, "Em Aberto", 1, grupo.ValorDiarioPDiario * dias, 1, null);
@@ -182,12 +178,12 @@ namespace LocadoraDeVeiculos.Test.LocacaoModule
             locacaoEncontrada.PrecoServicos.Should().Be(novaLocacao.PrecoServicos);
             locacaoEncontrada.DataRetorno.Should().Be(novaLocacao.DataRetorno);
 
-            LimparBanco();
         }
 
         [TestMethod]
         public void DeveAtualizar_Locacao()
         {
+            LimparBanco();
             //arrange                                  
 
             var novaLocacao = new Locacao(cliente, veiculo, null, condutor, dataSaida, dataRetorno,
@@ -205,12 +201,12 @@ namespace LocadoraDeVeiculos.Test.LocacaoModule
 
             locacaoAtualizada.PrecoTotal.Should().Be(4);
 
-            LimparBanco();
         }
 
         [TestMethod]
         public void DeveExcluir_Locacao()
         {
+            LimparBanco();
             //arrange
             var novaLocacao = new Locacao(cliente, veiculo, null, condutor, dataSaida, dataRetorno,
                                      "Plano Diário", 1, precoServicos, dias, "Em Aberto", 1, grupo.ValorDiarioPDiario * dias, 1, null);
@@ -225,12 +221,12 @@ namespace LocadoraDeVeiculos.Test.LocacaoModule
             locacaoAtualizada.Should().BeNull();
 
 
-            LimparBanco();
         }
 
         [TestMethod]
         public void DeveSelecionar_Locacao_PorId()
         {
+            LimparBanco();
             //arrange
             var novaLocacao = new Locacao(cliente, veiculo, null, condutor, dataSaida, dataRetorno,
                          "Plano Diário", 1, precoServicos, dias, "Em Aberto", 1, grupo.ValorDiarioPDiario * dias, 1, null);
@@ -242,12 +238,12 @@ namespace LocadoraDeVeiculos.Test.LocacaoModule
 
             //assert
             locacaoEncontrada.Should().NotBeNull();
-            LimparBanco();
         }
 
         [TestMethod]
         public void DeveSelecionar_Todas()
         {
+            LimparBanco();
             //arrange           
             var novaLocacao = new Locacao(cliente, veiculo, null, condutor, dataSaida, dataRetorno,
                                     "Plano Diário", 1, precoServicos, dias, "Em Aberto", 1, grupo.ValorDiarioPDiario * dias, 1, null);
@@ -270,12 +266,12 @@ namespace LocadoraDeVeiculos.Test.LocacaoModule
             locacoes[0].TipoLocacao.Should().Be("Plano Diário");
             locacoes[1].TipoLocacao.Should().Be("KM Controlado");
             locacoes[2].TipoLocacao.Should().Be("KM Livre");
-            LimparBanco();
         }
 
         [TestMethod]
         public void DeveDevolver_Locacao()
         {
+            LimparBanco();
             //arrange
             var novaLocacao = new Locacao(cliente, veiculo, null, condutor, dataSaida, dataRetorno,
                                     "Plano Diário", 1, precoServicos, dias, "Em Aberto", 1, grupo.ValorDiarioPDiario * dias, 1, null);
@@ -288,12 +284,12 @@ namespace LocadoraDeVeiculos.Test.LocacaoModule
 
             //assert
             locacaoEncontrada.StatusLocacao.Should().Be("Concluída");
-            LimparBanco();
         }
 
         [TestMethod]
         public void SelecionarLocacoesConcluidas()
         {
+            LimparBanco();
             //arrange
             var novaLocacao = new Locacao(cliente, veiculo, null, condutor, dataSaida, dataRetorno,
                                     "Plano Diário", 1, precoServicos, dias, "Em Aberto", 1, grupo.ValorDiarioPDiario * dias, 1, null);
@@ -308,12 +304,12 @@ namespace LocadoraDeVeiculos.Test.LocacaoModule
             //assert
             locacoesConcluidas.Should().HaveCount(1);
             locacoesConcluidas[0].StatusLocacao.Should().Be("Concluída");
-            LimparBanco();
         }
 
         [TestMethod]
         public void SelecionarLocacoesPendentes()
         {
+            LimparBanco();
             //arrange
             var novaLocacao = new Locacao(cliente, veiculo, null, condutor, dataSaida, dataRetorno,
                                     "Plano Diário", 1, precoServicos, dias, "Em Aberto", 1, grupo.ValorDiarioPDiario * dias, 1, null);
@@ -334,7 +330,6 @@ namespace LocadoraDeVeiculos.Test.LocacaoModule
             //assert
             locacoesNaoConcluida.Should().HaveCount(1);
             locacoesNaoConcluida[0].StatusLocacao.Should().Be("Em Aberto");
-            LimparBanco();
         }
     }
 }

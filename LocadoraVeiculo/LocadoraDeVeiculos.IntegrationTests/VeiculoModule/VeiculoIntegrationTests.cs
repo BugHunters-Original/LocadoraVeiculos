@@ -9,6 +9,7 @@ using LocadoraDeVeiculos.Infra.Shared;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Serilog.Core;
 using Serilog;
+using LocadoraDeVeiculos.Infra.ExtensionMethods;
 
 namespace LocadoraDeVeiculos.IntegrationTests.VeiculoModule
 {
@@ -18,27 +19,26 @@ namespace LocadoraDeVeiculos.IntegrationTests.VeiculoModule
         GrupoVeiculoDAO grupoVeiculoDAO;
         VeiculoDAO veiculoDAO;
         GrupoVeiculo grupo;
-        static LocacaoContext context = new();
-
-        byte[] imagem;
+        static LocacaoContext context;
+        byte[] imagem = new byte[] { 0x20, 0x20, 0x20, 0x20, 0x20, 0x20, 0x20 };
 
         public VeiculoIntegrationTests()
         {
-            LimparBanco();
+            grupo = new("Econômico", 10, 10, 10, 10, 10, 10);
+
+            context = new();
 
             grupoVeiculoDAO = new GrupoVeiculoDAO(context);
+
             veiculoDAO = new VeiculoDAO(context);
 
+            LimparBanco();
 
-            
-            Infra.LogManager.Log.Logger = new Serilog.LoggerConfiguration()
+            Infra.LogManager.Log.Logger = new LoggerConfiguration()
             .WriteTo.Console()
             .CreateLogger();
 
-            grupo = new GrupoVeiculo("Econômico", 10, 10, 10, 10, 10, 10);
             grupoVeiculoDAO.Inserir(grupo);
-
-            imagem = new byte[] { 0x20, 0x20, 0x20, 0x20, 0x20, 0x20, 0x20 };
         }
 
         [TestMethod]
@@ -52,8 +52,11 @@ namespace LocadoraDeVeiculos.IntegrationTests.VeiculoModule
 
             //assert
             var veiculoEncontrado = veiculoDAO.GetById(veiculo.Id);
+
             veiculoEncontrado.Nome.Should().Be("marea");
+
             LimparBanco();
+
         }
 
         [TestMethod]
@@ -69,8 +72,11 @@ namespace LocadoraDeVeiculos.IntegrationTests.VeiculoModule
 
             //assert
             var veiculoAtualizado = veiculoDAO.GetById(veiculo.Id);
+
             veiculoAtualizado.Marca.Should().Be("audi");
+
             LimparBanco();
+
         }
 
         [TestMethod]
@@ -85,8 +91,11 @@ namespace LocadoraDeVeiculos.IntegrationTests.VeiculoModule
 
             //assert
             var veiculoEncontrado = veiculoDAO.GetById(veiculo.Id);
+
             veiculoEncontrado.Should().BeNull();
+
             LimparBanco();
+
         }
 
         [TestMethod]
@@ -101,13 +110,14 @@ namespace LocadoraDeVeiculos.IntegrationTests.VeiculoModule
 
             //assert
             veiculoEncontrado.Should().NotBeNull();
+
             LimparBanco();
+
         }
 
         [TestMethod]
         public void DeveSelecionar_Todos()
         {
-            LimparBanco();
             //arrange
             var v1 = new Veiculo("marea", "1234567", "12345678901234567", imagem, "azul", "fiat", 2000, 2, 80, 1, 'G', 1000, "gasolina", 1, grupo);
             veiculoDAO.Inserir(v1);
@@ -126,16 +136,18 @@ namespace LocadoraDeVeiculos.IntegrationTests.VeiculoModule
             veiculos[0].Nome.Should().Be("marea");
             veiculos[1].Nome.Should().Be("uno");
             veiculos[2].Nome.Should().Be("corsa");
+
             LimparBanco();
+
         }
 
         public void LimparBanco()
         {
-            var Veic = context.Veiculos;
-            context.Veiculos.RemoveRange(Veic);
+            context.Veiculos.Clear();
 
-            var GrupoV = context.GruposVeiculo;
-            context.GruposVeiculo.RemoveRange(GrupoV);
+            context.GruposVeiculo.Clear();
+
+            context.SaveChanges();
         }
     }
 }

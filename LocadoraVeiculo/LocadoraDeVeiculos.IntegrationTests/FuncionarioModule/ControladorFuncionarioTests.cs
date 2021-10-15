@@ -6,6 +6,7 @@ using LocadoraDeVeiculos.Infra.ORM.FuncionarioModule;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using Serilog;
+using LocadoraDeVeiculos.Infra.ExtensionMethods;
 
 namespace LocadoraDeVeiculos.Test.FuncionarioModule
 {
@@ -29,13 +30,17 @@ namespace LocadoraDeVeiculos.Test.FuncionarioModule
 
         private static void LimparBanco()
         {
-            var Func = context.Funcionarios;
-            context.Funcionarios.RemoveRange(Func);
+            context.Funcionarios.Clear();
+
+            context.SaveChanges();
+
+            context.ChangeTracker.Clear();
         }
 
         [TestMethod]
         public void DeveInserir_Funcionario()
         {
+            LimparBanco();
             //arrange
             var novoFuncionario = new Funcionario("Luisa Farias", 3000, new DateTime(2021, 03, 03), "099.427.999-09", "luisa_f", "1234567");
 
@@ -45,12 +50,12 @@ namespace LocadoraDeVeiculos.Test.FuncionarioModule
             //assert
             var funcionarioEncontrado = funcionarioDAO.GetById(novoFuncionario.Id);
             funcionarioEncontrado.Should().Be(novoFuncionario);
-            LimparBanco();
         }
 
         [TestMethod]
         public void DeveAtualizar_Funcionario()
         {
+            LimparBanco();
             //arrange
             var funcionario = new Funcionario("Luisa Farias", 3000, new DateTime(2021, 03, 03), "099.427.999-09", "luisa_f", "1234567");
             funcionarioDAO.Inserir(funcionario);
@@ -62,7 +67,6 @@ namespace LocadoraDeVeiculos.Test.FuncionarioModule
             //assert
             Funcionario funcionarioAtualizado = funcionarioDAO.GetById(funcionario.Id);
             funcionarioAtualizado.Salario.Should().Be(100000);
-            LimparBanco();
         }
 
 
@@ -70,6 +74,7 @@ namespace LocadoraDeVeiculos.Test.FuncionarioModule
         [TestMethod]
         public void DeveExcluir_Funcionario()
         {
+            LimparBanco();
             //arrange            
             var funcionario = new Funcionario("Luisa Farias", 3000, new DateTime(2021, 03, 03), "099.427.999-09", "luisa_f", "1234567");
             funcionarioDAO.Inserir(funcionario);
@@ -80,12 +85,12 @@ namespace LocadoraDeVeiculos.Test.FuncionarioModule
             //assert
             Funcionario funcionarioEncontrado = funcionarioDAO.GetById(funcionario.Id);
             funcionarioEncontrado.Should().BeNull();
-            LimparBanco();
         }
 
         [TestMethod]
         public void DeveSelecionar_Funcionario_PorId()
         {
+            LimparBanco();
             //arrange
             var funcionario = new Funcionario("Luisa Farias", 3000, new DateTime(2021, 03, 03), "099.427.999-09", "luisa_f", "1234567");
             funcionarioDAO.Inserir(funcionario);
@@ -95,12 +100,12 @@ namespace LocadoraDeVeiculos.Test.FuncionarioModule
 
             //assert
             funcionarioEncontrado.Should().NotBeNull();
-            LimparBanco();
         }
 
         [TestMethod]
         public void DeveSelecionar_TodosFuncionarios()
         {
+            LimparBanco();
             //arrange
             var f1 = new Funcionario("Luisa Farias", 3000, new DateTime(2021, 03, 03), "099.427.999-09", "luisa_f", "1234567");
             funcionarioDAO.Inserir(f1);
@@ -120,7 +125,6 @@ namespace LocadoraDeVeiculos.Test.FuncionarioModule
             funcionarios[1].Nome.Should().Be("Arthur");
             funcionarios[2].Nome.Should().Be("Andrey");
 
-            LimparBanco();
         }
     }
 }

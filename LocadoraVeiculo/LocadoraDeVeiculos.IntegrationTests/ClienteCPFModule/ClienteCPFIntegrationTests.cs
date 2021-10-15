@@ -9,6 +9,7 @@ using LocadoraDeVeiculos.Infra.Shared;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using Serilog;
+using LocadoraDeVeiculos.Infra.ExtensionMethods;
 
 namespace LocadoraDeVeiculos.Test.ClienteCPFModule
 {
@@ -33,44 +34,41 @@ namespace LocadoraDeVeiculos.Test.ClienteCPFModule
 
         private static void LimparBancos()
         {
-            var Taxas= context.TaxasDaLocacao;
-            context.TaxasDaLocacao.RemoveRange(Taxas);
+            context.TaxasDaLocacao.Clear();
 
-            var Loca = context.Locacoes;
-            context.Locacoes.RemoveRange(Loca);
+            context.Locacoes.Clear();
 
-            var CliCpf = context.ClientesCPF;
-            context.ClientesCPF.RemoveRange(CliCpf);
+            context.ClientesCNPJ.Clear();
 
-            var CliCnpj = context.ClientesCNPJ;
-            context.ClientesCNPJ.RemoveRange(CliCnpj);
+            context.ClientesCPF.Clear();
+
+            context.SaveChanges();
+
+            context.ChangeTracker.Clear();
         }
 
         [TestMethod]
         public void DeveInserir_Cliente()
         {
-            //arrange
-            var novoClienteCNPJ = new ClienteCNPJ("Gabriel Marques", "Guarujá", "(49)99803-5074", "77.637.684/0111-61", "gabas220601@gmail.com");
-
-            cnpjDAO.Inserir(novoClienteCNPJ);
-
-
+            LimparBancos();
+            
             //action
 
             var novoClienteCPF = new ClienteCPF("Pedro", "(49)12345-6789", "Coral", "011.900.119-57",
-                                        "6.187.754", "12345678910", new DateTime(2022, 06, 22), "gabas220601@gmail.com", novoClienteCNPJ);
+                                        "6.187.754", "12345678910", new DateTime(2022, 06, 22), "gabas220601@gmail.com", null);
 
             cpfDAO.Inserir(novoClienteCPF);
 
             //assert
             var condutorEncontrado = cpfDAO.GetById(novoClienteCPF.Id);
+
             condutorEncontrado.Should().Be(novoClienteCPF);
-            LimparBancos();
         }
 
         [TestMethod]
         public void DeveAtualizar_Cliente()
         {
+            LimparBancos();
             //arrange
             var clienteCNPJ = new ClienteCNPJ("Gabriel Marques", "Guarujá", "(49)99803-5074", "77.637.684/0111-61", "gabas220601@gmail.com");
 
@@ -90,12 +88,12 @@ namespace LocadoraDeVeiculos.Test.ClienteCPFModule
             //assert
             var clienteCPFEncontrado = cpfDAO.GetById(clienteCPF.Id);
             clienteCPFEncontrado.Email.Should().Be("arthurrrrrrrrr@gmail.com");
-            LimparBancos();
         }
 
         [TestMethod]
         public void DeveExcluir_Cliente()
         {
+            LimparBancos();
             //arrange
             var clienteCNPJ = new ClienteCNPJ("Gabriel Marques", "Guarujá", "(49)99803-5074", "01190011956", "gabas220601@gmail.com");
 
@@ -112,12 +110,12 @@ namespace LocadoraDeVeiculos.Test.ClienteCPFModule
             //assert
             var condutorEncontrado = cpfDAO.GetById(clienteCPF.Id);
             condutorEncontrado.Should().BeNull();
-            LimparBancos();
         }
 
         [TestMethod]
         public void DeveSelecionar_Cliente_PorId()
         {
+            LimparBancos();
             //arrange
             var clienteCPF = new ClienteCPF("Pedro", "(49)12345-6789", "Coral", "011.900.119-57",
                                         "6.187.754", "12345678910", new DateTime(2022, 06, 22), "gabas220601@gmail.com", null);
@@ -129,34 +127,26 @@ namespace LocadoraDeVeiculos.Test.ClienteCPFModule
 
             //assert
             clienteCPFEncontrado.Should().NotBeNull();
-            LimparBancos();
         }
 
         [TestMethod]
         public void DeveSelecionar_TodosClientes()
         {
+            LimparBancos();
             //arrange
-            var ct1 = new ClienteCNPJ("Gabriel Marques", "Guarujá", "(49)99803-5074", "01190011956", "gabas220601@gmail.com");
-            cnpjDAO.Inserir(ct1);
 
             var cd1 = new ClienteCPF("Andrey Silva", "(49)12345-6789", "Coral", "011.900.119-57",
-                                        "6.187.754", "12345678910", new DateTime(2022, 06, 22), "gabas220601@gmail.com", ct1);
+                                        "6.187.754", "12345678910", new DateTime(2022, 06, 22), "gabas220601@gmail.com", null);
 
             cpfDAO.Inserir(cd1);
 
-            var ct2 = new ClienteCNPJ("Gabriel Marques", "Guarujá", "(49)99803-5074", "01190011956", "gabas220601@gmail.com");
-            cnpjDAO.Inserir(ct2);
-
             var cd2 = new ClienteCPF("Gabriel Marques", "(49)12345-6789", "Coral", "011.900.119-57",
-                                        "6.187.754", "12345678910", new DateTime(2022, 06, 22), "gabas220601@gmail.com", ct2);
+                                        "6.187.754", "12345678910", new DateTime(2022, 06, 22), "gabas220601@gmail.com", null);
 
             cpfDAO.Inserir(cd2);
 
-            var ct3 = new ClienteCNPJ("Gabriel Marques", "Guarujá", "(49)99803-5074", "01190011956", "gabas220601@gmail.com");
-            cnpjDAO.Inserir(ct3);
-
             var cd3 = new ClienteCPF("Pedro", "(49)12345-6789", "Coral", "011.900.119-57",
-                                        "6.187.754", "12345678910", new DateTime(2022, 06, 22), "gabas220601@gmail.com", ct3);
+                                        "6.187.754", "12345678910", new DateTime(2022, 06, 22), "gabas220601@gmail.com", null);
 
             cpfDAO.Inserir(cd3);
             //action
@@ -167,7 +157,6 @@ namespace LocadoraDeVeiculos.Test.ClienteCPFModule
             clientesCPF[0].Nome.Should().Be("Andrey Silva");
             clientesCPF[1].Nome.Should().Be("Gabriel Marques");
             clientesCPF[2].Nome.Should().Be("Pedro");
-            LimparBancos();
         }
     }
 }

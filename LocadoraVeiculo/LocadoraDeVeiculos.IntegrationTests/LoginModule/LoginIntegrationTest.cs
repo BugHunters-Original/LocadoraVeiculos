@@ -8,6 +8,7 @@ using LocadoraDeVeiculos.Infra.Shared;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using Serilog;
+using LocadoraDeVeiculos.Infra.ExtensionMethods;
 
 namespace LocadoraDeVeiculos.IntegrationTests.LoginModule
 {
@@ -24,9 +25,10 @@ namespace LocadoraDeVeiculos.IntegrationTests.LoginModule
             repositoryFunc = new(context);
             repositoryLogin = new();
 
-            var Func = context.Funcionarios;
-            context.Funcionarios.RemoveRange(Func);
-            
+            context.Funcionarios.Clear();
+
+            context.SaveChanges();
+
             Infra.LogManager.Log.Logger = new Serilog.LoggerConfiguration()
             .WriteTo.Console()
             .CreateLogger();

@@ -1,6 +1,7 @@
 ﻿using FluentAssertions;
 using LocadoraDeVeiculos.Dominio.ServicoModule;
 using LocadoraDeVeiculos.Infra.Context;
+using LocadoraDeVeiculos.Infra.ExtensionMethods;
 using LocadoraDeVeiculos.Infra.LogManager;
 using LocadoraDeVeiculos.Infra.ORM.ServicoModule;
 using LocadoraDeVeiculos.Infra.Shared;
@@ -28,13 +29,17 @@ namespace LocadoraDeVeiculos.IntegrationTests.ServicoModule
 
         private static void LimparBanco()
         {
-            var Serv = context.Servicos;
-            context.Servicos.RemoveRange(Serv);
+            context.Servicos.Clear();
+
+            context.SaveChanges();
+
+            context.ChangeTracker.Clear();
         }
 
         [TestMethod]
         public void DeveInserir_Servico()
         {
+            LimparBanco();
             //arrange
             var novoServico = new Servico("GPS", 12, 1);
 
@@ -44,11 +49,11 @@ namespace LocadoraDeVeiculos.IntegrationTests.ServicoModule
             //assert
             var clienteEncontrado = repository.GetById(novoServico.Id);
             clienteEncontrado.Should().Be(novoServico);
-            LimparBanco();
         }
         [TestMethod]
         public void DeveAtualizar_Servico()
         {
+            LimparBanco();
             //arrange
             var servico = new Servico("GPS", 12, 1);
             repository.Inserir(servico);
@@ -62,11 +67,11 @@ namespace LocadoraDeVeiculos.IntegrationTests.ServicoModule
             //assert
             Servico servicoAtualizado = repository.GetById(servico.Id);
             servicoAtualizado.Nome.Should().Be("CADEIRINHA");
-            LimparBanco();
         }
         [TestMethod]
         public void DeveExcluir_Servico()
         {
+            LimparBanco();
             //arrange            
             var servico = new Servico("GPS", 12, 1);
             repository.Inserir(servico);
@@ -77,11 +82,11 @@ namespace LocadoraDeVeiculos.IntegrationTests.ServicoModule
             //assert
             Servico servicoEncontrado = repository.GetById(servico.Id);
             servicoEncontrado.Should().BeNull();
-            LimparBanco();
         }
         [TestMethod]
         public void DeveSelecionar_Servico_PorId()
         {
+            LimparBanco();
             //arrange
             var servico = new Servico("GPS", 12, 1);
             repository.Inserir(servico);
@@ -91,11 +96,11 @@ namespace LocadoraDeVeiculos.IntegrationTests.ServicoModule
 
             //assert
             servicoEncontrado.Should().NotBeNull();
-            LimparBanco();
         }
         [TestMethod]
         public void DeveSelecionar_TodosServicos()
         {
+            LimparBanco();
             //arrange
             var s1 = new Servico("GPS", 12, 1);
             repository.Inserir(s1);
@@ -114,7 +119,6 @@ namespace LocadoraDeVeiculos.IntegrationTests.ServicoModule
             servicos[0].Nome.Should().Be("GPS");
             servicos[1].Nome.Should().Be("CADEIRINHA");
             servicos[2].Nome.Should().Be("SEGURO");
-            LimparBanco();
         }
     }
 }

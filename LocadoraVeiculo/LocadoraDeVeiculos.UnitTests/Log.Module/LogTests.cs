@@ -13,7 +13,7 @@ namespace LocadoraDeVeiculos.UnitTests.Log.Module
     public class LogTests
     {
         [TestMethod]
-        public void DeveValidar_Locacao()
+        public void DeveNotificarErro()
         {
             //arrange
             Exception ex = new("problema");

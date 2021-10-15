@@ -11,6 +11,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Serilog;
+using LocadoraDeVeiculos.Infra.ExtensionMethods;
 
 namespace LocadoraDeVeiculos.IntegrationTests.ParceiroModule
 {
@@ -34,17 +35,19 @@ namespace LocadoraDeVeiculos.IntegrationTests.ParceiroModule
 
         private static void LimparBancos()
         {
-            var desc = context.Descontos;
-            context.Descontos.RemoveRange(desc);
+            context.Descontos.Clear();
 
-            var list = context.Parceiros;
-            context.Parceiros.RemoveRange(list);
+            context.Parceiros.Clear();
 
+            context.SaveChanges();
+
+            context.ChangeTracker.Clear();
         }
 
         [TestMethod]
         public void DeveInserir_Parceiro()
         {
+            LimparBancos();
             //arrange
             var novoParceiro = new Parceiro("Andrey");
 
@@ -54,12 +57,12 @@ namespace LocadoraDeVeiculos.IntegrationTests.ParceiroModule
             //assert
             var parceiroEncontrado = repository.GetById(novoParceiro.Id);
             parceiroEncontrado.Should().Be(novoParceiro);
-            LimparBancos();
         }
 
         [TestMethod]
         public void DeveAtualizar_Parceiro()
         {
+            LimparBancos();
             //arrange
             var novoParceiro = new Parceiro("Luisa F");
 
@@ -72,12 +75,12 @@ namespace LocadoraDeVeiculos.IntegrationTests.ParceiroModule
             //assert
             Parceiro parceiroAtualizado = repository.GetById(novoParceiro.Id);
             parceiroAtualizado.Nome.Should().Be("Luisa S");
-            LimparBancos();
         }
 
         [TestMethod]
         public void DeveExcluir_Parceiro()
         {
+            LimparBancos();
             //arrange
             var novoParceiro = new Parceiro("Luisa F");
             repository.Inserir(novoParceiro);
@@ -88,12 +91,12 @@ namespace LocadoraDeVeiculos.IntegrationTests.ParceiroModule
             //assert
             Parceiro parceiroEncontrado = repository.GetById(novoParceiro.Id);
             parceiroEncontrado.Should().BeNull();
-            LimparBancos();
         }
 
         [TestMethod]
         public void DeveSelecionar_Parceiro_PorId()
         {
+            LimparBancos();
             //arrange
             var novoParceiro = new Parceiro("Gabriel");
             repository.Inserir(novoParceiro);
@@ -103,11 +106,11 @@ namespace LocadoraDeVeiculos.IntegrationTests.ParceiroModule
 
             //assert
             parceiroEncontrado.Should().NotBeNull();
-            LimparBancos();
         }
         [TestMethod]
         public void DeveSelecionar_Todos()
         {
+            LimparBancos();
             //arrange
             var parceiro1 = new Parceiro("Gabriel");
             repository.Inserir(parceiro1);
@@ -126,7 +129,6 @@ namespace LocadoraDeVeiculos.IntegrationTests.ParceiroModule
             parceiros[0].Nome.Should().Be("Gabriel");
             parceiros[1].Nome.Should().Be("Arthur");
             parceiros[2].Nome.Should().Be("Andrey");
-            LimparBancos();
         }
     }
 }
