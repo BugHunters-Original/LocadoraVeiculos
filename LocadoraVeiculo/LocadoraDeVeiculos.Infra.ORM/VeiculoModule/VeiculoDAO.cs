@@ -23,12 +23,7 @@ namespace LocadoraDeVeiculos.Infra.ORM.VeiculoModule
         {
             return registros.Include(x => x.GrupoVeiculo).SingleOrDefault(x => x.Id == id);
         }
-        //public override bool Inserir(Veiculo registro)
-        //{
-        //    contexto.Entry(registro.GrupoVeiculo).State = EntityState.Unchanged;
 
-        //    return base.Inserir(registro);
-        //}
         public void AtualizarQuilometragem(Veiculo veiculo)
         {
             try

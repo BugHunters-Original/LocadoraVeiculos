@@ -37,7 +37,7 @@ namespace LocadoraDeVeiculos.Infra.Context
         {
             return LoggerFactory.Create(builder =>
             {
-                builder.AddFilter((category, logLevel) => category == DbLoggerCategory.Database.Command.Name && logLevel == LogLevel.Information);
+                builder.AddFilter((category, logLevel) => category == DbLoggerCategory.Database.Command.Name && logLevel == LogLevel.Debug);
                 builder.AddSerilog();
             });
         }

@@ -1,10 +1,8 @@
 ﻿using FluentAssertions;
 using LocadoraDeVeiculos.Dominio.FuncionarioModule;
 using LocadoraDeVeiculos.Infra.Context;
-using LocadoraDeVeiculos.Infra.LogManager;
 using LocadoraDeVeiculos.Infra.ORM.FuncionarioModule;
 using LocadoraDeVeiculos.Infra.ORM.LoginModule;
-using LocadoraDeVeiculos.Infra.Shared;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using Serilog;

@@ -2,9 +2,7 @@ using FluentAssertions;
 using LocadoraDeVeiculos.Dominio.ClienteModule.ClienteCNPJModule;
 using LocadoraDeVeiculos.Infra.Context;
 using LocadoraDeVeiculos.Infra.ExtensionMethods;
-using LocadoraDeVeiculos.Infra.LogManager;
 using LocadoraDeVeiculos.Infra.ORM.ClienteCNPJModule;
-using LocadoraDeVeiculos.Infra.Shared;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Serilog;
 

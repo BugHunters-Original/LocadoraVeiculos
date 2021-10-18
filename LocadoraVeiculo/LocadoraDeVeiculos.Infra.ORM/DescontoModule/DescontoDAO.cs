@@ -16,13 +16,6 @@ namespace LocadoraDeVeiculos.Infra.ORM.DescontoModule
 
         }
 
-        //public override bool Inserir(Desconto registro)
-        //{
-        //    contexto.Entry(registro.Parceiro).State = EntityState.Unchanged;
-
-        //    return base.Inserir(registro);
-        //}
-
         public override List<Desconto> GetAll()
         {
             return registros.Include(x=>x.Parceiro).ToList();

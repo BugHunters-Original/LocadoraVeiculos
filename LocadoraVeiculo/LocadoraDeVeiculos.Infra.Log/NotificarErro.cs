@@ -1,18 +1,10 @@
 ﻿using LocadoraDeVeiculos.Infra.EmailLocadora;
-using LocadoraDeVeiculos.Infra.Shared;
-using Microsoft.Extensions.Configuration;
 using System;
-using System.Collections.Generic;
-using System.Configuration;
-using System.IO;
-using System.Linq;
 using System.Net.Mail;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace LocadoraDeVeiculos.Infra.LogManager
 {
-    public class NotificarErro 
+    public class NotificaErro 
     {
         
         public static bool EnviarEmailErro(Exception ex)
