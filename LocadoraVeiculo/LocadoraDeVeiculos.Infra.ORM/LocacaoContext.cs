@@ -1,5 +1,4 @@
-﻿using LocadoraDeVeiculos.Dominio.ClienteModule;
-using LocadoraDeVeiculos.Dominio.ClienteModule.ClienteCNPJModule;
+﻿using LocadoraDeVeiculos.Dominio.ClienteModule.ClienteCNPJModule;
 using LocadoraDeVeiculos.Dominio.ClienteModule.ClienteCPFModule;
 using LocadoraDeVeiculos.Dominio.DescontoModule;
 using LocadoraDeVeiculos.Dominio.FuncionarioModule;
@@ -10,7 +9,8 @@ using LocadoraDeVeiculos.Dominio.ServicoModule;
 using LocadoraDeVeiculos.Dominio.TaxaDaLocacaoModule;
 using LocadoraDeVeiculos.Dominio.VeiculoModule;
 using Microsoft.EntityFrameworkCore;
-using System.Collections.Generic;
+using Microsoft.Extensions.Logging;
+using Serilog;
 
 namespace LocadoraDeVeiculos.Infra.Context
 {
@@ -26,10 +26,20 @@ namespace LocadoraDeVeiculos.Infra.Context
         public DbSet<Servico> Servicos { get; set; }
         public DbSet<TaxaDaLocacao> TaxasDaLocacao { get; set; }
         public DbSet<GrupoVeiculo> GruposVeiculo { get; set; }
+
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             optionsBuilder
+                .UseLoggerFactory(ConfigureLog())
                 .UseSqlServer(@"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=LocadoraVeiculos;Integrated Security=True");
+        }
+        private static ILoggerFactory ConfigureLog()
+        {
+            return LoggerFactory.Create(builder =>
+            {
+                builder.AddFilter((category, logLevel) => category == DbLoggerCategory.Database.Command.Name && logLevel == LogLevel.Debug);
+                builder.AddSerilog();
+            });
         }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

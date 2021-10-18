@@ -1,5 +1,4 @@
-﻿using LocadoraDeVeiculos.Infra.Shared;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System.Collections.Generic;
 using System.Configuration;

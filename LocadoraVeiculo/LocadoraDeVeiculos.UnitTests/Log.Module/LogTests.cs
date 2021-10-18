@@ -18,7 +18,7 @@ namespace LocadoraDeVeiculos.UnitTests.Log.Module
             //arrange
             Exception ex = new("problema");
             //action
-            bool resultadoValidacao = NotificarErro.EnviarEmailErro(ex);
+            bool resultadoValidacao = NotificaErro.EnviarEmailErro(ex);
 
             //assert
             resultadoValidacao.Should().Be(true);
