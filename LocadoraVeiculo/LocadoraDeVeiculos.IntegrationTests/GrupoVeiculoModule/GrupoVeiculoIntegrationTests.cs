@@ -21,7 +21,7 @@ namespace LocadoraDeVeiculos.IntegrationTests.GrupoVeiculoModule
             grupoVeiculoDAO = new GrupoVeiculoDAO(context);
             LimparBancos();
             
-            Infra.LogManager.Log.Logger = new Serilog.LoggerConfiguration()
+            Infra.LogManager.LogSerilog.Logger = new Serilog.LoggerConfiguration()
             .WriteTo.Console()
             .CreateLogger();
         }

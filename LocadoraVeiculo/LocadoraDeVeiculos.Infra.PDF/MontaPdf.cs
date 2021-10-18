@@ -57,12 +57,12 @@ namespace LocadoraDeVeiculos.Infra.PDFLocacao
 
                     pdfDocument.Close();
 
-                    Log.Logger.Aqui().Information("PDF DA LOCAÇÃO ID: {Id} CONCLUÍDO COM SUCESSO", locacao.Id);
+                    LogSerilog.Logger.Aqui().Information("PDF DA LOCAÇÃO ID: {Id} CONCLUÍDO COM SUCESSO", locacao.Id);
                 }
             }
             catch (Exception ex)
             {
-                Log.Logger.Aqui().Error(ex, "ERRO AO INSERIR LOCAÇÃO ID: {Id}", locacao.Id);
+                LogSerilog.Logger.Aqui().Error(ex, "ERRO AO INSERIR LOCAÇÃO ID: {Id}", locacao.Id);
             }
         }
     }

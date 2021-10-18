@@ -39,7 +39,7 @@ namespace LocadoraDeVeiculos.Infra.InternetServices
                         //ENVIAR
                         smtp.Send(email);
 
-                        Log.Logger.Aqui().Debug("E-MAIL ENVIADO PARA {EmailCliente} com sucesso!", locacao.Cliente.Email);
+                        LogSerilog.Logger.Aqui().Debug("E-MAIL ENVIADO PARA {EmailCliente} com sucesso!", locacao.Cliente.Email);
 
                         return true;
                     }
@@ -47,7 +47,7 @@ namespace LocadoraDeVeiculos.Infra.InternetServices
             }
             catch(Exception ex)
             {
-                Log.Logger.Aqui().Error(ex , "ERRO AO ENVIAR E-MAIL PARA {EmailCliente} ");
+                LogSerilog.Logger.Aqui().Error(ex , "ERRO AO ENVIAR E-MAIL PARA {EmailCliente} ");
                 return false;
             }
         }

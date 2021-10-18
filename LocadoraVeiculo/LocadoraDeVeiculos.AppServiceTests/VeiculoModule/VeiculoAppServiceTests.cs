@@ -25,7 +25,7 @@ namespace LocadoraDeVeiculos.AppServiceTests.VeiculoModule
             veiculoMock = new("Carro", "AAA8888", "12345678912345678", imagem, "vermelho",
                 "Ford", 2009, 9, 200, 1, 'M', 90, "Álcool", 1, grupoVeiculo);
          
-            Infra.LogManager.Log.Logger = new Serilog.LoggerConfiguration()
+            Infra.LogManager.LogSerilog.Logger = new Serilog.LoggerConfiguration()
             .WriteTo.Console()
             .CreateLogger();
         }

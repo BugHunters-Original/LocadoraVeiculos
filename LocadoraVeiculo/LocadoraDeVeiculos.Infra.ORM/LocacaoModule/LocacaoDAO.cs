@@ -47,16 +47,16 @@ namespace LocadoraDeVeiculos.Infra.ORM.LocacaoModule
                                           Count();
 
                 if (qtdLocacoesComCupom == 0)
-                    Log.Logger.Debug("SUCESSO AO SELECIONAR A QUANTIDADE DE LOCAÇÕES COM CUPOM  ");
+                    LogSerilog.Logger.Debug("SUCESSO AO SELECIONAR A QUANTIDADE DE LOCAÇÕES COM CUPOM  ");
                 else
-                    Log.Logger.Information("NÃO FOI POSSÍVEL SELECIONAR A QUANTIDADE DE LOCAÇÕES COM CUPOM  ");
+                    LogSerilog.Logger.Information("NÃO FOI POSSÍVEL SELECIONAR A QUANTIDADE DE LOCAÇÕES COM CUPOM  ");
 
                 return qtdLocacoesComCupom;
 
             }
             catch (Exception ex)
             {
-                Log.Logger.Error(ex, "NÃO FOI POSSÍVEL SE COMUNICAR COM O BANCO DE DADOS PARA SELECIONAR A QUANTIDADE DE LOCAÇÕES COM CUPOM  ");
+                LogSerilog.Logger.Error(ex, "NÃO FOI POSSÍVEL SE COMUNICAR COM O BANCO DE DADOS PARA SELECIONAR A QUANTIDADE DE LOCAÇÕES COM CUPOM  ");
 
                 return 0;
             }
@@ -71,16 +71,16 @@ namespace LocadoraDeVeiculos.Infra.ORM.LocacaoModule
                                            Count();
 
                 if (qtdLocacoesPendentes == 0)
-                    Log.Logger.Debug("SUCESSO AO SELECIONAR A QUANTIDADE DE LOCAÇÕES PENDENTES  ");
+                    LogSerilog.Logger.Debug("SUCESSO AO SELECIONAR A QUANTIDADE DE LOCAÇÕES PENDENTES  ");
                 else
-                    Log.Logger.Information("NÃO FOI POSSÍVEL SELECIONAR A QUANTIDADE DE LOCAÇÕES PENDENTES  ");
+                    LogSerilog.Logger.Information("NÃO FOI POSSÍVEL SELECIONAR A QUANTIDADE DE LOCAÇÕES PENDENTES  ");
 
                 return qtdLocacoesPendentes;
 
             }
             catch (Exception ex)
             {
-                Log.Logger.Error(ex, "NÃO FOI POSSÍVEL SE COMUNICAR COM O BANCO DE DADOS PARA SELECIONAR A QUANTIDADE DE LOCACOES PENDENTES  ");
+                LogSerilog.Logger.Error(ex, "NÃO FOI POSSÍVEL SE COMUNICAR COM O BANCO DE DADOS PARA SELECIONAR A QUANTIDADE DE LOCACOES PENDENTES  ");
 
                 return 0;
             }
@@ -100,15 +100,15 @@ namespace LocadoraDeVeiculos.Infra.ORM.LocacaoModule
                                            ToList();
 
                 if (locacoes.Count != 0)
-                    Log.Logger.Debug("SUCESSO AO SELECIONAR TODAS AS LOCAÇÕES CONCLUÍDAS  ");
+                    LogSerilog.Logger.Debug("SUCESSO AO SELECIONAR TODAS AS LOCAÇÕES CONCLUÍDAS  ");
                 else
-                    Log.Logger.Information("NÃO FOI POSSÍVEL SELECIONAR TODAS AS LOCAÇÕES CONCLUÍDAS  ");
+                    LogSerilog.Logger.Information("NÃO FOI POSSÍVEL SELECIONAR TODAS AS LOCAÇÕES CONCLUÍDAS  ");
 
                 return locacoes;
             }
             catch (Exception ex)
             {
-                Log.Logger.Error(ex, "NÃO FOI POSSÍVEL SE COMUNICAR COM O BANCO DE DADOS PARA SELECIONAR TODAS AS LOCAÇÕES CONCLUÍDAS  ");
+                LogSerilog.Logger.Error(ex, "NÃO FOI POSSÍVEL SE COMUNICAR COM O BANCO DE DADOS PARA SELECIONAR TODAS AS LOCAÇÕES CONCLUÍDAS  ");
 
                 return null;
             }
@@ -128,15 +128,15 @@ namespace LocadoraDeVeiculos.Infra.ORM.LocacaoModule
                                            ToList();
 
                 if (locacoes.Count != 0)
-                    Log.Logger.Debug("SUCESSO AO SELECIONAR TODAS AS LOCAÇÕES PENDENTES  ");
+                    LogSerilog.Logger.Debug("SUCESSO AO SELECIONAR TODAS AS LOCAÇÕES PENDENTES  ");
                 else
-                    Log.Logger.Information("NÃO FOI POSSÍVEL SELECIONAR TODAS AS LOCAÇÕES PENDENTES  ");
+                    LogSerilog.Logger.Information("NÃO FOI POSSÍVEL SELECIONAR TODAS AS LOCAÇÕES PENDENTES  ");
 
                 return locacoes;
             }
             catch (Exception ex)
             {
-                Log.Logger.Error(ex, "NÃO FOI POSSÍVEL SE COMUNICAR COM O BANCO DE DADOS PARA SELECIONAR TODAS AS LOCAÇÕES PENDENTES  ");
+                LogSerilog.Logger.Error(ex, "NÃO FOI POSSÍVEL SE COMUNICAR COM O BANCO DE DADOS PARA SELECIONAR TODAS AS LOCAÇÕES PENDENTES  ");
 
                 return null;
             }
@@ -150,11 +150,11 @@ namespace LocadoraDeVeiculos.Infra.ORM.LocacaoModule
 
                 Editar(locacao);
 
-                Log.Logger.Information("SUCESSO AO INICIAR LOCAÇÃO ID: {Id}  ", locacao.Id);
+                LogSerilog.Logger.Information("SUCESSO AO INICIAR LOCAÇÃO ID: {Id}  ", locacao.Id);
             }
             catch (Exception ex)
             {
-                Log.Logger.Error(ex, "ERRO AO INICIAR LOCAÇÃO ID: {Id}  ", locacao.Id);
+                LogSerilog.Logger.Error(ex, "ERRO AO INICIAR LOCAÇÃO ID: {Id}  ", locacao.Id);
             }
         }
 
@@ -166,11 +166,11 @@ namespace LocadoraDeVeiculos.Infra.ORM.LocacaoModule
 
                 Editar(locacao);
 
-                Log.Logger.Information("SUCESSO AO CONCLUIR LOCAÇÃO ID: {Id}  ", locacao.Id);
+                LogSerilog.Logger.Information("SUCESSO AO CONCLUIR LOCAÇÃO ID: {Id}  ", locacao.Id);
             }
             catch (Exception ex)
             {
-                Log.Logger.Error(ex, "ERRO AO CONCLUIR LOCAÇÃO ID: {Id}  ", locacao.Id);
+                LogSerilog.Logger.Error(ex, "ERRO AO CONCLUIR LOCAÇÃO ID: {Id}  ", locacao.Id);
             }
         }
     }

@@ -12,7 +12,7 @@ namespace LocadoraDeVeiculos.AppServiceTests.DescontoModule
     {
         public DescontoMock()
         {
-            Infra.LogManager.Log.Logger = new Serilog.LoggerConfiguration()
+            Infra.LogManager.LogSerilog.Logger = new Serilog.LoggerConfiguration()
             .WriteTo.Console()
             .CreateLogger();
         }

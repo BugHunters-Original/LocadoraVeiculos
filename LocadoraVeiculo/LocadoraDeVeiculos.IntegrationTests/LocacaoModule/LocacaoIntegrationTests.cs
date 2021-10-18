@@ -63,7 +63,7 @@ namespace LocadoraDeVeiculos.Test.LocacaoModule
             controladorServico = new ServicoDAO(context);
             controladorLocacao = new LocacaoDAO(context);
 
-            Infra.LogManager.Log.Logger = new Serilog.LoggerConfiguration()
+            Infra.LogManager.LogSerilog.Logger = new Serilog.LoggerConfiguration()
             .WriteTo.Console()
             .CreateLogger();
 

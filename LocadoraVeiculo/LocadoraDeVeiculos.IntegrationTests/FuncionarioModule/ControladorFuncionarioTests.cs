@@ -23,7 +23,7 @@ namespace LocadoraDeVeiculos.Test.FuncionarioModule
             funcionarioDAO = new FuncionarioDAO(context);
             LimparBanco();
             
-            Infra.LogManager.Log.Logger = new Serilog.LoggerConfiguration()
+            Infra.LogManager.LogSerilog.Logger = new Serilog.LoggerConfiguration()
             .WriteTo.Console()
             .CreateLogger();
         }

@@ -44,7 +44,7 @@ namespace LocadoraDeVeiculos.AppServiceTests.LocacaoModule
             locacaoService = new(locacaoRepo.Object, emailRepo.Object,
                                  pdfRepo.Object, descontoRepo.Object, veiculoRepo.Object, taxaRepo.Object);
 
-            Infra.LogManager.Log.Logger = new Serilog.LoggerConfiguration()
+            Infra.LogManager.LogSerilog.Logger = new Serilog.LoggerConfiguration()
             .WriteTo.Console()
             .CreateLogger();
         }

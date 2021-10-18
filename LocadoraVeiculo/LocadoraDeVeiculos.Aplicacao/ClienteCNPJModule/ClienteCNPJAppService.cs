@@ -18,19 +18,19 @@ namespace LocadoraDeVeiculos.Aplicacao.ClienteCNPJModule
 
         public bool RegistrarNovoClienteCNPJ(ClienteCNPJ clienteCNPJ)
         {
-            Log.Logger.Aqui().Debug("REGISTRANDO CLIENTE CNPJ {ClienteNome}", clienteCNPJ.Nome);
+            LogSerilog.Logger.Aqui().Debug("REGISTRANDO CLIENTE CNPJ {ClienteNome}", clienteCNPJ.Nome);
 
             if (clienteCNPJ.Validar() == "ESTA_VALIDO")
             {
                 clienteCNPJRepository.Inserir(clienteCNPJ);
 
-                Log.Logger.Debug("CLIENTE CNPJ {ClienteNome} REGISTRADO COM SUCESSO", clienteCNPJ.Nome);
+                LogSerilog.Logger.Debug("CLIENTE CNPJ {ClienteNome} REGISTRADO COM SUCESSO", clienteCNPJ.Nome);
 
                 return true;
             }
             else
             {
-                Log.Logger.Aqui().Error("NÃO FOI POSSÍVEL REGISTRAR CLIENTE CNPJ {ClienteNome}", clienteCNPJ.Nome);
+                LogSerilog.Logger.Aqui().Error("NÃO FOI POSSÍVEL REGISTRAR CLIENTE CNPJ {ClienteNome}", clienteCNPJ.Nome);
 
                 return false;
             }
@@ -38,19 +38,19 @@ namespace LocadoraDeVeiculos.Aplicacao.ClienteCNPJModule
 
         public bool EditarClienteCNPJ(ClienteCNPJ clienteCNPJ)
         {
-            Log.Logger.Aqui().Debug("EDITANDO CLIENTE CNPJ {ClienteNome}", clienteCNPJ.Nome);
+            LogSerilog.Logger.Aqui().Debug("EDITANDO CLIENTE CNPJ {ClienteNome}", clienteCNPJ.Nome);
 
             if (clienteCNPJ.Validar() == "ESTA_VALIDO")
             {
                 clienteCNPJRepository.Editar(clienteCNPJ);
 
-                Log.Logger.Aqui().Debug("CLIENTE CNPJ {ClienteNome} EDITADO COM SUCESSO", clienteCNPJ.Nome);
+                LogSerilog.Logger.Aqui().Debug("CLIENTE CNPJ {ClienteNome} EDITADO COM SUCESSO", clienteCNPJ.Nome);
 
                 return true;
             }
             else
             {
-                Log.Logger.Aqui().Error("NÃO FOI POSSÍVEL EDITAR CLIENTE CNPJ {ClienteNome}", clienteCNPJ.Nome);
+                LogSerilog.Logger.Aqui().Error("NÃO FOI POSSÍVEL EDITAR CLIENTE CNPJ {ClienteNome}", clienteCNPJ.Nome);
 
                 return false;
             }
@@ -59,42 +59,42 @@ namespace LocadoraDeVeiculos.Aplicacao.ClienteCNPJModule
 
         public bool ExcluirClienteCNPJ(ClienteCNPJ cliente)
         {
-            Log.Logger.Aqui().Debug("REMOVENDO CLIENTE CNPJ {Id}", cliente.Id);
+            LogSerilog.Logger.Aqui().Debug("REMOVENDO CLIENTE CNPJ {Id}", cliente.Id);
 
             var excluiu = clienteCNPJRepository.Excluir(cliente);
 
             if (excluiu)
-                Log.Logger.Aqui().Debug("CLIENTE CNPJ {Id} REMOVIDO COM SUCESSO", cliente.Id);
+                LogSerilog.Logger.Aqui().Debug("CLIENTE CNPJ {Id} REMOVIDO COM SUCESSO", cliente.Id);
             else
-                Log.Logger.Aqui().Error("NÃO FOI POSSÍVEL REMOVER CLIENTE CNPJ {Id}", cliente.Id);
+                LogSerilog.Logger.Aqui().Error("NÃO FOI POSSÍVEL REMOVER CLIENTE CNPJ {Id}", cliente.Id);
 
             return excluiu;
         }
 
         public ClienteCNPJ SelecionarClienteCNPJPorId(int id)
         {
-            Log.Logger.Aqui().Debug("SELECIONANDO O CLIENTE CNPJ ID: {Id}", id);
+            LogSerilog.Logger.Aqui().Debug("SELECIONANDO O CLIENTE CNPJ ID: {Id}", id);
 
             ClienteCNPJ clienteCNPJ = clienteCNPJRepository.GetById(id);
 
             if (clienteCNPJ == null)
-                Log.Logger.Aqui().Information("NÃO FOI POSSÍVEL ENCONTRAR O CLIENTE CNPJ ID {Id}", clienteCNPJ.Id);
+                LogSerilog.Logger.Aqui().Information("NÃO FOI POSSÍVEL ENCONTRAR O CLIENTE CNPJ ID {Id}", clienteCNPJ.Id);
             else
-                Log.Logger.Aqui().Debug("CLIENTE CNPJ ID {Id} SELECIONADO COM SUCESSO", clienteCNPJ.Id);
+                LogSerilog.Logger.Aqui().Debug("CLIENTE CNPJ ID {Id} SELECIONADO COM SUCESSO", clienteCNPJ.Id);
 
             return clienteCNPJ;
         }
 
         public List<ClienteCNPJ> SelecionarTodosClientesCNPJ()
         {
-            Log.Logger.Aqui().Debug("SELECIONANDO TODOS OS CLIENTES CNPJ");
+            LogSerilog.Logger.Aqui().Debug("SELECIONANDO TODOS OS CLIENTES CNPJ");
 
             List<ClienteCNPJ> clientes = clienteCNPJRepository.GetAll();
 
             if (clientes.Count == 0)
-                Log.Logger.Aqui().Information("NÃO HÁ CLIENTES CNPJ CADASTRADOS");
+                LogSerilog.Logger.Aqui().Information("NÃO HÁ CLIENTES CNPJ CADASTRADOS");
             else
-                Log.Logger.Aqui().Debug("A SELEÇÃO TROUXE {Quantidade} CLIENTE(S) CNPJ EXISTENTE(S)", clientes.Count);
+                LogSerilog.Logger.Aqui().Debug("A SELEÇÃO TROUXE {Quantidade} CLIENTE(S) CNPJ EXISTENTE(S)", clientes.Count);
 
             return clientes;                
         }

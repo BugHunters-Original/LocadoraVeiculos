@@ -14,7 +14,7 @@ namespace LocadoraDeVeiculos.AppServiceTests.GrupoVeiculoModule
     {
         public GrupoVeiculoAppServiceTest()
         {           
-            Infra.LogManager.Log.Logger = new Serilog.LoggerConfiguration()
+            Infra.LogManager.LogSerilog.Logger = new Serilog.LoggerConfiguration()
             .WriteTo.Console()
             .CreateLogger();
         }

@@ -8,6 +8,7 @@ using LocadoraDeVeiculos.Dominio.ParceiroModule;
 using LocadoraDeVeiculos.Dominio.ServicoModule;
 using LocadoraDeVeiculos.Dominio.TaxaDaLocacaoModule;
 using LocadoraDeVeiculos.Dominio.VeiculoModule;
+using LocadoraDeVeiculos.Infra.LogManager;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using Serilog;
@@ -27,25 +28,28 @@ namespace LocadoraDeVeiculos.Infra.Context
         public DbSet<TaxaDaLocacao> TaxasDaLocacao { get; set; }
         public DbSet<GrupoVeiculo> GruposVeiculo { get; set; }
 
+        private static readonly ILoggerFactory SeriLog = LoggerFactory.Create(builder =>
+        {
+            builder.
+                AddFilter((category, logLevel) =>
+                    category == DbLoggerCategory.Database.Command.Name
+                    && logLevel == LogLevel.Debug).
+                AddDebug().
+                AddSerilog(LogSerilog.Logger, dispose: true);
+        });
+
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             optionsBuilder
-                .UseLoggerFactory(ConfigureLog())
+                .UseLoggerFactory(SeriLog)
                 .UseSqlServer(@"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=LocadoraVeiculos;Integrated Security=True");
         }
-        private static ILoggerFactory ConfigureLog()
-        {
-            return LoggerFactory.Create(builder =>
-            {
-                builder.AddFilter((category, logLevel) =>
-                category == DbLoggerCategory.Database.Command.Name
-                && logLevel == LogLevel.Debug).
-                AddSerilog(Log.Logger, dispose: true);
-            });
-        }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.ApplyConfigurationsFromAssembly(typeof(LocacaoContext).Assembly);
         }
     }
+
 }
+
