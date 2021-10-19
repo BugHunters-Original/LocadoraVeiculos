@@ -1,8 +1,6 @@
 ﻿using LocadoraDeVeiculos.Dominio.ServicoModule;
 using LocadoraDeVeiculos.Infra.ExtensionMethods;
-using LocadoraDeVeiculos.Infra.LogManager;
-using Serilog.Core;
-using System;
+using LocadoraDeVeiculos.Infra.Logger;
 using System.Collections.Generic;
 
 namespace LocadoraDeVeiculos.Aplicacao.ServicoModule

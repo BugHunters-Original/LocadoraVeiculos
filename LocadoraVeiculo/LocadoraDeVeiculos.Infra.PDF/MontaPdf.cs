@@ -1,5 +1,4 @@
 ﻿using iText.IO.Image;
-using iText.IO.Util;
 using iText.Kernel.Geom;
 using iText.Kernel.Pdf;
 using iText.Layout;
@@ -7,7 +6,7 @@ using iText.Layout.Element;
 using iText.Layout.Properties;
 using LocadoraDeVeiculos.Dominio.LocacaoModule;
 using LocadoraDeVeiculos.Infra.ExtensionMethods;
-using LocadoraDeVeiculos.Infra.LogManager;
+using LocadoraDeVeiculos.Infra.Logger;
 using System;
 
 namespace LocadoraDeVeiculos.Infra.PDFLocacao

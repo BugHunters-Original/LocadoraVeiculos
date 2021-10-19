@@ -1,7 +1,5 @@
-﻿using LocadoraDeVeiculos.Infra.LogManager;
-using LocadoraVeiculo.WindowsApp.Features.DarkModeFeature;
+﻿using LocadoraVeiculo.WindowsApp.Features.DarkModeFeature;
 using LocadoraVeiculo.WindowsApp.Features.LoginFeature;
-using Serilog;
 using System;
 using System.Windows.Forms;
 

@@ -3,9 +3,8 @@ using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.Linq;
 using System;
-using LocadoraDeVeiculos.Infra.LogManager;
 using LocadoraDeVeiculos.Infra.Context;
-using Microsoft.EntityFrameworkCore.ChangeTracking;
+using LocadoraDeVeiculos.Infra.Logger;
 
 namespace LocadoraDeVeiculos.Infra.ORM.Shared
 {

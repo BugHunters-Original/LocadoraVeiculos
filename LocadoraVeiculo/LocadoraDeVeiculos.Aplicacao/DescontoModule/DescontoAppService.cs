@@ -1,6 +1,6 @@
 ﻿using LocadoraDeVeiculos.Dominio.DescontoModule;
 using LocadoraDeVeiculos.Infra.ExtensionMethods;
-using LocadoraDeVeiculos.Infra.LogManager;
+using LocadoraDeVeiculos.Infra.Logger;
 using System.Collections.Generic;
 
 namespace LocadoraDeVeiculos.Aplicacao.DescontoModule

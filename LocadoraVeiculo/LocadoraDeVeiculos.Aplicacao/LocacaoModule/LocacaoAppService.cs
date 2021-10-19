@@ -4,8 +4,8 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using LocadoraDeVeiculos.Dominio.VeiculoModule;
 using LocadoraDeVeiculos.Infra.ExtensionMethods;
-using LocadoraDeVeiculos.Infra.LogManager;
 using LocadoraDeVeiculos.Dominio.TaxaDaLocacaoModule;
+using LocadoraDeVeiculos.Infra.Logger;
 
 namespace LocadoraDeVeiculos.Aplicacao.LocacaoModule
 {

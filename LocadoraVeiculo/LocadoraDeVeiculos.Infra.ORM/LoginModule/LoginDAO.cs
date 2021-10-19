@@ -1,11 +1,6 @@
 ﻿using LocadoraDeVeiculos.Infra.Context;
-using LocadoraDeVeiculos.Infra.LogManager;
+using LocadoraDeVeiculos.Infra.Logger;
 using LocadoraDeVeiculos.Infra.ORM.FuncionarioModule;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace LocadoraDeVeiculos.Infra.ORM.LoginModule
 {

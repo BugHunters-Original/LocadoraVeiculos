@@ -1,8 +1,7 @@
 ﻿using LocadoraDeVeiculos.Dominio.LocacaoModule;
 using LocadoraDeVeiculos.Infra.EmailLocadora;
 using LocadoraDeVeiculos.Infra.ExtensionMethods;
-using LocadoraDeVeiculos.Infra.LogManager;
-using Serilog.Core;
+using LocadoraDeVeiculos.Infra.Logger;
 using System;
 using System.Net.Mail;
 

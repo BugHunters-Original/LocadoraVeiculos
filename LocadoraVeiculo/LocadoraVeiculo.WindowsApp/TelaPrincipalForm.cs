@@ -18,6 +18,7 @@ using LocadoraVeiculo.WindowsApp.Features.DarkModeFeature;
 using LocadoraVeiculo.WindowsApp.Features.LoginFeature;
 using Autofac;
 using LocadoraDeVeiculos.WindowsApp.Shared;
+using LocadoraDeVeiculos.Infra.Logger;
 #endregion
 namespace LocadoraVeiculo.WindowsApp
 {

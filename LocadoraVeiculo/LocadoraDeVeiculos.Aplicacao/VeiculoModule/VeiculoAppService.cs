@@ -1,9 +1,6 @@
-﻿using LocadoraDeVeiculos.Dominio.Shared;
-using LocadoraDeVeiculos.Dominio.VeiculoModule;
+﻿using LocadoraDeVeiculos.Dominio.VeiculoModule;
 using LocadoraDeVeiculos.Infra.ExtensionMethods;
-using LocadoraDeVeiculos.Infra.LogManager;
-using Serilog.Core;
-using System;
+using LocadoraDeVeiculos.Infra.Logger;
 using System.Collections.Generic;
 
 
