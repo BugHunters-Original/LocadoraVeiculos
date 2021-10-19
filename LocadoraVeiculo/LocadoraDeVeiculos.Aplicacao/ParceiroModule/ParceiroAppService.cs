@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace LocadoraDeVeiculos.Aplicacao.ParceiroModule
 {
-    public class ParceiroAppService : IParceiroAppService
+    public class ParceiroAppService
     {
         private readonly IParceiroRepository parceiroRepository;
 

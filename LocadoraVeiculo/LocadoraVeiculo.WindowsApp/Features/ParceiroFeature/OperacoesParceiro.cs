@@ -11,8 +11,8 @@ namespace LocadoraVeiculo.WindowsApp.Features.ParceiroFeature
     public class OperacoesParceiro : ICadastravel
     {
         private readonly TabelaParceiroControl tabelaParceiro;
-        private readonly IParceiroAppService parceiroService;
-        public OperacoesParceiro(IParceiroAppService parceiroService)
+        private readonly ParceiroAppService parceiroService;
+        public OperacoesParceiro(ParceiroAppService parceiroService)
         {
             this.parceiroService = parceiroService;
             tabelaParceiro = new TabelaParceiroControl();

@@ -40,8 +40,8 @@ using LocadoraDeVeiculos.Infra.ORM.FuncionarioModule;
 using LocadoraDeVeiculos.Infra.ORM.DescontoModule;
 using LocadoraDeVeiculos.Infra.ORM.TaxaDaLocacaoModule;
 using LocadoraDeVeiculos.Infra.ORM.LocacaoModule;
-using LocadoraDeVeiculos.Infra.DI;
 using Autofac;
+using LocadoraDeVeiculos.WindowsApp.Shared;
 #endregion
 namespace LocadoraVeiculo.WindowsApp
 {
@@ -160,7 +160,7 @@ namespace LocadoraVeiculo.WindowsApp
 
             AtualizarRodape(configuracao.TipoCadastro);
 
-            operacoes = DependencyInjection.Container.Resolve<OperacoesParceiro>();
+            operacoes = AutoFacDI.Container.Resolve<OperacoesParceiro>();
 
             ConfigurarPainelRegistros();
         }
@@ -209,19 +209,9 @@ namespace LocadoraVeiculo.WindowsApp
 
             AtualizarRodape(configuracao.TipoCadastro);
 
-            operacoes = GetOperacoesDesconto();
+            operacoes = AutoFacDI.Container.Resolve<OperacoesDesconto>();
 
             ConfigurarPainelRegistros();
-        }
-
-        private OperacoesDesconto GetOperacoesDesconto()
-        {
-            LocacaoContext contexto = new();
-            return new OperacoesDesconto(
-                   new DescontoAppService(new DescontoDAO(contexto)),
-                   new ParceiroAppService(new ParceiroDAO(contexto)),
-                   new LocacaoAppService(new LocacaoDAO(contexto), new EnviaEmail(), new MontaPdf(), new DescontoDAO(contexto), new VeiculoDAO(contexto), new TaxaDaLocacaoDAO(contexto)));
-
         }
 
         private void preçosCombustívelToolStripMenuItem_Click(object sender, EventArgs e)
