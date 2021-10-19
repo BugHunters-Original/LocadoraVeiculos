@@ -64,27 +64,27 @@ namespace LocadoraDeVeiculos.WindowsApp.Shared
 
         private static void ConfigurarOperacao()
         {
-            Builder.RegisterType<OperacoesParceiro>().SingleInstance();
-            Builder.RegisterType<OperacoesDesconto>().SingleInstance();
-            Builder.RegisterType<OperacoesCliente>().SingleInstance();
-            Builder.RegisterType<OperacoesFuncionario>().SingleInstance();
-            Builder.RegisterType<OperacoesGrupoVeiculo>().SingleInstance();
-            Builder.RegisterType<OperacoesLocacao>().SingleInstance();
-            Builder.RegisterType<OperacoesServico>().SingleInstance();
-            Builder.RegisterType<OperacoesVeiculo>().SingleInstance();
+            Builder.RegisterType<OperacoesParceiro>().InstancePerDependency();
+            Builder.RegisterType<OperacoesDesconto>().InstancePerDependency();
+            Builder.RegisterType<OperacoesCliente>().InstancePerDependency();
+            Builder.RegisterType<OperacoesFuncionario>().InstancePerDependency();
+            Builder.RegisterType<OperacoesGrupoVeiculo>().InstancePerDependency();
+            Builder.RegisterType<OperacoesLocacao>().InstancePerDependency();
+            Builder.RegisterType<OperacoesServico>().InstancePerDependency();
+            Builder.RegisterType<OperacoesVeiculo>().InstancePerDependency();
         }
 
         private static void ConfigurarService()
         {
-            Builder.RegisterType<ParceiroAppService>().SingleInstance();
-            Builder.RegisterType<ClienteCNPJAppService>().SingleInstance();
-            Builder.RegisterType<ClienteCPFAppService>().SingleInstance();
-            Builder.RegisterType<DescontoAppService>().SingleInstance();
-            Builder.RegisterType<FuncionarioAppService>().SingleInstance();
-            Builder.RegisterType<GrupoVeiculoAppService>().SingleInstance();
-            Builder.RegisterType<LocacaoAppService>().SingleInstance();
-            Builder.RegisterType<ServicoAppService>().SingleInstance();
-            Builder.RegisterType<VeiculoAppService>().SingleInstance();
+            Builder.RegisterType<ParceiroAppService>().InstancePerDependency();
+            Builder.RegisterType<ClienteCNPJAppService>().InstancePerDependency();
+            Builder.RegisterType<ClienteCPFAppService>().InstancePerDependency();
+            Builder.RegisterType<DescontoAppService>().InstancePerDependency();
+            Builder.RegisterType<FuncionarioAppService>().InstancePerDependency();
+            Builder.RegisterType<GrupoVeiculoAppService>().InstancePerDependency();
+            Builder.RegisterType<LocacaoAppService>().InstancePerDependency();
+            Builder.RegisterType<ServicoAppService>().InstancePerDependency();
+            Builder.RegisterType<VeiculoAppService>().InstancePerDependency();
         }
         private static void ConfigurarORM()
         {
