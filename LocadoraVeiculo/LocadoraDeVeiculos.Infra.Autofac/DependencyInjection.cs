@@ -1,23 +1,36 @@
 ﻿using Autofac;
-using LocadoraDeVeiculos.Aplicacao.FuncionarioModule;
+using LocadoraDeVeiculos.Aplicacao.ParceiroModule;
 using LocadoraDeVeiculos.Dominio.ParceiroModule;
+using LocadoraDeVeiculos.Dominio.Shared;
 using LocadoraDeVeiculos.Infra.Context;
 using LocadoraDeVeiculos.Infra.ORM.ParceiroModule;
 using System;
+using System.Reflection;
 
-namespace LocadoraDeVeiculos.Infra.Autofac
+namespace LocadoraDeVeiculos.Infra.DI
 {
     public class DependencyInjection
     {
-        static readonly IContainer container;
-        static readonly ContainerBuilder builder = new();
+        private static ContainerBuilder Builder = new();
+        public static IContainer Container;
+        
         static DependencyInjection()
         {
-            builder.RegisterType<LocacaoContext>().InstancePerLifetimeScope();
+            Builder.RegisterType<LocacaoContext>().InstancePerLifetimeScope();
 
-            builder.RegisterType<ParceiroDAO>().As<IParceiroRepository>().SingleInstance();
+            ConfigurarORM();
 
-            container = builder.Build();
-        }        
+            ConfigurarService();
+
+            Container = Builder.Build();
+        }
+        private static void ConfigurarService()
+        {
+            Builder.RegisterType<ParceiroAppService>().As<IParceiroAppService>().SingleInstance();
+        }
+        private static void ConfigurarORM()
+        {
+            Builder.RegisterType<ParceiroDAO>().As<IParceiroRepository>().SingleInstance();
+        }
     }
 }
