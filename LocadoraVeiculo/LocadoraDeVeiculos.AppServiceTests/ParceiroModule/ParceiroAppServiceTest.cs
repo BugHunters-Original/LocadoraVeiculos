@@ -1,9 +1,7 @@
 ﻿using LocadoraDeVeiculos.Aplicacao.ParceiroModule;
 using LocadoraDeVeiculos.Dominio.ParceiroModule;
-using LocadoraDeVeiculos.Infra.LogManager;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
-using Serilog.Core;
 using Serilog;
 
 namespace LocadoraDeVeiculos.AppServiceTests.ParceiroModule
@@ -15,8 +13,8 @@ namespace LocadoraDeVeiculos.AppServiceTests.ParceiroModule
         Mock<Parceiro> parceiroMock = new();
 
         public ParceiroAppServiceTest()
-        {           
-            Infra.LogManager.Serilogger.Logger = new Serilog.LoggerConfiguration()
+        {
+            Infra.Logger.Serilogger.Logger = new Serilog.LoggerConfiguration()
             .WriteTo.Console()
             .CreateLogger();
         }

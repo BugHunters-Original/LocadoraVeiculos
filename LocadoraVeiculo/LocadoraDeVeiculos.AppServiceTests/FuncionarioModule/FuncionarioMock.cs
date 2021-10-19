@@ -11,8 +11,8 @@ namespace LocadoraDeVeiculos.AppServiceTests.FuncionarioModule
     public class FuncionarioMock
     {
         public FuncionarioMock()
-        {           
-            Infra.LogManager.Serilogger.Logger = new Serilog.LoggerConfiguration()
+        {
+            Infra.Logger.Serilogger.Logger = new Serilog.LoggerConfiguration()
             .WriteTo.Console()
             .CreateLogger();
         }

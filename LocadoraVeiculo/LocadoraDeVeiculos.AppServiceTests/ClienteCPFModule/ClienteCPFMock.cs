@@ -13,7 +13,7 @@ namespace LocadoraDeVeiculos.AppServiceTests.ClienteCPFModule
     {
         public ClienteCPFMock()
         {
-            Infra.LogManager.Serilogger.Logger = new Serilog.LoggerConfiguration()
+            Infra.Logger.Serilogger.Logger = new Serilog.LoggerConfiguration()
             .WriteTo.Console()
             .CreateLogger();
         }

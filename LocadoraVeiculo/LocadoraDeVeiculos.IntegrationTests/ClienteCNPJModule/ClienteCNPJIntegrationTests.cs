@@ -20,7 +20,7 @@ namespace LocadoraDeVeiculos.Test.ClienteNPJModule
             cnpjDAO = new ClienteCNPJDAO(context);
             LimparBanco();
 
-            Infra.LogManager.Serilogger.Logger = new Serilog.LoggerConfiguration()
+            Infra.Logger.Serilogger.Logger = new Serilog.LoggerConfiguration()
             .WriteTo.Console()
             .CreateLogger();
         }

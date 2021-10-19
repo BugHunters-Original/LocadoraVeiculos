@@ -20,8 +20,8 @@ namespace LocadoraDeVeiculos.IntegrationTests.GrupoVeiculoModule
             context = new();
             grupoVeiculoDAO = new GrupoVeiculoDAO(context);
             LimparBancos();
-            
-            Infra.LogManager.Serilogger.Logger = new Serilog.LoggerConfiguration()
+
+            Infra.Logger.Serilogger.Logger = new Serilog.LoggerConfiguration()
             .WriteTo.Console()
             .CreateLogger();
         }
