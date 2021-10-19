@@ -8,6 +8,7 @@ using LocadoraDeVeiculos.Aplicacao.LocacaoModule;
 using LocadoraDeVeiculos.Aplicacao.ParceiroModule;
 using LocadoraDeVeiculos.Aplicacao.ServicoModule;
 using LocadoraDeVeiculos.Aplicacao.VeiculoModule;
+using LocadoraDeVeiculos.Dominio.ClienteModule;
 using LocadoraDeVeiculos.Dominio.ClienteModule.ClienteCNPJModule;
 using LocadoraDeVeiculos.Dominio.ClienteModule.ClienteCPFModule;
 using LocadoraDeVeiculos.Dominio.DescontoModule;
@@ -96,9 +97,10 @@ namespace LocadoraDeVeiculos.WindowsApp.Shared
             Builder.RegisterType<LocacaoDAO>().As<ILocacaoRepository>().InstancePerDependency();
             Builder.RegisterType<ServicoDAO>().As<IServicoRepository>().InstancePerDependency();
             Builder.RegisterType<VeiculoDAO>().As<IVeiculoRepository>().InstancePerDependency();
-            Builder.RegisterType<TaxaDaLocacaoDAO>().As<ITaxaRepository>().InstancePerDependency();
+            Builder.RegisterType<TaxaDaLocacaoDAO>().As<ITaxaRepository>().AsSelf().InstancePerDependency();
             Builder.RegisterType<EnviaEmail>().As<IEmail>().InstancePerDependency();
             Builder.RegisterType<MontaPdf>().As<IPDF>().InstancePerDependency();
+            Builder.RegisterType<FiltroCliente>().InstancePerDependency();
 
         }
     }
