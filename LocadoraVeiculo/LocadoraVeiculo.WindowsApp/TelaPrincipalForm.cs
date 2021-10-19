@@ -40,6 +40,8 @@ using LocadoraDeVeiculos.Infra.ORM.FuncionarioModule;
 using LocadoraDeVeiculos.Infra.ORM.DescontoModule;
 using LocadoraDeVeiculos.Infra.ORM.TaxaDaLocacaoModule;
 using LocadoraDeVeiculos.Infra.ORM.LocacaoModule;
+using LocadoraDeVeiculos.Infra.DI;
+using Autofac;
 #endregion
 namespace LocadoraVeiculo.WindowsApp
 {
@@ -158,14 +160,9 @@ namespace LocadoraVeiculo.WindowsApp
 
             AtualizarRodape(configuracao.TipoCadastro);
 
-            operacoes = GetOperacoesParceiro();
+            operacoes = new OperacoesParceiro(DependencyInjection.Container.Resolve<IParceiroAppService>());
 
             ConfigurarPainelRegistros();
-        }
-
-        private OperacoesParceiro GetOperacoesParceiro()
-        {
-            return new OperacoesParceiro(new ParceiroAppService(new ParceiroDAO(new LocacaoContext())));
         }
 
         private void grupoDeVeículosToolStripMenuItem_Click(object sender, EventArgs e)
