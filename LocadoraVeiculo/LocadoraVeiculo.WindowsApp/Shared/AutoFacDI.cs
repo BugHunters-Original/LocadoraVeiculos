@@ -8,6 +8,7 @@ using LocadoraDeVeiculos.Aplicacao.LocacaoModule;
 using LocadoraDeVeiculos.Aplicacao.ParceiroModule;
 using LocadoraDeVeiculos.Aplicacao.ServicoModule;
 using LocadoraDeVeiculos.Aplicacao.VeiculoModule;
+using LocadoraDeVeiculos.Dominio.ClienteModule;
 using LocadoraDeVeiculos.Dominio.ClienteModule.ClienteCNPJModule;
 using LocadoraDeVeiculos.Dominio.ClienteModule.ClienteCPFModule;
 using LocadoraDeVeiculos.Dominio.DescontoModule;
@@ -63,43 +64,44 @@ namespace LocadoraDeVeiculos.WindowsApp.Shared
 
         private static void ConfigurarOperacao()
         {
-            Builder.RegisterType<OperacoesParceiro>().InstancePerDependency();
-            Builder.RegisterType<OperacoesDesconto>().InstancePerDependency();
-            Builder.RegisterType<OperacoesCliente>().InstancePerDependency();
-            Builder.RegisterType<OperacoesFuncionario>().InstancePerDependency();
-            Builder.RegisterType<OperacoesGrupoVeiculo>().InstancePerDependency();
-            Builder.RegisterType<OperacoesLocacao>().InstancePerDependency();
-            Builder.RegisterType<OperacoesServico>().InstancePerDependency();
-            Builder.RegisterType<OperacoesVeiculo>().InstancePerDependency();
+            Builder.RegisterType<OperacoesParceiro>().SingleInstance();
+            Builder.RegisterType<OperacoesDesconto>().SingleInstance();
+            Builder.RegisterType<OperacoesCliente>().SingleInstance();
+            Builder.RegisterType<OperacoesFuncionario>().SingleInstance();
+            Builder.RegisterType<OperacoesGrupoVeiculo>().SingleInstance();
+            Builder.RegisterType<OperacoesLocacao>().SingleInstance();
+            Builder.RegisterType<OperacoesServico>().SingleInstance();
+            Builder.RegisterType<OperacoesVeiculo>().SingleInstance();
         }
 
         private static void ConfigurarService()
         {
-            Builder.RegisterType<ParceiroAppService>().InstancePerDependency();
-            Builder.RegisterType<ClienteCNPJAppService>().InstancePerDependency();
-            Builder.RegisterType<ClienteCPFAppService>().InstancePerDependency();
-            Builder.RegisterType<DescontoAppService>().InstancePerDependency();
-            Builder.RegisterType<FuncionarioAppService>().InstancePerDependency();
-            Builder.RegisterType<GrupoVeiculoAppService>().InstancePerDependency();
-            Builder.RegisterType<LocacaoAppService>().InstancePerDependency();
-            Builder.RegisterType<ServicoAppService>().InstancePerDependency();
-            Builder.RegisterType<VeiculoAppService>().InstancePerDependency();
+            Builder.RegisterType<ParceiroAppService>().SingleInstance();
+            Builder.RegisterType<ClienteCNPJAppService>().SingleInstance();
+            Builder.RegisterType<ClienteCPFAppService>().SingleInstance();
+            Builder.RegisterType<DescontoAppService>().SingleInstance();
+            Builder.RegisterType<FuncionarioAppService>().SingleInstance();
+            Builder.RegisterType<GrupoVeiculoAppService>().SingleInstance();
+            Builder.RegisterType<LocacaoAppService>().SingleInstance();
+            Builder.RegisterType<ServicoAppService>().SingleInstance();
+            Builder.RegisterType<VeiculoAppService>().SingleInstance();
         }
         private static void ConfigurarORM()
         {
-            Builder.RegisterType<ParceiroDAO>().As<IParceiroRepository>().InstancePerDependency();
-            Builder.RegisterType<ClienteCNPJDAO>().As<IClienteCNPJRepository>().InstancePerDependency();
-            Builder.RegisterType<ClienteCPFDAO>().As<IClienteCPFRepository>().InstancePerDependency();
-            Builder.RegisterType<DescontoDAO>().As<IDescontoRepository>().InstancePerDependency();
-            Builder.RegisterType<FuncionarioDAO>().As<IFuncionarioRepository>().InstancePerDependency();
-            Builder.RegisterType<GrupoVeiculoDAO>().As<IGrupoVeiculoRepository>().InstancePerDependency();
-            Builder.RegisterType<LocacaoDAO>().As<ILocacaoRepository>().InstancePerDependency();
-            Builder.RegisterType<ServicoDAO>().As<IServicoRepository>().InstancePerDependency();
-            Builder.RegisterType<VeiculoDAO>().As<IVeiculoRepository>().InstancePerDependency();
-            Builder.RegisterType<TaxaDaLocacaoDAO>().As<ITaxaRepository>().InstancePerDependency();
-            Builder.RegisterType<EnviaEmail>().As<IEmail>().InstancePerDependency();
-            Builder.RegisterType<MontaPdf>().As<IPDF>().InstancePerDependency();
+            Builder.RegisterType<EnviaEmail>().As<IEmail>().SingleInstance();
+            Builder.RegisterType<MontaPdf>().As<IPDF>().SingleInstance();
+            Builder.RegisterType<FiltroCliente>().SingleInstance();
 
+            Builder.RegisterType<ServicoDAO>().As<IServicoRepository>().SingleInstance();
+            Builder.RegisterType<VeiculoDAO>().As<IVeiculoRepository>().SingleInstance();
+            Builder.RegisterType<ParceiroDAO>().As<IParceiroRepository>().SingleInstance();
+            Builder.RegisterType<ClienteCNPJDAO>().As<IClienteCNPJRepository>().SingleInstance();
+            Builder.RegisterType<ClienteCPFDAO>().As<IClienteCPFRepository>().SingleInstance();
+            Builder.RegisterType<DescontoDAO>().As<IDescontoRepository>().SingleInstance();
+            Builder.RegisterType<FuncionarioDAO>().As<IFuncionarioRepository>().SingleInstance();
+            Builder.RegisterType<GrupoVeiculoDAO>().As<IGrupoVeiculoRepository>().SingleInstance();
+            Builder.RegisterType<LocacaoDAO>().As<ILocacaoRepository>().SingleInstance();
+            Builder.RegisterType<TaxaDaLocacaoDAO>().As<ITaxaRepository>().SingleInstance();
         }
     }
 }
