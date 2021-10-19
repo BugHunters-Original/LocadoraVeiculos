@@ -35,7 +35,7 @@ namespace LocadoraDeVeiculos.Infra.Context
                     category == DbLoggerCategory.Database.Command.Name
                     && logLevel == LogLevel.Debug).
                 AddDebug().
-                AddSerilog(LogSerilog.Logger, dispose: true);
+                AddSerilog(Serilogger.Logger, dispose: true);
         });
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)

@@ -40,13 +40,13 @@ namespace LocadoraDeVeiculos.Infra.ORM.TaxaDaLocacaoModule
 
                 contexto.SaveChanges();
 
-                LogSerilog.Logger.Information("SUCESSO AO REMOVER TAXA ID: {Id}  ", id);
+                Serilogger.Logger.Information("SUCESSO AO REMOVER TAXA ID: {Id}  ", id);
 
                 return true;
             }
             catch (Exception ex)
             {
-                LogSerilog.Logger.Error(ex, "ERRO AO REMOVER TAXA ID: {Id}  ", id);
+                Serilogger.Logger.Error(ex, "ERRO AO REMOVER TAXA ID: {Id}  ", id);
 
                 return false;
             }
@@ -61,15 +61,15 @@ namespace LocadoraDeVeiculos.Infra.ORM.TaxaDaLocacaoModule
                                            ToList();
 
                 if (taxa != null)
-                    LogSerilog.Logger.Debug("SUCESSO AO SELECIONAR TODAS AS TAXAS DE UMA LOCAÇÃO  ");
+                    Serilogger.Logger.Debug("SUCESSO AO SELECIONAR TODAS AS TAXAS DE UMA LOCAÇÃO  ");
                 else
-                    LogSerilog.Logger.Information("NÃO FOI POSSÍVEL SELECIONAR TODAS AS TAXAS DE UMA LOCAÇÃO  ");
+                    Serilogger.Logger.Information("NÃO FOI POSSÍVEL SELECIONAR TODAS AS TAXAS DE UMA LOCAÇÃO  ");
 
                 return taxa;
             }
             catch (Exception ex)
             {
-                LogSerilog.Logger.Error(ex, "NÃO FOI POSSÍVEL SE COMUNICAR COM O BANCO DE DADOS PARA SELECIONAR TODAS AS TAXAS DE UMA LOCAÇÃO  ");
+                Serilogger.Logger.Error(ex, "NÃO FOI POSSÍVEL SE COMUNICAR COM O BANCO DE DADOS PARA SELECIONAR TODAS AS TAXAS DE UMA LOCAÇÃO  ");
 
                 return null;
             }

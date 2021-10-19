@@ -32,7 +32,7 @@ namespace LocadoraDeVeiculos.IntegrationTests.VeiculoModule
 
             LimparBanco();
 
-            Infra.LogManager.LogSerilog.Logger = new LoggerConfiguration()
+            Infra.LogManager.Serilogger.Logger = new LoggerConfiguration()
             .WriteTo.Console()
             .CreateLogger();
 

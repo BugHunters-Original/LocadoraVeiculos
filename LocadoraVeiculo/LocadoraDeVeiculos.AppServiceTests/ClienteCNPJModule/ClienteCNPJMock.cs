@@ -12,7 +12,7 @@ namespace LocadoraDeVeiculos.AppServiceTests.ClienteCNPJModule
     {
         public ClienteCNPJMock()
         {
-            Infra.LogManager.LogSerilog.Logger = new Serilog.LoggerConfiguration()
+            Infra.LogManager.Serilogger.Logger = new Serilog.LoggerConfiguration()
                 .WriteTo.Console()
                 .CreateLogger();
         }

@@ -32,7 +32,7 @@ namespace LocadoraDeVeiculos.Aplicacao.LocacaoModule
         {
             string resultadoValidacaoDominio = locacao.Validar();
 
-            LogSerilog.Logger.Aqui().Debug("REGISTRANDO LOCAÇÃO {Locacao}", locacao.ToString());
+            Serilogger.Logger.Aqui().Debug("REGISTRANDO LOCAÇÃO {Locacao}", locacao.ToString());
 
             if (resultadoValidacaoDominio == "ESTA_VALIDO")
             {
@@ -43,11 +43,11 @@ namespace LocadoraDeVeiculos.Aplicacao.LocacaoModule
                 if (locacao.Servicos != null)
                     locacao.Servicos.ForEach(x => taxaDaLocacaoRepo.Inserir(new TaxaDaLocacao(x, locacao)));
 
-                LogSerilog.Logger.Aqui().Debug("LOCAÇÃO {Locacao} REGISTRADA COM SUCESSO", locacao.ToString());
+                Serilogger.Logger.Aqui().Debug("LOCAÇÃO {Locacao} REGISTRADA COM SUCESSO", locacao.ToString());
 
                 veiculoRepo.LocarVeiculo(locacao.Veiculo);
 
-                LogSerilog.Logger.Aqui().Debug("VEÍCULO {Veiculo} LOCADO COM SUCESSO", locacao.Veiculo.ToString());
+                Serilogger.Logger.Aqui().Debug("VEÍCULO {Veiculo} LOCADO COM SUCESSO", locacao.Veiculo.ToString());
 
                 if (locacao.Desconto != null)
                 {
@@ -56,30 +56,30 @@ namespace LocadoraDeVeiculos.Aplicacao.LocacaoModule
                     descontoRepo.Editar(locacao.Desconto);
                 }
 
-                LogSerilog.Logger.Aqui().Debug("MONTANDO PDF DA LOCAÇÃO ID: {Id}", locacao.Id);
+                Serilogger.Logger.Aqui().Debug("MONTANDO PDF DA LOCAÇÃO ID: {Id}", locacao.Id);
 
                 pdf.MontarPDF(locacao);
 
-                LogSerilog.Logger.Aqui().Debug("ENVIANDO EMAIL LOCAÇÃO ID: {Id}", locacao.Id);
+                Serilogger.Logger.Aqui().Debug("ENVIANDO EMAIL LOCAÇÃO ID: {Id}", locacao.Id);
 
                 Task.Run(() => email.EnviarEmail(locacao));
             }
             else
             {
-                LogSerilog.Logger.Aqui().Error("NÃO FOI POSSÍVEL REGISTRAR LOCAÇÃO {Locacao}", locacao.ToString());
+                Serilogger.Logger.Aqui().Error("NÃO FOI POSSÍVEL REGISTRAR LOCAÇÃO {Locacao}", locacao.ToString());
             }
         }
         public void ConcluirLocacao(Locacao locacao)
         {
-            LogSerilog.Logger.Aqui().Debug("CONCLUINDO LOCAÇÃO {Locacao}", locacao.ToString());
+            Serilogger.Logger.Aqui().Debug("CONCLUINDO LOCAÇÃO {Locacao}", locacao.ToString());
 
             locacaoRepo.ConcluirLocacao(locacao);
 
-            LogSerilog.Logger.Aqui().Debug("DEVOLVENDO VEÍCULO {Veiculo}", locacao.Veiculo.ToString());
+            Serilogger.Logger.Aqui().Debug("DEVOLVENDO VEÍCULO {Veiculo}", locacao.Veiculo.ToString());
 
             veiculoRepo.DevolverVeiculo(locacao.Veiculo);
 
-            LogSerilog.Logger.Aqui().Debug("ATUALIZAR QUILOMETRAGEM DO VEÍCULO {Veiculo}", locacao.Veiculo.ToString());
+            Serilogger.Logger.Aqui().Debug("ATUALIZAR QUILOMETRAGEM DO VEÍCULO {Veiculo}", locacao.Veiculo.ToString());
 
             veiculoRepo.AtualizarQuilometragem(locacao.Veiculo);
         }
@@ -87,7 +87,7 @@ namespace LocadoraDeVeiculos.Aplicacao.LocacaoModule
         {
             string resultadoValidacaoDominio = locacao.Validar();
 
-            LogSerilog.Logger.Aqui().Debug("EDITANDO LOCAÇÃO {Locacao}", locacao.ToString());
+            Serilogger.Logger.Aqui().Debug("EDITANDO LOCAÇÃO {Locacao}", locacao.ToString());
 
             if (resultadoValidacaoDominio == "ESTA_VALIDO")
             {
@@ -98,17 +98,17 @@ namespace LocadoraDeVeiculos.Aplicacao.LocacaoModule
                 if (locacao.Servicos != null)
                     locacao.Servicos.ForEach(x => taxaDaLocacaoRepo.Inserir(new TaxaDaLocacao(x, locacao)));
 
-                LogSerilog.Logger.Aqui().Debug("LOCAÇÃO {Locacao} EDITADA COM SUCESSO", locacao.ToString());
+                Serilogger.Logger.Aqui().Debug("LOCAÇÃO {Locacao} EDITADA COM SUCESSO", locacao.ToString());
             }
             else
             {
-                LogSerilog.Logger.Aqui().Error("NÃO FOI POSSÍVEL EDITAR LOCAÇÃO {Locacao}", locacao.ToString());
+                Serilogger.Logger.Aqui().Error("NÃO FOI POSSÍVEL EDITAR LOCAÇÃO {Locacao}", locacao.ToString());
             }
         }
 
         public bool ExcluirLocacao(Locacao locacao)
         {
-            LogSerilog.Logger.Aqui().Debug("REMOVENDO LOCAÇÃO {Id}", locacao);
+            Serilogger.Logger.Aqui().Debug("REMOVENDO LOCAÇÃO {Id}", locacao);
 
             locacaoRepo.ConcluirLocacao(locacao);
 
@@ -119,87 +119,87 @@ namespace LocadoraDeVeiculos.Aplicacao.LocacaoModule
             var excluiu = locacaoRepo.Excluir(locacao);
 
             if (excluiu)
-                LogSerilog.Logger.Aqui().Debug("LOCAÇÃO {Id} REMOVIDA COM SUCESSO", locacao.Id);
+                Serilogger.Logger.Aqui().Debug("LOCAÇÃO {Id} REMOVIDA COM SUCESSO", locacao.Id);
             else
-                LogSerilog.Logger.Aqui().Error("NÃO FOI POSSÍVEL REMOVER LOCAÇÃO {Id}.", locacao.Id);
+                Serilogger.Logger.Aqui().Error("NÃO FOI POSSÍVEL REMOVER LOCAÇÃO {Id}.", locacao.Id);
 
             return excluiu;
         }
         public List<Locacao> SelecionarTodasLocacoes()
         {
-            LogSerilog.Logger.Aqui().Debug("SELECIONANDO TODAS AS LOCAÇÕES");
+            Serilogger.Logger.Aqui().Debug("SELECIONANDO TODAS AS LOCAÇÕES");
 
             List<Locacao> locacao = locacaoRepo.GetAll();
 
             if (locacao.Count == 0)
-                LogSerilog.Logger.Aqui().Information("NÃO HÁ LOCAÇÕES CADASTRADAS");
+                Serilogger.Logger.Aqui().Information("NÃO HÁ LOCAÇÕES CADASTRADAS");
             else
-                LogSerilog.Logger.Aqui().Debug("A SELEÇÃO TROUXE {Quantidade} LOCAÇÃO(ÕES) EXISTENTE(S)", locacao.Count);
+                Serilogger.Logger.Aqui().Debug("A SELEÇÃO TROUXE {Quantidade} LOCAÇÃO(ÕES) EXISTENTE(S)", locacao.Count);
 
             return locacao;
         }
         public Locacao SelecionarLocacaoPorId(int id)
         {
-            LogSerilog.Logger.Aqui().Debug("SELECIONANDO A LOCAÇÃO ID: {Id}", id);
+            Serilogger.Logger.Aqui().Debug("SELECIONANDO A LOCAÇÃO ID: {Id}", id);
 
             Locacao locacao = locacaoRepo.GetById(id);
 
             if (locacao == null)
-                LogSerilog.Logger.Aqui().Information("NÃO FOI POSSÍVEL ENCONTRAR A LOCAÇÃO ID {Id}", locacao.Id);
+                Serilogger.Logger.Aqui().Information("NÃO FOI POSSÍVEL ENCONTRAR A LOCAÇÃO ID {Id}", locacao.Id);
             else
-                LogSerilog.Logger.Aqui().Debug("LOCAÇÃO ID {Id} SELECIONADA COM SUCESSO", locacao.Id);
+                Serilogger.Logger.Aqui().Debug("LOCAÇÃO ID {Id} SELECIONADA COM SUCESSO", locacao.Id);
 
             return locacao;
         }
         public List<Locacao> SelecionarTodasLocacoesConcluidas()
         {
-            LogSerilog.Logger.Aqui().Debug("SELECIONANDO TODAS AS LOCAÇÕES CONCLUÍDAS");
+            Serilogger.Logger.Aqui().Debug("SELECIONANDO TODAS AS LOCAÇÕES CONCLUÍDAS");
 
             List<Locacao> locacao = locacaoRepo.SelecionarTodasLocacoesConcluidas();
 
             if (locacao.Count == 0)
-                LogSerilog.Logger.Aqui().Information("NÃO HÁ LOCAÇÕES CONCLUÍDAS CADASTRADAS");
+                Serilogger.Logger.Aqui().Information("NÃO HÁ LOCAÇÕES CONCLUÍDAS CADASTRADAS");
             else
-                LogSerilog.Logger.Aqui().Debug("A SELEÇÃO TROUXE {Quantidade} LOCAÇÃO(ÕES) CONCLUÍDA(S) EXISTENTE(S)", locacao.Count);
+                Serilogger.Logger.Aqui().Debug("A SELEÇÃO TROUXE {Quantidade} LOCAÇÃO(ÕES) CONCLUÍDA(S) EXISTENTE(S)", locacao.Count);
 
             return locacao;
         }
         public List<Locacao> SelecionarTodasLocacoesPendentes()
         {
-            LogSerilog.Logger.Aqui().Debug("SELECIONANDO TODAS AS LOCAÇÕES PENDENTES");
+            Serilogger.Logger.Aqui().Debug("SELECIONANDO TODAS AS LOCAÇÕES PENDENTES");
 
             List<Locacao> locacao = locacaoRepo.SelecionarTodasLocacoesPendentes();
 
             if (locacao.Count == 0)
-                LogSerilog.Logger.Aqui().Information("NÃO HÁ LOCAÇÕES PENDENTES CADASTRADAS");
+                Serilogger.Logger.Aqui().Information("NÃO HÁ LOCAÇÕES PENDENTES CADASTRADAS");
             else
-                LogSerilog.Logger.Aqui().Debug("A SELEÇÃO TROUXE {Quantidade} LOCAÇÃO(ÕES) PENDENTES(S) EXISTENTE(S)", locacao.Count);
+                Serilogger.Logger.Aqui().Debug("A SELEÇÃO TROUXE {Quantidade} LOCAÇÃO(ÕES) PENDENTES(S) EXISTENTE(S)", locacao.Count);
 
             return locacao;
         }
         public int SelecionarQuantidadeLocacoesPendentes()
         {
-            LogSerilog.Logger.Aqui().Debug("SELECIONANDO TODAS AS LOCAÇÕES PENDENTES");
+            Serilogger.Logger.Aqui().Debug("SELECIONANDO TODAS AS LOCAÇÕES PENDENTES");
 
             var qtdLocacao = locacaoRepo.SelecionarQuantidadeLocacoesPendentes();
 
             if (qtdLocacao == 0)
-                LogSerilog.Logger.Aqui().Information("NÃO HÁ LOCAÇÕES PENDENTES CADASTRADAS");
+                Serilogger.Logger.Aqui().Information("NÃO HÁ LOCAÇÕES PENDENTES CADASTRADAS");
             else
-                LogSerilog.Logger.Aqui().Debug("A SELEÇÃO TROUXE {Quantidade} LOCAÇÃO(ÕES) PENDENTES(S) EXISTENTE(S)", qtdLocacao);
+                Serilogger.Logger.Aqui().Debug("A SELEÇÃO TROUXE {Quantidade} LOCAÇÃO(ÕES) PENDENTES(S) EXISTENTE(S)", qtdLocacao);
 
             return qtdLocacao;
         }
         public int SelecionarLocacoesComCupons(string cupom)
         {
-            LogSerilog.Logger.Aqui().Debug("SELECIONANDO TODAS AS LOCAÇÕES COM CUPOM");
+            Serilogger.Logger.Aqui().Debug("SELECIONANDO TODAS AS LOCAÇÕES COM CUPOM");
 
             var qtdLocacao = locacaoRepo.SelecionarQuantidadeLocacoesPendentes();
 
             if (qtdLocacao == 0)
-                LogSerilog.Logger.Aqui().Information("NÃO HÁ LOCAÇÕES COM CUPOM");
+                Serilogger.Logger.Aqui().Information("NÃO HÁ LOCAÇÕES COM CUPOM");
             else
-                LogSerilog.Logger.Aqui().Debug("A SELEÇÃO TROUXE {Quantidade} LOCAÇÃO(ÕES) COM CUPOM EXISTENTE(S)", qtdLocacao);
+                Serilogger.Logger.Aqui().Debug("A SELEÇÃO TROUXE {Quantidade} LOCAÇÃO(ÕES) COM CUPOM EXISTENTE(S)", qtdLocacao);
 
             return qtdLocacao;
         }

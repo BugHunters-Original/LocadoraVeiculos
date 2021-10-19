@@ -22,18 +22,18 @@ namespace LocadoraDeVeiculos.Aplicacao.VeiculoModule
         {
             string resultadoValidacaoDominio = veiculo.Validar();
 
-            LogSerilog.Logger.Aqui().Debug("REGISTRANDO VEÍCULO {VeiculoNome}", veiculo.Nome);
+            Serilogger.Logger.Aqui().Debug("REGISTRANDO VEÍCULO {VeiculoNome}", veiculo.Nome);
 
 
             if (resultadoValidacaoDominio == "ESTA_VALIDO")
             {
 
                 veiculoRepository.Inserir(veiculo);
-                LogSerilog.Logger.Aqui().Debug("VEÍCULO {VeiculoNome} REGISTRADO COM SUCESSO", veiculo.Nome);
+                Serilogger.Logger.Aqui().Debug("VEÍCULO {VeiculoNome} REGISTRADO COM SUCESSO", veiculo.Nome);
 
             }
             else
-                LogSerilog.Logger.Aqui().Error("NÃO FOI POSSÍVEL REGISTRAR VEÍCULO {VeiculoNome}", veiculo.Nome);
+                Serilogger.Logger.Aqui().Error("NÃO FOI POSSÍVEL REGISTRAR VEÍCULO {VeiculoNome}", veiculo.Nome);
 
         }
 
@@ -41,109 +41,109 @@ namespace LocadoraDeVeiculos.Aplicacao.VeiculoModule
         {
             string resultadoValidacaoDominio = veiculo.Validar();
 
-            LogSerilog.Logger.Aqui().Debug("EDITANDO VEÍCULO {VeiculoNome}", veiculo.Nome);
+            Serilogger.Logger.Aqui().Debug("EDITANDO VEÍCULO {VeiculoNome}", veiculo.Nome);
 
             if (resultadoValidacaoDominio == "ESTA_VALIDO")
             {
                
                 veiculoRepository.Editar(veiculo);
-                LogSerilog.Logger.Aqui().Debug("VEÍCULO {VeiculoNome} EDITADO COM SUCESSO", veiculo.Nome);
+                Serilogger.Logger.Aqui().Debug("VEÍCULO {VeiculoNome} EDITADO COM SUCESSO", veiculo.Nome);
 
             }
 
             else
-                LogSerilog.Logger.Aqui().Error("NÃO FOI POSSÍVEL EDITAR VEÍCULO {VeiculoNome}", veiculo.Nome);
+                Serilogger.Logger.Aqui().Error("NÃO FOI POSSÍVEL EDITAR VEÍCULO {VeiculoNome}", veiculo.Nome);
 
         }
 
         public bool ExcluirVeiculo(Veiculo veiculo)
         {
-            LogSerilog.Logger.Aqui().Debug("SELECIONANDO O VEÍCULO ID: {Id}", veiculo.Id);
+            Serilogger.Logger.Aqui().Debug("SELECIONANDO O VEÍCULO ID: {Id}", veiculo.Id);
 
             var excluiu = veiculoRepository.Excluir(veiculo);
 
             if (excluiu)
-                LogSerilog.Logger.Aqui().Debug("VEÍCULO {Id} REMOVIDO COM SUCESSO", veiculo.Id);
+                Serilogger.Logger.Aqui().Debug("VEÍCULO {Id} REMOVIDO COM SUCESSO", veiculo.Id);
             else
-                LogSerilog.Logger.Aqui().Error("NÃO FOI POSSÍVEL REMOVER GRUPO VEÍCULO {Id}.", veiculo.Id);
+                Serilogger.Logger.Aqui().Error("NÃO FOI POSSÍVEL REMOVER GRUPO VEÍCULO {Id}.", veiculo.Id);
 
             return excluiu;
         }
 
         public Veiculo SelecionarVeiculoPorId(int id)
         {
-            LogSerilog.Logger.Aqui().Debug("SELECIONANDO O VEÍCULO ID: {Id}", id);
+            Serilogger.Logger.Aqui().Debug("SELECIONANDO O VEÍCULO ID: {Id}", id);
 
             Veiculo veiculo =  veiculoRepository.GetById(id);
 
 
             if (veiculo == null)
-                LogSerilog.Logger.Aqui().Information("NÃO FOI POSSÍVEL ENCONTRAR O VEÍCULO ID {Id}", veiculo.Id);
+                Serilogger.Logger.Aqui().Information("NÃO FOI POSSÍVEL ENCONTRAR O VEÍCULO ID {Id}", veiculo.Id);
             else
-                LogSerilog.Logger.Aqui().Debug("VEÍCULO ID {Id} SELECIONADO COM SUCESSO", veiculo.Id);
+                Serilogger.Logger.Aqui().Debug("VEÍCULO ID {Id} SELECIONADO COM SUCESSO", veiculo.Id);
 
             return veiculo;
         }
 
         public List<Veiculo> SelecionarTodosVeiculos()
         {
-            LogSerilog.Logger.Aqui().Debug("SELECIONANDO TODOS OS VEÍCULOS");
+            Serilogger.Logger.Aqui().Debug("SELECIONANDO TODOS OS VEÍCULOS");
 
             List<Veiculo> veiculo = veiculoRepository.GetAll();
 
             if (veiculo.Count == 0)
-                LogSerilog.Logger.Aqui().Information("NÃO HÁ VEÍCULOS CADASTRADOS");
+                Serilogger.Logger.Aqui().Information("NÃO HÁ VEÍCULOS CADASTRADOS");
             else
-                LogSerilog.Logger.Aqui().Debug("A SELEÇÃO TROUXE {Quantidade} VEÍCULO(S) EXISTENTE(S)", veiculo.Count);
+                Serilogger.Logger.Aqui().Debug("A SELEÇÃO TROUXE {Quantidade} VEÍCULO(S) EXISTENTE(S)", veiculo.Count);
 
             return veiculo;             
         }       
 
         public void EditarDisponibilidadeVeiculo(Veiculo atual, Veiculo antigo)
         {
-            LogSerilog.Logger.Aqui().Debug("EDITANDO DISPONIBILIDADE DOS VEÍCULOS {VeiculoNomeAtual} E {VeiculoNomeAntigo}", atual.Nome, antigo.Nome);
+            Serilogger.Logger.Aqui().Debug("EDITANDO DISPONIBILIDADE DOS VEÍCULOS {VeiculoNomeAtual} E {VeiculoNomeAntigo}", atual.Nome, antigo.Nome);
 
             veiculoRepository.EditarDisponibilidade(atual, antigo);
         }
 
         public List<Veiculo> SelecionarTodosVeiculosAlugados()
         {
-            LogSerilog.Logger.Aqui().Debug("SELECIONANDO TODOS OS VEÍCULOS ALUGADOS");
+            Serilogger.Logger.Aqui().Debug("SELECIONANDO TODOS OS VEÍCULOS ALUGADOS");
 
             List<Veiculo> veiculo = veiculoRepository.SelecionarTodosAlugados();
 
             if (veiculo.Count == 0)
-                LogSerilog.Logger.Aqui().Information("NÃO HÁ VEÍCULOS ALUGADOS");
+                Serilogger.Logger.Aqui().Information("NÃO HÁ VEÍCULOS ALUGADOS");
             else
-                LogSerilog.Logger.Aqui().Debug("A SELEÇÃO TROUXE {Quantidade} VEÍCULO(S) ALUGADO(S)", veiculo.Count);
+                Serilogger.Logger.Aqui().Debug("A SELEÇÃO TROUXE {Quantidade} VEÍCULO(S) ALUGADO(S)", veiculo.Count);
 
             return veiculo;            
         }
 
         public List<Veiculo> SelecionarTodosDisponiveis()
         {
-            LogSerilog.Logger.Aqui().Debug("SELECIONANDO TODOS OS VEÍCULOS DISPONÍVEIS");
+            Serilogger.Logger.Aqui().Debug("SELECIONANDO TODOS OS VEÍCULOS DISPONÍVEIS");
 
             List<Veiculo> veiculo = veiculoRepository.SelecionarTodosDisponiveis();
 
             if (veiculo.Count == 0)
-                LogSerilog.Logger.Aqui().Information("NÃO HÁ VEÍCULOS DISPONÍVEIS");
+                Serilogger.Logger.Aqui().Information("NÃO HÁ VEÍCULOS DISPONÍVEIS");
             else
-                LogSerilog.Logger.Aqui().Debug("A SELEÇÃO TROUXE {Quantidade} VEÍCULO(S) DISPONÍVEIS", veiculo.Count);
+                Serilogger.Logger.Aqui().Debug("A SELEÇÃO TROUXE {Quantidade} VEÍCULO(S) DISPONÍVEIS", veiculo.Count);
 
             return veiculo;           
         }
 
         public int SelecionarQuantidadeVeiculosAlugados()
         {
-            LogSerilog.Logger.Aqui().Debug("SELECIONANDO QUANTIDADE DE VEÍCULOS ALUGADOS");
+            Serilogger.Logger.Aqui().Debug("SELECIONANDO QUANTIDADE DE VEÍCULOS ALUGADOS");
 
             int quantidade = veiculoRepository.ReturnQuantidadeAlugados();
 
             if (quantidade == 0)
-                LogSerilog.Logger.Aqui().Information("NÃO HÁ VEÍCULOS ALUGADOS");
+                Serilogger.Logger.Aqui().Information("NÃO HÁ VEÍCULOS ALUGADOS");
             else
-                LogSerilog.Logger.Aqui().Debug("A SELEÇÃO TROUXE {Quantidade} VEÍCULO(S) ALUGADOS",  quantidade);
+                Serilogger.Logger.Aqui().Debug("A SELEÇÃO TROUXE {Quantidade} VEÍCULO(S) ALUGADOS",  quantidade);
 
             return quantidade;
            
@@ -151,14 +151,14 @@ namespace LocadoraDeVeiculos.Aplicacao.VeiculoModule
 
         public int SelecionarQuantidadeVeiculosDisponiveis()
         {
-            LogSerilog.Logger.Aqui().Debug("SELECIONANDO QUANTIDADE DE VEÍCULOS DISPONÍVEIS");
+            Serilogger.Logger.Aqui().Debug("SELECIONANDO QUANTIDADE DE VEÍCULOS DISPONÍVEIS");
 
             int quantidade = veiculoRepository.ReturnQuantidadeDisponiveis();
 
             if (quantidade == 0)
-                LogSerilog.Logger.Aqui().Information("NÃO HÁ VEÍCULOS DISPONÍVEIS");
+                Serilogger.Logger.Aqui().Information("NÃO HÁ VEÍCULOS DISPONÍVEIS");
             else
-                LogSerilog.Logger.Aqui().Debug("A SELEÇÃO TROUXE {Quantidade} VEÍCULO(S) DISPONÍVEIS", quantidade);
+                Serilogger.Logger.Aqui().Debug("A SELEÇÃO TROUXE {Quantidade} VEÍCULO(S) DISPONÍVEIS", quantidade);
 
             return quantidade;
            

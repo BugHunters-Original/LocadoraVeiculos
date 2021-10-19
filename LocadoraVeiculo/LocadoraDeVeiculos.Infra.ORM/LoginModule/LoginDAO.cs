@@ -18,11 +18,11 @@ namespace LocadoraDeVeiculos.Infra.ORM.LoginModule
 
             switch (resultado)
             {
-                case "valido": LogSerilog.Logger.Information("LOGIN FEITO | USUÁRIO {Usuario}", usuario); break;
+                case "valido": Serilogger.Logger.Information("LOGIN FEITO | USUÁRIO {Usuario}", usuario); break;
 
-                case "Senha Incorreta": LogSerilog.Logger.Information("TENTATIVA DE LOGIN | USUÁRIO {Usuario}", usuario); break;
+                case "Senha Incorreta": Serilogger.Logger.Information("TENTATIVA DE LOGIN | USUÁRIO {Usuario}", usuario); break;
 
-                case "Usuário Inexistente": LogSerilog.Logger.Information("ERRO DE LOGIN | USUÁRIO INEXISTENTE"); break;
+                case "Usuário Inexistente": Serilogger.Logger.Information("ERRO DE LOGIN | USUÁRIO INEXISTENTE"); break;
 
                 default: break;
             }

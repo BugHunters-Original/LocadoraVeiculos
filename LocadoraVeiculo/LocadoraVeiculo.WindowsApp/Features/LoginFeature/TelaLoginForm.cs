@@ -16,7 +16,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.LoginFeature
 
         public TelaLoginForm()
         {
-            LogSerilog.IniciarLog();
+            Serilogger.IniciarLog();
             loginService = new LoginDAO();
             InitializeComponent();
             SetColor();
@@ -66,7 +66,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.LoginFeature
 
         private void btnModo_Click_1(object sender, EventArgs e)
         {
-            LogSerilog.Logger.Information("Troca de modo de exibição");
+            Serilogger.Logger.Information("Troca de modo de exibição");
             DarkMode.TrocarModo();
             SetColor();
         }

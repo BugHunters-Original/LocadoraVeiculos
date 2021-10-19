@@ -48,7 +48,6 @@ namespace LocadoraVeiculo.WindowsApp
         public static TelaPrincipalForm Instancia;
         public static DashboardControl dash;
         private ICadastravel operacoes;
-        Thread th;
 
         public TelaPrincipalForm()
         {
@@ -246,49 +245,6 @@ namespace LocadoraVeiculo.WindowsApp
             BotaoHome();
         }
 
-        private void btnAdicionar_Click(object sender, EventArgs e)
-        {
-            operacoes.InserirNovoRegistro();
-        }
-
-        private void btnEditar_Click(object sender, EventArgs e)
-        {
-            operacoes.EditarRegistro();
-        }
-
-        private void btnExcluir_Click(object sender, EventArgs e)
-        {
-            operacoes.ExcluirRegistro();
-        }
-
-        private void btnFiltrar_Click(object sender, EventArgs e)
-        {
-            operacoes.FiltrarRegistros();
-        }
-
-        private void btnDevolver_Click(object sender, EventArgs e)
-        {
-            operacoes.DevolverVeiculo();
-        }
-
-        private void btnModo_Click(object sender, EventArgs e)
-        {
-            DarkMode.TrocarModo();
-
-            LogSerilog.Logger.Information("Troca de modo de exibição");
-
-            SetColor();
-
-            if (operacoes != null)
-            {
-                IAparenciaAlteravel tabela = (IAparenciaAlteravel)operacoes.ObterTabela();
-
-                tabela.AtualizarAparencia();
-            }
-            else
-                BotaoHome();
-        }
-
         private void SetColor()
         {
             this.BackColor = DarkMode.corFundo;
@@ -402,6 +358,49 @@ namespace LocadoraVeiculo.WindowsApp
             Application.Run(new TelaLoginForm());
         }
 
+        private void btnAdicionar_Click(object sender, EventArgs e)
+        {
+            operacoes.InserirNovoRegistro();
+        }
+
+        private void btnEditar_Click(object sender, EventArgs e)
+        {
+            operacoes.EditarRegistro();
+        }
+
+        private void btnExcluir_Click(object sender, EventArgs e)
+        {
+            operacoes.ExcluirRegistro();
+        }
+
+        private void btnFiltrar_Click(object sender, EventArgs e)
+        {
+            operacoes.FiltrarRegistros();
+        }
+
+        private void btnDevolver_Click(object sender, EventArgs e)
+        {
+            operacoes.DevolverVeiculo();
+        }
+
+        private void btnModo_Click(object sender, EventArgs e)
+        {
+            DarkMode.TrocarModo();
+
+            Serilogger.Logger.Information("Troca de modo de exibição");
+
+            SetColor();
+
+            if (operacoes != null)
+            {
+                IAparenciaAlteravel tabela = (IAparenciaAlteravel)operacoes.ObterTabela();
+
+                tabela.AtualizarAparencia();
+            }
+            else
+                BotaoHome();
+        }
+
         private void btnClose_Click(object sender, EventArgs e)
         {
             Application.Exit();
@@ -421,7 +420,7 @@ namespace LocadoraVeiculo.WindowsApp
         private void btnLogOut_Click(object sender, EventArgs e)
         {
             this.Close();
-            th = new Thread(ChamarTelaLogin);
+            var th = new Thread(ChamarTelaLogin);
             th.SetApartmentState(ApartmentState.STA);
             th.Start();
         }

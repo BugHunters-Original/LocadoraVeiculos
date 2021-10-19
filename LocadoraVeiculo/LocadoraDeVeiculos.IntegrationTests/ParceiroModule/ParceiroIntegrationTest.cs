@@ -21,7 +21,7 @@ namespace LocadoraDeVeiculos.IntegrationTests.ParceiroModule
             repository = new(context);
             LimparBancos();
             
-            Infra.LogManager.LogSerilog.Logger = new Serilog.LoggerConfiguration()
+            Infra.LogManager.Serilogger.Logger = new Serilog.LoggerConfiguration()
             .WriteTo.Console()
             .CreateLogger();
         }
