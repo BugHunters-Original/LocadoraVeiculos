@@ -64,27 +64,27 @@ namespace LocadoraDeVeiculos.WindowsApp.Shared
 
         private static void ConfigurarOperacao()
         {
-            Builder.RegisterType<OperacoesParceiro>().InstancePerDependency();
-            Builder.RegisterType<OperacoesDesconto>().InstancePerDependency();
-            Builder.RegisterType<OperacoesCliente>().InstancePerDependency();
-            Builder.RegisterType<OperacoesFuncionario>().InstancePerDependency();
-            Builder.RegisterType<OperacoesGrupoVeiculo>().InstancePerDependency();
-            Builder.RegisterType<OperacoesLocacao>().InstancePerDependency();
-            Builder.RegisterType<OperacoesServico>().InstancePerDependency();
-            Builder.RegisterType<OperacoesVeiculo>().InstancePerDependency();
+            Builder.RegisterType<OperacoesParceiro>().SingleInstance();
+            Builder.RegisterType<OperacoesDesconto>().SingleInstance();
+            Builder.RegisterType<OperacoesCliente>().SingleInstance();
+            Builder.RegisterType<OperacoesFuncionario>().SingleInstance();
+            Builder.RegisterType<OperacoesGrupoVeiculo>().SingleInstance();
+            Builder.RegisterType<OperacoesLocacao>().SingleInstance();
+            Builder.RegisterType<OperacoesServico>().SingleInstance();
+            Builder.RegisterType<OperacoesVeiculo>().SingleInstance();
         }
 
         private static void ConfigurarService()
         {
-            Builder.RegisterType<ParceiroAppService>().InstancePerDependency();
-            Builder.RegisterType<ClienteCNPJAppService>().InstancePerDependency();
-            Builder.RegisterType<ClienteCPFAppService>().InstancePerDependency();
-            Builder.RegisterType<DescontoAppService>().InstancePerDependency();
-            Builder.RegisterType<FuncionarioAppService>().InstancePerDependency();
-            Builder.RegisterType<GrupoVeiculoAppService>().InstancePerDependency();
-            Builder.RegisterType<LocacaoAppService>().InstancePerDependency();
-            Builder.RegisterType<ServicoAppService>().InstancePerDependency();
-            Builder.RegisterType<VeiculoAppService>().InstancePerDependency();
+            Builder.RegisterType<ParceiroAppService>().SingleInstance();
+            Builder.RegisterType<ClienteCNPJAppService>().SingleInstance();
+            Builder.RegisterType<ClienteCPFAppService>().SingleInstance();
+            Builder.RegisterType<DescontoAppService>().SingleInstance();
+            Builder.RegisterType<FuncionarioAppService>().SingleInstance();
+            Builder.RegisterType<GrupoVeiculoAppService>().SingleInstance();
+            Builder.RegisterType<LocacaoAppService>().SingleInstance();
+            Builder.RegisterType<ServicoAppService>().SingleInstance();
+            Builder.RegisterType<VeiculoAppService>().SingleInstance();
         }
         private static void ConfigurarORM()
         {
@@ -102,6 +102,16 @@ namespace LocadoraDeVeiculos.WindowsApp.Shared
             Builder.RegisterType<MontaPdf>().As<IPDF>().InstancePerDependency();
             Builder.RegisterType<FiltroCliente>().InstancePerDependency();
 
+            Builder.RegisterType<ServicoDAO>().As<IServicoRepository>().SingleInstance();
+            Builder.RegisterType<VeiculoDAO>().As<IVeiculoRepository>().SingleInstance();
+            Builder.RegisterType<ParceiroDAO>().As<IParceiroRepository>().SingleInstance();
+            Builder.RegisterType<ClienteCNPJDAO>().As<IClienteCNPJRepository>().SingleInstance();
+            Builder.RegisterType<ClienteCPFDAO>().As<IClienteCPFRepository>().SingleInstance();
+            Builder.RegisterType<DescontoDAO>().As<IDescontoRepository>().SingleInstance();
+            Builder.RegisterType<FuncionarioDAO>().As<IFuncionarioRepository>().SingleInstance();
+            Builder.RegisterType<GrupoVeiculoDAO>().As<IGrupoVeiculoRepository>().SingleInstance();
+            Builder.RegisterType<LocacaoDAO>().As<ILocacaoRepository>().SingleInstance();
+            Builder.RegisterType<TaxaDaLocacaoDAO>().As<ITaxaRepository>().SingleInstance();
         }
     }
 }

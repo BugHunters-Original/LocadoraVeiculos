@@ -19,6 +19,7 @@ using LocadoraVeiculo.WindowsApp.Features.LoginFeature;
 using Autofac;
 using LocadoraDeVeiculos.WindowsApp.Shared;
 using LocadoraDeVeiculos.Infra.Logger;
+using LocadoraDeVeiculos.Infra.ORM.TaxaDaLocacaoModule;
 #endregion
 namespace LocadoraVeiculo.WindowsApp
 {
@@ -49,6 +50,8 @@ namespace LocadoraVeiculo.WindowsApp
             ConfigurarToolBox(configuracao);
 
             AtualizarRodape(configuracao.TipoCadastro);
+
+            var a  = AutoFacDI.Container.Resolve<TaxaDaLocacaoDAO>();
 
             operacoes = AutoFacDI.Container.Resolve<OperacoesLocacao>();
 
