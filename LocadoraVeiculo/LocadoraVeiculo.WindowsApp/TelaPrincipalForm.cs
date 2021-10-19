@@ -160,7 +160,7 @@ namespace LocadoraVeiculo.WindowsApp
 
             AtualizarRodape(configuracao.TipoCadastro);
 
-            operacoes = new OperacoesParceiro(DependencyInjection.Container.Resolve<IParceiroAppService>());
+            operacoes = DependencyInjection.Container.Resolve<OperacoesParceiro>();
 
             ConfigurarPainelRegistros();
         }

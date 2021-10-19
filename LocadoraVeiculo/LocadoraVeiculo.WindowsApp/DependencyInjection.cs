@@ -1,11 +1,10 @@
 ﻿using Autofac;
 using LocadoraDeVeiculos.Aplicacao.ParceiroModule;
 using LocadoraDeVeiculos.Dominio.ParceiroModule;
-using LocadoraDeVeiculos.Dominio.Shared;
 using LocadoraDeVeiculos.Infra.Context;
 using LocadoraDeVeiculos.Infra.ORM.ParceiroModule;
+using LocadoraVeiculo.WindowsApp.Features.ParceiroFeature;
 using System;
-using System.Reflection;
 
 namespace LocadoraDeVeiculos.Infra.DI
 {
@@ -22,15 +21,23 @@ namespace LocadoraDeVeiculos.Infra.DI
 
             ConfigurarService();
 
+            ConfigurarOperacao();
+
             Container = Builder.Build();
         }
+
+        private static void ConfigurarOperacao()
+        {
+            Builder.RegisterType<OperacoesParceiro>().InstancePerDependency();
+        }
+
         private static void ConfigurarService()
         {
-            Builder.RegisterType<ParceiroAppService>().As<IParceiroAppService>().SingleInstance();
+            Builder.RegisterType<ParceiroAppService>().As<IParceiroAppService>().InstancePerDependency();
         }
         private static void ConfigurarORM()
         {
-            Builder.RegisterType<ParceiroDAO>().As<IParceiroRepository>().SingleInstance();
+            Builder.RegisterType<ParceiroDAO>().As<IParceiroRepository>().InstancePerDependency();
         }
     }
 }

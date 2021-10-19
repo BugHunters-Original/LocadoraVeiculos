@@ -71,10 +71,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "3.4 DataBuilders", "3.4 Dat
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LocadoraDeVeiculos.DataBuildersTest", "LocadoraDeVeiculos.DataBuildersTest\LocadoraDeVeiculos.DataBuildersTest.csproj", "{25111F61-1CD6-4CAF-97AD-6EAA8FA25FA0}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "4.7 AutoFac", "4.7 AutoFac", "{1FA7EA9A-CF5E-4D76-9E59-53DF4C3ADC1E}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LocadoraDeVeiculos.Infra.DI", "LocadoraDeVeiculos.Infra.Autofac\LocadoraDeVeiculos.Infra.DI.csproj", "{0BC6F41E-BB99-431D-9B59-467168D5AAC0}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -147,10 +143,6 @@ Global
 		{25111F61-1CD6-4CAF-97AD-6EAA8FA25FA0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{25111F61-1CD6-4CAF-97AD-6EAA8FA25FA0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{25111F61-1CD6-4CAF-97AD-6EAA8FA25FA0}.Release|Any CPU.Build.0 = Release|Any CPU
-		{0BC6F41E-BB99-431D-9B59-467168D5AAC0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{0BC6F41E-BB99-431D-9B59-467168D5AAC0}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{0BC6F41E-BB99-431D-9B59-467168D5AAC0}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{0BC6F41E-BB99-431D-9B59-467168D5AAC0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -187,8 +179,6 @@ Global
 		{9AB18C8A-F789-48A6-B960-73E80A829042} = {4682F715-8591-49C5-AE0A-A1A9D32B66C2}
 		{D2F9D171-253D-48E9-8E15-CFE618F6945D} = {E4DFEC0E-3083-44E0-90B2-F6EE2A1E01F1}
 		{25111F61-1CD6-4CAF-97AD-6EAA8FA25FA0} = {D2F9D171-253D-48E9-8E15-CFE618F6945D}
-		{1FA7EA9A-CF5E-4D76-9E59-53DF4C3ADC1E} = {32D36574-C253-4348-AE04-0B066837BCBD}
-		{0BC6F41E-BB99-431D-9B59-467168D5AAC0} = {1FA7EA9A-CF5E-4D76-9E59-53DF4C3ADC1E}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {CA30BD87-78E1-4FAA-B316-69D35BF837BC}
