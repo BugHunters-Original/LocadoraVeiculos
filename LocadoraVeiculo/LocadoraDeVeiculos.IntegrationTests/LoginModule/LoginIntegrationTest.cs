@@ -27,7 +27,7 @@ namespace LocadoraDeVeiculos.IntegrationTests.LoginModule
 
             context.SaveChanges();
 
-            Infra.LogManager.Serilogger.Logger = new Serilog.LoggerConfiguration()
+            Infra.Logger.Serilogger.Logger = new Serilog.LoggerConfiguration()
             .WriteTo.Console()
             .CreateLogger();
         }

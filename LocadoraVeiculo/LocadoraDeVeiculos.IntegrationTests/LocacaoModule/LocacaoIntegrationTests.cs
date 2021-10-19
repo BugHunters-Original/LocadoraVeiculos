@@ -6,7 +6,6 @@ using LocadoraDeVeiculos.Dominio.LocacaoModule;
 using LocadoraDeVeiculos.Dominio.ServicoModule;
 using LocadoraDeVeiculos.Dominio.VeiculoModule;
 using LocadoraDeVeiculos.Infra.Context;
-using LocadoraDeVeiculos.Infra.LogManager;
 using LocadoraDeVeiculos.Infra.ORM.ClienteCNPJModule;
 using LocadoraDeVeiculos.Infra.ORM.ClienteCPFModule;
 using LocadoraDeVeiculos.Infra.ORM.GrupoVeiculoModule;
@@ -63,7 +62,7 @@ namespace LocadoraDeVeiculos.Test.LocacaoModule
             controladorServico = new ServicoDAO(context);
             controladorLocacao = new LocacaoDAO(context);
 
-            Infra.LogManager.Serilogger.Logger = new Serilog.LoggerConfiguration()
+            Infra.Logger.Serilogger.Logger = new Serilog.LoggerConfiguration()
             .WriteTo.Console()
             .CreateLogger();
 

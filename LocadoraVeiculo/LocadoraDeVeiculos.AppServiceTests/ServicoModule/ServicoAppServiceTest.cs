@@ -15,7 +15,7 @@ namespace LocadoraDeVeiculos.AppServiceTests.ServicoModule
 
         public ServicoAppServiceTest()
         {
-            Infra.LogManager.Serilogger.Logger = new Serilog.LoggerConfiguration()
+            Infra.Logger.Serilogger.Logger = new Serilog.LoggerConfiguration()
             .WriteTo.Console()
             .CreateLogger();
         }
