@@ -2,7 +2,6 @@
 using System;
 using System.Threading;
 using System.Windows.Forms;
-using LocadoraDeVeiculos.Dominio.ClienteModule;
 using LocadoraVeiculo.WindowsApp.Shared;
 using LocadoraVeiculo.WindowsApp.Features.DescontoFeature;
 using LocadoraVeiculo.WindowsApp.Features.DashboardFeature;
@@ -17,29 +16,6 @@ using LocadoraVeiculo.WindowsApp.Features.EmailLocadoraFeature;
 using LocadoraVeiculo.WindowsApp.Features.ParceiroFeature;
 using LocadoraVeiculo.WindowsApp.Features.DarkModeFeature;
 using LocadoraVeiculo.WindowsApp.Features.LoginFeature;
-using LocadoraDeVeiculos.Aplicacao.ParceiroModule;
-using LocadoraDeVeiculos.Aplicacao.VeiculoModule;
-using LocadoraDeVeiculos.Aplicacao.ClienteCNPJModule;
-using LocadoraDeVeiculos.Aplicacao.ClienteCPFModule;
-using LocadoraDeVeiculos.Aplicacao.GrupoVeiculoModule;
-using LocadoraDeVeiculos.Aplicacao.FuncionarioModule;
-using LocadoraDeVeiculos.Aplicacao.DescontoModule;
-using LocadoraDeVeiculos.Aplicacao.ServicoModule;
-using LocadoraDeVeiculos.Aplicacao.LocacaoModule;
-using LocadoraDeVeiculos.Infra.PDFLocacao;
-using LocadoraDeVeiculos.Infra.InternetServices;
-using LocadoraDeVeiculos.Infra.LogManager;
-using LocadoraDeVeiculos.Infra.ORM.ClienteCNPJModule;
-using LocadoraDeVeiculos.Infra.Context;
-using LocadoraDeVeiculos.Infra.ORM.ClienteCPFModule;
-using LocadoraDeVeiculos.Infra.ORM.ServicoModule;
-using LocadoraDeVeiculos.Infra.ORM.ParceiroModule;
-using LocadoraDeVeiculos.Infra.ORM.GrupoVeiculoModule;
-using LocadoraDeVeiculos.Infra.ORM.VeiculoModule;
-using LocadoraDeVeiculos.Infra.ORM.FuncionarioModule;
-using LocadoraDeVeiculos.Infra.ORM.DescontoModule;
-using LocadoraDeVeiculos.Infra.ORM.TaxaDaLocacaoModule;
-using LocadoraDeVeiculos.Infra.ORM.LocacaoModule;
 using Autofac;
 using LocadoraDeVeiculos.WindowsApp.Shared;
 #endregion
@@ -73,22 +49,9 @@ namespace LocadoraVeiculo.WindowsApp
 
             AtualizarRodape(configuracao.TipoCadastro);
 
-            operacoes = GetOperacoesLocacao();
+            operacoes = AutoFacDI.Container.Resolve<OperacoesLocacao>();
 
             ConfigurarPainelRegistros();
-        }
-
-        private OperacoesLocacao GetOperacoesLocacao()
-        {
-            LocacaoContext contexto = new();
-            TaxaDaLocacaoDAO taxaDaLocacaoDAO = new(contexto);
-            return new OperacoesLocacao(
-                   new LocacaoAppService(new LocacaoDAO(contexto), new EnviaEmail(), new MontaPdf(), new DescontoDAO(contexto), new VeiculoDAO(contexto), taxaDaLocacaoDAO),
-                   new ClienteCPFAppService(new ClienteCPFDAO(contexto)),
-                   new VeiculoAppService(new VeiculoDAO(contexto)),
-                   new ClienteCNPJAppService(new ClienteCNPJDAO(contexto)),
-                   new DescontoAppService(new DescontoDAO(contexto)),
-                   taxaDaLocacaoDAO);
         }
 
         private void menuItemCliente_Click(object sender, EventArgs e)
@@ -99,18 +62,9 @@ namespace LocadoraVeiculo.WindowsApp
 
             AtualizarRodape(configuracao.TipoCadastro);
 
-            operacoes = GetOperacoesCliente();
+            operacoes = AutoFacDI.Container.Resolve<OperacoesCliente>();
 
             ConfigurarPainelRegistros();
-        }
-
-        private OperacoesCliente GetOperacoesCliente()
-        {
-            LocacaoContext contexto = new();
-            return new OperacoesCliente(
-                   new ClienteCNPJAppService(new ClienteCNPJDAO(contexto)),
-                   new ClienteCPFAppService(new ClienteCPFDAO(contexto)),
-                   new FiltroCliente(new ClienteCNPJDAO(contexto), new ClienteCPFDAO(contexto)));
         }
 
         private void menuItemVeiculo_Click(object sender, EventArgs e)
@@ -121,17 +75,9 @@ namespace LocadoraVeiculo.WindowsApp
 
             AtualizarRodape(configuracao.TipoCadastro);
 
-            operacoes = GetOperacoesVeiculo();
+            operacoes = AutoFacDI.Container.Resolve<OperacoesVeiculo>();
 
             ConfigurarPainelRegistros();
-        }
-
-        private OperacoesVeiculo GetOperacoesVeiculo()
-        {
-            LocacaoContext contexto = new();
-            return new OperacoesVeiculo(
-                   new VeiculoAppService(new VeiculoDAO(contexto)),
-                   new GrupoVeiculoAppService(new GrupoVeiculoDAO(contexto)));
         }
 
         private void menuItemFuncionario_Click(object sender, EventArgs e)
@@ -142,14 +88,9 @@ namespace LocadoraVeiculo.WindowsApp
 
             AtualizarRodape(configuracao.TipoCadastro);
 
-            operacoes = GetOperacoesFuncionario();
+            operacoes = AutoFacDI.Container.Resolve<OperacoesFuncionario>();
 
             ConfigurarPainelRegistros();
-        }
-
-        private OperacoesFuncionario GetOperacoesFuncionario()
-        {
-            return new OperacoesFuncionario(new FuncionarioAppService(new FuncionarioDAO(new LocacaoContext())));
         }
 
         private void parceirosToolStripMenuItem_Click(object sender, EventArgs e)
@@ -173,14 +114,9 @@ namespace LocadoraVeiculo.WindowsApp
 
             AtualizarRodape(configuracao.TipoCadastro);
 
-            operacoes = GetOperacoesGrupoDeVeiculos();
+            operacoes = AutoFacDI.Container.Resolve<OperacoesGrupoVeiculo>();
 
             ConfigurarPainelRegistros();
-        }
-
-        private OperacoesGrupoVeiculo GetOperacoesGrupoDeVeiculos()
-        {
-            return new OperacoesGrupoVeiculo(new GrupoVeiculoAppService(new GrupoVeiculoDAO(new LocacaoContext())));
         }
 
         private void taxasEServiçosToolStripMenuItem_Click(object sender, EventArgs e)
@@ -191,14 +127,9 @@ namespace LocadoraVeiculo.WindowsApp
 
             AtualizarRodape(configuracao.TipoCadastro);
 
-            operacoes = GetOperacoesTaxasEServicos();
+            operacoes = AutoFacDI.Container.Resolve<OperacoesServico>();
 
             ConfigurarPainelRegistros();
-        }
-
-        private OperacoesServico GetOperacoesTaxasEServicos()
-        {
-            return new OperacoesServico(new ServicoAppService(new ServicoDAO(new LocacaoContext())));
         }
 
         private void descontosToolStripMenuItem_Click(object sender, EventArgs e)
