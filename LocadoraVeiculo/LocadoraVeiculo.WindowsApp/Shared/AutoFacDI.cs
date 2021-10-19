@@ -101,17 +101,6 @@ namespace LocadoraDeVeiculos.WindowsApp.Shared
             Builder.RegisterType<EnviaEmail>().As<IEmail>().InstancePerDependency();
             Builder.RegisterType<MontaPdf>().As<IPDF>().InstancePerDependency();
             Builder.RegisterType<FiltroCliente>().InstancePerDependency();
-
-            Builder.RegisterType<ServicoDAO>().As<IServicoRepository>().SingleInstance();
-            Builder.RegisterType<VeiculoDAO>().As<IVeiculoRepository>().SingleInstance();
-            Builder.RegisterType<ParceiroDAO>().As<IParceiroRepository>().SingleInstance();
-            Builder.RegisterType<ClienteCNPJDAO>().As<IClienteCNPJRepository>().SingleInstance();
-            Builder.RegisterType<ClienteCPFDAO>().As<IClienteCPFRepository>().SingleInstance();
-            Builder.RegisterType<DescontoDAO>().As<IDescontoRepository>().SingleInstance();
-            Builder.RegisterType<FuncionarioDAO>().As<IFuncionarioRepository>().SingleInstance();
-            Builder.RegisterType<GrupoVeiculoDAO>().As<IGrupoVeiculoRepository>().SingleInstance();
-            Builder.RegisterType<LocacaoDAO>().As<ILocacaoRepository>().SingleInstance();
-            Builder.RegisterType<TaxaDaLocacaoDAO>().As<ITaxaRepository>().SingleInstance();
         }
     }
 }
