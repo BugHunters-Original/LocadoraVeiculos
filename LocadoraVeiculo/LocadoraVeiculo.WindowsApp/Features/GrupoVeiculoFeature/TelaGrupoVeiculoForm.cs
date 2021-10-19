@@ -16,8 +16,6 @@ namespace LocadoraVeiculo.WindowsApp.Features.GrupoVeiculoFeature
             InitializeComponent();
             SetColor();
             grupoVeiculo = new();
-
-
         }
 
         private void SetColor()

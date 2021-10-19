@@ -38,7 +38,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.LocacaoFeature
             this.descontoService = descontoService;
             this.veiculoService = veiculoService;
             this.taxaLocacaoDAO = taxaLocacaoDAO;
-            tabelaLocacoes = new TabelaLocacaoControl();
+            tabelaLocacoes = new TabelaLocacaoControl(locacaoService);
         }
 
         public void DevolverVeiculo()
@@ -201,7 +201,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.LocacaoFeature
 
         private bool VerificarPossibilidadeDeInsercao()
         {
-            if (veiculoService.SelecionarTodosDisponiveis().Count == 0)
+            if (veiculoService.SelecionarTodosVeiculosDisponiveis().Count == 0)
             {
                 MessageBox.Show("Nenhum Veículo disponível para Locação!", "Adição de Locações",
                             MessageBoxButtons.OK, MessageBoxIcon.Exclamation);

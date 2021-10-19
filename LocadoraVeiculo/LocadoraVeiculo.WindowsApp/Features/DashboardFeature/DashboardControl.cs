@@ -9,20 +9,22 @@ using LocadoraVeiculo.WindowsApp.Features.VeiculoFeature;
 using LocadoraDeVeiculos.Infra.ORM.VeiculoModule;
 using LocadoraDeVeiculos.Infra.ORM.LocacaoModule;
 using LocadoraDeVeiculos.Infra.Context;
+using LocadoraDeVeiculos.Aplicacao.VeiculoModule;
+using LocadoraDeVeiculos.Aplicacao.LocacaoModule;
 
 namespace LocadoraVeiculo.WindowsApp.Features.DashboardFeature
 {
     public partial class DashboardControl : UserControl, IAparenciaAlteravel
     {
-        private readonly VeiculoDAO veiculoDAO;
-        private readonly LocacaoDAO locacaoDAO;
+        private readonly VeiculoAppService veiculoService;
+        private readonly LocacaoAppService locacaoService;
 
         private static string telaAtual = "";
 
-        public DashboardControl()
+        public DashboardControl(VeiculoAppService veiculoService, LocacaoAppService locacaoService)
         {
-            veiculoDAO = new VeiculoDAO(new LocacaoContext());
-            locacaoDAO = new LocacaoDAO(new LocacaoContext());
+            this.veiculoService = veiculoService;
+            this.locacaoService = locacaoService;
             InitializeComponent();
             TrataLabels();
             ConfigurarGridLightMode();
@@ -118,13 +120,13 @@ namespace LocadoraVeiculo.WindowsApp.Features.DashboardFeature
         }
         private void TrataLabels()
         {
-            int quantidadeAlugados = veiculoDAO.ReturnQuantidadeAlugados();
+            int quantidadeAlugados = veiculoService.SelecionarQuantidadeVeiculosAlugados();
             labelAlugados.Text = quantidadeAlugados.ToString();
 
-            int quantidadeDisponiveis = veiculoDAO.ReturnQuantidadeDisponiveis();
+            int quantidadeDisponiveis = veiculoService.SelecionarQuantidadeVeiculosDisponiveis();
             labelInLoco.Text = quantidadeDisponiveis.ToString();
 
-            int quantidadePendentes = locacaoDAO.SelecionarQuantidadeLocacoesPendentes();
+            int quantidadePendentes = locacaoService.SelecionarQuantidadeLocacoesPendentes();
             labelPendentes.Text = quantidadePendentes.ToString();
         }
         private void ObterTodosCarrosAlugados()
@@ -134,7 +136,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.DashboardFeature
             dtDashboard.Columns.AddRange(ObterColunasCarros());
             labelTipoVisualizacao.Text = "CARROS ALUGADOS";
 
-            List<Veiculo> veiculos = veiculoDAO.SelecionarTodosAlugados();
+            List<Veiculo> veiculos = veiculoService.SelecionarTodosVeiculosAlugados();
 
             AdicionarVeiculosNaTabela(veiculos);
         }
@@ -145,7 +147,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.DashboardFeature
             dtDashboard.Columns.AddRange(ObterColunasLocacoesPendentes());
             labelTipoVisualizacao.Text = "LOCAÇÕES PENDENTES";
 
-            List<Locacao> locacoes = locacaoDAO.SelecionarTodasLocacoesPendentes();
+            List<Locacao> locacoes = locacaoService.SelecionarTodasLocacoesPendentes();
 
             foreach (Locacao locacao in locacoes)
             {
@@ -160,7 +162,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.DashboardFeature
             dtDashboard.Columns.AddRange(ObterColunasCarros());
             labelTipoVisualizacao.Text = "CARROS DISPONIVEIS";
 
-            List<Veiculo> veiculos = veiculoDAO.SelecionarTodosDisponiveis();
+            List<Veiculo> veiculos = veiculoService.SelecionarTodosVeiculosDisponiveis();
 
             AdicionarVeiculosNaTabela(veiculos);
         }
@@ -194,7 +196,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.DashboardFeature
                 if (id == 0)
                     return;
 
-                Veiculo veiculoSelecionado = veiculoDAO.GetById(id);
+                Veiculo veiculoSelecionado = veiculoService.SelecionarVeiculoPorId(id);
 
                 TelaDetalhesVeiculoForm tela = new TelaDetalhesVeiculoForm();
 

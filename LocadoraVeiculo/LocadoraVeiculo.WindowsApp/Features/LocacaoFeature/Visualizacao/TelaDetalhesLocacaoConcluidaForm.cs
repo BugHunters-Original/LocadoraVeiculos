@@ -16,11 +16,11 @@ namespace LocadoraVeiculo.WindowsApp.Features.LocacaoFeature.Visualizacao
     public partial class TelaDetalhesLocacaoConcluidaForm : Form
     {
         private Locacao locacao;
-        private readonly TaxaDaLocacaoDAO TaxaDaLocacaoDAO;
+        private readonly TaxaDaLocacaoDAO taxaDaLocacaoDAO;
 
-        public TelaDetalhesLocacaoConcluidaForm()
+        public TelaDetalhesLocacaoConcluidaForm(TaxaDaLocacaoDAO taxaDaLocacaoDAO)
         {
-            TaxaDaLocacaoDAO = new TaxaDaLocacaoDAO(new LocacaoContext());
+            this.taxaDaLocacaoDAO = taxaDaLocacaoDAO;
             InitializeComponent();
             SetColor();
         }
@@ -66,7 +66,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.LocacaoFeature.Visualizacao
 
         private void PreencherListaTaxa()
         {
-            List<TaxaDaLocacao> lista = TaxaDaLocacaoDAO.SelecionarTaxasDeUmaLocacao(locacao.Id);
+            List<TaxaDaLocacao> lista = taxaDaLocacaoDAO.SelecionarTaxasDeUmaLocacao(locacao.Id);
 
             if (lista != null)
                 foreach (var servico in lista)

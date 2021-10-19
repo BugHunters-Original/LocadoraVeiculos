@@ -107,7 +107,7 @@ namespace LocadoraDeVeiculos.Aplicacao.VeiculoModule
         {
             Serilogger.Logger.Aqui().Debug("SELECIONANDO TODOS OS VEÍCULOS ALUGADOS");
 
-            List<Veiculo> veiculo = veiculoRepository.SelecionarTodosAlugados();
+            List<Veiculo> veiculo = veiculoRepository.SelecionarTodosVeiculosAlugados();
 
             if (veiculo.Count == 0)
                 Serilogger.Logger.Aqui().Information("NÃO HÁ VEÍCULOS ALUGADOS");
@@ -117,11 +117,11 @@ namespace LocadoraDeVeiculos.Aplicacao.VeiculoModule
             return veiculo;            
         }
 
-        public List<Veiculo> SelecionarTodosDisponiveis()
+        public List<Veiculo> SelecionarTodosVeiculosDisponiveis()
         {
             Serilogger.Logger.Aqui().Debug("SELECIONANDO TODOS OS VEÍCULOS DISPONÍVEIS");
 
-            List<Veiculo> veiculo = veiculoRepository.SelecionarTodosDisponiveis();
+            List<Veiculo> veiculo = veiculoRepository.SelecionarTodosVeiculosDisponiveis();
 
             if (veiculo.Count == 0)
                 Serilogger.Logger.Aqui().Information("NÃO HÁ VEÍCULOS DISPONÍVEIS");
@@ -135,7 +135,7 @@ namespace LocadoraDeVeiculos.Aplicacao.VeiculoModule
         {
             Serilogger.Logger.Aqui().Debug("SELECIONANDO QUANTIDADE DE VEÍCULOS ALUGADOS");
 
-            int quantidade = veiculoRepository.ReturnQuantidadeAlugados();
+            int quantidade = veiculoRepository.SelecionarQuantidadeVeiculosAlugados();
 
             if (quantidade == 0)
                 Serilogger.Logger.Aqui().Information("NÃO HÁ VEÍCULOS ALUGADOS");
@@ -150,7 +150,7 @@ namespace LocadoraDeVeiculos.Aplicacao.VeiculoModule
         {
             Serilogger.Logger.Aqui().Debug("SELECIONANDO QUANTIDADE DE VEÍCULOS DISPONÍVEIS");
 
-            int quantidade = veiculoRepository.ReturnQuantidadeDisponiveis();
+            int quantidade = veiculoRepository.SelecionarQuantidadeVeiculosDisponiveis();
 
             if (quantidade == 0)
                 Serilogger.Logger.Aqui().Information("NÃO HÁ VEÍCULOS DISPONÍVEIS");
