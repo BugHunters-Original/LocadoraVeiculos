@@ -1,6 +1,9 @@
-﻿using LocadoraDeVeiculos.Dominio.LocacaoModule;
+﻿using Autofac;
+using LocadoraDeVeiculos.Aplicacao.LocacaoModule;
+using LocadoraDeVeiculos.Dominio.LocacaoModule;
 using LocadoraDeVeiculos.Infra.Context;
 using LocadoraDeVeiculos.Infra.ORM.LocacaoModule;
+using LocadoraDeVeiculos.WindowsApp.Shared;
 using LocadoraVeiculo.WindowsApp.Features.LocacaoFeature.Visualizacao;
 using LocadoraVeiculo.WindowsApp.Shared;
 using Serilog.Core;
@@ -12,10 +15,10 @@ namespace LocadoraVeiculo.WindowsApp.Features.LocacaoFeature
     public partial class TabelaLocacaoControl : UserControl, IAparenciaAlteravel
     {
 
-        LocacaoDAO locacaoDAO;
-        public TabelaLocacaoControl()
+        LocacaoAppService locacaoService;
+        public TabelaLocacaoControl(LocacaoAppService locacaoService)
         {
-            locacaoDAO = new(new LocacaoContext());
+            this.locacaoService = locacaoService;
             InitializeComponent();
             ConfigurarGridLightMode();
             gridLocacao.ConfigurarGridSomenteLeitura();
@@ -73,7 +76,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.LocacaoFeature
             if (id == 0)
                 return;
 
-            Locacao locacaoSelecionada = locacaoDAO.GetById(id);
+            Locacao locacaoSelecionada = locacaoService.SelecionarLocacaoPorId(id);
 
             dynamic tela = VerificarTipoDeTela(locacaoSelecionada);
 
@@ -86,9 +89,9 @@ namespace LocadoraVeiculo.WindowsApp.Features.LocacaoFeature
         private dynamic VerificarTipoDeTela(Locacao locacaoSelecionada)
         {
             if (locacaoSelecionada.StatusLocacao == "Em Aberto")
-                return new TelaDetalhesLocacaoEmAbertoForm();
+                return AutoFacDI.Container.Resolve<TelaDetalhesLocacaoEmAbertoForm>();
             else
-                return new TelaDetalhesLocacaoConcluidaForm();
+                return AutoFacDI.Container.Resolve<TelaDetalhesLocacaoConcluidaForm>();
         }
 
         public void AtualizarAparencia()

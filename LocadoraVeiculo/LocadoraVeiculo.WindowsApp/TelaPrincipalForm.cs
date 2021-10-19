@@ -240,7 +240,7 @@ namespace LocadoraVeiculo.WindowsApp
 
         private void ConfigurarPainelDashBoard()
         {
-            UserControl tabela = new DashboardControl();
+            UserControl tabela = AutoFacDI.Container.Resolve<DashboardControl>();
             tabela.Dock = DockStyle.Fill;
             panelRegistros.Controls.Clear();
             panelRegistros.Controls.Add(tabela);
@@ -277,7 +277,7 @@ namespace LocadoraVeiculo.WindowsApp
 
         private void ChamarTelaLogin(object obj)
         {
-            Application.Run(new TelaLoginForm());
+            Application.Run(AutoFacDI.Container.Resolve<TelaLoginForm>());
         }
 
         private void btnAdicionar_Click(object sender, EventArgs e)

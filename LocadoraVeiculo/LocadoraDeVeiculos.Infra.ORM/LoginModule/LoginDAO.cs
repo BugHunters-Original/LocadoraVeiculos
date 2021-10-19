@@ -1,12 +1,15 @@
-﻿using LocadoraDeVeiculos.Infra.Context;
-using LocadoraDeVeiculos.Infra.Logger;
+﻿using LocadoraDeVeiculos.Infra.Logger;
 using LocadoraDeVeiculos.Infra.ORM.FuncionarioModule;
 
 namespace LocadoraDeVeiculos.Infra.ORM.LoginModule
 {
     public class LoginDAO
     {
-        FuncionarioDAO funcionarioService = new FuncionarioDAO(new LocacaoContext());
+        private FuncionarioDAO funcionarioService;
+        public LoginDAO(FuncionarioDAO funcionarioService)
+        {
+            this.funcionarioService = funcionarioService;
+        }
         public string ValidarLogin(string usuario, string senha)
         {
             string resultado = ValidarChaves(usuario, senha);

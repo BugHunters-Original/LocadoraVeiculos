@@ -13,10 +13,10 @@ namespace LocadoraVeiculo.WindowsApp.Features.LoginFeature
         private Thread th;
         private LoginDAO loginService; 
 
-        public TelaLoginForm()
+        public TelaLoginForm(LoginDAO loginService)
         {
             Serilogger.IniciarLog();
-            loginService = new LoginDAO();
+            this.loginService = loginService;
             InitializeComponent();
             SetColor();
         }

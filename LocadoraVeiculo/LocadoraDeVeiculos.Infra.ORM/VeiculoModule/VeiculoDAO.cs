@@ -98,7 +98,7 @@ namespace LocadoraDeVeiculos.Infra.ORM.VeiculoModule
             }
         }
 
-        public int ReturnQuantidadeAlugados()
+        public int SelecionarQuantidadeVeiculosAlugados()
         {
             try
             {
@@ -121,7 +121,7 @@ namespace LocadoraDeVeiculos.Infra.ORM.VeiculoModule
             }
         }
 
-        public int ReturnQuantidadeDisponiveis()
+        public int SelecionarQuantidadeVeiculosDisponiveis()
         {
             try
             {
@@ -143,7 +143,7 @@ namespace LocadoraDeVeiculos.Infra.ORM.VeiculoModule
             }
         }
 
-        public List<Veiculo> SelecionarTodosAlugados()
+        public List<Veiculo> SelecionarTodosVeiculosAlugados()
         {
             try
             {
@@ -166,7 +166,7 @@ namespace LocadoraDeVeiculos.Infra.ORM.VeiculoModule
             }
         }
 
-        public List<Veiculo> SelecionarTodosDisponiveis()
+        public List<Veiculo> SelecionarTodosVeiculosDisponiveis()
         {
             try
             {
@@ -188,7 +188,6 @@ namespace LocadoraDeVeiculos.Infra.ORM.VeiculoModule
                 return null;
             }
         }
-
         
     }
 }

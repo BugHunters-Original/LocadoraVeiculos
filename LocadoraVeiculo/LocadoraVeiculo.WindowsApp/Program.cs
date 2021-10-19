@@ -1,4 +1,6 @@
-﻿using LocadoraVeiculo.WindowsApp.Features.DarkModeFeature;
+﻿using Autofac;
+using LocadoraDeVeiculos.WindowsApp.Shared;
+using LocadoraVeiculo.WindowsApp.Features.DarkModeFeature;
 using LocadoraVeiculo.WindowsApp.Features.LoginFeature;
 using System;
 using System.Windows.Forms;
@@ -16,7 +18,7 @@ namespace LocadoraVeiculo.WindowsApp
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             DarkMode.TrocarModo();
-            new TelaLoginForm().ShowDialog();
+            AutoFacDI.Container.Resolve<TelaLoginForm>().ShowDialog();
             Application.Run();
         }
     }

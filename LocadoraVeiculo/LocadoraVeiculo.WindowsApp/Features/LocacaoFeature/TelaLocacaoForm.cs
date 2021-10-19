@@ -21,6 +21,8 @@ using LocadoraDeVeiculos.Aplicacao.DescontoModule;
 using LocadoraDeVeiculos.Aplicacao.LocacaoModule;
 using LocadoraDeVeiculos.Infra.ORM.TaxaDaLocacaoModule;
 using LocadoraDeVeiculos.Infra.Context;
+using LocadoraDeVeiculos.WindowsApp.Shared;
+using Autofac;
 
 namespace LocadoraVeiculo.WindowsApp.Features.LocacaoFeature
 {
@@ -47,7 +49,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.LocacaoFeature
             this.descontoService = descontoService;
             this.locacaoService = locacaoService;
             this.taxaDaLocacaoDAO = taxaDaLocacaoDAO;
-            telaDasTaxas = new TelaAdicionarTaxasForm();
+            telaDasTaxas = AutoFacDI.Container.Resolve<TelaAdicionarTaxasForm>();
             locacao = new();
             InitializeComponent();
             PopularComboboxes();
@@ -121,7 +123,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.LocacaoFeature
 
             var clientesCNPJ = cnpjService.SelecionarTodosClientesCNPJ();
 
-            var veiculos = veiculoService.SelecionarTodosDisponiveis();
+            var veiculos = veiculoService.SelecionarTodosVeiculosDisponiveis();
 
             locacoes.ForEach(x => clientesCPF.Remove(x.Condutor));
 

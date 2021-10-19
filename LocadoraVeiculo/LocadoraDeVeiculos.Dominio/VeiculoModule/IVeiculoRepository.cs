@@ -6,10 +6,10 @@ namespace LocadoraDeVeiculos.Dominio.VeiculoModule
 {
     public interface IVeiculoRepository : IBaseRepository<Veiculo>
     {
-        int ReturnQuantidadeDisponiveis();
-        int ReturnQuantidadeAlugados();
-        List<Veiculo> SelecionarTodosDisponiveis();
-        List<Veiculo> SelecionarTodosAlugados();
+        int SelecionarQuantidadeVeiculosDisponiveis();
+        int SelecionarQuantidadeVeiculosAlugados();
+        List<Veiculo> SelecionarTodosVeiculosDisponiveis();
+        List<Veiculo> SelecionarTodosVeiculosAlugados();
         void EditarDisponibilidade(Veiculo atual, Veiculo antigo);
         void DevolverVeiculo(Veiculo veiculo);
         void LocarVeiculo(Veiculo veiculo);

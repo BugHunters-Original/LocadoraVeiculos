@@ -1,4 +1,5 @@
-﻿using LocadoraDeVeiculos.Dominio.ServicoModule;
+﻿using LocadoraDeVeiculos.Aplicacao.ServicoModule;
+using LocadoraDeVeiculos.Dominio.ServicoModule;
 using LocadoraDeVeiculos.Dominio.TaxaDaLocacaoModule;
 using LocadoraDeVeiculos.Infra.Context;
 using LocadoraDeVeiculos.Infra.ORM.ServicoModule;
@@ -12,12 +13,12 @@ namespace LocadoraVeiculo.WindowsApp.Features.LocacaoFeature.TaxasServicos
 {
     public partial class TelaAdicionarTaxasForm : Form
     {
-        private ServicoDAO servicoDAO;
+        private ServicoAppService servicoService;
         public List<Servico> Servicos { get; set; }
 
-        public TelaAdicionarTaxasForm()
+        public TelaAdicionarTaxasForm(ServicoAppService servicoService)
         {
-            servicoDAO = new(new LocacaoContext());
+            this.servicoService = servicoService;
             InitializeComponent();
             PopularBox();
             SetColor();
@@ -39,7 +40,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.LocacaoFeature.TaxasServicos
 
         public void CheckBoxTaxas(List<TaxaDaLocacao> lista)
         {
-            List<Servico> servicos = servicoDAO.GetAll();
+            List<Servico> servicos = servicoService.SelecionarTodosServicos();
 
             foreach (var item in servicos)
             {
@@ -55,7 +56,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.LocacaoFeature.TaxasServicos
 
         private void PopularBox()
         {
-            List<Servico> servicos = servicoDAO.GetAll();
+            List<Servico> servicos = servicoService.SelecionarTodosServicos();
             servicos.ForEach(x => cBoxTaxas.Items.Add(x));
         }
 
