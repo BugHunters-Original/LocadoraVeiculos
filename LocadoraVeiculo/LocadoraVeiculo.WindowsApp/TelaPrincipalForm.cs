@@ -20,6 +20,7 @@ using Autofac;
 using LocadoraDeVeiculos.WindowsApp.Shared;
 using LocadoraDeVeiculos.Infra.Logger;
 using LocadoraDeVeiculos.Infra.ORM.TaxaDaLocacaoModule;
+using System.Threading.Tasks;
 #endregion
 namespace LocadoraVeiculo.WindowsApp
 {
@@ -50,8 +51,6 @@ namespace LocadoraVeiculo.WindowsApp
             ConfigurarToolBox(configuracao);
 
             AtualizarRodape(configuracao.TipoCadastro);
-
-            var a  = AutoFacDI.Container.Resolve<TaxaDaLocacaoDAO>();
 
             operacoes = AutoFacDI.Container.Resolve<OperacoesLocacao>();
 
@@ -151,14 +150,12 @@ namespace LocadoraVeiculo.WindowsApp
 
         private void preçosCombustívelToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            TelaCombustivelForm telaCombustivelForm = new TelaCombustivelForm();
-            telaCombustivelForm.ShowDialog();
+            new TelaCombustivelForm().ShowDialog();
         }
 
         private void emailLocadoraToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            TelaEmail telaEmail = new TelaEmail();
-            telaEmail.ShowDialog();
+            new TelaEmail().ShowDialog();
         }
 
         private void menuToolStripMenuItem_Click(object sender, EventArgs e)
@@ -241,8 +238,11 @@ namespace LocadoraVeiculo.WindowsApp
         private void ConfigurarPainelDashBoard()
         {
             UserControl tabela = AutoFacDI.Container.Resolve<DashboardControl>();
+
             tabela.Dock = DockStyle.Fill;
+
             panelRegistros.Controls.Clear();
+
             panelRegistros.Controls.Add(tabela);
         }
 
@@ -275,7 +275,7 @@ namespace LocadoraVeiculo.WindowsApp
             ConfigurarPainelDashBoard();
         }
 
-        private void ChamarTelaLogin(object obj)
+        private void ChamarTelaLogin()
         {
             Application.Run(AutoFacDI.Container.Resolve<TelaLoginForm>());
         }
@@ -335,28 +335,23 @@ namespace LocadoraVeiculo.WindowsApp
 
         private void btnMaximize_Click(object sender, EventArgs e)
         {
-            if (this.WindowState == FormWindowState.Maximized) { this.WindowState = FormWindowState.Normal; }
-            else { this.WindowState = FormWindowState.Maximized; }
+            WindowState = WindowState == FormWindowState.Maximized ? FormWindowState.Normal : FormWindowState.Maximized;
         }
 
         private void btnLogOut_Click(object sender, EventArgs e)
         {
             this.Close();
-            var th = new Thread(ChamarTelaLogin);
-            th.SetApartmentState(ApartmentState.STA);
-            th.Start();
+            Task.Run(() => ChamarTelaLogin());
         }
 
         private void btnLogOut_MouseHover(object sender, EventArgs e)
         {
-            ToolTip toolTip = new ToolTip();
-            toolTip.SetToolTip(this.btnLogOut, "LogOut");
+            new ToolTip().SetToolTip(this.btnLogOut, "LogOut");
         }
 
         private void btnMinimize_MouseHover(object sender, EventArgs e)
         {
-            ToolTip toolTip = new ToolTip();
-            toolTip.SetToolTip(this.btnMinimize, "Minimizar");
+            new ToolTip().SetToolTip(this.btnMinimize, "Minimizar");
         }
 
         private void btnMaximize_MouseHover(object sender, EventArgs e)
@@ -371,8 +366,7 @@ namespace LocadoraVeiculo.WindowsApp
 
         private void btnClose_MouseHover(object sender, EventArgs e)
         {
-            ToolTip toolTip = new ToolTip();
-            toolTip.SetToolTip(this.btnClose, "Fechar");
+            new ToolTip().SetToolTip(this.btnClose, "Fechar");
         }
 
         private void txtPesquisar_TextChanged(object sender, EventArgs e)

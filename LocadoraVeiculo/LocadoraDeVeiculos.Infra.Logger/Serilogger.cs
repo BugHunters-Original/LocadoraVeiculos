@@ -7,12 +7,12 @@ namespace LocadoraDeVeiculos.Infra.Logger
     public static class Serilogger
     {
         public static ILogger Logger;
-        public static void IniciarLog()
+        static Serilogger()
         {
             var ip = JsonConfig.AppConfig["serverUrl"].ToString();
             var apikey = JsonConfig.AppConfig["apiKey"].ToString();
 
-            var config = new LoggerConfiguration()
+            Logger = new LoggerConfiguration()
                 .MinimumLevel.Verbose()
                 .WriteTo.Seq(ip, apiKey: apikey)
                 .Enrich.FromLogContext()
@@ -20,9 +20,8 @@ namespace LocadoraDeVeiculos.Infra.Logger
                 .Enrich.WithProperty("MachineName", Environment.MachineName)
                 .Enrich.WithProperty("ApplicationName", Environment.ProcessId)
                 .Enrich.WithProperty("ThreadId", Environment.CurrentManagedThreadId)
-                .Enrich.WithProperty("UserName", Environment.UserName);
-
-            Logger = config.CreateLogger();
+                .Enrich.WithProperty("UserName", Environment.UserName)
+                .CreateLogger();
         }
     }
 }

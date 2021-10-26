@@ -4,18 +4,17 @@ using LocadoraVeiculo.WindowsApp.Features.DarkModeFeature;
 using System;
 using System.Drawing;
 using System.Threading;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace LocadoraVeiculo.WindowsApp.Features.LoginFeature
 {
     public partial class TelaLoginForm : Form
     {
-        private Thread th;
-        private LoginDAO loginService; 
+        private LoginDAO loginService;
 
         public TelaLoginForm(LoginDAO loginService)
         {
-            Serilogger.IniciarLog();
             this.loginService = loginService;
             InitializeComponent();
             SetColor();
@@ -26,7 +25,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.LoginFeature
         {
             this.BackColor = DarkMode.corFundo;
             this.ForeColor = DarkMode.corFonte;
-            btnLogar.BackColor = DarkMode.corFundoTxBox; 
+            btnLogar.BackColor = DarkMode.corFundoTxBox;
             Footer.BackColor = DarkMode.corPanel;
             txtUsuario.BackColor = DarkMode.corFundoTxBox;
             txtSenha.BackColor = DarkMode.corFundoTxBox;
@@ -46,9 +45,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.LoginFeature
             if (resultValidacao == "valido")
             {
                 this.Close();
-                th = new Thread(ChamarTelaPrincipal);
-                th.SetApartmentState(ApartmentState.STA);
-                th.Start();
+                Task.Run(() => ChamarTelaPrincipal());
             }
             else
             {
@@ -58,7 +55,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.LoginFeature
             }
         }
 
-        private void ChamarTelaPrincipal(object obj)
+        private void ChamarTelaPrincipal()
         {
             Application.Run(new TelaPrincipalForm());
         }

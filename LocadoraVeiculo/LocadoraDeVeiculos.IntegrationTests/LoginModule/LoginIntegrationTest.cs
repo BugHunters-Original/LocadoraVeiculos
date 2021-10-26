@@ -21,7 +21,7 @@ namespace LocadoraDeVeiculos.IntegrationTests.LoginModule
         {
             context = new();
             repositoryFunc = new(context);
-            repositoryLogin = new();
+            repositoryLogin = new(repositoryFunc);
 
             context.Funcionarios.Clear();
 
