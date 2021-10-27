@@ -6,6 +6,7 @@ using LocadoraDeVeiculos.Dominio.VeiculoModule;
 using LocadoraDeVeiculos.Infra.ExtensionMethods;
 using LocadoraDeVeiculos.Dominio.TaxaDaLocacaoModule;
 using LocadoraDeVeiculos.Infra.Logger;
+using LocadoraDeVeiculos.Infra.WorkerEmail;
 
 namespace LocadoraDeVeiculos.Aplicacao.LocacaoModule
 {
@@ -59,10 +60,6 @@ namespace LocadoraDeVeiculos.Aplicacao.LocacaoModule
                 Serilogger.Logger.Aqui().Debug("MONTANDO PDF DA LOCAÇÃO ID: {Id}", locacao.Id);
 
                 pdf.MontarPDF(locacao);
-
-                Serilogger.Logger.Aqui().Debug("ENVIANDO EMAIL LOCAÇÃO ID: {Id}", locacao.Id);
-
-                Task.Run(() => email.EnviarEmail(locacao));
             }
             else
             {

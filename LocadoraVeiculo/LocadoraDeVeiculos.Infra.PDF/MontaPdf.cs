@@ -13,7 +13,7 @@ namespace LocadoraDeVeiculos.Infra.PDFLocacao
 {
     public class MontaPdf : IPDF
     {
-        public void MontarPDF(Locacao locacao)
+        public bool MontarPDF(Locacao locacao)
         {
             try
             {
@@ -57,11 +57,14 @@ namespace LocadoraDeVeiculos.Infra.PDFLocacao
                     pdfDocument.Close();
 
                     Serilogger.Logger.Aqui().Information("PDF DA LOCAÇÃO ID: {Id} CONCLUÍDO COM SUCESSO", locacao.Id);
+
+                    return true;
                 }
             }
             catch (Exception ex)
             {
                 Serilogger.Logger.Aqui().Error(ex, "ERRO AO INSERIR LOCAÇÃO ID: {Id}", locacao.Id);
+                return false;
             }
         }
     }

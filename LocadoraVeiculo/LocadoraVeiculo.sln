@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.31424.327
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31825.309
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "2. src", "2. src", "{C00DCF69-4627-455B-8907-2B659F2A723D}"
 EndProject
@@ -69,7 +69,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LocadoraDeVeiculos.DataBuil
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "4.6 Logger", "4.6 Logger", "{17C40ED1-1EF0-4505-A239-01E1C5F39E7F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LocadoraDeVeiculos.Infra.Logger", "LocadoraDeVeiculos.Infra.Logger\LocadoraDeVeiculos.Infra.Logger.csproj", "{9EA154B3-CB65-409C-A04D-9197167E0774}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LocadoraDeVeiculos.Infra.Logger", "LocadoraDeVeiculos.Infra.Logger\LocadoraDeVeiculos.Infra.Logger.csproj", "{9EA154B3-CB65-409C-A04D-9197167E0774}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LocadoraDeVeiculos.Infra.WorkerEmail", "LocadoraDeVeiculos.Infra.WorkerEmail\LocadoraDeVeiculos.Infra.WorkerEmail.csproj", "{593B43AC-2357-4DB4-A5BF-D73B4F7C0B7E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -143,6 +145,10 @@ Global
 		{9EA154B3-CB65-409C-A04D-9197167E0774}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9EA154B3-CB65-409C-A04D-9197167E0774}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9EA154B3-CB65-409C-A04D-9197167E0774}.Release|Any CPU.Build.0 = Release|Any CPU
+		{593B43AC-2357-4DB4-A5BF-D73B4F7C0B7E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{593B43AC-2357-4DB4-A5BF-D73B4F7C0B7E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{593B43AC-2357-4DB4-A5BF-D73B4F7C0B7E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{593B43AC-2357-4DB4-A5BF-D73B4F7C0B7E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -179,6 +185,7 @@ Global
 		{25111F61-1CD6-4CAF-97AD-6EAA8FA25FA0} = {D2F9D171-253D-48E9-8E15-CFE618F6945D}
 		{17C40ED1-1EF0-4505-A239-01E1C5F39E7F} = {32D36574-C253-4348-AE04-0B066837BCBD}
 		{9EA154B3-CB65-409C-A04D-9197167E0774} = {17C40ED1-1EF0-4505-A239-01E1C5F39E7F}
+		{593B43AC-2357-4DB4-A5BF-D73B4F7C0B7E} = {3A8E2F2B-131A-452D-9F19-AE0DCFB89086}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {CA30BD87-78E1-4FAA-B316-69D35BF837BC}
