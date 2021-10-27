@@ -48,6 +48,8 @@ namespace LocadoraDeVeiculos.Infra.ORM.LocacaoModule
             builder.Property(x => x.PrecoPlano).HasColumnType("FLOAT").IsRequired();
 
             builder.Property(x => x.PrecoTotal).HasColumnType("FLOAT").IsRequired();
+
+            builder.Property(x => x.StatusEnvioEmail).HasColumnType("VARCHAR(20)").IsRequired();
         }
     }
 }

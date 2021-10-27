@@ -18,4 +18,19 @@
     <ProjectReference Include="..\LocadoraDeVeiculos.Infra.Logger\LocadoraDeVeiculos.Infra.Logger.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Compile Update="Imagens.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Imagens.resx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Update="Imagens.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Imagens.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+
 </Project>

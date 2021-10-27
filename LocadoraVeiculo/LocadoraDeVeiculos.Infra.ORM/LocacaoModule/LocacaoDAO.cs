@@ -146,6 +146,8 @@ namespace LocadoraDeVeiculos.Infra.ORM.LocacaoModule
             {
                 locacao.StatusLocacao = "Em Aberto";
 
+                locacao.StatusEnvioEmail = "Em Aberto";
+
                 Editar(locacao);
 
                 Serilogger.Logger.Information("SUCESSO AO INICIAR LOCAÇÃO ID: {Id}  ", locacao.Id);
@@ -169,6 +171,34 @@ namespace LocadoraDeVeiculos.Infra.ORM.LocacaoModule
             catch (Exception ex)
             {
                 Serilogger.Logger.Error(ex, "ERRO AO CONCLUIR LOCAÇÃO ID: {Id}  ", locacao.Id);
+            }
+        }
+
+        public List<Locacao> SolicitacoesDeEmail()
+        {
+            return registros.
+                   Include(x => x.Cliente).
+                   Include(x => x.Veiculo).
+                   ThenInclude(x => x.GrupoVeiculo).
+                   Include(x => x.Desconto).
+                   Include(x => x.Condutor).
+                   Where(x=>x.StatusEnvioEmail == "Em Aberto").
+                   ToList();
+        }
+
+        public void ConcluirEmail(Locacao locacao)
+        {
+            try
+            {
+                locacao.StatusLocacao = "Concluída";
+
+                Editar(locacao);
+
+                Serilogger.Logger.Information("SUCESSO AO CONCLUIR EMAIL ID: {Id}  ", locacao.Id);
+            }
+            catch (Exception ex)
+            {
+                Serilogger.Logger.Error(ex, "ERRO AO CONCLUIR EMAIL ID: {Id}  ", locacao.Id);
             }
         }
     }

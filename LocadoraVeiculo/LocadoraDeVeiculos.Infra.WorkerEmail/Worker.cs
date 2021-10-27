@@ -1,8 +1,7 @@
 using LocadoraDeVeiculos.Dominio.LocacaoModule;
-using LocadoraDeVeiculos.Infra.InternetServices;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
-using System;
+using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -12,22 +11,25 @@ namespace LocadoraDeVeiculos.Infra.WorkerEmail
     {
         private readonly ILogger<Worker> _logger;
         private readonly ILocacaoRepository locacaoRepository;
+        private readonly IEmail emailRepository;
 
-        public Worker(ILogger<Worker> logger, ILocacaoRepository locacaoRepository)
+        public Worker(ILogger<Worker> logger, ILocacaoRepository locacaoRepository, IEmail emailRepository)
         {
             _logger = logger;
             this.locacaoRepository = locacaoRepository;
+            this.emailRepository = emailRepository;
         }
 
         protected override async Task ExecuteAsync(CancellationToken stoppingToken)
         {
             while (!stoppingToken.IsCancellationRequested)
             {
-                var fila = locacaoRepository.SolicitacoesDeEmail();
-                    
-                    
-                _logger.LogInformation("Worker running at: {time}", DateTimeOffset.Now);
-                await Task.Delay(1000, stoppingToken);
+                var emails = locacaoRepository.SolicitacoesDeEmail();
+
+                if (emails.Any())
+                    emails.ForEach(e => Task.Run(() => emailRepository.EnviarEmail(e)));
+
+                await Task.Delay(3000, stoppingToken);
             }
         }
 

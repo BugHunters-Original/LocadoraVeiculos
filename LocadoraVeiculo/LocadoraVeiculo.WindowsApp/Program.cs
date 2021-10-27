@@ -16,9 +16,20 @@ namespace LocadoraVeiculo.WindowsApp
         static void Main()
         {
             Application.EnableVisualStyles();
+
             Application.SetCompatibleTextRenderingDefault(false);
+
+            RunProgram();
+        }
+
+        private static void RunProgram()
+        {
             DarkMode.TrocarModo();
+
             AutoFacDI.Container.Resolve<TelaLoginForm>().ShowDialog();
+
+            LocadoraDeVeiculos.Infra.WorkerEmail.Program.Main(Array.Empty<string>());
+
             Application.Run();
         }
     }

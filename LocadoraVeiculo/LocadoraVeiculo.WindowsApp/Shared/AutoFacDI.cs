@@ -45,7 +45,6 @@ using LocadoraVeiculo.WindowsApp.Features.LoginFeature;
 using LocadoraVeiculo.WindowsApp.Features.ParceiroFeature;
 using LocadoraVeiculo.WindowsApp.Features.TaxaServicoFeature;
 using LocadoraVeiculo.WindowsApp.Features.VeiculoFeature;
-using System;
 
 namespace LocadoraDeVeiculos.WindowsApp.Shared
 {

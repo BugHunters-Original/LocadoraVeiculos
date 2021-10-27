@@ -1,33 +1,32 @@
 ﻿using LocadoraDeVeiculos.Dominio.DescontoModule;
 using LocadoraDeVeiculos.Dominio.LocacaoModule;
 using System.Collections.Generic;
-using System.Threading.Tasks;
 using LocadoraDeVeiculos.Dominio.VeiculoModule;
 using LocadoraDeVeiculos.Infra.ExtensionMethods;
 using LocadoraDeVeiculos.Dominio.TaxaDaLocacaoModule;
 using LocadoraDeVeiculos.Infra.Logger;
-using LocadoraDeVeiculos.Infra.WorkerEmail;
+using LocadoraDeVeiculos.Dominio.ReciboModule;
 
 namespace LocadoraDeVeiculos.Aplicacao.LocacaoModule
 {
     public class LocacaoAppService
     {
         private readonly ILocacaoRepository locacaoRepo;
+        private readonly IReciboRepository reciboRepo;
         private readonly IDescontoRepository descontoRepo;
         private readonly IVeiculoRepository veiculoRepo;
         private readonly ITaxaRepository taxaDaLocacaoRepo;
-        private readonly IEmail email;
-        private readonly IPDF pdf;
-        public LocacaoAppService(ILocacaoRepository locacaoRepo, IEmail email,
-                                 IPDF pdf, IDescontoRepository descontoRepo,
+        private readonly IPDF pdfRepo;
+        public LocacaoAppService(ILocacaoRepository locacaoRepo, IReciboRepository reciboRepo,
+                                 IPDF pdfRepo, IDescontoRepository descontoRepo,
                                  IVeiculoRepository veiculoRepo, ITaxaRepository taxaDaLocacaoRepo)
         {
             this.veiculoRepo = veiculoRepo;
             this.locacaoRepo = locacaoRepo;
+            this.reciboRepo = reciboRepo;
             this.descontoRepo = descontoRepo;
             this.taxaDaLocacaoRepo = taxaDaLocacaoRepo;
-            this.email = email;
-            this.pdf = pdf;
+            this.pdfRepo = pdfRepo;
         }
         public void RegistrarNovaLocacao(Locacao locacao)
         {
@@ -59,7 +58,9 @@ namespace LocadoraDeVeiculos.Aplicacao.LocacaoModule
 
                 Serilogger.Logger.Aqui().Debug("MONTANDO PDF DA LOCAÇÃO ID: {Id}", locacao.Id);
 
-                pdf.MontarPDF(locacao);
+                var recibo = pdfRepo.MontarPDF(locacao);
+
+                reciboRepo.Inserir(recibo);
             }
             else
             {

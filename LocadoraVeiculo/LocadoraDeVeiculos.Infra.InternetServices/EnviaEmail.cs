@@ -17,14 +17,12 @@ namespace LocadoraDeVeiculos.Infra.InternetServices
                 {
                     using (MailMessage email = new MailMessage())
                     {
-                        //SERVIDOR
                         smtp.Host = "smtp.gmail.com";
                         smtp.UseDefaultCredentials = false;
                         smtp.Credentials = new System.Net.NetworkCredential(Email.EmailLocadora, Email.SenhaLocadora);
                         smtp.Port = 587;
                         smtp.EnableSsl = true;
 
-                        //EMAIL
                         email.From = new MailAddress(Email.EmailLocadora);
                         email.To.Add(locacao.Cliente.Email);
 
@@ -32,10 +30,8 @@ namespace LocadoraDeVeiculos.Infra.InternetServices
                         email.IsBodyHtml = false;
                         email.Body = "Obrigado por utilizar nossos serviços, volte sempre!";
 
-
                         email.Attachments.Add(new Attachment($@"..\..\..\..\Recibos\recibo{locacao.Id}.pdf"));
 
-                        //ENVIAR
                         smtp.Send(email);
 
                         Serilogger.Logger.Aqui().Debug("E-MAIL ENVIADO PARA {EmailCliente} com sucesso!", locacao.Cliente.Email);
