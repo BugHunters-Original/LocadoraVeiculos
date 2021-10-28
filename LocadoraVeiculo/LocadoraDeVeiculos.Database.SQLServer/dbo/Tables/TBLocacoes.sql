@@ -10,7 +10,6 @@
     [StatusLocacao]    VARCHAR (20) NULL,
     [TipoCliente]      INT          NOT NULL,
     [Dias]             INT          NOT NULL,
-    [StatusEnvioEmail] VARCHAR (20) NOT NULL,
     [PrecoServicos]    FLOAT (53)   NULL,
     [PrecoCombustivel] FLOAT (53)   NULL,
     [PrecoPlano]       FLOAT (53)   NOT NULL,
@@ -21,6 +20,8 @@
     CONSTRAINT [FK_TBLocacoes_TBDescontos_IdDesconto] FOREIGN KEY ([IdDesconto]) REFERENCES [dbo].[TBDescontos] ([Id]),
     CONSTRAINT [FK_TBLocacoes_TBVeiculos_IdVeiculo] FOREIGN KEY ([IdVeiculo]) REFERENCES [dbo].[TBVeiculos] ([Id])
 );
+
+
 
 
 GO
