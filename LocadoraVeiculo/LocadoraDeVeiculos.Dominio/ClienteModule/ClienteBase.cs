@@ -19,7 +19,7 @@ namespace LocadoraDeVeiculos.Dominio.ClienteModule
         public string Endereco { get; set; }
         public string Telefone { get; set; }
         public string Email { get; set; }
-        public  ICollection<Locacao> Locacoes { get; set; }
+        public ICollection<Locacao> Locacoes { get; set; }
 
     }
 }

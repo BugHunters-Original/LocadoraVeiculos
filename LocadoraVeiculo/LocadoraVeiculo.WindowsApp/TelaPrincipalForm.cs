@@ -340,10 +340,10 @@ namespace LocadoraVeiculo.WindowsApp
 
         private void btnLogOut_Click(object sender, EventArgs e)
         {
-            this.Close();
             var th = new Thread(ChamarTelaLogin);
             th.SetApartmentState(ApartmentState.STA);
             th.Start();
+            this.Dispose();
         }
 
         private void btnLogOut_MouseHover(object sender, EventArgs e)

@@ -1,8 +1,6 @@
 using Autofac;
 using Autofac.Extensions.DependencyInjection;
-using LocadoraDeVeiculos.Dominio.LocacaoModule;
 using LocadoraDeVeiculos.Dominio.ReciboModule;
-using LocadoraDeVeiculos.Infra.EmailManager;
 using LocadoraDeVeiculos.Infra.ORM.ReciboModule;
 using LocadoraDeVeiculos.Infra.Context;
 using Microsoft.Extensions.DependencyInjection;

@@ -9,12 +9,12 @@ namespace LocadoraDeVeiculos.Infra.Logger
         public static ILogger Logger;
         static Serilogger()
         {
-            var ip = JsonConfig.AppConfig["serverUrl"].ToString();
-            var apikey = JsonConfig.AppConfig["apiKey"].ToString();
+            //var ip = JsonConfig.AppConfig["serverUrl"].ToString();
+            //var apikey = JsonConfig.AppConfig["apiKey"].ToString();
 
             Logger = new LoggerConfiguration()
                 .MinimumLevel.Verbose()
-                .WriteTo.Seq(ip, apiKey: apikey)
+                .WriteTo.Seq("http://192.168.1.7:5341/", apiKey: "Z82bFbx11Af5XJl5qr7i")
                 .Enrich.FromLogContext()
                 .Enrich.WithProperty("ApplicationName", "Locadora de Veículos")
                 .Enrich.WithProperty("MachineName", Environment.MachineName)
