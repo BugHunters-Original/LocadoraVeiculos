@@ -22,11 +22,11 @@ namespace LocadoraDeVeiculos.Infra.WorkerService
         {
             while (!stoppingToken.IsCancellationRequested)
             {
-                Serilogger.Logger.Aqui().Information("Pegando todos os recibos pendentes");
+                Serilogger.Logger.Aqui().Debug("Pegando todos os recibos pendentes");
                 var recibosPendentes = reciboRepository.GetAllRecibosPendentes();
                 if (recibosPendentes.Count > 0)
                 {
-                    Serilogger.Logger.Aqui().Information("Iniciando loop de envios");
+                    Serilogger.Logger.Aqui().Debug("Iniciando loop de envios");
                     Parallel.ForEach(recibosPendentes, recibo =>
                     {
                         EnviarEmails(recibo);
