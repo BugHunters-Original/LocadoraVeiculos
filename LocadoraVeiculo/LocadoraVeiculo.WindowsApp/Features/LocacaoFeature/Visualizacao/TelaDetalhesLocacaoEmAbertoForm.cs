@@ -31,17 +31,20 @@ namespace LocadoraVeiculo.WindowsApp.Features.LocacaoFeature.Visualizacao
                 locacao = value;
 
                 txtID.Text = locacao.Id.ToString();
+
                 cbCliente.Text = locacao.Cliente.Nome;
 
                 cbVeiculo.Text = locacao.Veiculo.Nome;
 
                 cbCondutor.Text = locacao.Condutor.Nome;
 
-
                 PreencherListaTaxa();
+
                 dtSaida.Text = locacao.DataSaida.ToString("d");
+
                 dtRetorno.Text = locacao.DataRetorno.ToString("d");
-                cbTipoLocacao.Text = locacao.TipoLocacao.ToString();
+
+                cbTipoLocacao.Text = locacao.LocacaoTipo.ToString();
 
                 if (locacao.Desconto?.Codigo == null)
                     txtCupom.Text = "SEM CUPOM CADASTRADO";
@@ -117,8 +120,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.LocacaoFeature.Visualizacao
 
         private void ExportarRecibo()
         {
-            //EnviaEmail email = new EnviaEmail();
-            //string mensagem = email.EnviarEmail(locacao) ? $"Recibo enviado com sucesso para o e-mail [{locacao.Cliente.Email}]!" : $"Erro ao enviar recibo para o e-mail [{locacao.Cliente.Email}]!";
+            //string mensagem = LocadoraDeVeiculos.Infra.EmailManager.EnviarEmail(locacao) ? $"Recibo enviado com sucesso para o e-mail [{locacao.Cliente.Email}]!" : $"Erro ao enviar recibo para o e-mail [{locacao.Cliente.Email}]!";
             //TelaPrincipalForm.Instancia.AtualizarRodape(mensagem);
         }
     }

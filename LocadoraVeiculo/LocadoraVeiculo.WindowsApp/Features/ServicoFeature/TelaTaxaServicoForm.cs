@@ -4,6 +4,7 @@ using System;
 using System.Drawing;
 using System.IO;
 using System.Windows.Forms;
+using static LocadoraDeVeiculos.Dominio.ServicoModule.Servico;
 
 namespace LocadoraVeiculo.WindowsApp.Features.TaxaServicoFeature
 {
@@ -43,7 +44,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.TaxaServicoFeature
                 txtNome.Text = servico.Nome;
                 txtPreco.Text = servico.Preco.ToString();
 
-                if (servico.TipoCalculo == 1)
+                if (servico.CalculoTipo == TipoCalculo.Fixo)
                     rdFixo.Checked = true;
                 else
                     rdDiario.Checked = true;
@@ -57,7 +58,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.TaxaServicoFeature
             if (!string.IsNullOrEmpty(txtPreco.Text))
                 servico.Preco = Convert.ToDecimal(txtPreco.Text);
 
-            servico.TipoCalculo = rdFixo.Checked == true ? 1 : 0;
+            servico.CalculoTipo = rdFixo.Checked == true ? TipoCalculo.Fixo : TipoCalculo.Diario;
 
             string resultadoValidacao = servico.Validar();
 

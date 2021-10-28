@@ -23,7 +23,7 @@ namespace LocadoraDeVeiculos.Infra.EmailManager
                         smtp.EnableSsl = true;
 
                         email.From = new MailAddress(Email.EmailLocadora);
-                        email.To.Add(recibo.Email);
+                        email.To.Add(recibo.Locacao.Cliente.Email);
 
                         email.Subject = "BeeCar";
                         email.IsBodyHtml = false;
@@ -33,7 +33,7 @@ namespace LocadoraDeVeiculos.Infra.EmailManager
 
                         smtp.Send(email);
 
-                        Serilogger.Logger.Debug("E-MAIL ENVIADO PARA {EmailCliente} com sucesso!", recibo.Email);
+                        Serilogger.Logger.Debug("E-MAIL ENVIADO PARA {EmailCliente} com sucesso!", recibo.Locacao.Cliente.Email);
 
                         return true;
                     }

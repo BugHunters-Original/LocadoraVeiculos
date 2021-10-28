@@ -1,6 +1,6 @@
 ﻿using LocadoraDeVeiculos.Dominio.ReciboModule;
 
-namespace LocadoraDeVeiculos.Dominio.LocacaoModule
+namespace LocadoraDeVeiculos.Infra.EmailManager
 {
     public interface IEmail
     {

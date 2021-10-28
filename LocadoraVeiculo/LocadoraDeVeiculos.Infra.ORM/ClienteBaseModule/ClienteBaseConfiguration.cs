@@ -2,7 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-namespace LocadoraDeVeiculos.Infra.ORM.ClienteBaseConfiguration
+namespace LocadoraDeVeiculos.Infra.ORM.ClienteBaseModule
 {
     public class ClienteBaseConfiguration : IEntityTypeConfiguration<ClienteBase>
     {

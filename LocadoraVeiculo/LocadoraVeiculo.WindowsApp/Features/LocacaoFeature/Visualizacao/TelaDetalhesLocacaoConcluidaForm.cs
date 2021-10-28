@@ -40,7 +40,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.LocacaoFeature.Visualizacao
                 PreencherListaTaxa();
                 dtSaida.Text = locacao.DataSaida.ToString("d");
                 dtRetorno.Text = locacao.DataRetorno.ToString("d");
-                cbTipoLocacao.Text = locacao.TipoLocacao.ToString();
+                cbTipoLocacao.Text = locacao.LocacaoTipo.ToString();
 
                 if (locacao.Desconto?.Codigo == null)
                     txtCupom.Text = "SEM CUPOM CADASTRADO";
@@ -48,7 +48,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.LocacaoFeature.Visualizacao
                     txtCupom.Text = locacao.Desconto?.Codigo;
 
                 txtCliente.Text = locacao.Cliente.ToString();
-                txtPlano.Text = locacao.TipoLocacao.ToString();
+                txtPlano.Text = locacao.LocacaoTipo.ToString();
                 txtServico.Text = "R$" + locacao.PrecoServicos.ToString();
                 txtGas.Text = "R$" + locacao.PrecoCombustivel.ToString();
                 txtPrecoPlano.Text = "R$" + locacao.PrecoPlano.ToString();

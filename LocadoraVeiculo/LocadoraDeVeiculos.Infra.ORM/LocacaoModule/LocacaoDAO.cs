@@ -6,6 +6,7 @@ using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using static LocadoraDeVeiculos.Dominio.LocacaoModule.Locacao;
 
 namespace LocadoraDeVeiculos.Infra.ORM.LocacaoModule
 {
@@ -65,7 +66,7 @@ namespace LocadoraDeVeiculos.Infra.ORM.LocacaoModule
             try
             {
                 int qtdLocacoesPendentes = registros.
-                                           Where(x => x.StatusLocacao == "Em Aberto").
+                                           Where(x => x.Status == StatusLocacao.Pendente).
                                            Count();
 
                 if (qtdLocacoesPendentes == 0)
@@ -94,7 +95,7 @@ namespace LocadoraDeVeiculos.Infra.ORM.LocacaoModule
                                            ThenInclude(x => x.GrupoVeiculo).
                                            Include(x => x.Desconto).
                                            Include(x => x.Condutor).
-                                           Where(x => x.StatusLocacao == "Concluída").
+                                           Where(x => x.Status == StatusLocacao.Concluido).
                                            ToList();
 
                 if (locacoes.Count != 0)
@@ -122,7 +123,7 @@ namespace LocadoraDeVeiculos.Infra.ORM.LocacaoModule
                                            ThenInclude(x => x.GrupoVeiculo).
                                            Include(x => x.Desconto).
                                            Include(x => x.Condutor).
-                                           Where(x => x.StatusLocacao == "Em Aberto").
+                                           Where(x => x.Status == StatusLocacao.Pendente).
                                            ToList();
 
                 if (locacoes.Count != 0)
@@ -140,27 +141,11 @@ namespace LocadoraDeVeiculos.Infra.ORM.LocacaoModule
             }
         }
 
-        public void AbrirLocacao(Locacao locacao)
-        {
-            try
-            {
-                locacao.StatusLocacao = "Em Aberto";
-
-                Editar(locacao);
-
-                Serilogger.Logger.Information("SUCESSO AO INICIAR LOCAÇÃO ID: {Id}  ", locacao.Id);
-            }
-            catch (Exception ex)
-            {
-                Serilogger.Logger.Error(ex, "ERRO AO INICIAR LOCAÇÃO ID: {Id}  ", locacao.Id);
-            }
-        }
-
         public void ConcluirLocacao(Locacao locacao)
         {
             try
             {
-                locacao.StatusLocacao = "Concluída";
+                locacao.Status = StatusLocacao.Concluido;
 
                 Editar(locacao);
 

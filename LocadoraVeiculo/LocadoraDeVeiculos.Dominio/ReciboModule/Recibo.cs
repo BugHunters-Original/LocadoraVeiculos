@@ -1,4 +1,5 @@
-﻿using LocadoraDeVeiculos.Dominio.Shared;
+﻿using LocadoraDeVeiculos.Dominio.LocacaoModule;
+using LocadoraDeVeiculos.Dominio.Shared;
 using System;
 using System.IO;
 
@@ -7,16 +8,16 @@ namespace LocadoraDeVeiculos.Dominio.ReciboModule
     public class Recibo : EntidadeBase
     {
         
-        public Recibo(string email, MemoryStream ms)
+        public Recibo(Locacao locacao, MemoryStream ms)
         {
-            Email = email;
+            Locacao = locacao;
             Pdf = ms;
         }
         public Recibo()
         {
 
         }
-        public string Email { get; }
+        public Locacao Locacao { get; }
         public MemoryStream Pdf { get; }
         public StatusEnvio Status { get; set; } = StatusEnvio.Pendente;
 

@@ -28,11 +28,11 @@ namespace LocadoraDeVeiculos.Infra.ORM.LocacaoModule
 
             builder.Property(x => x.DataSaida).HasColumnType("DATE").IsRequired();
 
-            builder.Property(x => x.TipoLocacao).HasColumnType("VARCHAR(20)").IsRequired();
+            builder.Property(x => x.LocacaoTipo);
 
-            builder.Property(x => x.StatusLocacao).HasColumnType("VARCHAR(20)");
+            builder.Property(x => x.Status);
 
-            builder.Property(x => x.TipoCliente).HasColumnType("INT").IsRequired();
+            builder.Property(x => x.ClienteTipo);
 
             builder.Property(x => x.Dias).HasColumnType("INT").IsRequired();
 

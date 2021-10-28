@@ -1,9 +1,6 @@
-﻿using LocadoraDeVeiculos.Dominio.Shared;
-using System;
+﻿using LocadoraDeVeiculos.Dominio.LocacaoModule;
+using LocadoraDeVeiculos.Dominio.Shared;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace LocadoraDeVeiculos.Dominio.ReciboModule
 {
@@ -11,5 +8,6 @@ namespace LocadoraDeVeiculos.Dominio.ReciboModule
     {
         List<Recibo> GetAllRecibosPendentes();
         void ConcluirRecibo(Recibo recibo);
+        void ExcluirReciboLocacao(Locacao locacao);
     }
 }

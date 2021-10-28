@@ -6,6 +6,9 @@ using LocadoraDeVeiculos.Infra.ExtensionMethods;
 using LocadoraDeVeiculos.Dominio.TaxaDaLocacaoModule;
 using LocadoraDeVeiculos.Infra.Logger;
 using LocadoraDeVeiculos.Dominio.ReciboModule;
+using System.Threading.Tasks;
+using LocadoraDeVeiculos.Infra.PdfManager;
+using static LocadoraDeVeiculos.Dominio.LocacaoModule.Locacao;
 
 namespace LocadoraDeVeiculos.Aplicacao.LocacaoModule
 {
@@ -38,8 +41,6 @@ namespace LocadoraDeVeiculos.Aplicacao.LocacaoModule
             {
                 locacaoRepo.Inserir(locacao);
 
-                locacaoRepo.AbrirLocacao(locacao);
-
                 if (locacao.Servicos != null)
                     locacao.Servicos.ForEach(x => taxaDaLocacaoRepo.Inserir(new TaxaDaLocacao(x, locacao)));
 
@@ -58,15 +59,14 @@ namespace LocadoraDeVeiculos.Aplicacao.LocacaoModule
 
                 Serilogger.Logger.Aqui().Debug("MONTANDO PDF DA LOCAÇÃO ID: {Id}", locacao.Id);
 
-                var recibo = pdfRepo.MontarPDF(locacao);
-
-                reciboRepo.Inserir(recibo);
+                Task.Run(() => MontarPdf(locacao));
             }
             else
             {
                 Serilogger.Logger.Aqui().Error("NÃO FOI POSSÍVEL REGISTRAR LOCAÇÃO {Locacao}", locacao.ToString());
             }
         }
+
         public void ConcluirLocacao(Locacao locacao)
         {
             Serilogger.Logger.Aqui().Debug("CONCLUINDO LOCAÇÃO {Locacao}", locacao.ToString());
@@ -113,6 +113,9 @@ namespace LocadoraDeVeiculos.Aplicacao.LocacaoModule
             veiculoRepo.DevolverVeiculo(locacao.Veiculo);
 
             taxaDaLocacaoRepo.ExcluirTaxa(locacao.Id);
+
+            if (locacao.Status == StatusLocacao.Pendente)
+                reciboRepo.ExcluirReciboLocacao(locacao);
 
             var excluiu = locacaoRepo.Excluir(locacao);
 
@@ -200,6 +203,12 @@ namespace LocadoraDeVeiculos.Aplicacao.LocacaoModule
                 Serilogger.Logger.Aqui().Debug("A SELEÇÃO TROUXE {Quantidade} LOCAÇÃO(ÕES) COM CUPOM EXISTENTE(S)", qtdLocacao);
 
             return qtdLocacao;
+        }
+        private void MontarPdf(Locacao locacao)
+        {
+            var recibo = pdfRepo.MontarPDF(locacao);
+
+            reciboRepo.Inserir(recibo);
         }
     }
 }

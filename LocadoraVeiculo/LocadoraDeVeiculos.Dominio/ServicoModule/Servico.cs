@@ -2,19 +2,16 @@
 using LocadoraDeVeiculos.Dominio.TaxaDaLocacaoModule;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace LocadoraDeVeiculos.Dominio.ServicoModule
 {
     public class Servico : EntidadeBase, IEquatable<Servico>
     {
-        public Servico(string nome, decimal? preco, int tipoCalculo)
+        public Servico(string nome, decimal? preco, TipoCalculo tipoCalculo)
         {
             Nome = nome;
             Preco = preco;
-            TipoCalculo = tipoCalculo;
+            CalculoTipo = tipoCalculo;
         }
         public Servico()
         {
@@ -23,7 +20,7 @@ namespace LocadoraDeVeiculos.Dominio.ServicoModule
 
         public string Nome { get; set; }
         public decimal? Preco { get; set; }
-        public int TipoCalculo { get; set; }
+        public TipoCalculo CalculoTipo { get; set; }
 
         public ICollection<TaxaDaLocacao> TaxasDaLocacao { get; set; }
 
@@ -37,7 +34,7 @@ namespace LocadoraDeVeiculos.Dominio.ServicoModule
             if (Preco <= 0 || Preco == null)
                 valido += QuebraDeLinha(valido) + "O campo Preço está inválido";
 
-            if (TipoCalculo != 1 && TipoCalculo != 0)
+            if (CalculoTipo != TipoCalculo.Fixo && CalculoTipo != TipoCalculo.Diario)
                 valido += QuebraDeLinha(valido) + "O campo Tipo está inválido";
 
             if (valido == "")
@@ -47,7 +44,7 @@ namespace LocadoraDeVeiculos.Dominio.ServicoModule
         }
         public override string ToString()
         {
-            string tipo = TipoCalculo == 0 ? "Diário" : "Fixo";
+            string tipo = CalculoTipo == TipoCalculo.Diario ? "Diário" : "Fixo";
             return "R$" + Preco + " " + tipo + " " + Nome;
         }
 
@@ -57,7 +54,7 @@ namespace LocadoraDeVeiculos.Dominio.ServicoModule
                 && Id == other.Id
                 && Nome == other.Nome
                 && Preco == other.Preco
-                && TipoCalculo == other.TipoCalculo;
+                && CalculoTipo == other.CalculoTipo;
         }
         public override bool Equals(object obj)
         {
@@ -66,12 +63,12 @@ namespace LocadoraDeVeiculos.Dominio.ServicoModule
 
         public override int GetHashCode()
         {
-            int hashCode = -549020184;
-            hashCode = hashCode * -1521134295 + Id.GetHashCode();
-            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(Nome);
-            hashCode = hashCode * -1521134295 + Preco.GetHashCode();
-            hashCode = hashCode * -1521134295 + TipoCalculo.GetHashCode();
-            return hashCode;
+            return HashCode.Combine(Id, Nome, Preco, CalculoTipo, TaxasDaLocacao);
+        }
+
+        public enum TipoCalculo
+        {
+            Fixo, Diario
         }
     }
 }

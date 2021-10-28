@@ -6,6 +6,7 @@ using System;
 using System.Drawing;
 using System.IO;
 using System.Windows.Forms;
+using static LocadoraDeVeiculos.Dominio.DescontoModule.Desconto;
 
 namespace LocadoraVeiculo.WindowsApp.Features.DescontoFeature
 {
@@ -39,7 +40,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.DescontoFeature
                 txtValorMinimo.Text = desconto.ValorMinimo.ToString();
                 cbParceiros.SelectedItem = desconto.Parceiro;
                 dtValidade.Value = Convert.ToDateTime(desconto.Validade);
-                if (desconto.Tipo == "Inteiro")
+                if (desconto.Tipo == TipoDesconto.Fixo)
                     rbInteiro.Checked = true;
                 else
                     rbPorcentagem.Checked = true;
@@ -84,7 +85,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.DescontoFeature
 
             desconto.Codigo = txtCodigo.Text; ;
             desconto.Valor = txtValor.Text == "" ? 0 : Convert.ToDecimal(txtValor.Text); ;
-            desconto.Tipo = rbPorcentagem.Checked ? "Porcentagem" : "Inteiro"; ;
+            desconto.Tipo = rbPorcentagem.Checked ? TipoDesconto.Percentual : TipoDesconto.Fixo;
             desconto.Validade = Convert.ToDateTime(dtValidade.Value); ;
             desconto.Parceiro = cbParceiros.SelectedItem as Parceiro; ;
             desconto.Meio = txtMeio.Text;

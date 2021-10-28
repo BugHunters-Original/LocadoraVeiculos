@@ -15,6 +15,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
+using static LocadoraDeVeiculos.Dominio.LocacaoModule.Locacao;
 
 namespace LocadoraVeiculo.WindowsApp.Features.LocacaoFeature
 {
@@ -50,7 +51,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.LocacaoFeature
 
             var locacaoSelecionada = locacaoService.SelecionarLocacaoPorId(id);
 
-            if (locacaoSelecionada.StatusLocacao == "Concluída")
+            if (locacaoSelecionada.Status == StatusLocacao.Concluido)
             {
                 MessageBox.Show("Locação já concluída, impossível realizar devolução!", "Devolução de Locações",
                     MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
@@ -89,7 +90,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.LocacaoFeature
 
             var locacaoSelecionada = locacaoService.SelecionarLocacaoPorId(id);
 
-            if (locacaoSelecionada.StatusLocacao == "Concluída")
+            if (locacaoSelecionada.Status == StatusLocacao.Concluido)
             {
                 MessageBox.Show("Impossível editar uma Locação já concluída!", "Edição de Locações",
                     MessageBoxButtons.OK, MessageBoxIcon.Exclamation);

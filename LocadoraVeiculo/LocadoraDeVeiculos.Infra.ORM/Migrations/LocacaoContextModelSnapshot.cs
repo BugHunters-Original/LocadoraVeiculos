@@ -69,9 +69,8 @@ namespace LocadoraDeVeiculos.Infra.ORM.Migrations
                         .IsRequired()
                         .HasColumnType("VARCHAR(50)");
 
-                    b.Property<string>("Tipo")
-                        .IsRequired()
-                        .HasColumnType("VARCHAR(50)");
+                    b.Property<int>("Tipo")
+                        .HasColumnType("int");
 
                     b.Property<int>("Usos")
                         .HasColumnType("INT");
@@ -167,6 +166,9 @@ namespace LocadoraDeVeiculos.Infra.ORM.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<int>("ClienteTipo")
+                        .HasColumnType("int");
+
                     b.Property<DateTime>("DataRetorno")
                         .HasColumnType("DATE");
 
@@ -188,6 +190,9 @@ namespace LocadoraDeVeiculos.Infra.ORM.Migrations
                     b.Property<int?>("IdVeiculo")
                         .HasColumnType("int");
 
+                    b.Property<int>("LocacaoTipo")
+                        .HasColumnType("int");
+
                     b.Property<double?>("PrecoCombustivel")
                         .HasColumnType("FLOAT");
 
@@ -200,15 +205,8 @@ namespace LocadoraDeVeiculos.Infra.ORM.Migrations
                     b.Property<double>("PrecoTotal")
                         .HasColumnType("FLOAT");
 
-                    b.Property<string>("StatusLocacao")
-                        .HasColumnType("VARCHAR(20)");
-
-                    b.Property<int>("TipoCliente")
-                        .HasColumnType("INT");
-
-                    b.Property<string>("TipoLocacao")
-                        .IsRequired()
-                        .HasColumnType("VARCHAR(20)");
+                    b.Property<int>("Status")
+                        .HasColumnType("int");
 
                     b.HasKey("Id");
 
@@ -248,8 +246,8 @@ namespace LocadoraDeVeiculos.Infra.ORM.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("Email")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int?>("LocacaoId")
+                        .HasColumnType("int");
 
                     b.Property<byte[]>("Pdf")
                         .HasColumnType("varbinary(max)");
@@ -258,6 +256,8 @@ namespace LocadoraDeVeiculos.Infra.ORM.Migrations
                         .HasColumnType("int");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("LocacaoId");
 
                     b.ToTable("TBRecibos");
                 });
@@ -269,15 +269,15 @@ namespace LocadoraDeVeiculos.Infra.ORM.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<int>("CalculoTipo")
+                        .HasColumnType("int");
+
                     b.Property<string>("Nome")
                         .IsRequired()
                         .HasColumnType("VARCHAR(50)");
 
                     b.Property<double>("Preco")
                         .HasColumnType("FLOAT");
-
-                    b.Property<int>("TipoCalculo")
-                        .HasColumnType("INT");
 
                     b.HasKey("Id");
 
@@ -447,6 +447,15 @@ namespace LocadoraDeVeiculos.Infra.ORM.Migrations
                     b.Navigation("Desconto");
 
                     b.Navigation("Veiculo");
+                });
+
+            modelBuilder.Entity("LocadoraDeVeiculos.Dominio.ReciboModule.Recibo", b =>
+                {
+                    b.HasOne("LocadoraDeVeiculos.Dominio.LocacaoModule.Locacao", "Locacao")
+                        .WithMany()
+                        .HasForeignKey("LocacaoId");
+
+                    b.Navigation("Locacao");
                 });
 
             modelBuilder.Entity("LocadoraDeVeiculos.Dominio.TaxaDaLocacaoModule.TaxaDaLocacao", b =>
