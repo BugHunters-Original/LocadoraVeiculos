@@ -4,6 +4,7 @@ using LocadoraDeVeiculos.Infra.ExtensionMethods;
 using LocadoraDeVeiculos.Infra.Logger;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using System;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -22,16 +23,24 @@ namespace LocadoraDeVeiculos.Infra.WorkerService
         {
             while (!stoppingToken.IsCancellationRequested)
             {
-                Serilogger.Logger.Aqui().Debug("Pegando todos os recibos pendentes");
-                var recibosPendentes = reciboRepository.GetAllRecibosPendentes();
-                if (recibosPendentes.Count > 0)
+                try
                 {
-                    Serilogger.Logger.Aqui().Debug("Iniciando loop de envios");
-                    Parallel.ForEach(recibosPendentes, recibo =>
+                    Serilogger.Logger.Aqui().Debug("Pegando todos os recibos pendentes");
+                    var recibosPendentes = reciboRepository.GetAllRecibosPendentes();
+                    if (recibosPendentes.Count > 0)
                     {
-                        EnviarEmails(recibo);
-                    });
+                        Serilogger.Logger.Aqui().Debug("Iniciando loop de envios");
+                        Parallel.ForEach(recibosPendentes, recibo =>
+                        {
+                            EnviarEmails(recibo);
+                        });
+                    }
                 }
+                catch (Exception ex)
+                {
+                    Serilogger.Logger.Aqui().Error("Erro ao tentar enviar recibo, {ex}", ex);
+                }
+
                 await Task.Delay(5000, stoppingToken);
             }
         }

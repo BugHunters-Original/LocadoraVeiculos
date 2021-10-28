@@ -6,6 +6,9 @@ using LocadoraDeVeiculos.Infra.Context;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Serilog;
+using LocadoraDeVeiculos.Infra.Logger;
+using Microsoft.Extensions.Logging;
+using Microsoft.EntityFrameworkCore;
 
 namespace LocadoraDeVeiculos.Infra.WorkerService
 {
@@ -27,7 +30,12 @@ namespace LocadoraDeVeiculos.Infra.WorkerService
                 })
                 .ConfigureLogging(configure =>
                 {
-                    configure.AddSerilog();
+                    configure.
+                        AddFilter((category, logLevel) =>
+                            category == DbLoggerCategory.Database.Command.Name
+                            && logLevel == LogLevel.Debug).
+                        AddDebug().
+                        AddSerilog(Serilogger.Logger, dispose: true);
                 })
                 .ConfigureServices((hostContext, builder) =>
                 {
