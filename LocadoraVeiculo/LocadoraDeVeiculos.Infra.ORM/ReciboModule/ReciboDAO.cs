@@ -1,4 +1,5 @@
-﻿using LocadoraDeVeiculos.Dominio.ReciboModule;
+﻿using LocadoraDeVeiculos.Dominio.LocacaoModule;
+using LocadoraDeVeiculos.Dominio.ReciboModule;
 using LocadoraDeVeiculos.Infra.Context;
 using LocadoraDeVeiculos.Infra.Logger;
 using LocadoraDeVeiculos.Infra.ORM.Shared;
@@ -16,7 +17,11 @@ namespace LocadoraDeVeiculos.Infra.ORM.ReciboModule
         {
 
         }
-
+        public void ExcluirReciboLocacao(Locacao locacao)
+        {
+            var recibo = registros.Where(x => x.Locacao == locacao).First();
+            Excluir(recibo);
+        }
         public List<Recibo> GetAllRecibosPendentes()
         {
             return registros.Include(x=>x.Locacao).ThenInclude(x=>x.Cliente).Where(x => x.Status == StatusEnvio.Pendente).ToList();

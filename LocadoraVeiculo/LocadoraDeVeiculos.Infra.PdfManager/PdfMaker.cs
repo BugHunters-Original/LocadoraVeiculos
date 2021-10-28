@@ -5,7 +5,6 @@ using iText.Layout.Element;
 using iText.Layout.Properties;
 using LocadoraDeVeiculos.Dominio.LocacaoModule;
 using LocadoraDeVeiculos.Dominio.ReciboModule;
-using LocadoraDeVeiculos.Infra.ExtensionMethods;
 using LocadoraDeVeiculos.Infra.Logger;
 using System;
 using System.IO;
@@ -34,10 +33,10 @@ namespace LocadoraDeVeiculos.Infra.PdfManager
                 pdf.Add(new Paragraph("Plano Escolhido: " + locacao.LocacaoTipo));
                 pdf.Add(new Paragraph("Total Plano Escolhido: R$" + locacao.PrecoPlano));
 
-                if (locacao.TaxasDaLocacao != null)
+                if (locacao.Servicos != null)
                 {
                     pdf.Add(new Paragraph("Serviço(s) Contratado(s): "));
-                    foreach (var servico in locacao.TaxasDaLocacao)
+                    foreach (var servico in locacao.Servicos)
                         pdf.Add(new Paragraph("--" + servico.ToString()));
                 }
                 else
@@ -48,7 +47,7 @@ namespace LocadoraDeVeiculos.Infra.PdfManager
                 string cupomNome = locacao.Desconto?.Nome == null ? "Nenhum" : locacao.Desconto?.Nome;
                 pdf.Add(new Paragraph("Cupom de Desconto: " + cupomNome));
                 pdf.Add(new Paragraph("Veículo:"));
-                var img = new Image(ImageDataFactory.Create(Images.logo.ToByteArray()));
+                var img = new Image(ImageDataFactory.Create(Images.logo));
                 img.ScaleAbsolute(55, 55);
                 img.SetFixedPosition(50f, 750f);
                 pdf.Add(img);

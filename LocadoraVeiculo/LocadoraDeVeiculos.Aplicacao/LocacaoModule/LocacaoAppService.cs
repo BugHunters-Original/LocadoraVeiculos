@@ -8,6 +8,7 @@ using LocadoraDeVeiculos.Infra.Logger;
 using LocadoraDeVeiculos.Dominio.ReciboModule;
 using System.Threading.Tasks;
 using LocadoraDeVeiculos.Infra.PdfManager;
+using static LocadoraDeVeiculos.Dominio.LocacaoModule.Locacao;
 
 namespace LocadoraDeVeiculos.Aplicacao.LocacaoModule
 {
@@ -112,6 +113,9 @@ namespace LocadoraDeVeiculos.Aplicacao.LocacaoModule
             veiculoRepo.DevolverVeiculo(locacao.Veiculo);
 
             taxaDaLocacaoRepo.ExcluirTaxa(locacao.Id);
+
+            if (locacao.Status == StatusLocacao.Pendente)
+                reciboRepo.ExcluirReciboLocacao(locacao);
 
             var excluiu = locacaoRepo.Excluir(locacao);
 

@@ -19,9 +19,10 @@ namespace LocadoraDeVeiculos.Infra.JsonConfigGeral
         private void AdicionarCamposCasoNaoExistente(Dictionary<string, string> campos)
         {
             foreach (var campo in campos)
-                Setar(campo.Key, campo.Value);
+                if (AppConfig[campo.Key] == null)
+                    Setar(campo.Key, campo.Value);
         }
-
+        
         public string Ler(string chave)
         {
             return AppConfig[chave].ToString();
