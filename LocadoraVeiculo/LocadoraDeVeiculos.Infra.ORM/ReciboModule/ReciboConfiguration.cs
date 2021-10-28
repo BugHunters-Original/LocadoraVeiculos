@@ -17,6 +17,10 @@ namespace LocadoraDeVeiculos.Infra.ORM.ReciboModule
 
             builder.HasKey(c => c.Id);
 
+            builder.Property(c => c.Email);
+
+            builder.Property(c => c.Ms);
+
         }
     }
 }

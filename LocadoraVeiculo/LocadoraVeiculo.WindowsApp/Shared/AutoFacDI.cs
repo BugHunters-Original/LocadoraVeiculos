@@ -20,7 +20,6 @@ using LocadoraDeVeiculos.Dominio.ServicoModule;
 using LocadoraDeVeiculos.Dominio.TaxaDaLocacaoModule;
 using LocadoraDeVeiculos.Dominio.VeiculoModule;
 using LocadoraDeVeiculos.Infra.Context;
-using LocadoraDeVeiculos.Infra.InternetServices;
 using LocadoraDeVeiculos.Infra.ORM.ClienteCNPJModule;
 using LocadoraDeVeiculos.Infra.ORM.ClienteCPFModule;
 using LocadoraDeVeiculos.Infra.ORM.DescontoModule;
@@ -32,7 +31,6 @@ using LocadoraDeVeiculos.Infra.ORM.ParceiroModule;
 using LocadoraDeVeiculos.Infra.ORM.ServicoModule;
 using LocadoraDeVeiculos.Infra.ORM.TaxaDaLocacaoModule;
 using LocadoraDeVeiculos.Infra.ORM.VeiculoModule;
-using LocadoraDeVeiculos.Infra.PDFLocacao;
 using LocadoraVeiculo.WindowsApp.Features.ClienteFeature;
 using LocadoraVeiculo.WindowsApp.Features.DashboardFeature;
 using LocadoraVeiculo.WindowsApp.Features.DescontoFeature;
@@ -72,8 +70,8 @@ namespace LocadoraDeVeiculos.WindowsApp.Shared
 
         private static void ConfigurarInterfaces()
         {
-            Builder.RegisterType<EnviaEmail>().As<IEmail>().InstancePerDependency();
-            Builder.RegisterType<MontaPdf>().As<IPDF>().InstancePerDependency();
+            //Builder.RegisterType<EnviaEmail>().As<IEmail>().InstancePerDependency();
+            //Builder.RegisterType<MontaPdf>().As<IPDF>().InstancePerDependency();
             Builder.RegisterType<DashboardControl>().InstancePerDependency();
             Builder.RegisterType<FiltroCliente>().InstancePerDependency();
         }

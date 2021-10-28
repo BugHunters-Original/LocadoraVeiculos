@@ -56,18 +56,18 @@ namespace LocadoraDeVeiculos.Infra.PDFLocacao
                 pdf.Add(new Image(ImageDataFactory.Create(locacao.Veiculo.Foto)));
                 pdf.Add(new Paragraph("\n\n"));
                 pdf.Add(new Paragraph($"Total: R${locacao.PrecoTotal}").SetBold().SetFontSize(30).SetTextAlignment(TextAlignment.CENTER));
-                pdf.Close();                               
+                pdf.Close();
 
                 Serilogger.Logger.Aqui().Information("PDF DA LOCAÇÃO ID: {Id} CONCLUÍDO COM SUCESSO", locacao.Id);
 
                 return new Recibo(locacao.Cliente.Email, ms);
-            
+
             }
             catch (Exception ex)
             {
                 Serilogger.Logger.Aqui().Error(ex, "ERRO AO INSERIR LOCAÇÃO ID: {Id}", locacao.Id);
                 return null;
             }
-}
+        }
     }
 }

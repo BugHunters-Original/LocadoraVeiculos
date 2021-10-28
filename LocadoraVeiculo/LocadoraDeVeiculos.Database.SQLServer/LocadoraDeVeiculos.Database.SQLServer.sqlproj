@@ -3,20 +3,20 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <Name>LocadoraVeiculo.Database.SQLServer</Name>
+    <Name>LocadoraDeVeiculos.Database.SQLServer</Name>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectVersion>4.1</ProjectVersion>
-    <ProjectGuid>{cb1fbebd-5752-42a8-9a96-1fb5523d522c}</ProjectGuid>
+    <ProjectGuid>{e38afd7c-920a-4c19-a5ae-089ac81d7409}</ProjectGuid>
     <DSP>Microsoft.Data.Tools.Schema.Sql.Sql130DatabaseSchemaProvider</DSP>
     <OutputType>Database</OutputType>
     <RootPath>
     </RootPath>
-    <RootNamespace>LocadoraVeiculo.Database.SQLServer</RootNamespace>
-    <AssemblyName>LocadoraVeiculo.Database.SQLServer</AssemblyName>
+    <RootNamespace>LocadoraDeVeiculos.Database.SQLServer</RootNamespace>
+    <AssemblyName>LocadoraDeVeiculos.Database.SQLServer</AssemblyName>
     <ModelCollation>1033,CI</ModelCollation>
     <DefaultFileStructure>BySchemaAndSchemaType</DefaultFileStructure>
     <DeployToDatabase>True</DeployToDatabase>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <TargetLanguage>CS</TargetLanguage>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <SqlServerVerification>False</SqlServerVerification>
@@ -62,20 +62,18 @@
     <Folder Include="dbo\Tables\" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Script1.sql" />
-  </ItemGroup>
-  <ItemGroup>
-    <Build Include="dbo\Tables\TBVeiculos.sql" />
-    <Build Include="dbo\Tables\TBTiposVeiculo.sql" />
-    <Build Include="dbo\Tables\TBTaxasDaLocacao.sql" />
-    <Build Include="dbo\Tables\TBServicos.sql" />
-    <Build Include="dbo\Tables\TBParceiros.sql" />
-    <Build Include="dbo\Tables\TBFuncionarios.sql" />
-    <Build Include="dbo\Tables\TBDescontos.sql" />
-    <Build Include="dbo\Tables\TBClientesCPF.sql" />
-    <Build Include="dbo\Tables\TBClientesCNPJ.sql" />
-    <Build Include="dbo\Tables\TBClientesBase.sql" />
     <Build Include="dbo\Tables\__EFMigrationsHistory.sql" />
+    <Build Include="dbo\Tables\TBClientesBase.sql" />
+    <Build Include="dbo\Tables\TBFuncionarios.sql" />
+    <Build Include="dbo\Tables\TBParceiros.sql" />
+    <Build Include="dbo\Tables\TBRecibos.sql" />
+    <Build Include="dbo\Tables\TBServicos.sql" />
+    <Build Include="dbo\Tables\TBTiposVeiculo.sql" />
+    <Build Include="dbo\Tables\TBClientesCNPJ.sql" />
+    <Build Include="dbo\Tables\TBDescontos.sql" />
+    <Build Include="dbo\Tables\TBVeiculos.sql" />
+    <Build Include="dbo\Tables\TBClientesCPF.sql" />
     <Build Include="dbo\Tables\TBLocacoes.sql" />
+    <Build Include="dbo\Tables\TBTaxasDaLocacao.sql" />
   </ItemGroup>
 </Project>

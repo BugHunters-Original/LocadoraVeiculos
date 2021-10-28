@@ -1,7 +1,5 @@
 ﻿using LocadoraDeVeiculos.Dominio.LocacaoModule;
 using LocadoraDeVeiculos.Dominio.TaxaDaLocacaoModule;
-using LocadoraDeVeiculos.Infra.Context;
-using LocadoraDeVeiculos.Infra.InternetServices;
 using LocadoraDeVeiculos.Infra.ORM.TaxaDaLocacaoModule;
 using LocadoraVeiculo.WindowsApp.Features.DarkModeFeature;
 using Serilog.Core;
@@ -137,9 +135,9 @@ namespace LocadoraVeiculo.WindowsApp.Features.LocacaoFeature.Visualizacao
 
         private void ExportarRecibo()
         {
-            var email = new EnviaEmail();
-            string mensagem = email.EnviarEmail(locacao) ? $"Recibo enviado com sucesso para o e-mail [{locacao.Cliente.Email}]!" : $"Erro ao enviar recibo para o e-mail [{locacao.Cliente.Email}]!";
-            TelaPrincipalForm.Instancia.AtualizarRodape(mensagem);
+            //var email = new EnviaEmail();
+            //string mensagem = email.EnviarEmail(locacao) ? $"Recibo enviado com sucesso para o e-mail [{locacao.Cliente.Email}]!" : $"Erro ao enviar recibo para o e-mail [{locacao.Cliente.Email}]!";
+            //TelaPrincipalForm.Instancia.AtualizarRodape(mensagem);
         }
     }
 }

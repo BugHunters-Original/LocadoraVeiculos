@@ -10,6 +10,7 @@
     [StatusLocacao]    VARCHAR (20) NULL,
     [TipoCliente]      INT          NOT NULL,
     [Dias]             INT          NOT NULL,
+    [StatusEnvioEmail] VARCHAR (20) NOT NULL,
     [PrecoServicos]    FLOAT (53)   NULL,
     [PrecoCombustivel] FLOAT (53)   NULL,
     [PrecoPlano]       FLOAT (53)   NOT NULL,
@@ -22,26 +23,9 @@
 );
 
 
-
-
-
-
 GO
-CREATE NONCLUSTERED INDEX [IX_TBLocacoes_IdVeiculo]
-    ON [dbo].[TBLocacoes]([IdVeiculo] ASC);
-
-
-
-
-
-
-GO
-CREATE NONCLUSTERED INDEX [IX_TBLocacoes_IdDesconto]
-    ON [dbo].[TBLocacoes]([IdDesconto] ASC);
-
-
-
-
+CREATE NONCLUSTERED INDEX [IX_TBLocacoes_IdCliente]
+    ON [dbo].[TBLocacoes]([IdCliente] ASC);
 
 
 GO
@@ -49,11 +33,12 @@ CREATE NONCLUSTERED INDEX [IX_TBLocacoes_IdCondutor]
     ON [dbo].[TBLocacoes]([IdCondutor] ASC);
 
 
-
-
+GO
+CREATE NONCLUSTERED INDEX [IX_TBLocacoes_IdDesconto]
+    ON [dbo].[TBLocacoes]([IdDesconto] ASC);
 
 
 GO
-CREATE NONCLUSTERED INDEX [IX_TBLocacoes_IdCliente]
-    ON [dbo].[TBLocacoes]([IdCliente] ASC);
+CREATE NONCLUSTERED INDEX [IX_TBLocacoes_IdVeiculo]
+    ON [dbo].[TBLocacoes]([IdVeiculo] ASC);
 

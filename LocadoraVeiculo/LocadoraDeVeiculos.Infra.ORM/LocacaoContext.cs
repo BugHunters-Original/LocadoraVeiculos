@@ -8,10 +8,13 @@ using LocadoraDeVeiculos.Dominio.ParceiroModule;
 using LocadoraDeVeiculos.Dominio.ServicoModule;
 using LocadoraDeVeiculos.Dominio.TaxaDaLocacaoModule;
 using LocadoraDeVeiculos.Dominio.VeiculoModule;
+using LocadoraDeVeiculos.Infra.ExtensionMethods;
 using LocadoraDeVeiculos.Infra.Logger;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Microsoft.Extensions.Logging;
 using Serilog;
+using System.IO;
 
 namespace LocadoraDeVeiculos.Infra.Context
 {
@@ -47,8 +50,23 @@ namespace LocadoraDeVeiculos.Infra.Context
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+
             modelBuilder.ApplyConfigurationsFromAssembly(typeof(LocacaoContext).Assembly);
+
+            var memoryStreamConverter = new ValueConverter<MemoryStream, byte[]>(
+                        p => p.ToArray(),
+                        p => p.ToMemoryStream());
+
+            foreach (var entityType in modelBuilder.Model.GetEntityTypes())
+            {
+                foreach (var property in entityType.GetProperties())
+                {
+                    if (property.ClrType == typeof(MemoryStream))
+                        property.SetValueConverter(memoryStreamConverter);
+                }
+            }
         }
+
     }
 
 }
