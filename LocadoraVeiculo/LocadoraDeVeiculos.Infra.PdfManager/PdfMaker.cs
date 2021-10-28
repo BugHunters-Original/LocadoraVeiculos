@@ -1,19 +1,17 @@
 ﻿using iText.IO.Image;
-using iText.Kernel.Geom;
 using iText.Kernel.Pdf;
 using iText.Layout;
 using iText.Layout.Element;
 using iText.Layout.Properties;
 using LocadoraDeVeiculos.Dominio.LocacaoModule;
 using LocadoraDeVeiculos.Dominio.ReciboModule;
-using LocadoraDeVeiculos.Infra.ExtensionMethods;
 using LocadoraDeVeiculos.Infra.Logger;
 using System;
 using System.IO;
 
-namespace LocadoraDeVeiculos.Infra.PDFLocacao
+namespace LocadoraDeVeiculos.Infra.PdfManager
 {
-    public class MontaPdf : IPDF
+    public class PdfMaker : IPDF
     {
         public Recibo MontarPDF(Locacao locacao)
         {
@@ -58,14 +56,14 @@ namespace LocadoraDeVeiculos.Infra.PDFLocacao
                 pdf.Add(new Paragraph($"Total: R${locacao.PrecoTotal}").SetBold().SetFontSize(30).SetTextAlignment(TextAlignment.CENTER));
                 pdf.Close();
 
-                Serilogger.Logger.Aqui().Information("PDF DA LOCAÇÃO ID: {Id} CONCLUÍDO COM SUCESSO", locacao.Id);
+                Serilogger.Logger.Information("PDF DA LOCAÇÃO ID: {Id} CONCLUÍDO COM SUCESSO", locacao.Id);
 
                 return new Recibo(locacao.Cliente.Email, ms);
 
             }
             catch (Exception ex)
             {
-                Serilogger.Logger.Aqui().Error(ex, "ERRO AO INSERIR LOCAÇÃO ID: {Id}", locacao.Id);
+                Serilogger.Logger.Error(ex, "ERRO AO INSERIR LOCAÇÃO ID: {Id}", locacao.Id);
                 return null;
             }
         }

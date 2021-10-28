@@ -11,8 +11,6 @@
 );
 
 
-
-
 GO
 CREATE NONCLUSTERED INDEX [IX_TBClientesCPF_IdCliente]
     ON [dbo].[TBClientesCPF]([IdCliente] ASC);

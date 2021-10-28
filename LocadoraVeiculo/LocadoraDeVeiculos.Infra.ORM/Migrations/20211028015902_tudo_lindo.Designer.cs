@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace LocadoraDeVeiculos.Infra.ORM.Migrations
 {
     [DbContext(typeof(LocacaoContext))]
-    [Migration("20211013214726_orm_locacao")]
-    partial class orm_locacao
+    [Migration("20211028015902_tudo_lindo")]
+    partial class tudo_lindo
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -241,6 +241,27 @@ namespace LocadoraDeVeiculos.Infra.ORM.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("TBParceiros");
+                });
+
+            modelBuilder.Entity("LocadoraDeVeiculos.Dominio.ReciboModule.Recibo", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Email")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<byte[]>("Pdf")
+                        .HasColumnType("varbinary(max)");
+
+                    b.Property<int>("Status")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("TBRecibos");
                 });
 
             modelBuilder.Entity("LocadoraDeVeiculos.Dominio.ServicoModule.Servico", b =>

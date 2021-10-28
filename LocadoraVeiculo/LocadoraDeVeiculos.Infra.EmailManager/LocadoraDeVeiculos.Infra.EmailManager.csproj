@@ -5,16 +5,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.Extensions.Configuration" Version="5.0.0" />
-    <PackageReference Include="Microsoft.Extensions.Configuration.Abstractions" Version="5.0.0" />
-    <PackageReference Include="Serilog" Version="2.10.0" />
-    <PackageReference Include="Serilog.Sinks.Seq" Version="5.0.1" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\LocadoraDeVeiculos.Dominio\LocadoraDeVeiculos.Dominio.csproj" />
     <ProjectReference Include="..\LocadoraDeVeiculos.EmailLocadora\LocadoraDeVeiculos.Infra.EmailLocadora.csproj" />
-    <ProjectReference Include="..\LocadoraDeVeiculos.Infra.ExtensionMethods\LocadoraDeVeiculos.Infra.ExtensionMethods.csproj" />
     <ProjectReference Include="..\LocadoraDeVeiculos.Infra.Logger\LocadoraDeVeiculos.Infra.Logger.csproj" />
   </ItemGroup>
 

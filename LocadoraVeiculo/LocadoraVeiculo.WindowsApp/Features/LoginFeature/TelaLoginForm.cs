@@ -45,7 +45,9 @@ namespace LocadoraVeiculo.WindowsApp.Features.LoginFeature
             if (resultValidacao == "valido")
             {
                 this.Close();
-                Task.Run(() => ChamarTelaPrincipal());
+                var th = new Thread(ChamarTelaPrincipal);
+                th.SetApartmentState(ApartmentState.STA);
+                th.Start();
             }
             else
             {

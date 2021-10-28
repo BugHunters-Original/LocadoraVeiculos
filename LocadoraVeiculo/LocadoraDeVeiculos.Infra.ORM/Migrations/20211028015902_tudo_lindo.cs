@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace LocadoraDeVeiculos.Infra.ORM.Migrations
 {
-    public partial class orm_locacao : Migration
+    public partial class tudo_lindo : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -52,6 +52,21 @@ namespace LocadoraDeVeiculos.Infra.ORM.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_TBParceiros", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "TBRecibos",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Email = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Pdf = table.Column<byte[]>(type: "varbinary(max)", nullable: true),
+                    Status = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_TBRecibos", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -316,6 +331,9 @@ namespace LocadoraDeVeiculos.Infra.ORM.Migrations
         {
             migrationBuilder.DropTable(
                 name: "TBFuncionarios");
+
+            migrationBuilder.DropTable(
+                name: "TBRecibos");
 
             migrationBuilder.DropTable(
                 name: "TBTaxasDaLocacao");

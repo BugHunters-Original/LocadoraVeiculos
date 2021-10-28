@@ -10,5 +10,3 @@
     CONSTRAINT [PK_TBTiposVeiculo] PRIMARY KEY CLUSTERED ([Id] ASC)
 );
 
-
-

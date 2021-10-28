@@ -16,11 +16,12 @@ using LocadoraDeVeiculos.Dominio.FuncionarioModule;
 using LocadoraDeVeiculos.Dominio.GrupoVeiculoModule;
 using LocadoraDeVeiculos.Dominio.LocacaoModule;
 using LocadoraDeVeiculos.Dominio.ParceiroModule;
+using LocadoraDeVeiculos.Dominio.ReciboModule;
 using LocadoraDeVeiculos.Dominio.ServicoModule;
 using LocadoraDeVeiculos.Dominio.TaxaDaLocacaoModule;
 using LocadoraDeVeiculos.Dominio.VeiculoModule;
 using LocadoraDeVeiculos.Infra.Context;
-using LocadoraDeVeiculos.Infra.InternetServices;
+using LocadoraDeVeiculos.Infra.EmailManager;
 using LocadoraDeVeiculos.Infra.ORM.ClienteCNPJModule;
 using LocadoraDeVeiculos.Infra.ORM.ClienteCPFModule;
 using LocadoraDeVeiculos.Infra.ORM.DescontoModule;
@@ -29,10 +30,11 @@ using LocadoraDeVeiculos.Infra.ORM.GrupoVeiculoModule;
 using LocadoraDeVeiculos.Infra.ORM.LocacaoModule;
 using LocadoraDeVeiculos.Infra.ORM.LoginModule;
 using LocadoraDeVeiculos.Infra.ORM.ParceiroModule;
+using LocadoraDeVeiculos.Infra.ORM.ReciboModule;
 using LocadoraDeVeiculos.Infra.ORM.ServicoModule;
 using LocadoraDeVeiculos.Infra.ORM.TaxaDaLocacaoModule;
 using LocadoraDeVeiculos.Infra.ORM.VeiculoModule;
-using LocadoraDeVeiculos.Infra.PDFLocacao;
+using LocadoraDeVeiculos.Infra.PdfManager;
 using LocadoraVeiculo.WindowsApp.Features.ClienteFeature;
 using LocadoraVeiculo.WindowsApp.Features.DashboardFeature;
 using LocadoraVeiculo.WindowsApp.Features.DescontoFeature;
@@ -45,7 +47,6 @@ using LocadoraVeiculo.WindowsApp.Features.LoginFeature;
 using LocadoraVeiculo.WindowsApp.Features.ParceiroFeature;
 using LocadoraVeiculo.WindowsApp.Features.TaxaServicoFeature;
 using LocadoraVeiculo.WindowsApp.Features.VeiculoFeature;
-using System;
 
 namespace LocadoraDeVeiculos.WindowsApp.Shared
 {
@@ -73,8 +74,7 @@ namespace LocadoraDeVeiculos.WindowsApp.Shared
 
         private static void ConfigurarInterfaces()
         {
-            Builder.RegisterType<EnviaEmail>().As<IEmail>().InstancePerDependency();
-            Builder.RegisterType<MontaPdf>().As<IPDF>().InstancePerDependency();
+            Builder.RegisterType<PdfMaker>().As<IPDF>().InstancePerDependency();
             Builder.RegisterType<DashboardControl>().InstancePerDependency();
             Builder.RegisterType<FiltroCliente>().InstancePerDependency();
         }
@@ -123,6 +123,7 @@ namespace LocadoraDeVeiculos.WindowsApp.Shared
             Builder.RegisterType<LocacaoDAO>().As<ILocacaoRepository>().InstancePerDependency();
             Builder.RegisterType<ServicoDAO>().As<IServicoRepository>().InstancePerDependency();
             Builder.RegisterType<VeiculoDAO>().As<IVeiculoRepository>().InstancePerDependency();
+            Builder.RegisterType<ReciboDAO>().As<IReciboRepository>().InstancePerDependency();
             Builder.RegisterType<LoginDAO>().InstancePerDependency();
         }
     }

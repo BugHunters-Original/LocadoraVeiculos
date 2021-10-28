@@ -1,15 +1,14 @@
-﻿using LocadoraDeVeiculos.Dominio.LocacaoModule;
+﻿using LocadoraDeVeiculos.Dominio.ReciboModule;
 using LocadoraDeVeiculos.Infra.EmailLocadora;
-using LocadoraDeVeiculos.Infra.ExtensionMethods;
 using LocadoraDeVeiculos.Infra.Logger;
 using System;
 using System.Net.Mail;
 
-namespace LocadoraDeVeiculos.Infra.InternetServices
+namespace LocadoraDeVeiculos.Infra.EmailManager
 {
-    public class EnviaEmail : IEmail
+    public static class EmailSender
     {
-        public bool EnviarEmail(Locacao locacao)
+        public static bool EnviarEmail(Recibo recibo)
         {
             try
             {
@@ -17,36 +16,32 @@ namespace LocadoraDeVeiculos.Infra.InternetServices
                 {
                     using (MailMessage email = new MailMessage())
                     {
-                        //SERVIDOR
                         smtp.Host = "smtp.gmail.com";
                         smtp.UseDefaultCredentials = false;
                         smtp.Credentials = new System.Net.NetworkCredential(Email.EmailLocadora, Email.SenhaLocadora);
                         smtp.Port = 587;
                         smtp.EnableSsl = true;
 
-                        //EMAIL
                         email.From = new MailAddress(Email.EmailLocadora);
-                        email.To.Add(locacao.Cliente.Email);
+                        email.To.Add(recibo.Email);
 
                         email.Subject = "BeeCar";
                         email.IsBodyHtml = false;
                         email.Body = "Obrigado por utilizar nossos serviços, volte sempre!";
 
+                        email.Attachments.Add(new Attachment(recibo.Pdf, "ReciboAluguel.pdf"));
 
-                        email.Attachments.Add(new Attachment($@"..\..\..\..\Recibos\recibo{locacao.Id}.pdf"));
-
-                        //ENVIAR
                         smtp.Send(email);
 
-                        Serilogger.Logger.Aqui().Debug("E-MAIL ENVIADO PARA {EmailCliente} com sucesso!", locacao.Cliente.Email);
+                        Serilogger.Logger.Debug("E-MAIL ENVIADO PARA {EmailCliente} com sucesso!", recibo.Email);
 
                         return true;
                     }
                 }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
-                Serilogger.Logger.Aqui().Error(ex , "ERRO AO ENVIAR E-MAIL PARA {EmailCliente} ");
+                Serilogger.Logger.Error(ex, "ERRO AO ENVIAR E-MAIL PARA {EmailCliente} ");
                 return false;
             }
         }

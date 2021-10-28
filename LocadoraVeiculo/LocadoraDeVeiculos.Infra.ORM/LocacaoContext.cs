@@ -5,13 +5,17 @@ using LocadoraDeVeiculos.Dominio.FuncionarioModule;
 using LocadoraDeVeiculos.Dominio.GrupoVeiculoModule;
 using LocadoraDeVeiculos.Dominio.LocacaoModule;
 using LocadoraDeVeiculos.Dominio.ParceiroModule;
+using LocadoraDeVeiculos.Dominio.ReciboModule;
 using LocadoraDeVeiculos.Dominio.ServicoModule;
 using LocadoraDeVeiculos.Dominio.TaxaDaLocacaoModule;
 using LocadoraDeVeiculos.Dominio.VeiculoModule;
+using LocadoraDeVeiculos.Infra.ExtensionMethods;
 using LocadoraDeVeiculos.Infra.Logger;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Microsoft.Extensions.Logging;
 using Serilog;
+using System.IO;
 
 namespace LocadoraDeVeiculos.Infra.Context
 {
@@ -27,6 +31,7 @@ namespace LocadoraDeVeiculos.Infra.Context
         public DbSet<Servico> Servicos { get; set; }
         public DbSet<TaxaDaLocacao> TaxasDaLocacao { get; set; }
         public DbSet<GrupoVeiculo> GruposVeiculo { get; set; }
+        public DbSet<Recibo> Recibos { get; set; }
 
         private static readonly ILoggerFactory SeriLog = LoggerFactory.Create(builder =>
         {
@@ -47,8 +52,23 @@ namespace LocadoraDeVeiculos.Infra.Context
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+
             modelBuilder.ApplyConfigurationsFromAssembly(typeof(LocacaoContext).Assembly);
+
+            var memoryStreamConverter = new ValueConverter<MemoryStream, byte[]>(
+                        p => p.ToArray(),
+                        p => p.ToMemoryStream());
+
+            foreach (var entityType in modelBuilder.Model.GetEntityTypes())
+            {
+                foreach (var property in entityType.GetProperties())
+                {
+                    if (property.ClrType == typeof(MemoryStream))
+                        property.SetValueConverter(memoryStreamConverter);
+                }
+            }
         }
+
     }
 
 }

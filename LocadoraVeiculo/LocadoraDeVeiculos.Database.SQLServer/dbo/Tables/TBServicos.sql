@@ -6,11 +6,3 @@
     CONSTRAINT [PK_TBServicos] PRIMARY KEY CLUSTERED ([Id] ASC)
 );
 
-
-
-
-
-
-GO
-
-

@@ -241,6 +241,27 @@ namespace LocadoraDeVeiculos.Infra.ORM.Migrations
                     b.ToTable("TBParceiros");
                 });
 
+            modelBuilder.Entity("LocadoraDeVeiculos.Dominio.ReciboModule.Recibo", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Email")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<byte[]>("Pdf")
+                        .HasColumnType("varbinary(max)");
+
+                    b.Property<int>("Status")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("TBRecibos");
+                });
+
             modelBuilder.Entity("LocadoraDeVeiculos.Dominio.ServicoModule.Servico", b =>
                 {
                     b.Property<int>("Id")

@@ -8,8 +8,6 @@
 );
 
 
-
-
 GO
 CREATE NONCLUSTERED INDEX [IX_TBTaxasDaLocacao_IdTaxa]
     ON [dbo].[TBTaxasDaLocacao]([IdTaxa] ASC);
