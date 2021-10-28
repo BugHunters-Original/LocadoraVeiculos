@@ -114,10 +114,10 @@ namespace LocadoraDeVeiculos.Aplicacao.LocacaoModule
 
             taxaDaLocacaoRepo.ExcluirTaxa(locacao.Id);
 
-            if (locacao.Status == StatusLocacao.Pendente)
-                reciboRepo.ExcluirReciboLocacao(locacao);
+            reciboRepo.ExcluirReciboLocacao(locacao);
 
             var excluiu = locacaoRepo.Excluir(locacao);
+
 
             if (excluiu)
                 Serilogger.Logger.Aqui().Debug("LOCAÇÃO {Id} REMOVIDA COM SUCESSO", locacao.Id);
