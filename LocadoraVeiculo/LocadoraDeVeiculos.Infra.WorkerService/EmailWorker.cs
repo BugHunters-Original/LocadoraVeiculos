@@ -33,12 +33,14 @@ namespace LocadoraDeVeiculos.Infra.WorkerService
             {
                 Serilogger.Logger.Aqui().Information("Pegando todos os recibos pendentes");
                 var recibosPendentes = reciboRepository.GetAllRecibosPendentes();
-                Serilogger.Logger.Aqui().Information("Iniciando loop de envios");
-                Parallel.ForEach(recibosPendentes, recibo =>
+                if (recibosPendentes.Count > 0)
                 {
-                    EnviarEmails(recibo);
-                });
-
+                    Serilogger.Logger.Aqui().Information("Iniciando loop de envios");
+                    Parallel.ForEach(recibosPendentes, recibo =>
+                    {
+                        EnviarEmails(recibo);
+                    });
+                }
                 await Task.Delay(5000, stoppingToken);
             }
         }

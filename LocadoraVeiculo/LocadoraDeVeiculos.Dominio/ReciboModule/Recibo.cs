@@ -20,9 +20,9 @@ namespace LocadoraDeVeiculos.Dominio.ReciboModule
         public Locacao Locacao { get; }
         public MemoryStream Pdf { get; }
         public StatusEnvio Status { get; set; } = StatusEnvio.Pendente;
-
+        
         public override string Validar()
-        {
+        {           
             throw new System.NotImplementedException();
         }
         public enum StatusEnvio
