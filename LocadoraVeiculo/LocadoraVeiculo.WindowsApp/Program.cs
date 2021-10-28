@@ -28,7 +28,7 @@ namespace LocadoraVeiculo.WindowsApp
 
             AutoFacDI.Container.Resolve<TelaLoginForm>().ShowDialog();
 
-            LocadoraDeVeiculos.Infra.WorkerService.Program.Main(Array.Empty<string>());
+            //LocadoraDeVeiculos.Infra.WorkerService.Program.Main(Array.Empty<string>());
 
             Application.Run();
         }
