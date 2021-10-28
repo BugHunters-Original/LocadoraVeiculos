@@ -5,6 +5,7 @@ using LocadoraDeVeiculos.Dominio.FuncionarioModule;
 using LocadoraDeVeiculos.Dominio.GrupoVeiculoModule;
 using LocadoraDeVeiculos.Dominio.LocacaoModule;
 using LocadoraDeVeiculos.Dominio.ParceiroModule;
+using LocadoraDeVeiculos.Dominio.ReciboModule;
 using LocadoraDeVeiculos.Dominio.ServicoModule;
 using LocadoraDeVeiculos.Dominio.TaxaDaLocacaoModule;
 using LocadoraDeVeiculos.Dominio.VeiculoModule;
@@ -30,6 +31,7 @@ namespace LocadoraDeVeiculos.Infra.Context
         public DbSet<Servico> Servicos { get; set; }
         public DbSet<TaxaDaLocacao> TaxasDaLocacao { get; set; }
         public DbSet<GrupoVeiculo> GruposVeiculo { get; set; }
+        public DbSet<Recibo> Recibos { get; set; }
 
         private static readonly ILoggerFactory SeriLog = LoggerFactory.Create(builder =>
         {

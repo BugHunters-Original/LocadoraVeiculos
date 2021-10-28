@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace LocadoraDeVeiculos.Infra.ORM.Migrations
 {
-    public partial class bora : Migration
+    public partial class tudo_lindo : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -59,7 +59,10 @@ namespace LocadoraDeVeiculos.Infra.ORM.Migrations
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1")
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Email = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Pdf = table.Column<byte[]>(type: "varbinary(max)", nullable: true),
+                    Status = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -222,7 +225,6 @@ namespace LocadoraDeVeiculos.Infra.ORM.Migrations
                     StatusLocacao = table.Column<string>(type: "VARCHAR(20)", nullable: true),
                     TipoCliente = table.Column<int>(type: "INT", nullable: false),
                     Dias = table.Column<int>(type: "INT", nullable: false),
-                    StatusEnvioEmail = table.Column<string>(type: "VARCHAR(20)", nullable: false),
                     PrecoServicos = table.Column<double>(type: "FLOAT", nullable: true),
                     PrecoCombustivel = table.Column<double>(type: "FLOAT", nullable: true),
                     PrecoPlano = table.Column<double>(type: "FLOAT", nullable: false),

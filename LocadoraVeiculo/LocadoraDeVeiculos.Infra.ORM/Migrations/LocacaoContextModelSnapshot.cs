@@ -200,10 +200,6 @@ namespace LocadoraDeVeiculos.Infra.ORM.Migrations
                     b.Property<double>("PrecoTotal")
                         .HasColumnType("FLOAT");
 
-                    b.Property<string>("StatusEnvioEmail")
-                        .IsRequired()
-                        .HasColumnType("VARCHAR(20)");
-
                     b.Property<string>("StatusLocacao")
                         .HasColumnType("VARCHAR(20)");
 
@@ -255,8 +251,11 @@ namespace LocadoraDeVeiculos.Infra.ORM.Migrations
                     b.Property<string>("Email")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<byte[]>("Ms")
+                    b.Property<byte[]>("Pdf")
                         .HasColumnType("varbinary(max)");
+
+                    b.Property<int>("Status")
+                        .HasColumnType("int");
 
                     b.HasKey("Id");
 

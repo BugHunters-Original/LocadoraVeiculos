@@ -1,11 +1,6 @@
 ﻿using LocadoraDeVeiculos.Dominio.ReciboModule;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace LocadoraDeVeiculos.Infra.ORM.ReciboModule
 {
@@ -19,8 +14,9 @@ namespace LocadoraDeVeiculos.Infra.ORM.ReciboModule
 
             builder.Property(c => c.Email);
 
-            builder.Property(c => c.Ms);
+            builder.Property(c => c.Pdf);
 
+            builder.Property(c => c.Status);
         }
     }
 }

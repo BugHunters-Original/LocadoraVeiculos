@@ -1,11 +1,6 @@
 ﻿using LocadoraDeVeiculos.Dominio.LocacaoModule;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace LocadoraDeVeiculos.Infra.ORM.LocacaoModule
 {
@@ -48,8 +43,6 @@ namespace LocadoraDeVeiculos.Infra.ORM.LocacaoModule
             builder.Property(x => x.PrecoPlano).HasColumnType("FLOAT").IsRequired();
 
             builder.Property(x => x.PrecoTotal).HasColumnType("FLOAT").IsRequired();
-
-            builder.Property(x => x.StatusEnvioEmail).HasColumnType("VARCHAR(20)").IsRequired();
         }
     }
 }

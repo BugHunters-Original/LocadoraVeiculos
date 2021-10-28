@@ -1,9 +1,5 @@
 ﻿using LocadoraDeVeiculos.Dominio.Shared;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace LocadoraDeVeiculos.Dominio.LocacaoModule
 {
@@ -15,7 +11,5 @@ namespace LocadoraDeVeiculos.Dominio.LocacaoModule
         public int SelecionarQuantidadeLocacoesPendentes();
         public int SelecionarLocacoesComCupons(string cupom);
         void AbrirLocacao(Locacao locacao);
-        List<Locacao> SolicitacoesDeEmail();
-        void ConcluirEmail(Locacao locacao);
     }
 }

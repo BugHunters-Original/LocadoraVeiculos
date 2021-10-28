@@ -50,7 +50,6 @@ namespace LocadoraDeVeiculos.Dominio.LocacaoModule
         public string StatusLocacao { get; set; }
         public int TipoCliente { get; set; }
         public int Dias { get; set; }
-        public string StatusEnvioEmail { get; set; }
         public decimal? PrecoServicos { get; set; }
         public decimal? PrecoCombustivel { get; set; }
         public decimal? PrecoPlano { get; set; }
