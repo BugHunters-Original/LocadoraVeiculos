@@ -38,7 +38,7 @@ namespace LocadoraDeVeiculos.Infra.WorkerService
 
         private void EnviarEmails(Recibo e)
         {
-            Serilogger.Logger.Aqui().Information("Tentando enviar email para {email}", e.Locacao.Cliente.Email);
+            Serilogger.Logger.Aqui().Debug("Tentando enviar email para {email}", e.Locacao.Cliente.Email);
             if (EmailSender.EnviarEmail(e))
                 reciboRepository.ConcluirRecibo(e);
         }
