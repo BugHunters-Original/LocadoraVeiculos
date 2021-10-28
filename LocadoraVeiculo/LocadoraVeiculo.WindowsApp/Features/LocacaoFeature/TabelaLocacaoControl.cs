@@ -9,6 +9,7 @@ using LocadoraVeiculo.WindowsApp.Shared;
 using Serilog.Core;
 using System.Collections.Generic;
 using System.Windows.Forms;
+using static LocadoraDeVeiculos.Dominio.LocacaoModule.Locacao;
 
 namespace LocadoraVeiculo.WindowsApp.Features.LocacaoFeature
 {
@@ -65,7 +66,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.LocacaoFeature
             foreach (Locacao locacao in locacoes)
             {
                 gridLocacao.Rows.Add(locacao.Id, locacao.Cliente, locacao.Condutor, locacao.Veiculo,
-                    locacao.DataSaida.ToString("d"), locacao.DataRetorno.ToString("d"), locacao.StatusLocacao);
+                    locacao.DataSaida.ToString("d"), locacao.DataRetorno.ToString("d"), locacao.Status);
             }
         }
 
@@ -88,7 +89,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.LocacaoFeature
 
         private dynamic VerificarTipoDeTela(Locacao locacaoSelecionada)
         {
-            if (locacaoSelecionada.StatusLocacao == "Em Aberto")
+            if (locacaoSelecionada.Status == StatusLocacao.Pendente)
                 return AutoFacDI.Container.Resolve<TelaDetalhesLocacaoEmAbertoForm>();
             else
                 return AutoFacDI.Container.Resolve<TelaDetalhesLocacaoConcluidaForm>();

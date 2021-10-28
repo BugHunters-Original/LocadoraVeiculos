@@ -5,6 +5,7 @@ using iText.Layout.Element;
 using iText.Layout.Properties;
 using LocadoraDeVeiculos.Dominio.LocacaoModule;
 using LocadoraDeVeiculos.Dominio.ReciboModule;
+using LocadoraDeVeiculos.Infra.ExtensionMethods;
 using LocadoraDeVeiculos.Infra.Logger;
 using System;
 using System.IO;
@@ -30,7 +31,7 @@ namespace LocadoraDeVeiculos.Infra.PdfManager
                 pdf.Add(new Paragraph("Veículo: " + locacao.Veiculo.Nome.ToString()));
                 pdf.Add(new Paragraph("Data de Saída: " + locacao.DataSaida.ToString("d")));
                 pdf.Add(new Paragraph("Data de Retorno: " + locacao.DataRetorno.ToString("d")));
-                pdf.Add(new Paragraph("Plano Escolhido: " + locacao.TipoLocacao));
+                pdf.Add(new Paragraph("Plano Escolhido: " + locacao.LocacaoTipo));
                 pdf.Add(new Paragraph("Total Plano Escolhido: R$" + locacao.PrecoPlano));
 
                 if (locacao.TaxasDaLocacao != null)
@@ -47,7 +48,7 @@ namespace LocadoraDeVeiculos.Infra.PdfManager
                 string cupomNome = locacao.Desconto?.Nome == null ? "Nenhum" : locacao.Desconto?.Nome;
                 pdf.Add(new Paragraph("Cupom de Desconto: " + cupomNome));
                 pdf.Add(new Paragraph("Veículo:"));
-                var img = new Image(ImageDataFactory.Create(@"..\..\..\..\Logo\logo.png"));
+                var img = new Image(ImageDataFactory.Create(Images.logo.ToByteArray()));
                 img.ScaleAbsolute(55, 55);
                 img.SetFixedPosition(50f, 750f);
                 pdf.Add(img);
@@ -58,7 +59,7 @@ namespace LocadoraDeVeiculos.Infra.PdfManager
 
                 Serilogger.Logger.Information("PDF DA LOCAÇÃO ID: {Id} CONCLUÍDO COM SUCESSO", locacao.Id);
 
-                return new Recibo(locacao.Cliente.Email, ms);
+                return new Recibo(locacao, ms);
 
             }
             catch (Exception ex)

@@ -16,7 +16,7 @@ namespace LocadoraDeVeiculos.Infra.Configurations.DescontoModule
 
             builder.Property(desconto => desconto.Valor).HasColumnType("FLOAT").IsRequired();
 
-            builder.Property(desconto => desconto.Tipo).HasColumnType("VARCHAR(50)").IsRequired();
+            builder.Property(desconto => desconto.Tipo);
 
             builder.Property(desconto => desconto.Validade).HasColumnType("DATE").IsRequired();
 

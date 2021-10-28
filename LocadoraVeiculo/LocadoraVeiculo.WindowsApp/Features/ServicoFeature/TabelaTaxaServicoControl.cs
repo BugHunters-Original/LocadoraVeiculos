@@ -2,6 +2,7 @@
 using LocadoraVeiculo.WindowsApp.Shared;
 using System.Collections.Generic;
 using System.Windows.Forms;
+using static LocadoraDeVeiculos.Dominio.ServicoModule.Servico;
 
 namespace LocadoraVeiculo.WindowsApp.Features.TaxaServicoFeature
 {
@@ -46,7 +47,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.TaxaServicoFeature
 
             foreach (Servico servico in servicos)
             {
-                string tipo = servico.TipoCalculo == 1 ? "Fixo" : "Diário";
+                string tipo = servico.CalculoTipo == TipoCalculo.Fixo ? "Fixo" : "Diário";
                 dgTaxas.Rows.Add(servico.Id, servico.Nome, servico.Preco, tipo);
             }
         }

@@ -13,8 +13,8 @@ namespace LocadoraDeVeiculos.Dominio.LocacaoModule
     public class Locacao : EntidadeBase, IEquatable<Locacao>
     {
         public Locacao(ClienteBase cliente, Veiculo veiculo, Desconto desconto, ClienteCPF condutor, DateTime dataSaida,
-               DateTime dataRetorno, string tipoLocacao, int tipoCliente, decimal? precoServicos, int dias,
-               string statusLocacao, decimal? precoCombustivel, decimal? precoPlano, decimal? precoTotal, List<Servico> servicos)
+               DateTime dataRetorno, TipoLocacao tipoLocacao, TipoCliente tipoCliente, decimal? precoServicos, int dias,
+               decimal? precoCombustivel, decimal? precoPlano, decimal? precoTotal, List<Servico> servicos)
         {
             Cliente = cliente;
             Veiculo = veiculo;
@@ -22,11 +22,10 @@ namespace LocadoraDeVeiculos.Dominio.LocacaoModule
             Condutor = condutor;
             DataSaida = dataSaida;
             DataRetorno = dataRetorno;
-            TipoLocacao = tipoLocacao;
-            TipoCliente = tipoCliente;
+            LocacaoTipo = tipoLocacao;
+            ClienteTipo = tipoCliente;
             PrecoServicos = precoServicos;
             Dias = dias;
-            StatusLocacao = statusLocacao;
             PrecoCombustivel = precoCombustivel;
             PrecoPlano = precoPlano;
             PrecoTotal = precoTotal;
@@ -46,9 +45,9 @@ namespace LocadoraDeVeiculos.Dominio.LocacaoModule
         public ClienteCPF Condutor { get; set; }
         public DateTime DataSaida { get; set; }
         public DateTime DataRetorno { get; set; }
-        public string TipoLocacao { get; set; }
-        public string StatusLocacao { get; set; }
-        public int TipoCliente { get; set; }
+        public TipoLocacao LocacaoTipo { get; set; }
+        public StatusLocacao Status { get; set; } = StatusLocacao.Pendente;
+        public TipoCliente ClienteTipo { get; set; }
         public int Dias { get; set; }
         public decimal? PrecoServicos { get; set; }
         public decimal? PrecoCombustivel { get; set; }
@@ -66,8 +65,8 @@ namespace LocadoraDeVeiculos.Dominio.LocacaoModule
                 && Condutor.Equals(other.Condutor)
                 && DataSaida == other.DataSaida
                 && DataRetorno == other.DataRetorno
-                && TipoLocacao == other.TipoLocacao
-                && TipoCliente == other.TipoCliente
+                && LocacaoTipo == other.LocacaoTipo
+                && ClienteTipo == other.ClienteTipo
                 && PrecoServicos == other.PrecoServicos;
         }
         public override bool Equals(object obj)
@@ -79,7 +78,6 @@ namespace LocadoraDeVeiculos.Dominio.LocacaoModule
         {
             return "Cliente:" + Cliente + " Carro:" + Veiculo;
         }
-
 
         public override string Validar()
         {
@@ -97,11 +95,11 @@ namespace LocadoraDeVeiculos.Dominio.LocacaoModule
             if (DataSaida > DataRetorno)
                 valido += QuebraDeLinha(valido) + "O campo Data está inválido";
 
-            if (TipoLocacao != "Plano Diário" && TipoLocacao != "KM Controlado" && TipoLocacao != "KM Livre")
-                valido += QuebraDeLinha(valido) + "O campo Tipo Locação está inválido";
-
-            if (TipoCliente != 0 && TipoCliente != 1)
+            if (ClienteTipo != TipoCliente.Fisico && ClienteTipo != TipoCliente.Juridico)
                 valido += QuebraDeLinha(valido) + "O campo Tipo Cliente está inválido";
+
+            if(LocacaoTipo != TipoLocacao.Livre && LocacaoTipo != TipoLocacao.Controlado && LocacaoTipo != TipoLocacao.Diario)
+                valido += QuebraDeLinha(valido) + "O campo Tipo Locação está inválido";
 
             if (Condutor == null || Condutor.DataValidade <= DataRetorno)
                 valido += QuebraDeLinha(valido) + "O condutor necessita de uma CNH válida";
@@ -126,16 +124,30 @@ namespace LocadoraDeVeiculos.Dominio.LocacaoModule
             hash.Add(Condutor);
             hash.Add(DataSaida);
             hash.Add(DataRetorno);
-            hash.Add(TipoLocacao);
-            hash.Add(StatusLocacao);
-            hash.Add(TipoCliente);
+            hash.Add(LocacaoTipo);
+            hash.Add(Status);
+            hash.Add(ClienteTipo);
             hash.Add(Dias);
             hash.Add(PrecoServicos);
             hash.Add(PrecoCombustivel);
             hash.Add(PrecoPlano);
             hash.Add(PrecoTotal);
+            hash.Add(Servicos);
             hash.Add(TaxasDaLocacao);
             return hash.ToHashCode();
+        }
+
+        public enum StatusLocacao
+        {
+            Pendente, Concluido
+        }
+        public enum TipoLocacao
+        {
+            Diario, Livre, Controlado
+        }
+        public enum TipoCliente
+        {
+            Fisico, Juridico
         }
     }
 }

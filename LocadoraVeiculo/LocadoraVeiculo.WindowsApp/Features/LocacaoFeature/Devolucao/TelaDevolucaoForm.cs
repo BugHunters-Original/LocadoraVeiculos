@@ -4,6 +4,8 @@ using LocadoraVeiculo.WindowsApp.Features.DarkModeFeature;
 using System;
 using System.IO;
 using System.Windows.Forms;
+using static LocadoraDeVeiculos.Dominio.DescontoModule.Desconto;
+using static LocadoraDeVeiculos.Dominio.LocacaoModule.Locacao;
 
 namespace LocadoraVeiculo.WindowsApp.Features.LocacaoFeature.DevolucaoLocacao
 {
@@ -94,10 +96,10 @@ namespace LocadoraVeiculo.WindowsApp.Features.LocacaoFeature.DevolucaoLocacao
 
         private decimal? CalcularPrecoKmRodado(int? totalKm)
         {
-            switch (locacao.TipoLocacao)
+            switch (locacao.LocacaoTipo)
             {
-                case "Plano Diário": return totalKm * locacao.Veiculo.GrupoVeiculo.ValorKmRodadoPDiario;
-                case "KM Controlado": return (CalcularKmRodado(totalKm)) * locacao.Veiculo.GrupoVeiculo.ValorKmRodadoPControlado;
+                case TipoLocacao.Diario: return totalKm * locacao.Veiculo.GrupoVeiculo.ValorKmRodadoPDiario;
+                case TipoLocacao.Controlado: return (CalcularKmRodado(totalKm)) * locacao.Veiculo.GrupoVeiculo.ValorKmRodadoPControlado;
                 default: return 0;
             }
         }
@@ -116,8 +118,8 @@ namespace LocadoraVeiculo.WindowsApp.Features.LocacaoFeature.DevolucaoLocacao
             {
                 switch (locacao.Desconto.Tipo)
                 {
-                    case "Inteiro": desconto = Convert.ToDouble(locacao.Desconto.Valor); break;
-                    case "Porcentagem": desconto = totalSemDesconto * Convert.ToDouble(locacao.Desconto.Valor / 100); break;
+                    case TipoDesconto.Fixo: desconto = Convert.ToDouble(locacao.Desconto.Valor); break;
+                    case TipoDesconto.Percentual: desconto = totalSemDesconto * Convert.ToDouble(locacao.Desconto.Valor / 100); break;
                     default: break;
                 }
                 txtCupom.Text = $"R${desconto}";

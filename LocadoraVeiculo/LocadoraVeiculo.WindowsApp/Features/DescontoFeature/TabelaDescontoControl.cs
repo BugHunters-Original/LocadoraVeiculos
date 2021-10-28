@@ -2,6 +2,7 @@
 using LocadoraVeiculo.WindowsApp.Shared;
 using System.Collections.Generic;
 using System.Windows.Forms;
+using static LocadoraDeVeiculos.Dominio.DescontoModule.Desconto;
 
 namespace LocadoraVeiculo.WindowsApp.Features.DescontoFeature
 {
@@ -56,7 +57,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.DescontoFeature
 
             foreach (Desconto item in descontos)
             {
-                string porcentagem = item.Tipo == "Porcentagem" ? "%" : "";
+                string porcentagem = item.Tipo == TipoDesconto.Percentual ? "%" : "";
                 gridDesconto.Rows.Add(item.Id, item.Nome, item.Codigo, item.Valor + porcentagem,
                    "R$" + item.ValorMinimo, item.Validade.ToString("d"), item.Parceiro, item.Meio, item.Usos);
 

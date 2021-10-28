@@ -185,10 +185,6 @@
             // 
             this.cbTipoLocacao.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbTipoLocacao.FormattingEnabled = true;
-            this.cbTipoLocacao.Items.AddRange(new object[] {
-            "Plano Diário",
-            "KM Controlado",
-            "KM Livre"});
             this.cbTipoLocacao.Location = new System.Drawing.Point(212, 233);
             this.cbTipoLocacao.Name = "cbTipoLocacao";
             this.cbTipoLocacao.Size = new System.Drawing.Size(399, 23);

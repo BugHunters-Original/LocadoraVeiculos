@@ -12,7 +12,7 @@ namespace LocadoraDeVeiculos.Infra.ORM.ReciboModule
 
             builder.HasKey(c => c.Id);
 
-            builder.Property(c => c.Email);
+            builder.HasOne(c => c.Locacao);
 
             builder.Property(c => c.Pdf);
 

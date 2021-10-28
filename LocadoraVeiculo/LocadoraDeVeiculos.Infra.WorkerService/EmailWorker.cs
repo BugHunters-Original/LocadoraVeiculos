@@ -26,7 +26,7 @@ namespace LocadoraDeVeiculos.Infra.WorkerService
 
                 recibosPendentes.ForEach(e => Task.Run(() => EnviarEmails(e)));
 
-                await Task.Delay(5000, stoppingToken);
+                await Task.Delay(10000, stoppingToken);
             }
         }
 

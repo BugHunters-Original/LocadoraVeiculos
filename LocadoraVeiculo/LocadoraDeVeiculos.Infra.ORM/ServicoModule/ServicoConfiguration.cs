@@ -21,7 +21,7 @@ namespace LocadoraDeVeiculos.Infra.Configurations.ServicoModule
 
             builder.Property(e => e.Preco).HasColumnType("FLOAT").IsRequired();
 
-            builder.Property(e => e.TipoCalculo).HasColumnType("INT").IsRequired();
+            builder.Property(e => e.CalculoTipo);
         }
     }
 }

@@ -11,7 +11,7 @@ namespace LocadoraDeVeiculos.Dominio.DescontoModule
 {
     public class Desconto : EntidadeBase, IEquatable<Desconto>
     {
-        public Desconto(string codigo, decimal valor, string tipo, DateTime validade,
+        public Desconto(string codigo, decimal valor, TipoDesconto tipo, DateTime validade,
             Parceiro parceiro, string meio, string nome, decimal valorMinimo, int usos)
         {
             Nome = nome;
@@ -35,7 +35,7 @@ namespace LocadoraDeVeiculos.Dominio.DescontoModule
         public string Codigo { get; set; }
         public decimal Valor { get; set; }
         public decimal ValorMinimo { get; set; }
-        public string Tipo { get; set; }
+        public TipoDesconto Tipo { get; set; }
         public DateTime Validade { get; set; }
         public Parceiro Parceiro { get; set; }
         public int IdParceiro { get; set; }
@@ -63,8 +63,6 @@ namespace LocadoraDeVeiculos.Dominio.DescontoModule
             return Equals(obj as Desconto);
         }
 
-
-
         public override string Validar()
         {
             string valido = "";
@@ -81,11 +79,8 @@ namespace LocadoraDeVeiculos.Dominio.DescontoModule
             if (Valor <= 0)
                 valido += QuebraDeLinha(valido) + "O campo Valor não pode ser zero ou negativo";
 
-            if (Valor > 100 && Tipo == "Porcentagem")
+            if (Valor > 100 && Tipo == TipoDesconto.Percentual)
                 valido += QuebraDeLinha(valido) + "O campo Valor não pode ter uma porcentagem maior que 100%";
-
-            if (string.IsNullOrEmpty(Tipo))
-                valido += QuebraDeLinha(valido) + "O campo Tipo está inválido";
 
             if (Validade < DateTime.Now)
                 valido += QuebraDeLinha(valido) + "O campo Data de Validade está inválido";
@@ -116,7 +111,14 @@ namespace LocadoraDeVeiculos.Dominio.DescontoModule
             hash.Add(IdParceiro);
             hash.Add(Meio);
             hash.Add(Usos);
+            hash.Add(Locacoes);
             return hash.ToHashCode();
         }
+
+        public enum TipoDesconto
+        {
+            Percentual, Fixo
+        }
+
     }
 }

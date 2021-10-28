@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace LocadoraDeVeiculos.Infra.ORM.Migrations
 {
-    public partial class tudo_lindo : Migration
+    public partial class agora_com_enum_lindo : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -55,21 +55,6 @@ namespace LocadoraDeVeiculos.Infra.ORM.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "TBRecibos",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Email = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Pdf = table.Column<byte[]>(type: "varbinary(max)", nullable: true),
-                    Status = table.Column<int>(type: "int", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_TBRecibos", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "TBServicos",
                 columns: table => new
                 {
@@ -77,7 +62,7 @@ namespace LocadoraDeVeiculos.Infra.ORM.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Nome = table.Column<string>(type: "VARCHAR(50)", nullable: false),
                     Preco = table.Column<double>(type: "FLOAT", nullable: false),
-                    TipoCalculo = table.Column<int>(type: "INT", nullable: false)
+                    CalculoTipo = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -131,7 +116,7 @@ namespace LocadoraDeVeiculos.Infra.ORM.Migrations
                     Codigo = table.Column<string>(type: "VARCHAR(50)", nullable: false),
                     Valor = table.Column<double>(type: "FLOAT", nullable: false),
                     ValorMinimo = table.Column<double>(type: "FLOAT", nullable: false),
-                    Tipo = table.Column<string>(type: "VARCHAR(50)", nullable: false),
+                    Tipo = table.Column<int>(type: "int", nullable: false),
                     Validade = table.Column<DateTime>(type: "DATE", nullable: false),
                     IdParceiro = table.Column<int>(type: "int", nullable: false),
                     Meio = table.Column<string>(type: "VARCHAR(50)", nullable: false),
@@ -221,9 +206,9 @@ namespace LocadoraDeVeiculos.Infra.ORM.Migrations
                     IdCondutor = table.Column<int>(type: "int", nullable: true),
                     DataSaida = table.Column<DateTime>(type: "DATE", nullable: false),
                     DataRetorno = table.Column<DateTime>(type: "DATE", nullable: false),
-                    TipoLocacao = table.Column<string>(type: "VARCHAR(20)", nullable: false),
-                    StatusLocacao = table.Column<string>(type: "VARCHAR(20)", nullable: true),
-                    TipoCliente = table.Column<int>(type: "INT", nullable: false),
+                    LocacaoTipo = table.Column<int>(type: "int", nullable: false),
+                    Status = table.Column<int>(type: "int", nullable: false),
+                    ClienteTipo = table.Column<int>(type: "int", nullable: false),
                     Dias = table.Column<int>(type: "INT", nullable: false),
                     PrecoServicos = table.Column<double>(type: "FLOAT", nullable: true),
                     PrecoCombustivel = table.Column<double>(type: "FLOAT", nullable: true),
@@ -255,6 +240,27 @@ namespace LocadoraDeVeiculos.Infra.ORM.Migrations
                         name: "FK_TBLocacoes_TBVeiculos_IdVeiculo",
                         column: x => x.IdVeiculo,
                         principalTable: "TBVeiculos",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "TBRecibos",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    LocacaoId = table.Column<int>(type: "int", nullable: true),
+                    Pdf = table.Column<byte[]>(type: "varbinary(max)", nullable: true),
+                    Status = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_TBRecibos", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_TBRecibos_TBLocacoes_LocacaoId",
+                        column: x => x.LocacaoId,
+                        principalTable: "TBLocacoes",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                 });
@@ -315,6 +321,11 @@ namespace LocadoraDeVeiculos.Infra.ORM.Migrations
                 name: "IX_TBLocacoes_IdVeiculo",
                 table: "TBLocacoes",
                 column: "IdVeiculo");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_TBRecibos_LocacaoId",
+                table: "TBRecibos",
+                column: "LocacaoId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_TBTaxasDaLocacao_IdTaxa",

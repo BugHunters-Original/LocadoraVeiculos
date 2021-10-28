@@ -23,6 +23,8 @@ using LocadoraDeVeiculos.Infra.ORM.TaxaDaLocacaoModule;
 using LocadoraDeVeiculos.Infra.Context;
 using LocadoraDeVeiculos.WindowsApp.Shared;
 using Autofac;
+using static LocadoraDeVeiculos.Dominio.LocacaoModule.Locacao;
+using static LocadoraDeVeiculos.Dominio.ServicoModule.Servico;
 
 namespace LocadoraVeiculo.WindowsApp.Features.LocacaoFeature
 {
@@ -82,7 +84,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.LocacaoFeature
 
                 dtRetorno.Value = locacao.DataRetorno;
 
-                cbTipoLocacao.Text = locacao.TipoLocacao.ToString();
+                cbTipoLocacao.Text = locacao.LocacaoTipo.ToString();
 
                 txtCupom.Text = locacao.Desconto?.Codigo;
             }
@@ -117,6 +119,10 @@ namespace LocadoraVeiculo.WindowsApp.Features.LocacaoFeature
         }
         private void PopularComboboxes()
         {
+            cbTipoLocacao.Items.Add(TipoLocacao.Diario);
+            cbTipoLocacao.Items.Add(TipoLocacao.Controlado);
+            cbTipoLocacao.Items.Add(TipoLocacao.Livre);
+
             var locacoes = locacaoService.SelecionarTodasLocacoesPendentes();
 
             var clientesCPF = cpfService.SelecionarTodosClientesCPF();
@@ -134,17 +140,17 @@ namespace LocadoraVeiculo.WindowsApp.Features.LocacaoFeature
             veiculos.ForEach(x => cbVeiculo.Items.Add(x));
             cbVeiculo.SelectedIndex = 0;
         }
-        private static decimal? CalcularPrecoPlanoPorDias(Veiculo veiculo, string tipoLocacao, int dias)
+        private static decimal? CalcularPrecoPlanoPorDias(Veiculo veiculo, TipoLocacao tipoLocacao, int dias)
         {
             switch (tipoLocacao)
             {
-                case "Plano Diário":
+                case TipoLocacao.Diario:
                     return (veiculo.GrupoVeiculo.ValorDiarioPDiario * dias);
 
-                case "KM Livre":
+                case TipoLocacao.Livre:
                     return (veiculo.GrupoVeiculo.ValorDiarioPLivre * dias);
 
-                case "KM Controlado":
+                case TipoLocacao.Controlado:
                     return (veiculo.GrupoVeiculo.ValorDiarioPControlado * dias);
 
                 default: return 0;
@@ -194,7 +200,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.LocacaoFeature
 
             locacao.Desconto = txtCupom.Text != "" ? descontoService.VerificarCodigoValido(txtCupom.Text) : null;
 
-            locacao.TipoCliente = cbCliente.SelectedItem is ClienteCPF ? 0 : 1;
+            locacao.ClienteTipo = cbCliente.SelectedItem is ClienteCPF ? TipoCliente.Fisico : TipoCliente.Juridico;
 
             locacao.Condutor = cbCliente.SelectedItem is ClienteCPF ? (ClienteCPF)locacao.Cliente : (ClienteCPF)cbCondutor.SelectedItem;
 
@@ -202,7 +208,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.LocacaoFeature
 
             locacao.DataRetorno = dtRetorno.Value;
 
-            locacao.TipoLocacao = cbTipoLocacao.Text;
+            locacao.LocacaoTipo = (TipoLocacao)cbTipoLocacao.SelectedItem;
 
             locacao.Dias = Convert.ToInt32((dtRetorno.Value - dtSaida.Value).TotalDays);
 
@@ -210,10 +216,10 @@ namespace LocadoraVeiculo.WindowsApp.Features.LocacaoFeature
 
             if (Servicos != null)
                 foreach (var item in Servicos.ToList())
-                    locacao.PrecoServicos = item.TipoCalculo != 1 ? locacao.PrecoServicos + item.Preco * locacao.Dias : locacao.PrecoServicos + item.Preco;
+                    locacao.PrecoServicos = item.CalculoTipo == TipoCalculo.Diario ? locacao.PrecoServicos + item.Preco * locacao.Dias : locacao.PrecoServicos + item.Preco;
 
 
-            locacao.PrecoPlano = CalcularPrecoPlanoPorDias(locacao.Veiculo, locacao.TipoLocacao, locacao.Dias);
+            locacao.PrecoPlano = CalcularPrecoPlanoPorDias(locacao.Veiculo, locacao.LocacaoTipo, locacao.Dias);
 
             locacao.PrecoTotal = locacao.PrecoPlano + locacao.PrecoServicos;
 
