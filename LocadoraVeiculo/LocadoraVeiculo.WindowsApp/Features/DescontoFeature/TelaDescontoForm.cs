@@ -76,7 +76,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.DescontoFeature
 
         private void CarregarParceiros()
         {
-            cbParceiros.DataSource = parceiroService.SelecionarTodosParceiros();
+            cbParceiros.DataSource = parceiroService.GetAll();
         }
 
         private void ConfigurarDesconto()

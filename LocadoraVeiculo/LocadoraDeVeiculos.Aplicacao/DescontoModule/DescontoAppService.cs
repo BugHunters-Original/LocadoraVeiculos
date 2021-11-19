@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace LocadoraDeVeiculos.Aplicacao.DescontoModule
 {
-    public class DescontoAppService
+    public class DescontoAppService : IDescontoAppService
     {
         private readonly IDescontoRepository descontoRepository;
 
@@ -14,15 +14,14 @@ namespace LocadoraDeVeiculos.Aplicacao.DescontoModule
             descontoRepository = descontoRepo;
         }
 
-
-        public bool RegistrarNovoDesconto(Desconto desconto)
+        public bool Inserir(Desconto desconto)
         {
             string resultadoValidacaoDominio = desconto.Validar();
 
             Serilogger.Logger.Aqui().Debug("REGISTRANDO CUPOM DE DESCONTO {DescontoNome}", desconto.Nome);
 
             if (resultadoValidacaoDominio == "ESTA_VALIDO")
-            {                
+            {
                 descontoRepository.Inserir(desconto);
 
                 Serilogger.Logger.Aqui().Debug("CUPOM DE DESCONTO {DescontoNome} REGISTRADO COM SUCESSO", desconto.Nome);
@@ -35,10 +34,10 @@ namespace LocadoraDeVeiculos.Aplicacao.DescontoModule
 
                 return false;
             }
-            
+
         }
 
-        public bool EditarDesconto(Desconto desconto)
+        public bool Editar(Desconto desconto)
         {
             string resultadoValidacaoDominio = desconto.Validar();
 
@@ -57,11 +56,11 @@ namespace LocadoraDeVeiculos.Aplicacao.DescontoModule
                 Serilogger.Logger.Aqui().Error("NÃO FOI POSSÍVEL EDITAR CUPOM DE DESCONTO {DescontoNome}", desconto.Nome);
 
                 return false;
-            }        
+            }
         }
 
-        public bool ExcluirDesconto(Desconto desconto)
-        {        
+        public bool Excluir(Desconto desconto)
+        {
             Serilogger.Logger.Aqui().Debug("REMOVENDO CUPOM DE DESCONTO {Id}", desconto.Id);
 
             var excluiu = descontoRepository.Excluir(desconto);
@@ -74,11 +73,11 @@ namespace LocadoraDeVeiculos.Aplicacao.DescontoModule
             return excluiu;
         }
 
-        public Desconto SelecionarPorId(int id)
+        public Desconto GetById(int id)
         {
             Serilogger.Logger.Aqui().Debug("SELECIONANDO O CUPOM DE DESCONTO ID: {Id}", id);
 
-            Desconto desconto =  descontoRepository.GetById(id);
+            Desconto desconto = descontoRepository.GetById(id);
 
             if (desconto == null)
                 Serilogger.Logger.Aqui().Information("NÃO FOI POSSÍVEL ENCONTRAR O CUPOM DE DESCONTO ID {Id}", desconto.Id);
@@ -88,13 +87,13 @@ namespace LocadoraDeVeiculos.Aplicacao.DescontoModule
             return desconto;
         }
 
-        public List<Desconto> SelecionarTodosDescontos()
+        public List<Desconto> GetAll()
         {
             Serilogger.Logger.Aqui().Debug("SELECIONANDO TODOS OS CUPONS DE DESCONTOS");
 
             List<Desconto> desconto = descontoRepository.GetAll();
 
-            if(desconto.Count == 0)
+            if (desconto.Count == 0)
                 Serilogger.Logger.Aqui().Information("NÃO HÁ CUPONS DE DESCONTOS CADASTRADOS");
             else
                 Serilogger.Logger.Aqui().Debug("A SELEÇÃO TROUXE {Quantidade} CUPOM(NS) DE DESCONTO(S) EXISTENTE(S)", desconto.Count);
@@ -106,7 +105,7 @@ namespace LocadoraDeVeiculos.Aplicacao.DescontoModule
         {
             Serilogger.Logger.Aqui().Debug("VERIFICANDO SE O CUPOM DE DESCONTO COM O CÓDIGO {Codigo} EXISTE", codigo);
 
-            var verificou =  descontoRepository.VerificarCodigoExistente(codigo);
+            var verificou = descontoRepository.VerificarCodigoExistente(codigo);
 
             if (!verificou)
                 Serilogger.Logger.Aqui().Information("NÃO FOI POSSÍVEL ENCONTRAR O CUPOM DE DESCONTO COM O CÓDIGO {Codigo}", codigo);

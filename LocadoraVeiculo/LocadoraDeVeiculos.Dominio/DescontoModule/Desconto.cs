@@ -3,9 +3,6 @@ using LocadoraDeVeiculos.Dominio.ParceiroModule;
 using LocadoraDeVeiculos.Dominio.Shared;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace LocadoraDeVeiculos.Dominio.DescontoModule
 {
@@ -67,9 +64,6 @@ namespace LocadoraDeVeiculos.Dominio.DescontoModule
         {
             string valido = "";
 
-            if (string.IsNullOrEmpty(Codigo))
-                valido += QuebraDeLinha(valido) + "O campo Codigo está inválido";
-
             if (string.IsNullOrEmpty(Nome))
                 valido += QuebraDeLinha(valido) + "O campo Nome está inválido";
 
@@ -85,7 +79,7 @@ namespace LocadoraDeVeiculos.Dominio.DescontoModule
             if (Validade < DateTime.Now)
                 valido += QuebraDeLinha(valido) + "O campo Data de Validade está inválido";
 
-            if (Parceiro == null)
+            if (IdParceiro == 0)
                 valido += QuebraDeLinha(valido) + "O campo Parceiro não pode ser nulo";
 
             if (string.IsNullOrEmpty(Meio))

@@ -25,7 +25,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.ParceiroFeature
             if (!VerificarIdSelecionado(id, "Editar", "Edição"))
                 return;
 
-            var parceiroSelecionado = parceiroService.SelecionarPorId(id);
+            var parceiroSelecionado = parceiroService.GetById(id);
 
             TelaParceiroForm tela = new TelaParceiroForm();
 
@@ -33,9 +33,9 @@ namespace LocadoraVeiculo.WindowsApp.Features.ParceiroFeature
 
             if (tela.ShowDialog() == DialogResult.OK)
             {
-                parceiroService.EditarParceiro(tela.Parceiro);
+                parceiroService.Editar(tela.Parceiro);
 
-                List<Parceiro> locacaoes = parceiroService.SelecionarTodosParceiros();
+                List<Parceiro> locacaoes = parceiroService.GetAll();
 
                 tabelaParceiro.AtualizarRegistros(locacaoes);
 
@@ -49,14 +49,14 @@ namespace LocadoraVeiculo.WindowsApp.Features.ParceiroFeature
             if (!VerificarIdSelecionado(id, "Excluir", "Exclusão"))
                 return;
 
-            Parceiro parceiroSelecionado = parceiroService.SelecionarPorId(id);
+            Parceiro parceiroSelecionado = parceiroService.GetById(id);
 
             if (MessageBox.Show($"Tem certeza que deseja excluir o Funcionário: [{parceiroSelecionado.Nome}] ?",
                 "Exclusão de Funcionários", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK)
             {
-                parceiroService.ExcluirParceiro(parceiroSelecionado);
+                parceiroService.Excluir(parceiroSelecionado);
 
-                List<Parceiro> parceiros = parceiroService.SelecionarTodosParceiros();
+                List<Parceiro> parceiros = parceiroService.GetAll();
 
                 tabelaParceiro.AtualizarRegistros(parceiros);
 
@@ -69,9 +69,9 @@ namespace LocadoraVeiculo.WindowsApp.Features.ParceiroFeature
 
             if (tela.ShowDialog() == DialogResult.OK)
             {
-                parceiroService.RegistrarNovoParceiro(tela.Parceiro);
+                parceiroService.Inserir(tela.Parceiro);
 
-                List<Parceiro> parceiros = parceiroService.SelecionarTodosParceiros();
+                List<Parceiro> parceiros = parceiroService.GetAll();
 
                 tabelaParceiro.AtualizarRegistros(parceiros);
 
@@ -80,7 +80,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.ParceiroFeature
         }
         public UserControl ObterTabela()
         {
-            List<Parceiro> parceiros = parceiroService.SelecionarTodosParceiros();
+            List<Parceiro> parceiros = parceiroService.GetAll();
 
             tabelaParceiro.AtualizarRegistros(parceiros);
 
@@ -93,7 +93,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.ParceiroFeature
 
         public void PesquisarRegistro(string pesquisa)
         {
-            List<Parceiro> parceiros = parceiroService.SelecionarTodosParceiros();
+            List<Parceiro> parceiros = parceiroService.GetAll();
 
             var palavras = pesquisa.Split(' ');
 

@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace LocadoraDeVeiculos.Aplicacao.ParceiroModule
 {
-    public class ParceiroAppService
+    public class ParceiroAppService : IParceiroAppService
     {
         private readonly IParceiroRepository parceiroRepository;
 
@@ -14,7 +14,7 @@ namespace LocadoraDeVeiculos.Aplicacao.ParceiroModule
             parceiroRepository = parceiroRepo;
         }
 
-        public bool RegistrarNovoParceiro(Parceiro parceiro)
+        public bool Inserir(Parceiro parceiro)
         {
             string resultadoValidacaoDominio = parceiro.Validar();
 
@@ -37,7 +37,7 @@ namespace LocadoraDeVeiculos.Aplicacao.ParceiroModule
             }
         }
 
-        public bool EditarParceiro(Parceiro parceiro)
+        public bool Editar(Parceiro parceiro)
         {
             string resultadoValidacaoDominio = parceiro.Validar();
 
@@ -59,7 +59,7 @@ namespace LocadoraDeVeiculos.Aplicacao.ParceiroModule
             }
         }
 
-        public bool ExcluirParceiro(Parceiro parceiro)
+        public bool Excluir(Parceiro parceiro)
         {
             Serilogger.Logger.Aqui().Debug("REMOVENDO PARCEIRO {Id}", parceiro.Id);
 
@@ -73,7 +73,7 @@ namespace LocadoraDeVeiculos.Aplicacao.ParceiroModule
             return excluiu;
         }
 
-        public Parceiro SelecionarPorId(int id)
+        public Parceiro GetById(int id)
         {
             Serilogger.Logger.Aqui().Debug("SELECIONANDO O PARCEIRO ID: {Id}", id);
 
@@ -87,7 +87,7 @@ namespace LocadoraDeVeiculos.Aplicacao.ParceiroModule
             return parceiro;
         }
 
-        public List<Parceiro> SelecionarTodosParceiros()
+        public List<Parceiro> GetAll()
         {
             Serilogger.Logger.Aqui().Debug("SELECIONANDO TODOS OS PARCEIROS");
 
