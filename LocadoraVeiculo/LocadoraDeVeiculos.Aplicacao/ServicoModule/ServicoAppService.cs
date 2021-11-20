@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace LocadoraDeVeiculos.Aplicacao.ServicoModule
 {
-    public class ServicoAppService
+    public class ServicoAppService : IServicoAppService
     {
         private readonly IServicoRepository taxaServicoRepository;
 
@@ -14,7 +14,7 @@ namespace LocadoraDeVeiculos.Aplicacao.ServicoModule
             taxaServicoRepository = taxaServicoRepo;
         }
 
-        public bool InserirServico(Servico servico)
+        public bool Inserir(Servico servico)
         {
             string resultadoValidacaoDominio = servico.Validar();
 
@@ -37,7 +37,7 @@ namespace LocadoraDeVeiculos.Aplicacao.ServicoModule
             }
         }
 
-        public bool EditarServico(Servico servico)
+        public bool Editar(Servico servico)
         {
             string resultadoValidacaoDominio = servico.Validar();
 
@@ -59,7 +59,7 @@ namespace LocadoraDeVeiculos.Aplicacao.ServicoModule
             }
         }
 
-        public bool ExcluirServico(Servico servico)
+        public bool Excluir(Servico servico)
         {
             Serilogger.Logger.Aqui().Debug("REMOVENDO SERVIÇO {Id}", servico.Id);
 
@@ -73,7 +73,7 @@ namespace LocadoraDeVeiculos.Aplicacao.ServicoModule
             return excluiu;
         }
 
-        public Servico SelecionarPorId(int id)
+        public Servico GetById(int id)
         {
             Serilogger.Logger.Aqui().Debug("SELECIONANDO O SERVIÇO ID: {Id}", id);
 
@@ -87,7 +87,7 @@ namespace LocadoraDeVeiculos.Aplicacao.ServicoModule
             return servico;
         }
 
-        public List<Servico> SelecionarTodosServicos()
+        public List<Servico> GetAll()
         {
             Serilogger.Logger.Aqui().Debug("SELECIONANDO TODOS OS SERVIÇOS");
 

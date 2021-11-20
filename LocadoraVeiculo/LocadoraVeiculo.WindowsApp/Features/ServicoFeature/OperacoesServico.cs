@@ -31,7 +31,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.TaxaServicoFeature
             if (!VerificarIdSelecionado(id, "Editar", "Edição"))
                 return;
 
-            var servicoSelecionado = servicoService.SelecionarPorId(id);
+            var servicoSelecionado = servicoService.GetById(id);
 
             TelaTaxaServicoForm tela = new TelaTaxaServicoForm();
 
@@ -39,9 +39,9 @@ namespace LocadoraVeiculo.WindowsApp.Features.TaxaServicoFeature
 
             if (tela.ShowDialog() == DialogResult.OK)
             {
-                servicoService.EditarServico(tela.Servico);
+                servicoService.Editar(tela.Servico);
 
-                List<Servico> servicos = servicoService.SelecionarTodosServicos();
+                List<Servico> servicos = servicoService.GetAll();
 
                 tabelaServico.AtualizarRegistros(servicos);
 
@@ -56,14 +56,14 @@ namespace LocadoraVeiculo.WindowsApp.Features.TaxaServicoFeature
             if (!VerificarIdSelecionado(id, "Excluir", "Exclusão"))
                 return;
 
-            var servicoSelecionado = servicoService.SelecionarPorId(id);
+            var servicoSelecionado = servicoService.GetById(id);
 
             if (MessageBox.Show($"Tem certeza que deseja excluir o Serviço: [{servicoSelecionado}] ?",
                 "Exclusão de Serviços", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK)
             {
-                servicoService.ExcluirServico(servicoSelecionado);
+                servicoService.Excluir(servicoSelecionado);
 
-                List<Servico> servicos = servicoService.SelecionarTodosServicos();
+                List<Servico> servicos = servicoService.GetAll();
 
                 tabelaServico.AtualizarRegistros(servicos);
 
@@ -82,9 +82,9 @@ namespace LocadoraVeiculo.WindowsApp.Features.TaxaServicoFeature
 
             if (tela.ShowDialog() == DialogResult.OK)
             {
-                servicoService.InserirServico(tela.Servico);
+                servicoService.Inserir(tela.Servico);
 
-                List<Servico> servicos = servicoService.SelecionarTodosServicos();
+                List<Servico> servicos = servicoService.GetAll();
 
                 tabelaServico.AtualizarRegistros(servicos);
 
@@ -94,7 +94,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.TaxaServicoFeature
 
         public UserControl ObterTabela()
         {
-            List<Servico> servicos = servicoService.SelecionarTodosServicos();
+            List<Servico> servicos = servicoService.GetAll();
             tabelaServico.AtualizarRegistros(servicos);
 
             return tabelaServico;
@@ -102,7 +102,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.TaxaServicoFeature
 
         public void PesquisarRegistro(string pesquisa)
         {
-            List<Servico> parceiros = servicoService.SelecionarTodosServicos();
+            List<Servico> parceiros = servicoService.GetAll();
 
             var palavras = pesquisa.Split(' ');
 

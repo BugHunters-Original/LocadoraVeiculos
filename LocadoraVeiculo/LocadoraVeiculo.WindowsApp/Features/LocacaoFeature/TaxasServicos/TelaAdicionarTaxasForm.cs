@@ -40,7 +40,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.LocacaoFeature.TaxasServicos
 
         public void CheckBoxTaxas(List<TaxaDaLocacao> lista)
         {
-            List<Servico> servicos = servicoService.SelecionarTodosServicos();
+            List<Servico> servicos = servicoService.GetAll();
 
             foreach (var item in servicos)
             {
@@ -56,7 +56,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.LocacaoFeature.TaxasServicos
 
         private void PopularBox()
         {
-            List<Servico> servicos = servicoService.SelecionarTodosServicos();
+            List<Servico> servicos = servicoService.GetAll();
             servicos.ForEach(x => cBoxTaxas.Items.Add(x));
         }
 
