@@ -12,7 +12,7 @@
 
             public decimal Valor { get; set; }
 
-            public int Tipo { get; set; }
+            public string Tipo { get; set; }
 
             public DateTime Validade { get; set; }
 

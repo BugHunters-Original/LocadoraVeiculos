@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace LocadoraDeVeiculos.Aplicacao.FuncionarioModule
 {
-    public class FuncionarioAppService
+    public class FuncionarioAppService : IFuncionarioAppService
     {
         private readonly IFuncionarioRepository funcionarioRepository;
 
@@ -14,14 +14,14 @@ namespace LocadoraDeVeiculos.Aplicacao.FuncionarioModule
             funcionarioRepository = funcionarioRepo;
         }
 
-        public bool RegistrarNovoFuncionario(Funcionario funcionario)
+        public bool Inserir(Funcionario funcionario)
         {
             string resultadoValidacaoDominio = funcionario.Validar();
 
             Serilogger.Logger.Aqui().Debug("REGISTRANDO FUNCIONÁRIO {FuncionarioNome} ", funcionario.Nome);
 
             if (resultadoValidacaoDominio == "ESTA_VALIDO")
-            {           
+            {
                 funcionarioRepository.Inserir(funcionario);
 
                 Serilogger.Logger.Aqui().Debug("FUNCIONÁRIO {FuncionarioNome} REGISTRADO COM SUCESSO", funcionario.Nome);
@@ -35,9 +35,9 @@ namespace LocadoraDeVeiculos.Aplicacao.FuncionarioModule
                 return false;
             }
 
-           
+
         }
-        public bool EditarFuncionario(Funcionario funcionario)
+        public bool Editar(Funcionario funcionario)
         {
             string resultadoValidacaoDominio = funcionario.Validar();
 
@@ -56,10 +56,10 @@ namespace LocadoraDeVeiculos.Aplicacao.FuncionarioModule
                 Serilogger.Logger.Aqui().Error("NÃO FOI POSSÍVEL EDITAR FUNCIONÁRIO {FuncionarioNome}", funcionario.Nome);
 
                 return false;
-            }    
+            }
         }
 
-        public bool ExcluirFuncionario(Funcionario funcionario)
+        public bool Excluir(Funcionario funcionario)
         {
             Serilogger.Logger.Aqui().Debug("REMOVENDO FUNCIONÁRIO {Id}", funcionario.Id);
 
@@ -73,11 +73,11 @@ namespace LocadoraDeVeiculos.Aplicacao.FuncionarioModule
             return excluiu;
         }
 
-        public Funcionario SelecionarPorId(int id)
+        public Funcionario GetById(int id)
         {
             Serilogger.Logger.Aqui().Debug("SELECIONANDO O FUNCIONÁRIO ID: {Id}", id);
 
-            Funcionario funcionario =  funcionarioRepository.GetById(id);
+            Funcionario funcionario = funcionarioRepository.GetById(id);
 
             if (funcionario == null)
                 Serilogger.Logger.Aqui().Information("NÃO FOI POSSÍVEL ENCONTRAR O FUNCIONÁRIO ID {Id}", funcionario.Id);
@@ -87,11 +87,11 @@ namespace LocadoraDeVeiculos.Aplicacao.FuncionarioModule
             return funcionario;
         }
 
-        public List<Funcionario> SelecionarTodosFuncionarios()
+        public List<Funcionario> GetAll()
         {
             Serilogger.Logger.Aqui().Debug("SELECIONANDO TODOS OS FUNCIONÁRIOS");
 
-            List<Funcionario>  funcionario = funcionarioRepository.GetAll();
+            List<Funcionario> funcionario = funcionarioRepository.GetAll();
 
             if (funcionario.Count == 0)
                 Serilogger.Logger.Aqui().Information("NÃO HÁ FUNCIONÁRIOS CADASTRADOS");

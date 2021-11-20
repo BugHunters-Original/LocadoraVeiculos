@@ -32,7 +32,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.FuncionarioFeature
             if (!VerificarIdSelecionado(id, "Editar", "Edição"))
                 return;
 
-            Funcionario funcionarioSelecionado = funcionarioService.SelecionarPorId(id);
+            Funcionario funcionarioSelecionado = funcionarioService.GetById(id);
 
             TelaFuncionarioForm tela = new TelaFuncionarioForm();
 
@@ -40,9 +40,9 @@ namespace LocadoraVeiculo.WindowsApp.Features.FuncionarioFeature
 
             if (tela.ShowDialog() == DialogResult.OK)
             {
-                funcionarioService.EditarFuncionario(tela.Funcionario);
+                funcionarioService.Editar(tela.Funcionario);
 
-                List<Funcionario> compromissos = funcionarioService.SelecionarTodosFuncionarios();
+                List<Funcionario> compromissos = funcionarioService.GetAll();
 
                 tabelaFuncionarios.AtualizarRegistros(compromissos);
 
@@ -57,14 +57,14 @@ namespace LocadoraVeiculo.WindowsApp.Features.FuncionarioFeature
             if (!VerificarIdSelecionado(id, "Excluir", "Exclusão"))
                 return;
 
-            Funcionario funcionarioSelecionado = funcionarioService.SelecionarPorId(id);
+            Funcionario funcionarioSelecionado = funcionarioService.GetById(id);
 
             if (MessageBox.Show($"Tem certeza que deseja excluir o Funcionário: [{funcionarioSelecionado.Nome}] ?",
                 "Exclusão de Funcionários", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK)
             {
-                funcionarioService.ExcluirFuncionario(funcionarioSelecionado);
+                funcionarioService.Excluir(funcionarioSelecionado);
 
-                List<Funcionario> compromissos = funcionarioService.SelecionarTodosFuncionarios();
+                List<Funcionario> compromissos = funcionarioService.GetAll();
 
                 tabelaFuncionarios.AtualizarRegistros(compromissos);
 
@@ -83,9 +83,9 @@ namespace LocadoraVeiculo.WindowsApp.Features.FuncionarioFeature
 
             if (tela.ShowDialog() == DialogResult.OK)
             {
-                funcionarioService.RegistrarNovoFuncionario(tela.Funcionario);
+                funcionarioService.Inserir(tela.Funcionario);
 
-                List<Funcionario> funcionarios = funcionarioService.SelecionarTodosFuncionarios();
+                List<Funcionario> funcionarios = funcionarioService.GetAll();
 
                 tabelaFuncionarios.AtualizarRegistros(funcionarios);
 
@@ -95,7 +95,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.FuncionarioFeature
 
         public UserControl ObterTabela()
         {
-            List<Funcionario> funcionarios = funcionarioService.SelecionarTodosFuncionarios();
+            List<Funcionario> funcionarios = funcionarioService.GetAll();
 
             tabelaFuncionarios.AtualizarRegistros(funcionarios);
 
@@ -115,7 +115,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.FuncionarioFeature
 
         public void PesquisarRegistro(string pesquisa)
         {
-            List<Funcionario> funcionarios = funcionarioService.SelecionarTodosFuncionarios();
+            List<Funcionario> funcionarios = funcionarioService.GetAll();
 
             var palavras = pesquisa.Split(' ');
 
