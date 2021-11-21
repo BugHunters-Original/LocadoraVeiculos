@@ -25,9 +25,9 @@ namespace LocadoraVeiculo.WindowsApp.Features.GrupoVeiculoFeature
 
             if (tela.ShowDialog() == DialogResult.OK)
             {
-                grupoVeiculoService.RegistrarNovoGrupoVeiculo(tela.GrupoVeiculo);
+                grupoVeiculoService.Inserir(tela.GrupoVeiculo);
 
-                List<GrupoVeiculo> grupoVeiculos = grupoVeiculoService.SelecionarTodosGruposVeiculos();
+                List<GrupoVeiculo> grupoVeiculos = grupoVeiculoService.GetAll();
 
                 tabelaGrupoVeiculo.AtualizarRegistros(grupoVeiculos);
 
@@ -42,7 +42,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.GrupoVeiculoFeature
             if (!VerificarIdSelecionado(id, "Editar", "Edição"))
                 return;
 
-            GrupoVeiculo grupoVeiculoSelecionado = grupoVeiculoService.SelecionarPorId(id);
+            GrupoVeiculo grupoVeiculoSelecionado = grupoVeiculoService.GetById(id);
 
             TelaGrupoVeiculoForm tela = new TelaGrupoVeiculoForm();
 
@@ -50,9 +50,9 @@ namespace LocadoraVeiculo.WindowsApp.Features.GrupoVeiculoFeature
 
             if (tela.ShowDialog() == DialogResult.OK)
             {
-                grupoVeiculoService.EditarNovoGrupoVeiculo(tela.GrupoVeiculo);
+                grupoVeiculoService.Editar(tela.GrupoVeiculo);
 
-                List<GrupoVeiculo> grupoVeiculos = grupoVeiculoService.SelecionarTodosGruposVeiculos();
+                List<GrupoVeiculo> grupoVeiculos = grupoVeiculoService.GetAll();
                 tabelaGrupoVeiculo.AtualizarRegistros(grupoVeiculos);
 
                 TelaPrincipalForm.Instancia.AtualizarRodape($"Grupo de Veiculos: [{tela.GrupoVeiculo.NomeTipo}] editado com sucesso");
@@ -71,17 +71,17 @@ namespace LocadoraVeiculo.WindowsApp.Features.GrupoVeiculoFeature
             if (!VerificarIdSelecionado(id, "Excluir", "Exclusão"))
                 return;
 
-            GrupoVeiculo grupoVeiculoSelecionado = grupoVeiculoService.SelecionarPorId(id);
+            GrupoVeiculo grupoVeiculoSelecionado = grupoVeiculoService.GetById(id);
 
             if (MessageBox.Show($"Tem certeza que deseja excluir o Grupo de Veículos: [{grupoVeiculoSelecionado.NomeTipo}] ?",
                 "Exclusão de Grupo de Veiculos", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK)
             {
 
-                bool excluiu = grupoVeiculoService.ExcluirGrupoVeiculo(grupoVeiculoSelecionado);
+                bool excluiu = grupoVeiculoService.Excluir(grupoVeiculoSelecionado);
 
                 if (excluiu)
                 {
-                    List<GrupoVeiculo> grupoVeiculos = grupoVeiculoService.SelecionarTodosGruposVeiculos();
+                    List<GrupoVeiculo> grupoVeiculos = grupoVeiculoService.GetAll();
 
                     tabelaGrupoVeiculo.AtualizarRegistros(grupoVeiculos);
 
@@ -101,7 +101,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.GrupoVeiculoFeature
 
         public UserControl ObterTabela()
         {
-            List<GrupoVeiculo> grupoVeiculos = grupoVeiculoService.SelecionarTodosGruposVeiculos();
+            List<GrupoVeiculo> grupoVeiculos = grupoVeiculoService.GetAll();
             tabelaGrupoVeiculo.AtualizarRegistros(grupoVeiculos);
 
             return tabelaGrupoVeiculo;
@@ -109,7 +109,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.GrupoVeiculoFeature
 
         public void PesquisarRegistro(string pesquisa)
         {
-            List<GrupoVeiculo> gruposVeiculos = grupoVeiculoService.SelecionarTodosGruposVeiculos();
+            List<GrupoVeiculo> gruposVeiculos = grupoVeiculoService.GetAll();
 
             var palavras = pesquisa.Split(' ');
 

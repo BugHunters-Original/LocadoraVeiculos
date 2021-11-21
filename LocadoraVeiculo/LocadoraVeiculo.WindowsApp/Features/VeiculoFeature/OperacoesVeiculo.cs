@@ -24,7 +24,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.VeiculoFeature
 
         public void InserirNovoRegistro()
         {
-            if (grupoVeiculoService.SelecionarTodosGruposVeiculos().Count == 0)
+            if (grupoVeiculoService.GetAll().Count == 0)
             {
                 MessageBox.Show("Cadastre primeiro um Grupo de Veículos!", "Adição de Veículos",
                                  MessageBoxButtons.OK, MessageBoxIcon.Exclamation);

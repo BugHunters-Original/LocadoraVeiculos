@@ -17,7 +17,6 @@ namespace LocadoraDeVeiculos.WebApi.Controllers
     public class DescontoController : ControllerBase
     {
         private readonly IDescontoRepository cupomRepository;
-        private readonly IParceiroRepository parceiroReporitoy;
         private readonly IDescontoAppService cupomAppService;
         private readonly IMapper mapper;
 
@@ -26,7 +25,6 @@ namespace LocadoraDeVeiculos.WebApi.Controllers
             var dbContext = new LocacaoContext();
 
             this.cupomRepository = new DescontoDAO(dbContext);
-            this.parceiroReporitoy = new ParceiroDAO(dbContext);
             this.cupomAppService = new DescontoAppService(cupomRepository);
 
             var config = new MapperConfiguration(cfg =>

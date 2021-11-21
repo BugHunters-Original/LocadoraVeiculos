@@ -15,7 +15,6 @@ namespace LocadoraDeVeiculos.Dominio.GrupoVeiculoModule
         public decimal? LimitePControlado { get; set; }        
         public decimal? ValorKmRodadoPControlado { get; set; }
         public decimal? ValorDiarioPLivre { get; set; }
-
         public virtual ICollection<Veiculo> Veiculos { get; set; }
 
         public GrupoVeiculo(string nomeTipo, decimal? valorDiarioPDiario, decimal? valorKmRodadoPDiario,

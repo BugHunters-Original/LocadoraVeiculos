@@ -7,16 +7,16 @@ using System.Collections.Generic;
 
 namespace LocadoraDeVeiculos.Aplicacao.GrupoVeiculoModule
 {
-    public class GrupoVeiculoAppService
+    public class GrupoVeiculoAppService : IGrupoVeiculoAppService
     {
-        private readonly IGrupoVeiculoRepository grupoVeiculoRepository;       
+        private readonly IGrupoVeiculoRepository grupoVeiculoRepository;
 
         public GrupoVeiculoAppService(IGrupoVeiculoRepository grupoVeiculoRepository)
         {
-            this.grupoVeiculoRepository = grupoVeiculoRepository;           
+            this.grupoVeiculoRepository = grupoVeiculoRepository;
         }
 
-        public void RegistrarNovoGrupoVeiculo(GrupoVeiculo grupoVeiculo)
+        public bool Inserir(GrupoVeiculo grupoVeiculo)
         {
             string resultadoValidacaoDominio = grupoVeiculo.Validar();
 
@@ -25,14 +25,20 @@ namespace LocadoraDeVeiculos.Aplicacao.GrupoVeiculoModule
             if (resultadoValidacaoDominio == "ESTA_VALIDO")
             {
                 grupoVeiculoRepository.Inserir(grupoVeiculo);
-              
+
                 Serilogger.Logger.Aqui().Debug("GRUPO DE VEÍCULO {grupoVeiculoNome} REGISTRADO COM SUCESSO", grupoVeiculo.NomeTipo);
+
+                return true;
             }
             else
+            {
                 Serilogger.Logger.Aqui().Error("NÃO FOI POSSÍVEL REGISTRAR GRUPO VEÍCULO {grupoVeiculoNome}", grupoVeiculo.NomeTipo);
+
+                return false;
+            }
         }
 
-        public void EditarNovoGrupoVeiculo(GrupoVeiculo grupoVeiculo)
+        public bool Editar(GrupoVeiculo grupoVeiculo)
         {
             string resultadoValidacaoDominio = grupoVeiculo.Validar();
 
@@ -41,14 +47,20 @@ namespace LocadoraDeVeiculos.Aplicacao.GrupoVeiculoModule
             if (resultadoValidacaoDominio == "ESTA_VALIDO")
             {
                 grupoVeiculoRepository.Editar(grupoVeiculo);
-              
+
                 Serilogger.Logger.Aqui().Debug("GRUPO VEÍCULO {grupoVeiculoNome} EDITADO COM SUCESSO", grupoVeiculo.NomeTipo);
+
+                return true;
             }
             else
+            {
                 Serilogger.Logger.Aqui().Error("NÃO FOI POSSÍVEL EDITAR GRUPO VEÍCULO {grupoVeiculoNome}", grupoVeiculo.NomeTipo);
+
+                return false;
+            }
         }
 
-        public bool ExcluirGrupoVeiculo(GrupoVeiculo grupoVeiculo)
+        public bool Excluir(GrupoVeiculo grupoVeiculo)
         {
             Serilogger.Logger.Aqui().Debug("REMOVENDO GRUPO VEÍCULO{Id} | {DataEHora}", grupoVeiculo.Id, DateTime.Now.ToString());
 
@@ -63,9 +75,9 @@ namespace LocadoraDeVeiculos.Aplicacao.GrupoVeiculoModule
 
         }
 
-       
 
-        public GrupoVeiculo SelecionarPorId(int id)
+
+        public GrupoVeiculo GetById(int id)
         {
             Serilogger.Logger.Aqui().Debug("SELECIONANDO O CUPOM DE DESCONTO ID: {Id} | {DataEHora}", id, DateTime.Now.ToString());
 
@@ -80,7 +92,7 @@ namespace LocadoraDeVeiculos.Aplicacao.GrupoVeiculoModule
 
         }
 
-        public List<GrupoVeiculo> SelecionarTodosGruposVeiculos()
+        public List<GrupoVeiculo> GetAll()
         {
             Serilogger.Logger.Aqui().Debug("SELECIONANDO TODOS OS GRUPOS VEÍCULOS | {DataEHora}", DateTime.Now.ToString());
 

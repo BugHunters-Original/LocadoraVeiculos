@@ -17,7 +17,7 @@ namespace LocadoraDeVeiculos.WebApi.ViewModels
 
             public string Nome { get; set; }
 
-            public List<DescontoListViewModel> Cupons { get; set; }
+            public List<DescontoListViewModel> Descontos { get; set; }
         }
 
         public class ParceiroCreateViewModel

@@ -66,7 +66,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.VeiculoFeature
 
         private void CarregarGrupos()
         {
-            cmbGrupo.DataSource = grupoService.SelecionarTodosGruposVeiculos();
+            cmbGrupo.DataSource = grupoService.GetAll();
         }
 
         public Veiculo Veiculo
