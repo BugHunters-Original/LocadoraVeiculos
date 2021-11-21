@@ -6,7 +6,7 @@ using System.Collections.Generic;
 
 namespace LocadoraDeVeiculos.Aplicacao.VeiculoModule
 {
-    public class VeiculoAppService
+    public class VeiculoAppService : IVeiculoAppService
     {
         private readonly IVeiculoRepository veiculoRepository;
 
@@ -15,7 +15,7 @@ namespace LocadoraDeVeiculos.Aplicacao.VeiculoModule
             this.veiculoRepository = veiculoRepository;
         }
 
-        public void RegistrarNovoVeiculo(Veiculo veiculo)
+        public bool Inserir(Veiculo veiculo)
         {
             string resultadoValidacaoDominio = veiculo.Validar();
 
@@ -27,14 +27,18 @@ namespace LocadoraDeVeiculos.Aplicacao.VeiculoModule
 
                 veiculoRepository.Inserir(veiculo);
                 Serilogger.Logger.Aqui().Debug("VEÍCULO {VeiculoNome} REGISTRADO COM SUCESSO", veiculo.Nome);
+                return true;
 
             }
             else
+            {
                 Serilogger.Logger.Aqui().Error("NÃO FOI POSSÍVEL REGISTRAR VEÍCULO {VeiculoNome}", veiculo.Nome);
+                return false;
+            }
 
         }
 
-        public void EditarVeiculo(Veiculo veiculo)
+        public bool Editar(Veiculo veiculo)
         {
             string resultadoValidacaoDominio = veiculo.Validar();
 
@@ -42,18 +46,21 @@ namespace LocadoraDeVeiculos.Aplicacao.VeiculoModule
 
             if (resultadoValidacaoDominio == "ESTA_VALIDO")
             {
-               
+
                 veiculoRepository.Editar(veiculo);
                 Serilogger.Logger.Aqui().Debug("VEÍCULO {VeiculoNome} EDITADO COM SUCESSO", veiculo.Nome);
-
+                return true;
             }
 
             else
+            {
                 Serilogger.Logger.Aqui().Error("NÃO FOI POSSÍVEL EDITAR VEÍCULO {VeiculoNome}", veiculo.Nome);
+                return false;
+            }
 
         }
 
-        public bool ExcluirVeiculo(Veiculo veiculo)
+        public bool Excluir(Veiculo veiculo)
         {
             Serilogger.Logger.Aqui().Debug("SELECIONANDO O VEÍCULO ID: {Id}", veiculo.Id);
 
@@ -67,11 +74,11 @@ namespace LocadoraDeVeiculos.Aplicacao.VeiculoModule
             return excluiu;
         }
 
-        public Veiculo SelecionarVeiculoPorId(int id)
+        public Veiculo GetById(int id)
         {
             Serilogger.Logger.Aqui().Debug("SELECIONANDO O VEÍCULO ID: {Id}", id);
 
-            Veiculo veiculo =  veiculoRepository.GetById(id);
+            Veiculo veiculo = veiculoRepository.GetById(id);
 
 
             if (veiculo == null)
@@ -82,7 +89,7 @@ namespace LocadoraDeVeiculos.Aplicacao.VeiculoModule
             return veiculo;
         }
 
-        public List<Veiculo> SelecionarTodosVeiculos()
+        public List<Veiculo> GetAll()
         {
             Serilogger.Logger.Aqui().Debug("SELECIONANDO TODOS OS VEÍCULOS");
 
@@ -93,17 +100,17 @@ namespace LocadoraDeVeiculos.Aplicacao.VeiculoModule
             else
                 Serilogger.Logger.Aqui().Debug("A SELEÇÃO TROUXE {Quantidade} VEÍCULO(S) EXISTENTE(S)", veiculo.Count);
 
-            return veiculo;             
-        }       
+            return veiculo;
+        }
 
-        public void EditarDisponibilidadeVeiculo(Veiculo atual, Veiculo antigo)
+        public void EditarDisponibilidade(Veiculo atual, Veiculo antigo)
         {
             Serilogger.Logger.Aqui().Debug("EDITANDO DISPONIBILIDADE DOS VEÍCULOS {VeiculoNomeAtual} E {VeiculoNomeAntigo}", atual.Nome, antigo.Nome);
 
             veiculoRepository.EditarDisponibilidade(atual, antigo);
         }
 
-        public List<Veiculo> SelecionarTodosVeiculosAlugados()
+        public List<Veiculo> GetAllAlugados()
         {
             Serilogger.Logger.Aqui().Debug("SELECIONANDO TODOS OS VEÍCULOS ALUGADOS");
 
@@ -114,10 +121,10 @@ namespace LocadoraDeVeiculos.Aplicacao.VeiculoModule
             else
                 Serilogger.Logger.Aqui().Debug("A SELEÇÃO TROUXE {Quantidade} VEÍCULO(S) ALUGADO(S)", veiculo.Count);
 
-            return veiculo;            
+            return veiculo;
         }
 
-        public List<Veiculo> SelecionarTodosVeiculosDisponiveis()
+        public List<Veiculo> GetAllDisponiveis()
         {
             Serilogger.Logger.Aqui().Debug("SELECIONANDO TODOS OS VEÍCULOS DISPONÍVEIS");
 
@@ -128,10 +135,10 @@ namespace LocadoraDeVeiculos.Aplicacao.VeiculoModule
             else
                 Serilogger.Logger.Aqui().Debug("A SELEÇÃO TROUXE {Quantidade} VEÍCULO(S) DISPONÍVEIS", veiculo.Count);
 
-            return veiculo;           
+            return veiculo;
         }
 
-        public int SelecionarQuantidadeVeiculosAlugados()
+        public int GetAllCountAlugados()
         {
             Serilogger.Logger.Aqui().Debug("SELECIONANDO QUANTIDADE DE VEÍCULOS ALUGADOS");
 
@@ -140,13 +147,13 @@ namespace LocadoraDeVeiculos.Aplicacao.VeiculoModule
             if (quantidade == 0)
                 Serilogger.Logger.Aqui().Information("NÃO HÁ VEÍCULOS ALUGADOS");
             else
-                Serilogger.Logger.Aqui().Debug("A SELEÇÃO TROUXE {Quantidade} VEÍCULO(S) ALUGADOS",  quantidade);
+                Serilogger.Logger.Aqui().Debug("A SELEÇÃO TROUXE {Quantidade} VEÍCULO(S) ALUGADOS", quantidade);
 
             return quantidade;
-           
+
         }
 
-        public int SelecionarQuantidadeVeiculosDisponiveis()
+        public int GetAllCountDisponiveis()
         {
             Serilogger.Logger.Aqui().Debug("SELECIONANDO QUANTIDADE DE VEÍCULOS DISPONÍVEIS");
 
@@ -158,7 +165,7 @@ namespace LocadoraDeVeiculos.Aplicacao.VeiculoModule
                 Serilogger.Logger.Aqui().Debug("A SELEÇÃO TROUXE {Quantidade} VEÍCULO(S) DISPONÍVEIS", quantidade);
 
             return quantidade;
-           
+
         }
 
     }

@@ -123,13 +123,13 @@ namespace LocadoraVeiculo.WindowsApp.Features.LocacaoFeature
             cbTipoLocacao.Items.Add(TipoLocacao.Controlado);
             cbTipoLocacao.Items.Add(TipoLocacao.Livre);
 
-            var locacoes = locacaoService.SelecionarTodasLocacoesPendentes();
+            var locacoes = locacaoService.GetAllPendentes();
 
-            var clientesCPF = cpfService.SelecionarTodosClientesCPF();
+            var clientesCPF = cpfService.GetAll();
 
-            var clientesCNPJ = cnpjService.SelecionarTodosClientesCNPJ();
+            var clientesCNPJ = cnpjService.GetAll();
 
-            var veiculos = veiculoService.SelecionarTodosVeiculosDisponiveis();
+            var veiculos = veiculoService.GetAllDisponiveis();
 
             locacoes.ForEach(x => clientesCPF.Remove(x.Condutor));
 
@@ -169,7 +169,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.LocacaoFeature
         {
             ClienteCNPJ cliente = (ClienteCNPJ)cbCliente.SelectedItem;
 
-            List<ClienteCPF> condutoresRelacionados = cpfService.SelecionarPorIdEmpresa(cliente.Id);
+            List<ClienteCPF> condutoresRelacionados = cpfService.GetAllEmpresaId(cliente.Id);
 
             cbCondutor.Items.Clear();
 

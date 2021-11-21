@@ -1,15 +1,11 @@
-﻿using LocadoraDeVeiculos.Dominio.DescontoModule;
+﻿using LocadoraDeVeiculos.Aplicacao.Shared;
+using LocadoraDeVeiculos.Dominio.DescontoModule;
 using System.Collections.Generic;
 
 namespace LocadoraDeVeiculos.Aplicacao.DescontoModule
 {
-    public interface IDescontoAppService
+    public interface IDescontoAppService : IBaseAppService<Desconto>
     {
-        bool Editar(Desconto desconto);
-        bool Excluir(Desconto desconto);
-        bool Inserir(Desconto desconto);
-        Desconto GetById(int id);
-        List<Desconto> GetAll();
         bool VerificarCodigoExistente(string codigo);
         Desconto VerificarCodigoValido(string codigo);
     }

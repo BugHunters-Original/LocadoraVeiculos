@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace LocadoraDeVeiculos.Aplicacao.ClienteCNPJModule
 {
-    public class ClienteCNPJAppService
+    public class ClienteCNPJAppService : IClienteCNPJAppService
     {
         private readonly IClienteCNPJRepository clienteCNPJRepository;
 
@@ -14,7 +14,7 @@ namespace LocadoraDeVeiculos.Aplicacao.ClienteCNPJModule
             clienteCNPJRepository = clienteCNPJRepo;
         }
 
-        public bool RegistrarNovoClienteCNPJ(ClienteCNPJ clienteCNPJ)
+        public bool Inserir(ClienteCNPJ clienteCNPJ)
         {
             Serilogger.Logger.Aqui().Debug("REGISTRANDO CLIENTE CNPJ {ClienteNome}", clienteCNPJ.Nome);
 
@@ -34,7 +34,7 @@ namespace LocadoraDeVeiculos.Aplicacao.ClienteCNPJModule
             }
         }
 
-        public bool EditarClienteCNPJ(ClienteCNPJ clienteCNPJ)
+        public bool Editar(ClienteCNPJ clienteCNPJ)
         {
             Serilogger.Logger.Aqui().Debug("EDITANDO CLIENTE CNPJ {ClienteNome}", clienteCNPJ.Nome);
 
@@ -55,7 +55,7 @@ namespace LocadoraDeVeiculos.Aplicacao.ClienteCNPJModule
         }
 
 
-        public bool ExcluirClienteCNPJ(ClienteCNPJ cliente)
+        public bool Excluir(ClienteCNPJ cliente)
         {
             Serilogger.Logger.Aqui().Debug("REMOVENDO CLIENTE CNPJ {Id}", cliente.Id);
 
@@ -69,7 +69,7 @@ namespace LocadoraDeVeiculos.Aplicacao.ClienteCNPJModule
             return excluiu;
         }
 
-        public ClienteCNPJ SelecionarClienteCNPJPorId(int id)
+        public ClienteCNPJ GetById(int id)
         {
             Serilogger.Logger.Aqui().Debug("SELECIONANDO O CLIENTE CNPJ ID: {Id}", id);
 
@@ -83,7 +83,7 @@ namespace LocadoraDeVeiculos.Aplicacao.ClienteCNPJModule
             return clienteCNPJ;
         }
 
-        public List<ClienteCNPJ> SelecionarTodosClientesCNPJ()
+        public List<ClienteCNPJ> GetAll()
         {
             Serilogger.Logger.Aqui().Debug("SELECIONANDO TODOS OS CLIENTES CNPJ");
 
@@ -94,7 +94,7 @@ namespace LocadoraDeVeiculos.Aplicacao.ClienteCNPJModule
             else
                 Serilogger.Logger.Aqui().Debug("A SELEÇÃO TROUXE {Quantidade} CLIENTE(S) CNPJ EXISTENTE(S)", clientes.Count);
 
-            return clientes;                
+            return clientes;
         }
     }
 }

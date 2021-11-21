@@ -35,9 +35,9 @@ namespace LocadoraVeiculo.WindowsApp.Features.VeiculoFeature
 
             if (tela.ShowDialog() == DialogResult.OK)
             {
-                veiculoService.RegistrarNovoVeiculo(tela.Veiculo);
+                veiculoService.Inserir(tela.Veiculo);
 
-                List<Veiculo> veiculos = veiculoService.SelecionarTodosVeiculos();
+                List<Veiculo> veiculos = veiculoService.GetAll();
 
                 tabelaVeiculos.AtualizarRegistros(veiculos);
 
@@ -52,7 +52,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.VeiculoFeature
             if (!VerificarIdSelecionado(id, "Editar", "Edição"))
                 return;
 
-            Veiculo veiculoSelecionado = veiculoService.SelecionarVeiculoPorId(id);
+            Veiculo veiculoSelecionado = veiculoService.GetById(id);
 
             TelaVeiculoForm tela = new TelaVeiculoForm(grupoVeiculoService);
 
@@ -60,9 +60,9 @@ namespace LocadoraVeiculo.WindowsApp.Features.VeiculoFeature
 
             if (tela.ShowDialog() == DialogResult.OK)
             {
-                veiculoService.EditarVeiculo(tela.Veiculo);
+                veiculoService.Editar(tela.Veiculo);
 
-                List<Veiculo> veiculos = veiculoService.SelecionarTodosVeiculos();
+                List<Veiculo> veiculos = veiculoService.GetAll();
 
                 tabelaVeiculos.AtualizarRegistros(veiculos);
 
@@ -77,16 +77,16 @@ namespace LocadoraVeiculo.WindowsApp.Features.VeiculoFeature
             if (!VerificarIdSelecionado(id, "Excluir", "Exclusão"))
                 return;
 
-            Veiculo veiculoSelecionada = veiculoService.SelecionarVeiculoPorId(id);
+            Veiculo veiculoSelecionada = veiculoService.GetById(id);
 
             if (MessageBox.Show($"Tem certeza que deseja excluir o Veículo: [{veiculoSelecionada.Nome}] ?",
                 "Exclusão de Veículos", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK)
             {
-                bool excluiu = veiculoService.ExcluirVeiculo(veiculoSelecionada);
+                bool excluiu = veiculoService.Excluir(veiculoSelecionada);
 
                 if (excluiu)
                 {
-                    List<Veiculo> veiculos = veiculoService.SelecionarTodosVeiculos();
+                    List<Veiculo> veiculos = veiculoService.GetAll();
 
                     tabelaVeiculos.AtualizarRegistros(veiculos);
 
@@ -108,7 +108,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.VeiculoFeature
 
         public UserControl ObterTabela()
         {
-            List<Veiculo> veiculos = veiculoService.SelecionarTodosVeiculos();
+            List<Veiculo> veiculos = veiculoService.GetAll();
 
             tabelaVeiculos.AtualizarRegistros(veiculos);
 
@@ -117,7 +117,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.VeiculoFeature
 
         public void PesquisarRegistro(string pesquisa)
         {
-            List<Veiculo> veiculos = veiculoService.SelecionarTodosVeiculos();
+            List<Veiculo> veiculos = veiculoService.GetAll();
 
             var palavras = pesquisa.Split(' ');
 

@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace LocadoraDeVeiculos.Aplicacao.ClienteCPFModule
 {
-    public class ClienteCPFAppService
+    public class ClienteCPFAppService : IClienteCPFAppService
     {
         private readonly IClienteCPFRepository clienteCPFRepository;
 
@@ -14,7 +14,7 @@ namespace LocadoraDeVeiculos.Aplicacao.ClienteCPFModule
             clienteCPFRepository = clienteRepo;
         }
 
-        public bool RegistrarNovoClienteCPF(ClienteCPF clienteCPF)
+        public bool Inserir(ClienteCPF clienteCPF)
         {
             Serilogger.Logger.Aqui().Debug("REGISTRANDO CLIENTE CPF {ClienteNome}", clienteCPF.Nome);
 
@@ -34,7 +34,7 @@ namespace LocadoraDeVeiculos.Aplicacao.ClienteCPFModule
             }
         }
 
-        public bool EditarClienteCPF(ClienteCPF clienteCPF)
+        public bool Editar(ClienteCPF clienteCPF)
         {
             Serilogger.Logger.Aqui().Debug("EDITANDO CLIENTE CPF {ClienteNome}", clienteCPF.Nome);
 
@@ -54,7 +54,7 @@ namespace LocadoraDeVeiculos.Aplicacao.ClienteCPFModule
             }
         }
 
-        public bool ExcluirClienteCPF(ClienteCPF clienteCPF)
+        public bool Excluir(ClienteCPF clienteCPF)
         {
             Serilogger.Logger.Aqui().Debug("REMOVENDO CLIENTE CPF {Id}", clienteCPF.Id);
 
@@ -68,7 +68,7 @@ namespace LocadoraDeVeiculos.Aplicacao.ClienteCPFModule
             return excluiu;
         }
 
-        public List<ClienteCPF> SelecionarPorIdEmpresa(int id)
+        public List<ClienteCPF> GetAllEmpresaId(int id)
         {
             Serilogger.Logger.Aqui().Debug("SELECIONANDO TODOS OS CLIENTES CPF RELACIONADOS A EMPRESA ID: {Id}", id);
 
@@ -82,7 +82,7 @@ namespace LocadoraDeVeiculos.Aplicacao.ClienteCPFModule
             return clientes;
         }
 
-        public ClienteCPF SelecionarClienteCPFPorId(int id)
+        public ClienteCPF GetById(int id)
         {
             Serilogger.Logger.Aqui().Debug("SELECIONANDO O CLIENTE CPF ID: {Id}", id);
 
@@ -96,7 +96,7 @@ namespace LocadoraDeVeiculos.Aplicacao.ClienteCPFModule
             return clienteCPF;
         }
 
-        public List<ClienteCPF> SelecionarTodosClientesCPF()
+        public List<ClienteCPF> GetAll()
         {
             Serilogger.Logger.Aqui().Debug("SELECIONANDO TODOS OS CLIENTES CPF");
 

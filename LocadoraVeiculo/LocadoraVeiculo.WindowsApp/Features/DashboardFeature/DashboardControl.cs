@@ -120,13 +120,13 @@ namespace LocadoraVeiculo.WindowsApp.Features.DashboardFeature
         }
         private void TrataLabels()
         {
-            int quantidadeAlugados = veiculoService.SelecionarQuantidadeVeiculosAlugados();
+            int quantidadeAlugados = veiculoService.GetAllCountAlugados();
             labelAlugados.Text = quantidadeAlugados.ToString();
 
-            int quantidadeDisponiveis = veiculoService.SelecionarQuantidadeVeiculosDisponiveis();
+            int quantidadeDisponiveis = veiculoService.GetAllCountDisponiveis();
             labelInLoco.Text = quantidadeDisponiveis.ToString();
 
-            int quantidadePendentes = locacaoService.SelecionarQuantidadeLocacoesPendentes();
+            int quantidadePendentes = locacaoService.GetAllCountPendentes();
             labelPendentes.Text = quantidadePendentes.ToString();
         }
         private void ObterTodosCarrosAlugados()
@@ -136,7 +136,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.DashboardFeature
             dtDashboard.Columns.AddRange(ObterColunasCarros());
             labelTipoVisualizacao.Text = "CARROS ALUGADOS";
 
-            List<Veiculo> veiculos = veiculoService.SelecionarTodosVeiculosAlugados();
+            List<Veiculo> veiculos = veiculoService.GetAllAlugados();
 
             AdicionarVeiculosNaTabela(veiculos);
         }
@@ -147,7 +147,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.DashboardFeature
             dtDashboard.Columns.AddRange(ObterColunasLocacoesPendentes());
             labelTipoVisualizacao.Text = "LOCAÇÕES PENDENTES";
 
-            List<Locacao> locacoes = locacaoService.SelecionarTodasLocacoesPendentes();
+            List<Locacao> locacoes = locacaoService.GetAllPendentes();
 
             foreach (Locacao locacao in locacoes)
             {
@@ -162,7 +162,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.DashboardFeature
             dtDashboard.Columns.AddRange(ObterColunasCarros());
             labelTipoVisualizacao.Text = "CARROS DISPONIVEIS";
 
-            List<Veiculo> veiculos = veiculoService.SelecionarTodosVeiculosDisponiveis();
+            List<Veiculo> veiculos = veiculoService.GetAllDisponiveis();
 
             AdicionarVeiculosNaTabela(veiculos);
         }
@@ -196,7 +196,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.DashboardFeature
                 if (id == 0)
                     return;
 
-                Veiculo veiculoSelecionado = veiculoService.SelecionarVeiculoPorId(id);
+                Veiculo veiculoSelecionado = veiculoService.GetById(id);
 
                 TelaDetalhesVeiculoForm tela = new TelaDetalhesVeiculoForm();
 

@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Mvc;
 using static LocadoraDeVeiculos.Dominio.ServicoModule.Servico;
 using static LocadoraDeVeiculos.WebApi.ViewModels.ServicoViewModel;
 
-namespace LocadoraDeVeiculos.WebApi.Controllers
+namespace LocadoraDeVeiculos.WebApi.Shared
 {
     [Route("api/[controller]")]
     [ApiController]

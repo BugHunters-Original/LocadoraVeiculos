@@ -78,7 +78,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.VeiculoFeature
             if (id == 0)
                 return;
 
-            Veiculo veiculoSelecionado = veiculoService.SelecionarVeiculoPorId(id);
+            Veiculo veiculoSelecionado = veiculoService.GetById(id);
 
             TelaDetalhesVeiculoForm tela = new TelaDetalhesVeiculoForm();
 

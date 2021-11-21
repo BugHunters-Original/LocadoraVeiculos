@@ -77,7 +77,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.LocacaoFeature
             if (id == 0)
                 return;
 
-            Locacao locacaoSelecionada = locacaoService.SelecionarLocacaoPorId(id);
+            Locacao locacaoSelecionada = locacaoService.GetById(id);
 
             dynamic tela = VerificarTipoDeTela(locacaoSelecionada);
 

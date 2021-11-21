@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using static LocadoraDeVeiculos.WebApi.ViewModels.GrupoVeiculoViewModel;
 
-namespace LocadoraDeVeiculos.WebApi.Controllers
+namespace LocadoraDeVeiculos.WebApi.Shared
 {
     [Route("api/[controller]")]
     [ApiController]

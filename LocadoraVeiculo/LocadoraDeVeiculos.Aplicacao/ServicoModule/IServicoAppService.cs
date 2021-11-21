@@ -1,14 +1,12 @@
-﻿using LocadoraDeVeiculos.Dominio.ServicoModule;
+﻿using LocadoraDeVeiculos.Aplicacao.Shared;
+using LocadoraDeVeiculos.Dominio.ServicoModule;
+using LocadoraDeVeiculos.Dominio.Shared;
 using System.Collections.Generic;
 
 namespace LocadoraDeVeiculos.Aplicacao.ServicoModule
 {
-    public interface IServicoAppService
+    public interface IServicoAppService : IBaseAppService<Servico>
     {
-        bool Editar(Servico servico);
-        bool Excluir(Servico servico);
-        bool Inserir(Servico servico);
-        Servico GetById(int id);
-        List<Servico> GetAll();
+
     }
 }

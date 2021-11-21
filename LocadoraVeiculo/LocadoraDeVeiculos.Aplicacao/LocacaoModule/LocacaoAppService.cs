@@ -12,7 +12,7 @@ using static LocadoraDeVeiculos.Dominio.LocacaoModule.Locacao;
 
 namespace LocadoraDeVeiculos.Aplicacao.LocacaoModule
 {
-    public class LocacaoAppService
+    public class LocacaoAppService : ILocacaoAppService
     {
         private readonly ILocacaoRepository locacaoRepo;
         private readonly IReciboRepository reciboRepo;
@@ -31,7 +31,7 @@ namespace LocadoraDeVeiculos.Aplicacao.LocacaoModule
             this.taxaDaLocacaoRepo = taxaDaLocacaoRepo;
             this.pdfRepo = pdfRepo;
         }
-        public void RegistrarNovaLocacao(Locacao locacao)
+        public bool Inserir(Locacao locacao)
         {
             string resultadoValidacaoDominio = locacao.Validar();
 
@@ -60,10 +60,13 @@ namespace LocadoraDeVeiculos.Aplicacao.LocacaoModule
                 Serilogger.Logger.Aqui().Debug("MONTANDO PDF DA LOCAÇÃO ID: {Id}", locacao.Id);
 
                 Task.Run(() => MontarPdf(locacao));
+
+                return true;
             }
             else
             {
                 Serilogger.Logger.Aqui().Error("NÃO FOI POSSÍVEL REGISTRAR LOCAÇÃO {Locacao}", locacao.ToString());
+                return false;
             }
         }
 
@@ -81,7 +84,7 @@ namespace LocadoraDeVeiculos.Aplicacao.LocacaoModule
 
             veiculoRepo.AtualizarQuilometragem(locacao.Veiculo);
         }
-        public void EditarLocacao(Locacao locacao)
+        public bool Editar(Locacao locacao)
         {
             string resultadoValidacaoDominio = locacao.Validar();
 
@@ -97,14 +100,17 @@ namespace LocadoraDeVeiculos.Aplicacao.LocacaoModule
                     locacao.Servicos.ForEach(x => taxaDaLocacaoRepo.Inserir(new TaxaDaLocacao(x, locacao)));
 
                 Serilogger.Logger.Aqui().Debug("LOCAÇÃO {Locacao} EDITADA COM SUCESSO", locacao.ToString());
+
+                return true;
             }
             else
             {
                 Serilogger.Logger.Aqui().Error("NÃO FOI POSSÍVEL EDITAR LOCAÇÃO {Locacao}", locacao.ToString());
+                return false;
             }
         }
 
-        public bool ExcluirLocacao(Locacao locacao)
+        public bool Excluir(Locacao locacao)
         {
             Serilogger.Logger.Aqui().Debug("REMOVENDO LOCAÇÃO {Id}", locacao);
 
@@ -126,7 +132,7 @@ namespace LocadoraDeVeiculos.Aplicacao.LocacaoModule
 
             return excluiu;
         }
-        public List<Locacao> SelecionarTodasLocacoes()
+        public List<Locacao> GetAll()
         {
             Serilogger.Logger.Aqui().Debug("SELECIONANDO TODAS AS LOCAÇÕES");
 
@@ -139,7 +145,7 @@ namespace LocadoraDeVeiculos.Aplicacao.LocacaoModule
 
             return locacao;
         }
-        public Locacao SelecionarLocacaoPorId(int id)
+        public Locacao GetById(int id)
         {
             Serilogger.Logger.Aqui().Debug("SELECIONANDO A LOCAÇÃO ID: {Id}", id);
 
@@ -152,7 +158,7 @@ namespace LocadoraDeVeiculos.Aplicacao.LocacaoModule
 
             return locacao;
         }
-        public List<Locacao> SelecionarTodasLocacoesConcluidas()
+        public List<Locacao> GetAllConcluidas()
         {
             Serilogger.Logger.Aqui().Debug("SELECIONANDO TODAS AS LOCAÇÕES CONCLUÍDAS");
 
@@ -165,7 +171,7 @@ namespace LocadoraDeVeiculos.Aplicacao.LocacaoModule
 
             return locacao;
         }
-        public List<Locacao> SelecionarTodasLocacoesPendentes()
+        public List<Locacao> GetAllPendentes()
         {
             Serilogger.Logger.Aqui().Debug("SELECIONANDO TODAS AS LOCAÇÕES PENDENTES");
 
@@ -178,7 +184,7 @@ namespace LocadoraDeVeiculos.Aplicacao.LocacaoModule
 
             return locacao;
         }
-        public int SelecionarQuantidadeLocacoesPendentes()
+        public int GetAllCountPendentes()
         {
             Serilogger.Logger.Aqui().Debug("SELECIONANDO TODAS AS LOCAÇÕES PENDENTES");
 
@@ -191,7 +197,7 @@ namespace LocadoraDeVeiculos.Aplicacao.LocacaoModule
 
             return qtdLocacao;
         }
-        public int SelecionarLocacoesComCupons(string cupom)
+        public int GetAllComCupons(string cupom)
         {
             Serilogger.Logger.Aqui().Debug("SELECIONANDO TODAS AS LOCAÇÕES COM CUPOM");
 

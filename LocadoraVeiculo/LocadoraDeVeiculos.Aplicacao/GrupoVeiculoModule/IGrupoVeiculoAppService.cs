@@ -1,14 +1,12 @@
-﻿using LocadoraDeVeiculos.Dominio.GrupoVeiculoModule;
+﻿using LocadoraDeVeiculos.Aplicacao.Shared;
+using LocadoraDeVeiculos.Dominio.GrupoVeiculoModule;
+using LocadoraDeVeiculos.Dominio.Shared;
 using System.Collections.Generic;
 
 namespace LocadoraDeVeiculos.Aplicacao.GrupoVeiculoModule
 {
-    public interface IGrupoVeiculoAppService
+    public interface IGrupoVeiculoAppService : IBaseAppService<GrupoVeiculo>
     {
-        bool Editar(GrupoVeiculo grupoVeiculo);
-        bool Excluir(GrupoVeiculo grupoVeiculo);
-        List<GrupoVeiculo> GetAll();
-        GrupoVeiculo GetById(int id);
-        bool Inserir(GrupoVeiculo grupoVeiculo);
+
     }
 }

@@ -49,7 +49,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.LocacaoFeature
             if (!VerificarIdSelecionado(id, "Devolver", "Devolução"))
                 return;
 
-            var locacaoSelecionada = locacaoService.SelecionarLocacaoPorId(id);
+            var locacaoSelecionada = locacaoService.GetById(id);
 
             if (locacaoSelecionada.Status == StatusLocacao.Concluido)
             {
@@ -72,7 +72,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.LocacaoFeature
                 {
                     locacaoService.ConcluirLocacao(telaNotaFiscal.Locacao);
 
-                    List<Locacao> locacaoes = locacaoService.SelecionarTodasLocacoes();
+                    List<Locacao> locacaoes = locacaoService.GetAll();
 
                     tabelaLocacoes.AtualizarRegistros(locacaoes);
 
@@ -88,7 +88,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.LocacaoFeature
             if (!VerificarIdSelecionado(id, "Editar", "Edição"))
                 return;
 
-            var locacaoSelecionada = locacaoService.SelecionarLocacaoPorId(id);
+            var locacaoSelecionada = locacaoService.GetById(id);
 
             if (locacaoSelecionada.Status == StatusLocacao.Concluido)
             {
@@ -104,11 +104,11 @@ namespace LocadoraVeiculo.WindowsApp.Features.LocacaoFeature
             if (tela.ShowDialog() == DialogResult.OK)
             {
                 if (tela.Locacao.Veiculo != locacaoSelecionada.Veiculo)
-                    veiculoService.EditarDisponibilidadeVeiculo(tela.Locacao.Veiculo, locacaoSelecionada.Veiculo);
+                    veiculoService.EditarDisponibilidade(tela.Locacao.Veiculo, locacaoSelecionada.Veiculo);
 
-                locacaoService.EditarLocacao(tela.Locacao);
+                locacaoService.Editar(tela.Locacao);
 
-                List<Locacao> locacaoes = locacaoService.SelecionarTodasLocacoes();
+                List<Locacao> locacaoes = locacaoService.GetAll();
 
                 tabelaLocacoes.AtualizarRegistros(locacaoes);
 
@@ -122,14 +122,14 @@ namespace LocadoraVeiculo.WindowsApp.Features.LocacaoFeature
             if (!VerificarIdSelecionado(id, "Excluir", "Exclusão"))
                 return;
 
-            var locacaoSelecionada = locacaoService.SelecionarLocacaoPorId(id);
+            var locacaoSelecionada = locacaoService.GetById(id);
 
             if (MessageBox.Show($"Tem certeza que deseja excluir a Locação: [{locacaoSelecionada}] ?",
                 "Exclusão de Locações", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK)
             {
-                locacaoService.ExcluirLocacao(locacaoSelecionada);
+                locacaoService.Excluir(locacaoSelecionada);
 
-                List<Locacao> servicos = locacaoService.SelecionarTodasLocacoes();
+                List<Locacao> servicos = locacaoService.GetAll();
 
                 tabelaLocacoes.AtualizarRegistros(servicos);
 
@@ -147,13 +147,13 @@ namespace LocadoraVeiculo.WindowsApp.Features.LocacaoFeature
                 switch (telaFiltro.TipoFiltro)
                 {
                     case FiltroLocacaoEnum.TodasLocacoes:
-                        locacoes = locacaoService.SelecionarTodasLocacoes();
+                        locacoes = locacaoService.GetAll();
                         break;
                     case FiltroLocacaoEnum.LocacoesPendentes:
-                        locacoes = locacaoService.SelecionarTodasLocacoesPendentes();
+                        locacoes = locacaoService.GetAllPendentes();
                         break;
                     case FiltroLocacaoEnum.LocacoesConcluidas:
-                        locacoes = locacaoService.SelecionarTodasLocacoesConcluidas();
+                        locacoes = locacaoService.GetAllConcluidas();
                         break;
                     default:
                         break;
@@ -170,9 +170,9 @@ namespace LocadoraVeiculo.WindowsApp.Features.LocacaoFeature
 
             if (tela.ShowDialog() == DialogResult.OK)
             {
-                locacaoService.RegistrarNovaLocacao(tela.Locacao);
+                locacaoService.Inserir(tela.Locacao);
 
-                List<Locacao> locacaoes = locacaoService.SelecionarTodasLocacoes();
+                List<Locacao> locacaoes = locacaoService.GetAll();
 
                 tabelaLocacoes.AtualizarRegistros(locacaoes);
 
@@ -182,7 +182,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.LocacaoFeature
 
         public UserControl ObterTabela()
         {
-            List<Locacao> locacoes = locacaoService.SelecionarTodasLocacoes();
+            List<Locacao> locacoes = locacaoService.GetAll();
 
             tabelaLocacoes.AtualizarRegistros(locacoes);
 
@@ -191,7 +191,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.LocacaoFeature
 
         public void PesquisarRegistro(string pesquisa)
         {
-            List<Locacao> locacoes = locacaoService.SelecionarTodasLocacoes();
+            List<Locacao> locacoes = locacaoService.GetAll();
 
             var palavras = pesquisa.Split(' ');
 
@@ -202,7 +202,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.LocacaoFeature
 
         private bool VerificarPossibilidadeDeInsercao()
         {
-            if (veiculoService.SelecionarTodosVeiculosDisponiveis().Count == 0)
+            if (veiculoService.GetAllCountDisponiveis() == 0)
             {
                 MessageBox.Show("Nenhum Veículo disponível para Locação!", "Adição de Locações",
                             MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
@@ -219,9 +219,9 @@ namespace LocadoraVeiculo.WindowsApp.Features.LocacaoFeature
 
         private bool VerificaCondutoresDisponiveis()
         {
-            var locacoes = locacaoService.SelecionarTodasLocacoesPendentes();
+            var locacoes = locacaoService.GetAllPendentes();
 
-            var clientesCPF = cpfService.SelecionarTodosClientesCPF();
+            var clientesCPF = cpfService.GetAll();
 
             locacoes.ForEach(x => clientesCPF.Remove(x.Condutor));
 

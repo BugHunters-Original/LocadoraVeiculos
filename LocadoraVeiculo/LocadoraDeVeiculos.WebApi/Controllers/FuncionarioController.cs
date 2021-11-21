@@ -6,7 +6,7 @@ using LocadoraDeVeiculos.Infra.ORM.FuncionarioModule;
 using Microsoft.AspNetCore.Mvc;
 using static LocadoraDeVeiculos.WebApi.ViewModels.FuncionarioViewModel;
 
-namespace LocadoraDeVeiculos.WebApi.Controllers
+namespace LocadoraDeVeiculos.WebApi.Shared
 {
     [Route("api/[controller]")]
     [ApiController]

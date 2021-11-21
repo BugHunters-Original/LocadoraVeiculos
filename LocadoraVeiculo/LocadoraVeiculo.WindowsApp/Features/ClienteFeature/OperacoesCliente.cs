@@ -130,7 +130,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.ClienteFeature
 
         public UserControl ObterTabela()
         {
-            List<ClienteCPF> clientesCPF = CPFService.SelecionarTodosClientesCPF();
+            List<ClienteCPF> clientesCPF = CPFService.GetAll();
 
             tabelaClientes.AtualizarRegistros(clientesCPF);
 
@@ -157,14 +157,14 @@ namespace LocadoraVeiculo.WindowsApp.Features.ClienteFeature
 
         private ClienteBase VerificarTipoCliente(int id, string tipo)
         {   //sim
-            return tipo.Length == 14 ? CPFService.SelecionarClienteCPFPorId(id) : CNPJService.SelecionarClienteCNPJPorId(id);
+            return tipo.Length == 14 ? CPFService.GetById(id) : CNPJService.GetById(id);
         }
 
         private bool VerificarCondutoresDisponiveis(ClienteBase clienteSelecionado)
         {
             if (clienteSelecionado is ClienteCNPJ)
             {
-                List<ClienteCPF> condutores = CPFService.SelecionarPorIdEmpresa(clienteSelecionado.Id);
+                List<ClienteCPF> condutores = CPFService.GetAllEmpresaId(clienteSelecionado.Id);
                 if (condutores.Count != 0)
                 {
                     MessageBox.Show("Remova primeiro os Condutores vinculados à Empresa e tente novamente",
@@ -178,7 +178,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.ClienteFeature
         private void AtualizarGrid(ClienteBase clienteSelecionado)
         {
             //sim
-            IEnumerable<ClienteBase> clientes = clienteSelecionado is ClienteCPF ? CPFService.SelecionarTodosClientesCPF() : CNPJService.SelecionarTodosClientesCNPJ();
+            IEnumerable<ClienteBase> clientes = clienteSelecionado is ClienteCPF ? CPFService.GetAll() : CNPJService.GetAll();
 
             tabelaClientes.AtualizarRegistros(clientes);
         }
@@ -196,25 +196,25 @@ namespace LocadoraVeiculo.WindowsApp.Features.ClienteFeature
 
         private IEnumerable<ClienteBase> RetornarClientesConformeTipo(TelaClienteForm tela)
         {
-            return tela.TipoCliente == FiltroClienteEnum.PessoaFisica ? CPFService.SelecionarTodosClientesCPF() :
-                                                                        CNPJService.SelecionarTodosClientesCNPJ();
+            return tela.TipoCliente == FiltroClienteEnum.PessoaFisica ? CPFService.GetAll() :
+                                                                        CNPJService.GetAll();
         }
 
         private bool RetornarInseriuConformeTipo(TelaClienteForm tela)
         {
-            return tela.TipoCliente == FiltroClienteEnum.PessoaFisica ? CPFService.RegistrarNovoClienteCPF((ClienteCPF)tela.Cliente) :
-                                                                        CNPJService.RegistrarNovoClienteCNPJ((ClienteCNPJ)tela.Cliente);
+            return tela.TipoCliente == FiltroClienteEnum.PessoaFisica ? CPFService.Inserir((ClienteCPF)tela.Cliente) :
+                                                                        CNPJService.Inserir((ClienteCNPJ)tela.Cliente);
         }
 
         private bool RetornarEditouConformeTipo(int id, ClienteBase clienteSelecionado, TelaClienteForm tela)
         {
-            return clienteSelecionado is ClienteCPF ? CPFService.EditarClienteCPF((ClienteCPF)tela.Cliente) :
-                                                      CNPJService.EditarClienteCNPJ((ClienteCNPJ)tela.Cliente);
+            return clienteSelecionado is ClienteCPF ? CPFService.Editar((ClienteCPF)tela.Cliente) :
+                                                      CNPJService.Editar((ClienteCNPJ)tela.Cliente);
         }
 
         private bool RetornarExcluiuConformeTipo(ClienteBase cliente)
         {
-            return cliente is ClienteCPF ? CPFService.ExcluirClienteCPF((ClienteCPF)cliente) : CNPJService.ExcluirClienteCNPJ((ClienteCNPJ)cliente);
+            return cliente is ClienteCPF ? CPFService.Excluir((ClienteCPF)cliente) : CNPJService.Excluir((ClienteCNPJ)cliente);
         }
 
         public void DevolverVeiculo()

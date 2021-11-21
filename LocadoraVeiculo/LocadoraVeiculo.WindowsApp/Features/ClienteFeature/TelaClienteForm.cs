@@ -109,7 +109,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.ClienteFeature
 
         private void PopularCombobox()
         {
-            List<ClienteCNPJ> empresas = CNPJService.SelecionarTodosClientesCNPJ();
+            List<ClienteCNPJ> empresas = CNPJService.GetAll();
 
             empresas.ForEach(x => cbEmpresas.Items.Add(x));
         }

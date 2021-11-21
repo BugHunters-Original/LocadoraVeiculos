@@ -106,7 +106,7 @@ namespace LocadoraVeiculo.WindowsApp.Features.DescontoFeature
             if (MessageBox.Show($"Tem certeza que deseja excluir o Cupom de Desconto: [{descontoSelecionado}] ?",
                 "Exclusão de Cupom de Desconto", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK)
             {
-                int contador = locacaoService.SelecionarLocacoesComCupons(descontoSelecionado.Codigo);
+                int contador = locacaoService.GetAllComCupons(descontoSelecionado.Codigo);
 
                 if (contador == 0)
                 {

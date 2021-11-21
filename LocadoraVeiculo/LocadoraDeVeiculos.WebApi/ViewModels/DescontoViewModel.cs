@@ -2,7 +2,7 @@
 {
     public class DescontoViewModel
     {
-        public class DescontoListViewModel
+        public class DescontoListViewModel 
         {
             public int Id { get; set; }
 
