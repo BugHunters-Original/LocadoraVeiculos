@@ -24,8 +24,7 @@ namespace LocadoraDeVeiculos.Dominio.VeiculoModule
         public string TipoCombustivel { get; set; }
         public int DisponibilidadeVeiculo { get; set; }
         public GrupoVeiculo GrupoVeiculo { get; set; }
-        public virtual int IdGrupoVeiculo { get; set; }
-        
+        public virtual int IdGrupoVeiculo { get; set; }        
         public ICollection<Locacao> Locacoes { get; set; }
 
 

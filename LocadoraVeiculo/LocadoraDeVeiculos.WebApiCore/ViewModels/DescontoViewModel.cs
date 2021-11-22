@@ -78,6 +78,8 @@ namespace LocadoraDeVeiculos.WebApi.ViewModels
 
             public string Nome { get; set; }
 
+            public string Codigo { get; set; }
+
             public decimal Valor { get; set; }
 
             public int Tipo { get; set; }
