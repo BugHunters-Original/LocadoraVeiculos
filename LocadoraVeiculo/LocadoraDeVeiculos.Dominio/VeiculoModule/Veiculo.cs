@@ -105,7 +105,7 @@ namespace LocadoraDeVeiculos.Dominio.VeiculoModule
             if (KmInicial == null || KmInicial <= 0)
                 resultadoValidacao += QuebraDeLinha(resultadoValidacao) + "O campo Quilometragem Inicial obrigatório";
 
-            if (GrupoVeiculo == null)
+            if (IdGrupoVeiculo == 0)
                 resultadoValidacao += QuebraDeLinha(resultadoValidacao) + "O campo tipo é obrigatório";
 
             if (Convert.ToInt32(Ano) > DateTime.Now.Year || Convert.ToInt32(Ano) < 1900 && Ano != null)

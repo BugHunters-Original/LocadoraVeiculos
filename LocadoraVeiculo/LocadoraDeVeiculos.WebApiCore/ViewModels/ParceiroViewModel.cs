@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using static LocadoraDeVeiculos.WebApi.ViewModels.DescontoViewModel;
 
 namespace LocadoraDeVeiculos.WebApi.ViewModels
@@ -23,6 +24,7 @@ namespace LocadoraDeVeiculos.WebApi.ViewModels
 
         public class ParceiroCreateViewModel
         {
+            [Required(ErrorMessage = "O campo Nome é obrigatório")]
             public string Nome { get; set; }
         }
 

@@ -20,7 +20,7 @@ namespace LocadoraDeVeiculos.Infra.ORM.LocacaoModule
 
             builder.HasOne(x => x.Desconto).WithMany(x => x.Locacoes).HasForeignKey(x => x.IdDesconto);
 
-            builder.HasOne(x => x.Condutor).WithOne(x => x.Locacao).HasForeignKey<Locacao>(x => x.IdCondutor);
+            builder.HasOne(x => x.Condutor).WithMany(x => x.LocacoesParticipando).HasForeignKey(x => x.IdCondutor);
 
             builder.Property(x => x.IdDesconto).HasColumnType("INT");
 

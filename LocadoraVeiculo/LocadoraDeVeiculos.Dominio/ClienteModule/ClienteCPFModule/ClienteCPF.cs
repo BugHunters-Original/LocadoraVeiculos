@@ -31,7 +31,7 @@ namespace LocadoraDeVeiculos.Dominio.ClienteModule.ClienteCPFModule
         public DateTime DataValidade { get; set; }
         public int? IdCliente { get; set; }
         public ClienteCNPJ Cliente { get; set; }
-        public Locacao Locacao { get; set; }
+        public virtual IEnumerable<Locacao> LocacoesParticipando { get; set; }
 
         public bool Equals(ClienteCPF other)
         {

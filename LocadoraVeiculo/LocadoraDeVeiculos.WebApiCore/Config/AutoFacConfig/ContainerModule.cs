@@ -18,6 +18,7 @@ using LocadoraDeVeiculos.Dominio.LocacaoModule;
 using LocadoraDeVeiculos.Dominio.ParceiroModule;
 using LocadoraDeVeiculos.Dominio.ReciboModule;
 using LocadoraDeVeiculos.Dominio.ServicoModule;
+using LocadoraDeVeiculos.Dominio.Shared;
 using LocadoraDeVeiculos.Dominio.TaxaDaLocacaoModule;
 using LocadoraDeVeiculos.Dominio.VeiculoModule;
 using LocadoraDeVeiculos.Infra.Context;
@@ -42,6 +43,8 @@ namespace LocadoraDeVeiculos.WebApi.Config.AutoFacConfig
         protected override void Load(ContainerBuilder builder)
         {
             builder.RegisterType<LocacaoContext>().InstancePerLifetimeScope();
+
+            builder.RegisterType<Notificador>().As<INotificador>().InstancePerLifetimeScope();
 
             RegistrarORM(builder);
 
@@ -77,6 +80,7 @@ namespace LocadoraDeVeiculos.WebApi.Config.AutoFacConfig
             builder.RegisterType<LocacaoAppService>().As<ILocacaoAppService>().InstancePerDependency();
             builder.RegisterType<ServicoAppService>().As<IServicoAppService>().InstancePerDependency();
             builder.RegisterType<VeiculoAppService>().As<IVeiculoAppService>().InstancePerDependency();
+
         }
     }
 }

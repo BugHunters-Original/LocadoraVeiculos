@@ -38,6 +38,7 @@ namespace LocadoraDeVeiculos.WebApiCore
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "LocadoraDeVeiculos.WebApiCore", Version = "v1" });
             });
+            services.AddControllers().AddNewtonsoftJson();
         }
         public void ConfigureContainer(ContainerBuilder builder)
         {

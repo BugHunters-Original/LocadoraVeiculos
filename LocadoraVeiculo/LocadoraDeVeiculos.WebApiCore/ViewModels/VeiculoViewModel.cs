@@ -15,7 +15,7 @@ namespace LocadoraDeVeiculos.WebApiCore.ViewModels
             public string TipoCombustivel { get; set; }
             public int DisponibilidadeVeiculo { get; set; }
             public int IdGrupoVeiculo { get; set; }
-            public string GrupoVeiculoNome { get; set; }
+            public string GrupoVeiculoNomeTipo { get; set; }
         }
 
         public class VeiculoDetailsViewModel

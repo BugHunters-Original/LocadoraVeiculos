@@ -3,19 +3,22 @@ using LocadoraDeVeiculos.Aplicacao.Shared;
 using LocadoraDeVeiculos.Dominio.Shared;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace LocadoraDeVeiculos.WebApi.Controllers.Shared
 {
     [Route("api/[controller]")]
     [ApiController]
-    public abstract class BaseController<TEntity, TListVM, TDetailsVM, TCreateVM, TEditVM> : ControllerBase where TEntity: EntidadeBase
+    public abstract class BaseController<TEntity, TListVM, TDetailsVM, TCreateVM, TEditVM> : ControllerBase where TEntity : EntidadeBase
     {
         private readonly IBaseAppService<TEntity> appService;
         private readonly IMapper mapper;
-        public BaseController(IBaseAppService<TEntity> appService, IMapper mapper)
+        private readonly INotificador notificador;
+        public BaseController(IBaseAppService<TEntity> appService, IMapper mapper, INotificador notificador)
         {
             this.appService = appService;
             this.mapper = mapper;
+            this.notificador = notificador;
         }
 
         [HttpGet]
@@ -44,6 +47,23 @@ namespace LocadoraDeVeiculos.WebApi.Controllers.Shared
         [HttpPost]
         public ActionResult<TCreateVM> Create(TCreateVM viewModel)
         {
+            if (!ModelState.IsValid)
+            {
+                var erros = ModelState.Values.SelectMany(x => x.Errors);
+
+                foreach (var erro in erros)
+                {
+                    var erroMsg = erro.Exception == null ? erro.ErrorMessage : erro.Exception.Message;
+
+                    notificador.RegistrarNotificacao(erroMsg);
+                }
+                return BadRequest(new
+                {
+                    success = false,
+                    errors = notificador.ObterNotificacoes()
+                });
+            }
+
             var registro = mapper.Map<TEntity>(viewModel);
 
             var resultado = appService.Inserir(registro);
@@ -53,7 +73,11 @@ namespace LocadoraDeVeiculos.WebApi.Controllers.Shared
                 return CreatedAtAction(nameof(Create), viewModel);
             }
 
-            return NoContent();
+            return BadRequest(new
+            {
+                success = false,
+                errors = notificador.ObterNotificacoes()
+            });
         }
 
         [HttpPut("{id}")]

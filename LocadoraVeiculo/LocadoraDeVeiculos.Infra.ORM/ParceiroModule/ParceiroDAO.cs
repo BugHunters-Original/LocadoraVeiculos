@@ -19,6 +19,10 @@ namespace LocadoraDeVeiculos.Infra.ORM.ParceiroModule
         {
             return registros.Include(x => x.Descontos).SingleOrDefault(x => x.Id == id);
         }
+        public bool ExisteParceiroNome(string nome)
+        {
+            return registros.ToList().Exists(x => x.Nome == nome);
+        }
 
     }
 }

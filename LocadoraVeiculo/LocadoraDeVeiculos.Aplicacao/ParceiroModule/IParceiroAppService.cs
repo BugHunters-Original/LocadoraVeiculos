@@ -6,6 +6,5 @@ namespace LocadoraDeVeiculos.Aplicacao.ParceiroModule
 {
     public interface IParceiroAppService : IBaseAppService<Parceiro>
     {
-
     }
 }

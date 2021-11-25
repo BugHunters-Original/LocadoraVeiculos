@@ -12,6 +12,7 @@ namespace LocadoraDeVeiculos.WebApiCore.Config.AutoMapperConfig
         public VeiculoProfile()
         {
             CreateMap<Veiculo, VeiculoListViewModel>();
+                //.ForMember(dest => dest.GrupoVeiculoNome, opt => opt.MapFrom(src => src.GrupoVeiculo.NomeTipo));
 
             CreateMap<Veiculo, VeiculoDetailsViewModel>()
                 .ForMember(dest => dest.Foto, opt => opt.MapFrom(src => Encoding.ASCII.GetString(src.Foto)));

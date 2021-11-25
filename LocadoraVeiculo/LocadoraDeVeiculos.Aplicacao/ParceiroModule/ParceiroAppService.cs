@@ -1,4 +1,5 @@
 ﻿using LocadoraDeVeiculos.Dominio.ParceiroModule;
+using LocadoraDeVeiculos.Dominio.Shared;
 using LocadoraDeVeiculos.Infra.ExtensionMethods;
 using LocadoraDeVeiculos.Infra.Logger;
 using System.Collections.Generic;
@@ -8,33 +9,56 @@ namespace LocadoraDeVeiculos.Aplicacao.ParceiroModule
     public class ParceiroAppService : IParceiroAppService
     {
         private readonly IParceiroRepository parceiroRepository;
+        private readonly INotificador notificador;
 
-        public ParceiroAppService(IParceiroRepository parceiroRepo)
+        public ParceiroAppService(IParceiroRepository parceiroRepo, INotificador notificador)
         {
             parceiroRepository = parceiroRepo;
+            this.notificador = notificador;
         }
 
         public bool Inserir(Parceiro parceiro)
         {
-            string resultadoValidacaoDominio = parceiro.Validar();
+            ParceiroValidator validator = new();
 
             Serilogger.Logger.Aqui().Debug("REGISTRANDO PARCEIRO {ParceiroNome}", parceiro.Nome);
 
-            if (resultadoValidacaoDominio == "ESTA_VALIDO")
+            var validacao = validator.Validate(parceiro);
+
+            if (!validacao.IsValid)
             {
-
-                parceiroRepository.Inserir(parceiro);
-
-                Serilogger.Logger.Aqui().Debug("PARCEIRO {ParceiroNome} REGISTRADO COM SUCESSO", parceiro.Nome);
-
-                return true;
-            }
-            else
-            {
-                Serilogger.Logger.Aqui().Error("NÃO FOI POSSÍVEL REGISTRAR PARCEIRO {ParceiroNome}", parceiro.Nome);
+                foreach (var erro in validacao.Errors)
+                {
+                    notificador.RegistrarNotificacao(erro.ErrorMessage);
+                }
 
                 return false;
             }
+
+            var nomeExistente = parceiroRepository.ExisteParceiroNome(parceiro.Nome);
+
+            if (nomeExistente)
+            {
+                notificador.RegistrarNotificacao($"O nome {parceiro.Nome} já está registrando em nossa base de dados");
+
+                return false;
+            }
+
+            var parceiroInserido = parceiroRepository.Inserir(parceiro);
+
+            if (!parceiroInserido)
+            {
+                Serilogger.Logger.Aqui().Error("NÃO FOI POSSÍVEL REGISTRAR PARCEIRO {ParceiroNome}", parceiro.Nome);
+
+                notificador.RegistrarNotificacao($"Não foi possível registrar o parceiro {parceiro.Nome}");
+
+                return false;
+            }
+
+            Serilogger.Logger.Aqui().Debug("PARCEIRO {ParceiroNome} REGISTRADO COM SUCESSO", parceiro.Nome);
+
+            return true;
+
         }
 
         public bool Editar(Parceiro parceiro)
@@ -100,5 +124,7 @@ namespace LocadoraDeVeiculos.Aplicacao.ParceiroModule
 
             return parceiro;
         }
+
+
     }
 }
